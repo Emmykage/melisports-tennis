@@ -1,0 +1,14 @@
+.hero-banner{
+    background: url('../../../public/assets/banner.jpg');
+    height: 450px;
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h5{
+    font-size: 1.8rem;
+    color: #fff;
+    
+}

@@ -1,0 +1,46 @@
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: rgb(240, 240, 240);
+}
+.nav-links{
+    display: flex;
+    list-style: none;
+    
+    /* flex: 2; */
+}
+.nav-div{
+    flex: 5;
+    /* background-color: green; */
+}
+.logo{
+    flex: 1;
+    /* background-color: brown; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+.logo a{
+    /* background-color: blueviolet; */
+}
+.nav-item{
+    padding: 0.3rem 1.5rem;
+}
+.search-div{
+    display: flex;
+    /* width: 90%; */
+    background-color: red;
+    margin: auto;
+    padding: 1rem 2rem;
+
+
+}
+.search-div input{
+    width: 100%;
+    padding: 0.4rem 1rem;
+ 
+}
