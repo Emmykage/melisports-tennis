@@ -30,7 +30,7 @@ export default function categoryReducer (state = initialState, action) {
             return state;
     }
 }
-export const getCategories = () =>{
+export const getCategories = (dispatch) =>{
     dispatch({
         type: GET_CATEGORIES
         

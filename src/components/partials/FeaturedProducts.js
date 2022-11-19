@@ -1,13 +1,14 @@
 import React from 'react'
+import './style.css'
 
 const FeaturedProducts = (props) => {
-    const [id, name, image] = props
+    const {id, name, image} = props
   return (
-    <div>
+    <div className='feature-grid'>
         <div>
             <img src={image} />
         </div>
-        <div>
+        <div className='center'>
             <h4> {name}</h4>
         </div>
     </div>

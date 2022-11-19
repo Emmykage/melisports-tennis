@@ -1,0 +1,9 @@
+.feature-grid{
+    flex: 1;
+    background-color: blue;
+    border: 1px solid black;
+}
+.feature-grid img{
+    width: 100%;
+    background-color: blueviolet;
+}
