@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './nav.css';
 
 const Nav = () => (
@@ -6,19 +7,19 @@ const Nav = () => (
     <nav>
       <div className="navbar">
         <div className="logo">
-          <a href="#Home">
+          <NavLink href="#Home">
             MeliSports
-          </a>
+          </NavLink>
         </div>
 
         <div className="nav-div">
 
           <ul className="nav-links">
-            <li className="nav-item"><a href="#Home">Home</a></li>
-            <li className="nav-item"><a href="#Home">Apparels</a></li>
-            <li className="nav-item"><a href="#Home">Racquets</a></li>
-            <li className="nav-item"><a href="#Home">Shoes</a></li>
-            <li className="nav-item"><a href="#Home">Brands</a></li>
+            <li className="nav-item"><NavLink to="/">Home</NavLink></li>
+            <li className="nav-item"><NavLink to="/products">Apparels</NavLink></li>
+            <li className="nav-item"><NavLink href="#Home">Racquets</NavLink></li>
+            <li className="nav-item"><NavLink href="#Home">Shoes</NavLink></li>
+            <li className="nav-item"><NavLink href="#Home">Brands</NavLink></li>
 
           </ul>
         </div>

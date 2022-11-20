@@ -4,6 +4,9 @@
   box-sizing: border-box;
   font-family: "poppins", sans-serif;
 }
+:root{
+  --color-grey: rgb(27, 27, 27);
+}
 ul{
   list-style: none;
 }
@@ -34,6 +37,7 @@ a{
 .flex-center{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .flex-center-around{
   display: flex;
@@ -66,4 +70,19 @@ footer{
   margin-top: 2rem;
   background-color: rgba(14, 13, 13, 0.884);
   color: #fff;
+}
+.color-black{
+  color: black;
+}
+.btn{
+  width: fit-content;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+
+}
+.btn-outline{
+  border: 1px solid black;
+}
+.color-grey{
+  color: rgb(27, 27, 27);
 }

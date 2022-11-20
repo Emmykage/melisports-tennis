@@ -1,3 +1,4 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './components/footer/Footer';
 import Nav from './components/nav/Nav';
@@ -9,8 +10,12 @@ function App() {
   return (
     <div className="container">
       <Nav />
-      <Home />
-      <ProductsPage />
+      <Routes>
+        <Route path='/' element={<Home />} /> 
+        <Route path='/products' element={<ProductsPage />} />
+        
+      </Routes>
+     
 
       <Footer/>
 

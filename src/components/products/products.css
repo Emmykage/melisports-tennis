@@ -1,0 +1,28 @@
+.products-display{
+    border: 1px solid var(--color-grey);
+    flex-basis: 21%;
+    text-align: center;
+    padding-bottom: 2rem;
+
+}
+.prod-img{
+    margin: 0;
+}
+.products-display img{
+    width: 100%;
+    height: 300px;
+
+}
+.prod-details{
+    margin: 0;
+}
+.products-display h5{
+    margin: 0;
+    font-size: 1.0rem;
+}
+.products-display p{
+    margin: 0.5rem;
+}
+.products-display {
+
+}
