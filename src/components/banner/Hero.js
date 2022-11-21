@@ -1,17 +1,14 @@
-import React from 'react'
-import IMG_BANNER from '../../assets/images/racquet-banner.jpg'
+import React from 'react';
+import IMG_BANNER from '../../assets/images/racquet-banner.jpg';
 
-const Hero = () => {
-  return (
-    <div className='product-banner hero-mid'>
-        <div className='card-img'>
-            <img src={IMG_BANNER} />
+const Hero = () => (
+  <div className="product-banner hero-mid">
+    <div className="card-img">
+      <img src={IMG_BANNER} alt="" />
 
-        </div>
-        
-        
     </div>
-  )
-}
 
-export default Hero
+  </div>
+);
+
+export default Hero;

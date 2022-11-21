@@ -16,6 +16,9 @@ a{
 .container{
   width: 100%;
 }
+.prod-page{
+  padding: 1rem;
+}
 .ml{
   margin-left: 3rem;
 }
@@ -35,9 +38,14 @@ a{
   width: 70%;
 }
 .flex-center{
+
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  background-color: green;
+}
+.level{
+  padding-top: 1rem;
 }
 .flex-center-around{
   display: flex;
@@ -85,4 +93,20 @@ footer{
 }
 .color-grey{
   color: rgb(27, 27, 27);
+}
+.side-nav{
+  width: 340px;
+  flex-basis: 20%;
+  background-color: blueviolet;
+}
+.bg-blue{
+  background-color: blue;
+}
+.full-width{
+  flex-basis: 78%;
+}
+
+.product-details{
+  padding: 1.5rem;
+  font-size: 0.8rem;
 }
