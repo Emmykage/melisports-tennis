@@ -16,8 +16,8 @@ const Nav = () => (
 
           <ul className="nav-links">
             <li className="nav-item"><NavLink to="/">Home</NavLink></li>
-            <li className="nav-item"><NavLink to="/products">Apparels</NavLink></li>
-            <li className="nav-item"><NavLink href="#Home">Racquets</NavLink></li>
+            <li className="nav-item"><NavLink to="/products">Racquets </NavLink></li>
+            <li className="nav-item"><NavLink href="#Home">Apparels</NavLink></li>
             <li className="nav-item"><NavLink href="#Home">Shoes</NavLink></li>
             <li className="nav-item"><NavLink href="#Home">Brands</NavLink></li>
 

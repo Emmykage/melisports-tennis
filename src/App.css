@@ -37,12 +37,28 @@ a{
 .w-7{
   width: 70%;
 }
+.row {
+  display: flex;
+}
 .flex-center{
 
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   background-color: green;
+}
+.col-md-6{
+  background-color: blue;
+  flex-basis: 50%;
+  
+}
+.w-8{
+  width: 80%;
+  background-color: chartreuse;
+}
+.p-x5{
+  padding-left: 5rem ;
+  padding-right: 5rem;
 }
 .level{
   padding-top: 1rem;
@@ -109,4 +125,21 @@ footer{
 .product-details{
   padding: 1.5rem;
   font-size: 0.8rem;
+}
+.product-display-image{
+  width: 350px;
+  height: 350px;
+  background-color: red;
+  margin: 10px;
+}
+.product-display-image img{
+  width: 100%;
+}
+.img-prev{  
+  width: 60% ;
+}
+.img-prev img{
+  width: 60px;
+  height: 70px;
+  background-color: green;
 }
