@@ -16,85 +16,92 @@ const Nav = () => (
 
           <ul className="nav-links">
             <li className="nav-item"><NavLink to="/">Home</NavLink></li>
-            <li className="nav-item"><NavLink to="/racquets">Racquets </NavLink>
-            <div className='link-items flex'>
-              <div>
-                <h3>
-                Racquets &<br/> Paddles
+            <li className="nav-item">
+              <NavLink to="/racquets">Racquets </NavLink>
+              <div className="link-items flex">
+                <div>
+                  <h3>
+                    Racquets &
+                    <br />
+                    {' '}
+                    Paddles
                   </h3>
+                </div>
+                <ul>
+
+                  <h4>Tennis Racquets</h4>
+                  <li><a href="#">Babolat</a></li>
+                  <li><a href="#">Wilso</a></li>
+                </ul>
+                <ul>
+
+                  <h4>Badminton Racquets</h4>
+                  <li><a href="#">Babolat</a></li>
+                  <li><a href="#">Wilso</a></li>
+                </ul>
               </div>
-              <ul>
-               
-                <h4>Tennis Racquets</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilso</a></li>
-              </ul>
-              <ul>
-               
-                <h4>Badminton Racquets</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilso</a></li>
-              </ul>
-            </div>
             </li>
-            <li className="nav-item"><NavLink href="#Home">Apparels</NavLink>
-            <div className='link-items flex'>
-              <div>
-                <h3>Apparels</h3>
+            <li className="nav-item">
+              <NavLink href="#Home">Apparels</NavLink>
+              <div className="link-items flex">
+                <div>
+                  <h3>Apparels</h3>
+                </div>
+                <ul>
+
+                  <h4>Tennis Men's Apparels</h4>
+                  <li><a href="#">Babolat</a></li>
+                  <li><a href="#">Wilso</a></li>
+                </ul>
+                <ul>
+
+                  <h4>Tennis Women's Apparel</h4>
+                  <li><a href="#">Babolat</a></li>
+                  <li><a href="#">Wilso</a></li>
+                </ul>
               </div>
-              <ul>
-               
-                <h4>Tennis Men's Apparels</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilso</a></li>
-              </ul>
-              <ul>
-               
-                <h4>Tennis Women's Apparel</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilso</a></li>
-              </ul>
-            </div>
             </li>
-            <li className="nav-item"><NavLink href="#Home">Shoes</NavLink>
-            <div className='link-items flex'>
-              <div>
-                <h3>Shoes</h3>
+            <li className="nav-item">
+              <NavLink href="#Home">Shoes</NavLink>
+              <div className="link-items flex">
+                <div>
+                  <h3>Shoes</h3>
+                </div>
+                <ul>
+
+                  <h4>Men's Shoes</h4>
+                  <li><a href="#">Babolat</a></li>
+                  <li><a href="#">Wilson</a></li>
+                </ul>
+                <ul>
+
+                  <h4>Women's Shoes</h4>
+                  <li><a href="/">Babolat</a></li>
+                  <li><a href="/">Wilso</a></li>
+                </ul>
               </div>
-              <ul>
-               
-                <h4>Men's Shoes</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilson</a></li>
-              </ul>
-              <ul>
-               
-                <h4>Women's Shoes</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilso</a></li>
-              </ul>
-            </div>
             </li>
-            <li className="nav-item"><NavLink href="#Home">Brands</NavLink>
-            <div className='link-items flex'>
-              <div>
-                <h3>
-                Sport Brands
-                  </h3> 
+            <li className="nav-item">
+              <NavLink href="#Home">Brands</NavLink>
+              <div className="link-items flex">
+                <div>
+                  <h3>
+                    Sport Brands
+                  </h3>
+                </div>
+                <ul>
+
+                  <h4>Tennis Racquets</h4>
+                  <li><a href="/">Babolat</a></li>
+                  <li><a href="/">Wilso</a></li>
+                </ul>
+                <ul>
+
+                  <h4>Badminton Racquets</h4>
+                  <li><a href="/">Babolat</a></li>
+                  <li><a href="/">Wilso</a></li>
+                </ul>
               </div>
-              <ul>
-               
-                <h4>Tennis Racquets</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilso</a></li>
-              </ul>
-              <ul>
-               
-                <h4>Badminton Racquets</h4>
-                <li><a>Babolat</a></li>
-                <li><a>Wilso</a></li>
-              </ul>
-            </div>
             </li>
 
           </ul>
