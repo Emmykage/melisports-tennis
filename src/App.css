@@ -3,6 +3,8 @@
 *{
   box-sizing: border-box;
   font-family: "poppins", sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
+  margin: 0;
 }
 :root{
   --color-grey: rgb(27, 27, 27);
@@ -38,6 +40,9 @@ a{
   width: 70%;
 }
 .row {
+  display: flex;
+}
+.flex{
   display: flex;
 }
 .flex-center{

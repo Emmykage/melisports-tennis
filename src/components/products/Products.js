@@ -25,7 +25,7 @@ const Products = () => {
               ...
             </h5>
             <p>{product.price}</p>
-            <NavLink className="btn color-grey btn-outline" to="/product">
+            <NavLink className="btn color-grey btn-outline" to="/racquets">
               Buy
             </NavLink>
 
