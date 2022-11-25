@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import {AiOutlineShoppingCart} from "react-icons/ai"
 import './nav.css';
+import { useSelector } from 'react-redux';
 
-const Nav = () => (
+const Nav = () => {
+  const {amount} = useSelector((state) => state.cart)
+  return(
   <div>
     <nav>
       <div className="navbar">
@@ -12,7 +16,7 @@ const Nav = () => (
           </NavLink>
         </div>
 
-        <div className="nav-div">
+        <div className="nav-div flex-center">
 
           <ul className="nav-links">
             <li className="nav-item"><NavLink to="/">Home</NavLink></li>
@@ -105,7 +109,16 @@ const Nav = () => (
             </li>
 
           </ul>
+          <div>
+          <AiOutlineShoppingCart/>
+          <div className='amount-container'>
+            <p className='total-amount'>{amount}</p>
+
+          </div>
+          </div>
+          
         </div>
+        
       </div>
       <div>
         <form>
@@ -119,6 +132,6 @@ const Nav = () => (
       </div>
     </nav>
   </div>
-);
+)};
 
 export default Nav;

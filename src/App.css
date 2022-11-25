@@ -148,3 +148,18 @@ footer{
   height: 70px;
   background-color: green;
 }
+.cart-div{
+  width: 60%;
+  margin: auto;
+}
+.cart-div li{
+  margin-top: 10px;
+}
+.cart-div li .cart-img {
+  width: 250px;
+  height: 250px;
+
+}
+.cart-div li .cart-img img{
+  width: 100%;
+}

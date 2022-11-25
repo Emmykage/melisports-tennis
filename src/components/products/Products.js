@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getProducts } from '../../redux/products/product';
+import { getProducts } from '../../redux/actions/product';
 import './products.css';
 
 const Products = () => {
