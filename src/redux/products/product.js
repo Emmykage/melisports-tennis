@@ -1,45 +1,44 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getProducts } from '../actions/product';
 // const products;
-const initialState =  {
+const initialState = {
   products: [],
-  status: false
-}
-
+  status: false,
+};
 
 const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    editProducts: (state, action) => {
-      const product = state.products.map((prod) => {
-        if (prod.id === action.payload.id) {
-          prod = action.payload;
-        }
-      });
+    // editProducts: (state, action) => {
+    //   const product = state.products.map((prod) => {
+    //     if (prod.id === action.payload.id) {
+    //       prod = action.payload;
+    //     }
+    //   });
 
-      return {
-        ...state, products: [...product],
-      };
-    },
+    //   return {
+    //     ...state, products: [...product],
+    //   };
+    // },
 
   },
 
-  extraReducers:{
-    [getProducts.fulfilled]: (state, action) =>({
+  extraReducers: {
+    [getProducts.fulfilled]: (state, action) => ({
       ...state,
       status: true,
-      products: action.payload
+      products: action.payload,
     }),
-    [getProducts.pending]: (state) =>({
+    [getProducts.pending]: (state) => ({
       ...state,
-      status: false
+      status: false,
     }),
-    [getProducts.rejected]: (state) =>({
+    [getProducts.rejected]: (state) => ({
       ...state,
-      status: false
-    })
-  }
+      status: false,
+    }),
+  },
 });
 
 // export const { getProducts, editProducts } = productsSlice.actions;
