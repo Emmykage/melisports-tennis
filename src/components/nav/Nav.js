@@ -11,7 +11,7 @@ const Nav = () => {
       <nav>
         <div className="navbar">
           <div className="logo">
-            <NavLink href="#Home">
+            <NavLink to="/">
               MeliSports
             </NavLink>
           </div>
@@ -46,7 +46,7 @@ const Nav = () => {
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink href="#Home">Apparels</NavLink>
+                <NavLink to="/apparels">Apparels</NavLink>
                 <div className="link-items flex">
                   <div>
                     <h3>Apparels</h3>
@@ -66,7 +66,27 @@ const Nav = () => {
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink href="#Home">Shoes</NavLink>
+                <NavLink to="/shoes">Shoes</NavLink>
+                <div className="link-items flex">
+                  <div>
+                    <h3>Shoes</h3>
+                  </div>
+                  <ul>
+
+                    <h4>Men's Shoes</h4>
+                    <li><a href="#">Babolat</a></li>
+                    <li><a href="#">Wilson</a></li>
+                  </ul>
+                  <ul>
+
+                    <h4>Women's Shoes</h4>
+                    <li><a href="/">Babolat</a></li>
+                    <li><a href="/">Wilso</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/shoes">Shoes</NavLink>
                 <div className="link-items flex">
                   <div>
                     <h3>Shoes</h3>

@@ -45,6 +45,8 @@ align-items: flex-end;
 }
 .logo a{
     /* background-color: blueviolet; */
+    color: white;
+    font-size: 2rem;
 }
 .nav-item{
     padding: 0.83rem 1.5rem;
