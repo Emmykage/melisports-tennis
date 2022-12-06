@@ -17,7 +17,10 @@ const Products = () => {
       {products.map((product) => (
         <div key={product.id} className="products-display">
           <div className="prod-img">
+            <NavLink to={`productdetails/${product.id}`}>
             <img src={product.image} alt="" />
+            </NavLink>
+            
           </div>
           <div className="prod-details">
             <h5 className="color-black">
@@ -25,7 +28,7 @@ const Products = () => {
               ...
             </h5>
             <p>{product.price}</p>
-            <NavLink className="btn color-grey btn-outline" to="/racquets">
+            <NavLink className="btn color-grey btn-outline" to={`/productdetails/${product.id}`}>
               Buy
             </NavLink>
 

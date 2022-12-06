@@ -31,7 +31,9 @@ const tennisDetails = {
 
 };
 
-const ProductDetails = () => (
+const ProductDetails = () => {
+  
+return (
   <div>
     <div className="row flex-center">
       <div className="col-md-6">
@@ -85,6 +87,6 @@ const ProductDetails = () => (
 
     </div>
   </div>
-);
+)};
 
 export default ProductDetails;
