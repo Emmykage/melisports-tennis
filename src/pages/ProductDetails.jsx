@@ -1,4 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getProduct } from '../redux/actions/product';
 
 const tennisDetails = {
   title: 'Babolat Strike EVO Pre-Strung Tennis Racquet',
@@ -32,25 +36,31 @@ const tennisDetails = {
 };
 
 const ProductDetails = () => {
-  
+  const dispatch = useDispatch();
+
+  const product = useSelector((state) => state.product.product)
+  const {id} = useParams();
+  useEffect(()=>{
+    dispatch(getProduct(id))
+  }, [])
 return (
   <div>
     <div className="row flex-center">
       <div className="col-md-6">
         <div className="product-display-image">
 
-          <img src={tennisDetails.images[0]} alt="yeo" />
+          <img src={product.image} alt="yeo" />
         </div>
 
-        <div className="img-prev flex-center">
+        {/* <div className="img-prev flex-center">
           {tennisDetails.images.map((img, i) => (
             <img src={img} key={i} alt="prev" className="prev-img" />
           ))}
 
-        </div>
+        </div> */}
       </div>
       <div className="col-md-6 prev-details">
-        <h3>{tennisDetails.title}</h3>
+        <h3>{product.title}</h3>
         <p>
           $
           {tennisDetails.price}
@@ -83,7 +93,7 @@ return (
 
     <div className="p-x5">
       <h4>Description</h4>
-      {tennisDetails.description}
+      {product.description}
 
     </div>
   </div>

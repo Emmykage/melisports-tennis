@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import categoryReducer from './category/categories';
 import productReducer from './products/product';
 import cartReducer from './cart/cart';
+import productSlice from "./product/product"
 import modalSlice from './modal/modal';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   modal: modalSlice,
   categories: categoryReducer,
   products: productReducer,
+  product: productSlice
 
 });
 
