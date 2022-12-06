@@ -2,17 +2,19 @@
 *{
     box-sizing: border-box;
     padding: 0;
+    /* color: white; */
 }
 .navbar{
     display: flex;
     justify-content: space-between;
     /* padding: 1rem 2rem; */
-    background-color: rgb(240, 240, 240);
+    /* background-color: rgb(240, 240, 240); */
     height: 90px;
-    background-color: purple;
+    /* background-color: purple; */
     position: relative;
+    background-color: #222629;
+    color: white;
 
-   
 
    margin-bottom: 10px;
 }
@@ -22,15 +24,20 @@ display: flex;
 align-items: flex-end;
     flex: 5;
     height: 100%;
-    padding: 0;
-    background-color: brown;
+    padding: 0 2rem;
+    color: white;
+    
+    /* background-color: brown; */
   
     
 }
 .nav-links{
     display: flex;
     list-style: none;
-    background-color: green;
+    color: white;
+
+
+    /* background-color: green; */
     
     /* flex: 2; */
 }
@@ -45,13 +52,17 @@ align-items: flex-end;
 }
 .logo a{
     /* background-color: blueviolet; */
-    color: white;
+    color: rgb(20, 20, 20);
     font-size: 2rem;
+    color: #fff;
+    
 }
 .nav-item{
     padding: 0.83rem 1.5rem;
     border: 1px solid black;
     height: 100%;
+    color: white;
+
     /* line-height: 45px; */
  
  
@@ -59,14 +70,20 @@ align-items: flex-end;
     align-items: flex-start;
    
 }
+.nav-item a{
+    color: white;
+    font-size: 0.8rem;
+
+}
 .nav-item:hover .link-items{
     display: flex;
 }
 .search-div{
     display: flex;
     /* width: 90%; */
-    background-color: red;
+    /* background-color: red; */
     margin: auto;
+    background-color: var(--color-light-gray) ;
     padding: 1rem 2rem;
 
 
@@ -79,8 +96,7 @@ align-items: flex-end;
 .link-items{
     position: absolute;
     width: 100%;
-
-    background-color: grey;
+    background-color:rgb(255, 255, 255);
     left: 0;
     top: 100%;
     padding: 1rem 2rem;
@@ -91,12 +107,42 @@ align-items: flex-end;
 
     
 }
-.link-items ul{
+.link-items a {
+    color: #222629;
+}
+
+.link-items > *{
     margin: 1px;
-    padding: 0 6px;
-    background-color: green;
+    padding: 0 2rem;
+    /* background-color: green; */
     border-right: 1px solid grey;
 }
+/* .link-items ul{
+    margin: 1px;
+    padding: 0 6px;
+     background-color: green; 
+    border-right: 1px solid grey;
+} */
 .link-items ul li{
     padding: 0.5rem 1rem;
+}
+
+.cart{
+    /* background-color: blue; */
+    position: relative;
+}
+.cart-icon{
+    font-size: 1.6rem !important;
+    color: #fff;
+}
+.cart span{
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    /* padding: 8px; */
+    text-align: center;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-color: rgba(31, 139, 31, 0.6);
 }

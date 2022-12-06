@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { BsCartDash } from 'react-icons/bs';
 import './nav.css';
 import { useSelector } from 'react-redux';
 
 const Nav = () => {
   const { amount } = useSelector((state) => state.cart);
+  const style = { color: "white", fontSize: "1.5em" }
   return (
     <div>
       <nav>
@@ -129,10 +130,14 @@ const Nav = () => {
               </li>
 
             </ul>
-            <div>
-              <AiOutlineShoppingCart />
+            <div className='cart'>
+              <BsCartDash 
+              className='cart-icon'
+              //  style={style} 
+              />
+              <span className="total-amount">{amount}</span>
+
               <div className="amount-container">
-                <p className="total-amount">{amount}</p>
 
               </div>
             </div>
