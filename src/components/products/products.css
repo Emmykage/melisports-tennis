@@ -24,6 +24,6 @@
 .products-display p{
     margin: 0.5rem;
 }
-.products-display {
-
+.products-display p {
+    color: #333;
 }

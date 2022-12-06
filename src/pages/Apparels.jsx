@@ -17,7 +17,7 @@ const ApparelsPage = () => {
                     <div className='side-nav'>
                         <SideNav />
                     </div>
-                    <div className='bg-blue full-width flex-center'>
+                    <div className='full-width flex-center'>
                         <Products />
                         <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>

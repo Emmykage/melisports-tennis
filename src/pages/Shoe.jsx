@@ -19,7 +19,7 @@ const ShoesPage = () => (
           <SideNav />
         </div>
 
-        <div className="bg-blue full-width flex-center">
+        <div className="full-width flex-center">
           <Products />
 
           <div className="product-details">

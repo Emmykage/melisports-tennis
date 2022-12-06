@@ -82,7 +82,13 @@ a{
 .feature-div{
   width: 70%;
 }
+.prod-page button{
+  color: #333;
+  margin-right: 0.2rem;
+  width: fit-content;
+  padding: 0.2rem 0.4rem;
 
+}
 .color-black{
   color: black;
 }
@@ -101,7 +107,8 @@ a{
 .side-nav{
   width: 340px;
   flex-basis: 20%;
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
+  border: 1px solid gray;
 }
 .bg-blue{
   background-color: blue;
@@ -113,6 +120,13 @@ a{
 .product-details{
   padding: 1.5rem;
   font-size: 0.8rem;
+  color: #333;
+}
+.product-details p{
+  color: #333;
+}
+.color-grey{
+  color: #333;
 }
 .product-display-image{
   width: 350px;
