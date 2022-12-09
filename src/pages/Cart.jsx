@@ -11,7 +11,7 @@ const Cart = () => {
   // const dispatch = useDispatch()
   const { cartItems, total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(isOpen);
+  console.log(cartItems);
 
   if (cartItems.length < 1) {
     return (

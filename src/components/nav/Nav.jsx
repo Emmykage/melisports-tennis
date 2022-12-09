@@ -131,15 +131,13 @@ const Nav = () => {
 
             </ul>
             <div className='cart'>
-              <BsCartDash 
-              className='cart-icon'
-              //  style={style} 
-              />
+              <NavLink to="/carts">
+
+            
+              <BsCartDash className='cart-icon'/>
               <span className="total-amount">{amount}</span>
 
-              <div className="amount-container">
-
-              </div>
+              </NavLink>
             </div>
 
           </div>

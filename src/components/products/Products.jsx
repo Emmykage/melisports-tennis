@@ -11,6 +11,16 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProducts());
   });
+  if (products.length < 1) {
+    return (
+      <div>
+        <header>
+          <h2> Your bag</h2>
+          <h4> You cart is currently empty</h4>
+        </header>
+      </div>
+    );
+  }
   return (
     <>
 
