@@ -3,14 +3,22 @@ import { NavLink } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import './nav.css';
 import { useSelector } from 'react-redux';
-
+import { FiMenu } from 'react-icons/fi';
 const Nav = () => {
   const { amount } = useSelector((state) => state.cart);
   const style = { color: "white", fontSize: "1.5em" }
+  console.log(amount)
   return (
     <div>
       <nav>
+      
         <div className="navbar">
+          <div className='menu-div'>
+            <a className='menu'>
+              menu
+              <FiMenu className='menu-icon'/>
+            </a>
+          </div>
           <div className="logo">
             <NavLink to="/">
               MeliSports

@@ -20,8 +20,8 @@
 }
 
 .nav-div{
-display: flex;
-align-items: flex-end;
+    display: flex;
+    align-items: flex-end;
     flex: 5;
     height: 100%;
     padding: 0 2rem;
@@ -145,4 +145,31 @@ align-items: flex-end;
     width: 28px;
     border-radius: 50%;
     background-color: rgba(31, 139, 31, 0.6);
+}
+.menu-div{
+    display: none;
+}
+@media screen and (max-width: 600px) {
+    .menu-div{
+
+     display: flex;
+     align-items: center;
+     flex: 1;
+    }
+    .nav-links{
+        display: none;
+    }
+    .nav-div{
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+
+
+    }
+    nav .menu{
+        color: yellow;
+    }
+    .menu-icon{
+        color: black !important;
+    }
 }

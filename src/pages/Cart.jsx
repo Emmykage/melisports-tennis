@@ -31,20 +31,21 @@ const Cart = () => {
       {/* {isOpen && <Modal />} */}
 
       <div className="cart-div">
-        <ul>
+        <ul className='flex-center'>
           {cartItems.map((cart) => (
             <li key={cart.id} className="flex-center">
               <div className="cart-img">
                 <img src={cart.image} />
               </div>
-              <div>
+              <div className='cart-det'>
                 <p>
                   {cart.title}
                 </p>
                 <p>{cart.price}</p>
-                <button onClick={() => { dispatch(removeItem()); }}> remove</button>
+                <button className='btn m-h4' onClick={() => { dispatch(removeItem()); }}> remove</button>
               </div>
-              <button onClick={() => {
+              <div className='cart-btn flex-center'>
+              <button className='' onClick={() => {
                 if (cart.amount === 1) {
                   dispatch(removeItem(cart.id));
                 }
@@ -55,13 +56,13 @@ const Cart = () => {
               </button>
               {cart.amount}
               <button type="button" onClick={() => dispatch(increase(cart.id))}>+</button>
-
+              </div>
             </li>
           ))}
         </ul>
 
         <p>{total}</p>
-        <button type="button"  onClick={() => dispatch(openModal())}>clear cart </button>
+        <button className='m-h4' type="button"  onClick={() => dispatch(openModal())}>clear cart </button>
       </div>
     </>
   );

@@ -34,7 +34,7 @@ const initialState = {
   total: 0,
   isLoading: true,
 };
-console.log(initialState)
+// console.log(initialState)
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
