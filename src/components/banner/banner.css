@@ -32,3 +32,11 @@ h5{
     color: #fff;
     
 }
+@media screen and (max-width: 600px){
+    
+    .hero-full{
+
+   
+    height: 270px;
+}
+}

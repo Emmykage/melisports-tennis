@@ -275,5 +275,13 @@ button{
 }
 
 @media screen and (max-width:600PX) {
-  
+  .flex-center-around{
+    flex-direction: column;
+  }
+  .fs-3 {
+    font-size: 1rem;
+  }
+  /* .flex-center{
+
+  } */
 }

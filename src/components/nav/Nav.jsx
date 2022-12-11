@@ -4,10 +4,16 @@ import { BsCartDash } from 'react-icons/bs';
 import './nav.css';
 import { useSelector } from 'react-redux';
 import { FiMenu } from 'react-icons/fi';
+import { AiOutlineClose} from 'react-icons/ai'
+import { useState } from 'react';
 const Nav = () => {
   const { amount } = useSelector((state) => state.cart);
   const style = { color: "white", fontSize: "1.5em" }
+  const [openNav, setOpenNav] = useState(false);
   console.log(amount)
+  const showNav = () =>{
+setOpenNav(!openNav)
+  }
   return (
     <div>
       <nav>
@@ -15,8 +21,7 @@ const Nav = () => {
         <div className="navbar">
           <div className='menu-div'>
             <a className='menu'>
-              menu
-              <FiMenu className='menu-icon'/>
+              <FiMenu className='menu-icon' onClick={showNav}/>
             </a>
           </div>
           <div className="logo">
@@ -27,7 +32,12 @@ const Nav = () => {
 
           <div className="nav-div flex-center">
 
-            <ul className="nav-links">
+            <ul className=
+            {openNav? "nav-links  show-menu" : "nav-links"}>
+              <div  className='menu-div m-v4'>
+              <AiOutlineClose  className='menu-icon ' onClick={showNav} />
+              </div>
+              
               <li className="nav-item"><NavLink to="/">Home</NavLink></li>
               <li className="nav-item">
                 <NavLink to="/racquets">Racquets </NavLink>

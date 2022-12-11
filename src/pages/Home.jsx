@@ -14,8 +14,8 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <div className="m-auto">
-        <h3 className="center fs-3"> Featured Products</h3>
+      <div className="m-h4">
+        <h3 className="center fs-3 m-h2"> Featured Products</h3>
 
         <div className="feature-div m-auto flex-center-around">
           {categories.map((category) => (

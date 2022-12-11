@@ -149,15 +149,49 @@
 .menu-div{
     display: none;
 }
+.m-v4{
+    margin-left: 2rem ;
+    margin-right: 2rem ;
+}
+.m-v2{
+    margin-left: 1rem ;
+    margin-right: 1rem ;
+}
 @media screen and (max-width: 600px) {
+    .navbar{
+        padding: 0 0.8rem;
+    }
     .menu-div{
 
      display: flex;
      align-items: center;
      flex: 1;
     }
+    nav{
+        position: relative;
+    };
+    .nav-item{
+        border: none;
+    }
     .nav-links{
-        display: none;
+        background-color: #222629;
+        position: absolute;
+        left: -1000%;
+        top: 0px;
+        width: 100%;
+        max-width: 340px;
+        /* display: none; */
+        padding: 24px 0;
+        display: block;
+        transition: all 0.4s ease-in;
+    }
+    .nav-item{
+        border: none;
+        border-bottom: 1px solid white;
+    }
+    .nav-links.show-menu{
+        /* display: block; */
+        left: 0;
     }
     .nav-div{
         flex: 1;
@@ -171,5 +205,6 @@
     }
     .menu-icon{
         color: black !important;
+        font-size: 29px;
     }
 }
