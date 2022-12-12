@@ -8,7 +8,7 @@ import { AiOutlineClose} from 'react-icons/ai'
 import { useState } from 'react';
 const Nav = () => {
   const { amount } = useSelector((state) => state.cart);
-  const style = { color: "white", fontSize: "1.5em" }
+  const style = { BackgroundColor: "white", color: "red", fontSize: "1.5em" }
   const [openNav, setOpenNav] = useState(false);
   console.log(amount)
   const showNav = () =>{
@@ -40,9 +40,9 @@ setOpenNav(!openNav)
               
               <li className="nav-item"><NavLink to="/">Home</NavLink></li>
               <li className="nav-item">
-                <NavLink to="/racquets">Racquets </NavLink>
+                <NavLink to="/racquets" className={"hey"}>Racquets </NavLink>
                 <div className="link-items flex">
-                  <div>
+                  <div className=''>
                     <h3>
                       Racquets &
                       <br />

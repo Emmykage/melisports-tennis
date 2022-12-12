@@ -149,15 +149,13 @@
 .menu-div{
     display: none;
 }
-.m-v4{
-    margin-left: 2rem ;
-    margin-right: 2rem ;
-}
-.m-v2{
-    margin-left: 1rem ;
-    margin-right: 1rem ;
-}
+
+
 @media screen and (max-width: 600px) {
+ 
+    nav{
+        position: relative;
+    };
     .navbar{
         padding: 0 0.8rem;
     }
@@ -167,16 +165,11 @@
      align-items: center;
      flex: 1;
     }
-    nav{
-        position: relative;
-    };
-    .nav-item{
-        border: none;
-    }
+   
     .nav-links{
         background-color: #222629;
         position: absolute;
-        left: -1000%;
+        left: -100%;
         top: 0px;
         width: 100%;
         max-width: 340px;
@@ -188,6 +181,11 @@
     .nav-item{
         border: none;
         border-bottom: 1px solid white;
+
+        
+        /* background-color: chocolate; */
+       
+        display: block;
     }
     .nav-links.show-menu{
         /* display: block; */
@@ -200,11 +198,62 @@
 
 
     }
-    nav .menu{
-        color: yellow;
-    }
+  
     .menu-icon{
         color: black !important;
         font-size: 29px;
+    }
+    /* .nav-div ul{
+        position: relative;
+    } */
+    .nav-div ul .nav-item a{
+        display: block;
+        /* background-color: blue; */
+        height: 100%;
+        margin: 0;
+        padding: 6px 12px;
+
+    }
+    .nav-div ul{
+        padding: 0;
+        margin: 0;
+    }
+     .nav-div ul .link-items{
+        position: relative;
+        top: 0px;
+        padding: 0;
+        margin: 0;
+        left: 0px;
+        background-color: green; 
+        gap: 1px;
+    } 
+    .nav-div ul .link-items li{
+        background-color: blue;
+        margin: 0;
+        line-height: 30px;
+    }
+    .nav-div ul .link-items li a{
+        margin: 0;
+    }
+    .link-items > *{
+        margin: 0 1px;
+        padding: 0 2rem;
+        border-right: none;
+        margin: 0;
+    }
+    .link-items ul h4{
+        margin: 0 1px;
+        padding: 0 2rem;
+        border-right: none;
+        text-align: left;
+    }
+   
+    .nav-div ul .link-items div{
+        display: none;
+    }
+    .hey{
+        background-color: chartreuse;
+        margin: 0;
+        padding: 0;
     }
 }
