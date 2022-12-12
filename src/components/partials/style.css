@@ -1,9 +1,19 @@
-.feature-grid{
-    flex: 1;
-    background-color: var(--color-light-gray);
-    border: 1px solid black;
+.feature-grid {
+  flex: 1;
+  background-color: var(--color-light-gray);
+  border: 1px solid black;
 }
-.feature-grid img{
-    width: 100%;
-    background-color: blueviolet;
+
+.feature-grid img {
+  width: 100%;
+  background-color: blueviolet;
+}
+
+@media screen and (max-width: 600px) {
+  .feature-grid {
+    width: 250px;
+    height: 250px;
+    background-color: red;
+    margin: 1rem auto;
+  }
 }

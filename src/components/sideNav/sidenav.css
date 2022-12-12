@@ -1,14 +1,29 @@
-.side-row{
-    border-bottom: 1px solid var(--color-grey);
-    padding: 0.4rem 1.5rem;
+.side-row h6,
+.side-row label {
+  color: #333;
 }
 
-.side-row h6{
-    font-size: 1rem;
-    margin: 1px;
-    /* color: red; */
+.side-row {
+  border-bottom: 1px solid var(--color-grey);
+  padding: 0.4rem 1.5rem;
 
+  /* background-color: brown; */
 }
-.side-row input{
-    background-color: red;
+
+.side-row label {
+  display: block;
+  font-size: 0.8rem !important;
+  font-weight: 300;
+}
+
+.side-row h6 {
+  font-size: 1rem;
+  margin: 1px;
+
+  /* color: red; */
+}
+
+.side-row input {
+  background-color: red;
+  margin-right: 12px;
 }

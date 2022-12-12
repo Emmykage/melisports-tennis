@@ -3,14 +3,27 @@ import { NavLink } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import './nav.css';
 import { useSelector } from 'react-redux';
-
+import { FiMenu } from 'react-icons/fi';
+import { AiOutlineClose} from 'react-icons/ai'
+import { useState } from 'react';
 const Nav = () => {
   const { amount } = useSelector((state) => state.cart);
-  const style = { color: "white", fontSize: "1.5em" }
+  const style = { BackgroundColor: "white", color: "red", fontSize: "1.5em" }
+  const [openNav, setOpenNav] = useState(false);
+  console.log(amount)
+  const showNav = () =>{
+setOpenNav(!openNav)
+  }
   return (
     <div>
       <nav>
+      
         <div className="navbar">
+          <div className='menu-div'>
+            <a className='menu'>
+              <FiMenu className='menu-icon' onClick={showNav}/>
+            </a>
+          </div>
           <div className="logo">
             <NavLink to="/">
               MeliSports
@@ -19,12 +32,17 @@ const Nav = () => {
 
           <div className="nav-div flex-center">
 
-            <ul className="nav-links">
+            <ul className=
+            {openNav? "nav-links  show-menu" : "nav-links"}>
+              <div  className='menu-div m-v4'>
+              <AiOutlineClose  className='menu-icon ' onClick={showNav} />
+              </div>
+              
               <li className="nav-item"><NavLink to="/">Home</NavLink></li>
               <li className="nav-item">
-                <NavLink to="/racquets">Racquets </NavLink>
+                <NavLink to="/racquets" className={"hey"}>Racquets </NavLink>
                 <div className="link-items flex">
-                  <div>
+                  <div className=''>
                     <h3>
                       Racquets &
                       <br />
@@ -36,18 +54,21 @@ const Nav = () => {
 
                     <h4>Tennis Racquets</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                   <ul>
 
                     <h4>Badminton Racquets</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink to="/apparels">Apparels</NavLink>
+              
+<NavLink to="/apparels">Apparels</NavLink>
+                
+                
                 <div className="link-items flex">
                   <div>
                     <h3>Apparels</h3>
@@ -56,13 +77,13 @@ const Nav = () => {
 
                     <h4>Tennis Men's Apparels</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                   <ul>
 
                     <h4>Tennis Women's Apparel</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                 </div>
               </li>
@@ -82,7 +103,7 @@ const Nav = () => {
 
                     <h4>Women's Shoes</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilso</a></li>
+                    <li><a href="/">Wilson</a></li>
                   </ul>
                 </div>
               </li>
@@ -102,7 +123,7 @@ const Nav = () => {
 
                     <h4>Women's Shoes</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilso</a></li>
+                    <li><a href="/">Wilson</a></li>
                   </ul>
                 </div>
               </li>
@@ -131,15 +152,13 @@ const Nav = () => {
 
             </ul>
             <div className='cart'>
-              <BsCartDash 
-              className='cart-icon'
-              //  style={style} 
-              />
+              <NavLink to="/carts">
+
+            
+              <BsCartDash className='cart-icon'/>
               <span className="total-amount">{amount}</span>
 
-              <div className="amount-container">
-
-              </div>
+              </NavLink>
             </div>
 
           </div>

@@ -19,10 +19,10 @@ const ProductsPage = () => (
           <SideNav />
         </div>
 
-        <div className="bg-blue full-width flex-center">
+        <div className="full-width flex-center">
           <Products />
 
-          <div className="product-details">
+          <div className="product-details color-grey">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
             <p>
 
