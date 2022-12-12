@@ -54,18 +54,21 @@ setOpenNav(!openNav)
 
                     <h4>Tennis Racquets</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                   <ul>
 
                     <h4>Badminton Racquets</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink to="/apparels">Apparels</NavLink>
+              
+<NavLink to="/apparels">Apparels</NavLink>
+                
+                
                 <div className="link-items flex">
                   <div>
                     <h3>Apparels</h3>
@@ -74,13 +77,13 @@ setOpenNav(!openNav)
 
                     <h4>Tennis Men's Apparels</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                   <ul>
 
                     <h4>Tennis Women's Apparel</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilso</a></li>
+                    <li><a href="#">Wilson</a></li>
                   </ul>
                 </div>
               </li>
@@ -100,7 +103,7 @@ setOpenNav(!openNav)
 
                     <h4>Women's Shoes</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilso</a></li>
+                    <li><a href="/">Wilson</a></li>
                   </ul>
                 </div>
               </li>
@@ -120,7 +123,7 @@ setOpenNav(!openNav)
 
                     <h4>Women's Shoes</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilso</a></li>
+                    <li><a href="/">Wilson</a></li>
                   </ul>
                 </div>
               </li>
