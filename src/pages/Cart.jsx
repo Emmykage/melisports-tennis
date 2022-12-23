@@ -54,7 +54,10 @@ const Cart = () => {
               >
                 -
               </button>
+              <span className='cart-count'>
               {cart.amount}
+              </span>
+              
               <button type="button" onClick={() => dispatch(increase(cart.id))}>+</button>
               </div>
             </li>

@@ -207,6 +207,9 @@ button {
   width: 250px;
   height: 250px;
 }
+.cart-count{
+  color: #333;
+}
 
 .product-display-image img {
   width: 100%;
@@ -287,11 +290,11 @@ button {
 .cart-div ul {
   border: 1px solid black;
   padding: 0;
-  background-color: brown;
+  /* background-color: brown; */
 }
 
 .cart-div li {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   width: 100%;
   margin-top: 10px;
 }

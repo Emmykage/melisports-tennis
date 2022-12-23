@@ -3,7 +3,8 @@ import { getProducts } from '../actions/product';
 // const products;
 const initialState = {
   products: [],
-  status: false,
+  status: "failed",
+  error: "none"
 };
 
 const productsSlice = createSlice({
@@ -27,17 +28,23 @@ const productsSlice = createSlice({
   extraReducers: {
     [getProducts.fulfilled]: (state, action) => ({
       ...state,
-      status: true,
+      status: "success",
       products: action.payload,
     }),
     [getProducts.pending]: (state) => ({
       ...state,
-      status: false,
+      status: "waiting",
     }),
-    [getProducts.rejected]: (state) => ({
+    [getProducts.rejected]: (state, action) => {
+      console.log(action.error)
+      return     {
       ...state,
-      status: false,
-    }),
+      error: action.error,
+      status: "failed",
+    }
+    // console.log(action)
+    // ),
+  }
   },
 });
 
