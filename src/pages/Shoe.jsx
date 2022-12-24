@@ -2,6 +2,7 @@ import React from 'react';
 // import Banner from '../components/banner/Banner';
 import Hero from '../components/banner/Hero';
 import Products from '../components/products/Products';
+import Shoes from '../components/products/Shoes';
 import SideNav from '../components/sideNav/SideNav';
 
 const ShoesPage = () => (
@@ -20,13 +21,14 @@ const ShoesPage = () => (
         </div>
 
         <div className="full-width flex-center">
-          <Products />
+          {/* <Products /> */}
+          <Shoes />
 
           <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
             <p>
 
-              1) Babolat Pure Aero Racquets
+              1) Babolat Shoes Aero Racquets
               So, you say you want more spin out of your tennis racquet.
               The Babolat Pure Aero was designed for you and guess who has his
               fingerprints all over this series.
