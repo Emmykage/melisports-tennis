@@ -1,0 +1,36 @@
+import React from 'react'
+// import {IoAnalyticsSharp} from "react-icons/io5"
+
+const Expenses = () => {
+  return (
+   
+        <div className="expenses">
+          <span className="icon">
+            {/* <IoAnalyticsSharp/> */}
+            bar-chart
+          </span>
+          <div className="middle">
+            <div className="left">
+              <h3>Total Expenses</h3>
+              <h1>$25,000</h1>
+
+            </div>
+            <div className="progress">
+              <svg>
+                <circle cx='38' cy='38' r='36'></circle>
+              </svg>
+              <div className="number">
+                <p>81%</p>
+              </div>
+            </div>
+            
+          </div>
+          <small className="text-muted">
+            Last 24 hours
+          </small>
+        </div>
+      
+  )
+}
+
+export default Expenses

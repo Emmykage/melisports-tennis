@@ -3,11 +3,20 @@
 * {
   box-sizing: border-box;
   font-family: "poppins", sans-serif;
+  list-style: none;
+  appearance: none;
+  border: none;
+  text-decoration: none;
 
   /* font-family: 'Poppins', sans-serif; */
   color: var(--color-white);
   margin: 0;
   padding: 0;
+}
+body{
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-background);
 }
 
 :root {
@@ -32,7 +41,13 @@ a {
 }
 
 .container {
+  position: relative;
   width: 100%;
+  min-height: 100vh;
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between;  */
 }
 
 .p-container {

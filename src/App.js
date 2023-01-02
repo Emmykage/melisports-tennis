@@ -13,6 +13,7 @@ import ProductDetails from './pages/ProductDetails';
 import ProductsPage from './pages/ProductsPage';
 import ShoesPage from './pages/Shoe';
 import { calculateTotal } from './redux/cart/cart';
+import AdminHome from './pages/admin-page/AdminHome';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/bags" element={<BagsPage />} />
         <Route path="/shoes" element={<ShoesPage/>} />
         <Route path='/apparels' element={<ApparelsPage/>} />
+        <Route path='/admin' element={<AdminHome />} />
       </Routes>
 
       <Footer />
