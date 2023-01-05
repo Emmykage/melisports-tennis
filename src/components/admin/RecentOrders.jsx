@@ -1,4 +1,5 @@
 import React from 'react'
+import orders from './Orders'
 
 const RecentOrders = () => {
   return (
@@ -17,51 +18,14 @@ const RecentOrders = () => {
 
           </thead>
           <tbody>
-            <tr>
-              <td>Babolat oure drive</td>
-              <td>34</td>
-              <td>due</td>
-              <td className='warning'>Pending</td>
-              <td className='primary'>Details</td>
-
-
-            </tr>
-            <tr>
-              <td>Babolat oure drive</td>
-              <td>34</td>
-              <td>due</td>
-              <td className='warning'>Pending</td>
-              <td className='primary'>Details</td>
-
-
-            </tr>
-            <tr>
-              <td>Babolat oure drive</td>
-              <td>34</td>
-              <td>due</td>
-              <td className='warning'>Pending</td>
-              <td className='primary'>Details</td>
-
-
-            </tr>
-            <tr>
-              <td>Babolat oure drive</td>
-              <td>34</td>
-              <td>due</td>
-              <td className='warning'>Pending</td>
-              <td className='primary'>Details</td>
-
-
-            </tr>
-            <tr>
-              <td>Babolat oure drive</td>
-              <td>34</td>
-              <td>due</td>
-              <td className='warning'>Pending</td>
-              <td className='primary'>Details</td>
-
-
-            </tr>
+            {orders.map((order) => (
+              <tr>
+                <td>{order.productName}</td>
+                <td>{order.productNumber}</td>
+                <td>{order.productStatus}</td>
+                <td className={order.shipping === "Declined" ? "danger" : order.shipping === "pending" ? "warning" : "primary"}>{order.shipping}</td>
+                </tr>
+            ))}
           </tbody>
         </table>
         <a href='#'>Show all</a>

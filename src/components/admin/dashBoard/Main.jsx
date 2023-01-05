@@ -2,7 +2,7 @@ import React from 'react'
 import {IoAnalyticsSharp} from "react-icons/io5"
 import Expenses from './Expenses'
 import Income from './Income'
-import RecentOrders from './RecentOrders'
+import RecentOrders from '../RecentOrders'
 import Sales from './Sales'
 
 const Main = () => {

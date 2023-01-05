@@ -11,80 +11,106 @@ import {MdOutlineReport} from "react-icons/md"
 import {FiSettings} from "react-icons/fi"
 import {IoAddSharp} from "react-icons/io5"
 import {BiLogOut} from "react-icons/bi"
-const SideNav = () => {
+import { NavLink } from 'react-router-dom'
+const SideNav = (props) => {
+  const {showMenu, handleMenu} = props
+
+  const activeLink = "active";
+  const normalLink = "";
   return (
   
-    <aside>
+    <aside className={showMenu ? "display" : "" }>
         <div className='top'>
           <div className='logo'>
             <h2>MeliSports</h2>
           </div>
-          <div className='close'>X
-          <AiOutlineClose />
+          <div className='close'>
+            <span onClick={handleMenu}>
+            <AiOutlineClose className='iconStyle' />
+            </span>
+            
+          
 
           </div>
 
         </div>
         <div className='side-bar'>
-          <a href=''>
+          <NavLink to='/admin/dashboard'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
             <span> <BsFillGrid1X2Fill/></span>
             <h3>Dashboard</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
-            <span> <AiOutlineUser/>dfd</span>
+          <NavLink to='/admin/customers' 
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
+            <span> <AiOutlineUser/></span>
             <h3>Customers</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/orders'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}>
             <span> <GiReceiveMoney/></span>
             <h3>Orders</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/analytics'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
             <span> <IoAnalyticsSharp/></span>
             <h3>Analytics</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/messages'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
             <span> <RiMessageLine/></span>
             <h3>Messages</h3>
             <span className="message-count">25</span>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/products'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
             <span> <MdOutlineInventory/></span>
             <h3>Products</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/settings'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
             <span> <FiSettings/></span>
             <h3>Settings</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/addproduct'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
             <span> <IoAddSharp/></span>
             <h3>Add product</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/reports'>
             <span> <MdOutlineReport/></span>
             <h3>Report</h3>
-          </a>
+          </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
-          <a href=''>
+          <NavLink to='/admin/log-out'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
             <span> <BiLogOut/></span>
             <h3>Log out</h3>
-          </a>
+          </NavLink>
         </div>
 
 

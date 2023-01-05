@@ -1,17 +1,16 @@
 import React from 'react'
-// import {IoAnalyticsSharp} from "react-icons/io5"
+import {IoAnalyticsSharp} from "react-icons/io5"
 
-const Income = () => {
+const Sales = () => {
   return (
-   
-        <div className="income">
+    
+    <div className="sales">
           <span className="icon">
-            {/* <IoAnalyticsSharp/> */}
-            Stacke_line_chart
+            <IoAnalyticsSharp className='icon-chart'/>
           </span>
           <div className="middle">
             <div className="left">
-              <h3>Total income</h3>
+              <h3>Total sales</h3>
               <h1>$25,000</h1>
 
             </div>
@@ -29,8 +28,7 @@ const Income = () => {
             Last 24 hours
           </small>
         </div>
-     
   )
 }
 
-export default Income
+export default Sales

@@ -1,16 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import SideNav from '../../components/admin/SideNav'
 import '../../components/admin/adminstyle.css'
-import Main from '../../components/admin/Main'
+import Main from '../../components/admin/dashBoard/Main'
 import RecentOrders from '../../components/admin/RecentOrders'
 import Right from '../../components/admin/Right'
 
-const AdminHome = () => {
+const AdminHome = ({children}) => {
+  const [showMenu, setShowMenu] = useState(false)
+    const handleMenu = () =>{
+        setShowMenu(!showMenu)
+    }
   return (
     <div className='admin-container'>
-    <SideNav/>
-    <Main/>
-<Right/>    
+    <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
+    {/* <Main/> */}
+    {children}
+    <Right handleMenu={handleMenu}/>    
     </div>
 
 

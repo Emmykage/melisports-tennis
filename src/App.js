@@ -14,6 +14,17 @@ import ProductsPage from './pages/ProductsPage';
 import ShoesPage from './pages/Shoe';
 import { calculateTotal } from './redux/cart/cart';
 import AdminHome from './pages/admin-page/AdminHome';
+import MainLayout from './components/layouts/main';
+import MainAdmin from './components/layouts/mainAdmin';
+import Main from './components/admin/dashBoard/Main';
+import Messages from './components/admin/messages/Messages';
+import Orders from './components/admin/orders/Orders';
+import Products from './components/products/Products';
+import Settings from './components/admin/settings/Settings';
+import Analytics from './components/admin/analytics/Analytics';
+import Customers from './components/admin/customers/Customers';
+import AddProduct from './components/admin/addproduct/AddProduct';
+import Reports from './components/admin/reports/Reports';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
@@ -26,23 +37,36 @@ function App() {
     dispatch(calculateTotal());
   }, [cartItems]);
   return (
-    <div className="container">
+    <>
       {/* {isOpen && <Modal />} */}
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/racquets" element={<ProductsPage />} />
-        <Route path="/productdetails/:id" element={<ProductDetails />} />
-        <Route path="/carts" element={<Cart />} />
-        <Route path="/bags" element={<BagsPage />} />
-        <Route path="/shoes" element={<ShoesPage/>} />
-        <Route path='/apparels' element={<ApparelsPage/>} />
-        <Route path='/admin' element={<AdminHome />} />
+        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
+        <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
+        <Route path="/carts" element={<MainLayout><Cart /></MainLayout>} />
+        <Route path="/bags" element={<MainLayout><BagsPage /></MainLayout>} />
+        <Route path="/shoes" element={<MainLayout><ShoesPage/></MainLayout>} />
+        <Route path='/apparels' element={<MainLayout><ApparelsPage/></MainLayout> } />
+        {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}
+        <Route path="admin" >
+          <Route path='dashboard' element={<AdminHome><Main /></AdminHome> } />
+
+          <Route path='customers' element={<AdminHome><Customers /></AdminHome> } />
+          <Route path='analytics' element={<AdminHome><Analytics/></AdminHome> } />
+          <Route path='messages' element={<MainAdmin><Messages /></MainAdmin> } />
+          <Route path='orders' element={<MainAdmin><Orders /></MainAdmin> } />
+          <Route path='products' element={<MainAdmin><Products /></MainAdmin> } />
+          <Route path='settings' element={<MainAdmin><Settings /></MainAdmin> } />
+          <Route path='addproduct' element={<MainAdmin><AddProduct /></MainAdmin> }/>
+          <Route path='reports' element={<MainAdmin><Reports /></MainAdmin> }/>
+
+        </Route>
       </Routes>
 
-      <Footer />
+      
 
-    </div>
+    </>
   );
 }
 

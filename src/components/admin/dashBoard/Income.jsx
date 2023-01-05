@@ -1,17 +1,17 @@
 import React from 'react'
-// import {IoAnalyticsSharp} from "react-icons/io5"
+import {AiOutlineLineChart} from "react-icons/ai"
 
-const Expenses = () => {
+const Income = () => {
   return (
    
-        <div className="expenses">
+        <div className="income">
           <span className="icon">
-            {/* <IoAnalyticsSharp/> */}
-            bar-chart
+            <AiOutlineLineChart className='icon-chart'/>
+            
           </span>
           <div className="middle">
             <div className="left">
-              <h3>Total Expenses</h3>
+              <h3>Total income</h3>
               <h1>$25,000</h1>
 
             </div>
@@ -29,8 +29,8 @@ const Expenses = () => {
             Last 24 hours
           </small>
         </div>
-      
+     
   )
 }
 
-export default Expenses
+export default Income

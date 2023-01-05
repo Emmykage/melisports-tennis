@@ -1,9 +1,7 @@
 .close {
     color: black;
 }
-aside{
-    background-color: rgb(152, 152, 152);
-}
+
 
 :root{
     --color-primary: #7380ec;
@@ -25,6 +23,15 @@ aside{
     --card-padding: 1.8rem;
     --padding-1:1.2rem;
     --box-shadow: 0 2rem 3rem var(--color-light)
+  }
+
+  .dark-theme-variable{
+    --color-backgroun: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4)
+    --box-shadow: 0 2rem 3rem var(var(--color-light))
   }
 
 body{
@@ -68,6 +75,9 @@ small{
     overflow: hidden;
 
 }
+.profile-photo img{
+    width: 100%;
+}
 .text-muted{
     color: var(--color-dark);
 }
@@ -96,9 +106,13 @@ b{
     gap: 1.8rem;
     grid-template-columns: 14rem auto 23rem;
 }
+.bolder{
+    text-align: center;
+    margin-top: 180px;
+}
 aside{
     height: 100vh;
-    background: gray;
+    /* background: gray; */
 }
 aside .top{
     background-color: white;
@@ -120,7 +134,7 @@ aside .log img{
 }
 
 aside .side-bar{
-    background-color: rgb(175, 49, 49);
+    /* background-color: rgb(175, 49, 49); */
     display: flex;
     flex-direction: column;
     height: 86vh;
@@ -178,7 +192,7 @@ aside .side-bar .message-count {
     border-radius: var(--border-radius-1);
 }
 main{
-    background-color: #677483;
+    /* background-color: #677483; */
     margin-top: 1.4rem;
 }
 main h3, main h1{
@@ -213,12 +227,12 @@ main .insight > div:hover{
     box-shadow: none;
 
 }
-main .insight > div span{
+main .insight > div .icon-chart{
     background-color: var(--color-primary);
     padding: 0.5rem;
     border-radius: 50%;
     color: var(--color-white);
-    font-size: 2rem;
+    font-size: 3rem;
 }
 main .insight >div.expenses span{
     background: var(--color-danger);
@@ -382,6 +396,15 @@ main .recent-orders a{
     margin-bottom: 1rem;
 
 }
+.iconStyle{
+    color: black;
+    font-weight: 700;
+    font-size: 2.3rem;
+    /* background-color: black; */
+}
+/* span{
+    color: black;
+} */
 
 /* ====================SAALE ANALYTIICS========================= */
 .right .sales-analytics{
@@ -412,4 +435,166 @@ main .recent-orders a{
     margin: 0;
     width: 100%;
 }
+.right .sales-analytics .item .icon{
+    padding: 0.6rem;
+    color: var(--color-white);
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+}
+.right .sales-analytics .item.offline .icon{
+    background: var(--color-danger);
+}
+.right .sales-analytics .item.customers .icon{
+    background: var(--color-success);
+}
+.right .sales-analytics .add-product{
+    background-color: transparent;
+    border: 2px dashed var(--color-primary) ;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right .sales-analytics .add-product div{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.right .sales-analytics .add-product h3{
+    font-weight: 600;
+}
 /* -------------------END OF ASIDE -------------------------- */
+
+/* =====================MEDIA QUERIES ================================ */
+@media screen and (max-width: 1200px){
+   .admin-container{
+    width: 94%;
+    grid-template-columns: 7rem auto 23rem;
+   }
+   aside .logo h2{
+    display: none;
+   }
+   aside .side-bar h3{
+    display: none;
+   }
+   aside .side-bar a{
+    width: 5.6rem;
+   }
+   aside .side-bar a:last-child{
+    position: relative;
+    margin-top: 1.8rem;
+   }
+   main .insight{
+    grid-template-columns: 1fr;
+   }
+   main .recent-orders{
+    width: 94% ;
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    margin: 2rem 0 0 8.8rem;
+   }
+   main .recent-orders table{
+    width: 84vw;
+   }
+   main table thead tr th:last-child,
+   main table thead tr th:first-child{
+    display: none;
+   }
+   main table tbody tr td:last-child,
+   main table tbody tr td:first-child{
+    display: none;
+   }
+}
+    @media screen and (max-width: 768px) {
+        .admin-container{
+            width: 100%;
+            grid-template-columns: 1fr;
+        }
+        aside{
+            position: fixed;
+            left: -100%;
+            top: 0;
+            background: var(--color-white);
+            width: 18rem;
+            z-index: 3;
+            box-shadow: 1rem 3rem 4rem var(--color-light);
+            height: 100vh;
+            padding-right: var(--card-padding) ;
+            /* display: none; */
+
+        }
+        aside.display{
+            left: 0;
+        }
+        aside .logo{
+            margin-left: 1rem;
+        }
+        aside .side-bar h3{
+            display: inline;
+        }
+        aside .side-bar h2{
+            display: inline;
+        }
+        aside .side-bar a{
+            width: 100%;
+            height: 3.4rem;
+        }
+        aside .side-bar a:last-child{
+            position: absolute;
+            bottom: 5rem;
+        }
+        aside .close{
+            display: inline-block;
+            cursor: pointer;
+                }
+        main{
+            margin-top: 8rem;
+            padding: 0 1rem;
+        }
+        main .recent-orders{
+            position: relative;
+            margin: 3rem 0 0 0;
+            width: 100%;
+        }
+        main .recent-orders table{
+            width: 100%;
+            margin: 0;
+        }
+        .right{
+            width: 94%;
+            margin: 0 auto 4rem;
+        }
+        .right .top{
+            position: fixed;
+            top: 0;
+            left: 0;
+            align-items: center;
+            padding: 0 0.8rem;
+            height: 4.6rem;
+            background: var(--color-white);
+            width: 100%;
+            margin: 0;
+            z-index: 2;
+            box-shadow: 0 1rem 1rem var(--color-light) ;
+        }
+        .right .top .theme-toggler{
+            width: 4.4rem;
+            position: absolute;
+            left: 66%;
+        }
+        .right .profile .info{
+            display: none;
+        }
+        .right .top button{
+            display: inline-block;
+            cursor: pointer;
+            color: var(--color-dark) ;
+            position: absolute;
+            left: 1rem;
+        }
+        .right .top button span{
+            font-size: 2rem;
+        }
+    }

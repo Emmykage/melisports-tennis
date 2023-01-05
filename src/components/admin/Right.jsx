@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import IMG from '../../assets/images/profile/878e146d-997e-4a24-8cff-16682ea47cd6.jpg'
-
-
-const Right = () => {
+import {AiOutlineMenu, AiOutlineShoppingCart, AiOutlineShop, AiOutlineUser} from "react-icons/ai"
+import {HiLightBulb} from "react-icons/hi"
+import {MdDarkMode} from "react-icons/md"
+const Right = (props) => {
+    const {handleMenu} = props
+    // const iconstyle = {color: "black"}
+    
   return (
     <div className='right'>
         <div className='top'>
             <button id='menu-btn'>
-                <span>menu</span>
+                <span onClick={handleMenu}>
+                    <AiOutlineMenu className='iconStyle' 
+                    // style={{color: 'green', backgroundColor: "black"}}
+                    />
+                </span>
             </button>
             <div className="theme-toggler">
-                <span>light_mode</span>
-                <span>dark_mode</span>
+                <span><HiLightBulb/></span>
+                <span><MdDarkMode/></span>
 
             </div>
         <div className="profile">
@@ -61,7 +69,7 @@ const Right = () => {
             <h2>Sales Analytics</h2>
             <div className="item online">
                 <div className="icon">
-                    <span>shopping_cart</span>
+                    <span><AiOutlineShoppingCart/></span>
                 </div>
                 <div className="right">
                     <div className="info">
@@ -76,7 +84,7 @@ const Right = () => {
             </div>
             <div className="item offline">
                 <div className="icon">
-                    <span>local_mall</span>
+                    <span><AiOutlineShop/></span>
                 </div>
                 <div className="right">
                     <div className="info">
@@ -91,7 +99,7 @@ const Right = () => {
             </div>
             <div className="item customers">
                 <div className="icon">
-                    <span>person</span>
+                    <span><AiOutlineUser/></span>
                 </div>
                 <div className="right">
                     <div className="info">
