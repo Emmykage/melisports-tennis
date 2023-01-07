@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddProduct = () => {
   return (
-    <div className='product-form'>
+    <div className='product-form admin'>
         
             <form>
                 <div className='form-row'>

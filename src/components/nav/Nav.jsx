@@ -149,6 +149,12 @@ setOpenNav(!openNav)
                   </ul>
                 </div>
               </li>
+              <li  className="nav-item">
+                <NavLink to="/admin">
+                  go to admin
+
+                </NavLink>
+              </li>
 
             </ul>
             <div className='cart'>

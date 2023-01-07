@@ -121,6 +121,53 @@ aside .top{
     justify-content: space-between;
     margin-top: 1.4rem;
 }
+.product-form{
+    margin:100px auto;
+    width: 80%;
+}
+.product-form form .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1%;
+}
+.product-form form .input-half{
+    flex-basis: 49%;
+    width: 100%;
+
+}
+.text-form-container{
+    width: 100%;
+}
+textarea{
+    width: 100%;
+    padding: 1rem;
+    border-radius: var(--border-radius-1);
+    border: 1px solid var(--color-dark);
+}
+form input, select{
+    width: 100%;
+    padding: 8px ;
+    font-size: 18px;
+    border: 1px solid var(--color-dark);
+    outline: #111e88;
+    border-radius: var(--border-radius-1);
+}
+form input:hover{
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
+}
+form > div{
+margin: 8px 0;
+}
+
+.admin form button{
+    width: 100%;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--border-radius-2);
+}
 aside .logo{
     display: flex;
     gap: 0.8rem;
@@ -134,7 +181,6 @@ aside .log img{
 }
 
 aside .side-bar{
-    /* background-color: rgb(175, 49, 49); */
     display: flex;
     flex-direction: column;
     height: 86vh;
@@ -192,8 +238,37 @@ aside .side-bar .message-count {
     border-radius: var(--border-radius-1);
 }
 main{
-    /* background-color: #677483; */
     margin-top: 1.4rem;
+}
+.category-modal{
+    margin:100px auto;
+    width: 100%;
+   
+   
+}
+
+.category-div .close{
+    text-align: right;
+    width: 100%;
+
+}
+.category-div form{
+    width: 70%;
+    margin: auto;
+  
+}
+.category-div .close-icon{
+   font-size: 29px;
+   font-weight: bolder;
+  
+}
+.category-div{
+    width: 80%;
+    background: white;
+    padding: 20px;
+    margin: auto;
+     
+    z-index: 5;
 }
 main h3, main h1{
     color: #363949;
@@ -302,7 +377,6 @@ main .recent-orders h2{
     margin-bottom: 0.8rem;
 }
 main .recent-orders table{
-    /* background: var(--color-white); */
     background-color: #363949;
     width: 100%;
     border-radius: var(--card-border-radius);
@@ -336,7 +410,6 @@ main .recent-orders a{
     display: flex;
     justify-content: flex-end;
     gap: 2rem;
-    /* background-color: grey; */
 }
 .right .top button{
     display: none;
@@ -400,11 +473,7 @@ main .recent-orders a{
     color: black;
     font-weight: 700;
     font-size: 2.3rem;
-    /* background-color: black; */
 }
-/* span{
-    color: black;
-} */
 
 /* ====================SAALE ANALYTIICS========================= */
 .right .sales-analytics{

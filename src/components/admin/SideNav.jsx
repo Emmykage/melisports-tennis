@@ -103,8 +103,13 @@ const SideNav = (props) => {
             <span> <MdOutlineReport/></span>
             <h3>Report</h3>
           </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
+
+          <NavLink to='/'
+          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          >
+          
+            <h3>Go to store</h3>
+          </NavLink>
           <NavLink to='/admin/log-out'
           className={({isActive}) => (isActive ? activeLink : normalLink)}
           >

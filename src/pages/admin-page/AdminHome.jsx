@@ -13,7 +13,6 @@ const AdminHome = ({children}) => {
   return (
     <div className='admin-container'>
     <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
-    {/* <Main/> */}
     {children}
     <Right handleMenu={handleMenu}/>    
     </div>

@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import IMG from '../../assets/images/profile/878e146d-997e-4a24-8cff-16682ea47cd6.jpg'
-import {AiOutlineMenu, AiOutlineShoppingCart, AiOutlineShop, AiOutlineUser} from "react-icons/ai"
+import {AiOutlineMenu, AiOutlineShoppingCart, AiOutlineShop, AiOutlineUser, AiOutlinePlus} from "react-icons/ai"
 import {HiLightBulb} from "react-icons/hi"
 import {MdDarkMode} from "react-icons/md"
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setModal } from '../../redux/modal/categoryModal'
 const Right = (props) => {
     const {handleMenu} = props
     // const iconstyle = {color: "black"}
+    const dispatch = useDispatch()
     
   return (
     <div className='right'>
@@ -115,8 +119,28 @@ const Right = (props) => {
             </div>
             <div className="item add-product">
                 <div>
-                    <span>add</span>
-                    <h3>Add Product</h3>
+                    <span>
+                        <AiOutlinePlus/>
+                    </span>
+                    <h3>
+                        <NavLink to="/admin/addproduct">
+                        Add Product
+                        </NavLink></h3>
+                </div>
+            </div>
+            <div className="item add-product">
+                <div>
+                    <span>
+                        <AiOutlinePlus/>
+                    </span>
+                    <h3>
+                        {/* <a onClick={()=> dispatch(setModal())}> */}
+                        <NavLink to="/admin/add_product_category">
+                        Add category
+
+                        </NavLink>
+                        {/* </a> */}
+                        </h3>
                 </div>
             </div>
         </div>

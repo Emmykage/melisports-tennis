@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -19,17 +19,23 @@ import MainAdmin from './components/layouts/mainAdmin';
 import Main from './components/admin/dashBoard/Main';
 import Messages from './components/admin/messages/Messages';
 import Orders from './components/admin/orders/Orders';
-import Products from './components/products/Products';
 import Settings from './components/admin/settings/Settings';
 import Analytics from './components/admin/analytics/Analytics';
 import Customers from './components/admin/customers/Customers';
 import AddProduct from './components/admin/addproduct/AddProduct';
 import Reports from './components/admin/reports/Reports';
+import Products from './components/admin/products/Products';
+import AddCategory from './components/admin/addcategory/AddCategory';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
+  const {setcategoryModal} = useSelector((state) => state.product_categories)
+  // const handleModal = () => {
+  //     setViewModal(!viewModal)
+  // }
+
   // const {isOpen} = useSelector((state) => state.modal)
   // console.log(isOpen)
   const dispatch = useDispatch();
@@ -40,6 +46,8 @@ function App() {
     <>
       {/* {isOpen && <Modal />} */}
       {/* <Nav /> */}
+
+
       <Routes>
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
@@ -51,6 +59,7 @@ function App() {
         {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}
         <Route path="admin" >
           <Route path='dashboard' element={<AdminHome><Main /></AdminHome> } />
+          <Route path='' element={<AdminHome><Main /></AdminHome> } />
 
           <Route path='customers' element={<AdminHome><Customers /></AdminHome> } />
           <Route path='analytics' element={<AdminHome><Analytics/></AdminHome> } />
@@ -60,7 +69,7 @@ function App() {
           <Route path='settings' element={<MainAdmin><Settings /></MainAdmin> } />
           <Route path='addproduct' element={<MainAdmin><AddProduct /></MainAdmin> }/>
           <Route path='reports' element={<MainAdmin><Reports /></MainAdmin> }/>
-
+          <Route path='add_product_category' element={<MainAdmin><AddCategory/> </MainAdmin>} />
         </Route>
       </Routes>
 
