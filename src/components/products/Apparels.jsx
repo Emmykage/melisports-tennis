@@ -8,7 +8,6 @@ import './products.css';
 const Apparels = () => {
   const {products, status, error} = useSelector((state) => state.products);
   const apparelsProducts = products.filter((item) => item.product_category_id === 2)
-  console.log(apparelsProducts)
   const dispatch = useDispatch();
 
   useEffect(() => {

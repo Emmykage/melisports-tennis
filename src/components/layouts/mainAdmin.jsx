@@ -12,8 +12,8 @@ const MainAdmin = ({children}) => {
     <div className='container'>
          <div className='admin-container'>
     <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
-    {/* <Main/> */}
-    {children}
+    <div className="full-width flex-center"> {children}</div>
+   
     <Right handleMenu={handleMenu}/>    
     </div>
         {/* {children} */}

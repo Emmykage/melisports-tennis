@@ -40,6 +40,18 @@ const handleSubmit = (e) =>{
                     </div>
                   
                 </div>
+                <div className='form-row'>
+                    <div className='input-half'>
+                        <label htmlFor=""> Category type
+                            <input 
+                            name='gender'
+                            value={formData.gender}  
+                            onChange={handleFormInput} 
+                            type="text" placeholder="Product category"/>
+                        </label>
+                    </div>
+                  
+                </div>
               
                 
                 <div className="form-row">

@@ -5,36 +5,33 @@ import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
 
-const Shoes = () => {
+const Accessories = () => {
   const {products, status, error} = useSelector((state) => state.products);
-  const shoes = products.filter((items) => items.product_category === 1)
+  const accessories = products.filter((item) => item.product_category_id === 5)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts());
   }, []);
-
+  
       console.log(status)
  
     if (status === "success"){
-      if (shoes.length < 1) {
-        return (
-          <div>
-            <header>
-              
-              <h1 className='warning-center'> Please Add some products to your collection</h1>
-            </header>
-          </div>
-        );
-      }
-      else{
-
-      
-      return (
+        if (accessories.length < 1) {
+    return (
+      <div>
+        <header>
+          
+          <h1 className='warning-center'> Please Add some products to your collection</h1>
+        </header>
+      </div>
+    );
+  }else{
+     return (
    
     <>
 
-      {shoes.map((product) => (
+      {apparelsProducts.map((product) => (
         <div key={product.id} className="products-display">
           <div className="prod-img">
             <NavLink to={`/productdetails/${product.id}`}>
@@ -44,7 +41,7 @@ const Shoes = () => {
           </div>
           <div className="prod-details">
             <h5 className="color-black">
-              {product.title.substring(0, 15)}
+              {product.name.substring(0, 15)}
               ...
             </h5>
             <p>{product.price}</p>
@@ -58,8 +55,7 @@ const Shoes = () => {
       ))}
 
     </>
-      )
-    }
+      )}
       }
       else if(status === "failed"){ 
         return (
@@ -76,4 +72,4 @@ const Shoes = () => {
   
 };
 
-export default Shoes;
+export default Accessories;

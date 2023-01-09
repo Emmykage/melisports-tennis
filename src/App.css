@@ -166,7 +166,10 @@ button {
 .color-grey {
   color: #333;
 }
-
+.max-width{
+  width: 100%;
+  display: block;
+}
 .side-nav {
   width: 340px;
   flex-basis: 20%;

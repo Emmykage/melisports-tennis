@@ -24,4 +24,14 @@ const getProduct = createAsyncThunk("product/getproduct", async (id) => {
  })
 
 
-export { getProducts, getProduct, addProduct };
+ const deleteProduct = createAsyncThunk("product/deleteproduct", async(data) =>{
+  await fetch(`${baseURL}products/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': "application/json"
+    }
+  }).then((res) => res.json())
+ })
+
+
+export { getProducts, getProduct, addProduct, deleteProduct };

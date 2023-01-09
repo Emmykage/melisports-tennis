@@ -108,7 +108,27 @@ setOpenNav(!openNav)
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink to="/shoes">Shoes</NavLink>
+                <NavLink to="/bags">Bags</NavLink>
+                <div className="link-items flex">
+                  <div>
+                    <h3>Shoes</h3>
+                  </div>
+                  <ul>
+
+                    <h4>Men's Shoes</h4>
+                    <li><a href="#">Babolat</a></li>
+                    <li><a href="#">Wilson</a></li>
+                  </ul>
+                  <ul>
+
+                    <h4>Women's Shoes</h4>
+                    <li><a href="/">Babolat</a></li>
+                    <li><a href="/">Wilson</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/accessories">Acccessories</NavLink>
                 <div className="link-items flex">
                   <div>
                     <h3>Shoes</h3>

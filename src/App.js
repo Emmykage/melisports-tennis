@@ -26,6 +26,7 @@ import AddProduct from './components/admin/addproduct/AddProduct';
 import Reports from './components/admin/reports/Reports';
 import Products from './components/admin/products/Products';
 import AddCategory from './components/admin/addcategory/AddCategory';
+import AccessoriesPage from './pages/AccessoriesPage';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
@@ -55,6 +56,8 @@ function App() {
         <Route path="/carts" element={<MainLayout><Cart /></MainLayout>} />
         <Route path="/bags" element={<MainLayout><BagsPage /></MainLayout>} />
         <Route path="/shoes" element={<MainLayout><ShoesPage/></MainLayout>} />
+        <Route path="/accessories" element={<MainLayout><AccessoriesPage/></MainLayout>} />
+
         <Route path='/apparels' element={<MainLayout><ApparelsPage/></MainLayout> } />
         {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}
         <Route path="admin" >
