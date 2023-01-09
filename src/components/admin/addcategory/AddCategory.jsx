@@ -6,6 +6,7 @@ const AddCategory = () => {
     const dispatch = useDispatch()
    const [formData, setFormData] = useState({
     name: '',
+    gender: '',
     description: ""
    })
    const handleFormInput=(e)=>{
@@ -14,7 +15,7 @@ const AddCategory = () => {
         [e.target.name]: e.target.value
     })
 }
-const handleSubmit = () =>{
+const handleSubmit = (e) =>{
     e.preventDefault()
     dispatch(addProductCategory(formData))
     console.log(formData)
@@ -33,13 +34,11 @@ const handleSubmit = () =>{
                             <input 
                             name='name'
                             value={formData.name}  
-                            onClick={handleFormInput} 
-                            type="text" placeholder="product name"/>
+                            onChange={handleFormInput} 
+                            type="text" placeholder="Product category"/>
                         </label>
                     </div>
                   
-            
-                
                 </div>
               
                 
@@ -50,7 +49,7 @@ const handleSubmit = () =>{
                             <textarea
                             name='description'
                             value={formData.description}
-                            onClick={handleFormInput}
+                            onChange={handleFormInput}
                             ></textarea>
                           </label>
                     </div>
@@ -58,20 +57,6 @@ const handleSubmit = () =>{
                 </div>
 
                 
-              
-
-
-               
-
-
-                <div>
-                    <label htmlFor="">
-                        strung/unstrung
-                    
-                    <input type="text"  placeholder="strung"/>
-                    </label>
-                </div>
-               
                 <button>
                     add product
                 </button>

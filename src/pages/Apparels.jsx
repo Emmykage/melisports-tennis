@@ -2,6 +2,7 @@ import React from 'react'
 import SideNav from '../components/sideNav/SideNav'
 import Hero from '../components/banner/Hero'
 import Products from '../components/products/Products'
+import Apparels from '../components/products/Apparels'
 const ApparelsPage = () => {
   return (
     <div>
@@ -18,7 +19,7 @@ const ApparelsPage = () => {
                         <SideNav />
                     </div>
                     <div className='full-width flex-center'>
-                        <Products />
+                        <Apparels />
                         <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
             <p>

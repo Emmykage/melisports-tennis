@@ -48,7 +48,10 @@ a {
   flex-direction: column;
 
 }
-
+.warning-center{
+  font-size: 38px;
+  text-align: center;
+}
 .p-container {
   /* padding: 300px; */
 }

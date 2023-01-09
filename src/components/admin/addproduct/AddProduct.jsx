@@ -4,19 +4,19 @@ import { addProduct } from '../../../redux/actions/product';
 
 const AddProduct = () => {
     const [formInput, setFormInput] = useState({
-        name: 'yankee',
-        // model: "",
-        price: 23,
+        name: '',
+        price: "",
         image: '',
         sku: "",
         product_category_id: 1,
-        // gripSize: "",
-        // rating: "",
-        // weight: "",
-        // length: "",
-        // stiffness: "",
-        // composition: "",
-        // category: "",
+        grip_size: "",
+        head_size: '',
+        rating: "",
+        weight: "",
+        length: "",
+        stiffness: "",
+        composition: "",
+        category: "",
         description: "hey get the best here"
         
 
@@ -30,21 +30,29 @@ const AddProduct = () => {
         })
 
     }
-    // const [name, setName] = useState('');
-    // const [model, setModel] = useState("");
-    // const [price, setPrice] = useState('');
-    // const [gripSize, setgripSize] = useState('');
-    // const [rating, setRating] = useState('');
-    // const [length, setLength] = useState('');
-    // const [weight, setWeight] = useState('');
-    // const [stiffness, setStiffness] = useState('');
-    // const [composition, setComposition] = useState('');
-    // const [category, setCategory] = useState("Racket")
+
 
     const handleSubmit = (e)=>{
         e.preventDefault();
         dispatch(addProduct(formInput))
-
+        setFormInput({
+            name: '',
+            price: "",
+            image: '',
+            sku: "",
+            product_category_id: 1,
+            grip_size: "",
+            head_size: '',
+            rating: "",
+            weight: "",
+            length: "",
+            stiffness: "",
+            composition: "",
+            category: "",
+            description: ""
+            
+    
+        })
         console.log(formInput)
        
     }
@@ -63,18 +71,6 @@ const AddProduct = () => {
                         </label>
                     </div>
                     <div className='input-half'>
-                        <label> Model
-                        <input
-                        value={ formInput.model}
-                        name="model"
-                         onChange={handleFormInput}
-                        type="text" placeholder="model"/>
-  
-                        </label>
-                    </div>
-                </div>
-                <div className='form-row'>
-                    <div className='input-half'>
                         <label> price
                         <input 
                         value={formInput.price}
@@ -84,11 +80,24 @@ const AddProduct = () => {
 
                         </label>
                     </div>
+                </div>
+                <div className='form-row'>
+                    
+                    <div className='input-half'>
+                        <label htmlFor=""> head size
+                        <input
+                        name='head_size'
+                        value={formInput.head_size}
+                        onChange={handleFormInput} 
+                        type="number" placeholder='headsize'/>
+
+                        </label>
+                    </div>
                     <div className='input-half'>
                         <label htmlFor=""> grip size
                         <input
-                        name='gripSize'
-                        value={formInput.gripSize}
+                        name='grip_size'
+                        value={formInput.grip_size}
                         onChange={handleFormInput} 
                         type="number" placeholder='grip size'/>
 
@@ -101,7 +110,7 @@ const AddProduct = () => {
                 <div className="form-row">
                     <div className='input-half' >
                         <label htmlFor="" className="rating">
-                            ratin
+                            rating
                             <input
                             name='rating'
                             value={formInput.rating}
@@ -113,6 +122,7 @@ const AddProduct = () => {
                     <div className='input-half'>
                         <label htmlFor=""> Length
                         <input
+                        name="length"
                         value={formInput.length}
                         onChange={handleFormInput}
                          type="text"   placeholder="lenght"/>
@@ -146,7 +156,7 @@ const AddProduct = () => {
                     <div  className='input-half'>
                         <label htmlFor="">Stiffness
                         <input
-                        name='Stiffness'
+                        name='stiffness'
                         value={formInput.stiffness} 
                         onChange={handleFormInput}
                         type="text"  placeholder="stiffness"/>
@@ -171,7 +181,7 @@ const AddProduct = () => {
                     <label htmlFor="">Select product category
 
                     <select placeholder='product category'
-                    value={formInput.category}
+                    value={formInput.product_category_id}
                     onChange={handleFormInput}>
                         <option>Rackets</option>
                         <option>Shoes</option>

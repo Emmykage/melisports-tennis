@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 const baseURL = "http://localhost:3000/api/v1/"
+const demoBaseURL = 'https://fakestoreapi.com/products/'
 const getProducts = createAsyncThunk('products/getProducts', async () => {
-  const response = await fetch('https://fakestoreapi.com/products').then((res) => res.json())
+  const response = await fetch(`${baseURL}products`).then((res) => res.json())
   // .catch((err) => console.log(err));
   return response;
 });
@@ -9,7 +10,7 @@ const getProducts = createAsyncThunk('products/getProducts', async () => {
 
 
 const getProduct = createAsyncThunk("product/getproduct", async (id) => {
-  const response = await fetch(`https://fakestoreapi.com/products/${id}`).then((res) => res.json()).catch((err) => console.log(err) )
+  const response = await fetch(`${baseURL}products/${id}`).then((res) => res.json()).catch((err) => console.log(err) )
   return response;
 })
  const addProduct = createAsyncThunk("product/addproduct", async (data) => {

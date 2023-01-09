@@ -72,10 +72,11 @@ return (
         </div> */}
       </div>
       <div className="col-md-6 prev-details">
-        <h2 className='m-h4'>{product.title}</h2>
+        <h2 className='m-h4'>{product.name}</h2>
         <div className='price'>
+       
           <span>
-          {tennisDetails.price}
+          $ {product.price}
           </span>
          
         </div>
@@ -84,7 +85,7 @@ return (
           Head size
           </span>
          
-          <span>{tennisDetails.head_size}</span>
+          <span>{product.head_size}</span>
         </div>
         <div>
 
@@ -94,7 +95,7 @@ return (
           </span>
           <span>
             {' '}
-            {tennisDetails.grip}
+            {product.grip_size}
           </span>
         
         </div>
