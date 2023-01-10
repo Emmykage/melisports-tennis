@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getProducts } from '../../../redux/actions/product';
+import { openDelModal } from '../../../redux/modal/delModal';
 import product from '../../../redux/products/product';
 // import './products.css';
 
@@ -46,9 +47,11 @@ const Products = () => {
               ...
             </h5>
             <p>{product.price}</p>
-            <NavLink className="btn color-grey btn-outline max-width" to={`/productdetails/${product.id}`}>
+            <a className="btn color-grey btn-outline max-width" 
+            onClick={()=> dispatch(openDelModal(product.id))}
+          >
               Delete
-            </NavLink>
+            </a>
             <NavLink className="btn color-grey btn-outline max-width" to={`/productdetails/${product.id}`}>
               Edit
             </NavLink>

@@ -8,6 +8,7 @@ import cartReducer from './cart/cart';
 import productSlice from "./product/product"
 import modalSlice from './modal/modal';
 import categogryModal from './modal/categoryModal';
+import delProductSlice from './modal/delModal'
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   categories: categoryReducer,
   products: productReducer,
   product: productSlice,
-  product_categories: categogryModal
+  product_categories: categogryModal,
+  delModal: delProductSlice
 
 });
 
