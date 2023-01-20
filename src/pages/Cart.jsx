@@ -8,7 +8,6 @@ import Modal from '../components/modal/Modal';
 
 const Cart = () => {
   const isOpen = useSelector((state) => state.modal.isOpen);
-  // const dispatch = useDispatch()
   const { cartItems, total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   console.log(cartItems);

@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import './nav.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineClose} from 'react-icons/ai'
 import { useState } from 'react';
+import { addItem, calculateTotal } from '../../redux/cart/cart';
 const Nav = () => {
-  const { amount } = useSelector((state) => state.cart);
-  const style = { BackgroundColor: "white", color: "red", fontSize: "1.5em" }
+  const { counter, cartItems } = useSelector((state) => state.cart);
+  const dispatch = useDispatch()
+  // const style = { BackgroundColor: "white", color: "red", fontSize: "1.5em" }
   const [openNav, setOpenNav] = useState(false);
-  console.log(amount)
+  useEffect(()=>{
+    dispatch(calculateTotal())
+  },[cartItems] )
+ console.log(cartItems)
   const showNav = () =>{
 setOpenNav(!openNav)
   }
@@ -30,7 +35,7 @@ setOpenNav(!openNav)
             </NavLink>
           </div>
 
-          <div className="nav-div flex-center">
+          <div className="nav-div flex-center space">
 
             <ul className=
             {openNav? "nav-links  show-menu" : "nav-links"}>
@@ -182,7 +187,7 @@ setOpenNav(!openNav)
 
             
               <BsCartDash className='cart-icon'/>
-              <span className="total-amount">{amount}</span>
+              <span className="total-amount color-white bold">{counter}</span>
 
               </NavLink>
             </div>

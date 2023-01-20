@@ -6,9 +6,10 @@ import { closeModal } from '../../redux/modal/modal';
 const Modal = () => {
   const dispatch = useDispatch();
   return (
-    <aside className="modal-container">
+    <div className="modal-container">
+      <div>X</div>
       <div className="modal">
-        <h4>remove all item from shopping cart?</h4>
+        <h4 className='center'>remove all item from shopping cart?</h4>
         <div className="btn-container">
           <button
             type="button"
@@ -31,7 +32,7 @@ const Modal = () => {
         </div>
       </div>
 
-    </aside>
+    </div>
   );
 };
 

@@ -1,6 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 const baseURL = "http://localhost:3000/api/v1/"
 const demoBaseURL = 'https://fakestoreapi.com/products/'
+
+
+
 const getProducts = createAsyncThunk('products/getProducts', async () => {
   const response = await fetch(`${baseURL}products`).then((res) => res.json())
   // .catch((err) => console.log(err));
@@ -13,6 +16,17 @@ const getProduct = createAsyncThunk("product/getproduct", async (id) => {
   const response = await fetch(`${baseURL}products/${id}`).then((res) => res.json()).catch((err) => console.log(err) )
   return response;
 })
+
+const updateProduct = createAsyncThunk("updateProduct", async(id)=>{
+  const response = await fetch(`${baseURL}products/${id}`,{
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then((res) => res.json())
+})
+
  const addProduct = createAsyncThunk("product/addproduct", async (data) => {
    await fetch(`${baseURL}products`, {
     method: 'POST',
@@ -34,4 +48,4 @@ const getProduct = createAsyncThunk("product/getproduct", async (id) => {
  })
 
 
-export { getProducts, getProduct, addProduct, deleteProduct };
+export { getProducts, getProduct, addProduct, deleteProduct, updateProduct };

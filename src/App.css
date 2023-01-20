@@ -8,8 +8,6 @@
   border: none;
   text-decoration: none;
 
-  /* font-family: 'Poppins', sans-serif; */
-  /* color: var(--color-white); */
   margin: 0;
   padding: 0;
 }
@@ -66,7 +64,9 @@ a {
 .m-h2 {
   margin: 1rem 0;
 }
-
+.p-top-5{
+  padding-top: 5rem;
+}
 .prod-page {
   padding: 1rem;
 }
@@ -106,10 +106,12 @@ a {
 
 .flex-center {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 1%;
 
-  /* background-color: green; */
+}
+.space{
+    justify-content: space-between;
 }
 
 .col-md-6 {
@@ -154,11 +156,18 @@ button {
 .color-black {
   color: black;
 }
-
+.color-white {
+  color: white;
+}
+.bold{
+  font-weight: bold;
+  font-size: 1.2rem;
+}
 .btn {
   width: fit-content;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem 0.9rem;
   border-radius: 8px;
+  background: var(--color-primary);
   color: #333;
 }
 
@@ -340,6 +349,34 @@ button {
 
 .cart-div .cart-btn button {
   flex-basis: 25%;
+}
+.modal-container{
+  position: fixed;
+  width: 100%;
+  background-color: #222629;
+  top: 0;
+  height: 100vh;
+
+}
+.modal{
+  width: 700px;
+  margin: 20% auto;
+  text-align: center;
+  background-color: white;
+  padding: 2rem;
+  
+}
+.modal h3{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.modal .btn-container{
+  margin: auto;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  gap: 4%;
+  /* background-color: #222629; */
 }
 
 @media screen and (max-width: 600px) {

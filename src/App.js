@@ -27,6 +27,7 @@ import Reports from './components/admin/reports/Reports';
 import Products from './components/admin/products/Products';
 import AddCategory from './components/admin/addcategory/AddCategory';
 import AccessoriesPage from './pages/AccessoriesPage';
+import EditProduct from './components/admin/addproduct/EditProduct';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
@@ -73,6 +74,7 @@ function App() {
           <Route path='addproduct' element={<MainAdmin><AddProduct /></MainAdmin> }/>
           <Route path='reports' element={<MainAdmin><Reports /></MainAdmin> }/>
           <Route path='add_product_category' element={<MainAdmin><AddCategory/> </MainAdmin>} />
+          <Route path='edit/:editId' element={<MainAdmin><EditProduct/></MainAdmin>}/>
         </Route>
       </Routes>
 

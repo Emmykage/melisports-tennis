@@ -11,7 +11,7 @@ const ProdDelModal = (props) => {
   return (
     <div className="modal-container">
       <div className="modal">
-        <h4>Delete Item</h4>
+        <h3>Delete Item</h3>
         <div className="btn-container">
           <button
             type="button"
