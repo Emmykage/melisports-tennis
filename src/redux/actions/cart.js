@@ -10,9 +10,20 @@ const addCart = createAsyncThunk('cart/addCart', async(data)=>{
     })
     return response
 })
-const getCarts = createAsyncThunk('carts/getCart', async()=>{
-    const response = await fetch(`${baseURL}cart_items`).then((res) => res.json())
-    console.log(response)
+const removeItem = createAsyncThunk('cart/removeCart', async(id)=>{
+    console.log(id)
+    const response = await fetch(`${baseURL}cart_items/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json'
+        },
+       
+    })
     return response
 })
-export {addCart, getCarts}
+const getCarts = createAsyncThunk('carts/getCart', async()=>{
+    const response = await fetch(`${baseURL}cart_items`).then((res) => res.json())
+    // console.log(response)
+    return response
+})
+export {addCart, getCarts, removeItem}

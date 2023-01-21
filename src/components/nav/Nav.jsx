@@ -7,15 +7,16 @@ import { FiMenu } from 'react-icons/fi';
 import { AiOutlineClose} from 'react-icons/ai'
 import { useState } from 'react';
 import { addItem, calculateTotal } from '../../redux/cart/cart';
+import { getCarts } from '../../redux/actions/cart';
 const Nav = () => {
   const { counter, cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch()
   // const style = { BackgroundColor: "white", color: "red", fontSize: "1.5em" }
   const [openNav, setOpenNav] = useState(false);
   useEffect(()=>{
-    dispatch(calculateTotal())
-  },[cartItems] )
- console.log(cartItems)
+    // dispatch(calculateTotal())
+    dispatch(getCarts())
+  },[] )
   const showNav = () =>{
 setOpenNav(!openNav)
   }

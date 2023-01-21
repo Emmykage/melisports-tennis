@@ -40,7 +40,7 @@ const cartSlice = createSlice({
     decrease: (state, action) => {
       const itemId = action.payload;
       const cartItem = state.cartItems.find((item) => item.id === itemId);
-      console.log(itemId);
+      // console.log(itemId);
       cartItem.amount -= 1;
     },
     calculateTotal: (state) => {
@@ -61,7 +61,7 @@ const cartSlice = createSlice({
   },
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
-      console.log("hey")
+      // console.log("hey")
       return {
       ...state,
       status: "success",
