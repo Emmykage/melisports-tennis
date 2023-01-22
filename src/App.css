@@ -242,7 +242,10 @@ button {
 .cart-count{
   color: #333;
 }
-
+.div-center-flex{
+  justify-content: center;
+  align-items: center;
+}
 .product-display-image img {
   width: 100%;
   max-width: 100%;
@@ -318,7 +321,7 @@ button {
   height: 100%;
 }
 
-/* carts */
+/* ===================== carts======================== */
 .cart-div ul {
   border: 1px solid black;
   padding: 0;

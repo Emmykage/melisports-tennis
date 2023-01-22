@@ -26,4 +26,13 @@ const getCarts = createAsyncThunk('carts/getCart', async()=>{
     // console.log(response)
     return response
 })
-export {addCart, getCarts, removeItem}
+const increaseCart = createAsyncThunk('cart/increase_cart', async(id, data)=>{
+    const response = await fetch(`${baseURL}cart_items/${id}`,{
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+})
+export {addCart, getCarts, removeItem, increaseCart}

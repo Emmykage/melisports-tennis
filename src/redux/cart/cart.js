@@ -48,8 +48,9 @@ const cartSlice = createSlice({
       let counter = 0;
       // console.log(amount)
       state.cartItems.forEach((item) => {
-        counter += item.amount;
-        total += item.amount * item.price;
+        counter += item.quantity;
+        total += item.quantity * item.product.price;
+        
       
       });
       counter = state.cartItems.length;
