@@ -19,6 +19,7 @@ const removeItem = createAsyncThunk('cart/removeCart', async(id)=>{
         },
        
     })
+    console.log("deleted")
     return response
 })
 const getCarts = createAsyncThunk('carts/getCart', async()=>{
@@ -26,13 +27,24 @@ const getCarts = createAsyncThunk('carts/getCart', async()=>{
     // console.log(response)
     return response
 })
-const increaseCart = createAsyncThunk('cart/increase_cart', async(id, data)=>{
-    const response = await fetch(`${baseURL}cart_items/${id}`,{
+const increaseCart = createAsyncThunk('cart/increase_cart', async({id, quantity})=>{
+     await fetch(`${baseURL}cart_items/${id}`,{
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({quantity: quantity})
     })
+    console.log(quantity)
 })
-export {addCart, getCarts, removeItem, increaseCart}
+const decreaseCart = createAsyncThunk('cart/increase_cart', async({id, quantity})=>{
+    await fetch(`${baseURL}cart_items/${id}`,{
+       method: 'PATCH',
+       headers: {
+           'Content-type': 'application/json'
+       },
+       body: JSON.stringify({quantity: quantity})
+   })
+   console.log(quantity)
+})
+export {addCart, getCarts, removeItem, increaseCart, decreaseCart}

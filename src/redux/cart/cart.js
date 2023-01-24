@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 // import cartItems from '../../service/cartItems';
-import { getCarts } from '../actions/cart';
+import { getCarts} from '../actions/cart';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems:[],
@@ -33,9 +34,26 @@ const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
     },
     increase: (state, action) => {
+      let newQuantity 
+
       const itemId = action.payload;
       const cartItem = state.cartItems.find((item) => item.id === itemId);
-      cartItem.amount += 1;
+      cartItem.quantity += 1;
+      newQuantity = cartItem.quantity
+
+      const increaseCart = createAsyncThunk('cart/increase_cart', async(id, data)=>{
+        const response = await fetch(`${baseURL}cart_items/${id}`,{
+            method: 'PATCH',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        console.log(id)
+    })
+      
+      increaseCart(itemId, {quantity: newQuantity })
+      // console.log({quantity: newQuantity })
     },
     decrease: (state, action) => {
       const itemId = action.payload;
