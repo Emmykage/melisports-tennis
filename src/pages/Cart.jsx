@@ -58,47 +58,62 @@ const Cart = () => {
   }
   return (
     <>
-      <div className="cart-div">
-        <ul className='flex-center'>
-          {items.map((cart) => (
-            <li key={cart.id} className="flex-center div-center-flex">
-              <div className="cart-img">
-                <img src={cart.product.image} />
-              </div>
-              <div className='cart-det'>
+      <div className="cart-div flex-center ">
+        <div className=' cart-inner-div'>
+
+       
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>name</th>
+              <th>Price</th>              
+              <th>Total</th>
+              <th>Quantity</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((cart) => (
+            <tr>
+              <td>
+                <div className="cart-img">
+                  <img src={cart.product.image} />
+                </div>
+              </td>
+              <td>
                 <p>
                   {cart.product.name}
                 </p>
-                <p>{cart.product.price}</p>
-                <button className='btn m-h4' onClick={() => { dispatch(removeItem(cart.id)); }}> remove</button>
-              </div>
-              <div className='cart-btn flex-center'>
-                <div>
+              </td>
+            <td>
+            <p>{cart.product.price}</p>
+            </td>
+            <td>
+              <p>{cart.total}</p>
+            </td>
+          
+            <td>
+            <div className='cart-btn'>
+                <div className='cart-btn-div flex-center space'>
 
               
-              <button className='btn' 
+              <button className='btn change' 
               onClick={()=> {
                 selectCart(cart.id, cart.quantity, '-' )
               cart.quantity ===1 && dispatch(removeItem(cart.id))}}
-              // onClick={() => {
-              //   if (cart.quantity === 1) {
-              //     dispatch(removeItem(cart.id));
-              //     console.log(id)
-              //   }
-              //   dispatch(decrease(cart.id));
-              // }}
+           
               >
                 -
               </button>
               <span className='cart-count'>
-              {/* {cart.quantity}  */}
-              {/* {count=cart.quantity} */}
+              
               {cart.quantity}
               </span>
               
-              <button className='btn' 
+              <button className='btn change' 
               type="button" 
-              // onClick={() => dispatch(increase(cart.id))}
               onClick={()=> selectCart(cart.id, cart.quantity, '+' )}
               
               >
@@ -106,12 +121,31 @@ const Cart = () => {
                 </button>
               </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            </td>
+            <td>
+            <button className='btn m-h4' onClick={() => { dispatch(removeItem(cart.id)); }}> remove</button>
 
-        <p>{total}</p>
+            </td>
+          </tr>
+           
+          ))}
+           </tbody>
+        {/* </ul> */}
+        </table>
+
+        <p></p>
         <button className='m-h4' type="button"  onClick={() => dispatch(openModal())}>clear cart </button>
+      </div>
+      <div className='cart-side'>
+                <div className='flex-space'><h2>Order Summary</h2></div>
+                <div className='flex-space'><span>subtotal</span><span>{total}</span></div>
+                <div className='flex-space total'><span>Total</span><span className=''>{total}</span></div>
+                <div>
+                <a className='btn'> CHECKOUT</a>
+
+                </div>
+
+      </div>
       </div>
     </>
   );
