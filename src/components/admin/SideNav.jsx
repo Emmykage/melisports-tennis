@@ -41,8 +41,7 @@ const SideNav = (props) => {
             <span> <BsFillGrid1X2Fill/></span>
             <h3>Dashboard</h3>
           </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
+      
           <NavLink to='/admin/customers' 
           className={({isActive}) => (isActive ? activeLink : normalLink)}
           >
