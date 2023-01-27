@@ -9,6 +9,7 @@
   text-decoration: none;
   margin: 0;
   padding: 0;
+  font-size: 18px;
 }
 :root{
   --color-primary: #7380ec;
@@ -68,6 +69,9 @@ a {
   /* background-color: #111e88; */
 
 }
+.border{
+  border: 1px solid black;
+}
 .warning-center{
   display: block;
   margin-top: 130px;
@@ -76,7 +80,13 @@ a {
   text-align: center;
 }
 .p-container {
-  /* padding: 300px; */
+  max-width: 1500px;
+  width: 100%;
+  /* border: 1px solid black; */
+  margin:20px auto;
+}
+.m-h5{
+  margin: 6rem 0;
 }
 
 .m-h4 {
@@ -119,6 +129,13 @@ a {
 
 .row {
   display: flex;
+  
+}
+.detail-container{
+  max-width: 1600px;
+  width: 100%;
+  margin: auto;
+
 }
   /* ==========================flex-box======================== */
 
@@ -232,11 +249,51 @@ button {
   margin-left: 2rem;
   margin-right: 2rem;
 }
+/* ==============================Home====================== */
+.product-grid{
+  display: flex;
+  justify-content: space-between;
+}
+.fit-screen{
+  max-width: 1500px;
+  width: 80%;
+  margin: auto;
+}
+.full-screen{
+  max-width: 1800px;
+  width: 100%;
+  margin: 3rem auto;
+}
+.product-grid-items{
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 0 0.35rem 1px rgb(85 85 85 / 25%);
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+    padding: 5px 5px 15px;
+    text-align: left;
+    transition: all .3s ease;
+
+}
+.product-grid-items:hover{
+  box-shadow: none;
+}
+
+
+/* ====================product details design=================== */
 
 .product-details {
   padding: 1.5rem;
   font-size: 0.8rem;
   color: #333;
+}
+.right-detail-container{
+  flex-basis: 70%;
+  padding-left: 15px;
+
+}
+.left-detail-container{
+  flex-basis: 30%;
 }
 
 .product-details p {
@@ -322,23 +379,29 @@ table tbody tr:last-child{
   color: #333;
   font-weight: 600;
 }
-
-.prev-details a {
-  color: var(--color-white);
-  padding: 6px 12px;
-  background-color: rgb(24, 10, 83);
+.prev-details span{
+  font-size: 1.24rem;
 }
 
-.prev-details a:hover {
-  color: black;
+.prev-details a {
+  color: var(--color-dark);
+  padding: 6px 12px;
+  background-color: var(--color-primary);
+  font-weight: 600;
+}
+
+.prev-details a:hover, .prev-details > div button:hover {
+  color: white;
+  background: var(--color-primary-variant);
 }
 
 .prev-details > div button {
   padding: 5px 10px;
-  background-color: green;
+  background: var(--color-primary);
   color: #333;
   border-radius: 3px;
 }
+
 
 .carter {
   width: 50%;
@@ -351,9 +414,12 @@ table tbody tr:last-child{
 .btn-div span {
   padding-left: 6px;
   padding-right: 6px;
-  background-color: green;
+  /* background-color: green; */
   margin: 0;
   height: 100%;
+}
+.description-details p{
+  font-size: 18px;
 }
 
 /* ===================== carts======================== */
@@ -468,14 +534,18 @@ td:last-child .btn{
 .modal-container{
   position: fixed;
   width: 100%;
-  background-color: #222629;
+  background: rgba(0, 0, 0, 0.3);
+  /* opacity: 0.6; */
   top: 0;
+  left: 0;
   height: 100vh;
+ 
 
 }
 .modal{
   width: 700px;
   margin: 20% auto;
+  z-index: 99;
   text-align: center;
   background-color: white;
   padding: 2rem;
@@ -498,7 +568,10 @@ td:last-child .btn{
   .flex-center-around {
     flex-direction: column;
   }
-
+  .row{
+    flex-direction: column;
+  }
+  
   .fs-3 {
     font-size: 1rem;
   }

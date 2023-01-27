@@ -9,6 +9,9 @@ import productSlice from "./product/product"
 import modalSlice from './modal/modal';
 import categogryModal from './modal/categoryModal';
 import delProductSlice from './modal/delModal'
+import productCategory from './product_category/productCategory';
+// import productCategorySlice from './productCategory/p/product_category/productCategory';
+
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -16,8 +19,10 @@ const rootReducer = combineReducers({
   categories: categoryReducer,
   products: productReducer,
   product: productSlice,
-  product_categories: categogryModal,
-  delModal: delProductSlice
+  modal_categories: categogryModal,
+  delModal: delProductSlice,
+  product_categories: productCategory
+
 
 });
 

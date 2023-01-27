@@ -27,25 +27,26 @@ const ProductDetails = () => {
   }
 return (
   <div className='p-container'>
-    <div className="row flex">
-      <div className="col-md-6">
+    <div className="row detail-container">
+      <div className="left-detail-container col-md-6 border">
+
         <div className="product-display-image">
 
           <img src={product.image} alt="yeo" />
         </div>
       </div>
-      <div className="col-md-6 prev-details">
+      <div className="col-md-6 right-detail-container  prev-details border">
         <h2 className='m-h4'>{product.name}</h2>
         <div className='price'>
        
           <span>
-          $ {product.price}
+          ${product.price}
           </span>
          
         </div>
         <div className='headsize'>
           <span>
-          Head size
+          Head size:
           </span>
          
           <span>{product.head_size}</span>
@@ -54,7 +55,7 @@ return (
 
        
         <span>
-          Grip size
+          Grip size:
           </span>
           <span>
             {' '}
@@ -63,7 +64,7 @@ return (
         
         </div>
 
-        <div className='flex-center carter'>
+        <div className='flex-center center border'>
           <div className='btn-div'>
             <button type="button"
             onClick={decrease}
@@ -82,8 +83,8 @@ return (
 
     </div>
 
-    <div className="description-details p-x5">
-      <h4>Description</h4>
+    <div className="description-details border">
+      <h2>Description</h2>
       <p>
       {product.description}
 

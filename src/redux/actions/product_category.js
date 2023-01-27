@@ -11,4 +11,9 @@ const addProductCategory = createAsyncThunk('product_category/add_product_catego
     })
 
 })
-export {addProductCategory}
+const getProductCategories = createAsyncThunk('product_category/get_product_category', async(data) => {
+    const response = await fetch(`${baseURL}product_categories`).then((res) => res.json())
+    // console.log(response)
+return response
+})
+export {addProductCategory, getProductCategories}

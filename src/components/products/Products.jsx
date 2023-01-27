@@ -7,7 +7,7 @@ import './products.css';
 
 const Products = () => {
   const {products, status, error} = useSelector((state) => state.products);
-  const racketProducts = products.filter((item) => item.product_category_id === 1)
+  const racketProducts = products.filter((item) => item.product_category.name === "racquets")
   console.log(racketProducts)
   const dispatch = useDispatch();
 

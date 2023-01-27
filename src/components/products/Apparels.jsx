@@ -7,7 +7,7 @@ import './products.css';
 
 const Apparels = () => {
   const {products, status, error} = useSelector((state) => state.products);
-  const apparelsProducts = products.filter((item) => item.product_category_id === 2)
+  const apparelsProducts = products.filter((item) => item.product_category.name === "apparels")
   const dispatch = useDispatch();
 
   useEffect(() => {

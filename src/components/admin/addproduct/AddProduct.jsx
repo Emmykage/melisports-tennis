@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../redux/actions/product';
+import { getProductCategories } from '../../../redux/actions/product_category';
 
 const AddProduct = () => {
+    const categories = useSelector((state) => state.product_categories.product_categories)
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(getProductCategories())
+    },[])
     const [formInput, setFormInput] = useState({
         name: '',
         price: "",
         image: '',
         sku: "",
-        product_category_id: 1,
+        product_category_id: "",
         grip_size: "",
         head_size: '',
         rating: "",
@@ -22,8 +28,8 @@ const AddProduct = () => {
 
 
     })
-    const dispatch = useDispatch();
     const handleFormInput = (e) =>{
+      
         setFormInput({
             ...formInput,
             [e.target.name]: e.target.value
@@ -40,7 +46,7 @@ const AddProduct = () => {
             price: "",
             image: '',
             sku: "",
-            product_category_id: 1,
+            product_category_id: "",
             grip_size: "",
             head_size: '',
             rating: "",
@@ -181,14 +187,13 @@ const AddProduct = () => {
                     <label htmlFor="">Select product category
 
                     <select placeholder='product category'
-                    value={formInput.product_category_id}
+                    name="product_category_id"
+                    value={formInput.product_category_id
+                    }
                     onChange={handleFormInput}>
-                        <option>Rackets</option>
-                        <option>Shoes</option>
-                        <option>Shoes</option>
-                        <option>Shoes</option>
-                        <option>Shoes</option>
-
+                        {categories.map((category) =>(
+                            <option value={category.id}>{category.name}</option>
+                        ))}
                     </select>
                     </label>
                 </div>

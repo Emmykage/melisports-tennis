@@ -33,7 +33,7 @@ import EditProduct from './components/admin/addproduct/EditProduct';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
-  const {setcategoryModal} = useSelector((state) => state.product_categories)
+  const {setcategoryModal} = useSelector((state) => state.modal_categories)
   // const handleModal = () => {
   //     setViewModal(!viewModal)
   // }

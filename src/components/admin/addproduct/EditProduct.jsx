@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
+import { getProductCategories } from '../../../redux/actions/product_category';
 
 const EditProduct = () => {
+    const categories = useSelector((state) => state.product_categories.product_categories)
+
     const dispatch = useDispatch();
     const product = useSelector((state)=> state.product.product)
     const {editId} = useParams()
@@ -13,7 +16,7 @@ const EditProduct = () => {
         price: product.price,
         image: product.image,
         sku: product.sku,
-        product_category_id: 1,
+        product_category_id: product.product_category_id,
         grip_size: product.grip_size,
         head_size: product.head_size,
         rating: product.rating,
@@ -26,28 +29,13 @@ const EditProduct = () => {
     })
     useEffect(()=>{
         dispatch(getProduct(editId))
+        dispatch(getProductCategories())
         setFormInput({
             ...formInput
         })
         
     }, [])
-    // console.log(formInput.name)
-    setFormInput({
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        sku: product.sku,
-        product_category_id: 1,
-        grip_size: product.grip_size,
-        head_size: product.head_size,
-        rating: product.rating,
-        weight: product.weight,
-        length: product.length,
-        stiffness: product.stiffness,
-        composition: product.composition,
-        description: product.description
-        
-    })
+   
     const handleFormInput = (e) =>{
         setFormInput({
             ...formInput,
@@ -209,11 +197,9 @@ const EditProduct = () => {
                     <select placeholder='product category'
                     value={formInput.product_category_id}
                     onChange={handleFormInput}>
-                        <option>Rackets</option>
-                        <option>Shoes</option>
-                        <option>Shoes</option>
-                        <option>Shoes</option>
-                        <option>Shoes</option>
+                        {categories.map((category) =>(
+                            <option value={category.id}>{category.name}</option>
+                        ))}
 
                     </select>
                     </label>

@@ -218,6 +218,7 @@ aside .side-bar .message-count {
 }
 main{
     margin-top: 1.4rem;
+    width: 100%;
 }
 .category-modal{
     margin:100px auto;
