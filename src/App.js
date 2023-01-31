@@ -28,6 +28,8 @@ import Products from './components/admin/products/Products';
 import AddCategory from './components/admin/addcategory/AddCategory';
 import AccessoriesPage from './pages/AccessoriesPage';
 import EditProduct from './components/admin/addproduct/EditProduct';
+import Signup from './pages/auth/Signup';
+import Login from './pages/auth/Login';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
@@ -75,6 +77,11 @@ function App() {
           <Route path='reports' element={<MainAdmin><Reports /></MainAdmin> }/>
           <Route path='add_product_category' element={<MainAdmin><AddCategory/> </MainAdmin>} />
           <Route path='edit/:editId' element={<MainAdmin><EditProduct/></MainAdmin>}/>
+        </Route>
+        <Route path='/auth'>
+          <Route path='sign_up' element={<Signup/>}/>
+          <Route path='login' element={<Login/>}/>
+
         </Route>
       </Routes>
 

@@ -1,0 +1,70 @@
+.auth-container{
+    /* background: var(--color-white); */
+    background-color: #344a72;
+    min-height: 100vh;
+    padding-top: 20%;
+
+
+}
+.sign-up{
+    width: 360px;
+    height: 620px;
+    margin:  auto;
+    background-color: aliceblue;
+    border-radius: 3px;
+}
+
+.auth-container .login-box{
+    width: 360px;
+    height: 370px;
+    background-color: white;
+    margin: 10% auto;
+    border-radius: 3px;
+}
+.auth-container  .sign-up h1, .auth-container  .login-box h1{
+    padding-top: 15px;
+    text-align: center;
+}
+.sign-up h4{
+    text-align: center;
+}
+.auth-container  form{
+    width: 300px;
+    margin-left: 20px;
+}
+.auth-container  form label{
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.auth-container  form input{
+    width: 100%;
+    padding: 8PX;
+    border: none ;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+}
+.auth-container  input[type="button"]{
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2 ;
+    color: white;
+    font-size: 18px;
+}
+.auth-container p{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+}
+.para-2{
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    margin-top: -10px;
+}
+.para-2 a{
+    color: #49c1a2;
+}
