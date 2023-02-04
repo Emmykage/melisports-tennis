@@ -6,6 +6,8 @@ import Footer from './components/footer/Footer';
 // import Modal from './components/modal/Modal';
 import Nav from './components/nav/Nav';
 import ApparelsPage from './pages/Apparels';
+import Login from './pages/auth/Login';
+import SignUp from './pages/auth/SignUp';
 import BagsPage from './pages/BagsPage';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
@@ -36,6 +38,10 @@ function App() {
         <Route path="/bags" element={<BagsPage />} />
         <Route path="/shoes" element={<ShoesPage/>} />
         <Route path='/apparels' element={<ApparelsPage/>} />
+        <Route path='auth' >
+          <Route path='login' element={<Login/>} />
+          <Route path='sign_up' element={<SignUp/>} />
+        </Route>
       </Routes>
 
       <Footer />
