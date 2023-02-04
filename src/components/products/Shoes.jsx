@@ -7,6 +7,9 @@ import './products.css';
 
 const Shoes = () => {
   const {products, status, error} = useSelector((state) => state.products);
+  if(products.length > 0){
+
+ 
   const shoes = products.filter((items) => items.product_category.name === "shoes")
   const dispatch = useDispatch();
 
@@ -14,7 +17,16 @@ const Shoes = () => {
     dispatch(getProducts());
   }, []);
 
-      console.log(status)
+  if (shoes.length < 1) {
+    return (
+      <div>
+        <header>
+          <h2> Rackets </h2>
+          <h4> Your shoes category is currently empty</h4>
+        </header>
+      </div>
+    );
+  }
  
     if (status === "success"){
       if (shoes.length < 1) {
@@ -73,7 +85,11 @@ const Shoes = () => {
           <> loading...</>
         )
       }
-  
+    }else{
+      return(
+        <h2> Please and some products if you are the admin</h2>
+      )
+    }
 };
 
 export default Shoes;

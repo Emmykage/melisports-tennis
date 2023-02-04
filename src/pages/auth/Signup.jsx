@@ -4,10 +4,10 @@ import './auth.css'
 
 const Signup = () => {
   return (
-    <div className='auth-container'>
+    <div className='wallpaper centralize'>
+      <div className='auth-container'>
         <div className='sign-up'>
-            
-        <h1>Sign Up</h1>
+          <h1>Sign Up</h1>
         <form>
             <label htmlFor="">email</label>
             <input type={'email'} placeholder="email" />
@@ -26,6 +26,8 @@ const Signup = () => {
         </div>
     
     </div>
+    </div>
+
 
   )
 }

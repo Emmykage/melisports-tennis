@@ -64,17 +64,27 @@ const cartSlice = createSlice({
     calculateTotal: (state) => {
       let total = 0;
       let counter = 0;
-      // console.log(amount)
-      state.cartItems.forEach((item) => {
-        counter += item.quantity;
-        total += item.quantity * item.product.price;
+      if(state.cartItems > 0){
+        state.cartItems.forEach((item) => {
+          counter += item.quantity;
+          total += item.quantity * item.product.price;
+          
         
+        });
+        return{
+          ...state,
+          counter: state.cartItems.length,
+          total:total
+        }
+        
+      }else{
+        return{
+          ...state,
+          counter: 0,
+          total: 0
+        }
+      }
       
-      });
-      counter = state.cartItems.length;
-      state.counter = counter;
-      state.total = total;
-      // console.log(counter)
      
     },
   },

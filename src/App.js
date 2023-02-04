@@ -36,21 +36,14 @@ import Login from './pages/auth/Login';
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
   const {setcategoryModal} = useSelector((state) => state.modal_categories)
-  // const handleModal = () => {
-  //     setViewModal(!viewModal)
-  // }
 
-  // const {isOpen} = useSelector((state) => state.modal)
-  // console.log(isOpen)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(calculateTotal());
   }, [cartItems]);
   return (
     <>
-      {/* {isOpen && <Modal />} */}
-      {/* <Nav /> */}
-
+   
 
       <Routes>
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />

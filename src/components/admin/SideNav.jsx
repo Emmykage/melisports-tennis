@@ -48,8 +48,6 @@ const SideNav = (props) => {
             <span> <AiOutlineUser/></span>
             <h3>Customers</h3>
           </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
           <NavLink to='/admin/orders'
           className={({isActive}) => (isActive ? activeLink : normalLink)}>
             <span> <GiReceiveMoney/></span>
@@ -63,8 +61,7 @@ const SideNav = (props) => {
             <span> <IoAnalyticsSharp/></span>
             <h3>Analytics</h3>
           </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
+      
           <NavLink to='/admin/messages'
           className={({isActive}) => (isActive ? activeLink : normalLink)}
           >
@@ -80,16 +77,13 @@ const SideNav = (props) => {
             <span> <MdOutlineInventory/></span>
             <h3>Products</h3>
           </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
+        
           <NavLink to='/admin/settings'
           className={({isActive}) => (isActive ? activeLink : normalLink)}
           >
             <span> <FiSettings/></span>
             <h3>Settings</h3>
           </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
           <NavLink to='/admin/addproduct'
           className={({isActive}) => (isActive ? activeLink : normalLink)}
           >

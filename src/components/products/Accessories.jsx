@@ -7,12 +7,25 @@ import './products.css';
 
 const Accessories = () => {
   const {products, status, error} = useSelector((state) => state.products);
+  if(products.length > 0 ){
+
+  
   const accessories = products.filter((item) => item.product_category.name === "accessories")
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+  if(accessories.length < 1){
+    return (
+      <div>
+        <header>
+          <h2> Accessories </h2>
+          <h4> You product is currently empty</h4>
+        </header>
+      </div>
+    );
+  }
   
       console.log(status)
  
@@ -69,7 +82,11 @@ const Accessories = () => {
           <> loading...</>
         )
       }
-  
+    }else{
+      return(
+        <h2> Please and some products if you are the admin</h2>
+      )
+    }
 };
 
 export default Accessories;

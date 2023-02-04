@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getProducts } from '../../redux/actions/product';
@@ -7,30 +7,27 @@ import './products.css';
 
 const Products = () => {
   const {products, status, error} = useSelector((state) => state.products);
+  if (products.length > 0){
   const racketProducts = products.filter((item) => item.product_category.name === "racquets")
-  console.log(racketProducts)
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getProducts());
+  
   }, []);
-  // if (products.length < 1) {
-  //   return (
-  //     <div>
-  //       <header>
-  //         <h2> Your bag</h2>
-  //         <h4> You product is currently empty</h4>
-  //       </header>
-  //     </div>
-  //   );
-  // }
+  if (racketProducts.length < 1) {
+    return (
+      <div>
+        <header>
+          <h2> Rackets </h2>
+          <h4> You product is currently empty</h4>
+        </header>
+      </div>
+    );
+  }
       console.log(status)
  
     if (status === "success"){
-      // if (products ===  undefined){
-      //  return (<> {error.message}</>)
-      // }
-
+     
       return (
    
     <>
@@ -73,7 +70,11 @@ const Products = () => {
           <> loading...</>
         )
       }
-  
+    }else{
+      return(
+        <h2> Please and some Racqet products if you are the admin</h2>
+      )
+    }
 };
 
 export default Products;

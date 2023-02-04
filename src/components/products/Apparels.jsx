@@ -7,6 +7,9 @@ import './products.css';
 
 const Apparels = () => {
   const {products, status, error} = useSelector((state) => state.products);
+  if(products.length > 0){
+
+  
   const apparelsProducts = products.filter((item) => item.product_category.name === "apparels")
   const dispatch = useDispatch();
 
@@ -69,7 +72,13 @@ const Apparels = () => {
           <> loading...</>
         )
       }
-  
+    }
+    else{
+      return(
+        <h2> Please and some Racqet products if you are the admin</h2>
+
+      )
+    }
 };
 
 export default Apparels;

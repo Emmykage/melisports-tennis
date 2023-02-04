@@ -184,8 +184,8 @@ aside .side-bar a span{
     transition: all 300ms ease;
 }
 aside .side-bar a:last-child{
-    position: absolute;
-    bottom: 2rem;
+    /* position: absolute; */
+    bottom: 0rem;
     width: 100%;
 }
 aside .side-bar a.active{
