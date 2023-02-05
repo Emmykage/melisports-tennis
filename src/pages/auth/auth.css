@@ -6,10 +6,11 @@
 
 .sign-up{
     width: 360px;
-    height: 420px;
+    min-height: 420px;
     margin:  auto;
     background-color: aliceblue;
     border-radius: 13px;
+    padding: 13px 0;
 }
 
 .auth-container .login-box{
