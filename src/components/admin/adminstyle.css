@@ -250,6 +250,12 @@ main{
      
     z-index: 5;
 }
+.edit-display{
+    display: none;
+}
+.cat-div{
+    margin: 29px 0;
+}
 main h3, main h1{
     color: #363949;
 }
@@ -647,3 +653,5 @@ main .recent-orders a{
             font-size: 2rem;
         }
     }
+
+    

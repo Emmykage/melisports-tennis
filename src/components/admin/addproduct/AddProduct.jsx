@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
+import Categories from '../Categories';
 
 const AddProduct = () => {
     const categories = useSelector((state) => state.product_categories.product_categories)
@@ -14,7 +15,7 @@ const AddProduct = () => {
         price: "",
         image: '',
         sku: "",
-        product_category_id: "",
+        product_category_id: 1,
         grip_size: "",
         head_size: '',
         rating: "",
@@ -236,6 +237,7 @@ const AddProduct = () => {
                     add product
                 </button>
             </form>
+            <Categories/>
      
     </div>
   )

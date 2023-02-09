@@ -8,7 +8,7 @@ import { openDelModal } from '../../../redux/modal/delModal';
 
 const Products = () => {
   const {products, status, error} = useSelector((state) => state.products);
-
+console.log(products)
   const dispatch = useDispatch();
 
   useEffect(() => {

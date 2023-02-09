@@ -29,9 +29,7 @@ const Signup = () => {
   }
   const handleSubmit = (e)=>{
     e.preventDefault();
-    // console.log(formInput)
     dispatch(addUser(formInput))
-    // navigation('/')
 
   }
   return (
@@ -41,15 +39,15 @@ const Signup = () => {
           <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">username</label>
-            <input type='text' name='username' value={formInput.username} onChange={handleInput} placeholder="username" id='username'/>
+            <input type='text' name='username' value={formInput.user.username} onChange={handleInput} placeholder="username" id='username'/>
             <label htmlFor="email">email</label>
-            <input type={'email'} name="email" value={formInput.email} onChange={handleInput} placeholder="email" />
+            <input type={'email'} name="email" value={formInput.user.email} onChange={handleInput} placeholder="email" />
             <label htmlFor="mobile">mobile</label>
-            <input type={'number'} name="phone_no" value={formInput.phone_no} onChange={handleInput} placeholder="phone no" id='mobile'/>
+            <input type={'text'} name="phone_no" value={formInput.user.phone_no} onChange={handleInput} placeholder="phone no" id='mobile'/>
             <label htmlFor="password">password</label>
-            <input type="password" value={formInput.password} onChange={handleInput} name="password" placeholder='Enter password' />
+            <input type="password" value={formInput.user.password} onChange={handleInput} name="password" placeholder='Enter password' />
             <label htmlFor="role"></label>
-            <input type="hidden" name='role' value={formInput.client} id='role' />
+            <input type="hidden" name='role' value={formInput.user.client} id='role' />
            
        
             <button className='btn' type='submit'>Sign Up</button>

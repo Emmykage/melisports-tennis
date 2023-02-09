@@ -1,41 +1,10 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addProductCategory } from '../../../redux/actions/product_category'
+import React from 'react'
 
-const AddCategory = () => {
-    const dispatch = useDispatch()
-   const [formData, setFormData] = useState({
-    name: '',
-    gender: '',
-    description: ""
-   })
-   const handleFormInput=(e)=>{
-    if(e.target.name === "description"){
-        setFormData(
-      
-            {
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-}else{
-    setFormData(
-      
-        {
-        ...formData,
-        [e.target.name]: e.target.value.trim()
-    })
-}
-    
-}
-const handleSubmit = (e) =>{
-    e.preventDefault()
-    dispatch(addProductCategory(formData))
-    console.log(formData)
-
-}
+const EditCategories = (props) => {
+    const {handleSubmit, edit, handleFormInput} = props
   return (
-    <div className={"category-modal modal-display admin" }>
-        <div className='category-div'>
+    <div>
+        <div >
             <div className='close'>
             </div>
            
@@ -45,7 +14,7 @@ const handleSubmit = (e) =>{
                         <label htmlFor=""> Category Name
                             <input 
                             name='name'
-                            value={formData.name}  
+                            value={edit.name}  
                             onChange={handleFormInput} 
                             type="text" placeholder="Product category"/>
                         </label>
@@ -57,7 +26,7 @@ const handleSubmit = (e) =>{
                         <label htmlFor=""> Category type
                             <input 
                             name='gender'
-                            value={formData.gender}  
+                            value={edit.gender}  
                             onChange={handleFormInput} 
                             type="text" placeholder="Product category"/>
                         </label>
@@ -72,7 +41,7 @@ const handleSubmit = (e) =>{
                             Description
                             <textarea
                             name='description'
-                            value={formData.description}
+                            value={edit.description}
                             onChange={handleFormInput}
                             ></textarea>
                           </label>
@@ -82,14 +51,13 @@ const handleSubmit = (e) =>{
 
                 
                 <button>
-                    add product
+                    Update
                 </button>
             </form>
 
         </div>
-        
     </div>
   )
 }
 
-export default AddCategory
+export default EditCategories

@@ -11,6 +11,7 @@ const Shoes = () => {
 
  
   const shoes = products.filter((items) => items.product_category.name === "shoes")
+  console.log(products)
   const dispatch = useDispatch();
 
   useEffect(() => {
