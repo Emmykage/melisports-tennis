@@ -30,6 +30,8 @@ import AccessoriesPage from './pages/AccessoriesPage';
 import EditProduct from './components/admin/addproduct/EditProduct';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
+import AdminSignUp from './pages/auth/AdminSignUp';
+import AdminLogin from './pages/auth/AdminLogin';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
@@ -56,10 +58,9 @@ function App() {
 
         <Route path='/apparels' element={<MainLayout><ApparelsPage/></MainLayout> } />
         {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}
-        <Route path="admin" >
+        <Route path="admin">
           <Route path='dashboard' element={<AdminHome><Main /></AdminHome> } />
           <Route path='' element={<AdminHome><Main /></AdminHome> } />
-
           <Route path='customers' element={<AdminHome><Customers /></AdminHome> } />
           <Route path='analytics' element={<AdminHome><Analytics/></AdminHome> } />
           <Route path='messages' element={<MainAdmin><Messages /></MainAdmin> } />
@@ -74,6 +75,8 @@ function App() {
         <Route path='/auth'>
           <Route path='sign_up' element={<Signup/>}/>
           <Route path='login' element={<Login/>}/>
+          <Route path='admin_sign_up' element={<AdminSignUp/>}/>
+          <Route path='admin_login' element={<AdminLogin/>}/>
 
         </Route>
       </Routes>

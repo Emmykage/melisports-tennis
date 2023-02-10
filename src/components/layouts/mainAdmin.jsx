@@ -5,14 +5,20 @@ import Right from '../admin/Right'
 import { useSelector } from 'react-redux'
 import ProdDelModal from '../modal/ProdDelModal'
 import CatDelModal from '../modal/CatDelModal'
+import { useNavigate } from 'react-router-dom'
 
 const MainAdmin = ({children}) => {
+  const token = localStorage.getItem('token')
+  console.log('token')
+  const navigate = useNavigate()
   const {isOpen, id} = useSelector((state) => state.delModal)
   const {catOpen, catId} = useSelector((state) => state.cat_del_modal)
-  console.log(catOpen)
   const [showMenu, setShowMenu] = useState(false)
   const handleMenu = () =>{
       setShowMenu(!showMenu)
+  }
+  if (!token){
+    navigate("/auth/admin_sign_up")
   }
   return (
     <div className='container'>
@@ -25,7 +31,7 @@ const MainAdmin = ({children}) => {
    
     <Right handleMenu={handleMenu}/>    
     </div>
-     
+     {  console.log('token')}
         <Footer />
     </div>
   )
