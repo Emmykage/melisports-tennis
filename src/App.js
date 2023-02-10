@@ -59,10 +59,10 @@ function App() {
         <Route path='/apparels' element={<MainLayout><ApparelsPage/></MainLayout> } />
         {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}
         <Route path="admin">
-          <Route path='dashboard' element={<AdminHome><Main /></AdminHome> } />
-          <Route path='' element={<AdminHome><Main /></AdminHome> } />
-          <Route path='customers' element={<AdminHome><Customers /></AdminHome> } />
-          <Route path='analytics' element={<AdminHome><Analytics/></AdminHome> } />
+          <Route path='dashboard' element={<MainAdmin><Main /></MainAdmin> } />
+          <Route path='' element={<MainAdmin><Main /></MainAdmin> } />
+          <Route path='customers' element={<MainAdmin><Customers /></MainAdmin> } />
+          <Route path='analytics' element={<MainAdmin><Analytics/></MainAdmin> } />
           <Route path='messages' element={<MainAdmin><Messages /></MainAdmin> } />
           <Route path='orders' element={<MainAdmin><Orders /></MainAdmin> } />
           <Route path='products' element={<MainAdmin><Products /></MainAdmin> } />

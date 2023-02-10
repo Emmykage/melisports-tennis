@@ -13,7 +13,7 @@ const Cart = () => {
   const isOpen = useSelector((state) => state.modal.isOpen);
   const { cartItems, total } = useSelector((state) => state.cart);
 
-  const [quantity, setQuantity] = useState(null)
+  // const [quantity, setQuantity] = useState(null)
   const [items, setItem] = useState([])
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -23,7 +23,7 @@ const Cart = () => {
   },[total])
   const getItem = ()=>{
     setItem(cartItems)
-    setQuantity(count)
+    // setQuantity(count)
       // setCount(cartItems[0].quantity)
 
   }
@@ -39,11 +39,8 @@ const Cart = () => {
     );
   }
 
-  const handleUpdate = (id, data)=>{
-    dispatch(increaseCart(id, data))
-  }
+
   const selectCart = (id, quantity, sign)=>{
-    // const selectedItem = cartItems.filter((item) => item.id == id)
     if(sign ==="+"){
       const addQuantity = quantity + 1
       dispatch(increaseCart({ id, quantity: addQuantity}))

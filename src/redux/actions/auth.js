@@ -10,8 +10,11 @@ const addUser = createAsyncThunk('user/addUser', async(data) =>{
         },
         body: JSON.stringify(data)
     }).then((res) => res.json())
-    localStorage.setItem('token', response.token)
-    localStorage.setItem('user', response.user.username);
+   
+    const collect = JSON.stringify(response)
+    localStorage.setItem('meli_auth', collect);
+
+
     return response    
 })
 const loginUser = createAsyncThunk('user/addUser', async(data, navigate) =>{
@@ -23,14 +26,10 @@ const loginUser = createAsyncThunk('user/addUser', async(data, navigate) =>{
         body: JSON.stringify(data)
     }).then((res) => res.json())
     .catch((err) => err.json())
-    // .then((data) => console.log(data))
-    localStorage.setItem('token', response.token)
-    localStorage.setItem('user', response.user.username);
+    
+    const collect = JSON.stringify(response)
+    localStorage.setItem('meli_auth', collect);
 
-    // if(data.user){
-    //     navigate('/')
-    // }
-    // navigate('/')
     console.log(response.token)
 
    return response

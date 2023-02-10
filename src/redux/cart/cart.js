@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 // import cartItems from '../../service/cartItems';
 import { getCarts} from '../actions/cart';
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -11,7 +10,6 @@ const initialState = {
   status: 'false',
   isLoading: true,
 };
-// console.log(initialState)
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -53,12 +51,10 @@ const cartSlice = createSlice({
     })
       
       increaseCart(itemId, {quantity: newQuantity })
-      // console.log({quantity: newQuantity })
     },
     decrease: (state, action) => {
       const itemId = action.payload;
       const cartItem = state.cartItems.find((item) => item.id === itemId);
-      // console.log(itemId);
       cartItem.amount -= 1;
     },
     calculateTotal: (state) => {
@@ -90,7 +86,6 @@ const cartSlice = createSlice({
   },
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
-      // console.log("hey")
       return {
       ...state,
       status: "success",
@@ -98,7 +93,6 @@ const cartSlice = createSlice({
     }}
   }
 });
-// console.log(initialState)
 export const {
   clearCart, removeItem, increase, decrease, calculateTotal, addItem
 } = cartSlice.actions;

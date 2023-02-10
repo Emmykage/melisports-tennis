@@ -24,7 +24,6 @@ const removeItem = createAsyncThunk('cart/removeCart', async(id)=>{
 })
 const getCarts = createAsyncThunk('carts/getCart', async()=>{
     const response = await fetch(`${baseURL}cart_items`).then((res) => res.json())
-    // console.log(response)
     return response
 })
 const increaseCart = createAsyncThunk('cart/increase_cart', async({id, quantity})=>{

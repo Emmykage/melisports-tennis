@@ -8,8 +8,10 @@ import CatDelModal from '../modal/CatDelModal'
 import { useNavigate } from 'react-router-dom'
 
 const MainAdmin = ({children}) => {
-  const token = localStorage.getItem('token')
-  console.log('token')
+  const auth = localStorage.getItem('meli_auth')
+  const meli_auth = JSON.parse(auth)
+
+  console.log(meli_auth)
   const navigate = useNavigate()
   const {isOpen, id} = useSelector((state) => state.delModal)
   const {catOpen, catId} = useSelector((state) => state.cat_del_modal)
@@ -17,7 +19,7 @@ const MainAdmin = ({children}) => {
   const handleMenu = () =>{
       setShowMenu(!showMenu)
   }
-  if (!token){
+  if (!auth){
     navigate("/auth/admin_sign_up")
   }
   return (
