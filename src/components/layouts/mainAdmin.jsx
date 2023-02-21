@@ -20,23 +20,33 @@ const MainAdmin = ({children}) => {
       setShowMenu(!showMenu)
   }
   if (!auth){
-    navigate("/auth/admin_sign_up")
-  }
-  return (
-    <div className='container'>
-         <div className='admin-container'>
-          
-    {isOpen && <ProdDelModal id={id}/>}
-    {catOpen && <CatDelModal id={catId}/>}
-    <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
-    <div className="full-width flex-center"> {children}</div>
    
-    <Right handleMenu={handleMenu}/>    
-    </div>
-     {  console.log('token')}
-        <Footer />
-    </div>
-  )
+  }else{
+    if(meli_auth.user.role === 'admin'){
+
+   
+    return (
+      <div className='container'>
+           <div className='admin-container'>
+            
+      {isOpen && <ProdDelModal id={id}/>}
+      {catOpen && <CatDelModal id={catId}/>}
+      <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
+      <div className="full-width flex-center"> {children}</div>
+     
+      <Right handleMenu={handleMenu}/>    
+      </div>
+       {  console.log('token')}
+          <Footer />
+      </div>
+    )
+    }else{
+      navigate("/auth/admin_sign_up")
+
+    }
+
+  }
+
 }
 
 export default MainAdmin

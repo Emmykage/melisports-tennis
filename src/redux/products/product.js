@@ -42,8 +42,7 @@ const productsSlice = createSlice({
       error: action.error,
       status: "failed",
     }
-    // console.log(action)
-    // ),
+   
   }
   },
 });

@@ -103,7 +103,8 @@ const SideNav = (props) => {
           
             <h3>Go to store</h3>
           </NavLink>
-          <NavLink to='/admin/log-out'
+          <NavLink to='/auth/admin_login'
+          onClick={()=> localStorage.setItem('meli_auth', '') }
           className={({isActive}) => (isActive ? activeLink : normalLink)}
           >
             <span> <BiLogOut/></span>

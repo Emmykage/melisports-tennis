@@ -39,19 +39,7 @@ const cartSlice = createSlice({
       cartItem.quantity += 1;
       newQuantity = cartItem.quantity
 
-      const increaseCart = createAsyncThunk('cart/increase_cart', async(id, data)=>{
-        const response = await fetch(`${baseURL}cart_items/${id}`,{
-            method: 'PATCH',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        console.log(id)
-    })
-      
-      increaseCart(itemId, {quantity: newQuantity })
-    },
+       },
     decrease: (state, action) => {
       const itemId = action.payload;
       const cartItem = state.cartItems.find((item) => item.id === itemId);
@@ -59,10 +47,12 @@ const cartSlice = createSlice({
     },
     calculateTotal: (state) => {
       let total = 0;
-      let counter = 0;
-      if(state.cartItems > 0){
+      let count = 0;
+      if(state.cartItems.length > 0){
+        console.log('more than 0')
+
         state.cartItems.forEach((item) => {
-          counter += item.quantity;
+          count += item.quantity;
           total += item.quantity * item.product.price;
           
         
@@ -72,8 +62,9 @@ const cartSlice = createSlice({
           counter: state.cartItems.length,
           total:total
         }
-        
       }else{
+        console.log('less than 1')
+
         return{
           ...state,
           counter: 0,

@@ -12,19 +12,18 @@ const Cart = () => {
   let [count, setCount] = useState(0)
   const isOpen = useSelector((state) => state.modal.isOpen);
   const { cartItems, total } = useSelector((state) => state.cart);
+  // console.log(cartItems)
 
-  // const [quantity, setQuantity] = useState(null)
   const [items, setItem] = useState([])
   const dispatch = useDispatch();
   useEffect(()=>{
     getItem()
     dispatch(getCarts())
     
-  },[total])
+  },[])
   const getItem = ()=>{
     setItem(cartItems)
-    // setQuantity(count)
-      // setCount(cartItems[0].quantity)
+
 
   }
   // console.log(items)

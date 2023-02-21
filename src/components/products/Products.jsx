@@ -7,25 +7,27 @@ import './products.css';
 
 const Products = () => {
   const {products, status, error} = useSelector((state) => state.products);
-  if (products.length > 0){
-  const racketProducts = products.filter((item) => item.product_category.name === "racquets")
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
   
   }, []);
+
+  console.log(products)
+  if (products.length > 0){
+  const racketProducts = products.filter((item) => item.product_category.name === "racquets")
+  
   if (racketProducts.length < 1) {
     return (
       <div>
         <header>
           <h2> Rackets </h2>
-          <h4> You product is currently empty</h4>
+          <h4> You racquet catelogue is currently empty. add some products if you are an admin</h4>
         </header>
       </div>
     );
   }
-      console.log(status)
- 
+       
     if (status === "success"){
      
       return (
@@ -72,7 +74,7 @@ const Products = () => {
       }
     }else{
       return(
-        <h2> Please and some Racqet products if you are the admin</h2>
+        <h2> Please and some products if you are the admin</h2>
       )
     }
 };

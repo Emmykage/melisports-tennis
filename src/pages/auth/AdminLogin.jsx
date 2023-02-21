@@ -29,9 +29,8 @@ const AdminLogin = () => {
     // console.log(formInput)
     dispatch(loginUser(formInput))
     if (user.user && user.token){
-      navigate('/')
+      navigate('/admin')
     }
-    // dispatch(loginUser)
   }
   return (
     <div className='wallpaper centralize'>
