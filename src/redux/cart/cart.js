@@ -9,41 +9,48 @@ const initialState = {
   total: 0,
   status: 'false',
   isLoading: true,
+  update: 0
+  
 };
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    clearCart: (state) => {
-      state.cartItems = [];
-    },
-    addItem: (state, action) =>{
-      // console.log(action.payload)
+    // clearCart: (state) => {
+    //   state.cartItems = [];
+    // },
+    // addItem: (state, action) =>{
 
-       return {
-        ...state,
-        cartItems: [...state.cartItems, action.payload]
-      }
+    //    return {
+    //     ...state,
+    //     cartItems: [...state.cartItems, action.payload]
+    //   }
     
 
-    },
-    removeItem: (state, action) => {
-      const itemId = action.payload;
-      state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-    },
-    increase: (state, action) => {
-      let newQuantity 
+    // },
+    // removeItem: (state, action) => {
+    //   const itemId = action.payload;
+    //   state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
+    // },
+    // increase: (state, action) => {
+    //   let newQuantity 
 
-      const itemId = action.payload;
-      const cartItem = state.cartItems.find((item) => item.id === itemId);
-      cartItem.quantity += 1;
-      newQuantity = cartItem.quantity
+    //   const itemId = action.payload;
+    //   const cartItem = state.cartItems.find((item) => item.id === itemId);
+    //   cartItem.quantity += 1;
+    //   newQuantity = cartItem.quantity
 
-       },
-    decrease: (state, action) => {
-      const itemId = action.payload;
-      const cartItem = state.cartItems.find((item) => item.id === itemId);
-      cartItem.amount -= 1;
+    //    },
+    // decrease: (state, action) => {
+    //   const itemId = action.payload;
+    //   const cartItem = state.cartItems.find((item) => item.id === itemId);
+    //   cartItem.amount -= 1;
+    // },
+    updater: (state) => {
+      return{
+        ...state,
+        update: state.update + 1
+      }
     },
     calculateTotal: (state) => {
       let total = 0;
@@ -77,14 +84,16 @@ const cartSlice = createSlice({
   },
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
+      console.log(action.payload)
       return {
       ...state,
       status: "success",
       cartItems: action.payload
-    }}
+    }},
+ 
   }
 });
 export const {
-  clearCart, removeItem, increase, decrease, calculateTotal, addItem
+  clearCart, removeItem, increase, updater, calculateTotal, addItem
 } = cartSlice.actions;
 export default cartSlice.reducer;

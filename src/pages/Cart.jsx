@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  clearCart, increase, decrease, calculateTotal,
+  clearCart, increase, decrease, calculateTotal, updater,
 } from '../redux/cart/cart';
 import { decreaseCart, increaseCart, removeItem } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
-import Modal from '../components/modal/Modal';
+// import Modal from '../components/modal/Modal';
 import { getCarts } from '../redux/actions/cart';
 
 const Cart = () => {
-  let [count, setCount] = useState(0)
-  const isOpen = useSelector((state) => state.modal.isOpen);
-  const { cartItems, total } = useSelector((state) => state.cart);
-  // console.log(cartItems)
+  // let [count, setCount] = useState(0)
+  // const isOpen = useSelector((state) => state.modal.isOpen);
+  const { cartItems, total, update } = useSelector((state) => state.cart);
+  console.log(cartItems)
 
   const [items, setItem] = useState([])
   const dispatch = useDispatch();
@@ -20,14 +20,17 @@ const Cart = () => {
     getItem()
     dispatch(getCarts())
     
-  },[])
+  },[update])
   const getItem = ()=>{
     setItem(cartItems)
 
 
   }
-  // console.log(items)
-  if (items.length < 1) {
+  console.log(items)
+  console.log(update)
+
+
+  if (cartItems.length < 1) {
     return (
       <div>
         <header>
@@ -50,8 +53,13 @@ const Cart = () => {
 
     }
     
-    // console.log(addQuantity)
+dispatch(updater())
+console.log('increased or decreased')
   }
+const handleDelete = (id)=>{
+   dispatch(removeItem(id));
+  dispatch(updater()) 
+}
   return (
     <>
       <div className="cart-div flex-center ">
@@ -71,7 +79,7 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            {items.map((cart) => (
+            {cartItems.map((cart) => (
             <tr>
               <td>
                 <div className="cart-img">
@@ -119,7 +127,7 @@ const Cart = () => {
               </div>
             </td>
             <td>
-            <button className='btn m-h4' onClick={() => { dispatch(removeItem(cart.id)); }}> remove</button>
+            <button className='btn m-h4' onClick={()=> handleDelete(cart.id)}> remove</button>
 
             </td>
           </tr>

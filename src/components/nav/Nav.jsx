@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineClose} from 'react-icons/ai'
 import { useState } from 'react';
-import { addItem, calculateTotal } from '../../redux/cart/cart';
+import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 const Nav = () => {
-  const { counter, cartItems } = useSelector((state) => state.cart);
+  const { counter, cartItems, update } = useSelector((state) => state.cart);
   console.log(cartItems)
   const dispatch = useDispatch()
   
@@ -18,9 +18,8 @@ const Nav = () => {
   const [openNav, setOpenNav] = useState(false);
   useEffect(()=>{
     dispatch(getCarts())
-
     dispatch(calculateTotal())
-  },[] )
+  },[update] )
   const showNav = () =>{
 setOpenNav(!openNav)
   }

@@ -6,6 +6,7 @@ import { getProduct } from '../redux/actions/product';
 // import { addItem } from '../redux/cart/cart';
 // import { addItem } from '../redux/cart/cart';
 import { addCart } from '../redux/actions/cart';
+import { updater } from '../redux/cart/cart';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const ProductDetails = () => {
   }, [])
   const handleCart = () =>{
     dispatch(addCart({product_id: id, quantity: count}))
+    dispatch(updater())
   }
   const increase = () => {
     setCount(count+1)
