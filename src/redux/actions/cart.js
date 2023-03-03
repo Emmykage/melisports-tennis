@@ -39,6 +39,19 @@ const removeItem = createAsyncThunk('cart/removeCart', async(id)=>{
     console.log("deleted")
     return response
 })
+const clearCart = createAsyncThunk('cart/clearCart', async()=>{
+    const response = await fetch(`${baseURL}clear_cart`, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+
+        },
+       
+    })
+    console.log("deleted")
+    return response
+})
 const getCarts = createAsyncThunk('carts/getCart', async()=>{
     const response = await fetch(`${baseURL}cart_items`, {
         method: "GET",
@@ -75,4 +88,4 @@ const decreaseCart = createAsyncThunk('cart/increase_cart', async({id, quantity}
    })
    console.log(quantity)
 })
-export {addCart, getCarts, removeItem, increaseCart, decreaseCart}
+export {addCart, getCarts, removeItem, increaseCart, decreaseCart, clearCart}

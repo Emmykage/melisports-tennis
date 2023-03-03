@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { loginUser } from '../../redux/actions/auth'
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import './auth.css'
 
 const Login = () => {
+  // const dispatch = useDispatch()
   const {user, error} = useSelector((state) => state.user)
   console.log(user)
 
@@ -29,10 +30,17 @@ const Login = () => {
     e.preventDefault()
     // console.log(formInput)
     dispatch(loginUser(formInput))
-    if (user.user && user.token){
-      navigate('/')
-    }
+   
     // dispatch(loginUser)
+  }
+  useEffect(()=> {
+    dispatch(loginUser(formInput))
+
+  
+  },[])
+  console.log(user)
+  if (user.user){
+    navigate('/')
   }
   return (
     <div className='wallpaper centralize'>

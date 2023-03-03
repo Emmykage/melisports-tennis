@@ -1,11 +1,17 @@
 import React from 'react'
 import Nav from '../nav/Nav'
 import Footer from '../footer/Footer'
+import { useSelector } from 'react-redux'
+import Modal from '../modal/Modal'
 
 
 const MainLayout = ({children}) => {
+  const {isOpen} = useSelector((state) => state.modal)
+console.log(isOpen)
   return (
+
     <div className='container'>
+            {isOpen && <Modal/>}
         <Nav />
         {children}
         <Footer />

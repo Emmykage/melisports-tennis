@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import {FiUser} from "react-icons/fi"
 import './nav.css';
@@ -10,6 +10,9 @@ import { useState } from 'react';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 const Nav = () => {
+  const auth = localStorage.getItem("meli_auth")
+
+  const navigate = useNavigate()
   const { counter, cartItems, update } = useSelector((state) => state.cart);
   console.log(cartItems)
   const dispatch = useDispatch()
@@ -24,7 +27,8 @@ const Nav = () => {
 setOpenNav(!openNav)
   }
   const handleLogOut = () => {
-    () => localStorage.setItem('meli_auth', '')
+    localStorage.setItem('meli_auth', '')
+    navigate('/auth/login')
   }
   return (
     <div>
@@ -191,7 +195,8 @@ setOpenNav(!openNav)
             </ul>
             <div className='flex-space'>
               <div className='user '>
-                <NavLink to="/auth/login">Login</NavLink>
+                {auth ?   <span onClick={handleLogOut}>Log Out</span> :   <NavLink to="/auth/login">Login</NavLink> }
+              
                 <span><FiUser className='user-icon'/></span>
 
               </div>

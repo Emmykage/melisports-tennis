@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
-import { getCarts} from '../actions/cart';
+import { getCarts, clearCart} from '../actions/cart';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -16,36 +16,6 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // clearCart: (state) => {
-    //   state.cartItems = [];
-    // },
-    // addItem: (state, action) =>{
-
-    //    return {
-    //     ...state,
-    //     cartItems: [...state.cartItems, action.payload]
-    //   }
-    
-
-    // },
-    // removeItem: (state, action) => {
-    //   const itemId = action.payload;
-    //   state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-    // },
-    // increase: (state, action) => {
-    //   let newQuantity 
-
-    //   const itemId = action.payload;
-    //   const cartItem = state.cartItems.find((item) => item.id === itemId);
-    //   cartItem.quantity += 1;
-    //   newQuantity = cartItem.quantity
-
-    //    },
-    // decrease: (state, action) => {
-    //   const itemId = action.payload;
-    //   const cartItem = state.cartItems.find((item) => item.id === itemId);
-    //   cartItem.amount -= 1;
-    // },
     updater: (state) => {
       return{
         ...state,
@@ -90,10 +60,17 @@ const cartSlice = createSlice({
       status: "success",
       cartItems: action.payload
     }},
+
+    [clearCart.fulfilled]: (state) => {
+      return {
+        ...state,
+        // update: state.update + 1
+      }
+    }
  
   }
 });
 export const {
-  clearCart, removeItem, increase, updater, calculateTotal, addItem
+   removeItem, increase, updater, calculateTotal, addItem
 } = cartSlice.actions;
 export default cartSlice.reducer;

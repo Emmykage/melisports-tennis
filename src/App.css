@@ -68,7 +68,6 @@ a {
   display: flex;
   flex-direction: column;
 
-  /* background-color: #111e88; */
 }
 
 .border {
@@ -168,7 +167,18 @@ a {
   flex-wrap: wrap;
   gap: 1%;
 }
-
+.flex-3{
+  flex: 3;
+}
+.flex-1{
+  flex: 1;
+}
+.flex-2{
+  flex: 2
+}
+.gap-1{
+  gap: 1%
+}
 .flex-center-around {
   display: flex;
   justify-content: space-around;
@@ -536,8 +546,10 @@ td .btn.change {
   background: transparent;
 }
 
+
 td:last-child .btn {
   background: var(--color-danger);
+  font-weight: 600;
 }
 
 .cart-div ul {
@@ -582,7 +594,14 @@ td:last-child .btn {
 .cart-div .cart-btn button {
   flex-basis: 25%;
 }
+.cart-div .clear{
+  text-align: right;
+  padding-right: 20px;
+}
 
+.cart-div .clear .btn{
+  background-color: var(--color-warning);
+}
 .modal-container {
   position: fixed;
   width: 100%;
@@ -632,6 +651,38 @@ td:last-child .btn {
 
 .user .user-icon {
   font-size: 1.6rem;
+}
+.checkout {
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+  background-color: #dce1eb;
+  padding: 100px;
+  display: flex;
+  gap: 2%;
+
+}
+.checkout form{
+  /* background-color: #7d8da1; */
+  width: 100%;
+}
+.checkout form input {
+  width: 100%;
+  padding: 8px;
+}
+.checkout .col-left{
+  flex: 1;
+  /* background-color: #111e88; */
+
+}
+.checkout .col-right{
+  flex: 1;
+  background-color: #04aa6d;
+
+}
+.checkout .col-right h3{
+  /* text-align: center; */
+
 }
 
 @media screen and (max-width: 600px) {

@@ -32,6 +32,7 @@ import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 import AdminSignUp from './pages/auth/AdminSignUp';
 import AdminLogin from './pages/auth/AdminLogin';
+import Checkout from './pages/Checkout';
 // import cartItems from './service/cartItems';
 // import Modal from './components/modal/Modal'
 
@@ -55,6 +56,7 @@ function App() {
         <Route path="/bags" element={<MainLayout><BagsPage /></MainLayout>} />
         <Route path="/shoes" element={<MainLayout><ShoesPage/></MainLayout>} />
         <Route path="/accessories" element={<MainLayout><AccessoriesPage/></MainLayout>} />
+        <Route path='/checkout' element={<MainLayout><Checkout/></MainLayout>} />
 
         <Route path='/apparels' element={<MainLayout><ApparelsPage/></MainLayout> } />
         {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}
