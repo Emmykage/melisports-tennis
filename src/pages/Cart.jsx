@@ -7,6 +7,7 @@ import { decreaseCart, increaseCart, removeItem } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
 // import Modal from '../components/modal/Modal';
 import { getCarts } from '../redux/actions/cart';
+import { NavLink } from 'react-router-dom';
 
 const Cart = () => {
   // let [count, setCount] = useState(0)
@@ -127,7 +128,7 @@ const handleDelete = (id)=>{
               </div>
             </td>
             <td>
-            <button className='btn m-h4' onClick={()=> handleDelete(cart.id)}> remove</button>
+            <button className=' btn m-h4' onClick={()=> handleDelete(cart.id)}> remove</button>
 
             </td>
           </tr>
@@ -137,15 +138,23 @@ const handleDelete = (id)=>{
         {/* </ul> */}
         </table>
 
-        <p></p>
-        <button className='m-h4' type="button"  onClick={() => dispatch(openModal())}>clear cart </button>
+        <div className='clear'>
+        <button 
+        className='m-h4 btn' 
+        type="button" 
+        onClick={() => dispatch(openModal())}>
+          clear cart 
+        </button>
+
+        </div>
       </div>
       <div className='cart-side'>
                 <div className='flex-space'><h2>Order Summary</h2></div>
                 <div className='flex-space'><span>subtotal</span><span>{total}</span></div>
                 <div className='flex-space total'><span>Total</span><span className=''>{total}</span></div>
                 <div>
-                <a className='btn'> CHECKOUT</a>
+                <NavLink to={"/checkout"} className='btn'> CHECKOUT</NavLink>
+
 
                 </div>
 
