@@ -20,6 +20,9 @@ const MainAdmin = ({children}) => {
       setShowMenu(!showMenu)
   }
   if (!auth){
+    console.log("why")
+    navigate("/auth/admin_sign_up")
+    
    
   }else{
     if(meli_auth.user.role === 'admin'){

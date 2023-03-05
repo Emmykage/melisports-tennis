@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { useNavigate } from "react-router-dom";
 // const navigate = useNavigate()
+// const baseURL = "https://melisports.herokuapp.com/api/v1/";
 const baseURL = "http://localhost:3000/api/v1/";
+
 const addUser = createAsyncThunk('user/addUser', async(data) =>{
     const response = await fetch(`${baseURL}users`, {
         method: 'POST',
