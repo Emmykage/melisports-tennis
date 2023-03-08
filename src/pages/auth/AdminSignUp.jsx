@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { addUser } from '../../redux/actions/auth'
 
+let auth = localStorage.getItem("meli_auth")
+
+
 const AdminSignUp = () => {
-    
+  const { logged, error, message, loading} = useSelector((state) => state.user)
   const navigation = useNavigate()
   const dispatch = useDispatch()
   const [formInput, setFormInput] = useState({
@@ -17,6 +20,14 @@ const AdminSignUp = () => {
     }
 
   })
+  useEffect(()=>{
+    if(auth && logged){
+      navigation("/admin/dashboard")
+    }
+    // logged && navigation("/admin/dashboard")
+  },[logged])
+  console.log(logged)
+  
   const handleInput = (e) =>{
     setFormInput({
       
@@ -51,6 +62,9 @@ const AdminSignUp = () => {
        
             <button className='btn' type='submit'>Sign Up</button>
         </form>
+        <p className="blue"> {loading && "loading..." }</p>
+
+       <p className="red"> {error && message }</p>
         <p>By clicking the sign up botton yo agree to our <br/>
         <a href="#">Terms and condition</a> and <a href="#">Policy</a></p>
      

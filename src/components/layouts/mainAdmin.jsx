@@ -2,35 +2,37 @@ import React,{useEffect, useState} from 'react'
 import Footer from '../footer/Footer'
 import SideNav from '../admin/SideNav'
 import Right from '../admin/Right'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ProdDelModal from '../modal/ProdDelModal'
 import CatDelModal from '../modal/CatDelModal'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { toLogin } from '../../redux/user/user'
 
 const MainAdmin = ({children}) => {
+  const dispatch = useDispatch()
   const auth = localStorage.getItem('meli_auth')
   const meli_auth = JSON.parse(auth)
-    console.log(meli_auth)
-  const navigate = useNavigate()
-  useEffect(()=>{
-    auth? redir : navigate("/auth/admin_sign_up") 
-  },[])
-
-
+  const navigate = useNavigate()  
   const {isOpen, id} = useSelector((state) => state.delModal)
   const {catOpen, catId} = useSelector((state) => state.cat_del_modal)
   const [showMenu, setShowMenu] = useState(false)
+  console.log(auth)
+  useEffect(()=>{
+    dispatch(toLogin())
+  },[])
+
   const handleMenu = () =>{
       setShowMenu(!showMenu)
   }
+      if(auth){
 
-    const redir = () => {
 
    
     if(meli_auth.user.role === 'admin'){
 
    
     return (
+      <>
       <div className='container'>
            <div className='admin-container'>
             
@@ -44,6 +46,7 @@ const MainAdmin = ({children}) => {
        {  console.log('token')}
           <Footer />
       </div>
+      </>
     )
     }else{
       return (
@@ -57,8 +60,13 @@ const MainAdmin = ({children}) => {
     }
 
   // }
+  // redir()
+}
+else{
+  navigate("/auth/admin_sign_up")
+}
 }
 
-}
+
 
 export default MainAdmin

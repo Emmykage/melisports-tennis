@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { loginUser } from '../../redux/actions/auth'
@@ -6,7 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import './auth.css'
 const AdminLogin = () => {
     const {user, error} = useSelector((state) => state.user)
+
   console.log(user)
+  // useEffect(()=>{
+  //   dispatch()
+  // })
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
