@@ -9,11 +9,17 @@ import { getProductCategories } from '../redux/actions/product_category';
 const ProductsPage = () => {
   const dispatch = useDispatch()
   const {product_categories} = useSelector((state)=> state.product_categories)
+  const category = product_categories.find((cat) => cat.name === "racquet") 
+
+
   useEffect(()=>{
     dispatch(getProductCategories())
   },[])
-  const category = product_categories.find((cat) => cat.name === "racquet") 
+  
   console.log(category)
+
+  // console.log(category)
+
   return(
   <div className="product-container">
     <Hero />
@@ -35,7 +41,9 @@ const ProductsPage = () => {
           <div className="product-details color-grey">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
             <p>
-                {/* {category.description} */}
+                {/* {category.name} */}
+                {/* { category.description} */}
+
              
             </p>
 

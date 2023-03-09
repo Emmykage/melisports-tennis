@@ -20,10 +20,11 @@ const ProductDetails = () => {
     dispatch(updater())
   }
   const increase = () => {
+
     setCount(count+1)
   }
   const decrease = () =>{
-    setCount(count-1)
+    count !== 1 && setCount(count-1)
   }
 return (
   <div className='p-container'>

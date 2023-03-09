@@ -241,7 +241,11 @@ button {
   background: var(--color-primary);
   color: #333;
 }
-
+.btn:hover {
+  
+  background: var(--color-danger);
+  color: #333;
+}
 .btn-outline {
   border: 1px solid black;
 }

@@ -75,7 +75,7 @@ const handleDelete = (id) => {
                  <tr key={category.id}>
                  <td>{category.name}</td>
                  <td>{category.level}</td>
-                 <td>{category.description}</td>
+                 <td>{category.description.substring(0, 103)}...</td>
                  <td><a onClick={()=> handleDelete(category.id)}>del</a></td>
                  <td><a onClick={()=> handleEdit(category.id)}>edit</a></td>
 

@@ -150,7 +150,7 @@ const AddProduct = () => {
 
                         </label>
                     </div>
-                    <div  className='input-half'>
+                    {/* <div  className='input-half'>
                         <label htmlFor=""> Swing weight
                         <input 
                         name="swingWeight"
@@ -159,7 +159,7 @@ const AddProduct = () => {
                          type="text"  placeholder="swing weight"/>
 
                         </label>
-                    </div>
+                    </div> */}
                     <div  className='input-half'>
                         <label htmlFor="">Stiffness
                         <input
@@ -228,6 +228,7 @@ const AddProduct = () => {
                     <textarea
                      name="description" 
                      onChange={handleFormInput}
+                     value={formInput.description}
                      placeholder='Enter description'></textarea>
 
                     </label>

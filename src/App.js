@@ -33,8 +33,6 @@ import Login from './pages/auth/Login';
 import AdminSignUp from './pages/auth/AdminSignUp';
 import AdminLogin from './pages/auth/AdminLogin';
 import Checkout from './pages/Checkout';
-// import cartItems from './service/cartItems';
-// import Modal from './components/modal/Modal'
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
