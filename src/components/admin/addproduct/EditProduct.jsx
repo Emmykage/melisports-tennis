@@ -113,7 +113,7 @@ const EditProduct = () => {
                         name='grip_size'
                         value={formInput.grip_size}
                         onChange={handleFormInput} 
-                        type="number"/>
+                        type="text"/>
 
                         </label>
                     </div>

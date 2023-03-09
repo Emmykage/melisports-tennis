@@ -106,7 +106,7 @@ const AddProduct = () => {
                         name='grip_size'
                         value={formInput.grip_size}
                         onChange={handleFormInput} 
-                        type="number" placeholder='grip size'/>
+                        type="text" placeholder='grip size'/>
 
                         </label>
                     </div>
