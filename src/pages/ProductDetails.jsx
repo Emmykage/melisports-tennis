@@ -3,14 +3,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProduct } from '../redux/actions/product';
-// import { addItem } from '../redux/cart/cart';
-// import { addItem } from '../redux/cart/cart';
 import { addCart } from '../redux/actions/cart';
 import { updater } from '../redux/cart/cart';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
   const product = useSelector((state) => state.product.product)
   // const {cartItems, counter, total, isLoading} = useSelector((state)=> state.cart)
   const {id} = useParams();

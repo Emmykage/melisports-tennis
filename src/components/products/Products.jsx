@@ -13,7 +13,6 @@ const Products = () => {
   
   }, []);
 
-  console.log(products)
   if (products.length > 0){
   const racketProducts = products.filter((item) => item.product_category.name === "racquet")
   

@@ -2,7 +2,7 @@ import { getProductCategories } from "../actions/product_category";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    product_categories: [],
+    product_categories: ["hey" ],
     status: "failed",
     error: ""
 }
