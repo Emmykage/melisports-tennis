@@ -6,7 +6,7 @@ const AddCategory = () => {
     const dispatch = useDispatch()
    const [formData, setFormData] = useState({
     name: '',
-    gender: '',
+    level: '',
     description: ""
    })
    const handleFormInput=(e)=>{
@@ -56,8 +56,8 @@ const handleSubmit = (e) =>{
                     <div className='input-half'>
                         <label htmlFor=""> Category type
                             <input 
-                            name='gender'
-                            value={formData.gender}  
+                            name='level'
+                            value={formData.level}  
                             onChange={handleFormInput} 
                             type="text" placeholder="Product category"/>
                         </label>

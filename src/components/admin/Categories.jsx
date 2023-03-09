@@ -8,12 +8,13 @@ import { openDelCatModal } from '../../redux/modal/catDelModal'
 
 const Categories = () => {
   const {product_categories} = useSelector((state) => state.product_categories)
+  console.log(product_categories)
   const dispatch = useDispatch()
   const [toggleEdit, setToggleEdit] = useState(false)
 
   const [edit, setEdit] = useState({
     name: "",
-    gender: "",
+    level: "",
     description: ""
   })
 
@@ -24,12 +25,10 @@ const Categories = () => {
     setEdit({
         id: category.id,
         name: category.name,
-        gender: category.gender,
+        level: category.level,
         description: category.description
     })
-    // console.log(id)
-        // console.log(edit)
-
+  
 
   }
   const handleFormInput=(e)=>{
@@ -53,8 +52,7 @@ const Categories = () => {
 const handleSubmit = (e) =>{
    e.preventDefault()
    setToggleEdit(false)
-   dispatch(updateCategory({id: edit.id, data: {name: edit.name, type: edit.gender, description: edit.description}}))
-//    console.log(edit)
+   dispatch(updateCategory({id: edit.id, data: {name: edit.name, level: edit.level, description: edit.description}}))
 
 }
 const handleDelete = (id) => {
@@ -67,8 +65,8 @@ const handleDelete = (id) => {
             <thead>
               <tr>
                 <th>categories</th>
+                <th>level</th>
                 <th>description</th>
-                <th>type</th>
 
               </tr>
             </thead>
@@ -76,7 +74,7 @@ const handleDelete = (id) => {
               {product_categories.map((category) =>(
                  <tr key={category.id}>
                  <td>{category.name}</td>
-                 <td>{category.type}</td>
+                 <td>{category.level}</td>
                  <td>{category.description}</td>
                  <td><a onClick={()=> handleDelete(category.id)}>del</a></td>
                  <td><a onClick={()=> handleEdit(category.id)}>edit</a></td>

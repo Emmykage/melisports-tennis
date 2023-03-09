@@ -4,15 +4,22 @@ import { NavLink } from 'react-router-dom'
 import { loginUser } from '../../redux/actions/auth'
 import { useNavigate } from 'react-router-dom'
 import './auth.css'
-const AdminLogin = () => {
-    const {user, error} = useSelector((state) => state.user)
+let auth = localStorage.getItem("meli_auth")
 
-  console.log(user)
+const AdminLogin = () => {
+    const {user, error, logged} = useSelector((state) => state.user)
+    const navigate = useNavigate()
+
+  // console.log(user)
   // useEffect(()=>{
   //   dispatch()
   // })
+  useEffect(()=>{
+    if(auth){
+      navigate("/admin")
+    }
+  }, [])
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [formInput, setFormInput] = useState({
     user: {
@@ -20,6 +27,7 @@ const AdminLogin = () => {
     password: ''
     }
   })
+
   const handleInput = (e) =>{
       setFormInput({
         user:{

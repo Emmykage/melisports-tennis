@@ -59,26 +59,26 @@ const userSlice = createSlice({
                 loading: true
             }
         },
-    //     [loginUser.fulfilled]: (state, action) => {
+        [loginUser.fulfilled]: (state, action) => {
             
-    //         if(action.payload.user){
-    //             // console.log(action.payload.user)
-    //             return {
-    //                 ...state,
-    //                 user: action.payload
-    //             }
-    //         }
-    //         else{
-    //             console.log(action.payload.error)
-    //             return {
-    //                 ...state,
-    //                 error: true,
-    //                 message: action.payload.error
-    //             }
-    //         }
+            if(action.payload.user){
+                // console.log(action.payload.user)
+                return {
+                    ...state,
+                    user: action.payload
+                }
+            }
+            else{
+                console.log(action.payload.error)
+                return {
+                    ...state,
+                    error: true,
+                    message: action.payload.error
+                }
+            }
           
 
-    // },
+    },
         [loginUser.rejected]: (state, action) => {
             console.log(action.payload)
            return {

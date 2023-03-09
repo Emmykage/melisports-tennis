@@ -15,7 +15,7 @@ const Products = () => {
 
   console.log(products)
   if (products.length > 0){
-  const racketProducts = products.filter((item) => item.product_category.name === "racquets")
+  const racketProducts = products.filter((item) => item.product_category.name === "racquet")
   
   if (racketProducts.length < 1) {
     return (

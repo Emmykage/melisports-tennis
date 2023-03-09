@@ -10,7 +10,7 @@ const Shoes = () => {
   if(products.length > 0){
 
  
-  const shoes = products.filter((items) => items.product_category.name === "shoes")
+  const shoes = products.filter((items) => items.product_category.name === "shoe")
   console.log(products)
   const dispatch = useDispatch();
 

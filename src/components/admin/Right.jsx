@@ -6,6 +6,11 @@ import {MdDarkMode} from "react-icons/md"
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../../redux/modal/categoryModal'
+
+
+const meli_auth = localStorage.getItem("meli_auth")
+const auth = JSON.parse(meli_auth)
+
 const Right = (props) => {
     const {handleMenu} = props
     // const iconstyle = {color: "black"}
@@ -28,7 +33,7 @@ const Right = (props) => {
             </div>
         <div className="profile">
             <div className="info">
-                <p>Hey, <b>Morris</b></p>
+                <p>Hey, <b>{auth.user.username}</b></p>
                 <small className="text-muted">Admin</small>
             </div>
             <div className="profile-photo">

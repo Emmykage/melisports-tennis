@@ -11,12 +11,19 @@ import {MdOutlineReport} from "react-icons/md"
 import {FiSettings} from "react-icons/fi"
 import {IoAddSharp} from "react-icons/io5"
 import {BiLogOut} from "react-icons/bi"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 const SideNav = (props) => {
   const {showMenu, handleMenu} = props
+  const navigate = useNavigate()
 
   const activeLink = "active";
   const normalLink = "";
+
+  const signOut = ()=>{
+    localStorage.setItem('meli_auth', '') 
+    navigate('/auth/admin_login')
+
+  }
   return (
   
     <aside className={showMenu ? "display" : "" }>
@@ -103,13 +110,12 @@ const SideNav = (props) => {
           
             <h3>Go to store</h3>
           </NavLink>
-          <NavLink to='/auth/admin_login'
-          onClick={()=> localStorage.setItem('meli_auth', '') }
-          className={({isActive}) => (isActive ? activeLink : normalLink)}
+          <a
+          onClick={signOut}
           >
             <span> <BiLogOut/></span>
             <h3>Log out</h3>
-          </NavLink>
+          </a>
         </div>
 
 

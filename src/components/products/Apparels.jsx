@@ -10,7 +10,7 @@ const Apparels = () => {
   if(products.length > 0){
 
   
-  const apparelsProducts = products.filter((item) => item.product_category.name === "apparels")
+  const apparelsProducts = products.filter((item) => item.product_category.name === "apparel")
   const dispatch = useDispatch();
 
   useEffect(() => {

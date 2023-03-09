@@ -11,7 +11,7 @@ import { toLogin } from '../../redux/user/user'
 const MainAdmin = ({children}) => {
   const dispatch = useDispatch()
   const auth = localStorage.getItem('meli_auth')
-  const meli_auth = JSON.parse(auth)
+  // const meli_auth = JSON.parse(auth)
   const navigate = useNavigate()  
   const {isOpen, id} = useSelector((state) => state.delModal)
   const {catOpen, catId} = useSelector((state) => state.cat_del_modal)
@@ -26,6 +26,7 @@ const MainAdmin = ({children}) => {
   }
       if(auth){
 
+    const meli_auth = JSON.parse(auth)
 
    
     if(meli_auth.user.role === 'admin'){

@@ -25,8 +25,8 @@ const EditCategories = (props) => {
                     <div className='input-half'>
                         <label htmlFor=""> Category type
                             <input 
-                            name='gender'
-                            value={edit.gender}  
+                            name='level'
+                            value={edit.level}  
                             onChange={handleFormInput} 
                             type="text" placeholder="Product category"/>
                         </label>
