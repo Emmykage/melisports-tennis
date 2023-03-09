@@ -12,8 +12,8 @@ const ProductsPage = () => {
   useEffect(()=>{
     dispatch(getProductCategories())
   },[])
-  const category = product_categories.find((cat) => cat.name == "racquet") 
-  console.log(category, "hey")
+  const category = product_categories.find((cat) => cat.name === "racquet") 
+  console.log(category)
   return(
   <div className="product-container">
     <Hero />
@@ -35,7 +35,7 @@ const ProductsPage = () => {
           <div className="product-details color-grey">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
             <p>
-                {category.description}
+                {/* {category.description} */}
              
             </p>
 

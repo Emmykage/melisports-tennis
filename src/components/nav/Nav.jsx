@@ -11,10 +11,12 @@ import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 const Nav = () => {
   const auth = localStorage.getItem("meli_auth")
+  const meli_auth = JSON.parse(auth)
+  console.log(meli_auth.user.role)
+
 
   const navigate = useNavigate()
   const { counter, cartItems, update } = useSelector((state) => state.cart);
-  console.log(cartItems)
   const dispatch = useDispatch()
   
   // const style = { BackgroundColor: "white", color: "red", fontSize: "1.5em" }
@@ -185,12 +187,9 @@ setOpenNav(!openNav)
                   </ul>
                 </div>
               </li>
-              <li  className="nav-item">
-                <NavLink to="/admin">
-                  go to admin
+              {meli_auth.user.role == "admin" &&  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li>}
 
-                </NavLink>
-              </li>
+              
 
             </ul>
             <div className='flex-space'>
