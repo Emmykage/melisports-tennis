@@ -5,6 +5,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems:[],
+  message: "",
   counter: 0,
   total: 0,
   status: 'false',
@@ -54,17 +55,28 @@ const cartSlice = createSlice({
   },
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
-      console.log(action.payload)
-      return {
-      ...state,
-      status: "success",
-      cartItems: action.payload
-    }},
+      const cartData = action.payload
+      console.log(cartData)
+      if(cartData.message){
+        return {
+          ...state,
+          status: "success",
+          message: cartData.massage
+          // cartItems: action.payload
+        }
+      }else{
+        return {
+          ...state,
+          status: "success",
+          cartItems: action.payload
+        }
+      }
+
+    },
 
     [clearCart.fulfilled]: (state) => {
       return {
         ...state,
-        // update: state.update + 1
       }
     }
  

@@ -686,10 +686,7 @@ td:last-child .btn {
   background-color: #04aa6d;
 
 }
-.checkout .col-right h3{
-  /* text-align: center; */
 
-}
 
 @media screen and (max-width: 600px) {
   .flex-center-around {
@@ -710,6 +707,11 @@ td:last-child .btn {
 
   .cart-div {
     width: 100%;
+  }
+}
+@media screen and (max-width: 720px) {
+  .cart-div {
+    width: 90%;
   }
 }
 

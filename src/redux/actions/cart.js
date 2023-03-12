@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const baseURL = "https://melisports.herokuapp.com/api/v1/"
+import baseURL from "../baseURL";
 let auth = localStorage.getItem("meli_auth")
 let token 
 if(auth){

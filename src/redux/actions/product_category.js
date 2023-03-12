@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const baseURL = "https://melisports.herokuapp.com/api/v1/"
+import baseURL from "../baseURL";
 
 const addProductCategory = createAsyncThunk('product_category/add_product_category', async(data) => {
     await fetch(`${baseURL}product_categories`,{

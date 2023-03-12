@@ -1,9 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const baseURL = "https://melisports.herokuapp.com/api/v1/";
-// const baseURL = "http://localhost:3000/api/v1/";
-
+import baseURL from "../baseURL";
 const addUser = createAsyncThunk('user/addUser', async(data) =>{
-    // console.log(data)
     const response = await fetch(`${baseURL}users`, {
         method: 'POST',
         headers: {

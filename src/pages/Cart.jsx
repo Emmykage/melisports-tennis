@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  clearCart, increase, decrease, calculateTotal, updater,
-} from '../redux/cart/cart';
+import { updater } from '../redux/cart/cart';
 import { decreaseCart, increaseCart, removeItem } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
-// import Modal from '../components/modal/Modal';
 import { getCarts } from '../redux/actions/cart';
 import { NavLink } from 'react-router-dom';
 
@@ -13,8 +10,6 @@ const Cart = () => {
   // let [count, setCount] = useState(0)
   // const isOpen = useSelector((state) => state.modal.isOpen);
   const { cartItems, total, update } = useSelector((state) => state.cart);
-  console.log(cartItems)
-
   const [items, setItem] = useState([])
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -33,11 +28,11 @@ const Cart = () => {
 
   if (cartItems.length < 1) {
     return (
-      <div>
-        <header>
-          <h2> Your bag</h2>
+      <div className='warning-center'>
+      
+          <h2> Add to Cart</h2>
           <h4> You cart is currently empty</h4>
-        </header>
+        
       </div>
     );
   }

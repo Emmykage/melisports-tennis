@@ -12,7 +12,8 @@ import { getCarts } from '../../redux/actions/cart';
 const Nav = () => {
   const auth = localStorage.getItem("meli_auth")
   const meli_auth = JSON.parse(auth)
-  console.log(meli_auth.user.role)
+  // console.log(meli_auth.user.role)
+  
 
 
   const navigate = useNavigate()
@@ -187,7 +188,8 @@ setOpenNav(!openNav)
                   </ul>
                 </div>
               </li>
-              {meli_auth.user.role == "admin" &&  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li>}
+              {meli_auth && (meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")}
+              {/* {meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " "} */}
 
               
 
