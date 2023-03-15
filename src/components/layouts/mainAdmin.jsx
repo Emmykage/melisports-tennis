@@ -19,6 +19,7 @@ const MainAdmin = ({children}) => {
   console.log(auth)
   useEffect(()=>{
     dispatch(toLogin())
+    // !auth && navigate("/auth/admin_sign_up")
   },[])
 
   const handleMenu = () =>{

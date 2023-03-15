@@ -24,7 +24,6 @@ const userSlice = createSlice({
             console.log("fulfilled")
             const response = action.payload
             if(response.user){
-                console.log("fulfilled and passed")
 
                 const collect = JSON.stringify(response)
                 localStorage.setItem('meli_auth', collect);
@@ -53,16 +52,24 @@ const userSlice = createSlice({
                 message: "failed to create an account"
             }
         },
-        [addUser.pending]: (state, action)=> {
+        [addUser.pending]: (state)=> {
             return{
                 ...state,
                 loading: true
             }
         },
         [loginUser.fulfilled]: (state, action) => {
+            const response = action.payload
+          
             
-            if(action.payload.user){
-                // console.log(action.payload.user)
+            if(response.user){
+
+                console.log("login fulfilled and passed")
+
+                const collect = JSON.stringify(response)
+                localStorage.setItem('meli_auth', collect);
+            
+                console.log(response.token)
                 return {
                     ...state,
                     user: action.payload

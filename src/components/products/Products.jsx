@@ -43,7 +43,8 @@ const Products = () => {
           </div>
           <div className="prod-details">
             <h5 className="color-black">
-              {product.name.substring(0, 15)}
+                           
+                             {product.name.substring(0, 15)}
               ...
             </h5>
             <p>{product.price}</p>

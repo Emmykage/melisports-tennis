@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import Banner from '../components/banner/Banner';
 import Hero from '../components/banner/Hero';
 import Products from '../components/products/Products';
 import SideNav from '../components/sideNav/SideNav';
@@ -16,9 +15,6 @@ const ProductsPage = () => {
     dispatch(getProductCategories())
   },[])
   
-  console.log(category)
-
-  // console.log(category)
 
   return(
   <div className="product-container">
@@ -35,8 +31,10 @@ const ProductsPage = () => {
           <SideNav />
         </div>
 
+        <div className="full-width">
         <div className="full-width flex-center">
           <Products />
+          </div>
 
           <div className="product-details color-grey">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
