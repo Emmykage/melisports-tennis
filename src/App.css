@@ -71,7 +71,9 @@ a {
   flex-direction: column;
 
 }
-
+.full-100{
+  width: 100%;
+}
 .border {
   border: 1px solid black;
 }
@@ -681,18 +683,7 @@ td:last-child .btn {
   background-color: #04aa6d;
 
 }
-/* ==========================order========================================= */
-.order-container{
-  width: 100%;
-}
-.order{
-  width: 100%;
-  border: 1px solid red;
-  background-color: #222629;
-}
-.order-item{
-  width: 100%;
-}
+
 
 
 @media screen and (max-width: 600px) {

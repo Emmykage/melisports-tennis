@@ -1,17 +1,21 @@
 import React from 'react'
+import OrderDetail from './OrderDetail'
 
-const OrderItem = () => {
+const OrderItem = ({display, showDetail}) => {
+ 
   return (
     <li className='order-item'>
-        <div className='flex-space'> 
+        <div className='order-header flex-space'> 
             <span>Menanya Morris</span>
-            <a>
-                show
+            <a onClick={showDetail}> 
+                show details
             </a>
+            <span>
+              <input type="checkbox" />
+            </span>
         </div>
-        {/* <div>
-           
-        </div> */}
+        <OrderDetail display={display}/>
+   
         
     </li>
   )

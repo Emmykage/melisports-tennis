@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import OrderDetail from './OrderDetail'
 import OrderItem from './OrderItem'
+import "./order.css"
 
 const Orders = () => {
+  const [isDisplayOpen, setIsDisplayOpen] = useState(false)
+  const toggleShowDetail = () =>{
+    setIsDisplayOpen(prevState => !prevState)
+
+  }
   return (
     <div className='order-container'>
         <h1 className='bolder'>
@@ -9,7 +16,11 @@ const Orders = () => {
         </h1>
         <div>
           <ul className='order'>
-            <OrderItem/>
+            <OrderItem display={isDisplayOpen} showDetail={toggleShowDetail}/>
+            <OrderItem display={isDisplayOpen} showDetail={toggleShowDetail}/>
+
+
+
           </ul>
         </div>
     </div>

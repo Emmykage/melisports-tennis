@@ -1,0 +1,24 @@
+/* ==========================order========================================= */
+.order-header{
+    width: 100%;
+    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.3);
+    padding: 1.5rem 0.8rem ;
+  }
+  .order-container{
+    width: 100%;
+  }
+  .order{
+    width: 100%;
+  }
+  .order-item{
+    width: 100%;
+    margin: 1rem 0;
+  }
+  .order-detail{
+    background:#b6b9bd;
+    height: 0px;
+    overflow: hidden;
+  }
+  .order-detail.show{
+    height: fit-content;
+  }
