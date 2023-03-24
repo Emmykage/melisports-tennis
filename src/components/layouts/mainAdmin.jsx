@@ -10,27 +10,27 @@ import { toLogin } from '../../redux/user/user'
 
 const MainAdmin = ({children}) => {
   const dispatch = useDispatch()
-  const auth = localStorage.getItem('meli_auth')
-  // const meli_auth = JSON.parse(auth)
+  const meli_auth = localStorage.getItem('meli_auth')
+  // const auth = JSON.parse(meli_auth)
   const navigate = useNavigate()  
   const {isOpen, id} = useSelector((state) => state.delModal)
   const {catOpen, catId} = useSelector((state) => state.cat_del_modal)
   const [showMenu, setShowMenu] = useState(false)
-  console.log(auth)
+  // console.log(auth)
   useEffect(()=>{
     dispatch(toLogin())
-    // !auth && navigate("/auth/admin_sign_up")
+    !meli_auth && navigate("/auth/admin_sign_up")
   },[])
 
   const handleMenu = () =>{
       setShowMenu(!showMenu)
   }
-      if(auth){
+      if(meli_auth){
 
-    const meli_auth = JSON.parse(auth)
+    const auth = JSON.parse(meli_auth)
 
    
-    if(meli_auth.user.role === 'admin'){
+    if(auth.user.role === 'admin'){
 
    
     return (
@@ -43,7 +43,7 @@ const MainAdmin = ({children}) => {
       <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
       <div className="full-width flex-center"> {children}</div>
      
-      <Right handleMenu={handleMenu}/>    
+      <Right handleMenu={handleMenu} auth={auth}/>    
       </div>
        {  console.log('token')}
           <Footer />
@@ -65,7 +65,7 @@ const MainAdmin = ({children}) => {
   // redir()
 }
 else{
-  navigate("/auth/admin_sign_up")
+  navigate("/auth/admin_login")
 }
 }
 

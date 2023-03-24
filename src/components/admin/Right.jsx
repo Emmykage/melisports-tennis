@@ -8,12 +8,10 @@ import { useDispatch } from 'react-redux'
 import { setModal } from '../../redux/modal/categoryModal'
 
 
-const meli_auth = localStorage.getItem("meli_auth")
-const auth = JSON.parse(meli_auth)
 
-const Right = (props) => {
-    const {handleMenu} = props
-    // const iconstyle = {color: "black"}
+
+const Right = ({handleMenu, auth}) => {
+    console.log(auth)
     const dispatch = useDispatch()
     
   return (

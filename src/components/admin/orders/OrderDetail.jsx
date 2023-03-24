@@ -1,8 +1,28 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const OrderDetail = ({display}) => {
+
+// const Container = styled.div`{
+// width: 100%;
+// height: 20px;
+// background-color: green}`
+
+
+
+const OrderDetail = ({order_prop, isActive}) => {
+    const showDetail = {
+        height: "fit-content"
+    }
+
+    const activeLink = "order-detail show";
+    const normalLink = "order-detail"
   return (
-    <div className={display? 'order-detail' : 'order-detail show'  }>
+    <div className={isActive ? activeLink : normalLink } 
+    // style={showDetail}
+    >
+        {/* <Container>
+            her
+        </Container> */}
         <h3 className='center'>
             Order number: 00000000101
         </h3>

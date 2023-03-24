@@ -5,9 +5,12 @@ import { loginUser } from '../../redux/actions/auth'
 import { useNavigate } from 'react-router-dom'
 import './auth.css'
 
+let auth = localStorage.getItem("meli_auth")
+
+
 const Login = () => {
   // const dispatch = useDispatch()
-  const {user, error} = useSelector((state) => state.user)
+  const {user, error, message, logged} = useSelector((state) => state.user)
   console.log(user)
 
   const navigate = useNavigate()
@@ -34,8 +37,9 @@ const Login = () => {
     // dispatch(loginUser)
   }
   useEffect(()=> {
-    dispatch(loginUser(formInput))
-
+if(auth && logged){
+  navigate("/admin/dashboard")
+}
   
   },[])
   console.log(user)

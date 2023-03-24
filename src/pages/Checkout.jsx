@@ -1,7 +1,18 @@
 import React from 'react'
 import {BsCartDash} from "react-icons/bs"
+import { useSelector } from 'react-redux'
 
 const Checkout = () => {
+    const { total, cartItems } = useSelector((state) => state.cart)    
+    const oderItems = cartItems.map((item) => (
+        {product_id: item.id,
+            quantity: item.quantity}
+        
+    ))
+    const {user} = useSelector((state) => state.user)
+    const handlePurchase = () => {
+        
+    }
   return (
     <div className='checkout'>
         <div className=' col-left'>
@@ -68,6 +79,11 @@ const Checkout = () => {
                 <h3><BsCartDash/> Cart Summary</h3>
                 <li></li>
             </ul>
+        </div>
+        <div>
+            <button className='btn' onClick={handlePurchase}>
+                purchase
+            </button>
         </div>
         </div>
   )

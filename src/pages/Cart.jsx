@@ -4,13 +4,14 @@ import { updater } from '../redux/cart/cart';
 import { decreaseCart, increaseCart, removeItem } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
 import { getCarts } from '../redux/actions/cart';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   // let [count, setCount] = useState(0)
   // const isOpen = useSelector((state) => state.modal.isOpen);
   const { cartItems, total, update } = useSelector((state) => state.cart);
   const [items, setItem] = useState([])
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   useEffect(()=>{
     getItem()
@@ -23,8 +24,11 @@ const Cart = () => {
 
   }
   console.log(items)
-  console.log(update)
-
+  // console.log(update)
+const handleCheckout = () => {
+  // const data = {total: total}
+   navigate("/checkout")
+}
 
   if (cartItems.length < 1) {
     return (
@@ -148,7 +152,7 @@ const handleDelete = (id)=>{
                 <div className='flex-space'><span>subtotal</span><span>{total}</span></div>
                 <div className='flex-space total'><span>Total</span><span className=''>{total}</span></div>
                 <div>
-                <NavLink to={"/checkout"} className='btn'> CHECKOUT</NavLink>
+                <a onClick={handleCheckout} className='btn'> CHECKOUT</a>
 
 
                 </div>

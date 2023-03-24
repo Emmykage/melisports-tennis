@@ -11,7 +11,8 @@ import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 const Nav = () => {
   const auth = localStorage.getItem("meli_auth")
-  const meli_auth = JSON.parse(auth)
+  let meli_auth
+  {auth && (meli_auth = JSON.parse(auth) )}
   // console.log(meli_auth.user.role)
   
 
@@ -188,7 +189,10 @@ setOpenNav(!openNav)
                   </ul>
                 </div>
               </li>
-              {meli_auth && (meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")}
+              {}
+            
+              
+              {auth && ((meli_auth.user.role === "admin" || meli_auth.user.role == undefined) ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")}
               {/* {meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " "} */}
 
               

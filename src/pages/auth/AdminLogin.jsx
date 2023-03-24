@@ -7,15 +7,12 @@ import './auth.css'
 let auth = localStorage.getItem("meli_auth")
 
 const AdminLogin = () => {
-    const {user, error, logged} = useSelector((state) => state.user)
+    const {user, error, logged, loading} = useSelector((state) => state.user)
     const navigate = useNavigate()
 
-  // console.log(user)
-  // useEffect(()=>{
-  //   dispatch()
-  // })
+ 
   useEffect(()=>{
-    if(auth){
+    if(auth && logged){
       navigate("/admin")
     }
   }, [])
