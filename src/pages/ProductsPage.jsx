@@ -21,10 +21,15 @@ const ProductsPage = () => {
     <Hero />
 
     <div className="prod-page">
-      <button type="button"> Pure Aero</button>
-      <button type="button"> Pure strike</button>
-      <button type="button"> boost</button>
-      <button type="button">All racquets</button>
+    <div className='cat-group'>
+      <a className='btn'> Pure Aero</a>
+      <a className='btn'> Pure strike</a>
+      <a className='btn'> boost</a>
+      <a className='btn'>All racquets</a>
+     
+
+      </div>
+     
 
       <div className="flex-center level">
         <div className="side-nav">

@@ -110,7 +110,7 @@ setOpenNav(!openNav)
               </li>
               <li className="nav-item">
                 <NavLink to="/shoes">Shoes</NavLink>
-                <div className="link-items flex">
+                <div className="link-items">
                   <div>
                     <h3>Shoes</h3>
                   </div>
@@ -132,7 +132,7 @@ setOpenNav(!openNav)
                 <NavLink to="/bags">Bags</NavLink>
                 <div className="link-items flex">
                   <div>
-                    <h3>Shoes</h3>
+                    <h3>Bags</h3>
                   </div>
                   <ul>
 
@@ -190,17 +190,23 @@ setOpenNav(!openNav)
                   </ul>
                 </div>
               </li>
-              {}
+              
+             
             
               
               {auth && ((meli_auth.user.role === "admin" || meli_auth.user.role == undefined) ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")}
               {/* {meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " "} */}
+              <li className='nav-item last'>
 
+{auth ?   <a onClick={handleLogOut}>Log Out</a> :   <NavLink to="/auth/login">Login</NavLink> }
+<span><FiUser className='user-icon'/></span>
+
+</li>
               
 
             </ul>
             <div className='flex-space'>
-              <div className='user '>
+              <div className='user mobile-display '>
                 {auth ?   <span onClick={handleLogOut}>Log Out</span> :   <NavLink to="/auth/login">Login</NavLink> }
               
                 <span><FiUser className='user-icon'/></span>

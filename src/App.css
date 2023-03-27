@@ -222,8 +222,15 @@ button {
 }
 
 .prod-page button {
+ 
+}
+.prod-page .cat-group a{
+  font-size: 0.8rem;
+  font-weight: 600;
   margin-right: 0.2rem;
   padding: 0.2rem 0.4rem;
+  background-color: var(--color-theme);
+  color: var(--color-info-light);
 }
 
 .color-black {
