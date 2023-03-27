@@ -13,6 +13,7 @@
 }
 
 :root {
+  --color-theme: rgba(92, 64, 101);
   --color-primary: #7380ec;
   --color-danger: #ff7782;
   --color-success: #41f1b6;

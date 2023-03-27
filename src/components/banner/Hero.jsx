@@ -1,5 +1,5 @@
 import React from 'react';
-import IMG_BANNER from '../../assets/images/racquet-banner.jpg';
+import IMG_BANNER from '../../assets/images/banner/slide_one.jpg';
 
 const Hero = () => (
   <div className="product-banner hero-mid">

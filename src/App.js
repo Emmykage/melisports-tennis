@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './components/footer/Footer';
-// import Modal from './components/modal/Modal';
+
 import Nav from './components/nav/Nav';
 import ApparelsPage from './pages/Apparels';
 import BagsPage from './pages/BagsPage';

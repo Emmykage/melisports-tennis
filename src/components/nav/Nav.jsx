@@ -9,6 +9,7 @@ import { AiOutlineClose} from 'react-icons/ai'
 import { useState } from 'react';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
+import SearchComponent from './SearchComponent';
 const Nav = () => {
   const auth = localStorage.getItem("meli_auth")
   let meli_auth
@@ -220,16 +221,7 @@ setOpenNav(!openNav)
           </div>
 
         </div>
-        <div>
-          <form>
-            <div className="search-div">
-              <input type="text" />
-              <button type="submit">search </button>
-
-            </div>
-
-          </form>
-        </div>
+        <SearchComponent/>
       </nav>
     </div>
   );

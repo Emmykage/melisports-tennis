@@ -8,6 +8,9 @@ import Adidas from '../assets/images/product-brands/Homepage_Brands_adidas.jpg'
 import Oasics from '../assets/images/product-brands/Homepage_Brands_AsicsB.jpg'
 import Head from '../assets/images/product-brands/Homepage_Brands_HeadB.jpg'
 import Wilson from '../assets/images/product-brands/Homepage_Brands_Wilson.jpg'
+// import { Slide } from '@mui/material';
+import Slider from '../components/feature/Slider';
+
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -18,7 +21,8 @@ const Home = () => {
   });
   return (
     <>
-      <Banner />
+      {/* <Banner /> */}
+      <Slider/>
       <div className="m-h4">
         <h3 className="center fs-3 m-h2"> Featured Products</h3>
 
@@ -33,6 +37,7 @@ const Home = () => {
           ))}
 
         </div>
+        
 
       </div>
       <div>
