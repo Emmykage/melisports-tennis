@@ -25,9 +25,9 @@ You can see the backend for this project(https://github.com/Emmykage/melisport_a
 
 <table>
 <tr>
-<td><img src="src/assets/img/power_spokes_splash_screen.PNG" alt="splash page"></td>
-<td><img src="src/assets/img/power_spokes_home_screen.PNG" alt="home page"></td>
-<td><img src="src/assets/img/power_spokes_details.PNG" alt="details page"></td>
+<td><img src="/src/assets/images/melisports_home.PNG" alt="Home page"></td>
+<td><img src="src/assets/images/melisport_adminPage.PNG" alt="Product details page"></td>
+<td><img src="src/assets/images/melisport_products.PNG" alt="admin page"></td>
 </tr>
 </table>
 
