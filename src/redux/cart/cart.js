@@ -37,7 +37,7 @@ const cartSlice = createSlice({
         });
         return{
           ...state,
-          counter: state.cartItems.length,
+          counter: count,
           total:total
         }
       }else{

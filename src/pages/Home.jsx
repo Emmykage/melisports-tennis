@@ -53,7 +53,7 @@ const Home = () => {
             <img src={Adidas} alt="" />
           </div>
         </div>
-        <div className='full-screen m-h5'>
+        <div className='banner-text full-screen m-h5'>
           <h2>
           Tennis Equipment & Supplies
           </h2>

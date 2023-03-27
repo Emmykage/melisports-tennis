@@ -322,7 +322,10 @@ button {
 .product-grid-items:hover {
   box-shadow: none;
 }
-
+.banner-text {
+  padding: 1.5rem;
+  line-height: 2rem;
+}
 
 /* ====================product details design=================== */
 
@@ -677,13 +680,31 @@ td:last-child .btn {
 }
 .checkout .col-left{
   flex: 1;
+  background: white;
+  padding: 14px;
+  border-radius: 6px;
 }
 .checkout .col-right{
+ max-width: 300px;
+ height: fit-content;
   flex: 1;
-  background-color: #04aa6d;
+  background-color: white;  
+  padding: 18px 5px;
+  border-radius: 6px;
+  box-shadow: var(--box-shadow);
+
+
 
 }
-
+.checkout .col-right span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-dark-variant);
+}
+.checkout .col-right ul li{
+  padding: 15px 8px;
+  /* border: 1px solid black; */
+}
 
 
 @media screen and (max-width: 600px) {

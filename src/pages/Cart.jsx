@@ -7,8 +7,6 @@ import { getCarts } from '../redux/actions/cart';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  // let [count, setCount] = useState(0)
-  // const isOpen = useSelector((state) => state.modal.isOpen);
   const { cartItems, total, update } = useSelector((state) => state.cart);
   const [items, setItem] = useState([])
   const navigate = useNavigate()

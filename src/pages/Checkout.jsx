@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {BsCartDash} from "react-icons/bs"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addOrder } from '../redux/actions/orders'
 
 const Checkout = () => {
-    const { total, cartItems } = useSelector((state) => state.cart)    
-    const oderItems = cartItems.map((item) => (
-        {product_id: item.id,
+    const dispatch = useDispatch()
+    const { total, cartItems, counter } = useSelector((state) => state.cart)    
+    console.log(cartItems)
+    const orderItems = cartItems.map((item) => (
+        {
+            product_id: item.product_id,
             quantity: item.quantity}
         
     ))
-    const {user} = useSelector((state) => state.user)
+    const orderDetails = useState({
+        order_detail: {
+
+        
+      
+            total: total,
+            order_items_attributes: orderItems
+        }
+    })
     const handlePurchase = () => {
+
+dispatch(addOrder(orderDetails[0]))
         
     }
   return (
@@ -67,7 +81,7 @@ const Checkout = () => {
                     <small>
                         By clicking the button, you agree to the <a href='#'>Terms and Conditions</a>
                     </small>
-                    <input type="submit" value={"place order"} /></div>
+                    <input type="submit" value={"place order"} onClick={handlePurchase} /></div>
 
 
 
@@ -75,16 +89,75 @@ const Checkout = () => {
 
         </div>
         <div className='col-right'>
-            <ul>
-                <h3><BsCartDash/> Cart Summary</h3>
-                <li></li>
-            </ul>
+                            <h3> Order summary</h3>
+                            <ul>
+                                <li className='flex'>
+                                    <span> {counter} items</span>
+                                </li>
+                                <hr></hr>
+                                <li className='flex-space'>
+                                    <span> SUBTOTAL</span> <span>{total}</span>
+                                </li>
+                                <hr />
+                                <li className='flex-space'>
+                                    <span> CART TOTAL</span><span>{total}</span>
+                                </li>
+                            </ul>
+
+            {/* <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                        <th>Total</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                      {cartItems.map((item) => (
+                        <>
+                     
+                <tr>
+                    <td>
+                        {item.product.name}
+                    </td>
+                    <td>
+                        {item.product.price}
+                    </td>
+                    <td>
+                        {item.quantity}
+                    </td>
+                    <td>
+                        {item.total}
+                    </td>
+                </tr>
+                
+                  </>
+
+                ))}
+                
+                    
+                </tbody>
+            </table>
+           <table>
+            <tbody>
+                <tr>
+                    <td>
+                        shipping
+                    </td>
+                    <td></td>
+                                        <td></td>
+
+                    <td>
+                        #3000
+                    </td>
+                </tr>
+            </tbody>
+           </table> */}
+            
         </div>
-        <div>
-            <button className='btn' onClick={handlePurchase}>
-                purchase
-            </button>
-        </div>
+       
         </div>
   )
 }

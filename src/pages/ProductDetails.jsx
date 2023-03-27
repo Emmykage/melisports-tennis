@@ -17,6 +17,8 @@ const ProductDetails = () => {
   }, [])
   const handleCart = () =>{
     dispatch(addCart({product_id: id, quantity: count}))
+    // console.log({product_id: id, quantity: count})
+
     dispatch(updater())
   }
   const increase = () => {
