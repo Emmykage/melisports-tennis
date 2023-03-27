@@ -91,7 +91,7 @@ npm test
 ## 👤 Menanya Morris
 
 - GitHub: [@emmykage](https://github.com/emmykage)
-- Twitter: [@emmykage](https://twitter.com/emmykage)
+- Twitter: [@emmykage](https://twitter.com/mennydev)
 - LinkedIn: [Menanya Morris](https://www.linkedin.com/in/morris-menanya-a51985104/)
 
 
