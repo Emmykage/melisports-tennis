@@ -5,8 +5,8 @@ MeliSport-Tennis Store is an E-commerce retails store where users get to shop fo
 You can see the backend for this project(https://github.com/Emmykage/melisport_api).
 
 ## Usage
-- To use the app as a shopper refer to the link [MELISPORTS-TENNIS STORE](https://unique-smakager-fba34b.netlify.app/)
-- To use the app as an Admin refer to the link [MELISPORTS-TENNIS STORE ADMIN SIGN UP](https://unique-smakager-fba34b.netlify.app/auth/sign_up)
+- To use the app as a shopper refer to the link [MELISPORTS-TENNIS STORE](https://bright-gecko-6f953b.netlify.app/)
+- To use the app as an Admin refer to the link [MELISPORTS-TENNIS STORE ADMIN SIGN UP](https://bright-gecko-6f953b.netlify.app/auth/sign_up)
 
 
 -This whole app has been solely and entirely built by myself
@@ -21,7 +21,7 @@ You can see the backend for this project(https://github.com/Emmykage/melisport_a
 
 ## Live Demo & Screenshots
 
-> [MELISPORTS-TENNIS STORE](https://unique-smakager-fba34b.netlify.app/)
+> [MELISPORTS-TENNIS STORE](https://bright-gecko-6f953b.netlify.app/)
 
 <table>
 <tr>
