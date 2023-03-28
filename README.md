@@ -26,8 +26,8 @@ You can see the backend for this project(https://github.com/Emmykage/melisport_a
 <table>
 <tr>
 <td><img src="/src/assets/images/melisports_home.PNG" alt="Home page"></td>
-<td><img src="src/assets/images/melisport_adminPage.PNG" alt="Product details page"></td>
-<td><img src="src/assets/images/melisport_products.PNG" alt="admin page"></td>
+<td><img src="src/assets/images/melisport_products.PNG " alt="Product details page"></td>
+<td><img src="src/assets/images/melisport_adminPage.PNG" alt="admin page"></td>
 </tr>
 </table>
 
