@@ -20,9 +20,12 @@ const ShoesPage = () => (
           <SideNav />
         </div>
 
-        <div className="full-width flex-center">
-          {/* <Products /> */}
+        <div className="product-align">
+          <div className="product-items">
           <Shoes />
+
+
+          </div>
 
           <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>

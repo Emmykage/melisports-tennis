@@ -11,6 +11,16 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
+    filterProducts: (state, action) => {
+      console.log(action.payload)
+
+      const filtered =  state.products.filter((item) => item.name.toLowerCase().includes(action.payload))
+      console.log(action.payload)
+      return{
+        ...state,
+        products: filtered
+      }
+    }
     // editProducts: (state, action) => {
     //   const product = state.products.map((prod) => {
     //     if (prod.id === action.payload.id) {
@@ -49,3 +59,4 @@ const productsSlice = createSlice({
 
 // export const { getProducts, editProducts } = productsSlice.actions;
 export default productsSlice.reducer;
+export const { filterProducts } = productsSlice.actions

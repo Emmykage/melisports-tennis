@@ -169,7 +169,7 @@ a {
 
 .flex-center {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 1%;
 }
 .flex-3{
@@ -271,11 +271,7 @@ button {
   display: block;
 }
 
-.side-nav {
-  width: 340px;
-  flex-basis: 20%;
-  border: 1px solid gray;
-}
+
 
 .bg-blue {
   background-color: blue;
@@ -740,6 +736,19 @@ td:last-child .btn {
   .cart-div {
     width: 90%;
   }
+  .full-width {
+    width: 100%; 
+  background-color: red;
+ }
+  .flex-center{
+    width: 100%;
+  
+  }
+  .product-align{
+    /* background-color: #04aa6d; */
+    width: 100%;
+  }
+  
 }
 
 @media screen and (max-width: 1400px) {

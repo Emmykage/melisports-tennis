@@ -16,10 +16,15 @@ const ApparelsPage = () => {
 
                 <div className='flex-center level'>
                     <div className='side-nav'>
+
                         <SideNav />
                     </div>
                     <div className='full-width flex-center'>
-                        <Apparels />
+                      <div className="product-items">
+                      <Apparels />
+
+                      </div>
+                       
                         <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
             <p>

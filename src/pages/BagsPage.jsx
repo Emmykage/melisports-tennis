@@ -19,8 +19,12 @@ const BagsPage = () => (
           <SideNav />
         </div>
 
-        <div className="full-width flex-center">
+        <div className="level flex-center">
+          <div className="product-items">
           <Products />
+
+
+          </div>
 
           <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>

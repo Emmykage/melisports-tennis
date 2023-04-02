@@ -1,33 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { getProducts } from '../../redux/actions/product';
+import product from '../../redux/products/product';
 import './products.css';
 
-const Products = ({products, status, error }) => {
+const Bags = () => {
+  const dispatch = useDispatch();
+  const {products, status, error} = useSelector((state) => state.products);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+ 
 
-  
+  if(products.length > 0){
 
-  if (products.length > 0){
-  const racketProducts = products.filter((item) => item.product_category.name === "racquet")
-  
-  if (racketProducts.length < 1) {
+ 
+  const bags = products.filter((items) => items.product_category.name === "bag")
+
+  if (bags.length < 1) {
     return (
       <div>
         <header>
-          <h2> Rackets </h2>
-          <h4> You racquet catelogue is currently empty. add some products if you are an admin</h4>
+          <h2> Bags </h2>
+          <h4> Your bags category is currently empty</h4>
         </header>
       </div>
     );
   }
-       
+ 
     if (status === "success"){
-     
-      return (
+        return (
    
     <>
 
-      {racketProducts.map((product) => (
+      {bags.map((product) => (
         <div key={product.id} className="products-display">
           <div className="prod-img">
             <NavLink to={`/productdetails/${product.id}`}>
@@ -37,8 +44,7 @@ const Products = ({products, status, error }) => {
           </div>
           <div className="prod-details">
             <h5 className="color-black">
-                           
-                             {product.name.substring(0, 15)}
+              {product.name.substring(0, 15)}
               ...
             </h5>
             <p>{product.price}</p>
@@ -53,6 +59,7 @@ const Products = ({products, status, error }) => {
 
     </>
       )
+    
       }
       else if(status === "failed"){ 
         return (
@@ -73,4 +80,4 @@ const Products = ({products, status, error }) => {
     }
 };
 
-export default Products;
+export default Bags;

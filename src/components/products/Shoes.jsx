@@ -6,17 +6,21 @@ import product from '../../redux/products/product';
 import './products.css';
 
 const Shoes = () => {
+  const dispatch = useDispatch();
   const {products, status, error} = useSelector((state) => state.products);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+ 
+
   if(products.length > 0){
 
  
   const shoes = products.filter((items) => items.product_category.name === "shoe")
   console.log(products)
-  const dispatch = useDispatch();
+  
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+
 
   if (shoes.length < 1) {
     return (
@@ -57,7 +61,7 @@ const Shoes = () => {
           </div>
           <div className="prod-details">
             <h5 className="color-black">
-              {product.title.substring(0, 15)}
+              {product.name.substring(0, 15)}
               ...
             </h5>
             <p>{product.price}</p>

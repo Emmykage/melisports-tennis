@@ -7,18 +7,25 @@ import './products.css';
 
 const Apparels = () => {
   const {products, status, error} = useSelector((state) => state.products);
-  if(products.length > 0){
-
-  
-  const apparelsProducts = products.filter((item) => item.product_category.name === "apparel")
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+  if(products.length > 0){
   
-      console.log(status)
- 
+  const apparelsProducts = products.filter((item) => item.product_category.name === "apparel")
+
+  if (apparelsProducts.length < 1) {
+    return (
+      <div>
+        <header>
+          <h2> Rackets </h2>
+          <h4> You racquet catelogue is currently empty. add some products if you are an admin</h4>
+        </header>
+      </div>
+    );
+  }
     if (status === "success"){
         if (apparelsProducts.length < 1) {
     return (
