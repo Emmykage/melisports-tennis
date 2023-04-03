@@ -5,13 +5,7 @@ import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
 
-const Apparels = () => {
-  const {products, status, error} = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+const Apparels = ({products, status, error}) => {
   if(products.length > 0){
   
   const apparelsProducts = products.filter((item) => item.product_category.name === "apparel")

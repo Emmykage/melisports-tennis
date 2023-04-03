@@ -5,12 +5,7 @@ import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
 
-const Bags = () => {
-  const dispatch = useDispatch();
-  const {products, status, error} = useSelector((state) => state.products);
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+const Bags = ({products, status, error}) => {
  
 
   if(products.length > 0){

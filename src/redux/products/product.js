@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getProducts } from '../actions/product';
-// const products;
 const initialState = {
   products: [],
   status: "failed",
@@ -21,17 +20,6 @@ const productsSlice = createSlice({
         products: filtered
       }
     }
-    // editProducts: (state, action) => {
-    //   const product = state.products.map((prod) => {
-    //     if (prod.id === action.payload.id) {
-    //       prod = action.payload;
-    //     }
-    //   });
-
-    //   return {
-    //     ...state, products: [...product],
-    //   };
-    // },
 
   },
 
@@ -57,6 +45,5 @@ const productsSlice = createSlice({
   },
 });
 
-// export const { getProducts, editProducts } = productsSlice.actions;
 export default productsSlice.reducer;
 export const { filterProducts } = productsSlice.actions

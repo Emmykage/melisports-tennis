@@ -1,27 +1,44 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
 import Hero from '../components/banner/Hero';
 import Accessories from '../components/products/Accessories';
-import Products from '../components/products/Products';
 import SideNav from '../components/sideNav/SideNav';
+import { getProducts } from '../redux/actions/product';
+import { filterProducts } from '../redux/products/product';
 
-const AccessoriesPage = () => (
+const AccessoriesPage = () => {
+  const dispatch = useDispatch()
+  const {products, status, error} = useSelector((state) => state.products)
+  const handleFilteredProducts = (seive) => {
+    const lowerCaseSieve = seive.loLowerCase()
+    dispatch(filterProducts(lowerCaseSieve))
+  }
+  useEffect(()=> {
+    dispatch(getProducts())
+  })
+  return(
   <div className="product-container">
     <Hero />
 
     <div className="prod-page">
-      <button type="button"> Pure Aero</button>
-      <button type="button"> Pure strike</button>
-      <button type="button"> boost</button>
-      <button type="button">All racquets</button>
+      <div className='cat-group'>
+      <a className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</a>
+      <a className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</a>
+      <a className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</a>
+      <a className='btn' onClick={()=> dispatch(getProducts())}>All racquets</a>
+     
 
+      </div>
+     
       <div className="flex-center level">
         <div className="side-nav">
           <SideNav />
         </div>
 
         <div className="full-width flex-center">
-          <Accessories />
+          <Accessories products={products} status={status} error={error} />
 
           <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
@@ -67,5 +84,6 @@ const AccessoriesPage = () => (
     </div>
   </div>
 );
+  }
 
 export default AccessoriesPage;

@@ -24,8 +24,6 @@ const ProductsPage = () => {
   useEffect(()=>{
     // dispatch(getProductCategories())
     dispatch(getProducts());
-    // setFiltered(products)
-    console.log(products)
 
 
   },[])

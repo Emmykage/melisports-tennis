@@ -5,17 +5,11 @@ import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
 
-const Accessories = () => {
-  const {products, status, error} = useSelector((state) => state.products);
+const Accessories = ({products, status, error}) => {
   if(products.length > 0 ){
 
-  
   const accessories = products.filter((item) => item.product_category.name === "accessory")
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
   if(accessories.length < 1){
     return (
       <div>
@@ -27,8 +21,6 @@ const Accessories = () => {
     );
   }
   
-      console.log(status)
- 
     if (status === "success"){
         if (accessories.length < 1) {
     return (

@@ -3,16 +3,34 @@ import SideNav from '../components/sideNav/SideNav'
 import Hero from '../components/banner/Hero'
 import Products from '../components/products/Products'
 import Apparels from '../components/products/Apparels'
+import { useDispatch, useSelector } from 'react-redux'
+import { filterProducts } from '../redux/products/product'
+import { useEffect } from 'react'
+import { getProducts } from '../redux/actions/product'
 const ApparelsPage = () => {
+  const dispatch = useDispatch()
+  const { products, status, error } = useSelector((state) => state.products)
+  
+  const handleFilteredProducts = (seive) => {
+    const lowerCaseSieve = seive.loLowerCase()
+    dispatch(filterProducts(lowerCaseSieve))
+  }
+  useEffect(()=> {
+    dispatch(getProducts())
+  },[])
   return (
     <div>
         <div className='product-container'>
             <Hero />
             <div className='prod-page'>
-                <button>Pure Aero</button>
-                <button>pure strike</button>
-                <button>boost</button>
-                <button>All Apparels</button>
+            <div className='cat-group'>
+      <a className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</a>
+      <a className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</a>
+      <a className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</a>
+      <a className='btn' onClick={()=> dispatch(getProducts())}>All racquets</a>
+     
+
+      </div>
 
                 <div className='flex-center level'>
                     <div className='side-nav'>
@@ -21,7 +39,7 @@ const ApparelsPage = () => {
                     </div>
                     <div className='full-width flex-center'>
                       <div className="product-items">
-                      <Apparels />
+                      <Apparels products={products} status={status} error={error} />
 
                       </div>
                        

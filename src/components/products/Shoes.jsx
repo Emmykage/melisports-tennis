@@ -5,22 +5,13 @@ import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
 
-const Shoes = () => {
-  const dispatch = useDispatch();
-  const {products, status, error} = useSelector((state) => state.products);
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
- 
+const Shoes = ({products, status, error}) => {
 
   if(products.length > 0){
 
  
   const shoes = products.filter((items) => items.product_category.name === "shoe")
   console.log(products)
-  
-
-
 
   if (shoes.length < 1) {
     return (
