@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getProduct } from '../redux/actions/product';
 import { addCart } from '../redux/actions/cart';
 import { updater } from '../redux/cart/cart';
+import { closeList } from '../redux/products/searched';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,11 @@ const ProductDetails = () => {
   // const {cartItems, counter, total, isLoading} = useSelector((state)=> state.cart)
   const {id} = useParams();
   useEffect(()=>{
+    dispatch(closeList())
     dispatch(getProduct(id))
   }, [])
   const handleCart = () =>{
     dispatch(addCart({product_id: id, quantity: count}))
-    // console.log({product_id: id, quantity: count})
 
     dispatch(updater())
   }
