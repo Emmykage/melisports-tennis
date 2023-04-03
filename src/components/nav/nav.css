@@ -27,6 +27,7 @@
   display: flex;
   list-style: none;
   color: white;
+  z-index: 70;
 }
 
 .logo {
@@ -87,6 +88,7 @@
   /* background-color: green; */
 }
 .search-component {
+  position: relative;
   padding: 0;
   margin: 0;
   background-color: var(--color-theme)
@@ -166,6 +168,14 @@
 .menu-div, .last {
   display: none;
 }
+.search-list{
+  position: absolute;
+  background-color: aliceblue;
+  width: 100%;
+  padding: 1rem 0 1.8rem 2.5rem;
+  z-index: 51;
+  /* bottom: -100%; */
+}
 
 @media screen and (max-width: 720px) {
   nav {
@@ -193,7 +203,7 @@
     padding: 1rem 0.4rem 2rem;
     display: block;
     /* padding: 2rem;  background: linear-gradient(136deg, white, var(--color-theme)); */
-    z-index: 50;
+    /* z-index: 50; */
     color: var(--color-info-light);
     transition: all 0.4s ease-in;
   }

@@ -41,7 +41,8 @@ const productsSlice = createSlice({
       status: "failed",
     }
    
-  }
+  },
+ 
   },
 });
 

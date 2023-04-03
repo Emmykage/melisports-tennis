@@ -13,6 +13,7 @@ import productCategory from './product_category/productCategory';
 import delCatSlice from './modal/catDelModal'
 // import productCategorySlice from './productCategory/p/product_category/productCategory';
 import userSlice from './user/user'
+import searchSlice from "./products/searched"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -24,7 +25,9 @@ const rootReducer = combineReducers({
   delModal: delProductSlice,
   product_categories: productCategory,
   user: userSlice,
-  cat_del_modal: delCatSlice
+  cat_del_modal: delCatSlice,
+  searched_products: searchSlice
+
 
 
 });

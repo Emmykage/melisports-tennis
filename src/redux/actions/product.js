@@ -6,7 +6,6 @@ import baseURL from "../baseURL";
 
 const getProducts = createAsyncThunk('products/getProducts', async () => {
   const response = await fetch(`${baseURL}products`).then((res) => res.json())
-  // .catch((err) => console.log(err));
   return response;
 });
 

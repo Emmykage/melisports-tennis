@@ -7,6 +7,7 @@ import Accessories from '../components/products/Accessories';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
 import { filterProducts } from '../redux/products/product';
+import { closeList } from '../redux/products/searched';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const AccessoriesPage = () => {
     dispatch(filterProducts(lowerCaseSieve))
   }
   useEffect(()=> {
+    dispatch(closeList())
     dispatch(getProducts())
   })
   return(

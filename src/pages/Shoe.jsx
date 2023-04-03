@@ -8,6 +8,7 @@ import Shoes from '../components/products/Shoes';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
 import { filterProducts } from '../redux/products/product';
+import { closeList } from '../redux/products/searched';
 
 const ShoesPage = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,7 @@ const ShoesPage = () => {
   }
 
   useEffect(()=> {
+    dispatch(closeList())
     dispatch(getProducts())
   }, [])
   return (

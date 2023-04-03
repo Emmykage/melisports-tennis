@@ -17,6 +17,7 @@ const Home = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(closeList())
     dispatch(getCategories);
   });
   return (

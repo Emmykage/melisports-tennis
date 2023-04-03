@@ -16,6 +16,7 @@ const ApparelsPage = () => {
     dispatch(filterProducts(lowerCaseSieve))
   }
   useEffect(()=> {
+    dispatch(closeList())
     dispatch(getProducts())
   },[])
   return (

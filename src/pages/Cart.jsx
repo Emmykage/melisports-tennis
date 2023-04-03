@@ -19,12 +19,9 @@ const Cart = () => {
   const getItem = ()=>{
     setItem(cartItems)
 
-
   }
   console.log(items)
-  // console.log(update)
 const handleCheckout = () => {
-  // const data = {total: total}
    navigate("/checkout")
 }
 
