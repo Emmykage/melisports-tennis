@@ -10,8 +10,7 @@
 
 }
 .product-align{
-  width: 100%;
-}
+flex: 1;}
 .product-items{
   display: flex;
   flex-wrap: wrap;
@@ -41,19 +40,22 @@
   margin: 0.5rem;
   color: #333;
 }
+
+@media screen and (max-width: 720px){
+ 
+  .products-display{
+    flex-basis: 25%;
+
+  }
+}
 @media screen and (max-width: 600px){
   
-  .product-items{
-    display: flex;
-    width: 100%;
-    gap: 1%;
-    justify-content: space-between;
-    
-  }
+ 
   .products-display{
-
-    flex: 1;
+    flex-basis: 45%;
     border-radius: 4px;
   }
 
 }
+
+
