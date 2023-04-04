@@ -5,6 +5,8 @@ import { decreaseCart, increaseCart, removeItem } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
 import { getCarts } from '../redux/actions/cart';
 import { useNavigate } from 'react-router-dom';
+import { closeNav } from '../redux/modal/nav';
+import { closeList } from '../redux/products/searched';
 
 const Cart = () => {
   const { cartItems, total, update } = useSelector((state) => state.cart);
@@ -12,6 +14,8 @@ const Cart = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   useEffect(()=>{
+    dispatch(closeNav())
+    dispatch(closeList())
     getItem()
     dispatch(getCarts())
     
@@ -57,8 +61,8 @@ const handleDelete = (id)=>{
 }
   return (
     <>
-      <div className="cart-div flex-center ">
-        <div className=' cart-inner-div'>
+      <div className="cart-div">
+        <div className=' cart-inner-div' >
 
        
         <table>

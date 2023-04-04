@@ -1,11 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
 import Hero from '../components/banner/Hero';
-import Products from '../components/products/Products';
+import Bags from '../components/products/Bags';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
+import { closeNav } from '../redux/modal/nav';
 import { filterProducts } from '../redux/products/product';
 import { closeList } from '../redux/products/searched';
 
@@ -18,6 +19,7 @@ const BagsPage = () => {
     dispatch(filterProducts(lowerCaseSieve))
   }
   useEffect(()=> {
+    dispatch(closeNav())
     dispatch(closeList())
     dispatch(getProducts())
   },[])
@@ -40,9 +42,9 @@ const BagsPage = () => {
           <SideNav />
         </div>
 
-        <div className="level flex-center">
+        <div className="product-align">
           <div className="product-items">
-          <Products products={products} status={status} error={error} />
+          <Bags products={products} status={status} error={error} />
 
 
           </div>

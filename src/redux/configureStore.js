@@ -14,6 +14,7 @@ import delCatSlice from './modal/catDelModal'
 // import productCategorySlice from './productCategory/p/product_category/productCategory';
 import userSlice from './user/user'
 import searchSlice from "./products/searched"
+import navSlice from "./modal/nav"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   product_categories: productCategory,
   user: userSlice,
   cat_del_modal: delCatSlice,
-  searched_products: searchSlice
+  searched_products: searchSlice,
+  navToggle: navSlice
 
 
 

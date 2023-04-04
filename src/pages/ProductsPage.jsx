@@ -7,12 +7,13 @@ import { getProductCategories } from '../redux/actions/product_category';
 import { getProducts } from '../redux/actions/product';
 import { filterProducts } from '../redux/products/product';
 import { closeList } from '../redux/products/searched';
+import { closeNav } from '../redux/modal/nav';
 
 const ProductsPage = () => {
   const dispatch = useDispatch()
   const {products, status, error} = useSelector((state) => state.products);
   const {product_categories} = useSelector((state)=> state.product_categories)
-  const category = product_categories.find((cat) => cat.name === "racquet") 
+  // const category = product_categories.find((cat) => cat.name === "racquet") 
 
 
   const handleFilteredProducts = (seive) => {
@@ -23,7 +24,8 @@ const ProductsPage = () => {
 
 
   useEffect(()=>{
-    dispatch(closeList)    
+    dispatch(closeNav())
+    dispatch(closeList())    
     dispatch(getProducts());
 
 

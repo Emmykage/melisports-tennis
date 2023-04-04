@@ -6,6 +6,7 @@ import Hero from '../components/banner/Hero';
 import Accessories from '../components/products/Accessories';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
+import { closeNav } from '../redux/modal/nav';
 import { filterProducts } from '../redux/products/product';
 import { closeList } from '../redux/products/searched';
 
@@ -17,9 +18,10 @@ const AccessoriesPage = () => {
     dispatch(filterProducts(lowerCaseSieve))
   }
   useEffect(()=> {
+    dispatch(closeNav())
     dispatch(closeList())
     dispatch(getProducts())
-  })
+  },[])
   return(
   <div className="product-container">
     <Hero />
@@ -39,9 +41,12 @@ const AccessoriesPage = () => {
           <SideNav />
         </div>
 
-        <div className="full-width flex-center">
-          <Accessories products={products} status={status} error={error} />
+        <div className="product-align">
+          <div className='product-items'>
 
+      
+          <Accessories products={products} status={status} error={error} />
+          </div>
           <div className="product-details">
             <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
             <p>

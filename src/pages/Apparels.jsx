@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { filterProducts } from '../redux/products/product'
 import { useEffect } from 'react'
 import { getProducts } from '../redux/actions/product'
+import { closeList } from '../redux/products/searched'
+import { closeNav } from '../redux/modal/nav'
 const ApparelsPage = () => {
   const dispatch = useDispatch()
   const { products, status, error } = useSelector((state) => state.products)
@@ -16,6 +18,7 @@ const ApparelsPage = () => {
     dispatch(filterProducts(lowerCaseSieve))
   }
   useEffect(()=> {
+    dispatch(closeNav())
     dispatch(closeList())
     dispatch(getProducts())
   },[])
@@ -38,7 +41,7 @@ const ApparelsPage = () => {
 
                         <SideNav />
                     </div>
-                    <div className='full-width flex-center'>
+                    <div className='product-align'>
                       <div className="product-items">
                       <Apparels products={products} status={status} error={error} />
 

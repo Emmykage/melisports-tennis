@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { closeList } from '../redux/products/searched';
 import { Banner } from '../components/banner/Banner';
 import FeaturedProducts from '../components/partials/FeaturedProducts';
 import { getCategories } from '../redux/category/categories';
@@ -10,6 +11,7 @@ import Head from '../assets/images/product-brands/Homepage_Brands_HeadB.jpg'
 import Wilson from '../assets/images/product-brands/Homepage_Brands_Wilson.jpg'
 // import { Slide } from '@mui/material';
 import Slider from '../components/feature/Slider';
+import { closeNav } from '../redux/modal/nav';
 
 
 const Home = () => {
@@ -17,9 +19,10 @@ const Home = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(closeNav())
     dispatch(closeList())
     dispatch(getCategories);
-  });
+  }, []);
   return (
     <>
       {/* <Banner /> */}

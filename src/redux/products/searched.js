@@ -22,7 +22,6 @@ const searchSlice = createSlice({
     },
     extraReducers: {
         [searched.fulfilled]: (state, action) => {
-        //    console.log(action.payload)
             return{
             ...state,
             searchedProducts: action.payload

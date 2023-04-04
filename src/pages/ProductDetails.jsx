@@ -6,6 +6,7 @@ import { getProduct } from '../redux/actions/product';
 import { addCart } from '../redux/actions/cart';
 import { updater } from '../redux/cart/cart';
 import { closeList } from '../redux/products/searched';
+import { closeNav } from '../redux/modal/nav';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const ProductDetails = () => {
   // const {cartItems, counter, total, isLoading} = useSelector((state)=> state.cart)
   const {id} = useParams();
   useEffect(()=>{
+    dispatch(closeNav())
     dispatch(closeList())
     dispatch(getProduct(id))
   }, [])

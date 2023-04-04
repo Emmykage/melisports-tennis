@@ -10,11 +10,11 @@ import { useState } from 'react';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
+import { closeNav, openNav } from '../../redux/modal/nav';
 const Nav = () => {
   const auth = localStorage.getItem("meli_auth")
   let meli_auth
   {auth && (meli_auth = JSON.parse(auth) )}
-  // console.log(meli_auth.user.role)
   
 
 
@@ -22,14 +22,15 @@ const Nav = () => {
   const { counter, cartItems, update } = useSelector((state) => state.cart);
   const dispatch = useDispatch()
   
-  // const style = { BackgroundColor: "white", color: "red", fontSize: "1.5em" }
-  const [openNav, setOpenNav] = useState(false);
+  const { toggleNav} = useSelector((state) => state.navToggle)
   useEffect(()=>{
     dispatch(getCarts())
     dispatch(calculateTotal())
   },[update] )
   const showNav = () =>{
-setOpenNav(!openNav)
+// setOpenNav(!openNav)
+dispatch(closeNav())
+
   }
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '')
@@ -42,7 +43,7 @@ setOpenNav(!openNav)
         <div className="navbar">
           <div className='menu-div'>
             <a className='menu'>
-              <FiMenu className='menu-icon' onClick={showNav}/>
+              <FiMenu className='menu-icon' onClick={() => dispatch(openNav())}/>
             </a>
           </div>
           <div className="logo">
@@ -54,9 +55,9 @@ setOpenNav(!openNav)
           <div className="nav-div flex-center space">
 
             <ul className=
-            {openNav? "nav-links  show-menu" : "nav-links"}>
+            {toggleNav? "nav-links  show-menu" : "nav-links"}>
               <div  className='menu-div m-v4'>
-              <AiOutlineClose  className='menu-icon ' onClick={showNav} />
+              <AiOutlineClose  className='menu-icon ' onClick={() => dispatch(closeNav())} />
               </div>
               
               <li className="nav-item"><NavLink to="/">Home</NavLink></li>
