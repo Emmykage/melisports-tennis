@@ -55,12 +55,12 @@ const Home = () => {
           <div className='product-grid-items'>
             <img src={Oasics} alt="" />
           </div>
-          <div className='product-grid-items'>
+          {/* <div className='product-grid-items'>
             <img src={Wilson} alt="" />
-          </div>
-          <div className='product-grid-items'>
+          </div> */}
+          {/* <div className='product-grid-items'>
             <img src={Adidas} alt="" />
-          </div>
+          </div> */}
         </div>
         <div className='banner-text full-screen m-h5'>
           <h2>
