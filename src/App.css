@@ -301,7 +301,7 @@ button {
 }
 
 .fit-screen {
-  max-width: 1500px;
+  max-width: 700px;
   width: 80%;
   margin: auto;
 }
@@ -314,6 +314,7 @@ button {
 
 .product-grid-items {
   background-color: #fff;
+  flex: 1;
   border: none;
   box-shadow: 0 0 0.35rem 1px rgb(85 85 85 / 25%);
 
@@ -734,6 +735,9 @@ td:last-child .btn {
     width: 100%;
 
   }
+  
+.product-grid-items {
+  flex: 1;}
 }
 @media screen and (max-width: 720px) {
   .cart-div {
