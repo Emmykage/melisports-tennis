@@ -33,7 +33,7 @@ const SearchComponent = () => {
     <div className='search-component'>
     <form className='search-form'>
       <div className="search-div">
-        <input type="text" placeholder='Find item' value={search.search} onChange={handleInput}/>
+        <input type="text" placeholder='Search item' value={search.search} onChange={handleInput}/>
         <button type="submit"><BsSearch/> </button>
 
       </div>
