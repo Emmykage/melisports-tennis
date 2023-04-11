@@ -126,7 +126,7 @@ a {
   font-size: 1.5rem;
 }
 
-.center {
+.center, .text-center {
   text-align: center;
 }
 

@@ -76,7 +76,7 @@ const Apparels = ({products, status, error}) => {
     }
     else{
       return(
-        <h2> Please and some Racqet products if you are the admin</h2>
+        <h2 className='text-center'> Please add some Racqet products if you are the admin</h2>
 
       )
     }
