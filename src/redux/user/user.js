@@ -72,6 +72,7 @@ const userSlice = createSlice({
                 console.log(response.token)
                 return {
                     ...state,
+                    logged: true,
                     user: action.payload
                 }
             }
@@ -79,6 +80,7 @@ const userSlice = createSlice({
                 console.log(action.payload.error)
                 return {
                     ...state,
+                    logged: false,
                     error: true,
                     message: action.payload.error
                 }

@@ -15,7 +15,9 @@ const AdminLogin = () => {
     if(auth && logged){
       navigate("/admin")
     }
-  }, [])
+  }, [logged])
+      // console.log(logged)
+
 
   const dispatch = useDispatch()
   const [formInput, setFormInput] = useState({
@@ -35,7 +37,6 @@ const AdminLogin = () => {
   }
   const handleSubmit = (e) =>{
     e.preventDefault()
-    // console.log(formInput)
     dispatch(loginUser(formInput))
     if (user.user && user.token){
       navigate('/admin')
@@ -58,7 +59,7 @@ const AdminLogin = () => {
     </div>
     <div>
         <p className='para-2'>
-            Don't have an account? <NavLink to="/auth/sign_up">Sign up here</NavLink>
+            Don't have an account? <NavLink to="/auth/admin_sign_up">Sign up here</NavLink>
         </p>
     </div>
 </div>
