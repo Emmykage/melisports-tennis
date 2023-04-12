@@ -11,6 +11,7 @@
   position: relative;
   background-color: #222629;
   color: white;
+  padding: 0 4rem;
   /* margin-bottom: 10px; */
 }
 
@@ -35,11 +36,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 230px;
+  /* background-color: yellow; */
+
+}
+.logo img{
+  width: 100px
+}
+.logo .img-div{
+  width: 120px;
+  /* background-color: green; */
+  position: relative;
+
 }
 
 .logo a {
+  position: absolute;
   font-size: 2rem;
   color: #fff;
+  bottom: 0;
+  left: 50%;
+  font-size: 24px;
+  transform: translateX(-50%);
+
 }
 
 .nav-item {
@@ -176,7 +195,17 @@
   z-index: 51;
   /* bottom: -100%; */
 }
-
+@media screen and (max-width: 1600px){
+  .navbar {
+    padding: 0 0.8rem;
+  }
+  .nav-div{
+    padding: 0;
+  }
+  .nav-item {
+    padding: 0.83rem 0.8rem;
+  }
+}
 @media screen and (max-width: 720px) {
   nav {
     position: relative;

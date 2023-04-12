@@ -11,6 +11,8 @@ import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import { closeNav, openNav } from '../../redux/modal/nav';
+import logo from "../../assets/images/logo/melisport_3.png"
+
 const Nav = () => {
   const auth = localStorage.getItem("meli_auth")
   let meli_auth
@@ -47,9 +49,12 @@ dispatch(closeNav())
             </a>
           </div>
           <div className="logo">
-            <NavLink to="/">
-              MeliSports
-            </NavLink>
+            
+          <div className='img-div'>
+            <img src={logo} alt="" />
+           
+
+            </div>
           </div>
 
           <div className="nav-div flex-center space">
