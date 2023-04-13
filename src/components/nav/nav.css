@@ -18,7 +18,10 @@
 .navbar a{
   color: var(--color-primary);
 }
-
+.navbar a:hover{
+  color: var(--color-theme);
+  font-weight: 500;
+}
 .nav-div {
   display: flex;
   align-items: flex-end;
@@ -181,11 +184,14 @@
   position: absolute;
   top: -50%;
   right: -50%;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-color: rgba(31, 139, 31, 0.6);
+  background-color: var(--color-theme-variant);
 }
 
 .mobile-menu-div, .last {
