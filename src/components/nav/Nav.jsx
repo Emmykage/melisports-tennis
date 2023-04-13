@@ -61,8 +61,8 @@ dispatch(closeNav())
 
             <ul className=
             {toggleNav? "nav-links  show-menu" : "nav-links"}>
-              <div  className='menu-div m-v4'>
-              <AiOutlineClose  className='menu-icon ' onClick={() => dispatch(closeNav())} />
+              <div  className='menu-div  m-v4'>
+              <AiOutlineClose  className='menu-icon close-icon' onClick={() => dispatch(closeNav())} />
               </div>
               
               <li className="nav-item"><NavLink to="/">Home</NavLink></li>
@@ -203,9 +203,10 @@ dispatch(closeNav())
               {auth && ((meli_auth.user.role === "admin" || meli_auth.user.role == undefined) ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")}
               {/* {meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " "} */}
               <li className='nav-item last'>
+              <span><FiUser className='user-icon'/></span>
+
 
 {auth ?   <a onClick={handleLogOut}>Log Out</a> :   <NavLink to="/auth/login">Login</NavLink> }
-<span><FiUser className='user-icon'/></span>
 
 </li>
               
