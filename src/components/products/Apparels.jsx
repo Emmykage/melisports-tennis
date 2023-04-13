@@ -14,7 +14,7 @@ const Apparels = ({products, status, error}) => {
     return (
       <div>
         <header>
-          <h2> Rackets </h2>
+          <h2> Apparels </h2>
           <h4> You racquet catelogue is currently empty. add some products if you are an admin</h4>
         </header>
       </div>

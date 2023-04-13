@@ -17,7 +17,7 @@ const Shoes = ({products, status, error}) => {
     return (
       <div>
         <header>
-          <h2> Rackets </h2>
+          <h2> Shoes </h2>
           <h4> Your shoes category is currently empty</h4>
         </header>
       </div>
