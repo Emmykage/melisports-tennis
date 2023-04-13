@@ -221,11 +221,11 @@ dispatch(closeNav())
               </div>
 
       
-            <div className='cart'>
+            <div className='menu-div cart'>
               <NavLink to="/carts">
 
             
-              <BsCartDash className='cart-icon'/>
+              <BsCartDash className='menu-icon cart-icon'/>
               <span className="total-amount color-white bold">{counter}</span>
 
               </NavLink>
