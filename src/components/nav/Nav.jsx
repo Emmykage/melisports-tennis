@@ -43,7 +43,7 @@ dispatch(closeNav())
       <nav>
       
         <div className="navbar">
-          <div className='menu-div'>
+          <div className='mobile-menu-div'>
             <a className='menu'>
               <FiMenu className='menu-icon' onClick={() => dispatch(openNav())}/>
             </a>
@@ -61,7 +61,7 @@ dispatch(closeNav())
 
             <ul className=
             {toggleNav? "nav-links  show-menu" : "nav-links"}>
-              <div  className='menu-div  m-v4'>
+              <div  className='mobile-menu-div  m-v4'>
               <AiOutlineClose  className='menu-icon close-icon' onClick={() => dispatch(closeNav())} />
               </div>
               
