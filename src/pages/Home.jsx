@@ -62,14 +62,13 @@ const Home = () => {
             <img src={Adidas} alt="" />
           </div> */}
         </div>
-        <div className='banner-text full-screen m-h5'>
+        <div className='banner-text full-screen m-h5 text-center'>
           <h2>
           Tennis Equipment & Supplies
           </h2>
           <p>
-          For more than 30 years, Tennis-Point has served as one of the world's premier tennis equipment suppliers. As one of the top online tennis stores with a tennis warehouse of 40,000 sq. ft., we offer a comprehensive selection and fast shipping of tennis supplies that few retailers can match. We also have one of the largest in-stock inventories of tennis equipment online, with 10s of thousands of products available for shipping from our automated warehouse.
+          "Love tennis? We specialize in Babolat tennis equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff is passionate about the sport and can guide you through our selection to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our tennis retail store."
 
-We value innovation and have personally tailored our products to highlight your skills on the court. Our well-trained staff are intimately familiar with tennis equipment (many of them tennis players themselves) and can help you find that perfect tennis racquet, tennis shoe or tennis clothing that is sure to put you ahead of the competition. Our selections of tennis equipment are consistently first-to-market and we pride ourselves in stocking our tennis warehouse with the newest products at the lowest prices. Be sure to visit us on Twitter, Facebook and YouTube to learn of our latest sales and discounts on tennis supplies. Tennis-Point - Pure Tennis.
           </p>
         </div>
       </div>
