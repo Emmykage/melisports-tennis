@@ -258,6 +258,11 @@ button {
   background: var(--color-theme-variant);
   color: var(--color-white);
 }
+.btn:hover {
+  
+  background: var(--color-theme);
+  color: var(--color-white);
+}
 .cat-group{
   display: flex;
   flex-wrap: wrap;
@@ -267,13 +272,10 @@ button {
 }
 .cat-group .btn{
   padding: 0.3rem 0.8rem;
+  /* background-color: red; */
 }
 
-.btn:hover {
-  
-  background: var(--color-danger);
-  color: #333;
-}
+
 .btn-outline {
   border: 1px solid black;
 }

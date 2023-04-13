@@ -13,6 +13,7 @@ import { closeList } from '../redux/products/searched';
 const BagsPage = () => {
   const dispatch = useDispatch()
   const {products, status, error} = useSelector((state) => state.products)
+  console.log(products)
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase()
@@ -28,11 +29,11 @@ const BagsPage = () => {
     <Hero />
 
     <div className="prod-page">
-      <div className='cat-group'>
-      <a className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</a>
-      <a className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</a>
-      <a className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</a>
-      <a className='btn' onClick={()=> dispatch(getProducts())}>All racquets</a>
+    <div className='cat-group'>
+        <button className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</button>
+        <button className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</button>
+        <button className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</button>
+        <button className='btn' onClick={()=> dispatch(getProducts())}>All racquets</button>
      
 
       </div>
@@ -50,7 +51,7 @@ const BagsPage = () => {
           </div>
 
           <div className="product-details">
-            <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
+            <h3> BABOLAT TENNIS BAGS BRANDS</h3>
             <p>
 
               1) Babolat Pure Aero Racquets
