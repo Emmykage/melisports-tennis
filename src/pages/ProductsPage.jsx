@@ -38,10 +38,10 @@ const ProductsPage = () => {
 
     <div className="prod-page">
       <div className='cat-group'>
-        <a className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</a>
-        <a className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</a>
-        <a className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</a>
-        <a className='btn' onClick={()=> dispatch(getProducts())}>All racquets</a>
+        <button className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</button>
+        <button className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</button>
+        <button className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</button>
+        <button className='btn' onClick={()=> dispatch(getProducts())}>All racquets</button>
      
 
       </div>

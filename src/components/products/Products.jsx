@@ -41,8 +41,8 @@ const Products = ({products, status, error }) => {
                              {product.name.substring(0, 15)}
               ...
             </h5>
-            <p>{product.price}</p>
-            <NavLink className="btn color-grey btn-outline" to={`/productdetails/${product.id}`}>
+            <p> &#x20A6;{product.price}</p>
+            <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
               Buy
             </NavLink>
 

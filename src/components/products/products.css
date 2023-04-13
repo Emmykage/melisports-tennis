@@ -47,12 +47,17 @@ flex: 1;}
     flex-basis: 25%;
 
   }
+  .product-items{
+    justify-content: space-between;
+    gap: 1%;
+  
+  }
 }
 @media screen and (max-width: 600px){
   
  
   .products-display{
-    flex-basis: 45%;
+    flex-basis: 49%;
     border-radius: 4px;
   }
 

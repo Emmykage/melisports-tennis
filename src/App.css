@@ -13,11 +13,15 @@
 }
 
 :root {
-  --color-theme: rgba(92, 64, 101);
-  --color-primary: #7380ec;
+  /* --color-theme: rgba(92, 64, 101); */
+  /* --color-primary: #7380ec; */
   --color-danger: #ff7782;
   --color-success: #41f1b6;
   --color-warning: #fb5;
+  --color-orange: #ff4500;
+  --color-theme: rgba(255, 69, 0, 1);
+  --color-theme-variant: rgb(20,56,80);
+  --color-primary: #081d2b;
   --color-white: #fff;
   --color-info-dark: #7d8da1;
   --color-info-light: #dce1eb;
@@ -229,7 +233,7 @@ button {
   font-weight: 600;
   margin-right: 0.2rem;
   padding: 0.2rem 0.4rem;
-  background-color: var(--color-theme);
+  background-color: var(--color-theme-variant);
   color: var(--color-info-light);
 }
 
@@ -250,9 +254,19 @@ button {
   width: fit-content;
   padding: 0.5rem 0.9rem;
   border-radius: 8px;
-  background: var(--color-primary);
-  color: #333;
+  font-size: 1rem;
+  background: var(--color-theme-variant);
+  color: var(--color-white);
 }
+.cat-group{
+  display: flex;
+  max-width: 480px;
+  justify-content: space-around;
+}
+.cat-group .btn{
+  padding: 0.3rem 0.8rem;
+}
+
 .btn:hover {
   
   background: var(--color-danger);
@@ -722,6 +736,9 @@ td:last-child .btn {
     width: 100%;
     flex-direction: column;
 
+  }
+  .cat-group .btn{
+    font-size: 0.8rem;
   }
   .full-width {
     width: 100%; 

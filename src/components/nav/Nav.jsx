@@ -11,7 +11,7 @@ import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import { closeNav, openNav } from '../../redux/modal/nav';
-import logo from "../../assets/images/logo/melisport_3.png"
+import logo from "../../assets/images/logo/melisport_1.png"
 
 const Nav = () => {
   const auth = localStorage.getItem("meli_auth")
