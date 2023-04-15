@@ -13,11 +13,32 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
+    // reducers: {
+    //     toLogin: (state) =>({
+    //         ...state,
+    //         logded: false
+    //     })
+    // },
     reducers: {
-        toLogin: (state) =>({
-            ...state,
-            logded: false
-        })
+        userLog: (state) => {
+          
+            try{
+                const auth = JSON.localStorage.getItem("meli_auth")
+                return{
+                    ...state,
+                    user: JSON.parse(auth)
+
+                }
+
+            }catch{
+                return{
+                    ...state,
+                    user: {}
+                }
+
+            }
+       
+        }
     },
     extraReducers:  {
         [addUser.fulfilled]: (state, action) => {
@@ -65,11 +86,11 @@ const userSlice = createSlice({
             if(response.user){
 
                 console.log("login fulfilled and passed")
+                console.log(response.user)
 
                 const collect = JSON.stringify(response)
                 localStorage.setItem('meli_auth', collect);
             
-                console.log(response.token)
                 return {
                     ...state,
                     logged: true,
@@ -99,4 +120,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer
-export const {toLogin} =  userSlice.actions
+export const {toLogin, userLog} =  userSlice.actions
