@@ -4,17 +4,17 @@ import { NavLink } from 'react-router-dom'
 import { loginUser } from '../../redux/actions/auth'
 import { useNavigate } from 'react-router-dom'
 import './auth.css'
+import { updater } from '../../redux/cart/cart'
+import { userLog } from '../../redux/user/user'
 
 let auth = localStorage.getItem("meli_auth")
-
-
+let meli_auth
+auth && (meli_auth = JSON.parse(auth) )
 const Login = () => {
-  // const dispatch = useDispatch()
-  const {user, error, message, logged} = useSelector((state) => state.user)
-  console.log(user)
-
+  
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const {user, error, message, logged} = useSelector((state) => state.user)
   const [formInput, setFormInput] = useState({
     user: {
     username: '',
@@ -31,21 +31,14 @@ const Login = () => {
   }
   const handleSubmit = (e) =>{
     e.preventDefault()
-    // console.log(formInput)
     dispatch(loginUser(formInput))
-   
-    // dispatch(loginUser)
+    dispatch(updater())
+    dispatch(userLog())
+     
   }
-  useEffect(()=> {
-if(auth && logged){
-  navigate("/admin/dashboard")
-}
-  
-  },[])
-  console.log(user)
-  if (user.user){
-    navigate('/')
-  }
+  user.user && navigate('/')
+
+  user.user ? console.log("yes") : console.log("no")
   return (
     <div className='wallpaper centralize'>
         <div className='auth-container '>

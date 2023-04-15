@@ -7,35 +7,46 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineClose} from 'react-icons/ai'
 import { useState } from 'react';
-import { calculateTotal } from '../../redux/cart/cart';
+import { calculateTotal, updater } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from "../../assets/images/logo/melisport_1.png"
+import { userLog } from '../../redux/user/user';
+
+
+
+
+const auth = localStorage.getItem("meli_auth")
+let meli_auth
+auth && (meli_auth = JSON.parse(auth) )
+
 
 const Nav = () => {
-  const auth = localStorage.getItem("meli_auth")
-  let meli_auth
-  {auth && (meli_auth = JSON.parse(auth) )}
-  
 
+  
+// console.log(auth)
 
   const navigate = useNavigate()
   const { counter, cartItems, update } = useSelector((state) => state.cart);
+  const {user} = useSelector((state) => state.user)
+  console.log(user)
+  console.log(update)
   const dispatch = useDispatch()
-  
+  console.log(counter, cartItems)
   const { toggleNav} = useSelector((state) => state.navToggle)
   useEffect(()=>{
     dispatch(getCarts())
+    dispatch(updater())
     dispatch(calculateTotal())
-  },[update] )
-  const showNav = () =>{
-// setOpenNav(!openNav)
-dispatch(closeNav())
+  },[] )
+  // const showNav = () =>{
+  //   dispatch(closeNav())
 
-  }
+  // }
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '')
+    dispatch(userLog())
     navigate('/auth/login')
   }
   return (
@@ -214,7 +225,7 @@ dispatch(closeNav())
             </ul>
             <div className='flex-space'>
               <div className='user mobile-display '>
-                {auth ?   <span onClick={handleLogOut}>Log Out</span> :   <NavLink to="/auth/login">Login</NavLink> }
+                {auth ?   <a onClick={handleLogOut}>Log Out</a> :   <NavLink to="/auth/login">Login</NavLink> }
               
                 <span><FiUser className='user-icon'/></span>
 

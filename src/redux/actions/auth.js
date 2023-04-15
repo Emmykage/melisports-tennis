@@ -22,7 +22,7 @@ const loginUser = createAsyncThunk('user/logUser', async(data) =>{
     })
     .then((res) => res.json())
     // .catch((err) => err.json())
-    
+    console.log(response)
     return response
 })
 export {addUser, loginUser}
