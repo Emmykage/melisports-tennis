@@ -13,17 +13,14 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    // reducers: {
-    //     toLogin: (state) =>({
-    //         ...state,
-    //         logded: false
-    //     })
-    // },
     reducers: {
-        userLog: (state) => {
-          
+        userLog: (state) => {      
+
+    
             try{
-                const auth = JSON.localStorage.getItem("meli_auth")
+                const auth = localStorage.getItem("meli_auth")
+
+                // console.log(auth)
                 return{
                     ...state,
                     user: JSON.parse(auth)
@@ -33,7 +30,7 @@ const userSlice = createSlice({
             }catch{
                 return{
                     ...state,
-                    user: {}
+                    user: null
                 }
 
             }
@@ -84,9 +81,8 @@ const userSlice = createSlice({
           
             
             if(response.user){
-
-                console.log("login fulfilled and passed")
-                console.log(response.user)
+                // console.log("login fulfilled and passed")
+                // console.log(response.user)
 
                 const collect = JSON.stringify(response)
                 localStorage.setItem('meli_auth', collect);

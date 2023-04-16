@@ -1,17 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import baseURL from "../baseURL";
-let auth = localStorage.getItem("meli_auth")
-let token 
-if(auth){
-    const userInfo = JSON.parse(auth)
-     token = userInfo.token
-     console.log(token)
-
-
-
-
+const token = ()=> {
+    return JSON.parse(localStorage.getItem("meli_auth")).token
 }
-console.log(token)
 
 const addCart = createAsyncThunk('cart/addCart', async(data)=>{
     
@@ -20,7 +11,7 @@ const addCart = createAsyncThunk('cart/addCart', async(data)=>{
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token()}`
 
         },
         body: JSON.stringify(data),
@@ -33,7 +24,7 @@ const removeItem = createAsyncThunk('cart/removeCart', async(id)=>{
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token()}`
 
         },
        
@@ -46,7 +37,7 @@ const clearCart = createAsyncThunk('cart/clearCart', async()=>{
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token()}`
 
         },
        
@@ -59,9 +50,9 @@ const getCarts = createAsyncThunk('carts/getCart', async()=>{
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token()}`
         }    }).then((res) => res.json())
-        
+        console.log("called", JSON.parse(localStorage.getItem("meli_auth")).token)
         return response
 
 
@@ -71,7 +62,7 @@ const increaseCart = createAsyncThunk('cart/increase_cart', async({id, quantity}
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token()}`
 
         },
         body: JSON.stringify({quantity: quantity})
@@ -83,7 +74,7 @@ const decreaseCart = createAsyncThunk('cart/increase_cart', async({id, quantity}
        method: 'PATCH',
        headers: {
            'Content-type': 'application/json',
-           Authorization: `Bearer ${token}`
+           Authorization: `Bearer ${token()}`
 
        },
        body: JSON.stringify({quantity: quantity})

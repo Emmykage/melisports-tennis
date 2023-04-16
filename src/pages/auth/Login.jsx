@@ -7,11 +7,11 @@ import './auth.css'
 import { updater } from '../../redux/cart/cart'
 import { userLog } from '../../redux/user/user'
 
-let auth = localStorage.getItem("meli_auth")
-let meli_auth
-auth && (meli_auth = JSON.parse(auth) )
+// let auth = localStorage.getItem("meli_auth")
+// let meli_auth
+// auth && (meli_auth = JSON.parse(auth) )
 const Login = () => {
-  
+ 
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {user, error, message, logged} = useSelector((state) => state.user)
@@ -21,6 +21,12 @@ const Login = () => {
     password: ''
     }
   })
+  useEffect(()=>{
+    dispatch(userLog())
+
+
+}, [])
+  
   const handleInput = (e) =>{
       setFormInput({
         user:{
@@ -36,10 +42,10 @@ const Login = () => {
     dispatch(userLog())
      
   }
-  user.user && navigate('/')
+  console.log(user)
 
-  user.user ? console.log("yes") : console.log("no")
-  return (
+  if (user == null || user == undefined) {
+    return (
     <div className='wallpaper centralize'>
         <div className='auth-container '>
           <div className='login-box'>
@@ -64,6 +70,11 @@ const Login = () => {
     
     </div>
   )
+}else
+{
+   navigate('/')
+ 
+  }
 }
 
 export default Login
