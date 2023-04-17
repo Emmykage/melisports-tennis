@@ -70,7 +70,7 @@
 
 .nav-item {
   padding: 0.83rem 1.5rem;
-  border: 1px solid black;
+  border: 1px solid rgb(211, 211, 211);
   height: 100%;
   color: white;
   display: flex;
@@ -80,6 +80,7 @@
 .nav-item a {
   color: var(--color-primary);
   font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .search-div {
@@ -87,7 +88,6 @@
   margin: auto;
   background-color: white;
   border-radius: 6px;
-  /* background-color: var(--color-light-gray); */
   padding: 0 0 0 2rem;
 }
 
