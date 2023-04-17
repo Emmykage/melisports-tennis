@@ -461,11 +461,8 @@ table tbody tr:last-child {
   font-size: 1.24rem;
 }
 
-.prev-details a {
-  color: var(--color-dark);
+.prev-details .btn {
   padding: 6px 12px;
-  background-color: var(--color-primary);
-  font-weight: 600;
 }
 
 .prev-details a:hover,
@@ -476,8 +473,6 @@ table tbody tr:last-child {
 
 .prev-details > div button {
   padding: 5px 10px;
-  background: var(--color-primary);
-  color: #333;
   border-radius: 3px;
 }
 
@@ -486,7 +481,8 @@ table tbody tr:last-child {
 }
 
 .btn-div {
-  border: 0.7px solid rgb(116, 116, 116);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  /* border: 0.7px solid rgb(116, 116, 116); */
 }
 
 .btn-div span {

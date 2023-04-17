@@ -50,7 +50,7 @@ const Accessories = ({products, status, error}) => {
               ...
             </h5>
             <p>{product.price}</p>
-            <NavLink className="btn color-grey btn-outline" to={`/productdetails/${product.id}`}>
+            <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
               Buy
             </NavLink>
 

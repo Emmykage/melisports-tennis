@@ -19,7 +19,7 @@ const Nav = () => {
   
   const navigate = useNavigate()
   const { counter, cartItems, update } = useSelector((state) => state.cart);
-  const {user} = useSelector((state) => state.user.user)
+  const {user} = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const { toggleNav} = useSelector((state) => state.navToggle)
 
@@ -199,7 +199,7 @@ const Nav = () => {
               </li>
               
             
-              {user !== undefined && ((user.role == "admin") &&  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> )}
+              {user !== null && ((user.user.role == "admin") &&  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> )}
 
               {/* {user && ((user.user.role === "admin" || user.role == undefined) ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")} */}
               {/* {meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " "} */}

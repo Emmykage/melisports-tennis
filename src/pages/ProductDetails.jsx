@@ -46,7 +46,7 @@ return (
         <div className='price'>
        
           <span>
-          ${product.price}
+          &#x20A6;{product.price}
           </span>
          
         </div>
@@ -70,7 +70,7 @@ return (
         
         </div>
 
-        <div className='flex-center center border'>
+        <div className='flex-center center '>
           <div className='btn-div'>
             <button type="button"
             onClick={decrease}

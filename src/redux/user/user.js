@@ -4,7 +4,7 @@ import { addUser,
  } from "../actions/auth";
 
 const initialState = {
-    user: {},
+    user: null,
     error: false,
     message: "",
     loading: false,
