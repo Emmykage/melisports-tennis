@@ -52,7 +52,6 @@ const getCarts = createAsyncThunk('carts/getCart', async()=>{
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token()}`
         }    }).then((res) => res.json())
-        console.log("called", JSON.parse(localStorage.getItem("meli_auth")).token)
         return response
 
 

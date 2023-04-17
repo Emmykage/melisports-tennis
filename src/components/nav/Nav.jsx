@@ -27,9 +27,9 @@ const Nav = () => {
   useEffect(()=> {
     dispatch(userLog())
     dispatch(getCarts())
-    dispatch(updater())
+    // dispatch(updater())
     dispatch(calculateTotal())
-  } ,[])
+  } ,[update])
 
 
   const handleLogOut = () => {
@@ -37,7 +37,6 @@ const Nav = () => {
     dispatch(userLog())
     navigate('/auth/login')
   }
-  console.log(user)
 
   return (
     <div>

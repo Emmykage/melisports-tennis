@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/actions/cart';
+import { updater } from '../../redux/cart/cart';
 import { closeModal } from '../../redux/modal/modal';
 
 const Modal = () => {
@@ -17,6 +18,7 @@ const Modal = () => {
             onClick={() => {
               dispatch(clearCart());
               dispatch(closeModal());
+              dispatch(updater())
             }}
           >
             confirm

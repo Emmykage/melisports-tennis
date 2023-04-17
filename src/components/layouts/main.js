@@ -7,7 +7,6 @@ import Modal from '../modal/Modal'
 
 const MainLayout = ({children}) => {
   const {isOpen} = useSelector((state) => state.modal)
-console.log(isOpen)
   return (
 
     <div className='container'>

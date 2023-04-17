@@ -24,7 +24,6 @@ const Cart = () => {
     setItem(cartItems)
 
   }
-  console.log(items)
 const handleCheckout = () => {
    navigate("/checkout")
 }
@@ -53,7 +52,6 @@ const handleCheckout = () => {
     }
     
 dispatch(updater())
-console.log('increased or decreased')
   }
 const handleDelete = (id)=>{
    dispatch(removeItem(id));
@@ -133,7 +131,6 @@ const handleDelete = (id)=>{
            
           ))}
            </tbody>
-        {/* </ul> */}
         </table>
 
         <div className='clear'>

@@ -11,7 +11,6 @@ const Shoes = ({products, status, error}) => {
 
  
   const shoes = products.filter((items) => items.product_category.name === "shoe")
-  console.log(products)
 
   if (shoes.length < 1) {
     return (

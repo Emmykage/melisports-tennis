@@ -25,9 +25,8 @@ const SearchComponent = () => {
   
   }
      
-      // dispatch(closeList())
 
-  console.log(searchedProducts)
+  // console.log(searchedProducts)
 
   return (
     <div className='search-component'>

@@ -13,7 +13,7 @@ import { closeList } from '../redux/products/searched';
 const BagsPage = () => {
   const dispatch = useDispatch()
   const {products, status, error} = useSelector((state) => state.products)
-  console.log(products)
+  // console.log(products)
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase()

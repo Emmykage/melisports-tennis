@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
-import { getCarts, clearCart} from '../actions/cart';
+import { getCarts, clearCart, addCart} from '../actions/cart';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -27,7 +27,7 @@ const cartSlice = createSlice({
       let total = 0;
       let count = 0;
       if(state.cartItems.length > 0){
-        console.log('more than 0')
+        // console.log('more than 0')
 
         state.cartItems.forEach((item) => {
           count += item.quantity;
@@ -41,7 +41,6 @@ const cartSlice = createSlice({
           total:total
         }
       }else{
-        console.log('less than 1')
 
         return{
           ...state,
@@ -56,7 +55,7 @@ const cartSlice = createSlice({
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
       const cartData = action.payload
-      console.log(cartData)
+      // console.log(cartData)
       if(cartData.message){
         return {
           ...state,
@@ -78,7 +77,23 @@ const cartSlice = createSlice({
       return {
         ...state,
       }
-    }
+    },
+    [addCart.fulfilled]: (state, action) => {
+      console.log(action.payload)
+      console.log("good request")
+
+    },
+    // [addCart.rejected]: (state, action) => {
+    //   console.log("bad request")
+    // },
+    // extraReducers: (builder) => {
+    //   builder.addCase(addCart, (state, action)=> {
+    //     return{
+    //     ...state,
+    //     update: state.update +1
+    //     }
+    //   })
+    // }
  
   }
 });
