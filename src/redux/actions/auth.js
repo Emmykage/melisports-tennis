@@ -9,7 +9,6 @@ const addUser = createAsyncThunk('user/addUser', async(data) =>{
         body: JSON.stringify(data)
     })
     .then((res) => res.json())
-    // console.log(response)
     return response
 })
 const loginUser = createAsyncThunk('user/logUser', async(data) =>{

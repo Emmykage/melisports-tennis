@@ -20,7 +20,6 @@ const userSlice = createSlice({
             try{
                 const auth = localStorage.getItem("meli_auth")
 
-                // console.log(auth)
                 return{
                     ...state,
                     user: JSON.parse(auth)
@@ -48,6 +47,7 @@ const userSlice = createSlice({
                 return{
                     ...state,
                     logged: true,
+                    user: response,
                     message: "sign up successfull"
                 }
             }else{
@@ -81,9 +81,7 @@ const userSlice = createSlice({
           
             
             if(response.user){
-                // console.log("login fulfilled and passed")
-                // console.log(response.user)
-
+          
                 const collect = JSON.stringify(response)
                 localStorage.setItem('meli_auth', collect);
             
@@ -106,7 +104,6 @@ const userSlice = createSlice({
 
     },
         [loginUser.rejected]: (state, action) => {
-            console.log(action.payload)
            return {
             ...state,
             error: true,

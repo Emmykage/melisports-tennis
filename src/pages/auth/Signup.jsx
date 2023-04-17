@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { addUser } from '../../redux/actions/auth'
+import { updater } from '../../redux/cart/cart'
+import { userLog } from '../../redux/user/user'
 
 import './auth.css'
 
 const Signup = () => {
   const navigation = useNavigate()
   const dispatch = useDispatch()
+  const {user, error, message, logged} = useSelector((state) => state.user)
+
   const [formInput, setFormInput] = useState({
     user:{
     username: '',
@@ -18,6 +22,9 @@ const Signup = () => {
     }
 
   })
+  useEffect(()=>{
+    dispatch(userLog())
+  },[])
   const handleInput = (e) =>{
     setFormInput({
       
@@ -25,13 +32,15 @@ const Signup = () => {
         ...formInput.user,
         [e.target.name]: e.target.value}
     })
-    console.log(e.target.value)
   }
   const handleSubmit = (e)=>{
     e.preventDefault();
     dispatch(addUser(formInput))
+    dispatch(updater())
+    dispatch(userLog())
 
   }
+  if(user == null || user == undefined){
   return (
     <div className='wallpaper centralize'>
       <div className='auth-container'>
@@ -66,7 +75,10 @@ const Signup = () => {
     </div>
 
 
-  )
+  )}
+  else{
+    navigation("/")
+  }
 }
 
 export default Signup

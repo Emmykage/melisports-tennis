@@ -7,9 +7,6 @@ import './auth.css'
 import { updater } from '../../redux/cart/cart'
 import { userLog } from '../../redux/user/user'
 
-// let auth = localStorage.getItem("meli_auth")
-// let meli_auth
-// auth && (meli_auth = JSON.parse(auth) )
 const Login = () => {
  
   const navigate = useNavigate()
@@ -23,8 +20,6 @@ const Login = () => {
   })
   useEffect(()=>{
     dispatch(userLog())
-
-
 }, [])
   
   const handleInput = (e) =>{
@@ -42,7 +37,6 @@ const Login = () => {
     dispatch(userLog())
      
   }
-  console.log(user)
 
   if (user == null || user == undefined) {
     return (

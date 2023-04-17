@@ -31,8 +31,6 @@ const Nav = () => {
     dispatch(calculateTotal())
   } ,[])
 
-  console.log(cartItems)
-  console.log(cartItems)
 
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '')
