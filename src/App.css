@@ -258,6 +258,9 @@ button {
   background: var(--color-theme-variant);
   color: var(--color-white);
 }
+form .btn{
+  margin-top: 24px;
+}
 .btn:hover {
   
   background: var(--color-theme);

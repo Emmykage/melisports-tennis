@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { addUser } from '../../redux/actions/auth'
-
-let auth = localStorage.getItem("meli_auth")
-
+import { userLog } from '../../redux/user/user'
 
 const AdminSignUp = () => {
-  const { logged, error, message, loading} = useSelector((state) => state.user)
   const navigation = useNavigate()
   const dispatch = useDispatch()
+  const { user, error, message, loading} = useSelector((state) => state.user)
+
   const [formInput, setFormInput] = useState({
     user:{
     username: '',
@@ -21,12 +20,9 @@ const AdminSignUp = () => {
 
   })
   useEffect(()=>{
-    if(auth && logged){
-      navigation("/admin/dashboard")
-    }
-    // logged && navigation("/admin/dashboard")
-  },[logged])
-  console.log(logged)
+    dispatch(userLog())
+
+  },[])
   
   const handleInput = (e) =>{
     setFormInput({
@@ -35,14 +31,17 @@ const AdminSignUp = () => {
         ...formInput.user,
         [e.target.name]: e.target.value}
     })
-    console.log(e.target.value)
   }
   const handleSubmit = (e)=>{
     e.preventDefault();
     dispatch(addUser(formInput))
+    // dispatch(updater())
+    dispatch(userLog())
 
   }
-  return (
+  console.log(user)
+  if(user == null || user == undefined ){
+    return (
     <div className='wallpaper centralize'>
       <div className='auth-container'>
         <div className='sign-up'>
@@ -78,6 +77,12 @@ const AdminSignUp = () => {
     </div>
     </div>
     )
+  }
+  else{
+    navigation('/admin')
+  }
 }
 
 export default AdminSignUp
+
+

@@ -4,28 +4,26 @@ import { NavLink } from 'react-router-dom'
 import { loginUser } from '../../redux/actions/auth'
 import { useNavigate } from 'react-router-dom'
 import './auth.css'
+import { userLog } from '../../redux/user/user'
 let auth = localStorage.getItem("meli_auth")
 
 const AdminLogin = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
     const {user, error, logged, loading} = useSelector((state) => state.user)
-    const navigate = useNavigate()
+    const [formInput, setFormInput] = useState({
+      user: {
+      username: '',
+      password: ''
+      }
+    })
 
  
   useEffect(()=>{
-    if(auth && logged){
-      navigate("/admin")
-    }
-  }, [logged])
-      // console.log(logged)
+ dispatch(userLog())
+  }, [])
 
-
-  const dispatch = useDispatch()
-  const [formInput, setFormInput] = useState({
-    user: {
-    username: '',
-    password: ''
-    }
-  })
 
   const handleInput = (e) =>{
       setFormInput({
@@ -38,10 +36,13 @@ const AdminLogin = () => {
   const handleSubmit = (e) =>{
     e.preventDefault()
     dispatch(loginUser(formInput))
-    if (user.user && user.token){
-      navigate('/admin')
-    }
+    dispatch(userLog())
+  
   }
+  console.log(user)
+  if(user == null || user == undefined || Object.keys(user) == 0){
+
+
   return (
     <div className='wallpaper centralize'>
     <div className='auth-container '>
@@ -67,6 +68,29 @@ const AdminLogin = () => {
 
 </div>
   )
+}else if(user.user.role == "client"){
+  console.log(user.user.role)
+  return(
+         <div>
+           <h1>You are not Authorized Please sign in <NavLink to="/auth/login">here</NavLink> </h1>
+          
+       </div>
+  )
+}
+else{
+  navigate('/admin')
+}
 }
 
 export default AdminLogin
+// else if( user.user.role == "client"){
+//   return(
+//     <div>
+//       <h1>You are not Authorized Please sign in <NavLink to="/auth/login">here</NavLink> </h1>
+      
+//     </div>
+//   )
+
+// }
+
+// || Object.keys(user == 0)

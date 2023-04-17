@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ProdDelModal from '../modal/ProdDelModal'
 import CatDelModal from '../modal/CatDelModal'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { toLogin } from '../../redux/user/user'
+import { userLog } from '../../redux/user/user'
 
 const MainAdmin = ({children}) => {
   const dispatch = useDispatch()
@@ -18,7 +18,7 @@ const MainAdmin = ({children}) => {
   const [showMenu, setShowMenu] = useState(false)
   // console.log(auth)
   useEffect(()=>{
-    dispatch(toLogin())
+    dispatch(userLog())
     !meli_auth && navigate("/auth/admin_sign_up")
   },[])
 
