@@ -31,7 +31,7 @@ const Nav = () => {
     dispatch(calculateTotal())
   } ,[update])
 
-
+// console.log(update)
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '')
     dispatch(userLog())
@@ -214,7 +214,7 @@ const Nav = () => {
             </ul>
             <div className='flex-space'>
               <div className='user mobile-display '>
-              {user == undefined ?    <NavLink to="/auth/login">Logins</NavLink> : <a onClick={handleLogOut}>Log Outs</a>   }
+              {user == undefined ?    <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a>   }
               
                 <span><FiUser className='user-icon'/></span>
 
