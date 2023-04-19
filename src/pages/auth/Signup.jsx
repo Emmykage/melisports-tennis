@@ -36,19 +36,20 @@ const Signup = () => {
     })
   }
   const handleSubmit = (e)=>{
+    console.log(formInput)
     e.preventDefault();
-    if(formInput.username == "" || formInput.username == null){
-      setFormMsg({username: {msg: "Enter a username", color: "red"}})
-    }else if(formInput.email == "" || formInput.email == null){
-      setFormMsg({email: {msg: "Enter a email", color: "red"}})
-    }else if(formInput.phone_no == "" || formInput.phone_no == null){
-      setFormMsg({phone_no: {msg: "Enter a valid number", color: "red"}})
+    if(formInput.user.username == "" || formInput.user.username == null){
+      setFormMsg({...formMsg, username: {msg: "Enter a username", color: "red"}})
+    }else if(formInput.user.email == "" || formInput.user.email == null){
+      setFormMsg({...formMsg, email: {msg: "Enter a email", color: "red"}})
+    }else if(formInput.user.phone_no == "" || formInput.user.phone_no == null){
+      setFormMsg({...formMsg, phone_no: {msg: "Enter a valid number", color: "red"}})
     }
-    else if(formInput.password == "" || formInput.password == null){
-      setFormMsg({password: {msg: "Enter a password", color: "red"}})
+    else if(formInput.user.password == "" || formInput.user.password == null){
+      setFormMsg({...formMsg, password: {msg: "Enter a password", color: "red"}})
     }else{
-      console.log("hey i am stupid enouggh to respond")
-      setFormMsg({username: {msg: "", color: "green"}, email: {msg: "", color: "green"}, phone_no: {msg: "", color: "green"}, password: {msg: "", color: "green"}})
+      console.log("hey i passed to respond")
+      setFormMsg({username: {msg: "pass checked", color: "green"}, email: {msg: "pass checked", color: "green"}, phone_no: {msg: "pass checked", color: "green"}, password: {msg: "pass checked", color: "green"}})
     }
     // switch(formInput){
     //   case formInput.username == "" || formInput.username == null : 
@@ -79,23 +80,23 @@ const Signup = () => {
           <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
           <div className='flex-space'>
-            <label htmlFor="username">username</label><span className={formMsg.color}> {formMsg.username.msg}</span>
+            <label htmlFor="username">username</label><span className={formMsg.username.color}> {formMsg.username.msg}</span>
           </div>
-          <input type='text' name='username' value={formInput.user.username} onChange={handleInput} placeholder="username" id='username'/>
+          <input type='text' name='username' value={formInput.user.username} onChange={handleInput} placeholder="username" id='username' required/>
           <div className='flex-space'>
-            <label htmlFor="email">email</label><span className='red'> {formMsg.email.msg}</span>
+            <label htmlFor="email">email</label><span className={formMsg.username.color}> {formMsg.email.msg}</span>
           </div>
-          <input type={'email'} name="email" value={formInput.user.email} onChange={handleInput} placeholder="email" />
+          <input type={'email'} name="email" value={formInput.user.email} onChange={handleInput} placeholder="email" required/>
           <div className='flex-space'>
-          <label htmlFor="mobile">mobile</label><span className='red'>{formMsg.phone_no.msg}</span>
+          <label htmlFor="mobile">mobile</label><span className={formMsg.username.color}>{formMsg.phone_no.msg}</span>
           </div> 
-          <input type={'text'} name="phone_no" value={formInput.user.phone_no} onChange={handleInput} placeholder="phone no" id='mobile'/>
+          <input type={'text'} name="phone_no" value={formInput.user.phone_no} onChange={handleInput} placeholder="phone no" id='mobile' required/>
           <div className='flex-space'>
-          <label htmlFor="password">password</label><span className='red'> {formMsg.password.msg}</span>
+          <label htmlFor="password">password</label><span className={formMsg.username.color}> {formMsg.password.msg}</span>
           </div> 
-          <input type="password" value={formInput.user.password} onChange={handleInput} name="password" placeholder='Enter password' />
+          <input type="password" value={formInput.user.password} onChange={handleInput} name="password" placeholder='Enter password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
           <div className='flex-space'>
-          <label htmlFor="role"></label><span className='red'> {formMsg.msg}</span>
+          <label htmlFor="role"></label>
           </div>   
             <input type="hidden" name='role' value={formInput.user.client} id='role' />
            
