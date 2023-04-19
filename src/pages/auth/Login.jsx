@@ -43,7 +43,7 @@ const Login = () => {
     <div className='wallpaper centralize'>
         <div className='auth-container '>
           <div className='login-box'>
-            <h1>Login</h1>
+            <h1>Admin Login</h1>
             <form onSubmit={handleSubmit}>
               <label htmlFor="username">username</label>
               <input type={'text'} value={formInput.username} onChange={handleInput} name="username" id='username' placeholder="username" />
