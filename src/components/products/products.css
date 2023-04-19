@@ -17,6 +17,10 @@ flex: 1;}
   gap: 2%;
 
 }
+.product-items > div {
+  width: 100%;
+  
+}
 
 .prod-img {
   margin: 0;
