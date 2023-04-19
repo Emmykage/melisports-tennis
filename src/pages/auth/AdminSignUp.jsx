@@ -45,7 +45,7 @@ const AdminSignUp = () => {
     <div className='wallpaper centralize'>
       <div className='auth-container'>
         <div className='sign-up'>
-          <h1>Sign Up</h1>
+          <h1>Sign Up as Admin</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">username</label>
             <input type='text' name='username' value={formInput.user.username} onChange={handleInput} placeholder="username" id='username' required/>
