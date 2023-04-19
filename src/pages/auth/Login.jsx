@@ -33,7 +33,7 @@ const Login = () => {
   const handleSubmit = (e) =>{
     e.preventDefault()
     dispatch(loginUser(formInput))
-    dispatch(updater())
+    // dispatch(updater())
     dispatch(userLog())
      
   }

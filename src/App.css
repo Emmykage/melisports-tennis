@@ -151,9 +151,13 @@ a {
   width: 100%;
   margin: auto;
 }
-
+.signup form .red{
+  align-self: self-end;
+}
 /* ==========================flex-box======================== */
-
+.green{
+  color: green;
+}
 .flex {
   display: flex;
   justify-content: flex-start;
@@ -680,8 +684,8 @@ td:last-child .btn {
 .user a {
   margin: 0 12px;
   color: white;
+  font-weight: 600;
 }
-
 .user .user-icon {
   font-size: 1.6rem;
 }

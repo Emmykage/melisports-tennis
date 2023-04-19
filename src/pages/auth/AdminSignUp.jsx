@@ -34,8 +34,8 @@ const AdminSignUp = () => {
   }
   const handleSubmit = (e)=>{
     e.preventDefault();
+
     dispatch(addUser(formInput))
-    // dispatch(updater())
     dispatch(userLog())
 
   }
@@ -48,6 +48,7 @@ const AdminSignUp = () => {
           <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">username</label>
+            <span>Correct name</span>
             <input type='text' name='username' value={formInput.user.username} onChange={handleInput} placeholder="username" id='username'/>
             <label htmlFor="email">email</label>
             <input type={'email'} name="email" value={formInput.user.email} onChange={handleInput} placeholder="email" />
