@@ -60,7 +60,7 @@ const AdminLogin = () => {
     </div>
     <div>
         <p className='para-2'>
-            Don't have an account? <NavLink to="/auth/admin_sign_up">Sign up here</NavLink>
+            Don't have an account? <NavLink to="/auth/admin_sign_up">Admin Sign up</NavLink>
         </p>
     </div>
 </div>

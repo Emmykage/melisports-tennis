@@ -360,7 +360,7 @@ main .insight h3 {
   font-size: 1rem;
 }
 
-main .insight .progress {
+main .insight .progresser {
   position: relative;
   width: 92px;
   height: 92px;
@@ -400,7 +400,7 @@ main .insight .income svg circle {
   stroke-dashoffset: 35;
 }
 
-main .insight .progress .number {
+main .insight .progresser .number {
   position: absolute;
   top: 0;
   left: 0;
