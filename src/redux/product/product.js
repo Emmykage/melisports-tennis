@@ -3,7 +3,8 @@ import { getProduct } from "../actions/product";
 
 const initialState = {
     product: {},
-    status: false
+    status: false,
+    loading: false
 }
 
 const productSlice = createSlice({
@@ -13,6 +14,14 @@ const productSlice = createSlice({
         [getProduct.fulfilled]: (state, action) =>({
             ...state,
             product: action.payload
+        }),
+        [getProduct.pending]: (state, action) =>({
+            ...state,
+            loading: true
+        }),
+        [getProduct.rejected]: (state, action) =>({
+            ...state,
+            loading: false
         })
     }
 })

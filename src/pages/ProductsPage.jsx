@@ -11,7 +11,7 @@ import { closeNav } from '../redux/modal/nav';
 
 const ProductsPage = () => {
   const dispatch = useDispatch()
-  const {products, status, error} = useSelector((state) => state.products);
+  const {products, loading, status, error} = useSelector((state) => state.products);
   const {product_categories} = useSelector((state)=> state.product_categories)
   // const category = product_categories.find((cat) => cat.name === "racquet") 
 

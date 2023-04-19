@@ -1,29 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Loader from '../../pages/Loader';
 import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
 
 const Shoes = ({products, status, error}) => {
 
-  if(products.length > 0){
+  // if(products.length > 0){
 
  
   const shoes = products.filter((items) => items.product_category.name === "shoe")
 
-  if (shoes.length < 1) {
-    return (
-      <div>
-        <header>
-          <h2> Shoes </h2>
-          <h4> Your shoes category is currently empty</h4>
-        </header>
-      </div>
-    );
-  }
- 
-    if (status === "success"){
+  if(status === "waiting"){
+    return(
+      <Loader/>
+    )
+  }else if (status === "success"){
       if (shoes.length < 1) {
         return (
           <div>
@@ -68,23 +62,14 @@ const Shoes = ({products, status, error}) => {
       )
     }
       }
-      else if(status === "failed"){ 
+      else { 
         return (
-        <div>
-          <h2> No internet{error.message}</h2>
+        <div  className='text-center'>
+          <h2> {error}</h2>
           </div>
         )
       }
-      else{
-        return(
-          <> loading...</>
-        )
-      }
-    }else{
-      return(
-        <h2 className='text-center'> Please add some products if you are the admin</h2>
-      )
-    }
+     
 };
 
 export default Shoes;

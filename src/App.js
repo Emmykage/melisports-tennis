@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './components/footer/Footer';
-
+import './styles/loader.css'
 import Nav from './components/nav/Nav';
 import ApparelsPage from './pages/Apparels';
 import BagsPage from './pages/BagsPage';
@@ -33,6 +33,7 @@ import Login from './pages/auth/Login';
 import AdminSignUp from './pages/auth/AdminSignUp';
 import AdminLogin from './pages/auth/AdminLogin';
 import Checkout from './pages/Checkout';
+import Loader from './pages/Loader';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -79,6 +80,9 @@ function App() {
           <Route path='admin_login' element={<AdminLogin/>}/>
 
         </Route>
+
+        <Route path="/loader" element={<MainLayout><Loader /></MainLayout>} />
+
       </Routes>
 
       

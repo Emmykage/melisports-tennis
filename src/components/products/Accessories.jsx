@@ -1,33 +1,26 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getProducts } from '../../redux/actions/product';
-import product from '../../redux/products/product';
+import Loader from '../../pages/Loader';
 import './products.css';
 
 const Accessories = ({products, status, error}) => {
-  if(products.length > 0 ){
+
 
   const accessories = products.filter((item) => item.product_category.name === "accessory")
 
-  if(accessories.length < 1){
-    return (
-      <div>
-        <header>
-          <h2> Accessories </h2>
-          <h4> You product is currently empty</h4>
-        </header>
-      </div>
-    );
-  }
-  
-    if (status === "success"){
+  if(status === "waiting"){
+    
+      return(
+        <Loader/>
+              )
+    
+  } else if (status === "success"){
         if (accessories.length < 1) {
     return (
       <div>
         <header>
           
-          <h1 className='warning-center'> Please Add some products to your collection</h1>
+          <h1 className='warning-center'> Please Add some Accessories to your collection</h1>
         </header>
       </div>
     );
@@ -62,23 +55,15 @@ const Accessories = ({products, status, error}) => {
     </>
       )}
       }
-      else if(status === "failed"){ 
+      else{ 
         return (
-        <div>
-          <h2> No internet{error.message}</h2>
+        <div className='text-center'>
+          <h2> {error}</h2>
           </div>
         )
       }
-      else{
-        return(
-          <> loading...</>
-        )
-      }
-    }else{
-      return(
-        <h2 className='text-center'> Please add some products if you are the admin</h2>
-      )
-    }
+      
+    
 };
 
 export default Accessories;

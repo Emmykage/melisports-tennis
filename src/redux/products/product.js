@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getProducts } from '../actions/product';
 const initialState = {
   products: [],
-  status: "failed",
+  loading: false,
+  status: "success",
   error: "none"
 };
 
@@ -27,17 +28,20 @@ const productsSlice = createSlice({
     [getProducts.fulfilled]: (state, action) => ({
       ...state,
       status: "success",
+      loading: false,
       products: action.payload,
     }),
     [getProducts.pending]: (state) => ({
       ...state,
+      loading: true,
       status: "waiting",
     }),
     [getProducts.rejected]: (state, action) => {
-      console.log(action.error)
+      console.log(action.payload)
       return     {
       ...state,
-      error: action.error,
+      error: "No Internet Connection",
+      loading: false,
       status: "failed",
     }
    

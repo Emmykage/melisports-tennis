@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Loader from '../../pages/Loader';
 import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
@@ -8,24 +9,25 @@ import './products.css';
 const Bags = ({products, status, error}) => {
  
 
-  if(products.length > 0){
-
  
   const bags = products.filter((items) => items.product_category.name === "bag")
   // console.log(bags)
 
-  if (bags.length < 1) {
-    return (
-      <div>
-        <header>
-          <h2> Bags </h2>
-          <h4> Your bags category is currently empty</h4>
-        </header>
-      </div>
-    );
-  }
- 
-    if (status === "success"){
+  if(status === "waiting"){
+    return(
+      <Loader/>
+    )
+  }else if (status === "success"){
+    if (bags.length < 1) {
+      return (
+        <div>
+          <header>
+            
+            <h1 className='warning-center'> Please Add some Bags to your collection</h1>
+          </header>
+        </div>
+      );
+    }else{
         return (
    
     <>
@@ -55,25 +57,17 @@ const Bags = ({products, status, error}) => {
 
     </>
       )
+    }
     
-      }
-      else if(status === "failed"){ 
+      }else{ 
         return (
-        <div>
-          <h2> No internet{error.message}</h2>
+        <div className='text-center'>
+          <h2>{error}</h2>
           </div>
         )
       }
-      else{
-        return(
-          <> loading...</>
-        )
-      }
-    }else{
-      return(
-        <h2 className='text-center'> Please add some products if you are the admin</h2>
-      )
-    }
+     
+    
 };
 
 export default Bags;

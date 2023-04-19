@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Loader from '../../pages/Loader';
 import './products.css';
 
 const Products = ({products, status, error }) => {
 
   
-
-  if (products.length > 0){
   const racketProducts = products.filter((item) => item.product_category.name === "racquet")
   
-  if (racketProducts.length < 1) {
-    return (
-      <div>
-        <header>
-          <h2> Rackets </h2>
-          <h4> You racquet catelogue is currently empty. add some products if you are an admin</h4>
-        </header>
-      </div>
-    );
-  }
-       
-    if (status === "success"){
+  if(status === "waiting"){
+    return(
+      <Loader/>
+    )
+  }else if (status === "success"){
+    if (products.length < 1) {
+      return (
+        <div>
+          <header>
+            
+            <h1 className='warning-center'> Please Add some Racquets to your collection</h1>
+          </header>
+        </div>
+      );
+    }else{
      
       return (
    
@@ -53,24 +55,16 @@ const Products = ({products, status, error }) => {
 
     </>
       )
-      }
-      else if(status === "failed"){ 
+    }
+      } else { 
         return (
-        <div>
-          <h2> No internet{error.message}</h2>
+        <div className='text-center'>
+          <h2> {error}</h2>
           </div>
         )
       }
-      else{
-        return(
-          <> loading...</>
-        )
-      }
-    }else{
-      return(
-        <h2 className='text-center'> Please add some products if you are the admin</h2>
-      )
-    }
+     
+    
 };
 
 export default Products;

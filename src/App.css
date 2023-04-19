@@ -76,7 +76,7 @@ a {
   flex-direction: column;
 
 }
-.full-100{
+.full-100, .full-length{
   width: 100%;
 }
 .border {
