@@ -9,6 +9,8 @@ const EditProduct = () => {
 
     const dispatch = useDispatch();
     const product = useSelector((state)=> state.product.product)
+    const levels = useSelector((state) => state.level.levels)
+    const genders = useSelector((state) => state.gender.genders)
     const {editId} = useParams()
      console.log(product)
     const [formInput, setFormInput] = useState({
@@ -94,6 +96,33 @@ const EditProduct = () => {
 
                         </label>
                     </div>
+                </div>
+                <div className='form-row'>
+                    <div className='input-half'>
+                        <label htmlFor="">professionalism
+                        <select placeholder='professionalism'
+                        name="level_id"
+                        value={formInput.level_id}
+                        onChange={handleFormInput}>
+                            {levels.map((level) =>(
+                                <option value={level.id}>{level.stage}</option>
+                        ))}
+                        </select>
+                    </label>
+                    </div>
+                    <div className='input-half'>
+                    <label htmlFor="">Gender
+                    <select placeholder='gender' 
+                    name="gender_id" 
+                    value={formInput.gender_id}
+                    onChange={handleFormInput}>
+                    {genders.map((gender) =>(
+        <option value={gender.id}>{gender.name}</option>
+    ))}
+</select>
+</label>
+                    </div>
+                
                 </div>
                 <div className='form-row'>
                     
@@ -241,7 +270,7 @@ const EditProduct = () => {
                 </div>
 
                 <button>
-                    add product
+                    update product
                 </button>
             </form>
      

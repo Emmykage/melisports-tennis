@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getProducts } from '../actions/product';
+import { addProduct, getProducts } from '../actions/product';
 const initialState = {
   products: [],
   loading: false,
   status: "success",
-  error: "none"
+  error: "none",
+  report: null
 };
 
 const productsSlice = createSlice({
@@ -46,6 +47,7 @@ const productsSlice = createSlice({
     }
    
   },
+
  
   },
 });

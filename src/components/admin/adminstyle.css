@@ -334,7 +334,7 @@ main .insight > div:hover {
 }
 
 main .insight > div .icon-chart {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-variant);
   padding: 0.5rem;
   border-radius: 50%;
   color: var(--color-white);

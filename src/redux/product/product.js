@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProduct } from "../actions/product";
+import { addProduct, getProduct } from "../actions/product";
 
 const initialState = {
     product: {},
     status: false,
-    loading: false
+    loading: false,
+    report: null
 }
 
 const productSlice = createSlice({
@@ -22,7 +23,11 @@ const productSlice = createSlice({
         [getProduct.rejected]: (state, action) =>({
             ...state,
             loading: false
-        })
+        }),
+        [addProduct.fulfilled]: (state) => ({
+            ...state,
+            report: "item has been added"
+          })
     }
 })
 

@@ -47,12 +47,12 @@ console.log(products)
               ...
             </h5>
             <p>{product.price}</p>
-            <a className="btn color-grey btn-outline max-width" 
+            <a className="btn btn-outline max-width" 
             onClick={()=> dispatch(openDelModal(product.id))}
           >
               Delete
             </a>
-            <NavLink className="btn color-grey btn-outline max-width" to={`/admin/edit/${product.id}`}>
+            <NavLink className="btn btn-outline max-width" to={`/admin/edit/${product.id}`}>
               Edit
             </NavLink>
 

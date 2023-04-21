@@ -15,6 +15,8 @@ import delCatSlice from './modal/catDelModal'
 import userSlice from './user/user'
 import searchSlice from "./products/searched"
 import navSlice from "./modal/nav"
+import levelSlice from "./level/level"
+import genderSlice from "./gender/gender"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -28,9 +30,9 @@ const rootReducer = combineReducers({
   user: userSlice,
   cat_del_modal: delCatSlice,
   searched_products: searchSlice,
-  navToggle: navSlice
-
-
+  navToggle: navSlice,
+  level: levelSlice,
+  gender: genderSlice
 
 });
 

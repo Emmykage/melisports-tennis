@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { getLevels } from '../../../redux/actions/misc';
+import { getGenders } from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
 
 const AddProduct = () => {
     const categories = useSelector((state) => state.product_categories.product_categories)
+    const levels = useSelector((state) => state.level.levels)
+    const genders = useSelector((state) => state.gender.genders)
+    const {report} = useSelector((state) => state.product)
+
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(getProductCategories())
+        dispatch(getLevels())
+        dispatch(getGenders())
     },[])
     const [formInput, setFormInput] = useState({
         name: '',
@@ -16,6 +24,8 @@ const AddProduct = () => {
         image: '',
         sku: "",
         product_category_id: 1,
+        gender_id: 1,
+        level_id: 1,
         grip_size: "",
         head_size: '',
         rating: "",
@@ -29,6 +39,11 @@ const AddProduct = () => {
 
 
     })
+    console.log(levels)
+    console.log(genders)
+    console.log(levels)
+
+
     const handleFormInput = (e) =>{
       
         setFormInput({
@@ -89,6 +104,33 @@ const AddProduct = () => {
                     </div>
                 </div>
                 <div className='form-row'>
+                    <div className='input-half'>
+                        <label htmlFor="">professionalism
+                        <select placeholder='professionalism'
+                        name="level_id"
+                        value={formInput.level_id}
+                        onChange={handleFormInput}>
+                            {levels.map((level) =>(
+                                <option value={level.id}>{level.stage}</option>
+                        ))}
+                        </select>
+                    </label>
+                    </div>
+                    <div className='input-half'>
+                    <label htmlFor="">Gender
+                    <select placeholder='gender' 
+                    name="gender_id" 
+                    value={formInput.gender_id}
+                    onChange={handleFormInput}>
+                    {genders.map((gender) =>(
+        <option value={gender.id}>{gender.name}</option>
+    ))}
+</select>
+</label>
+                    </div>
+                
+                </div>
+                <div className='form-row'>
                     
                     <div className='input-half'>
                         <label htmlFor=""> head size
@@ -121,8 +163,9 @@ const AddProduct = () => {
                             <input
                             name='rating'
                             value={formInput.rating}
+                            max="5"
                             onChange={handleFormInput}
-                             type="text" />
+                             type="number" />
 
                         </label>
                     </div>
@@ -238,6 +281,7 @@ const AddProduct = () => {
                     add product
                 </button>
             </form>
+            <p className='green'>{report}</p>
             <Categories/>
      
     </div>

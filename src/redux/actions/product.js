@@ -24,16 +24,18 @@ const updateProduct = createAsyncThunk("updateProduct", async(id)=>{
     },
     body: JSON.stringify(data)
   }).then((res) => res.json())
+  return response
 })
 
  const addProduct = createAsyncThunk("product/addproduct", async (data) => {
-   await fetch(`${baseURL}products`, {
+  const response = await fetch(`${baseURL}products`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
     },
     body: JSON.stringify(data),
    })
+   return response
  })
 
 

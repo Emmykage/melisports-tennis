@@ -27,7 +27,7 @@
   --color-info-light: #dce1eb;
   --color-dark: #363949;
   --color-light: rgba(132, 139, 200, 0.18);
-  --color-primary-variant: #111e88;
+  --color-primary-variant: #135092;
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
   --card-border-radius: 2rem;
@@ -360,6 +360,9 @@ form .btn{
   padding: 1.5rem;
   font-size: 0.8rem;
   color: #333;
+}
+.green{
+  color: green;
 }
 
 .right-detail-container {
