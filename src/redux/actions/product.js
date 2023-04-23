@@ -17,14 +17,16 @@ const getProduct = createAsyncThunk("product/getproduct", async (id) => {
 })
 
 const updateProduct = createAsyncThunk("updateProduct", async(id)=>{
-  const response = await fetch(`${baseURL}products/${id}`,{
+  const response = await fetch(`${baseURL}products/${id.id}`,{
     method: 'PUT',
     headers: {
       'Content-type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(id)
   }).then((res) => res.json())
-  return response
+  // console.log("hey")
+  console.log(id)
+  // return response
 })
 
  const addProduct = createAsyncThunk("product/addproduct", async (data) => {

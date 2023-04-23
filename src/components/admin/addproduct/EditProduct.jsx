@@ -1,43 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
+import { getGenders } from '../../../redux/actions/gender';
+import { getLevels } from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 
 const EditProduct = () => {
+    const {editId} = useParams()
+
     const categories = useSelector((state) => state.product_categories.product_categories)
 
     const dispatch = useDispatch();
-    const product = useSelector((state)=> state.product.product)
+    // const product = useSelector((state)=> state.product.product)
+    // const [product, setProduct] = useState([])
     const levels = useSelector((state) => state.level.levels)
     const genders = useSelector((state) => state.gender.genders)
-    const {editId} = useParams()
-     console.log(product)
-    const [formInput, setFormInput] = useState({
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        sku: product.sku,
-        product_category_id: product.product_category_id,
-        grip_size: product.grip_size,
-        head_size: product.head_size,
-        rating: product.rating,
-        weight: product.weight,
-        length: product.length,
-        stiffness: product.stiffness,
-        composition: product.composition,
-        description: product.description
-        
-    })
+    const [formInput, setFormInput] = useState({})
+    // console.log(product)
+
+//    const [formInput, setFormInput] = useState()
     useEffect(()=>{
-        dispatch(getProduct(editId))
+        fetch(`http://localhost:3000/api/v1/products/${editId}`)
+        .then(res => res.json()).then(json => setFormInput(json))
         dispatch(getProductCategories())
-        setFormInput({
-            ...formInput
-        })
-        
+        dispatch(getLevels())
+        dispatch(getGenders())
+            
     }, [])
+
+//     {
+//         name: json.name,
+//         price: json.price,
+//         image: json.image,
+//         level_id: json.level.id,
+//         gender_id: json.gender.id,
+//         sku: json.sku,
+//         product_category_id: json.product_category.id,
+//         grip_size: json.grip_size,
+//         head_size: json.head_size,
+//         rating: json.rating,
+//         weight: json.weight,
+//         length: json.length,
+//         stiffness: json.stiffness,
+//         composition: json.composition,
+//         description: json.description
+        
+//   }
+
+    // console.log(formInput.product_category.id)
    
+
     const handleFormInput = (e) =>{
         setFormInput({
             ...formInput,
@@ -46,7 +59,6 @@ const EditProduct = () => {
 
     }
    
-    
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -69,6 +81,8 @@ const EditProduct = () => {
             
     
         })
+
+        console.log(formInput)
      
        
     }
@@ -89,7 +103,7 @@ const EditProduct = () => {
                     <div className='input-half'>
                         <label> price
                         <input 
-                        value={product.price}
+                        value={formInput.price}
                         name="price"
                          onChange={handleFormInput}
                         type="number" />
@@ -279,3 +293,23 @@ const EditProduct = () => {
 }
 
 export default EditProduct
+
+
+
+
+// {
+//     name: product.name,
+//     price: product.price,
+//     image: product.image,
+//     sku: product.sku,
+//     product_category_id: product.product_category_id,
+//     grip_size: product.grip_size,
+//     head_size: product.head_size,
+//     rating: product.rating,
+//     weight: product.weight,
+//     length: product.length,
+//     stiffness: product.stiffness,
+//     composition: product.composition,
+//     description: product.description
+    
+// }

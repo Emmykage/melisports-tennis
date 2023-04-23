@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { getProducts } from '../../../redux/actions/product';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { getProduct, getProducts } from '../../../redux/actions/product';
 import { openDelModal } from '../../../redux/modal/delModal';
 // import product from '../../../redux/products/product';
 // import './products.css';
 
 const Products = () => {
+  const navigate = useNavigate()
   const {products, status, error} = useSelector((state) => state.products);
 console.log(products)
   const dispatch = useDispatch();
@@ -14,7 +15,11 @@ console.log(products)
   useEffect(() => {
     dispatch(getProducts());
   }, []);
- 
+  const toEdit = (id) => {
+    dispatch(getProduct(id))
+    navigate(`/admin/edit/${id}`)
+
+  }
  
     if (status === "success"){
     
@@ -52,9 +57,9 @@ console.log(products)
           >
               Delete
             </a>
-            <NavLink className="btn btn-outline max-width" to={`/admin/edit/${product.id}`}>
+            <a className="btn btn-outline max-width" onClick={() => toEdit(product.id)}>
               Edit
-            </NavLink>
+            </a>
 
           </div>
         </div>

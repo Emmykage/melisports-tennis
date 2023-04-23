@@ -11,8 +11,6 @@ import { setModal } from '../../redux/modal/categoryModal'
 
 
 const Right = ({handleMenu, auth}) => {
-    console.log(auth)
-    const dispatch = useDispatch()
     
   return (
     <div className='right'>
