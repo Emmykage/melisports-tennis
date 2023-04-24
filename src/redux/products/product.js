@@ -31,8 +31,7 @@ const productsSlice = createSlice({
       ...state,
       status: "success",
       loading: false,
-      products: action.payload,
-      counter: state.counter ++
+      products: action.payload
     }),
     [getProducts.pending]: (state) => ({
       ...state,

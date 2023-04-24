@@ -7,7 +7,7 @@ import { openDelModal } from '../../../redux/modal/delModal';
 
 const Products = () => {
   const navigate = useNavigate()
-  const { counter } = useSelector((state) => state.cart);
+  // const { counter } = useSelector((state) => state.cart);
 
   const {products, status, error} = useSelector((state) => state.products);
 console.log(products, status)
@@ -15,7 +15,7 @@ console.log(products, status)
 
   useEffect(() => {
     dispatch(getProducts());
-  }, [counter]);
+  }, []);
   const toEdit = (id) => {
     dispatch(getProduct(id))
     navigate(`/admin/edit/${id}`)
