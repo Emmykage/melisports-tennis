@@ -17,9 +17,6 @@ const EditProduct = () => {
     const levels = useSelector((state) => state.level.levels)
     const genders = useSelector((state) => state.gender.genders)
     const [formInput, setFormInput] = useState({})
-    // console.log(product)
-
-//    const [formInput, setFormInput] = useState()
     useEffect(()=>{
         fetch(`${baseURL}products/${editId}`)
         .then(res => res.json()).then(json => setFormInput(json))
@@ -29,27 +26,6 @@ const EditProduct = () => {
             
     }, [])
 
-//     {
-//         name: json.name,
-//         price: json.price,
-//         image: json.image,
-//         level_id: json.level.id,
-//         gender_id: json.gender.id,
-//         sku: json.sku,
-//         product_category_id: json.product_category.id,
-//         grip_size: json.grip_size,
-//         head_size: json.head_size,
-//         rating: json.rating,
-//         weight: json.weight,
-//         length: json.length,
-//         stiffness: json.stiffness,
-//         composition: json.composition,
-//         description: json.description
-        
-//   }
-
-    // console.log(formInput.product_category.id)
-   
 
     const handleFormInput = (e) =>{
         setFormInput({
@@ -102,7 +78,7 @@ console.log(formInput)
                         </label>
                     </div>
                     <div className='input-half'>
-                        <label> price
+                        <label> Price
                         <input 
                         value={formInput.price}
                         name="price"
@@ -114,7 +90,7 @@ console.log(formInput)
                 </div>
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">professionalism
+                        <label htmlFor="">Professionalism
                         <select placeholder='professionalism'
                         name="level_id"
                         value={formInput.level_id}
@@ -142,7 +118,7 @@ console.log(formInput)
                 <div className='form-row'>
                     
                     <div className='input-half'>
-                        <label htmlFor=""> head size
+                        <label htmlFor=""> Head size
                         <input
                         name='head_size'
                         value={formInput.head_size}
@@ -152,7 +128,7 @@ console.log(formInput)
                         </label>
                     </div>
                     <div className='input-half'>
-                        <label htmlFor=""> grip size
+                        <label htmlFor=""> Grip size
                         <input
                         name='grip_size'
                         value={formInput.grip_size}
@@ -168,7 +144,7 @@ console.log(formInput)
                 <div className="form-row">
                     <div className='input-half' >
                         <label htmlFor="" className="rating">
-                            rating
+                            Rating
                             <input
                             name='rating'
                             value={formInput.rating}
@@ -192,7 +168,7 @@ console.log(formInput)
 
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">weight
+                        <label htmlFor="">Weight
                         <input
                         name='weight'
                         value={formInput.weight}
@@ -223,7 +199,7 @@ console.log(formInput)
                     </div>
                     <div>
                         <label htmlFor="">
-                            composition
+                            Composition
                             <input 
                             name='composition'
 
@@ -255,7 +231,7 @@ console.log(formInput)
 
                 <div>
                     <label htmlFor="">
-                        strung/unstrung
+                        Strung/unstrung
                     
                     <input type="text"  placeholder="strung"/>
                     </label>
@@ -294,23 +270,3 @@ console.log(formInput)
 }
 
 export default EditProduct
-
-
-
-
-// {
-//     name: product.name,
-//     price: product.price,
-//     image: product.image,
-//     sku: product.sku,
-//     product_category_id: product.product_category_id,
-//     grip_size: product.grip_size,
-//     head_size: product.head_size,
-//     rating: product.rating,
-//     weight: product.weight,
-//     length: product.length,
-//     stiffness: product.stiffness,
-//     composition: product.composition,
-//     description: product.description
-    
-// }
