@@ -89,7 +89,7 @@ const AddProduct = () => {
                         </label>
                     </div>
                     <div className='input-half'>
-                        <label> price
+                        <label> Price
                         <input 
                         value={formInput.price}
                         name="price"
@@ -101,7 +101,7 @@ const AddProduct = () => {
                 </div>
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">professionalism
+                        <label htmlFor="">Professionalism
                         <select placeholder='professionalism'
                         name="level_id"
                         value={formInput.level_id}
@@ -129,7 +129,7 @@ const AddProduct = () => {
                 <div className='form-row'>
                     
                     <div className='input-half'>
-                        <label htmlFor=""> head size
+                        <label htmlFor=""> Head size
                         <input
                         name='head_size'
                         value={formInput.head_size}
@@ -139,7 +139,7 @@ const AddProduct = () => {
                         </label>
                     </div>
                     <div className='input-half'>
-                        <label htmlFor=""> grip size
+                        <label htmlFor=""> Grip size
                         <input
                         name='grip_size'
                         value={formInput.grip_size}
@@ -155,7 +155,7 @@ const AddProduct = () => {
                 <div className="form-row">
                     <div className='input-half' >
                         <label htmlFor="" className="rating">
-                            rating
+                            Rating
                             <input
                             name='rating'
                             value={formInput.rating}
@@ -180,7 +180,7 @@ const AddProduct = () => {
 
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">weight
+                        <label htmlFor="">Weight
                         <input
                         name='weight'
                         value={formInput.weight}
@@ -202,7 +202,7 @@ const AddProduct = () => {
                     </div>
                     <div>
                         <label htmlFor="">
-                            composition
+                        Composition
                             <input 
                             name='composition'
 
