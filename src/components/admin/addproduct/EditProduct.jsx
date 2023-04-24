@@ -5,7 +5,7 @@ import { getGenders } from '../../../redux/actions/gender';
 import { getLevels } from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
-
+import baseURL from '../../../redux/baseURL';
 const EditProduct = () => {
     const {editId} = useParams()
 
@@ -21,7 +21,7 @@ const EditProduct = () => {
 
 //    const [formInput, setFormInput] = useState()
     useEffect(()=>{
-        fetch(`http://localhost:3000/api/v1/products/${editId}`)
+        fetch(`${baseURL}products/${editId}`)
         .then(res => res.json()).then(json => setFormInput(json))
         dispatch(getProductCategories())
         dispatch(getLevels())
