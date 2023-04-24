@@ -39,10 +39,6 @@ const AddProduct = () => {
 
 
     })
-    console.log(levels)
-    console.log(genders)
-    console.log(levels)
-
 
     const handleFormInput = (e) =>{
       
@@ -193,16 +189,7 @@ const AddProduct = () => {
 
                         </label>
                     </div>
-                    {/* <div  className='input-half'>
-                        <label htmlFor=""> Swing weight
-                        <input 
-                        name="swingWeight"
-                        value={formInput.swingWeight}
-                        onChange={handleFormInput}
-                         type="text"  placeholder="swing weight"/>
-
-                        </label>
-                    </div> */}
+         
                     <div  className='input-half'>
                         <label htmlFor="">Stiffness
                         <input

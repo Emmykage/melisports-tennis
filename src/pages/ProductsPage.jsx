@@ -22,7 +22,7 @@ const ProductsPage = () => {
 
   }
 
-
+console.log(products,loading, status )
   useEffect(()=>{
     dispatch(closeNav())
     dispatch(closeList())    

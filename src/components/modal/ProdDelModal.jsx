@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProduct } from '../../redux/actions/product';
+import { updater } from '../../redux/cart/cart';
 import { closeDelModal } from '../../redux/modal/delModal';
 
 const ProdDelModal = (props) => {
@@ -19,6 +20,7 @@ const ProdDelModal = (props) => {
             onClick={() => {
               dispatch(deleteProduct(id));
               dispatch(closeDelModal());
+              dispatch(updater())
             }}
           >
             confirm

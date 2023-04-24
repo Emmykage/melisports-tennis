@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   status: "success",
   error: "none",
+  counter: 0,
   report: null
 };
 
@@ -31,6 +32,7 @@ const productsSlice = createSlice({
       status: "success",
       loading: false,
       products: action.payload,
+      counter: state.counter ++
     }),
     [getProducts.pending]: (state) => ({
       ...state,

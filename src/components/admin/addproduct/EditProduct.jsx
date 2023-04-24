@@ -59,7 +59,8 @@ const EditProduct = () => {
 
     }
    
-
+console.log(levels)
+console.log(formInput)
     const handleSubmit = (e)=>{
         e.preventDefault();
         dispatch(updateProduct(formInput))

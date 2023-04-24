@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Loader from '../../../pages/Loader';
 import { getProduct, getProducts } from '../../../redux/actions/product';
 import { openDelModal } from '../../../redux/modal/delModal';
-// import product from '../../../redux/products/product';
-// import './products.css';
 
 const Products = () => {
   const navigate = useNavigate()
+  const { counter } = useSelector((state) => state.cart);
+
   const {products, status, error} = useSelector((state) => state.products);
-console.log(products)
+console.log(products, status)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [counter]);
   const toEdit = (id) => {
     dispatch(getProduct(id))
     navigate(`/admin/edit/${id}`)
@@ -72,14 +73,14 @@ console.log(products)
       else if(status === "failed"){ 
         return (
         <div>
-          <h2> No internet{error.message}</h2>
+          <h2> {error}</h2>
           </div>
         )
       }
       else{
         return(
-          <><h1 className='warning-center'> loading...</h1></>
-        )
+          <Loader/>
+              )
       }
   
 };
