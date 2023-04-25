@@ -11,7 +11,6 @@ import categogryModal from './modal/categoryModal';
 import delProductSlice from './modal/delModal'
 import productCategory from './product_category/productCategory';
 import delCatSlice from './modal/catDelModal'
-// import productCategorySlice from './productCategory/p/product_category/productCategory';
 import userSlice from './user/user'
 import searchSlice from "./products/searched"
 import navSlice from "./modal/nav"
