@@ -266,6 +266,11 @@ form .btn{
   background: var(--color-theme);
   color: var(--color-white);
 }
+.btn:active, button:active{
+  background-color: white;
+  color: #222629;
+  border: 1px solid #222629;
+}
 .cat-group{
   display: flex;
   flex-wrap: wrap;

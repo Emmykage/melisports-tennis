@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addProduct, getProduct, updateProduct } from "../actions/product";
+import { addProduct, deleteProduct, getProduct, updateProduct } from "../actions/product";
 
 const initialState = {
     product: {},
-    status: false,
+    status: "false",
     loading: false,
-    report: null
+    report: null,
+    updater: false
 }
 
 const productSlice = createSlice({
@@ -27,11 +28,53 @@ const productSlice = createSlice({
         }),
         [addProduct.fulfilled]: (state) => ({
             ...state,
+            loading: false,
+            status: "success",
             report: "product has been added"
           }),
-          [updateProduct.fulfilled]: (state) => ({
+          [addProduct.rejected]: (state) => ({
             ...state,
-            report: "product has been added"
+            loading: false,
+            status: "rejected",
+            report: "product can't be added"
+          }),
+          [addProduct.pending]: (state) => ({
+            ...state,
+            loading: true,
+            status: "waiting",
+            report: "loading..."
+          }),
+          [updateProduct.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            return {
+            ...state,
+            loading: false,
+            status: "success",
+            report: "product has been updated"
+          }},
+          [updateProduct.pending]: (state, action) => {
+            console.log(action.payload)
+            return {
+            ...state,
+            status: "waiting",
+            loading: true,
+            report: "loading..."
+          }},
+          [updateProduct.rejected]: (state, action) => {
+            console.log(action.payload)
+            return {
+            ...state,
+            status: "rejected",
+            loading: false,
+            report: "failed to update"
+          }},
+          [deleteProduct.fulfilled]: (state) => ({
+            ...state,
+            status: "success",
+            loading: false,
+            report: "deleted",
+            updater: !state.updater
+
           })
     }
 })

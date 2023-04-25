@@ -7,17 +7,17 @@ import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
 
 const AddProduct = () => {
-    const categories = useSelector((state) => state.product_categories.product_categories)
+    const {product_categories, updater} = useSelector((state) => state.product_categories)
     const levels = useSelector((state) => state.level.levels)
     const genders = useSelector((state) => state.gender.genders)
-    const {report} = useSelector((state) => state.product)
+    const {loading, status, report} = useSelector((state) => state.product)
 
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(getProductCategories())
         dispatch(getLevels())
         dispatch(getGenders())
-    },[])
+    },[updater])
     const [formInput, setFormInput] = useState({
         name: '',
         price: "",
@@ -34,12 +34,11 @@ const AddProduct = () => {
         stiffness: "",
         composition: "",
         category: "",
-        description: "hey get the best here"
+        description: ""
         
 
 
     })
-
     const handleFormInput = (e) =>{
       
         setFormInput({
@@ -71,7 +70,6 @@ const AddProduct = () => {
             
     
         })
-        console.log(formInput)
        
     }
   return (
@@ -222,7 +220,7 @@ const AddProduct = () => {
                     value={formInput.product_category_id
                     }
                     onChange={handleFormInput}>
-                        {categories.map((category) =>(
+                        {product_categories.map((category) =>(
                             <option value={category.id}>{category.name}</option>
                         ))}
                     </select>
@@ -264,11 +262,12 @@ const AddProduct = () => {
                     </label>
                 </div>
 
-                <button>
+                <button className='btn'>
                     add product
                 </button>
+                {loading ? <p className='normal'> {report}</p> : (status == "success" ? <p className='green'> {report}</p> : <p className='red'> {report}</p> ) }
+
             </form>
-            <p className='green'>{report}</p>
             <Categories/>
      
     </div>

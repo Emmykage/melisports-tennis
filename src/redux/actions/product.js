@@ -24,9 +24,8 @@ const updateProduct = createAsyncThunk("updateProduct", async(id)=>{
     },
     body: JSON.stringify(id)
   }).then((res) => res.json())
-  // console.log("hey")
   console.log(id)
-  // return response
+  return response
 })
 
  const addProduct = createAsyncThunk("product/addproduct", async (data) => {

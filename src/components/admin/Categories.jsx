@@ -2,13 +2,10 @@ import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateCategory } from '../../redux/actions/product_category'
 import EditCategories from './addcategory/EditCategories'
-import { deleteCategory } from '../../redux/actions/product_category'
-import { openDelModal } from '../../redux/modal/delModal'
 import { openDelCatModal } from '../../redux/modal/catDelModal'
 
 const Categories = () => {
   const {product_categories} = useSelector((state) => state.product_categories)
-  console.log(product_categories)
   const dispatch = useDispatch()
   const [toggleEdit, setToggleEdit] = useState(false)
 
@@ -76,8 +73,8 @@ const handleDelete = (id) => {
                  <td>{category.name}</td>
                  <td>{category.level}</td>
                  <td>{category.description.substring(0, 103)}...</td>
-                 <td><a onClick={()=> handleDelete(category.id)}>del</a></td>
-                 <td><a onClick={()=> handleEdit(category.id)}>edit</a></td>
+                 <td><a className='btn' onClick={()=> handleDelete(category.id)}>del</a></td>
+                 <td><a className='btn' onClick={()=> handleEdit(category.id)}>edit</a></td>
 
 
                </tr>

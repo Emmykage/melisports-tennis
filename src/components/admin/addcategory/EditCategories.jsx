@@ -1,6 +1,8 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const EditCategories = (props) => {
+    const {status, loading, report} = useSelector((state) => state.categories)
     const {handleSubmit, edit, handleFormInput} = props
   return (
     <div>
@@ -37,7 +39,7 @@ const EditCategories = (props) => {
                 
                 <div className="form-row">
                     <div >
-                        <label htmlFor="">
+                        <label htmlFor="description">
                             Description
                             <textarea
                             name='description'
@@ -50,10 +52,12 @@ const EditCategories = (props) => {
                 </div>
 
                 
-                <button>
+                <button className='btn'>
                     Update
                 </button>
             </form>
+            {loading ? <p className='normal'> {report}</p> : (status == "success" ? <p className='green'> {report}</p> : <p className='red'> {report}</p> ) }
+
 
         </div>
     </div>

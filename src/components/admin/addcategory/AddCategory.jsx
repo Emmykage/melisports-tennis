@@ -4,6 +4,7 @@ import { addProductCategory } from '../../../redux/actions/product_category'
 
 const AddCategory = () => {
     const dispatch = useDispatch()
+    const {loading, status, report} = useSelector(state => state.product_categories)
    const [formData, setFormData] = useState({
     name: '',
     level: '',
@@ -27,10 +28,11 @@ const AddCategory = () => {
 }
     
 }
+console.log(status)
+
 const handleSubmit = (e) =>{
     e.preventDefault()
     dispatch(addProductCategory(formData))
-    console.log(formData)
 
 }
   return (
@@ -81,9 +83,11 @@ const handleSubmit = (e) =>{
                 </div>
 
                 
-                <button>
+                <button className='btn'>
                     add product
                 </button>
+                {loading ? <p className='normal'> {report}</p> : (status == "success" ? <p className='green'> {report}</p> : <p className='red'> {report}</p> ) }
+
             </form>
 
         </div>

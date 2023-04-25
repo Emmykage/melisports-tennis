@@ -12,14 +12,15 @@ const EditProduct = () => {
     const categories = useSelector((state) => state.product_categories.product_categories)
 
     const dispatch = useDispatch();
-    // const product = useSelector((state)=> state.product.product)
-    // const [product, setProduct] = useState([])
+    const {loading, report, status} = useSelector((state)=> state.product)
     const levels = useSelector((state) => state.level.levels)
     const genders = useSelector((state) => state.gender.genders)
+    const [marker, setMarker] = useState({color: ""})
     const [formInput, setFormInput] = useState({})
     useEffect(()=>{
         fetch(`${baseURL}products/${editId}`)
         .then(res => res.json()).then(json => setFormInput(json))
+        // .catch(err => )
         dispatch(getProductCategories())
         dispatch(getLevels())
         dispatch(getGenders())
@@ -35,8 +36,8 @@ const EditProduct = () => {
 
     }
    
-console.log(levels)
-console.log(formInput)
+console.log(status)
+// console.log(formInput)
     const handleSubmit = (e)=>{
         e.preventDefault();
         dispatch(updateProduct(formInput))
@@ -59,10 +60,7 @@ console.log(formInput)
     
         })
 
-        console.log(formInput)
-     
-       
-    }
+        }
   return (
     <div className='product-form admin'>
         
@@ -260,9 +258,11 @@ console.log(formInput)
                     </label>
                 </div>
 
-                <button>
+                <button className='btn'>
                     update product
                 </button>
+                {loading ? <p className='normal'> {report}</p> : (status == "success" ? <p className='green'> {report}</p> : <p className='red'> {report}</p> ) }
+                
             </form>
      
     </div>
