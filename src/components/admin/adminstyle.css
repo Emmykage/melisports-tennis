@@ -106,7 +106,6 @@ b {
 aside {
   height: 100vh;
 
-  /* background: gray; */
 }
 
 aside .top {
@@ -605,8 +604,8 @@ main .recent-orders a {
 /* =====================MEDIA QUERIES ================================ */
 @media screen and (max-width: 1200px) {
   .admin-container {
-    width: 94%;
-    grid-template-columns: 7rem auto 23rem;
+    width: 97%;
+    grid-template-columns: 5rem auto 16rem;
   }
 
   aside .logo h2 {
@@ -651,6 +650,12 @@ main .recent-orders a {
   main table tbody tr td:first-child {
     display: none;
   }
+}
+@media screen and (max-width: 1108px) {
+    .admin-container {
+      width: 94%;
+      grid-template-columns: 4rem auto 13rem;
+    }
 }
 
 @media screen and (max-width: 768px) {
