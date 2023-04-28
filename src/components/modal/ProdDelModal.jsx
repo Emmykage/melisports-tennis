@@ -20,7 +20,7 @@ const ProdDelModal = (props) => {
             onClick={() => {
               dispatch(deleteProduct(id));
               dispatch(closeDelModal());
-              dispatch(updater())
+              // dispatch(updater())
             }}
           >
             confirm

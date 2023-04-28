@@ -2,13 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from "../baseURL";
 
 
-
-
 const getProducts = createAsyncThunk('products/getProducts', async () => {
   const response = await fetch(`${baseURL}products`).then((res) => res.json())
   return response;
 });
-
 
 
 const getProduct = createAsyncThunk("product/getproduct", async (id) => {
@@ -46,7 +43,7 @@ const updateProduct = createAsyncThunk("updateProduct", async(id)=>{
     headers: {
       'Content-Type': "application/json"
     }
-  }).then((res) => res.json())
+  })
  })
 
 

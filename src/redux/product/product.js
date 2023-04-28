@@ -44,16 +44,14 @@ const productSlice = createSlice({
             status: "waiting",
             report: "loading..."
           }),
-          [updateProduct.fulfilled]: (state, action) => {
-            console.log(action.payload)
+          [updateProduct.fulfilled]: (state) => {
             return {
             ...state,
             loading: false,
             status: "success",
             report: "product has been updated"
           }},
-          [updateProduct.pending]: (state, action) => {
-            console.log(action.payload)
+          [updateProduct.pending]: (state) => {
             return {
             ...state,
             status: "waiting",
@@ -61,21 +59,21 @@ const productSlice = createSlice({
             report: "loading..."
           }},
           [updateProduct.rejected]: (state, action) => {
-            console.log(action.payload)
             return {
             ...state,
             status: "rejected",
             loading: false,
             report: "failed to update"
           }},
-          [deleteProduct.fulfilled]: (state) => ({
+          [deleteProduct.fulfilled]: (state) => {
+            return{
             ...state,
             status: "success",
             loading: false,
             report: "deleted",
             updater: !state.updater
 
-          })
+            }}
     }
 })
 

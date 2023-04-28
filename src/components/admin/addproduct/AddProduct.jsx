@@ -52,24 +52,24 @@ const AddProduct = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         dispatch(addProduct(formInput))
-        setFormInput({
-            name: '',
-            price: "",
-            image: '',
-            sku: "",
-            product_category_id: "",
-            grip_size: "",
-            head_size: '',
-            rating: "",
-            weight: "",
-            length: "",
-            stiffness: "",
-            composition: "",
-            category: "",
-            description: ""
+        // setFormInput({
+        //     name: '',
+        //     price: "",
+        //     image: '',
+        //     sku: "",
+        //     product_category_id: "",
+        //     grip_size: "",
+        //     head_size: '',
+        //     rating: "",
+        //     weight: "",
+        //     length: "",
+        //     stiffness: "",
+        //     composition: "",
+        //     category: "",
+        //     description: ""
             
     
-        })
+        // })
        
     }
   return (
