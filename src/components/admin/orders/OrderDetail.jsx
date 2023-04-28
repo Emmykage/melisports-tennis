@@ -2,12 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-// const Container = styled.div`{
-// width: 100%;
-// height: 20px;
-// background-color: green}`
-
-
 
 const OrderDetail = ({order_prop, isActive}) => {
     const showDetail = {
@@ -18,11 +12,8 @@ const OrderDetail = ({order_prop, isActive}) => {
     const normalLink = "order-detail"
   return (
     <div className={isActive ? activeLink : normalLink } 
-    // style={showDetail}
     >
-        {/* <Container>
-            her
-        </Container> */}
+    
         <h3 className='center'>
             Order number: 00000000101
         </h3>
@@ -78,56 +69,7 @@ const OrderDetail = ({order_prop, isActive}) => {
                 </tr>
             </tbody>
         </table>
-        {/* <ul>
-            <li>
-                <div className='row'>
-                    <div>
-                        <img src='#' alt='product_image' />
-                    </div>
-                    <div className='full-100 flex-space'>
-                        <span>
-                            Pure drive Lite
-                        </span>
-                        <span>
-                            cost
-                        </span>
-                        <span>
-                            2
-                        </span>
-                        <span>
-                           sub total
-                        </span>
-
-
-                    </div>
-                </div>
-
-            </li>
-            <li>
-                <div className='row'>
-                    <div>
-                        <img src='#' alt='product_image' />
-                    </div>
-                    <div className='full-100 flex-space'>
-                        <span>
-                            Pure drive Lite
-                        </span>
-                        <span>
-                            cost
-                        </span>
-                        <span>
-                            2
-                        </span>
-                        <span>
-                           sub total
-                        </span>
-
-
-                    </div>
-                </div>
-
-            </li>
-        </ul> */}
+        
         
     </div>
   )
