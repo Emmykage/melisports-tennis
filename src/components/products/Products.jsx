@@ -5,6 +5,10 @@ import Loader from '../../pages/Loader';
 import './products.css';
 
 const Products = ({products, status, error }) => {
+  let NGNaira = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+});
 
   
   const racketProducts = products.filter((item) => item.product_category.name === "racquet")
@@ -43,7 +47,7 @@ const Products = ({products, status, error }) => {
                              {product.name.substring(0, 15)}
               ...
             </h5>
-            <p> &#x20A6;{product.price}</p>
+            <p> {NGNaira.format(product.price)}</p>
             <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
               Buy
             </NavLink>

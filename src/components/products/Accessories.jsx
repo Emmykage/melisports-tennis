@@ -4,6 +4,10 @@ import Loader from '../../pages/Loader';
 import './products.css';
 
 const Accessories = ({products, status, error}) => {
+  let NGNaira = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+});
 
 
   const accessories = products.filter((item) => item.product_category.name === "accessory")
@@ -29,7 +33,7 @@ const Accessories = ({products, status, error}) => {
    
     <>
 
-      {apparelsProducts.map((product) => (
+      {accessories.map((product) => (
         <div key={product.id} className="products-display">
           <div className="prod-img">
             <NavLink to={`/productdetails/${product.id}`}>
@@ -42,7 +46,7 @@ const Accessories = ({products, status, error}) => {
               {product.name.substring(0, 15)}
               ...
             </h5>
-            <p>{product.price}</p>
+            <p>{NGNaira.format(product.price)}</p>
             <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
               Buy
             </NavLink>

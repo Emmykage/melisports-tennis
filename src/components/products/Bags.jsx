@@ -7,6 +7,10 @@ import product from '../../redux/products/product';
 import './products.css';
 
 const Bags = ({products, status, error}) => {
+  let NGNaira = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+});
  
 
  
@@ -45,7 +49,7 @@ const Bags = ({products, status, error}) => {
               {product.name.substring(0, 15)}
               ...
             </h5>
-            <p>{product.price}</p>
+            <p>{NGNaira.format(product.price)}</p>
             <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
               Buy
             </NavLink>
