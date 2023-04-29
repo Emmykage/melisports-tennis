@@ -6,6 +6,11 @@ import { getProduct, getProducts } from '../../../redux/actions/product';
 import { openDelModal } from '../../../redux/modal/delModal';
 
 const Products = () => {
+  let NGNaira = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+});
+  
   const navigate = useNavigate()
   const {products, status, error} = useSelector((state) => state.products);
   const {updater} = useSelector((state) => state.product);
@@ -50,7 +55,7 @@ const Products = () => {
               {product.name.substring(0, 15)}
               ...
             </h5>
-            <p>{product.price}</p>
+            <p>{NGNaira.format(product.price)}</p>
             <a className="btn btn-outline max-width" 
             onClick={()=> dispatch(openDelModal(product.id))}
           >

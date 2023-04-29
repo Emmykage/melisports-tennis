@@ -27,11 +27,9 @@ const Nav = () => {
   useEffect(()=> {
     dispatch(userLog())
     dispatch(getCarts())
-    // dispatch(updater())
     dispatch(calculateTotal())
   } ,[update])
 
-// console.log(update)
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '')
     dispatch(userLog())
@@ -51,7 +49,9 @@ const Nav = () => {
           <div className="logo">
             
           <div className='img-div'>
-            <img src={logo} alt="" />
+            <NavLink to={'/'}>
+              <img src={logo} alt="" />
+            </NavLink>
            
 
             </div>
