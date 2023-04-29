@@ -16,6 +16,7 @@ import searchSlice from "./products/searched"
 import navSlice from "./modal/nav"
 import levelSlice from "./level/level"
 import genderSlice from "./gender/gender"
+import orderSlice from "./order/order"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   searched_products: searchSlice,
   navToggle: navSlice,
   level: levelSlice,
-  gender: genderSlice
+  gender: genderSlice,
+  orders: orderSlice
 
 });
 

@@ -6,26 +6,29 @@ import { addOrder } from '../redux/actions/orders'
 const Checkout = () => {
     const dispatch = useDispatch()
     const { total, cartItems, counter } = useSelector((state) => state.cart)    
+    const [state, setState] = useState({})
     console.log(cartItems)
+
     const orderItems = cartItems.map((item) => (
         {
             product_id: item.product_id,
             quantity: item.quantity}
         
     ))
-    const orderDetails = useState({
-        order_detail: {
 
-        
+  
+    
+
+    const handlePurchase = (e) => {
+        e.preventDefault();        
+       setState({
+            order_detail: {
+                total: total,
+                order_items_attributes: orderItems
+            }
+        })
       
-            total: total,
-            order_items_attributes: orderItems
-        }
-    })
-    const handlePurchase = () => {
-
-dispatch(addOrder(orderDetails[0]))
-        
+        dispatch(addOrder(state))
     }
   return (
     <div className='checkout'>
@@ -104,57 +107,7 @@ dispatch(addOrder(orderDetails[0]))
                                 </li>
                             </ul>
 
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>price</th>
-                        <th>quantity</th>
-                        <th>Total</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                      {cartItems.map((item) => (
-                        <>
-                     
-                <tr>
-                    <td>
-                        {item.product.name}
-                    </td>
-                    <td>
-                        {item.product.price}
-                    </td>
-                    <td>
-                        {item.quantity}
-                    </td>
-                    <td>
-                        {item.total}
-                    </td>
-                </tr>
-                
-                  </>
-
-                ))}
-                
-                    
-                </tbody>
-            </table>
-           <table>
-            <tbody>
-                <tr>
-                    <td>
-                        shipping
-                    </td>
-                    <td></td>
-                                        <td></td>
-
-                    <td>
-                        #3000
-                    </td>
-                </tr>
-            </tbody>
-           </table> */}
+            
             
         </div>
        

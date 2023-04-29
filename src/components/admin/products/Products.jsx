@@ -20,7 +20,6 @@ const Products = () => {
     navigate(`/admin/edit/${id}`)
 
   }
- console.log(updater)
     if (status === "success"){
     
       if (products.length < 1) {

@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import OrderDetail from './OrderDetail'
 import OrderItem from './OrderItem'
 import "./order.css"
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getOrders } from '../../../redux/actions/orders'
 
 const orders = [{
   id: 1,
@@ -31,23 +34,28 @@ const orders = [{
 }]
 
 const Orders = () => {
+  const dispatch = useDispatch();
 
   const activeLink = ""
+  const {orders, status} = useSelector(state => state.orders)
   const [isDisplayOpen, setIsDisplayOpen] = useState(false)
+  console.log(orders)
+  useEffect(()=>{
+    dispatch(getOrders())
+    
+  },[])
 
   return (
     <div className='order-container'>
         <h1 className='bolder'>
             Page Under construction
         </h1>
-        <div>
+        {/* <div>
           <ul className='order'>
             {orders.map(order => (
             <OrderItem key={order.id} 
             order_prop={order} 
-            // display={isDisplayOpen} 
-            // showDetail={toggleClass} 
-            // isActive={isActive}
+          
             />
 
             ))}
@@ -55,7 +63,7 @@ const Orders = () => {
 
 
           </ul>
-        </div>
+        </div> */}
     </div>
   )
 }

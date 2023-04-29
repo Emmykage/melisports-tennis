@@ -22,7 +22,17 @@ const response = await fetch(`${baseURL}order_details`, {
     },
     body: JSON.stringify(data)
 })
-console.log(response, data)
 return response
 })
-export { addOrder}
+
+const getOrders = createAsyncThunk('orders/get_orders', async () => {
+    const response = await fetch(`${baseURL}order_details`, {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    }).then((res) => res.json())
+    return response;
+  });
+export { addOrder, getOrders}
