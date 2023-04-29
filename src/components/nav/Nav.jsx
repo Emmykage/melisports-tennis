@@ -48,13 +48,9 @@ const Nav = () => {
           </div>
           <div className="logo">
             
-          <div className='img-div'>
-            <NavLink to={'/'}>
+            <NavLink className='img-div' to={'/'}>
               <img src={logo} alt="" />
             </NavLink>
-           
-
-            </div>
           </div>
 
           <div className="nav-div flex-center space">
