@@ -20,8 +20,8 @@ const updateProduct = createAsyncThunk("updateProduct", async(id)=>{
       'Content-type': 'application/json'
     },
     body: JSON.stringify(id)
-  }).then((res) => res.json())
-  console.log(id)
+  })
+  
   return response
 })
 

@@ -123,6 +123,11 @@ aside .top {
   margin: 100px auto;
   width: 80%;
 }
+.product-form label{
+display: flex;
+justify-content: space-between;
+padding-right: 12px;
+}
 
 .product-form form .form-row {
   display: flex;

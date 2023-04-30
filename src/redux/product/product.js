@@ -18,20 +18,31 @@ const productSlice = createSlice({
             loading: false,
             product: action.payload
         }),
-        [getProduct.pending]: (state, action) =>({
+        [getProduct.pending]: (state) =>({
             ...state,
             loading: true
         }),
-        [getProduct.rejected]: (state, action) =>({
+        [getProduct.rejected]: (state) =>({
             ...state,
-            // loading: false
         }),
-        [addProduct.fulfilled]: (state) => ({
-            ...state,
-            loading: false,
-            status: "success",
-            report: "product has been added"
-          }),
+        [addProduct.fulfilled]: (state, action) => {
+          if(action.payload.ok){
+            return{
+              ...state,
+              loading: false,
+              status: "success",
+              report: "product has been added"
+            }
+
+          }else{
+            return{
+              ...state,
+              loading: false,
+              status: "rejected",
+              report: "failed to created product"
+            }
+          }
+        },
           [addProduct.rejected]: (state) => ({
             ...state,
             loading: false,
@@ -45,11 +56,19 @@ const productSlice = createSlice({
             report: "loading..."
           }),
           [updateProduct.fulfilled]: (state) => {
+            if(action.payload.ok){
             return {
             ...state,
             loading: false,
             status: "success",
             report: "product has been updated"
+          }}else{
+            return {
+              ...state,
+              loading: false,
+              status: "rejected",
+              report: "failed to update"
+            }
           }},
           [updateProduct.pending]: (state) => {
             return {
@@ -58,7 +77,7 @@ const productSlice = createSlice({
             loading: true,
             report: "loading..."
           }},
-          [updateProduct.rejected]: (state, action) => {
+          [updateProduct.rejected]: (state) => {
             return {
             ...state,
             status: "rejected",

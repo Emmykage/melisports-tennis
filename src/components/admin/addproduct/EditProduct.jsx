@@ -15,7 +15,7 @@ const EditProduct = () => {
     const {loading, report, status} = useSelector((state)=> state.product)
     const levels = useSelector((state) => state.level.levels)
     const genders = useSelector((state) => state.gender.genders)
-    const [marker, setMarker] = useState({color: ""})
+    // const [marker, setMarker] = useState({color: ""})
     const [formInput, setFormInput] = useState({})
     useEffect(()=>{
         fetch(`${baseURL}products/${editId}`)
@@ -67,28 +67,28 @@ console.log(status)
             <form onSubmit={handleSubmit}>
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label> Product Name
+                        <label> <span>Product Name</span>  <span>*</span>                        </label>
+
                             <input 
                             value={formInput.name}
                             name="name"
                             onChange={handleFormInput}
                             type="text" />
-                        </label>
                     </div>
                     <div className='input-half'>
-                        <label> Price
+                        <label> <span>Price</span>                         </label>
+
                         <input 
                         value={formInput.price}
                         name="price"
                          onChange={handleFormInput}
                         type="number" />
 
-                        </label>
                     </div>
                 </div>
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">Professionalism
+                        <label htmlFor=""><span>Professionalism</span>  </label>
                         <select placeholder='professionalism'
                         name="level_id"
                         value={formInput.level_id}
@@ -97,10 +97,11 @@ console.log(status)
                                 <option value={level.id}>{level.stage}</option>
                         ))}
                         </select>
-                    </label>
+                    
                     </div>
                     <div className='input-half'>
-                    <label htmlFor="">Gender
+                    <label htmlFor=""><span>Gender</span>  </label>
+
                     <select placeholder='gender' 
                     name="gender_id" 
                     value={formInput.gender_id}
@@ -109,31 +110,30 @@ console.log(status)
         <option value={gender.id}>{gender.name}</option>
     ))}
 </select>
-</label>
                     </div>
                 
                 </div>
                 <div className='form-row'>
                     
                     <div className='input-half'>
-                        <label htmlFor=""> Head size
+                        <label htmlFor=""><span>Head size </span>                         </label>
+
                         <input
                         name='head_size'
                         value={formInput.head_size}
                         onChange={handleFormInput} 
                         type="number"/>
 
-                        </label>
                     </div>
                     <div className='input-half'>
-                        <label htmlFor=""> Grip size
+                        <label htmlFor=""> <span>Grip size</span> 
+                        </label>
                         <input
                         name='grip_size'
                         value={formInput.grip_size}
                         onChange={handleFormInput} 
                         type="text"/>
 
-                        </label>
                     </div>
                 
                 </div>
@@ -142,31 +142,31 @@ console.log(status)
                 <div className="form-row">
                     <div className='input-half' >
                         <label htmlFor="" className="rating">
-                            Rating
+                            <span>Rating</span>                         </label>
+
                             <input
                             name='rating'
                             value={formInput.rating}
                             onChange={handleFormInput}
                              type="text" />
 
-                        </label>
                     </div>
                     <div className='input-half'>
-                        <label htmlFor=""> Length
+                        <label htmlFor=""><span>Length</span>                         </label>
+
                         <input
                         name="length"
                         value={formInput.length}
                         onChange={handleFormInput}
                          type="text"/>
 
-                        </label>
                     </div>
                 
                 </div>
 
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">Weight
+                        <label htmlFor=""><span>Weight</span> 
                         <input
                         name='weight'
                         value={formInput.weight}
@@ -176,41 +176,43 @@ console.log(status)
                         </label>
                     </div>
                     <div  className='input-half'>
-                        <label htmlFor=""> Swing weight
+                        <label htmlFor=""><span>Swing weight  </span>                        </label>
+
                         <input 
                         name="swingWeight"
                         value={formInput.swingWeight}
                         onChange={handleFormInput}
                          type="text"  placeholder="swing weight"/>
 
-                        </label>
                     </div>
                     <div  className='input-half'>
-                        <label htmlFor="">Stiffness
+                        <label htmlFor=""><span>Stiffness</span>                          </label>
+
                         <input
                         name='stiffness'
                         value={formInput.stiffness} 
                         onChange={handleFormInput}
                         type="text"  placeholder="stiffness"/>
 
-                        </label>
                     </div>
                     <div>
                         <label htmlFor="">
-                            Composition
-                            <input 
+                            <span>                            Composition
+</span>
+</label>
+ <input 
                             name='composition'
 
                             value={formInput.composition}
                             onChange={handleFormInput}
                             type="text"  placeholder="composition"/>
 
-                        </label>
                     </div>
 
                 </div>
                 <div className='text-form-container'>
-                    <label htmlFor="">Select product category
+                    <label htmlFor=""><span>Select product category</span>                     </label>
+
 
                     <select placeholder='product category'
                     value={formInput.product_category_id}
@@ -220,7 +222,6 @@ console.log(status)
                         ))}
 
                     </select>
-                    </label>
                 </div>
 
 
@@ -228,34 +229,35 @@ console.log(status)
 
 
                 <div>
-                    <label htmlFor="">
-                        Strung/unstrung
+                    <label htmlFor=""> <span>                        Strung/unstrung
+                    Strung/unstrung
+</span>                    </label>
+
                     
                     <input type="text"  placeholder="strung"/>
-                    </label>
                 </div>
              <div>
-                    <label htmlFor="">
-                        Image 1
+                    <label htmlFor=""><span>                        Image
+</span>                    </label>
+
                     
                     <input type="url"  
                     name='image'
                     onChange={handleFormInput}
                     value={formInput.image}
                     placeholder="image url"/>
-                    </label>
                 </div>
                  
 
                 <div>
-                    <label htmlFor=""> Description
+                    <label htmlFor=""><span>Description</span>                      </label>
+
                     <textarea
                      name="description" 
                      value={formInput.description}
                      onChange={handleFormInput}
                     ></textarea>
 
-                    </label>
                 </div>
 
                 <button className='btn'>

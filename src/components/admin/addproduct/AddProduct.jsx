@@ -52,24 +52,24 @@ const AddProduct = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         dispatch(addProduct(formInput))
-        // setFormInput({
-        //     name: '',
-        //     price: "",
-        //     image: '',
-        //     sku: "",
-        //     product_category_id: "",
-        //     grip_size: "",
-        //     head_size: '',
-        //     rating: "",
-        //     weight: "",
-        //     length: "",
-        //     stiffness: "",
-        //     composition: "",
-        //     category: "",
-        //     description: ""
+        setFormInput({
+            name: '',
+            price: "",
+            image: '',
+            sku: "",
+            product_category_id: "",
+            grip_size: "",
+            head_size: '',
+            rating: "",
+            weight: "",
+            length: "",
+            stiffness: "",
+            composition: "",
+            category: "",
+            description: ""
             
     
-        // })
+        })
        
     }
   return (
@@ -78,28 +78,28 @@ const AddProduct = () => {
             <form onSubmit={handleSubmit}>
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label> Product Name
+                        <label><span>Product Name</span>  <span>*</span>   </label>
                             <input 
                             value={formInput.name}
                             name="name"
                             onChange={handleFormInput}
-                            type="text" placeholder="product name"/>
-                        </label>
+                            type="text" placeholder="product name" required/>
+                      
                     </div>
                     <div className='input-half'>
-                        <label> Price
+                        <label><span>Price</span>  <span>*</span></label>
                         <input 
                         value={formInput.price}
                         name="price"
                          onChange={handleFormInput}
-                        type="number" placeholder='price'/>
+                        type="number" placeholder='price' required/>
 
-                        </label>
+                        
                     </div>
                 </div>
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">Professionalism
+                        <label htmlFor="">Professionalism  </label>
                         <select placeholder='professionalism'
                         name="level_id"
                         value={formInput.level_id}
@@ -108,10 +108,10 @@ const AddProduct = () => {
                                 <option value={level.id}>{level.stage}</option>
                         ))}
                         </select>
-                    </label>
+                   
                     </div>
                     <div className='input-half'>
-                    <label htmlFor="">Gender
+                    <label htmlFor="">Gender </label>
                     <select placeholder='gender' 
                     name="gender_id" 
                     value={formInput.gender_id}
@@ -120,31 +120,31 @@ const AddProduct = () => {
         <option value={gender.id}>{gender.name}</option>
     ))}
 </select>
-</label>
+
                     </div>
                 
                 </div>
                 <div className='form-row'>
                     
                     <div className='input-half'>
-                        <label htmlFor=""> Head size
+                        <label htmlFor=""> Head size  </label>
                         <input
                         name='head_size'
                         value={formInput.head_size}
                         onChange={handleFormInput} 
                         type="number" placeholder='headsize'/>
 
-                        </label>
+                       
                     </div>
                     <div className='input-half'>
-                        <label htmlFor=""> Grip size
+                        <label htmlFor=""> Grip size   </label>
                         <input
                         name='grip_size'
                         value={formInput.grip_size}
                         onChange={handleFormInput} 
                         type="text" placeholder='grip size'/>
 
-                        </label>
+                      
                     </div>
                 
                 </div>
@@ -153,7 +153,7 @@ const AddProduct = () => {
                 <div className="form-row">
                     <div className='input-half' >
                         <label htmlFor="" className="rating">
-                            Rating
+                            Rating   </label>
                             <input
                             name='rating'
                             value={formInput.rating}
@@ -161,46 +161,47 @@ const AddProduct = () => {
                             onChange={handleFormInput}
                              type="number" />
 
-                        </label>
+                      
                     </div>
                     <div className='input-half'>
-                        <label htmlFor=""> Length
+                        <label htmlFor=""> Length            </label>
                         <input
                         name="length"
                         value={formInput.length}
                         onChange={handleFormInput}
                          type="text"   placeholder="lenght"/>
 
-                        </label>
+             
                     </div>
                 
                 </div>
 
                 <div className='form-row'>
                     <div className='input-half'>
-                        <label htmlFor="">Weight
+                        <label htmlFor="">Weight     </label>
                         <input
                         name='weight'
                         value={formInput.weight}
                         onChange={handleFormInput} 
                         type="text"  placeholder="weight"/>
 
-                        </label>
+                    
                     </div>
          
                     <div  className='input-half'>
-                        <label htmlFor="">Stiffness
+                        <label htmlFor="">Stiffness  </label>
                         <input
                         name='stiffness'
                         value={formInput.stiffness} 
                         onChange={handleFormInput}
                         type="text"  placeholder="stiffness"/>
 
-                        </label>
+                       
                     </div>
                     <div>
                         <label htmlFor="">
-                        Composition
+                        Composition                         </label>
+
                             <input 
                             name='composition'
 
@@ -208,23 +209,22 @@ const AddProduct = () => {
                             onChange={handleFormInput}
                             type="text"  placeholder="composition"/>
 
-                        </label>
                     </div>
 
                 </div>
                 <div className='text-form-container'>
-                    <label htmlFor="">Select product category
+                    <label htmlFor=""><span> Select product category</span> <span>*</span> </label>
 
                     <select placeholder='product category'
                     name="product_category_id"
                     value={formInput.product_category_id
                     }
-                    onChange={handleFormInput}>
+                    onChange={handleFormInput} required>
                         {product_categories.map((category) =>(
                             <option value={category.id}>{category.name}</option>
                         ))}
                     </select>
-                    </label>
+                   
                 </div>
 
 
@@ -233,33 +233,34 @@ const AddProduct = () => {
 
                 <div>
                     <label htmlFor="">
-                        strung/unstrung
+                        strung/unstrung   </label>
                     
                     <input type="text"  placeholder="strung"/>
-                    </label>
+                  
                 </div>
              <div>
-                    <label htmlFor="">
-                        Image 1
-                    
+                    <label htmlFor=""> <span>image</span>
+                        
+                        <span>*</span>
+                        </label>
                     <input type="url"  
                     name='image'
                     onChange={handleFormInput}
                     value={formInput.image}
-                    placeholder="image url"/>
-                    </label>
+                    placeholder="image url" required/>
+                   
                 </div>
                  
 
                 <div>
-                    <label htmlFor=""> Description
+                    <label htmlFor=""> <span>Description</span>   <span>*</span> </label>
                     <textarea
                      name="description" 
                      onChange={handleFormInput}
                      value={formInput.description}
-                     placeholder='Enter description'></textarea>
+                     placeholder='Enter description' required></textarea>
 
-                    </label>
+                   
                 </div>
 
                 <button className='btn'>
