@@ -9,10 +9,13 @@ import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 
 const ProductDetails = () => {
+  let NGNaira = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+});
   const dispatch = useDispatch();
   const [count, setCount] = useState(1)
   const product = useSelector((state) => state.product.product)
-  // const {cartItems, counter, total, isLoading} = useSelector((state)=> state.cart)
   const {id} = useParams();
   useEffect(()=>{
     dispatch(closeNav())
@@ -46,7 +49,7 @@ return (
         <div className='price'>
        
           <span>
-          &#x20A6;{product.price}
+          {NGNaira.format(product.price)}
           </span>
          
         </div>
@@ -55,7 +58,7 @@ return (
           Head size:
           </span>
          
-          <span>{product.head_size}</span>
+          <span>{product.head_size} &#13216;</span>
         </div>
         <div>
 
@@ -65,7 +68,7 @@ return (
           </span>
           <span>
             {' '}
-            {product.grip_size}
+            {product.grip_size} 
           </span>
         
         </div>

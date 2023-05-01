@@ -11,6 +11,8 @@ import {MdOutlineReport} from "react-icons/md"
 import {FiSettings} from "react-icons/fi"
 import {IoAddSharp} from "react-icons/io5"
 import {BiLogOut} from "react-icons/bi"
+import logo from "../../assets/images/logo/melisport_1.png"
+
 import { NavLink, useNavigate } from 'react-router-dom'
 const SideNav = (props) => {
   const {showMenu, handleMenu} = props
@@ -28,8 +30,12 @@ const SideNav = (props) => {
   
     <aside className={showMenu ? "display" : "" }>
         <div className='top'>
-          <div className='logo'>
-            <h2>MeliSports</h2>
+          
+          <div className="logo">
+            
+            <NavLink className='img-div' to={'/'}>
+              <img src={logo} alt="" />
+            </NavLink>
           </div>
           <div className='close'>
             <span onClick={handleMenu}>

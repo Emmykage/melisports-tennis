@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiMenu } from 'react-icons/fi';
 import { AiOutlineClose} from 'react-icons/ai'
 // import {  } from 'react';
-import { calculateTotal, updater } from '../../redux/cart/cart';
+import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import { closeNav, openNav } from '../../redux/modal/nav';
