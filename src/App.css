@@ -278,7 +278,7 @@ form .btn{
 .cat-group{
   display: flex;
   flex-wrap: wrap;
-  max-width: 480px;
+  max-width: 780px;
   row-gap: 1rem;
   justify-content: space-around;
 }

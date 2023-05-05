@@ -53,25 +53,39 @@ return (
           </span>
          
         </div>
-        <div className='headsize'>
+        {product.head_size && <div className='headsize'>
           <span>
           Head size:
           </span>
          
           <span>{product.head_size} &#13216;</span>
-        </div>
-        <div>
+        </div> }
+        
+        {product.grip_size && <div>
 
        
-        <span>
-          Grip size:
-          </span>
-          <span>
-            {' '}
-            {product.grip_size} 
-          </span>
+<span>
+  Grip size:
+  </span>
+  <span>
+    {' '}
+    {product.grip_size} 
+  </span>
+
+</div> }
+{product.colour && <div>
+
+       
+<span>
+  colour:
+  </span>
+  <span>
+    {' '}
+    {product.colour} 
+  </span>
+
+</div> }
         
-        </div>
 
         <div className='flex-center center '>
           <div className='btn-div'>

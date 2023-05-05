@@ -34,7 +34,10 @@ const AddProduct = () => {
         stiffness: "",
         composition: "",
         category: "",
-        description: ""
+        description: "",
+        colour: "",
+        size: "",
+        tension: ""
         
 
 
@@ -61,12 +64,16 @@ const AddProduct = () => {
             grip_size: "",
             head_size: '',
             rating: "",
+            colour: "",
             weight: "",
             length: "",
             stiffness: "",
             composition: "",
             category: "",
-            description: ""
+            description: "",
+            size: "",
+            tension: "",
+            colour: ""
             
     
         })
@@ -127,7 +134,7 @@ const AddProduct = () => {
                 <div className='form-row'>
                     
                     <div className='input-half'>
-                        <label htmlFor=""> Head size  </label>
+                        <label htmlFor=""> Head size / Shoe size  </label>
                         <input
                         name='head_size'
                         value={formInput.head_size}
@@ -153,13 +160,13 @@ const AddProduct = () => {
                 <div className="form-row">
                     <div className='input-half' >
                         <label htmlFor="" className="rating">
-                            Rating   </label>
+                            Colour   </label>
                             <input
-                            name='rating'
-                            value={formInput.rating}
-                            max="5"
+                            name='color'
+                            value={formInput.colour}
+                            // max="5"
                             onChange={handleFormInput}
-                             type="number" />
+                             type="text" />
 
                       
                     </div>
@@ -189,12 +196,12 @@ const AddProduct = () => {
                     </div>
          
                     <div  className='input-half'>
-                        <label htmlFor="">Stiffness  </label>
+                        <label htmlFor="">tension  </label>
                         <input
                         name='stiffness'
-                        value={formInput.stiffness} 
+                        value={formInput.tension} 
                         onChange={handleFormInput}
-                        type="text"  placeholder="stiffness"/>
+                        type="text"  placeholder="tension"/>
 
                        
                     </div>

@@ -28,10 +28,10 @@ const ApparelsPage = () => {
             <Hero />
             <div className='prod-page'>
             <div className='cat-group'>
-        <button className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</button>
-        <button className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</button>
-        <button className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</button>
-        <button className='btn' onClick={()=> dispatch(getProducts())}>All racquets</button>
+        <button className='btn' onClick={()=> handleFilteredProducts('men')}> Men</button>
+        <button className='btn' onClick={()=> handleFilteredProducts("women")}> Women</button>
+        <button className='btn' onClick={()=> handleFilteredProducts("kids")}> Kids</button>
+        <button className='btn' onClick={()=> dispatch(getProducts())}>All Apparels</button>
      
 
       </div>
