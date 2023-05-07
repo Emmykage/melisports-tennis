@@ -27,6 +27,7 @@ const ProductDetails = () => {
 
     dispatch(updater())
   }
+  console.log(product)
   const increase = () => {
 
     setCount(setPrev => setPrev+1 )
@@ -37,14 +38,14 @@ const ProductDetails = () => {
 return (
   <div className='p-container'>
     <div className="row detail-container">
-      <div className="left-detail-container col-md-6 border">
+      <div className="left-detail-container col-md-6 border-white">
 
         <div className="product-display-image">
 
           <img src={product.image} alt="yeo" />
         </div>
       </div>
-      <div className="col-md-6 right-detail-container  prev-details border">
+      <div className="col-md-6 right-detail-container  prev-details border-white">
         <h2 className='m-h4'>{product.name}</h2>
         <div className='price'>
        
@@ -105,8 +106,96 @@ return (
       </div>
 
     </div>
+    <div className='technical-details'>
+      <h3>Technical Characteristics</h3>
+      <div className='Xteristic'>
+        {product.head_size && 
+        <div className=''>
+          <div className='col-6'>
+            <span className='x-bold'>Head Size</span>
+          </div>
+          <div className='col-6'>
+            <span>{product.head_size} &#13216;</span>
+          </div>
+        </div> }
+        {product.weight &&
+        <div>
+          <div className='col-6'>
+          <span>weight</span>
 
-    <div className="description-details border">
+
+          </div>
+          <div className='col-6'>
+          <span>{product.weight} g +/-7 g</span>
+
+          </div>
+        </div>
+}
+        {product.size &&
+        <div>
+          <div className='col-6'>
+          <span>Size</span>
+
+          </div>
+          <div className='col-6'>
+          <span>{product.size}</span>
+
+          </div>
+        </div>}
+        {product.length && 
+        <div>
+          <div className='col-6'>
+          <span>Length </span>
+
+          </div>
+          <div className='col-6'>
+          <span>{product.length} mm</span>
+
+          </div>
+        </div>
+}
+{product.composition && 
+        <div>
+          <div className='col-6'>
+          <span>Composition </span>
+
+          </div>
+          <div className='col-6'>
+          <span>{product.composition}</span>
+
+          </div>
+        </div>
+}
+{product.strung && 
+        <div>
+          <div>
+          <span>Strung/Unstrung</span>
+
+
+          </div>
+          <div  className='col-6'>
+          <span>{product.strung}</span>
+
+          </div>
+        </div>
+        }
+        {product.tension &&
+        <div>
+
+          <div className='col-6'>
+          <span>Recommended Tension</span>
+
+
+          </div>
+          <div className='col-6'>
+          <span>{product.tension} kg</span>
+
+          </div>
+        </div>}
+      </div>
+    </div>
+
+    <div className="description-details m-h4">
       <h2>Description</h2>
       <p>
       {product.description}
@@ -114,6 +203,7 @@ return (
       </p>
  
     </div>
+    
   </div>
 )};
 

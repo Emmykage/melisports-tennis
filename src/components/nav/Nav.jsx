@@ -63,11 +63,11 @@ const Nav = () => {
               
               <li className="nav-item"><NavLink to="/">Home</NavLink></li>
               <li className="nav-item">
-                <NavLink to="/racquets" className={"hey"}>Racquets </NavLink>
+                <NavLink to="/racquets" className={"hey"}>Rackets </NavLink>
                 <div className="link-items flex">
                   <div className=''>
                     <h3>
-                      Racquets &
+                    Rackets &
                       <br />
                       {' '}
                       Paddles
@@ -75,13 +75,13 @@ const Nav = () => {
                   </div>
                   <ul>
 
-                    <h4>Tennis Racquets</h4>
+                    <h4>Tennis Rackets</h4>
                     <li><a href="#">Babolat</a></li>
                     <li><a href="#">Wilson</a></li>
                   </ul>
                   <ul>
 
-                    <h4>Badminton Racquets</h4>
+                    <h4>Badminton Rackets</h4>
                     <li><a href="#">Babolat</a></li>
                     <li><a href="#">Wilson</a></li>
                   </ul>

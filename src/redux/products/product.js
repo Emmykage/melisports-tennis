@@ -39,7 +39,7 @@ const productsSlice = createSlice({
       status: "waiting",
     }),
     [getProducts.rejected]: (state, action) => {
-      console.log(action.payload)
+      // console.log(action.payload)
       return     {
       ...state,
       error: "No Internet Connection",

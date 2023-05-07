@@ -8,13 +8,14 @@ import { getProducts } from '../redux/actions/product';
 import { filterProducts } from '../redux/products/product';
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
+import Loader from './Loader';
 
 const ProductsPage = () => {
   const dispatch = useDispatch()
-  const {products, loading, status, error} = useSelector((state) => state.products);
-  const {product_categories} = useSelector((state)=> state.product_categories)
-  // const category = product_categories.find((cat) => cat.name === "racquet") 
+  const {products, status, error} = useSelector((state) => state.products);
+  const {product_categories, loading} = useSelector((state)=> state.product_categories)
 
+  const category = product_categories.find((cat) => cat.name === "racquet") 
 
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase()
@@ -22,15 +23,23 @@ const ProductsPage = () => {
 
   }
 
-console.log(products,loading, status )
+console.log(loading, product_categories )
   useEffect(()=>{
     dispatch(closeNav())
     dispatch(closeList())    
     dispatch(getProducts());
+    dispatch(getProductCategories())
 
 
   },[])
-  
+  if(loading){
+    console.log(loading)
+    return(
+      <Loader/>
+    )
+  }else{
+ 
+    console.log(product_categories)
 
   return(
   <div className="product-container">
@@ -41,7 +50,7 @@ console.log(products,loading, status )
         <button className='btn' onClick={()=> handleFilteredProducts('pure aero')}> Pure Aero</button>
         <button className='btn' onClick={()=> handleFilteredProducts("pure strike")}> Pure strike</button>
         <button className='btn' onClick={()=> handleFilteredProducts("boost")}> boost</button>
-        <button className='btn' onClick={()=> dispatch(getProducts())}>All racquets</button>
+        <button className='btn' onClick={()=> dispatch(getProducts())}>All rackets</button>
      
 
       </div>
@@ -58,10 +67,9 @@ console.log(products,loading, status )
         </div>
 
            <div className="product-details color-grey">
-            <h3> BABOLAT TENNIS RACQUET BRANDS</h3>
+            <h3> BABOLAT TENNIS RACKET BRANDS</h3>
             <p>
-                {/* {category.name} */}
-                {/* { category.description} */}
+                { category.description}
 
              
             </p>
@@ -74,6 +82,8 @@ console.log(products,loading, status )
     </div>
   </div>
 )
+   
+}
   };
 
 export default ProductsPage;

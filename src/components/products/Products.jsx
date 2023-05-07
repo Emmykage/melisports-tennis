@@ -23,7 +23,7 @@ const Products = ({products, status, error }) => {
         <div>
           <header>
             
-            <h1 className='warning-center'> Please Add some Racquets to your collection</h1>
+            <h1 className='warning-center'> Please Add some Rackets to your collection</h1>
           </header>
         </div>
       );

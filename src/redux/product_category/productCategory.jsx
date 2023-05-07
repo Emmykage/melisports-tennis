@@ -2,9 +2,10 @@ import { addProductCategory, deleteCategory, getProductCategories, updateCategor
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
+    loading: true,
+
     product_categories: [],
     status: "failed",
-    loading: false,
     report: null,
     updater: true
 }
@@ -28,7 +29,7 @@ const productCategorySlice = createSlice({
             ...state,
             status: "rejected",
             report: "waiting",
-            loading: true
+            loading: false
         }),
         [addProductCategory.fulfilled]: (state) => {
             return{
