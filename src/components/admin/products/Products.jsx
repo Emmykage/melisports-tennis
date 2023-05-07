@@ -6,14 +6,14 @@ import { getProduct, getProducts } from '../../../redux/actions/product';
 import { openDelModal } from '../../../redux/modal/delModal';
 
 const Products = () => {
-  let NGNaira = new Intl.NumberFormat('en-NG', {
+  const NGNaira = new Intl.NumberFormat('en-NG', {
     style: 'currency',
     currency: 'NGN',
-});
-  
-  const navigate = useNavigate()
-  const {products, status, error} = useSelector((state) => state.products);
-  const {updater} = useSelector((state) => state.product);
+  });
+
+  const navigate = useNavigate();
+  const { products, status, error } = useSelector((state) => state.products);
+  const { updater } = useSelector((state) => state.product);
 
   const dispatch = useDispatch();
 
@@ -21,71 +21,71 @@ const Products = () => {
     dispatch(getProducts());
   }, [updater]);
   const toEdit = (id) => {
-    dispatch(getProduct(id))
-    navigate(`/admin/edit/${id}`)
-
-  }
-    if (status === "success"){
-    
-      if (products.length < 1) {
-        return (
-          <div>
-            <header>
-              
-              <h1 className='warning-center'> Please Add some products to your collection</h1>
-            </header>
-          </div>
-        );
-      }else{
-
+    dispatch(getProduct(id));
+    navigate(`/admin/edit/${id}`);
+  };
+  if (status === 'success') {
+    if (products.length < 1) {
       return (
-   
-    <>
-
-      {products.map((product) => (
-        <div key={product.id} className="products-display">
-          <div className="prod-img">
-            <a>
-            <img src={product.image} alt="" />
-            </a>
-            
-          </div>
-          <div className="prod-details">
-            <h5 className="color-black">
-              {product.name.substring(0, 15)}
-              ...
-            </h5>
-            <p>{NGNaira.format(product.price)}</p>
-            <a className="btn btn-outline max-width" 
-            onClick={()=> dispatch(openDelModal(product.id))}
-          >
-              Delete
-            </a>
-            <a className="btn btn-outline max-width" onClick={() => toEdit(product.id)}>
-              Edit
-            </a>
-
-          </div>
-        </div>
-
-      ))}
-
-    </>
-      )}
-      }
-      else if(status === "failed"){ 
-        return (
         <div>
-          <h2> {error}</h2>
+          <header>
+
+            <h1 className="warning-center"> Please Add some products to your collection</h1>
+          </header>
+        </div>
+      );
+    }
+
+    return (
+
+      <>
+
+        {products.map((product) => (
+          <div key={product.id} className="products-display">
+            <div className="prod-img">
+              <a>
+                <img src={product.image} alt="" />
+              </a>
+
+            </div>
+            <div className="prod-details">
+              <h5 className="color-black">
+                {product.name.substring(0, 15)}
+                ...
+              </h5>
+              <p>{NGNaira.format(product.price)}</p>
+              <a
+                className="btn btn-outline max-width"
+                onClick={() => dispatch(openDelModal(product.id))}
+              >
+                Delete
+              </a>
+              <a className="btn btn-outline max-width" onClick={() => toEdit(product.id)}>
+                Edit
+              </a>
+
+            </div>
           </div>
-        )
-      }
-      else{
-        return(
-          <Loader/>
-              )
-      }
-  
+
+        ))}
+
+      </>
+    );
+  }
+  if (status === 'failed') {
+    return (
+      <div>
+        <h2>
+          {' '}
+          {error}
+        </h2>
+      </div>
+    );
+  }
+
+  return (
+    <Loader />
+  );
 };
 
 export default Products;

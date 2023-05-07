@@ -1,20 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getLevels } from "../actions/misc";
+import { createSlice } from '@reduxjs/toolkit';
+import { getLevels } from '../actions/misc';
 // import { getProductCategories } from "../actions/product_category";
 const initialState = {
-    levels: []
-}
+  levels: [],
+};
 
 const levelSlice = createSlice({
-    name: "level",
-    initialState,
-    extraReducers: {
-        [getLevels.fulfilled]: (state, action) => ({
-            ...state,
-            levels: action.payload
-        })
-    }
+  name: 'level',
+  initialState,
+  extraReducers: {
+    [getLevels.fulfilled]: (state, action) => ({
+      ...state,
+      levels: action.payload,
+    }),
+  },
 
-})
+});
 
-export default levelSlice.reducer
+export default levelSlice.reducer;

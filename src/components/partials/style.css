@@ -1,5 +1,6 @@
 .feature-grid {
   flex: 1;
+
   /* background-color: var(--color-light-gray); */
   border: 1px solid var(--color-info-dark);
   border-radius: var(--border-radius-1);

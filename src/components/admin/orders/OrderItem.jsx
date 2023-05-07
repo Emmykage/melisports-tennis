@@ -1,28 +1,27 @@
-import React, { useState } from 'react'
-import OrderDetail from './OrderDetail'
+import React, { useState } from 'react';
+import OrderDetail from './OrderDetail';
 
-const OrderItem = ({order_prop}) => {
+const OrderItem = ({ order_prop }) => {
   const [isActive, setIsActive] = useState(false);
 
   const toggleClass = () => {
-    setIsActive(prevState => !prevState)
-  }
+    setIsActive((prevState) => !prevState);
+  };
   return (
-    <li className='order-item'>
-        <div className='order-header flex-space'> 
-            <span>Menanya Morris</span>
-            <a onClick={toggleClass}> 
-                show details
-            </a>
-            <span>
-              <input type="checkbox" />
-            </span>
-        </div>
-        <OrderDetail orderProp={order_prop} isActive={isActive}/>
-   
-        
-    </li>
-  )
-}
+    <li className="order-item">
+      <div className="order-header flex-space">
+        <span>Menanya Morris</span>
+        <a onClick={toggleClass}>
+          show details
+        </a>
+        <span>
+          <input type="checkbox" />
+        </span>
+      </div>
+      <OrderDetail orderProp={order_prop} isActive={isActive} />
 
-export default OrderItem
+    </li>
+  );
+};
+
+export default OrderItem;

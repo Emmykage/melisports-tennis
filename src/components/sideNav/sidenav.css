@@ -2,15 +2,16 @@
 .side-row label {
   color: #333;
 }
+
 .side-nav {
   width: 340px;
   flex-basis: 20%;
   border: 1px solid gray;
 }
+
 .side-row {
   border-bottom: 1px solid var(--color-grey);
   padding: 0.4rem 1.5rem;
-
 }
 
 .side-row label {
@@ -31,10 +32,8 @@
   margin-right: 12px;
 }
 
-@media screen and (max-width: 720px){
-  
+@media screen and (max-width: 720px) {
   .side-nav {
-   display: none;
-  
+    display: none;
   }
 }

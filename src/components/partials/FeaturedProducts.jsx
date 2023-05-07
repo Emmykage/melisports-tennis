@@ -9,16 +9,15 @@ const FeaturedProducts = (props) => {
     <div className="feature-grid m-h2">
       <NavLink to={`${name}`}>
 
-     
-      <div>
-        <img src={image} alt="" />
-      </div>
-      <div className="center">
-        <h4>
-          {' '}
-          {name}
-        </h4>
-      </div>
+        <div>
+          <img src={image} alt="" />
+        </div>
+        <div className="center">
+          <h4>
+            {' '}
+            {name}
+          </h4>
+        </div>
       </NavLink>
     </div>
   );

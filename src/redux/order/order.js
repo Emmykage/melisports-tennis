@@ -1,26 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { addOrder, getOrders } from "../actions/orders";
+import { createSlice } from '@reduxjs/toolkit';
+import { addOrder, getOrders } from '../actions/orders';
 
 const initialState = {
-    orders: [],
-    status: ""
-}
+  orders: [],
+  status: '',
+};
 const orderSlice = createSlice({
-    name: "orders",
-    initialState,
-    extraReducers: {
-        [getOrders.fulfilled]: (state, action) => {
-            return{
-                orders: action.payload
-            }
-        },
-        [addOrder.fulfilled]: (state) => {
-            return{
-                ...state,
-                status: "success"
-            }
-        }
-    }
-})
+  name: 'orders',
+  initialState,
+  extraReducers: {
+    [getOrders.fulfilled]: (state, action) => ({
+      orders: action.payload,
+    }),
+    [addOrder.fulfilled]: (state) => ({
+      ...state,
+      status: 'success',
+    }),
+  },
+});
 
-export default orderSlice.reducer 
+export default orderSlice.reducer;

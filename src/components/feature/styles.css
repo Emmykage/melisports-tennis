@@ -1,8 +1,10 @@
 
-.swiper-slide, .swiper-slide{
-    background-color: green;
-}
-.swiper-slide, .swiper-slide img{
-   width: 100%;
+.swiper-slide,
+.swiper-slide {
+  background-color: green;
 }
 
+.swiper-slide,
+.swiper-slide img {
+  width: 100%;
+}

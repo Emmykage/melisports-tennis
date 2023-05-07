@@ -17,7 +17,7 @@ const initialState = [{
 },
 {
   id: 4,
-  name: "Apparels",
+  name: 'Apparels',
   image: 'https://www.tennispro.eu/media/catalog/product/cache/5/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/4/m/4mp1441-4005_bleu_1.jpg',
 },
 ];

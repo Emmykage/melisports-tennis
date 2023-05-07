@@ -1,31 +1,27 @@
-import React, {useState} from 'react'
-import SideNav from '../../components/admin/SideNav'
-import '../../components/admin/adminstyle.css'
-import Main from '../../components/admin/dashBoard/Main'
-import RecentOrders from '../../components/admin/RecentOrders'
-import Right from '../../components/admin/Right'
+import React, { useState } from 'react';
+import SideNav from '../../components/admin/SideNav';
+import '../../components/admin/adminstyle.css';
+import Main from '../../components/admin/dashBoard/Main';
+import RecentOrders from '../../components/admin/RecentOrders';
+import Right from '../../components/admin/Right';
 
-const AdminHome = ({children}) => {
-  const [showMenu, setShowMenu] = useState(false)
-    const handleMenu = () =>{
-        setShowMenu(!showMenu)
-    }
+const AdminHome = ({ children }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const handleMenu = () => {
+    setShowMenu(!showMenu);
+  };
   return (
-    <div className='admin-container'>
+    <div className="admin-container">
       hey
-    {/* <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
+      {/* <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
     <div className="full-width flex-center">
     {children}
     </div>
-    
+
     <Right handleMenu={handleMenu}/>     */}
     </div>
 
+  );
+};
 
- 
-        
-   
-  )
-}
-
-export default AdminHome
+export default AdminHome;

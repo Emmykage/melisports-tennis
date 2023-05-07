@@ -8,12 +8,11 @@ const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state) => {
-      return{
+    openModal: (state) => ({
       ...state,
       isOpen: true,
 
-    }},
+    }),
     closeModal: (state) => ({
       ...state,
       isOpen: false,

@@ -19,9 +19,9 @@ body {
   height: 100vh;
   color: var(--color-dark);
 }
+
 .admin-container * {
   font-family: poppins, sans-serif;
-
 }
 
 .admin-img {
@@ -108,7 +108,6 @@ b {
 
 aside {
   height: 100vh;
-
 }
 
 aside .top {
@@ -123,10 +122,11 @@ aside .top {
   margin: 100px auto;
   width: 80%;
 }
-.product-form label{
-display: flex;
-justify-content: space-between;
-padding-right: 12px;
+
+.product-form label {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 12px;
 }
 
 .product-form form .form-row {
@@ -659,11 +659,12 @@ main .recent-orders a {
     display: none;
   }
 }
+
 @media screen and (max-width: 1108px) {
-    .admin-container {
-      width: 94%;
-      grid-template-columns: 4rem auto 13rem;
-    }
+  .admin-container {
+    width: 94%;
+    grid-template-columns: 4rem auto 13rem;
+  }
 }
 
 @media screen and (max-width: 768px) {

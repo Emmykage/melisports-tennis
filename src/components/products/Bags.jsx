@@ -6,72 +6,65 @@ import { getProducts } from '../../redux/actions/product';
 import product from '../../redux/products/product';
 import './products.css';
 
-const Bags = ({products, status, error}) => {
-  let NGNaira = new Intl.NumberFormat('en-NG', {
+const Bags = ({ products, status, error }) => {
+  const NGNaira = new Intl.NumberFormat('en-NG', {
     style: 'currency',
     currency: 'NGN',
-});
- 
+  });
 
- 
-  const bags = products.filter((items) => items.product_category.name === "bag")
+  const bags = products.filter((items) => items.product_category.name === 'bag');
   // console.log(bags)
 
-  if(status === "waiting"){
-    return(
-      <Loader/>
-    )
-  }else if (status === "success"){
+  if (status === 'waiting') {
+    return (
+      <Loader />
+    );
+  } if (status === 'success') {
     if (bags.length < 1) {
       return (
         <div>
           <header>
-            
-            <h1 className='warning-center'> Please Add some Bags to your collection</h1>
+
+            <h1 className="warning-center"> Please Add some Bags to your collection</h1>
           </header>
         </div>
       );
-    }else{
-        return (
-   
-    <>
-
-      {bags.map((product) => (
-        <div key={product.id} className="products-display">
-          <div className="prod-img">
-            <NavLink to={`/productdetails/${product.id}`}>
-            <img src={product.image} alt="" />
-            </NavLink>
-            
-          </div>
-          <div className="prod-details">
-            <h5 className="color-black">
-              {product.name.substring(0, 15)}
-              ...
-            </h5>
-            <p>{NGNaira.format(product.price)}</p>
-            <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
-              Buy
-            </NavLink>
-
-          </div>
-        </div>
-
-      ))}
-
-    </>
-      )
     }
-    
-      }else{ 
-        return (
-        <div className='text-center'>
-          <h2>{error}</h2>
+    return (
+
+      <>
+
+        {bags.map((product) => (
+          <div key={product.id} className="products-display">
+            <div className="prod-img">
+              <NavLink to={`/productdetails/${product.id}`}>
+                <img src={product.image} alt="" />
+              </NavLink>
+
+            </div>
+            <div className="prod-details">
+              <h5 className="color-black">
+                {product.name.substring(0, 15)}
+                ...
+              </h5>
+              <p>{NGNaira.format(product.price)}</p>
+              <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
+                Buy
+              </NavLink>
+
+            </div>
           </div>
-        )
-      }
-     
-    
+
+        ))}
+
+      </>
+    );
+  }
+  return (
+    <div className="text-center">
+      <h2>{error}</h2>
+    </div>
+  );
 };
 
 export default Bags;

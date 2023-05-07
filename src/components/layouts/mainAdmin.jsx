@@ -1,74 +1,68 @@
-import React,{useEffect, useState} from 'react'
-import Footer from '../footer/Footer'
-import SideNav from '../admin/SideNav'
-import Right from '../admin/Right'
-import { useDispatch, useSelector } from 'react-redux'
-import ProdDelModal from '../modal/ProdDelModal'
-import CatDelModal from '../modal/CatDelModal'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { userLog } from '../../redux/user/user'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Footer from '../footer/Footer';
+import SideNav from '../admin/SideNav';
+import Right from '../admin/Right';
+import ProdDelModal from '../modal/ProdDelModal';
+import CatDelModal from '../modal/CatDelModal';
+import { userLog } from '../../redux/user/user';
 
-const MainAdmin = ({children}) => {
-  const dispatch = useDispatch()
-  const meli_auth = localStorage.getItem('meli_auth')
+const MainAdmin = ({ children }) => {
+  const dispatch = useDispatch();
+  const meli_auth = localStorage.getItem('meli_auth');
   // const auth = JSON.parse(meli_auth)
-  const navigate = useNavigate()  
-  const {isOpen, id} = useSelector((state) => state.delModal)
-  const {catOpen, catId} = useSelector((state) => state.cat_del_modal)
-  const [showMenu, setShowMenu] = useState(false)
+  const navigate = useNavigate();
+  const { isOpen, id } = useSelector((state) => state.delModal);
+  const { catOpen, catId } = useSelector((state) => state.cat_del_modal);
+  const [showMenu, setShowMenu] = useState(false);
   // console.log(auth)
-  useEffect(()=>{
-    dispatch(userLog())
-    !meli_auth && navigate("/auth/admin_sign_up")
-  },[])
+  useEffect(() => {
+    dispatch(userLog());
+    !meli_auth && navigate('/auth/admin_sign_up');
+  }, []);
 
-  const handleMenu = () =>{
-      setShowMenu(!showMenu)
-  }
-      if(meli_auth){
+  const handleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+  if (meli_auth) {
+    const auth = JSON.parse(meli_auth);
 
-    const auth = JSON.parse(meli_auth)
-
-   
-    if(auth.user.role === 'admin'){
-
-   
-    return (
-      <>
-      <div className='container'>
-           <div className='admin-container'>
-            
-      {isOpen && <ProdDelModal id={id}/>}
-      {catOpen && <CatDelModal id={catId}/>}
-      <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
-      <div className="full-width flex-center"> {children}</div>
-     
-      <Right handleMenu={handleMenu} auth={auth}/>    
-      </div>
-       {  console.log('token')}
-          <Footer />
-      </div>
-      </>
-    )
-    }else{
+    if (auth.user.role === 'admin') {
       return (
-        <div>
-          <h1>You are not an Admin</h1>
-          <NavLink to={"/"}>Go to Store</NavLink>
-        </div>
-      )
-      // navigate("/auth/admin_sign_up")
+        <>
+          <div className="container">
+            <div className="admin-container">
 
+              {isOpen && <ProdDelModal id={id} />}
+              {catOpen && <CatDelModal id={catId} />}
+              <SideNav showMenu={showMenu} handleMenu={handleMenu} />
+              <div className="full-width flex-center">
+                {' '}
+                {children}
+              </div>
+
+              <Right handleMenu={handleMenu} auth={auth} />
+            </div>
+            { console.log('token')}
+            <Footer />
+          </div>
+        </>
+      );
     }
+    return (
+      <div>
+        <h1>You are not an Admin</h1>
+        <NavLink to="/">Go to Store</NavLink>
+      </div>
+    );
+    // navigate("/auth/admin_sign_up")
 
   // }
   // redir()
-}
-else{
-  navigate("/auth/admin_login")
-}
-}
+  }
 
+  navigate('/auth/admin_login');
+};
 
-
-export default MainAdmin
+export default MainAdmin;

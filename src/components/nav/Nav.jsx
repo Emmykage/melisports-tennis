@@ -1,73 +1,68 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
-import {FiUser} from "react-icons/fi"
+import { FiUser, FiMenu } from 'react-icons/fi';
 import './nav.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { FiMenu } from 'react-icons/fi';
-import { AiOutlineClose} from 'react-icons/ai'
+import { AiOutlineClose } from 'react-icons/ai';
 // import {  } from 'react';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import { closeNav, openNav } from '../../redux/modal/nav';
-import logo from "../../assets/images/logo/melisport_1.png"
+import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 
 const Nav = () => {
-
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { counter, cartItems, update } = useSelector((state) => state.cart);
-  const {user} = useSelector((state) => state.user)
-  const dispatch = useDispatch()
-  const { toggleNav} = useSelector((state) => state.navToggle)
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { toggleNav } = useSelector((state) => state.navToggle);
 
-
-  useEffect(()=> {
-    dispatch(userLog())
-    dispatch(getCarts())
-    dispatch(calculateTotal())
-  } ,[update])
+  useEffect(() => {
+    dispatch(userLog());
+    dispatch(getCarts());
+    dispatch(calculateTotal());
+  }, [update]);
 
   const handleLogOut = () => {
-    localStorage.setItem('meli_auth', '')
-    dispatch(userLog())
-    navigate('/auth/login')
-  }
+    localStorage.setItem('meli_auth', '');
+    dispatch(userLog());
+    navigate('/auth/login');
+  };
 
   return (
     <div>
       <nav>
-      
+
         <div className="navbar">
-          <div className='mobile-menu-div'>
-            <a className='menu'>
-              <FiMenu className='menu-icon' onClick={() => dispatch(openNav())}/>
+          <div className="mobile-menu-div">
+            <a className="menu">
+              <FiMenu className="menu-icon" onClick={() => dispatch(openNav())} />
             </a>
           </div>
           <div className="logo">
-            
-            <NavLink className='img-div' to={'/'}>
+
+            <NavLink className="img-div" to="/">
               <img src={logo} alt="" />
             </NavLink>
           </div>
 
           <div className="nav-div flex-center space">
 
-            <ul className=
-            {toggleNav? "nav-links  show-menu" : "nav-links"}>
-              <div  className='mobile-menu-div  m-v4'>
-              <AiOutlineClose  className='menu-icon close-icon' onClick={() => dispatch(closeNav())} />
+            <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links'}>
+              <div className="mobile-menu-div  m-v4">
+                <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
               </div>
-              
+
               <li className="nav-item"><NavLink to="/">Home</NavLink></li>
               <li className="nav-item">
-                <NavLink to="/racquets" className={"hey"}>Rackets </NavLink>
+                <NavLink to="/racquets" className="hey">Rackets </NavLink>
                 <div className="link-items flex">
-                  <div className=''>
+                  <div className="">
                     <h3>
-                    Rackets &
+                      Rackets &
                       <br />
                       {' '}
                       Paddles
@@ -88,10 +83,9 @@ const Nav = () => {
                 </div>
               </li>
               <li className="nav-item">
-              
-<NavLink to="/apparels">Apparels</NavLink>
-                
-                
+
+                <NavLink to="/apparels">Apparels</NavLink>
+
                 <div className="link-items flex">
                   <div>
                     <h3>Apparels</h3>
@@ -192,45 +186,45 @@ const Nav = () => {
                   </ul>
                 </div>
               </li>
-              
-            
-              {user !== null && ((user.user.role == "admin") &&  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> )}
+
+              {user !== null && ((user.user.role == 'admin') && (
+              <li className="nav-item">
+                <NavLink to="/admin">    go to admin </NavLink>
+                {' '}
+              </li>
+              ))}
 
               {/* {user && ((user.user.role === "admin" || user.role == undefined) ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")} */}
               {/* {meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " "} */}
-              <li className='nav-item last'>
-              <span><FiUser className='user-icon'/></span>
+              <li className="nav-item last">
+                <span><FiUser className="user-icon" /></span>
 
+                {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
-{user == undefined ?    <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a>   }
-
-</li>
-              
+              </li>
 
             </ul>
-            <div className='flex-space'>
-              <div className='user mobile-display '>
-              {user == undefined ?    <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a>   }
-              
-                <span><FiUser className='user-icon'/></span>
+            <div className="flex-space">
+              <div className="user mobile-display ">
+                {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
+
+                <span><FiUser className="user-icon" /></span>
 
               </div>
 
-      
-            <div className='menu-div cart'>
-              <NavLink to="/carts">
+              <div className="menu-div cart">
+                <NavLink to="/carts">
 
-            
-              <BsCartDash className='menu-icon cart-icon'/>
-              <span className="total-amount color-white bold">{counter}</span>
+                  <BsCartDash className="menu-icon cart-icon" />
+                  <span className="total-amount color-white bold">{counter}</span>
 
-              </NavLink>
-            </div>
+                </NavLink>
+              </div>
             </div>
           </div>
 
         </div>
-        <SearchComponent/>
+        <SearchComponent />
       </nav>
     </div>
   );

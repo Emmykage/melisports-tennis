@@ -1,20 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getGenders } from "../actions/gender";
+import { createSlice } from '@reduxjs/toolkit';
+import { getGenders } from '../actions/gender';
 
 const initialState = {
-    genders: []
-}
+  genders: [],
+};
 
 const genderSlice = createSlice({
-    name: 'gender',
-    initialState,
-    extraReducers: {
-        [getGenders.fulfilled]: (state, action) => ({
-            ...state,
-            genders: action.payload
+  name: 'gender',
+  initialState,
+  extraReducers: {
+    [getGenders.fulfilled]: (state, action) => ({
+      ...state,
+      genders: action.payload,
 
-        })
-    }
-})
+    }),
+  },
+});
 
-export default genderSlice.reducer
+export default genderSlice.reducer;

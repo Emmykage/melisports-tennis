@@ -1,99 +1,98 @@
-import React, {useState} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateCategory } from '../../redux/actions/product_category'
-import EditCategories from './addcategory/EditCategories'
-import { openDelCatModal } from '../../redux/modal/catDelModal'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateCategory } from '../../redux/actions/product_category';
+import EditCategories from './addcategory/EditCategories';
+import { openDelCatModal } from '../../redux/modal/catDelModal';
 
 const Categories = () => {
-  const {product_categories} = useSelector((state) => state.product_categories)
-  const dispatch = useDispatch()
-  const [toggleEdit, setToggleEdit] = useState(false)
+  const { product_categories } = useSelector((state) => state.product_categories);
+  const dispatch = useDispatch();
+  const [toggleEdit, setToggleEdit] = useState(false);
 
   const [edit, setEdit] = useState({
-    name: "",
-    level: "",
-    description: ""
-  })
-
+    name: '',
+    level: '',
+    description: '',
+  });
 
   const handleEdit = (id) => {
     const category = product_categories.find((item) => item.id === id);
-    setToggleEdit(true)
+    setToggleEdit(true);
     setEdit({
-        id: category.id,
-        name: category.name,
-        level: category.level,
-        description: category.description
-    })
-  
+      id: category.id,
+      name: category.name,
+      level: category.level,
+      description: category.description,
+    });
+  };
+  const handleFormInput = (e) => {
+    if (e.target.name === 'description') {
+      setEdit(
 
-  }
-  const handleFormInput=(e)=>{
-   if(e.target.name === "description"){
-       setEdit(
-     
-           {
-           ...edit,
-           [e.target.name]: e.target.value
-       })
-}else{
-   setEdit(
-     
-       {
-       ...edit,
-       [e.target.name]: e.target.value.trim()
-   })
-}
-   
-}
-const handleSubmit = (e) =>{
-   e.preventDefault()
-   setToggleEdit(false)
-   dispatch(updateCategory({id: edit.id, data: {name: edit.name, level: edit.level, description: edit.description}}))
+        {
+          ...edit,
+          [e.target.name]: e.target.value,
+        },
+      );
+    } else {
+      setEdit(
 
-}
-const handleDelete = (id) => {
-  console.log("hey")
-  dispatch(openDelCatModal(id))
-}
+        {
+          ...edit,
+          [e.target.name]: e.target.value.trim(),
+        },
+      );
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setToggleEdit(false);
+    dispatch(updateCategory({ id: edit.id, data: { name: edit.name, level: edit.level, description: edit.description } }));
+  };
+  const handleDelete = (id) => {
+    console.log('hey');
+    dispatch(openDelCatModal(id));
+  };
   return (
-    <div className='cat-div'>
-        <table>
-            <thead>
-              <tr>
-                <th>categories</th>
-                <th>level</th>
-                <th>description</th>
+    <div className="cat-div">
+      <table>
+        <thead>
+          <tr>
+            <th>categories</th>
+            <th>level</th>
+            <th>description</th>
 
-              </tr>
-            </thead>
-            <tbody>
-              {product_categories.map((category) =>(
-                 <tr key={category.id}>
-                 <td>{category.name}</td>
-                 <td>{category.level}</td>
-                 <td>{category.description.substring(0, 103)}...</td>
-                 <td><a className='btn' onClick={()=> handleDelete(category.id)}>del</a></td>
-                 <td><a className='btn' onClick={()=> handleEdit(category.id)}>edit</a></td>
+          </tr>
+        </thead>
+        <tbody>
+          {product_categories.map((category) => (
+            <tr key={category.id}>
+              <td>{category.name}</td>
+              <td>{category.level}</td>
+              <td>
+                {category.description.substring(0, 103)}
+                ...
+              </td>
+              <td><a className="btn" onClick={() => handleDelete(category.id)}>del</a></td>
+              <td><a className="btn" onClick={() => handleEdit(category.id)}>edit</a></td>
 
+            </tr>
+          ))}
 
-               </tr>
-              ))}
-             
+        </tbody>
+      </table>
+      <div className={toggleEdit ? 'category-div ' : 'category-div edit-display'}>
+        <EditCategories
+          handleSubmit={handleSubmit}
+          handleFormInput={handleFormInput}
+          edit={edit}
+        />
+        edit categories
 
-            </tbody>
-        </table>
-        <div className={toggleEdit? 'category-div ' : 'category-div edit-display'}>
-            <EditCategories 
-            handleSubmit={handleSubmit} 
-            handleFormInput={handleFormInput} 
-            edit={edit} />
-            edit categories
-        
-        </div>
+      </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

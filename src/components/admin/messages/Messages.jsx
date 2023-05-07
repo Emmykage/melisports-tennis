@@ -1,14 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-const Messages = () => {
-  return (
-    <div>
-                <h1 className='bolder'>
-                Page Under construction
+const Messages = () => (
+  <div>
+    <h1 className="bolder">
+      Page Under construction
 
-                    </h1>   
-    </div>
-  )
-}
+    </h1>
+  </div>
+);
 
-export default Messages
+export default Messages;

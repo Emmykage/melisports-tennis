@@ -1,274 +1,352 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getGenders } from '../../../redux/actions/gender';
 import { getLevels } from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import baseURL from '../../../redux/baseURL';
+
 const EditProduct = () => {
-    const {editId} = useParams()
+  const { editId } = useParams();
 
-    const categories = useSelector((state) => state.product_categories.product_categories)
+  const categories = useSelector((state) => state.product_categories.product_categories);
 
-    const dispatch = useDispatch();
-    const {loading, report, status} = useSelector((state)=> state.product)
-    const levels = useSelector((state) => state.level.levels)
-    const genders = useSelector((state) => state.gender.genders)
-    // const [marker, setMarker] = useState({color: ""})
-    const [formInput, setFormInput] = useState({})
-    useEffect(()=>{
-        fetch(`${baseURL}products/${editId}`)
-        .then(res => res.json()).then(json => setFormInput(json))
-        // .catch(err => )
-        dispatch(getProductCategories())
-        dispatch(getLevels())
-        dispatch(getGenders())
-            
-    }, [])
+  const dispatch = useDispatch();
+  const { loading, report, status } = useSelector((state) => state.product);
+  const levels = useSelector((state) => state.level.levels);
+  const genders = useSelector((state) => state.gender.genders);
+  // const [marker, setMarker] = useState({color: ""})
+  const [formInput, setFormInput] = useState({});
+  useEffect(() => {
+    fetch(`${baseURL}products/${editId}`)
+      .then((res) => res.json()).then((json) => setFormInput(json));
+    // .catch(err => )
+    dispatch(getProductCategories());
+    dispatch(getLevels());
+    dispatch(getGenders());
+  }, []);
 
+  const handleFormInput = (e) => {
+    setFormInput({
+      ...formInput,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const handleFormInput = (e) =>{
-        setFormInput({
-            ...formInput,
-            [e.target.name]: e.target.value
-        })
+  console.log(status);
+  // console.log(formInput)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateProduct(formInput));
+    setFormInput({
+      name: '',
+      price: '',
+      image: '',
+      sku: '',
+      product_category_id: 1,
+      grip_size: '',
+      head_size: '',
+      rating: '',
+      weight: '',
+      length: '',
+      stiffness: '',
+      composition: '',
+      category: '',
+      description: '',
 
-    }
-   
-console.log(status)
-// console.log(formInput)
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        dispatch(updateProduct(formInput))
-        setFormInput({
-            name: '',
-            price: "",
-            image: '',
-            sku: "",
-            product_category_id: 1,
-            grip_size: "",
-            head_size: '',
-            rating: "",
-            weight: "",
-            length: "",
-            stiffness: "",
-            composition: "",
-            category: "",
-            description: ""
-            
-    
-        })
-
-        }
+    });
+  };
   return (
-    <div className='product-form admin'>
-        
-            <form onSubmit={handleSubmit}>
-                <div className='form-row'>
-                    <div className='input-half'>
-                        <label> <span>Product Name</span>  <span>*</span>                        </label>
+    <div className="product-form admin">
 
-                            <input 
-                            value={formInput.name}
-                            name="name"
-                            onChange={handleFormInput}
-                            type="text" />
-                    </div>
-                    <div className='input-half'>
-                        <label> <span>Price</span>                         </label>
+      <form onSubmit={handleSubmit}>
+        <div className="form-row">
+          <div className="input-half">
+            <label>
+              {' '}
+              <span>Product Name</span>
+              {' '}
+              <span>*</span>
+              {' '}
+            </label>
 
-                        <input 
-                        value={formInput.price}
-                        name="price"
-                         onChange={handleFormInput}
-                        type="number" />
+            <input
+              value={formInput.name}
+              name="name"
+              onChange={handleFormInput}
+              type="text"
+            />
+          </div>
+          <div className="input-half">
+            <label>
+              {' '}
+              <span>Price</span>
+              {' '}
+            </label>
 
-                    </div>
-                </div>
-                <div className='form-row'>
-                    <div className='input-half'>
-                        <label htmlFor=""><span>Professionalism</span>  </label>
-                        <select placeholder='professionalism'
-                        name="level_id"
-                        value={formInput.level_id}
-                        onChange={handleFormInput}>
-                            {levels.map((level) =>(
-                                <option value={level.id}>{level.stage}</option>
-                        ))}
-                        </select>
-                    
-                    </div>
-                    <div className='input-half'>
-                    <label htmlFor=""><span>Gender</span>  </label>
+            <input
+              value={formInput.price}
+              name="price"
+              onChange={handleFormInput}
+              type="number"
+            />
 
-                    <select placeholder='gender' 
-                    name="gender_id" 
-                    value={formInput.gender_id}
-                    onChange={handleFormInput}>
-                    {genders.map((gender) =>(
-        <option value={gender.id}>{gender.name}</option>
-    ))}
-</select>
-                    </div>
-                
-                </div>
-                <div className='form-row'>
-                    
-                    <div className='input-half'>
-                        <label htmlFor=""><span>Head size </span>                         </label>
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="input-half">
+            <label htmlFor="">
+              <span>Professionalism</span>
+              {' '}
+            </label>
+            <select
+              placeholder="professionalism"
+              name="level_id"
+              value={formInput.level_id}
+              onChange={handleFormInput}
+            >
+              {levels.map((level) => (
+                <option value={level.id}>{level.stage}</option>
+              ))}
+            </select>
 
-                        <input
-                        name='head_size'
-                        value={formInput.head_size}
-                        onChange={handleFormInput} 
-                        type="number"/>
+          </div>
+          <div className="input-half">
+            <label htmlFor="">
+              <span>Gender</span>
+              {' '}
+            </label>
 
-                    </div>
-                    <div className='input-half'>
-                        <label htmlFor=""> <span>Grip size</span> 
-                        </label>
-                        <input
-                        name='grip_size'
-                        value={formInput.grip_size}
-                        onChange={handleFormInput} 
-                        type="text"/>
+            <select
+              placeholder="gender"
+              name="gender_id"
+              value={formInput.gender_id}
+              onChange={handleFormInput}
+            >
+              {genders.map((gender) => (
+                <option value={gender.id}>{gender.name}</option>
+              ))}
+            </select>
+          </div>
 
-                    </div>
-                
-                </div>
-              
-                
-                <div className="form-row">
-                    <div className='input-half' >
-                        <label htmlFor="" className="rating">
-                            <span>Rating</span>                         </label>
+        </div>
+        <div className="form-row">
 
-                            <input
-                            name='rating'
-                            value={formInput.rating}
-                            onChange={handleFormInput}
-                             type="text" />
+          <div className="input-half">
+            <label htmlFor="">
+              <span>Head size </span>
+              {' '}
+            </label>
 
-                    </div>
-                    <div className='input-half'>
-                        <label htmlFor=""><span>Length</span>                         </label>
+            <input
+              name="head_size"
+              value={formInput.head_size}
+              onChange={handleFormInput}
+              type="number"
+            />
 
-                        <input
-                        name="length"
-                        value={formInput.length}
-                        onChange={handleFormInput}
-                         type="text"/>
+          </div>
+          <div className="input-half">
+            <label htmlFor="">
+              {' '}
+              <span>Grip size</span>
+            </label>
+            <input
+              name="grip_size"
+              value={formInput.grip_size}
+              onChange={handleFormInput}
+              type="text"
+            />
 
-                    </div>
-                
-                </div>
+          </div>
 
-                <div className='form-row'>
-                    <div className='input-half'>
-                        <label htmlFor=""><span>Weight</span> 
-                        <input
-                        name='weight'
-                        value={formInput.weight}
-                        onChange={handleFormInput} 
-                        type="text"/>
+        </div>
 
-                        </label>
-                    </div>
-                    <div  className='input-half'>
-                        <label htmlFor=""><span>Swing weight  </span>                        </label>
+        <div className="form-row">
+          <div className="input-half">
+            <label htmlFor="" className="rating">
+              <span>Rating</span>
+              {' '}
 
-                        <input 
-                        name="swingWeight"
-                        value={formInput.swingWeight}
-                        onChange={handleFormInput}
-                         type="text"  placeholder="swing weight"/>
+            </label>
 
-                    </div>
-                    <div  className='input-half'>
-                        <label htmlFor=""><span>Stiffness</span>                          </label>
+            <input
+              name="rating"
+              value={formInput.rating}
+              onChange={handleFormInput}
+              type="text"
+            />
 
-                        <input
-                        name='stiffness'
-                        value={formInput.stiffness} 
-                        onChange={handleFormInput}
-                        type="text"  placeholder="stiffness"/>
+          </div>
+          <div className="input-half">
+            <label htmlFor="">
+              <span>Length</span>
+              {' '}
+            </label>
 
-                    </div>
-                    <div>
-                        <label htmlFor="">
-                            <span>                            Composition
-</span>
-</label>
- <input 
-                            name='composition'
+            <input
+              name="length"
+              value={formInput.length}
+              onChange={handleFormInput}
+              type="text"
+            />
 
-                            value={formInput.composition}
-                            onChange={handleFormInput}
-                            type="text"  placeholder="composition"/>
+          </div>
 
-                    </div>
+        </div>
 
-                </div>
-                <div className='text-form-container'>
-                    <label htmlFor=""><span>Select product category</span>                     </label>
+        <div className="form-row">
+          <div className="input-half">
+            <label htmlFor="">
+              <span>Weight</span>
+              <input
+                name="weight"
+                value={formInput.weight}
+                onChange={handleFormInput}
+                type="text"
+              />
 
+            </label>
+          </div>
+          <div className="input-half">
+            <label htmlFor="">
+              <span>Swing weight  </span>
+              {' '}
+            </label>
 
-                    <select placeholder='product category'
-                    value={formInput.product_category_id}
-                    onChange={handleFormInput}>
-                        {categories.map((category) =>(
-                            <option value={category.id}>{category.name}</option>
-                        ))}
+            <input
+              name="swingWeight"
+              value={formInput.swingWeight}
+              onChange={handleFormInput}
+              type="text"
+              placeholder="swing weight"
+            />
 
-                    </select>
-                </div>
+          </div>
+          <div className="input-half">
+            <label htmlFor="">
+              <span>Stiffness</span>
+              {' '}
+            </label>
 
+            <input
+              name="stiffness"
+              value={formInput.stiffness}
+              onChange={handleFormInput}
+              type="text"
+              placeholder="stiffness"
+            />
 
-               
+          </div>
+          <div>
+            <label htmlFor="">
+              <span>
+                {' '}
+                Composition
+              </span>
+            </label>
+            <input
+              name="composition"
 
+              value={formInput.composition}
+              onChange={handleFormInput}
+              type="text"
+              placeholder="composition"
+            />
 
-                <div>
-                    <label htmlFor=""> <span>                        Strung/unstrung
-                    Strung/unstrung
-</span>                    </label>
+          </div>
 
-                    
-                    <input type="text"  placeholder="strung"/>
-                </div>
-             <div>
-                    <label htmlFor=""><span>                        Image
-</span>                    </label>
+        </div>
+        <div className="text-form-container">
+          <label htmlFor="">
+            <span>Select product category</span>
+            {' '}
+          </label>
 
-                    
-                    <input type="url"  
-                    name='image'
-                    onChange={handleFormInput}
-                    value={formInput.image}
-                    placeholder="image url"/>
-                </div>
-                 
+          <select
+            placeholder="product category"
+            value={formInput.product_category_id}
+            onChange={handleFormInput}
+          >
+            {categories.map((category) => (
+              <option value={category.id}>{category.name}</option>
+            ))}
 
-                <div>
-                    <label htmlFor=""><span>Description</span>                      </label>
+          </select>
+        </div>
 
-                    <textarea
-                     name="description" 
-                     value={formInput.description}
-                     onChange={handleFormInput}
-                    ></textarea>
+        <div>
+          <label htmlFor="">
+            {' '}
+            <span>
+              {' '}
+              Strung/unstrung
+              Strung/unstrung
+            </span>
+            {' '}
 
-                </div>
+          </label>
 
-                <button className='btn'>
-                    update product
-                </button>
-                {loading ? <p className='normal'> {report}</p> : (status == "success" ? <p className='green'> {report}</p> : <p className='red'> {report}</p> ) }
-                
-            </form>
-     
+          <input type="text" placeholder="strung" />
+        </div>
+        <div>
+          <label htmlFor="">
+            <span>
+              {' '}
+              Image
+            </span>
+            {' '}
+
+          </label>
+
+          <input
+            type="url"
+            name="image"
+            onChange={handleFormInput}
+            value={formInput.image}
+            placeholder="image url"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="">
+            <span>Description</span>
+            {' '}
+          </label>
+
+          <textarea
+            name="description"
+            value={formInput.description}
+            onChange={handleFormInput}
+          />
+
+        </div>
+
+        <button className="btn">
+          update product
+        </button>
+        {loading ? (
+          <p className="normal">
+            {' '}
+            {report}
+          </p>
+        ) : (status == 'success' ? (
+          <p className="green">
+            {' '}
+            {report}
+          </p>
+        ) : (
+          <p className="red">
+            {' '}
+            {report}
+          </p>
+        )) }
+
+      </form>
+
     </div>
-  )
-}
+  );
+};
 
-export default EditProduct
+export default EditProduct;

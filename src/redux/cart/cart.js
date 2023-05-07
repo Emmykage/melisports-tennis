@@ -1,87 +1,75 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
-import { getCarts, clearCart, addCart} from '../actions/cart';
+import { getCarts, clearCart, addCart } from '../actions/cart';
 
 const initialState = {
-  cartItems:[],
-  message: "",
+  cartItems: [],
+  message: '',
   counter: 0,
   total: 0,
   status: 'false',
   isLoading: true,
-  update: 0
-  
+  update: 0,
+
 };
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    updater: (state) => {
-      return{
-        ...state,
-        update: state.update + 1
-      }
-    },
+    updater: (state) => ({
+      ...state,
+      update: state.update + 1,
+    }),
     calculateTotal: (state) => {
       let total = 0;
       let count = 0;
-      if(state.cartItems.length > 0){
+      if (state.cartItems.length > 0) {
         state.cartItems.forEach((item) => {
           count += item.quantity;
           total += item.quantity * item.product.price;
-          
-        
         });
-        return{
+        return {
           ...state,
           counter: count,
-          total:total
-        }
-      }else{
-
-        return{
-          ...state,
-          counter: 0,
-          total: 0
-        }
+          total,
+        };
       }
-      
-     
+
+      return {
+        ...state,
+        counter: 0,
+        total: 0,
+      };
     },
   },
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
-      const cartData = action.payload
-      if(cartData.message){
+      const cartData = action.payload;
+      if (cartData.message) {
         return {
           ...state,
-          status: "success",
-          message: cartData.massage
-        }
-      }else{
-        return {
-          ...state,
-          status: "success",
-          cartItems: action.payload
-        }
+          status: 'success',
+          message: cartData.massage,
+        };
       }
-
-    },
-
-    [clearCart.fulfilled]: (state) => {
       return {
         ...state,
-      }
+        status: 'success',
+        cartItems: action.payload,
+      };
     },
-    [addCart.fulfilled]: (state, action) => {
-      console.log(action.payload)
-      console.log("good request")
 
+    [clearCart.fulfilled]: (state) => ({
+      ...state,
+    }),
+    [addCart.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      console.log('good request');
     },
-  
-  }
+
+  },
 });
 export const {
-   removeItem, increase, updater, calculateTotal, addItem
+  removeItem, increase, updater, calculateTotal, addItem,
 } = cartSlice.actions;
 export default cartSlice.reducer;
