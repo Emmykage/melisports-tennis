@@ -54,6 +54,8 @@ const EditProduct = () => {
       composition: '',
       category: '',
       description: '',
+      tension: "",
+      colour: ""
 
     });
   };
@@ -165,15 +167,15 @@ const EditProduct = () => {
 
         <div className="form-row">
           <div className="input-half">
-            <label htmlFor="" className="rating">
-              <span>Rating</span>
+            <label htmlFor="" className="colour">
+              <span>Colour</span>
               {' '}
 
             </label>
 
             <input
-              name="rating"
-              value={formInput.rating}
+              name="colour"
+              value={formInput.colour}
               onChange={handleFormInput}
               type="text"
             />
@@ -226,16 +228,16 @@ const EditProduct = () => {
           </div>
           <div className="input-half">
             <label htmlFor="">
-              <span>Stiffness</span>
+              <span>tension</span>
               {' '}
             </label>
 
             <input
-              name="stiffness"
-              value={formInput.stiffness}
+              name="tension"
+              value={formInput.tension}
               onChange={handleFormInput}
               type="text"
-              placeholder="stiffness"
+              placeholder="tension"
             />
 
           </div>
@@ -329,7 +331,7 @@ const EditProduct = () => {
         {loading ? (
           <p className="normal">
             {' '}
-            {report}
+            {/* {report} */}
           </p>
         ) : (status == 'success' ? (
           <p className="green">
