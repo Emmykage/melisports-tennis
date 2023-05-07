@@ -175,7 +175,7 @@ const AddProduct = () => {
               Colour
             </label>
             <input
-              name="color"
+              name="colour"
               value={formInput.colour}
                             // max="5"
               onChange={handleFormInput}
