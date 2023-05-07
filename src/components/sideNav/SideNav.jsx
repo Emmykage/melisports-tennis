@@ -20,7 +20,7 @@ const SideNav = () => (
       </label>
     </div>
     <div className="side-row">
-      <h6>Racquet Type</h6>
+      <h6>Racket Type</h6>
       <label htmlFor="control" style={{ fontSize: '1rem' }}>
 
         <input type="checkbox" id="control" />

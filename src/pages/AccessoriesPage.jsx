@@ -41,7 +41,7 @@ const AccessoriesPage = () => {
 
       <div className="prod-page">
         <div className="cat-group">
-          <button className="btn" onClick={() => handleFilteredProducts('racquet')}> Racquet Accessories</button>
+          <button className="btn" onClick={() => handleFilteredProducts('racquet')}> Racket Accessories</button>
           <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Court Accessories</button>
           <button className="btn" onClick={() => handleFilteredProducts('boost')}> Fan Accessories</button>
           <button className="btn" onClick={() => dispatch(getProducts())}>All Accessories</button>
