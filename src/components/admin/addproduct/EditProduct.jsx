@@ -32,10 +32,8 @@ const EditProduct = () => {
       ...formInput,
       [e.target.name]: e.target.value,
     });
-  };
 
-  console.log(status);
-  // console.log(formInput)
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProduct(formInput));
@@ -55,7 +53,8 @@ const EditProduct = () => {
       category: '',
       description: '',
       tension: "",
-      colour: ""
+      colour: "",
+      strung: ""
 
     });
   };
@@ -271,13 +270,18 @@ const EditProduct = () => {
             <span>
               {' '}
               Strung/unstrung
-              Strung/unstrung
             </span>
             {' '}
 
           </label>
 
-          <input type="text" placeholder="strung" />
+          <input 
+          type="text" 
+          placeholder="strung"
+          name="strung"
+          value={formInput.strung}
+          onChange={handleFormInput}
+          />
         </div>
         <div>
           <label htmlFor="">
