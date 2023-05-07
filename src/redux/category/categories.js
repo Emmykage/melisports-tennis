@@ -2,7 +2,7 @@ const GET_CATEGORIES = 'categories/GET_CATEGORIES';
 
 const initialState = [{
   id: 1,
-  name: 'Racquets',
+  name: 'Rackets',
   image: 'https://www.e-tennis.com/pub/media/catalog/product/cache/f5f3da80ad7b670245aea7e970662954/1/0/101406-babolat-pure-strike-16-x-19-tennis-racquet-2019_2_1.jpg',
 },
 {
