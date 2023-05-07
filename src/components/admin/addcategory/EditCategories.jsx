@@ -11,10 +11,11 @@ const EditCategories = (props) => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-row">
-            <div className="input-half">
+            <div className="input-full">
               <label htmlFor="">
                 {' '}
                 Category Name
+                </label>
                 <input
                   name="name"
                   value={edit.name}
@@ -22,15 +23,16 @@ const EditCategories = (props) => {
                   type="text"
                   placeholder="Product category"
                 />
-              </label>
+            
             </div>
 
           </div>
           <div className="form-row">
-            <div className="input-half">
+            <div className="input-full">
               <label htmlFor="">
                 {' '}
                 Category type
+                </label>
                 <input
                   name="level"
                   value={edit.level}
@@ -38,21 +40,22 @@ const EditCategories = (props) => {
                   type="text"
                   placeholder="Product category"
                 />
-              </label>
+             
             </div>
 
           </div>
 
           <div className="form-row">
-            <div>
+            <div className='input-full'>
               <label htmlFor="description">
                 Description
+                </label>
                 <textarea
                   name="description"
                   value={edit.description}
                   onChange={handleFormInput}
                 />
-              </label>
+             
             </div>
 
           </div>

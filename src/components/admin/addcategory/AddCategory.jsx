@@ -89,7 +89,7 @@ const AddCategory = () => {
           </div>
 
           <button className="btn">
-            add product
+            add category
           </button>
           {loading ? (
             <p className="normal">
