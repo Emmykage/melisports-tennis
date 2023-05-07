@@ -25,6 +25,8 @@ const EditProduct = () => {
     dispatch(getProductCategories());
     dispatch(getLevels());
     dispatch(getGenders());
+    // setFormInput(product)
+
   }, []);
 
   const handleFormInput = (e) => {

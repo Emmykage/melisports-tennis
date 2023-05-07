@@ -6,7 +6,7 @@ import {
 const initialState = {
   product: {},
   status: 'false',
-  loading: false,
+  loading: true,
   report: null,
   updater: false,
 };
@@ -17,7 +17,7 @@ const productSlice = createSlice({
   extraReducers: {
     [getProduct.fulfilled]: (state, action) => ({
       ...state,
-      loading: false,
+      render: false,
       product: action.payload,
     }),
     [getProduct.pending]: (state) => ({

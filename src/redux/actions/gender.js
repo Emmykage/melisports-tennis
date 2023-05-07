@@ -8,7 +8,6 @@ const getGenders = createAsyncThunk('gender/get_genders', async () => {
       'Content-type': 'application/json',
     },
   }).then((res) => res.json());
-  console.log(response);
 
   return response;
 });
