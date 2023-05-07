@@ -202,6 +202,7 @@ const EditProduct = () => {
           <div className="input-half">
             <label htmlFor="">
               <span>Weight</span>
+              </label>
               <input
                 name="weight"
                 value={formInput.weight}
@@ -209,23 +210,9 @@ const EditProduct = () => {
                 type="text"
               />
 
-            </label>
+          
           </div>
-          <div className="input-half">
-            <label htmlFor="">
-              <span>Swing weight  </span>
-              {' '}
-            </label>
-
-            <input
-              name="swingWeight"
-              value={formInput.swingWeight}
-              onChange={handleFormInput}
-              type="text"
-              placeholder="swing weight"
-            />
-
-          </div>
+          
           <div className="input-half">
             <label htmlFor="">
               <span>tension</span>
