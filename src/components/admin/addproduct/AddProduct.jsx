@@ -51,7 +51,7 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(addProduct(formInput));
+    dispatch(addProduct(formInput));
     console.log(formInput)
     setFormInput({
       name: '',
