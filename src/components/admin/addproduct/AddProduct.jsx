@@ -5,6 +5,7 @@ import { getGenders } from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
+import strung from '../../mock/Strung';
 
 const AddProduct = () => {
   const { product_categories, updater } = useSelector((state) => state.product_categories);
@@ -33,13 +34,14 @@ const AddProduct = () => {
     length: '',
     stiffness: '',
     composition: '',
-    category: '',
     description: '',
     colour: '',
     size: '',
     tension: '',
+    strung: ""
 
   });
+
   const handleFormInput = (e) => {
     setFormInput({
       ...formInput,
@@ -49,7 +51,8 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addProduct(formInput));
+    // dispatch(addProduct(formInput));
+    console.log(formInput)
     setFormInput({
       name: '',
       price: '',
@@ -69,8 +72,10 @@ const AddProduct = () => {
       size: '',
       tension: '',
       colour: '',
+      strung: ""
 
     });
+
   };
   return (
     <div className="product-form admin">
@@ -145,12 +150,12 @@ const AddProduct = () => {
         <div className="form-row">
 
           <div className="input-half">
-            <label htmlFor=""> Head size / Shoe size  </label>
+            <label htmlFor=""> Head size   </label>
             <input
               name="head_size"
               value={formInput.head_size}
               onChange={handleFormInput}
-              type="number"
+              type="text"
               placeholder="headsize"
             />
 
@@ -168,17 +173,41 @@ const AddProduct = () => {
           </div>
 
         </div>
+        <div className="form-row">
 
+<div className="input-half">
+  <label htmlFor=""> Shoe/cloth size  </label>
+  <input
+    name="size"
+    value={formInput.size}
+    onChange={handleFormInput}
+    type="text"
+    placeholder=" shoe size"
+  />
+
+</div>
+<div className="input-half">
+  <label htmlFor=""> SKU   </label>
+  <input
+    name="sku"
+    value={formInput.sku}
+    onChange={handleFormInput}
+    type="text"
+    placeholder="sku"
+  />
+
+</div>
+
+</div>
         <div className="form-row">
           <div className="input-half">
-            <label htmlFor="" className="rating">
+            <label htmlFor="" className="color">
               Colour
             </label>
             <input
               name="colour"
               value={formInput.colour}
-                            // max="5"
-              onChange={handleFormInput}
+placeholder='colour'              onChange={handleFormInput}
               type="text"
             />
 
@@ -213,7 +242,7 @@ const AddProduct = () => {
           <div className="input-half">
             <label htmlFor="">tension  </label>
             <input
-              name="stiffness"
+              name="tension"
               value={formInput.tension}
               onChange={handleFormInput}
               type="text"
@@ -261,11 +290,18 @@ const AddProduct = () => {
         </div>
 
         <div>
-          <label htmlFor="">
+          <label htmlFor="strung">
             strung/unstrung
           </label>
+          <select name="strung" id="strung"
+          value={formInput.strung}
+          >
+            {strung.map((item)=>(
+                <option value={item.name}>{item.name}</option>
+            ))}
+          </select>
 
-          <input type="text" placeholder="strung" />
+          {/* <input type="text" placeholder="strung" /> */}
 
         </div>
         <div>

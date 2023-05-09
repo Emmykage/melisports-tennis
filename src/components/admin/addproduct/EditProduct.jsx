@@ -10,7 +10,7 @@ import baseURL from '../../../redux/baseURL';
 const EditProduct = () => {
   const { editId } = useParams();
 
-  const categories = useSelector((state) => state.product_categories.product_categories);
+  const product_categories = useSelector((state) => state.product_categories);
 
   const dispatch = useDispatch();
   const { loading, report, status } = useSelector((state) => state.product);
@@ -44,7 +44,7 @@ const EditProduct = () => {
       price: '',
       image: '',
       sku: '',
-      product_category_id: 1,
+      product_category_id: "",
       grip_size: '',
       head_size: '',
       rating: '',
@@ -56,53 +56,52 @@ const EditProduct = () => {
       description: '',
       tension: "",
       colour: "",
-      strung: ""
+      strung: "",
+      size: ""
 
     });
   };
   return (
     <div className="product-form admin">
-
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="input-half">
             <label>
-              {' '}
               <span>Product Name</span>
               {' '}
               <span>*</span>
               {' '}
             </label>
-
             <input
               value={formInput.name}
               name="name"
               onChange={handleFormInput}
               type="text"
+              placeholder="product name"
+              required
             />
+
           </div>
           <div className="input-half">
             <label>
-              {' '}
               <span>Price</span>
               {' '}
+              <span>*</span>
             </label>
-
             <input
               value={formInput.price}
               name="price"
               onChange={handleFormInput}
               type="number"
+              placeholder="price"
+              required
             />
 
           </div>
         </div>
         <div className="form-row">
           <div className="input-half">
-            <label htmlFor="">
-              <span>Professionalism</span>
-              {' '}
-            </label>
+            <label htmlFor="">Professionalism  </label>
             <select
               placeholder="professionalism"
               name="level_id"
@@ -116,11 +115,7 @@ const EditProduct = () => {
 
           </div>
           <div className="input-half">
-            <label htmlFor="">
-              <span>Gender</span>
-              {' '}
-            </label>
-
+            <label htmlFor="">Gender </label>
             <select
               placeholder="gender"
               name="gender_id"
@@ -131,68 +126,83 @@ const EditProduct = () => {
                 <option value={gender.id}>{gender.name}</option>
               ))}
             </select>
+
           </div>
 
         </div>
         <div className="form-row">
 
           <div className="input-half">
-            <label htmlFor="">
-              <span>Head size </span>
-              {' '}
-            </label>
-
+            <label htmlFor=""> Head size   </label>
             <input
               name="head_size"
               value={formInput.head_size}
               onChange={handleFormInput}
-              type="number"
+              type="text"
+              placeholder="headsize"
             />
 
           </div>
           <div className="input-half">
-            <label htmlFor="">
-              {' '}
-              <span>Grip size</span>
-            </label>
+            <label htmlFor=""> Grip size   </label>
             <input
               name="grip_size"
               value={formInput.grip_size}
               onChange={handleFormInput}
               type="text"
+              placeholder="grip size"
             />
 
           </div>
 
         </div>
+        <div className="form-row">
 
+<div className="input-half">
+  <label htmlFor=""> Shoe/cloth size  </label>
+  <input
+    name="size"
+    value={formInput.size}
+    onChange={handleFormInput}
+    type="text"
+    placeholder=" shoe size"
+  />
+
+</div>
+<div className="input-half">
+  <label htmlFor=""> SKU   </label>
+  <input
+    name="sku"
+    value={formInput.sku}
+    onChange={handleFormInput}
+    type="text"
+    placeholder="sku"
+  />
+
+</div>
+
+</div>
         <div className="form-row">
           <div className="input-half">
-            <label htmlFor="" className="colour">
-              <span>Colour</span>
-              {' '}
-
+            <label htmlFor="" className="color">
+              Colour
             </label>
-
             <input
               name="colour"
               value={formInput.colour}
-              onChange={handleFormInput}
+placeholder='colour'              onChange={handleFormInput}
               type="text"
             />
 
           </div>
           <div className="input-half">
-            <label htmlFor="">
-              <span>Length</span>
-              {' '}
-            </label>
-
+            <label htmlFor=""> Length            </label>
             <input
               name="length"
               value={formInput.length}
               onChange={handleFormInput}
               type="text"
+              placeholder="lenght"
             />
 
           </div>
@@ -201,25 +211,19 @@ const EditProduct = () => {
 
         <div className="form-row">
           <div className="input-half">
-            <label htmlFor="">
-              <span>Weight</span>
-              </label>
-              <input
-                name="weight"
-                value={formInput.weight}
-                onChange={handleFormInput}
-                type="text"
-              />
+            <label htmlFor="">Weight     </label>
+            <input
+              name="weight"
+              value={formInput.weight}
+              onChange={handleFormInput}
+              type="text"
+              placeholder="weight"
+            />
 
-          
           </div>
-          
-          <div className="input-half">
-            <label htmlFor="">
-              <span>tension</span>
-              {' '}
-            </label>
 
+          <div className="input-half">
+            <label htmlFor="">tension  </label>
             <input
               name="tension"
               value={formInput.tension}
@@ -231,11 +235,9 @@ const EditProduct = () => {
           </div>
           <div>
             <label htmlFor="">
-              <span>
-                {' '}
-                Composition
-              </span>
+              Composition
             </label>
+
             <input
               name="composition"
 
@@ -250,81 +252,84 @@ const EditProduct = () => {
         </div>
         <div className="text-form-container">
           <label htmlFor="">
-            <span>Select product category</span>
+            <span> Select product category</span>
+            {' '}
+            <span>*</span>
             {' '}
           </label>
 
           <select
             placeholder="product category"
+            name="product_category_id"
             value={formInput.product_category_id}
             onChange={handleFormInput}
+            required
           >
-            {categories.map((category) => (
+            {product_categories.map((category) => (
               <option value={category.id}>{category.name}</option>
             ))}
-
           </select>
+
         </div>
 
         <div>
-          <label htmlFor="">
-            {' '}
-            <span>
-              {' '}
-              Strung/unstrung
-            </span>
-            {' '}
-
+          <label htmlFor="strung">
+            strung/unstrung
           </label>
-
-          <input 
-          type="text" 
-          placeholder="strung"
-          name="strung"
+          <select name="strung" id="strung"
           value={formInput.strung}
-          onChange={handleFormInput}
-          />
+          >
+            {strung.map((item)=>(
+                <option value={item.name}>{item.name}</option>
+            ))}
+          </select>
+
+          {/* <input type="text" placeholder="strung" /> */}
+
         </div>
         <div>
           <label htmlFor="">
-            <span>
-              {' '}
-              Image
-            </span>
             {' '}
+            <span>image</span>
 
+            <span>*</span>
           </label>
-
           <input
             type="url"
             name="image"
             onChange={handleFormInput}
             value={formInput.image}
             placeholder="image url"
+            required
           />
+
         </div>
 
         <div>
           <label htmlFor="">
+            {' '}
             <span>Description</span>
             {' '}
+            <span>*</span>
+            {' '}
           </label>
-
           <textarea
             name="description"
-            value={formInput.description}
             onChange={handleFormInput}
+            value={formInput.description}
+            placeholder="Enter description"
+            required
           />
 
         </div>
 
         <button className="btn">
-          update product
+          add product
         </button>
         {loading ? (
           <p className="normal">
             {' '}
-            {/* {report} */}
+            {report}
           </p>
         ) : (status == 'success' ? (
           <p className="green">
@@ -339,6 +344,7 @@ const EditProduct = () => {
         )) }
 
       </form>
+
 
     </div>
   );

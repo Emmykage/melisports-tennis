@@ -24,6 +24,8 @@ const Products = () => {
     dispatch(getProduct(id));
     navigate(`/admin/edit/${id}`);
   };
+  console.log(products)
+
   if (status === 'success') {
     if (products.length < 1) {
       return (
