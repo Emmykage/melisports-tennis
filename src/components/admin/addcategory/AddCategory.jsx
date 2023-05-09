@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductCategory } from '../../../redux/actions/product_category';
+import strung from '../../mock/Strung';
 
 const AddCategory = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,6 @@ const AddCategory = () => {
       );
     }
   };
-  console.log(status);
 
   const handleSubmit = (e) => {
     e.preventDefault();
