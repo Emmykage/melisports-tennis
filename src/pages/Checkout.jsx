@@ -7,7 +7,6 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const { total, cartItems, counter } = useSelector((state) => state.cart);
   const [state, setState] = useState({});
-  console.log(cartItems);
 
   const orderItems = cartItems.map((item) => (
     {

@@ -6,7 +6,8 @@ import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
 import strung from '../../mock/Strung';
-
+// import shoeSize from '../../mock/ShoeSizes';
+;import clothSizes from '../../mock/ClothSizes';
 const AddProduct = () => {
   const { product_categories, updater } = useSelector((state) => state.product_categories);
   const levels = useSelector((state) => state.level.levels);
@@ -38,20 +39,46 @@ const AddProduct = () => {
     colour: '',
     size: '',
     tension: '',
-    strung: ""
+    strung: "",
+    cloth_size_attributes: []
 
   });
 
   const handleFormInput = (e) => {
+    // if (e.target.name =="cloth_size_attributes"){
+    //   setFormInput({
+    //     ...formInput,
+    //     [e.target.name]: e.target.options,
+  
+    //   })
+    // }
+    if (e.target.name =="cloth_size_attributes"){
+    var options = e.target.options;
+    var value = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        value.push({abrrv: options[i].value});
+      }
+    }
+  
     setFormInput({
       ...formInput,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value
     });
-  };
+  }else{
+    setFormInput({
+           ...formInput,
+           [e.target.name]: e.target.value,
+    
+      })
+  }
 
+}
+  ;
+console.log(formInput)
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addProduct(formInput));
+    // dispatch(addProduct(formInput));
     console.log(formInput)
     setFormInput({
       name: '',
@@ -72,7 +99,8 @@ const AddProduct = () => {
       size: '',
       tension: '',
       colour: '',
-      strung: ""
+      strung: "",
+      cloth_size_attributes: ""
 
     });
 
@@ -175,18 +203,38 @@ const AddProduct = () => {
         </div>
         <div className="form-row">
 
+{/* <div className="input-half">
+  <label htmlFor=""> Shoe size  </label>
+  <select name="shoe_size" id="shoe_size">
+    {clothSizes.map(item => (
+
+    <option value={item.abbrv}>{item.abbrv} </option>
+
+    ))}
+
+  </select>
+
+</div> */}
 <div className="input-half">
-  <label htmlFor=""> Shoe/cloth size  </label>
-  <input
-    name="size"
-    value={formInput.size}
-    onChange={handleFormInput}
-    type="text"
-    placeholder=" shoe size"
-  />
+  <label htmlFor=""> Cloth size  </label>
+  <select name="cloth_size_attributes" id="cloth_size"
+  //  value={formInput.cloth_size_attributes}
+ 
+  multiple
+   onChange={handleFormInput}
+   required
+  >
+    {clothSizes.map(item => (
+
+    // <option value={item.abbrv}>{item.abbrv} </option>
+    <option value={item.abbrv}>{item.abbrv}</option>
+
+    ))}
+
+  </select>
 
 </div>
-<div className="input-half">
+{/* <div className="input-half">
   <label htmlFor=""> SKU   </label>
   <input
     name="sku"
@@ -196,7 +244,7 @@ const AddProduct = () => {
     placeholder="sku"
   />
 
-</div>
+</div> */}
 
 </div>
         <div className="form-row">
