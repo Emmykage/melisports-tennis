@@ -31,10 +31,11 @@ const Footer = () => (
           Phone: +234-7064334160
           {' '}
           <br />
-          Mon-Friday 9am - 5pm ET
+          Mon-Friday 9am - 5pm WAT
           {' '}
           <br />
-          hello@tennisracquets.com
+          <a href="mailto:info@melisports.com"> info@melisports.com </a>
+          
           {' '}
           <br />
           Gift Cards
@@ -44,11 +45,11 @@ const Footer = () => (
       <div>
         <ul>
           <h4>Connect With Us</h4>
-          <li>Facebook</li>
-          <li>Instagram</li>
-          <li>Youtube</li>
-          <li>Twitter</li>
-          <li>TP Blog</li>
+          <li><a href='https://web.facebook.com/melisports'></a> Facebook</li>
+          <li> <a href='https://www.instagram.com/melisports/'></a>Instagram</li>
+          {/* <li>Youtube</li> */}
+          <li><a href='https://twitter.com/MeliSports'> Twitter</a> </li>
+          {/* <li>TP Blog</li> */}
 
         </ul>
       </div>
