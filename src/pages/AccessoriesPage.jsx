@@ -53,7 +53,7 @@ const AccessoriesPage = () => {
             <SideNav />
           </div>
 
-          <div className="product-align">
+          {status == "waiting" || loading ? <Loader/> : ((status == "success") ? (<div className="product-align">
             <div className="product-items">
 
               <Accessories products={products} status={status} error={error} />
@@ -65,7 +65,10 @@ const AccessoriesPage = () => {
               </p>
 
             </div>
-          </div>
+          </div>) : ( <div className="text-center full-length">
+      <h2>{error}</h2>
+    </div>)) }
+          
           <div />
 
         </div>
