@@ -6,6 +6,8 @@ import { getLevels } from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import baseURL from '../../../redux/baseURL';
+import shoeSizes from '../../mock/ShoeSizess';
+import clothSizes from '../../mock/ClothSizes';
 
 const EditProduct = () => {
   const { editId } = useParams();
@@ -159,14 +161,41 @@ const EditProduct = () => {
         <div className="form-row">
 
 <div className="input-half">
-  <label htmlFor=""> Shoe/cloth size  </label>
-  <input
-    name="size"
-    value={formInput.size}
-    onChange={handleFormInput}
-    type="text"
-    placeholder=" shoe size"
-  />
+  <label htmlFor=""> Cloth size  </label>
+  <select 
+  name="cloth_sizes_attributes" 
+  id="cloth_size"
+  multiple
+  onChange={handleFormInput}
+  size={1}
+  required
+  >
+    {clothSizes.map(item => (
+
+    <option value={item.abbrv}>{item.abbrv}</option>
+
+    ))}
+
+  </select>
+
+</div>
+<div className="input-half">
+  <label htmlFor=""> Shoe size  </label>
+  <select name="shoe_sizes_attributes" id="shoe_size"
+  //  value={formInput.cloth_size_attributes}
+ 
+  multiple
+   onChange={handleFormInput}
+   size={1}
+   required
+  >
+    {shoeSizes.map(item => (
+
+    <option value={item.abbrv}>{item.abbrv}</option>
+
+    ))}
+
+  </select>
 
 </div>
 <div className="input-half">
