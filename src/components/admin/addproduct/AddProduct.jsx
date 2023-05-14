@@ -7,7 +7,7 @@ import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
 import strung from '../../mock/Strung';
 import clothSizes from '../../mock/ClothSizes';
-import shoeSizes from '../../mock/ShoeSizes';
+import shoeSizes from '../../mock/ShoeSizess';
 
 const AddProduct = () => {
   const { product_categories, updater } = useSelector((state) => state.product_categories);
@@ -74,7 +74,7 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProduct(formInput));
-    // reset()
+    reset()
 
 
   };
