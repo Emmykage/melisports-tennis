@@ -11,11 +11,7 @@ const Accessories = ({ products, status, error }) => {
 
   const accessories = products.filter((item) => item.product_category.name === 'accessory');
 
-  if (status === 'waiting') {
-    return (
-      <Loader />
-    );
-  } if (status === 'success') {
+ 
     if (accessories.length < 1) {
       return (
         <div>
@@ -55,16 +51,7 @@ const Accessories = ({ products, status, error }) => {
 
       </>
     );
-  }
-
-  return (
-    <div className="text-center">
-      <h2>
-        {' '}
-        {error}
-      </h2>
-    </div>
-  );
+  
 };
 
 export default Accessories;

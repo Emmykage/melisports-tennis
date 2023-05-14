@@ -186,7 +186,7 @@ a {
 
 .flex-center {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 1%;
 }
 

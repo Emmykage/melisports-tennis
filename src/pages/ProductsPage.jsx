@@ -22,21 +22,12 @@ const ProductsPage = () => {
     dispatch(filterProducts(lowerCaseSieve));
   };
 
-  console.log(loading, product_categories);
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
-  if (loading) {
-    console.log(loading);
-    return (
-      <Loader />
-    );
-  }
-
-  console.log(product_categories);
 
   return (
     <div className="product-container">
@@ -56,7 +47,8 @@ const ProductsPage = () => {
             <SideNav />
           </div>
 
-          <div className="product-align">
+          {status == "waiting" || loading ? <Loader /> : ((status== "success") ? 
+                    (<div className="product-align">
             <div className="product-items">
               <Products products={products} status={status} error={error} />
             </div>
@@ -69,10 +61,13 @@ const ProductsPage = () => {
               </p>
 
             </div>
-          </div>
+          </div>) : ( <div className="text-center full-length">
+      <h2>{error}</h2>
+    </div>))}
           <div />
 
         </div>
+      
       </div>
     </div>
   );

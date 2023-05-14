@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-// import Banner from '../components/banner/Banner';
 import Hero from '../components/banner/Hero';
-import Products from '../components/products/Products';
 import Shoes from '../components/products/Shoes';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
@@ -30,11 +28,7 @@ const ShoesPage = () => {
     dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
-  if (loading) {
-    return (
-      <Loader />
-    );
-  }
+  
   return (
     <div className="product-container">
       <Hero />
@@ -51,8 +45,8 @@ const ShoesPage = () => {
           <div className="side-nav">
             <SideNav />
           </div>
-
-          <div className="product-align">
+          {status == "waiting" || loading ? <Loader/> : ((status == "success") ? (
+            <div className="product-align">
             <div className="product-items">
               <Shoes products={products} status={status} error={error} />
 
@@ -67,6 +61,10 @@ const ShoesPage = () => {
 
             </div>
           </div>
+          ) : ( <div className="text-center full-length">
+          <h2>{error}</h2>
+        </div>) )}
+          
           <div />
 
         </div>

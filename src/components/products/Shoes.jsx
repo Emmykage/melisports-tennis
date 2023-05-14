@@ -16,11 +16,7 @@ const Shoes = ({ products, status, error }) => {
 
   const shoes = products.filter((items) => items.product_category.name === 'shoe');
 
-  if (status === 'waiting') {
-    return (
-      <Loader />
-    );
-  } if (status === 'success') {
+ 
     if (shoes.length < 1) {
       return (
         <div>
@@ -63,14 +59,6 @@ const Shoes = ({ products, status, error }) => {
     );
   }
 
-  return (
-    <div className="text-center">
-      <h2>
-        {' '}
-        {error}
-      </h2>
-    </div>
-  );
-};
+
 
 export default Shoes;

@@ -6,8 +6,9 @@ import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
 import strung from '../../mock/Strung';
-// import shoeSize from '../../mock/ShoeSizes';
-;import clothSizes from '../../mock/ClothSizes';
+import clothSizes from '../../mock/ClothSizes';
+import shoeSizes from '../../mock/ShoeSizes';
+
 const AddProduct = () => {
   const { product_categories, updater } = useSelector((state) => state.product_categories);
   const levels = useSelector((state) => state.level.levels);
@@ -40,24 +41,19 @@ const AddProduct = () => {
     size: '',
     tension: '',
     strung: "",
-    cloth_size_attributes: []
+    cloth_sizes_attributes: [],
+    shoe_sizes_attributes: []
 
   });
 
   const handleFormInput = (e) => {
-    // if (e.target.name =="cloth_size_attributes"){
-    //   setFormInput({
-    //     ...formInput,
-    //     [e.target.name]: e.target.options,
   
-    //   })
-    // }
-    if (e.target.name =="cloth_size_attributes"){
+    if (e.target.name =="cloth_sizes_attributes" || e.target.name =="shoe_sizes_attributes"){
     var options = e.target.options;
     var value = [];
     for (var i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
-        value.push({abrrv: options[i].value});
+        value.push({abbrv: options[i].value});
       }
     }
   
@@ -75,36 +71,39 @@ const AddProduct = () => {
 
 }
   ;
-console.log(formInput)
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(addProduct(formInput));
-    console.log(formInput)
-    setFormInput({
-      name: '',
-      price: '',
-      image: '',
-      sku: '',
-      product_category_id: '',
-      grip_size: '',
-      head_size: '',
-      rating: '',
-      colour: '',
-      weight: '',
-      length: '',
-      stiffness: '',
-      composition: '',
-      category: '',
-      description: '',
-      size: '',
-      tension: '',
-      colour: '',
-      strung: "",
-      cloth_size_attributes: ""
+    dispatch(addProduct(formInput));
+    // reset()
 
-    });
 
   };
+const reset = () => {
+  setFormInput({
+    name: '',
+    price: '',
+    image: '',
+    sku: '',
+    product_category_id: '',
+    grip_size: '',
+    head_size: '',
+    rating: '',
+    colour: '',
+    weight: '',
+    length: '',
+    stiffness: '',
+    composition: '',
+    category: '',
+    description: '',
+    size: '',
+    tension: '',
+    colour: '',
+    strung: "",
+    cloth_size_attributes: ""
+    
+
+  });
+}
   return (
     <div className="product-form admin">
 
@@ -203,30 +202,18 @@ console.log(formInput)
         </div>
         <div className="form-row">
 
-{/* <div className="input-half">
-  <label htmlFor=""> Shoe size  </label>
-  <select name="shoe_size" id="shoe_size">
-    {clothSizes.map(item => (
-
-    <option value={item.abbrv}>{item.abbrv} </option>
-
-    ))}
-
-  </select>
-
-</div> */}
 <div className="input-half">
   <label htmlFor=""> Cloth size  </label>
-  <select name="cloth_size_attributes" id="cloth_size"
-  //  value={formInput.cloth_size_attributes}
- 
+  <select 
+  name="cloth_sizes_attributes" 
+  id="cloth_size"
   multiple
-   onChange={handleFormInput}
-   required
+  onChange={handleFormInput}
+  size={1}
+  required
   >
     {clothSizes.map(item => (
 
-    // <option value={item.abbrv}>{item.abbrv} </option>
     <option value={item.abbrv}>{item.abbrv}</option>
 
     ))}
@@ -234,7 +221,26 @@ console.log(formInput)
   </select>
 
 </div>
-{/* <div className="input-half">
+<div className="input-half">
+  <label htmlFor=""> Shoe size  </label>
+  <select name="shoe_sizes_attributes" id="shoe_size"
+  //  value={formInput.cloth_size_attributes}
+ 
+  multiple
+   onChange={handleFormInput}
+   size={1}
+   required
+  >
+    {shoeSizes.map(item => (
+
+    <option value={item.abbrv}>{item.abbrv}</option>
+
+    ))}
+
+  </select>
+
+</div>
+<div className="input-half">
   <label htmlFor=""> SKU   </label>
   <input
     name="sku"
@@ -244,7 +250,7 @@ console.log(formInput)
     placeholder="sku"
   />
 
-</div> */}
+</div>
 
 </div>
         <div className="form-row">

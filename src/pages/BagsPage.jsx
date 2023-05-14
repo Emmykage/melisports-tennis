@@ -10,6 +10,7 @@ import { closeNav } from '../redux/modal/nav';
 import { filterProducts } from '../redux/products/product';
 import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
+import { getProductCategories } from '../redux/actions/product_category';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
@@ -26,10 +27,9 @@ const BagsPage = () => {
     dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProducts());
+    dispatch(getProductCategories())
   }, []);
-  if (loading) {
-    <Loader />;
-  } else {
+
     return (
       <div className="product-container">
         <Hero />
@@ -47,8 +47,8 @@ const BagsPage = () => {
             <div className="side-nav">
               <SideNav />
             </div>
-
-            <div className="product-align">
+            { status == "waiting" || loading ? <Loader/> : ((status == "success") ? (
+              <div className="product-align">
               <div className="product-items">
                 <Bags products={products} status={status} error={error} />
 
@@ -62,6 +62,12 @@ const BagsPage = () => {
 
               </div>
             </div>
+
+            ): ( <div className="text-center full-length">
+            <h2>{error}</h2>
+          </div>) )}
+
+            
             <div />
 
           </div>
@@ -69,6 +75,6 @@ const BagsPage = () => {
       </div>
     );
   }
-};
+// };
 
 export default BagsPage;

@@ -4,11 +4,10 @@ import {
 } from '../actions/product_category';
 
 const initialState = {
+  product_categories: [],  
   loading: true,
-
-  product_categories: [],
   status: 'failed',
-  report: null,
+  report: "nuller",
   updater: true,
 };
 const productCategorySlice = createSlice({
@@ -27,11 +26,11 @@ const productCategorySlice = createSlice({
       report: 'waiting',
       loading: true,
     }),
-    [getProductCategories.rejected]: (state) => ({
+    [getProductCategories.rejected]: (state, action) => ({
       ...state,
       status: 'rejected',
-      report: 'waiting',
-      loading: false,
+      report: 'casted',
+      loading: false
     }),
     [addProductCategory.fulfilled]: (state) => ({
       ...state,

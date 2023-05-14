@@ -1,4 +1,4 @@
-const shoeSize = [{abbrv: "S"}, {abbrv: "M"},{abbrv: "L"},{abbrv: "L"},{abbrv: "L"}]
+const shoeSizes = [{abbrv: "7"}, {abbrv: "8"},{abbrv: "9"},{abbrv: "10"},{abbrv: "11"}]
 
 
-export default shoeSize
+export default shoeSizes

@@ -15,11 +15,7 @@ const Bags = ({ products, status, error }) => {
   const bags = products.filter((items) => items.product_category.name === 'bag');
   // console.log(bags)
 
-  if (status === 'waiting') {
-    return (
-      <Loader />
-    );
-  } if (status === 'success') {
+ 
     if (bags.length < 1) {
       return (
         <div>
@@ -60,11 +56,6 @@ const Bags = ({ products, status, error }) => {
       </>
     );
   }
-  return (
-    <div className="text-center">
-      <h2>{error}</h2>
-    </div>
-  );
-};
+  
 
 export default Bags;
