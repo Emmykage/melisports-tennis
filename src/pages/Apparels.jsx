@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SideNav from '../components/sideNav/SideNav';
 import Hero from '../components/banner/Hero';
 import Apparels from '../components/products/Apparels';
-import { filterProducts } from '../redux/products/product';
+import { filterProducts } from '../redux/actions/product';
 
 import { getProducts } from '../redux/actions/product';
 import { closeList } from '../redux/products/searched';

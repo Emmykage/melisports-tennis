@@ -6,6 +6,13 @@ const getProducts = createAsyncThunk('products/getProducts', async () => {
   return response;
 });
 
+const filterProducts = createAsyncThunk('products/getProducts', async (sieve) => {
+  const response = await fetch(`${baseURL}products`).then((res) => res.json());
+  const filtered =  response.filter((item) => item.name.toLowerCase().includes(sieve))
+  console.log(filtered)
+  return filtered;
+});
+
 const getProduct = createAsyncThunk('product/getproduct', async (id) => {
   const response = await fetch(`${baseURL}products/${id}`).then((res) => res.json()).catch((err) => console.log(err));
   return response;
@@ -44,5 +51,5 @@ const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
 });
 
 export {
-  getProducts, getProduct, addProduct, deleteProduct, updateProduct,
+  getProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProducts
 };

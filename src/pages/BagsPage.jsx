@@ -7,7 +7,7 @@ import Bags from '../components/products/Bags';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
 import { closeNav } from '../redux/modal/nav';
-import { filterProducts } from '../redux/products/product';
+import { filterProducts } from '../redux/actions/product';
 import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
 import { getProductCategories } from '../redux/actions/product_category';
