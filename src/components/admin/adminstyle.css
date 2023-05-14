@@ -139,10 +139,12 @@ aside .top {
   flex-basis: 49%;
   width: 100%;
 }
+
 .product-form form .input-full {
   /* flex-basis: 49%; */
   width: 100%;
 }
+
 .text-form-container {
   width: 100%;
 }
