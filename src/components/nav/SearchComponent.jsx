@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { searched } from '../../redux/actions/search';
+import {searched} from '../../redux/actions/search';
 import { closeList, displayList } from '../../redux/products/searched';
 import SearchList from './SearchList';
 

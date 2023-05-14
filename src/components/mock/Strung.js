@@ -1,8 +1,8 @@
 const strung = [{
-    name: "strung"
+  name: 'strung',
 },
 {
-    name: "unstrung"
-}]
+  name: 'unstrung',
+}];
 
 export default strung;

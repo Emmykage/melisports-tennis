@@ -14,10 +14,10 @@ const initialState = {
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-    extraReducers: {
+  extraReducers: {
     [filterProducts.fulfilled]: (state, action) => ({
       ...state,
-      products: action.payload
+      products: action.payload,
 
     }),
     [getProducts.fulfilled]: (state, action) => ({
@@ -26,19 +26,18 @@ const productsSlice = createSlice({
       loading: false,
       products: action.payload,
     }),
-    
+
     [getProducts.pending]: (state) => ({
       ...state,
       loading: true,
       status: 'waiting',
     }),
-    [getProducts.rejected]: (state, action) =>
-      ({
-        ...state,
-        error: 'No Internet Connection',
-        loading: false,
-        status: 'failed',
-      })
+    [getProducts.rejected]: (state) => ({
+      ...state,
+      error: 'No Internet Connection',
+      loading: false,
+      status: 'failed',
+    })
 
     ,
 
@@ -46,4 +45,3 @@ const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
-// export const { filterProducts } = productsSlice.actions;
