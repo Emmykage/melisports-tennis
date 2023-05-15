@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getGenders } from '../../../redux/actions/gender';
 import { getLevels } from '../../../redux/actions/misc';
-import { getProduct, updateProduct } from '../../../redux/actions/product';
+import { updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import baseURL from '../../../redux/baseURL';
 import shoeSizes from '../../mock/ShoeSizess';
