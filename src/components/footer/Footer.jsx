@@ -45,8 +45,8 @@ const Footer = () => (
       <div>
         <ul>
           <h4>Connect With Us</h4>
-          <li><a href='https://web.facebook.com/melisports'></a> Facebook</li>
-          <li> <a href='https://www.instagram.com/melisports/'></a>Instagram</li>
+          <li><a href='https://web.facebook.com/melisports'>Facebook</a> </li>
+          <li> <a href='https://www.instagram.com/melisports/'>Instagram</a></li>
           {/* <li>Youtube</li> */}
           <li><a href='https://twitter.com/MeliSports'> Twitter</a> </li>
           {/* <li>TP Blog</li> */}

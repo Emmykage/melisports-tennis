@@ -25,10 +25,14 @@ footer {
   /* align-self:flex-end; */
 }
 
+
 footer p,
-footer li {
+footer li, footer a  {
   color: white;
   font-size: 0.8rem;
+}
+footer a{
+  text-decoration: underline;
 }
 
 footer h3,
