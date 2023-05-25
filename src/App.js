@@ -34,6 +34,7 @@ import AdminSignUp from './pages/auth/AdminSignUp';
 import AdminLogin from './pages/auth/AdminLogin';
 import Checkout from './pages/Checkout';
 import Loader from './pages/Loader';
+import StripeContainer from './pages/StripeContainer';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -47,6 +48,7 @@ function App() {
     <>
 
       <Routes>
+        <Route path='paymentform' element={<StripeContainer/>} />
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
