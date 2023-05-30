@@ -1,6 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
 
+const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
+
+
 const addUser = createAsyncThunk('user/addUser', async (data) => {
   const response = await fetch(`${baseURL}users`, {
     method: 'POST',
@@ -24,4 +27,15 @@ const loginUser = createAsyncThunk('user/logUser', async (data) => {
     // .catch((err) => err.json())
   return response;
 });
-export { addUser, loginUser };
+const getUser = createAsyncThunk('user/logUser', async () => {
+  const response = await fetch(`${baseURL}users/*`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token()}`
+    },
+  })
+    .then((res) => res.json());
+  return response;
+})
+export { addUser, loginUser, getUser};
