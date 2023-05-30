@@ -109,7 +109,16 @@ a {
   /* border: 1px solid black; */
   margin: 20px auto;
 }
+.portrait-container{
+  max-width: 1200px;
+  width: 100%;
+  padding: 0rem 4rem;
+  margin: 1.8rem auto;
+  line-height: 1.8rem;
+}
+/* .portrait-container h2{
 
+} */
 .m-h5 {
   margin: 6rem 0;
 }

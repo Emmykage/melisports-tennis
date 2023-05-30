@@ -7,11 +7,11 @@ const PaymentField = ({billingDetails, setBillingDetails}) => {
       const handleChange = (e) => {
         setBillingDetails({
           ...billingDetails,
-          [e.target.name]: e.target.value,
-          address: {
-            ...billingDetails.address,
-            [e.target.name]: e.target.value
-          }
+          [e.target.name]: e.target.value
+          // address: {
+          //   ...billingDetails.address,
+          //   [e.target.name]: e.target.value
+          // }
           
       
         })
@@ -33,17 +33,17 @@ const PaymentField = ({billingDetails, setBillingDetails}) => {
 
           <div>
             <label htmlFor="country">city</label>
-            <input type="text" name="city" value={billingDetails.address.city} onChange={handleChange}/>
+            <input type="text" name="city" value={billingDetails.city} onChange={handleChange}/>
           </div>
 
           <div className="flex gap-1">
             <div className="flex-3">
               <label htmlFor="">State</label>
-              <input type="text" name='state' value={billingDetails.address.state} onChange={handleChange}/>
+              <input type="text" name='state' value={billingDetails.state} onChange={handleChange}/>
             </div>
             <div className="flex-2">
-              <label htmlFor="">postal</label>
-              <input type="text" name='postal' value={billingDetails.address.postal} onChange={handleChange} />
+              <label htmlFor="">postal_code</label>
+              <input type="text" name='postal_code' value={billingDetails.postal_code} onChange={handleChange} />
             </div>
           </div>
        

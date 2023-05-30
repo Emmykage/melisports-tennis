@@ -35,6 +35,11 @@ import AdminLogin from './pages/auth/AdminLogin';
 import Checkout from './pages/Checkout';
 import Loader from './pages/Loader';
 import StripeContainer from './pages/StripeContainer';
+import ReturnPolicy from './pages/resources/ReturnPolicy';
+import ShippingPolicy from './pages/resources/ShippingPolicy';
+import TermsOfServices from './pages/resources/TermsOfServices';
+import PrivacyPolicy from './pages/resources/PrivacyPolicy';
+import Accounts from './pages/resources/Accounts';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -91,8 +96,13 @@ function App() {
         </Route>
 
         <Route path="/loader" element={<MainLayout><Loader /></MainLayout>} />
-
-      </Routes>
+        <Route path="/return_policy" element={<MainLayout><ReturnPolicy /></MainLayout>} />
+        <Route path="/shipping_policy" element={<MainLayout><ShippingPolicy /></MainLayout>} />
+        <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />
+        <Route path="/privacy_policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
+        <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
+            
+      </Routes >
 
     </>
   );

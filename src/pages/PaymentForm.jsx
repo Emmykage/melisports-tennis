@@ -26,14 +26,23 @@ const CARD_OPTIONS = {
 }
 
 const PaymentForm = ({total_cost}) => {
+  // const [billingDetails, setBillingDetails] = useState({
+  //   name: '',
+  //   email: "",
+  //   address: {
+  //     city: "",
+  //     postal_code: "",
+  //     state: ""
+  //   }
+  // })
   const [billingDetails, setBillingDetails] = useState({
     name: '',
     email: "",
-    address: {
+    
       city: "",
-      postal: "",
+      postal_code: "",
       state: ""
-    }
+  
   })
   const stripe = useStripe()
   const elements = useElements()
@@ -42,14 +51,34 @@ const PaymentForm = ({total_cost}) => {
     if (!stripe || !elements){
       return
     }
+    const billings = {
+      name: billingDetails.name,
+        email: billingDetails.email,
+        address: {
+          city: billingDetails.city,
+          postal_code: billingDetails.postal_code,
+          state: billingDetails.state
+        }
+    }
     
 
-  const {clientSecrete} = await axios.post(`/payment_intent`, {
+  const {data: client_secret} = await axios.post(`${baseURL}payment_intents`, {
             amount: total_cost * 100,
   } )
-  
+  const cardElement = elements.getElement(CardElement)
+  const paymentMethodReq = await stripe.createPaymentMethod({
+    type: 'card',
+    card: cardElement,
+    billing_details: billings
+  })
+  console.log(client_secret.client_secret)
+
+  const confirmCardPayment = await stripe.confirmCardPayment(client_secret.client_secret, {
+    payment_method: paymentMethodReq.paymentMethod.id
+  })
+  console.log(confirmCardPayment, paymentMethodReq)
+
 }
-console.log(billingDetails)
 
   return (
     <>

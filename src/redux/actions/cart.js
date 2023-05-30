@@ -26,7 +26,7 @@ const removeItem = createAsyncThunk('cart/removeCart', async (id) => {
     },
 
   });
-  console.log('deleted');
+  // console.log('deleted');
   return response;
 });
 const clearCart = createAsyncThunk('cart/clearCart', async () => {

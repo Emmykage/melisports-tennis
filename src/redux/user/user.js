@@ -1,11 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addUser,
+  getUser,
   loginUser,
 } from '../actions/auth';
 
 const initialState = {
-  user: null,
+  user: { user: {
+            email: "email@gmail.com",
+            first_name: "first name",
+            id:2,
+            last_name: "last_name",
+            phone_no: "number",
+            role:"admin",
+            stripe_customer_id:null,
+            username: "username"
+          }},
   error: false,
   message: '',
   loading: false,
@@ -27,12 +37,46 @@ const userSlice = createSlice({
       } catch {
         return {
           ...state,
-          user: null,
+          user: {
+          user: {
+            email: "emmiemenz@gmail.com",
+            first_name: null,
+            id:2,
+            last_name: null,
+            password_digest:"$2a$12$svjsc1D1iPMJuBjtiKEdJO/m73GEBiIF.FXVYzbcTP86XSMDwmHhK",
+            phone_no: "07064334160",
+            role:"admin",
+            stripe_customer_id:null,
+            username: "morris"
+          }
+        }
         };
       }
     },
   },
   extraReducers: {
+    [getUser.fulfilled]: (state, action) => {
+      const response = action.payload;
+      if (response.user) {
+        
+        return {
+          ...state,
+          logged: true,
+          user: response,
+                };
+      }else{
+
+      
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        message: action.payload.error,
+      };
+    }
+
+
+    },
     [addUser.fulfilled]: (state, action) => {
       console.log('fulfilled');
       const response = action.payload;
