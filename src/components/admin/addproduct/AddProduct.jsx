@@ -61,7 +61,14 @@ const AddProduct = () => {
       ...formInput,
       [e.target.name]: value
     });
-  }else{
+  }else if(e.target.picture){
+    setFormInput({
+      ...formInput,
+      [e.target.name]: e.target.files[0]
+    })
+  }
+  
+  else{
     setFormInput({
            ...formInput,
            [e.target.name]: e.target.value,
@@ -73,8 +80,34 @@ const AddProduct = () => {
   ;
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addProduct(formInput));
-    reset()
+    const formData = new FormData()
+    formData.append('picture', formInput.picture)
+    formData.append('name', formInput.name)
+    formData.append('price', formInput.price)
+    formData.append('image', formInput.image)
+    formData.append('sku', formInput.sku)
+    formData.append('product_categorid', formInput.product_category_id)
+    formData.append('grip_size', formInput.grip_size)
+    formData.append('head_size', formInput.head_size)
+    formData.append('rating', formInput.rating)
+    formData.append('colour', formInput.colour)
+    formData.append('weight', formInput.weight)
+    formData.append('name', formInput.name)
+    formData.append('stiffness', formInput.stiffness)
+    formData.append('length', formInput.length)
+    formData.append('composition', formInput.composition)
+    formData.append('description', formInput.description)
+    formData.append('size', formInput.size)
+    formData.append('tension', formInput.tension)
+    formData.append('colour', formInput.colour)
+    formData.append('strung', formInput.strung)
+    formData.append('cloth_size_attributes', formInput.cloth_size_attributes)
+    formData.append('picture', formInput.picture)
+
+
+    console.log(formData)
+    // dispatch(addProduct(formInput));
+    // reset()
 
 
   };
@@ -99,7 +132,8 @@ const reset = () => {
     tension: '',
     colour: '',
     strung: "",
-    cloth_size_attributes: ""
+    cloth_size_attributes: "",
+    picture: ""
     
 
   });
@@ -371,6 +405,23 @@ placeholder='colour'              onChange={handleFormInput}
             onChange={handleFormInput}
             value={formInput.image}
             placeholder="image url"
+            required
+          />
+
+        </div>
+        <div>
+          <label htmlFor="">
+            {' '}
+            <span>picture</span>
+
+            <span>*</span>
+          </label>
+          <input
+            type="file"
+            name="picture"
+            onChange={handleFormInput}
+            // value={formInput.picture}
+            // placeholder="image url"
             required
           />
 

@@ -5,30 +5,9 @@ import { addOrder } from '../redux/actions/orders';
 import StripeContainer from './StripeContainer';
 
 const Checkout = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { total, cartItems, counter } = useSelector((state) => state.cart);
-  const [state, setState] = useState({});
-  // const [showItem, setShowItem] = useState(false)
 
-  const orderItems = cartItems.map((item) => (
-    {
-      product_id: item.product_id,
-      quantity: item.quantity,
-    }
-
-  ));
-
-  const handlePurchase = (e) => {
-    e.preventDefault();
-    setState({
-      order_detail: {
-        total,
-        order_items_attributes: orderItems,
-      },
-    });
-
-    dispatch(addOrder(state));
-  };
   return (
     <div className="checkout">
       <div className=" col-left">
@@ -39,8 +18,7 @@ const Checkout = () => {
         </form>
         <div>
         <h1> The store</h1>
-        <StripeContainer total_cost={total}/>
-        {/* {showItem ? <StripeContainer total_cost={total}/> : <><h3>{total}</h3><button onClick={()=> setShowItem(true) }>Purchase Product</button> </> } */}
+        <StripeContainer total_cost={total} cartItems={cartItems}/>
       </div>
 
       </div>

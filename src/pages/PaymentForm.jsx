@@ -1,17 +1,18 @@
 import React from 'react'
-import {CardElement, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
+import {CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 // import StatusMessages from './StatusMessages'
 import axios from 'axios'
 import { useState } from 'react'
 import baseURL from '../redux/baseURL'
 import PaymentField from '../components/PaymentForm'
+import { useDispatch } from 'react-redux'
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
   style: {
     base: {
       iconColor: "#c4foff",
-      color: "#fff",
+      color: "#829fff",
       fontWeight: 500,
       fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
       fontSize: "16px",
@@ -25,16 +26,20 @@ const CARD_OPTIONS = {
   }
 }
 
-const PaymentForm = ({total_cost}) => {
-  // const [billingDetails, setBillingDetails] = useState({
-  //   name: '',
-  //   email: "",
-  //   address: {
-  //     city: "",
-  //     postal_code: "",
-  //     state: ""
-  //   }
-  // })
+const PaymentForm = ({total_cost, cartItems}) => {
+  const [order, setOrder] = useState({});
+
+  const dispatch = useDispatch();
+
+  const orderItems = cartItems.map((item) => (
+    {
+      product_id: item.product_id,
+      quantity: item.quantity,
+    }
+
+  ));
+
+
   const [billingDetails, setBillingDetails] = useState({
     name: '',
     email: "",
@@ -78,7 +83,20 @@ const PaymentForm = ({total_cost}) => {
   })
   console.log(confirmCardPayment, paymentMethodReq)
 
+   setOrder({
+      order_detail: {
+        total: total_cost,
+        order_items_attributes: orderItems,
+      },
+    });
+    console.log(order)
+  dispatch(addOrder(order));
+
+
+
 }
+console.log(order)
+
 
   return (
     <>
