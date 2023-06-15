@@ -13,13 +13,13 @@ import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 
+
 const Nav = () => {
   const navigate = useNavigate();
   const { counter, cartItems, update } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
-
   useEffect(() => {
     dispatch(userLog());
     dispatch(getCarts());
@@ -193,9 +193,8 @@ const Nav = () => {
                 {' '}
               </li>
               ))}
+              
 
-              {/* {user && ((user.user.role === "admin" || user.role == undefined) ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " ")} */}
-              {/* {meli_auth.user.role ?  <li  className="nav-item"><NavLink to="/admin">    go to admin </NavLink>        </li> : " "} */}
               <li className="nav-item last">
                 <span><FiUser className="user-icon" /></span>
 

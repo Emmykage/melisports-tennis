@@ -7,6 +7,9 @@ import './auth.css';
 import { updater } from '../../redux/cart/cart';
 import { userLog } from '../../redux/user/user';
 
+// const auth = localStorage.getItem('meli_auth');
+// const user = JSON.parse(auth)
+
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,7 +41,7 @@ const Login = () => {
     dispatch(userLog());
   };
 
-  if (user == null || user == undefined) {
+  if (user == null || user == undefined || user == "") {
     return (
       <div className="wallpaper centralize">
         <div className="auth-container ">

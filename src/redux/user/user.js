@@ -6,16 +6,7 @@ import {
 } from '../actions/auth';
 
 const initialState = {
-  user: { user: {
-            email: "email@gmail.com",
-            first_name: "first name",
-            id:2,
-            last_name: "last_name",
-            phone_no: "number",
-            role:"admin",
-            stripe_customer_id:null,
-            username: "username"
-          }},
+  user: null,
   error: false,
   message: '',
   loading: false,
@@ -37,19 +28,7 @@ const userSlice = createSlice({
       } catch {
         return {
           ...state,
-          user: {
-          user: {
-            email: "emmiemenz@gmail.com",
-            first_name: null,
-            id:2,
-            last_name: null,
-            password_digest:"$2a$12$svjsc1D1iPMJuBjtiKEdJO/m73GEBiIF.FXVYzbcTP86XSMDwmHhK",
-            phone_no: "07064334160",
-            role:"admin",
-            stripe_customer_id:null,
-            username: "morris"
-          }
-        }
+          user: null
         };
       }
     },
