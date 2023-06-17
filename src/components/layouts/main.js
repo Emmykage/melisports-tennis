@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Nav from '../nav/Nav';
 import Footer from '../footer/Footer';
 import Modal from '../modal/Modal';
+import ChatBox from '../sideNav/ChatBox';
 
 const MainLayout = ({ children }) => {
   const { isOpen } = useSelector((state) => state.modal);
@@ -13,6 +14,7 @@ const MainLayout = ({ children }) => {
       <Nav />
       {children}
       <Footer />
+      <ChatBox/>
     </div>
   );
 };

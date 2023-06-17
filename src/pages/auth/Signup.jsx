@@ -16,7 +16,8 @@ const Signup = () => {
 
   const [formInput, setFormInput] = useState({
     user: {
-      username: '',
+      last_name: '',
+      first_name: '',
       email: '',
       phone_no: '',
       password: '',
@@ -49,8 +50,13 @@ const Signup = () => {
           <div className="sign-up">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
+            <label htmlFor="first_name">First Name</label>
+              <input type="text" name="first_name" value={formInput.user.first_name} onChange={handleInput} placeholder="First Name" id="first_name" required />
+              <label htmlFor="last_name">Last Name</label>
+              <input type="text" name="last_name" value={formInput.user.last_name} onChange={handleInput} placeholder="Last Name" id="lsat_name" required />
               <label htmlFor="username">username</label>
               <input type="text" name="username" value={formInput.user.username} onChange={handleInput} placeholder="username" id="username" required />
+             
               <label htmlFor="email">email</label>
               <input type="email" name="email" value={formInput.user.email} onChange={handleInput} placeholder="email" required />
               <label htmlFor="mobile">mobile</label>

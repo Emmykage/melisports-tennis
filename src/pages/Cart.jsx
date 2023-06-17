@@ -6,25 +6,44 @@ import {
   decreaseCart, increaseCart, removeItem, getCarts,
 } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
-
+// import {addOrder}
+import { addOrder } from '../redux/actions/orders';
 import { closeNav } from '../redux/modal/nav';
 import { closeList } from '../redux/products/searched';
 
 const Cart = () => {
   const { cartItems, total, update } = useSelector((state) => state.cart);
-  const [items, setItem] = useState([]);
+  const [state, setState] = useState({});
+  // const [items, setItem] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const orderItems = cartItems.map((item) => (
+    {
+      product_id: item.product_id,
+      quantity: item.quantity,
+    }
+
+  ));
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
-    getItem();
+    // getItem();
     dispatch(getCarts());
   }, [update]);
-  const getItem = () => {
-    setItem(cartItems);
-  };
+  // const getItem = () => {
+  //   setItem(cartItems);
+  // };
   const handleCheckout = () => {
+    setState({
+      order_detail: {
+        total,
+        order_items_attributes: orderItems,
+        status: "pending"
+      },
+    });
+
+    dispatch(addOrder(state));
+    // console.log(state)
     navigate('/checkout');
   };
 

@@ -18,7 +18,7 @@ const Login = () => {
   } = useSelector((state) => state.user);
   const [formInput, setFormInput] = useState({
     user: {
-      username: '',
+      email: '',
       password: '',
     },
   });
@@ -48,8 +48,8 @@ const Login = () => {
           <div className="login-box">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-              <label htmlFor="username">username</label>
-              <input type="text" value={formInput.username} onChange={handleInput} name="username" id="username" placeholder="username" />
+              <label htmlFor="email">email</label>
+              <input type="text" value={formInput.email} onChange={handleInput} name="email" id="email" placeholder="email" />
               <label htmlFor="password" />
               <input type="password" value={formInput.password} onChange={handleInput} name="password" placeholder="Enter password" />
               <button className="btn" type="submit">Log in </button>
