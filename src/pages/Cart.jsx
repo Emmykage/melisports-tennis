@@ -13,11 +13,10 @@ import { closeList } from '../redux/products/searched';
 
 const Cart = () => {
   const { cartItems, total, update } = useSelector((state) => state.cart);
-  const [state, setState] = useState({});
-  // const [items, setItem] = useState([]);
+  const {status} = useSelector(state => state.orders)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const orderItems = cartItems.map((item) => (
+  const orderItems =() => cartItems.map((item) => (
     {
       product_id: item.product_id,
       quantity: item.quantity,
@@ -27,24 +26,24 @@ const Cart = () => {
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
-    // getItem();
     dispatch(getCarts());
   }, [update]);
-  // const getItem = () => {
-  //   setItem(cartItems);
-  // };
+ 
   const handleCheckout = () => {
-    setState({
-      order_detail: {
-        total,
-        order_items_attributes: orderItems,
-        status: "pending"
-      },
-    });
+ 
+    dispatch(addOrder(data));
+    // navigate('/checkout');
+  };
+  console.log(status)
 
-    dispatch(addOrder(state));
-    // console.log(state)
-    navigate('/checkout');
+  status == "success" && navigate('/checkout') 
+
+  const data = {
+    order_detail: {
+      total,
+      order_items_attributes: orderItems(),
+      status: "pending"
+    },
   };
 
   if (cartItems.length < 1) {

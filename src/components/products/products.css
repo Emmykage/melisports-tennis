@@ -2,9 +2,10 @@
   border: 1px solid var(--color-info-dark);
   flex-basis: 24%;
   text-align: center;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   margin-bottom: 1.3rem;
   border-radius: 18px;
+  height: fit-content;
   overflow: hidden;
 }
 

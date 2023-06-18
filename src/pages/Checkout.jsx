@@ -3,32 +3,19 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { addOrder } from '../redux/actions/orders';
 import StripeContainer from './StripeContainer';
+import { useEffect } from 'react';
+import { reset } from '../redux/order/order';
 
 const Checkout = () => {
   // const dispatch = useDispatch();
-  const { total, cartItems, counter } = useSelector((state) => state.cart);
-  // const [state, setState] = useState({});
-  // const [showItem, setShowItem] = useState(false)
+  const dispatch = useDispatch()
+  const { total, counter } = useSelector((state) => state.cart);
+  const {status} = useSelector(state => state.orders)
 
-  // const orderItems = cartItems.map((item) => (
-  //   {
-  //     product_id: item.product_id,
-  //     quantity: item.quantity,
-  //   }
-
-  // ));
-
-  // const handlePurchase = (e) => {
-  //   e.preventDefault();
-  //   setState({
-  //     order_detail: {
-  //       total,
-  //       order_items_attributes: orderItems,
-  //     },
-  //   });
-
-  //   dispatch(addOrder(state));
-  // };
+  useEffect(()=> {
+    dispatch(reset())
+  }, [])
+  console.log(status)
   return (
     <div className="checkout">
       <div className=" col-left">
