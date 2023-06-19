@@ -34,7 +34,6 @@ const Cart = () => {
     dispatch(addOrder(data));
     // navigate('/checkout');
   };
-  console.log(status)
 
   status == "success" && navigate('/checkout') 
 

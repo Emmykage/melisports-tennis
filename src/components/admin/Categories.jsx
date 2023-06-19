@@ -50,7 +50,6 @@ const Categories = () => {
     dispatch(updateCategory({ id: edit.id, data: { name: edit.name, level: edit.level, description: edit.description } }));
   };
   const handleDelete = (id) => {
-    console.log('hey');
     dispatch(openDelCatModal(id));
   };
   return (

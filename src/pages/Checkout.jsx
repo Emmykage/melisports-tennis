@@ -15,7 +15,6 @@ const Checkout = () => {
   useEffect(()=> {
     dispatch(reset())
   }, [])
-  console.log(status)
   return (
     <div className="checkout">
       <div className=" col-left">

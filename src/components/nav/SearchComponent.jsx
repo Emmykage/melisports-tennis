@@ -20,7 +20,6 @@ const SearchComponent = () => {
     dispatch(searched(search));
   };
 
-  // console.log(searchedProducts)
 
   return (
     <div className="search-component">

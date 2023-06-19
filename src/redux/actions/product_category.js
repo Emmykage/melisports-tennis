@@ -12,7 +12,6 @@ const addProductCategory = createAsyncThunk('product_category/add_product_catego
   return response;
 });
 const updateCategory = createAsyncThunk('product_category/update_product_category', async ({ id, data }) => {
-  console.log(data);
   const response = await fetch(`${baseURL}product_categories/${id}`, {
     method: 'PUT',
     headers: {
@@ -24,7 +23,6 @@ const updateCategory = createAsyncThunk('product_category/update_product_categor
   return response;
 });
 const deleteCategory = createAsyncThunk('product_category/delete_product_category', async (id) => {
-  console.log(id);
   await fetch(`${baseURL}product_categories/${id}`, {
     method: 'DELETE',
     headers: {

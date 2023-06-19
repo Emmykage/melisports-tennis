@@ -13,7 +13,6 @@ const Bags = ({ products, status, error }) => {
   });
 
   const bags = products.filter((items) => items.product_category.name === 'bag');
-  // console.log(bags)
 
  
     if (bags.length < 1) {

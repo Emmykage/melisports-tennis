@@ -7,7 +7,6 @@ import { closeDelModal } from '../../redux/modal/delModal';
 const ProdDelModal = (props) => {
   const { id } = props;
   const dispatch = useDispatch();
-  console.log(id);
   // const {isOpen, id} = useSelector((state) => state.delModal)
   return (
     <div className="modal-container">
