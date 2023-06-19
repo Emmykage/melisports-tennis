@@ -13,7 +13,7 @@ const filterProducts = createAsyncThunk('products/getProducts', async (sieve) =>
 });
 
 const getProduct = createAsyncThunk('product/getproduct', async (id) => {
-  const response = await fetch(`${baseURL}products/${id}`).then((res) => res.json())
+  const response = await fetch(`${baseURL}products/${id}`).then((res) => res.json());
   return response;
 });
 

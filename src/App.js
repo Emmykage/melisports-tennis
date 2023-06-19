@@ -53,7 +53,7 @@ function App() {
     <>
 
       <Routes>
-        <Route path='paymentform' element={<StripeContainer/>} />
+        <Route path="paymentform" element={<StripeContainer />} />
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
@@ -101,8 +101,8 @@ function App() {
         <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />
         <Route path="/privacy_policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
         <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
-            
-      </Routes >
+
+      </Routes>
 
     </>
   );

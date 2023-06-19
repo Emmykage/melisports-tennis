@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
       <Nav />
       {children}
       <Footer />
-      <ChatBox/>
+      <ChatBox />
     </div>
   );
 };

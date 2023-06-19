@@ -9,31 +9,30 @@ const orderSlice = createSlice({
   name: 'orders',
   initialState,
   reducers: {
-    reset: (state) => {
-      return{
+    reset: (state) => ({
       ...state,
-      status: "pending"
-    }}
+      status: 'pending',
+    }),
   },
   extraReducers: {
-    [getOrders.fulfilled]: ( action) => ({
+    [getOrders.fulfilled]: (action) => ({
       orders: action.payload,
     }),
-    
+
     [addOrder.fulfilled]: (state, action) => {
-      if(action.payload.status == 201){
-      return{
-      ...state,
-      status: 'success',
-    }}else{
-      return{
+      if (action.payload.status == 201) {
+        return {
+          ...state,
+          status: 'success',
+        };
+      }
+      return {
         ...state,
         status: 'failed',
-      }
-
-    }},
+      };
+    },
   },
 });
 
 export default orderSlice.reducer;
-export const {reset} = orderSlice.actions
+export const { reset } = orderSlice.actions;

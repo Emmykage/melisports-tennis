@@ -28,7 +28,7 @@ const userSlice = createSlice({
       } catch {
         return {
           ...state,
-          user: null
+          user: null,
         };
       }
     },
@@ -37,24 +37,19 @@ const userSlice = createSlice({
     [getUser.fulfilled]: (state, action) => {
       const response = action.payload;
       if (response.user) {
-        
         return {
           ...state,
           logged: true,
           user: response,
-                };
-      }else{
+        };
+      }
 
-      
       return {
         ...state,
         loading: false,
         error: true,
         message: action.payload.error,
       };
-    }
-
-
     },
     [addUser.fulfilled]: (state, action) => {
       const response = action.payload;
@@ -76,14 +71,11 @@ const userSlice = createSlice({
         message: action.payload.error,
       };
     },
-    [addUser.rejected]: (state, action) => {
-      // console.log('failed', action.payload.error);
-      return {
-        ...state,
-        error: true,
-        message: 'failed to create an account',
-      };
-    },
+    [addUser.rejected]: (state) => ({
+      ...state,
+      error: true,
+      message: 'failed to create an account',
+    }),
     [addUser.pending]: (state) => ({
       ...state,
       loading: true,

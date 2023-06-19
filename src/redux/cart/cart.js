@@ -62,7 +62,7 @@ const cartSlice = createSlice({
     [clearCart.fulfilled]: (state) => ({
       ...state,
     }),
-    [addCart.fulfilled]: ( action) => {
+    [addCart.fulfilled]: (action) => {
     },
 
   },
