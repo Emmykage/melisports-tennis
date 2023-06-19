@@ -23,7 +23,6 @@ const Accounts = () => {
  
 
   }, [])
-  console.log(user)
   return (
     <div className='account portrait-container'>
         <form action="">

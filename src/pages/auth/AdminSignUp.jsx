@@ -42,7 +42,6 @@ const AdminSignUp = () => {
     // dispatch(updater())
     dispatch(userLog());
   };
-  console.log(user);
   if (user == null || user == undefined) {
     return (
       <div className="wallpaper centralize">

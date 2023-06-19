@@ -50,8 +50,7 @@ const productCategorySlice = createSlice({
       loading: true,
       report: 'loading...',
     }),
-    [updateCategory.fulfilled]: (state, action) => {
-      console.log('this was a success');
+    [updateCategory.fulfilled]: (state) => {
       return {
         ...state,
         loading: false,

@@ -27,7 +27,6 @@ const ProductDetails = () => {
 
     dispatch(updater());
   };
-  console.log(product);
   const increase = () => {
     setCount((setPrev) => setPrev + 1);
   };

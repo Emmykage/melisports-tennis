@@ -71,12 +71,10 @@ const PaymentForm = ({total_cost}) => {
     card: cardElement,
     billing_details: billings
   })
-  console.log(client_secret.client_secret)
 
   const confirmCardPayment = await stripe.confirmCardPayment(client_secret.client_secret, {
     payment_method: paymentMethodReq.paymentMethod.id
   })
-  console.log(confirmCardPayment, paymentMethodReq)
 
 }
 
@@ -124,43 +122,3 @@ export default PaymentForm
 
 
 
-
-
-
-// console.log(clientSecrete)
-
-  //  const {paymentIntent} = await stripe.confirmCardPayment(
-  //   clientSecrete, {
-  //     payment_method: {
-  //       card: elements.getElement(CardElement)
-  //     }
-  //   }
-  //  )
-    
-//     const {error, paymentMethod} = await stripe.createPaymentMethod
-//     ({
-//       type: "card",
-//       card: elements.getElement(CardElement)
-//     })
-
-//   if(!error){
-//     try {
-//       const {id} = paymentMethod
-//       const response = await axios.post(`${baseURL}`, {
-//         amount: total_cost,
-//         id
-
-//       } )
-      
-//       if(response.data.success){
-//         console.log("Successful payment")
-//         setSuccess(true)
-//       }
-      
-//     } catch (error) {
-//       console.log("Error", error)
-//     }
-//   }else{
-//     console.log(error.message)
-//   }
-//   console.log(total_cost)

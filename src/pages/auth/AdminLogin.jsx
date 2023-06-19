@@ -39,7 +39,6 @@ const AdminLogin = () => {
     dispatch(loginUser(formInput));
     dispatch(userLog());
   };
-  console.log(user);
   if (user == null || user == undefined || Object.keys(user) == 0) {
     return (
       <div className="wallpaper centralize">
@@ -74,7 +73,6 @@ const AdminLogin = () => {
       </div>
     );
   } if (user.user.role == 'client') {
-    console.log(user.user.role);
     return (
       <div>
         <h1>

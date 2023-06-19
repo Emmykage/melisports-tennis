@@ -11,7 +11,6 @@ const ChatBox = () => {
 
     }
     const handleChange = (e) => {
-        console.log(e.target.value)
         setFormInput({
             ...formInput,
             [e.target.name]: e.target.value
@@ -20,7 +19,6 @@ const ChatBox = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
-        console.log(formInput)
         await fetch(`${baseURL}messages`, {
             method: "POST",
             headers: {
@@ -28,7 +26,6 @@ const ChatBox = () => {
             },
             body: JSON.stringify(formInput),
         }).then((res) => res.status == "ok" ? setToggle(true) : setToggle(false) )
-        // .then(res => console.log(res)            )
     }
   return (
     <>

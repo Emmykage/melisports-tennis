@@ -62,9 +62,7 @@ const cartSlice = createSlice({
     [clearCart.fulfilled]: (state) => ({
       ...state,
     }),
-    [addCart.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      console.log('good request');
+    [addCart.fulfilled]: ( action) => {
     },
 
   },

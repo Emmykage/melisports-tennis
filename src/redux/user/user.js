@@ -57,7 +57,6 @@ const userSlice = createSlice({
 
     },
     [addUser.fulfilled]: (state, action) => {
-      console.log('fulfilled');
       const response = action.payload;
       if (response.user) {
         const collect = JSON.stringify(response);
@@ -69,7 +68,6 @@ const userSlice = createSlice({
           message: 'sign up successfull',
         };
       }
-      console.log('yes fulfillled but failed');
 
       return {
         ...state,
@@ -79,7 +77,7 @@ const userSlice = createSlice({
       };
     },
     [addUser.rejected]: (state, action) => {
-      console.log('failed', action.payload.error);
+      // console.log('failed', action.payload.error);
       return {
         ...state,
         error: true,
@@ -104,7 +102,6 @@ const userSlice = createSlice({
         };
       }
 
-      console.log(action.payload.error);
       return {
         ...state,
         logged: false,

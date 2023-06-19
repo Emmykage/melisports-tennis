@@ -6,7 +6,6 @@ let token;
 if (auth) {
   const userInfo = JSON.parse(auth);
   token = userInfo.token;
-  console.log(token);
 }
 
 const addOrder = createAsyncThunk('order/createOrder', async (data) => {
