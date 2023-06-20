@@ -1,5 +1,6 @@
 {
   "name": "melisports-tennis",
+  "homepage": "http://melisports.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
