@@ -4,11 +4,16 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { addUser } from '../../redux/actions/auth';
 import { updater } from '../../redux/cart/cart';
 import { userLog } from '../../redux/user/user';
+import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai"
+import {BsFacebook} from "react-icons/bs"
+import {FcGoogle} from "react-icons/fc"
 
 import './auth.css';
 
 const Signup = () => {
   const navigation = useNavigate();
+  const [show, setShow] = useState(true)
+
   const dispatch = useDispatch();
   const {
     user, error, message, logged,
@@ -18,6 +23,7 @@ const Signup = () => {
     user: {
       last_name: '',
       first_name: '',
+      username:'',
       email: '',
       phone_no: '',
       password: '',
@@ -29,6 +35,14 @@ const Signup = () => {
     dispatch(userLog());
   }, []);
   const handleInput = (e) => {
+    if(e.target.name == "email"){
+      setFormInput({
+        user: {
+          ...formInput.user,
+          [e.target.name]: e.target.value.toLowerCase(),
+        },
+      })
+    }else{
     setFormInput({
 
       user: {
@@ -36,10 +50,16 @@ const Signup = () => {
         [e.target.name]: e.target.value,
       },
     });
+  }
   };
+  const toggleReveal = () => {
+    setShow(prev => !prev)
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addUser(formInput));
+    console.log(formInput)
+
     dispatch(updater());
     dispatch(userLog());
   };
@@ -47,36 +67,69 @@ const Signup = () => {
     return (
       <div className="wallpaper centralize">
         <div className="auth-container">
-          <div className="sign-up">
+          <div className="form-content sign-up">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
-            <label htmlFor="first_name">First Name</label>
-              <input type="text" name="first_name" value={formInput.user.first_name} onChange={handleInput} placeholder="First Name" id="first_name" required />
-              <label htmlFor="last_name">Last Name</label>
-              <input type="text" name="last_name" value={formInput.user.last_name} onChange={handleInput} placeholder="Last Name" id="lsat_name" required />
-              <label htmlFor="username">username</label>
-              <input type="text" name="username" value={formInput.user.username} onChange={handleInput} placeholder="username" id="username" required />
+              <div className='field input-field'>
+                <label htmlFor="first_name">First Name</label>
+                <input type="text" name="first_name" value={formInput.user.first_name} onChange={handleInput} id="first_name" required />
+              </div>
+              <div className='field input-field'>
+                <label htmlFor="last_name">Last Name</label>
+                <input type="text" name="last_name" value={formInput.user.last_name} onChange={handleInput} id="lsat_name" required />
+              </div>
+              <div className='field input-field'>
+                <label htmlFor="username">Username</label>
+                <input type="text" 
+                  name="username" 
+                  value={formInput.user.username}
+                  onChange={handleInput} id="username" required />
+              </div>
+              <div className='field input-field'>
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" value={formInput.user.email}
+                onChange={handleInput} required />
+              </div>
+              <div className='field input-field'>
+                <label htmlFor="mobile">Mobile</label>
+                <input type="text" name="phone_no" value={formInput.user.phone_no} onChange={handleInput}  id="mobile" required />
              
-              <label htmlFor="email">email</label>
-              <input type="email" name="email" value={formInput.user.email} onChange={handleInput} placeholder="email" required />
-              <label htmlFor="mobile">mobile</label>
-              <input type="text" name="phone_no" value={formInput.user.phone_no} onChange={handleInput} placeholder="phone no" id="mobile" required />
-              <label htmlFor="password">password</label>
+
+              </div>
+              <div className='field input-field'>
+              <label htmlFor="password">Password</label>
+              <span onClick={toggleReveal}> {show ?  <AiOutlineEyeInvisible className='eye-icon' />: <AiOutlineEye className='eye-icon'/>}</span>
+              
               <input
-                type="password"
+                type={show ? "password" : "text"}  onChange={handleInput} 
+
                 value={formInput.user.password}
-                onChange={handleInput}
                 name="password"
-                placeholder="Enter password"
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                 required
               />
-              <label htmlFor="role" />
-              <input type="hidden" name="role" value={formInput.user.client} id="role" />
+              
 
+              </div>
+             
               <button className="btn" type="submit">Sign Up</button>
+              <div className='form-link'>
+                <span> Already have an account?  <NavLink to="/auth/login">Login in</NavLink> </span>
+              </div>
+              <div className='line'></div>
+
             </form>
+            <div className="media-option">
+              <a href="#" className="social-field facebook"><BsFacebook className="facebook-icon"/>
+              <span>Login with Facebook</span>
+              </a>
+            </div>
+            <div className="media-option last-child">
+              <a href="#" className="social-field google"><FcGoogle className="google-icon"/>
+              <span>Login with Google</span>
+              </a>
+            </div>
             <p>
               By clicking the sign up botton yo agree to our
               <br />

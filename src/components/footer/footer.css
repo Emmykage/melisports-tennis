@@ -25,13 +25,14 @@ footer {
   /* align-self:flex-end; */
 }
 
-
 footer p,
-footer li, footer a  {
+footer li,
+footer a {
   color: white;
   font-size: 0.8rem;
 }
-footer a{
+
+footer a {
   text-decoration: underline;
 }
 
@@ -41,7 +42,6 @@ footer h4 {
 }
 
 .footer-container > div h4 {
-  text-align: center;
   font-size: 1rem;
   margin: 1rem 0;
 }

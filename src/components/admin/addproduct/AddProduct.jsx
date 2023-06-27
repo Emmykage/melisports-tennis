@@ -73,7 +73,8 @@ const AddProduct = () => {
   ;
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addProduct(formInput));
+    console.log(formInput)
+    // dispatch(addProduct(formInput));
     reset()
 
 
@@ -128,7 +129,7 @@ const reset = () => {
           </div>
           <div className="input-half">
             <label>
-              <span>Price</span>
+              <span>Price: NGN</span>
               {' '}
               <span>*</span>
             </label>
@@ -177,7 +178,7 @@ const reset = () => {
         <div className="form-row">
 
           <div className="input-half">
-            <label htmlFor=""> Head size   </label>
+            <label htmlFor=""> <span>Head size: cm<sup>2</sup>  </span>   </label>
             <input
               name="head_size"
               value={formInput.head_size}
@@ -267,7 +268,7 @@ placeholder='colour'              onChange={handleFormInput}
 
           </div>
           <div className="input-half">
-            <label htmlFor=""> Length            </label>
+            <label htmlFor=""> Length (mm)          </label>
             <input
               name="length"
               value={formInput.length}
@@ -282,7 +283,7 @@ placeholder='colour'              onChange={handleFormInput}
 
         <div className="form-row">
           <div className="input-half">
-            <label htmlFor="">Weight     </label>
+            <label htmlFor="">Weight (g)    </label>
             <input
               name="weight"
               value={formInput.weight}
@@ -294,7 +295,7 @@ placeholder='colour'              onChange={handleFormInput}
           </div>
 
           <div className="input-half">
-            <label htmlFor="">tension  </label>
+            <label htmlFor="">tension (kg) </label>
             <input
               name="tension"
               value={formInput.tension}
@@ -308,6 +309,21 @@ placeholder='colour'              onChange={handleFormInput}
             <label htmlFor="">
               Composition
             </label>
+            <select 
+            name='composition'
+            id='composition'
+            // placeholder='Select composition'
+            onChange={handleFormInput}
+            // value={formInput.composition}
+            
+            >
+              <option value={null} selected>--Selected----</option>
+              <option value={'graphite'}>Graphite </option>
+              <option value={'aluminium'}>Aluminium </option>
+              <option value={'carbon'}>Carbon </option>
+
+
+            </select>
 
             <input
               name="composition"

@@ -33,7 +33,7 @@ const Nav = () => {
   };
 
   return (
-    <div>
+    <>
       <nav>
 
         <div className="navbar">
@@ -225,7 +225,7 @@ const Nav = () => {
         </div>
         <SearchComponent />
       </nav>
-    </div>
+    </>
   );
 };
 

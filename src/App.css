@@ -7,14 +7,14 @@
 
 * {
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "poppins", Helvetica, sans-serif;
   list-style: none;
   appearance: none;
   border: none;
   text-decoration: none;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 :root {
@@ -85,57 +85,63 @@ a {
   flex-direction: column;
 }
 
-.chat-box{
+.chat-box {
   position: fixed;
   width: 100%;
   max-width: 600px;
   right: 0;
   top: 0;
-  height:  100vh;
+  height: 100vh;
   z-index: 99;
   background-color: rgb(237, 236, 236);
-
   padding: 1.5rem;
   transition: all 0.73s ease-in-out;
-
-  
 }
-.chat-icon{
+
+.chat-icon {
   position: fixed;
+
   /* width: 100%; */
+
   /* max-width: 600px; */
   right: 0;
   top: 70%;
-  /* height:  100vh; */
   z-index: 8;
-  
   padding: 1.5rem;
-
 }
-.chat-icon .stick-out{
+
+.chat-icon .stick-out {
   font-size: 4rem;
   color: #135092;
   box-shadow: 0 0 2px rgb(112, 112, 112);
+  border-radius: 50%;
+  background-color: rgb(228, 77, 23);
+  opacity: 0.4;
 }
-.chat-box.show{
+
+.chat-icon .stick-out:hover {
+  opacity: 1;
+}
+
+.chat-box.show {
   right: -100%;
-
-
-  
 }
-.chat-box form{
 
+.chat-box form {
   position: relative;
   padding: 12px;
   top: 35%;
   transform: translateY(-50%);
 }
-.chat-box .side-close{
+
+.chat-box .side-close {
   font-size: 3rem;
 }
-.chat-box form input{
+
+.chat-box form input {
   padding: 19px;
 }
+
 /* .chat-box form textarea{
   height: 600px;
 } */
@@ -164,13 +170,15 @@ a {
   /* border: 1px solid black; */
   margin: 20px auto;
 }
-.portrait-container{
+
+.portrait-container {
   max-width: 1200px;
   width: 100%;
-  padding: 0rem 4rem;
+  padding: 0 4rem;
   margin: 1.8rem auto;
   line-height: 1.8rem;
 }
+
 /* .portrait-container h2{
 
 } */
