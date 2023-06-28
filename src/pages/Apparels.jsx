@@ -26,7 +26,6 @@ const ApparelsPage = () => {
     dispatch(getProducts());
   }, []);
   return (
-    <div>
       <div className="product-container">
         <Hero />
         <div className="prod-page">
@@ -69,7 +68,6 @@ const ApparelsPage = () => {
         </div>
 
       </div>
-    </div>
   );
 };
 

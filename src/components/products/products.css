@@ -8,14 +8,14 @@
   height: fit-content;
   overflow: hidden;
 }
-
+.product-container{
+  min-height: 70vh;
+}
 .prod-details .btn {
   display: block;
   margin: auto;
   text-align: center;
   width: 100%;
-
-  /* max-width: 9rem; */
 }
 
 .product-details h3 {
