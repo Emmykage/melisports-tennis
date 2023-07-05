@@ -16,7 +16,7 @@ const Signup = () => {
 
   const dispatch = useDispatch();
   const {
-    user, error, message, logged,
+    user, error, message, loading, logged
   } = useSelector((state) => state.user);
 
   const [formInput, setFormInput] = useState({
@@ -31,6 +31,7 @@ const Signup = () => {
     },
 
   });
+  console.log(loading)
   useEffect(() => {
     dispatch(userLog());
   }, []);
@@ -120,6 +121,15 @@ const Signup = () => {
               <div className='line'></div>
 
             </form>
+            <p className="blue">
+              {' '}
+              {loading && 'loading...' }
+            </p>
+
+            <p className="red">
+              {' '}
+              {error && message }
+            </p>
             <div className="media-option">
               <a href="#" className="social-field facebook"><BsFacebook className="facebook-icon"/>
               <span>Login with Facebook</span>

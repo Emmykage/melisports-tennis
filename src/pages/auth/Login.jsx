@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, logged,
+    user, error, message, logged, loading
   } = useSelector((state) => state.user);
   const [show, setShow] = useState(true)
   const [formInput, setFormInput] = useState({
@@ -84,6 +84,15 @@ const Login = () => {
               <div className='line'></div>
 
             </form>
+            <p className="blue">
+              {' '}
+              {loading && 'loading...' }
+            </p>
+
+            <p className="red">
+              {' '}
+              {error && message }
+            </p>
             <div className="media-option">
               <a href="#" className="social-field facebook"><BsFacebook className="facebook-icon"/>
               <span>Login with Facebook</span>

@@ -68,6 +68,7 @@ const userSlice = createSlice({
         ...state,
         loading: false,
         error: true,
+        logged: false,
         message: action.payload.error,
       };
     },
@@ -90,13 +91,15 @@ const userSlice = createSlice({
         return {
           ...state,
           logged: true,
-          user: action.payload,
+          user: response,
+          message: "log in successful"
         };
       }
 
       return {
         ...state,
         logged: false,
+        loading: false,
         error: true,
         message: action.payload.error,
       };
@@ -106,6 +109,10 @@ const userSlice = createSlice({
       error: true,
       message: action.error,
     }),
+    [loginUser.pending]: (state, action) => ({
+      ...state,
+      loading: true
+    })
   },
 });
 
