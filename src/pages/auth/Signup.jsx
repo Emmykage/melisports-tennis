@@ -31,7 +31,6 @@ const Signup = () => {
     },
 
   });
-  console.log(loading)
   useEffect(() => {
     dispatch(userLog());
   }, []);
@@ -59,8 +58,6 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addUser(formInput));
-    console.log(formInput)
-
     dispatch(updater());
     dispatch(userLog());
   };

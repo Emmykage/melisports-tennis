@@ -54,7 +54,6 @@ const Login = () => {
   };
   const toggleReveal = () => {
     setShow(prev => !prev)
-    console.log(show)
   }
 
   if (user == null || user == undefined || user == "") {

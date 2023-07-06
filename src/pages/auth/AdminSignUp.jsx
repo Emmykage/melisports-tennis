@@ -34,8 +34,6 @@ const AdminSignUp = () => {
 
   const handleInput = (e) => {
     if(e.target.name == "email"){
-      console.log("lower")
-
       setFormInput({
         user: {
           ...formInput.user,
@@ -50,7 +48,6 @@ const AdminSignUp = () => {
         [e.target.name]: e.target.value,
       },
     });}
-    console.log(formInput)
 
   };
   const handleSubmit = (e) => {

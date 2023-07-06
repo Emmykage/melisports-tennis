@@ -22,7 +22,7 @@ const loginUser = createAsyncThunk('user/logUser', async (data) => {
     },
     body: JSON.stringify(data),
   })
-    .then((res) => res.json());
+    .then((res) => res.json())
     // .catch((err) => err.json())
   return response;
 });

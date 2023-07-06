@@ -73,8 +73,7 @@ const AddProduct = () => {
   ;
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formInput)
-    // dispatch(addProduct(formInput));
+    dispatch(addProduct(formInput));
     reset()
 
 
