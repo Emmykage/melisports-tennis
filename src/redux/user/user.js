@@ -72,12 +72,11 @@ const userSlice = createSlice({
         message: action.payload.error,
       };
     },
-    [addUser.rejected]: (state) => {
-      return{
+    [addUser.rejected]: (state) => ({
       ...state,
       error: true,
-      message: "No Internet connection",
-    }},
+      message: 'No Internet connection',
+    }),
     [addUser.pending]: (state) => ({
       ...state,
       loading: true,
@@ -94,7 +93,7 @@ const userSlice = createSlice({
           logged: true,
           user: response,
           error: false,
-          message: "log in successful"
+          message: 'log in successful',
         };
       }
 
@@ -106,17 +105,16 @@ const userSlice = createSlice({
         message: action.payload.error,
       };
     },
-    [loginUser.rejected]: (state) =>  {
-      return {
+    [loginUser.rejected]: (state) => ({
       ...state,
       loading: false,
       error: true,
-      message: "No Internet connection",
-    }},
+      message: 'No Internet connection',
+    }),
     [loginUser.pending]: (state) => ({
       ...state,
-      loading: true
-    })
+      loading: true,
+    }),
   },
 });
 

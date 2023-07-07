@@ -26,9 +26,9 @@ const AddProduct = () => {
     price: '',
     image: '',
     sku: '',
-    product_category_id: 1,
+    product_category_id: "",
     gender_id: 1,
-    level_id: 1,
+    level_id: "",
     grip_size: '',
     head_size: '',
     rating: '',
@@ -74,7 +74,8 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProduct(formInput));
-    reset()
+    console.log(formInput)
+    // reset()
 
 
   };
@@ -93,7 +94,6 @@ const reset = () => {
     length: '',
     stiffness: '',
     composition: '',
-    category: '',
     description: '',
     size: '',
     tension: '',
@@ -149,10 +149,11 @@ const reset = () => {
             <select
               placeholder="professionalism"
               name="level_id"
-              value={formInput.level_id}
               onChange={handleFormInput}
             >
+              <option value="" selected>--Select---</option>
               {levels.map((level) => (
+                
                 <option value={level.id}>{level.stage}</option>
               ))}
             </select>
@@ -201,58 +202,56 @@ const reset = () => {
 
         </div>
         <div className="form-row">
+          <div className="input-half">
+          <label htmlFor=""> Cloth size  </label>
+          <select 
+          name="cloth_sizes_attributes" 
+          id="cloth_size"
+          multiple
+          onChange={handleFormInput}
+          size={1}
+          
+          >
+            {clothSizes.map(item => (
 
-<div className="input-half">
-  <label htmlFor=""> Cloth size  </label>
-  <select 
-  name="cloth_sizes_attributes" 
-  id="cloth_size"
-  multiple
-  onChange={handleFormInput}
-  size={1}
-  required
-  >
-    {clothSizes.map(item => (
+            <option value={item.abbrv}>{item.abbrv}</option>
 
-    <option value={item.abbrv}>{item.abbrv}</option>
+            ))}
 
-    ))}
+          </select>
 
-  </select>
+        </div>
+        <div className="input-half">
+          <label htmlFor=""> Shoe size  </label>
+          <select 
+          name="shoe_sizes_attributes" 
+          id="shoe_size"
+          multiple
+          onChange={handleFormInput}
+          size={1}
+          
+          >
+            {shoeSizes.map(item => (
 
-</div>
-<div className="input-half">
-  <label htmlFor=""> Shoe size  </label>
-  <select name="shoe_sizes_attributes" id="shoe_size"
-  //  value={formInput.cloth_size_attributes}
- 
-  multiple
-   onChange={handleFormInput}
-   size={1}
-   required
-  >
-    {shoeSizes.map(item => (
+            <option value={item.abbrv}>{item.abbrv}</option>
 
-    <option value={item.abbrv}>{item.abbrv}</option>
+            ))}
 
-    ))}
+          </select>
 
-  </select>
+        </div>
+        <div className="input-half">
+          <label htmlFor=""> SKU   </label>
+          <input
+            name="sku"
+            value={formInput.sku}
+            onChange={handleFormInput}
+            type="text"
+            placeholder="sku"
+          />
 
-</div>
-<div className="input-half">
-  <label htmlFor=""> SKU   </label>
-  <input
-    name="sku"
-    value={formInput.sku}
-    onChange={handleFormInput}
-    type="text"
-    placeholder="sku"
-  />
-
-</div>
-
-</div>
+        </div>
+        </div>
         <div className="form-row">
           <div className="input-half">
             <label htmlFor="" className="color">
@@ -261,7 +260,8 @@ const reset = () => {
             <input
               name="colour"
               value={formInput.colour}
-placeholder='colour'              onChange={handleFormInput}
+              placeholder='colour'        
+              onChange={handleFormInput}
               type="text"
             />
 
@@ -311,9 +311,7 @@ placeholder='colour'              onChange={handleFormInput}
             <select 
             name='composition'
             id='composition'
-            // placeholder='Select composition'
             onChange={handleFormInput}
-            // value={formInput.composition}
             
             >
               <option value={null} selected>--Selected----</option>
@@ -323,15 +321,6 @@ placeholder='colour'              onChange={handleFormInput}
 
 
             </select>
-
-            <input
-              name="composition"
-
-              value={formInput.composition}
-              onChange={handleFormInput}
-              type="text"
-              placeholder="composition"
-            />
 
           </div>
 
@@ -347,12 +336,12 @@ placeholder='colour'              onChange={handleFormInput}
           <select
             placeholder="product category"
             name="product_category_id"
-            value={formInput.product_category_id}
             onChange={handleFormInput}
             required
           >
+            <option value="" selected>--Select--</option>
             {product_categories.map((category) => (
-              <option value={category.id}>{category.name}</option>
+            <option value={category.id}>{category.name}</option>
             ))}
           </select>
 
@@ -364,14 +353,13 @@ placeholder='colour'              onChange={handleFormInput}
           </label>
           <select name="strung" id="strung"
           value={formInput.strung}
+          onChange={handleFormInput}
           >
+            <option value="" selected>--Selected----</option>
             {strung.map((item)=>(
-                <option value={item.name}>{item.name}</option>
+            <option value={item.name}>{item.name}</option>
             ))}
           </select>
-
-          {/* <input type="text" placeholder="strung" /> */}
-
         </div>
         <div>
           <label htmlFor="">

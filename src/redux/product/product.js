@@ -55,7 +55,7 @@ const productSlice = createSlice({
       status: 'waiting',
       report: 'loading...',
     }),
-    [updateProduct.fulfilled]: (state) => {
+    [updateProduct.fulfilled]: (state, action) => {
       if (action.payload.ok) {
         return {
           ...state,

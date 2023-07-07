@@ -104,7 +104,7 @@ const AdminSignUp = () => {
                         
               <button className="btn" type="submit">Sign Up</button>
               <div className='form-link'>
-                <span> Already have an account?  <NavLink to="/auth/login">Login in</NavLink> </span>
+                <span> Already have an account?  <NavLink to="/auth/admin_login">Login</NavLink> </span>
               </div>
               <div className='line'></div>
             </form>

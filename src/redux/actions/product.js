@@ -2,7 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
 
 const getProducts = createAsyncThunk('products/getProducts', async () => {
-  const response = await fetch(`${baseURL}products`).then((res) => res.json());
+  const response = await fetch(`${baseURL}products`).then((res) => res.json())
+    .catch((err) => console.log(err));
+  console.log(response);
   return response;
 });
 
@@ -14,6 +16,7 @@ const filterProducts = createAsyncThunk('products/getProducts', async (sieve) =>
 
 const getProduct = createAsyncThunk('product/getproduct', async (id) => {
   const response = await fetch(`${baseURL}products/${id}`).then((res) => res.json());
+  console.log(response);
   return response;
 });
 
