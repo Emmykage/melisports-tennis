@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getGenders } from '../actions/gender';
+import getGenders from '../actions/gender';
 
 const initialState = {
   genders: [],

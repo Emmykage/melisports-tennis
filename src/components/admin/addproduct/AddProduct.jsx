@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLevels } from '../../../redux/actions/misc';
-import { getGenders } from '../../../redux/actions/gender';
+import getLevels from '../../../redux/actions/misc';
+import getGenders from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';

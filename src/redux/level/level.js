@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getLevels } from '../actions/misc';
+import getLevels from '../actions/misc';
+
 // import { getProductCategories } from "../actions/product_category";
 const initialState = {
   levels: [],

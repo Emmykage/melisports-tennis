@@ -20,7 +20,7 @@ const orderSlice = createSlice({
     }),
 
     [addOrder.fulfilled]: (state, action) => {
-      if (action.payload.status == 201) {
+      if (action.payload.status === 201) {
         return {
           ...state,
           status: 'success',

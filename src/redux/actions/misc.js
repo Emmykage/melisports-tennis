@@ -11,4 +11,4 @@ const getLevels = createAsyncThunk('level/get_levels', async () => {
   return response;
 });
 
-export { getLevels };
+export default getLevels;

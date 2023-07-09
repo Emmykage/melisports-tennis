@@ -12,4 +12,4 @@ const searched = createAsyncThunk('search/products', async (data) => {
   return response;
 });
 
-export { searched };
+export default searched;

@@ -67,7 +67,7 @@ const AdminLogin = () => {
               <input type="text" value={formInput.email} onChange={handleInput} name="email" id="email"/>
               </div>
               <div className='field input-field'>
-                <label htmlFor="password" />
+                <label htmlFor="password" >Password </label>
                 <input type={show ? "password" : "text"} value={formInput.password} onChange={handleInput} name="password" />
                 <span onClick={toggleReveal}> {show ?  <AiOutlineEyeInvisible className='eye-icon' />: <AiOutlineEye className='eye-icon'/>}</span>
               </div>

@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Footer from './components/footer/Footer';
 import './styles/loader.css';
-import Nav from './components/nav/Nav';
 import ApparelsPage from './pages/Apparels';
 import BagsPage from './pages/BagsPage';
 import Cart from './pages/Cart';
@@ -13,7 +11,6 @@ import ProductDetails from './pages/ProductDetails';
 import ProductsPage from './pages/ProductsPage';
 import ShoesPage from './pages/Shoe';
 import { calculateTotal } from './redux/cart/cart';
-import AdminHome from './pages/admin-page/AdminHome';
 import MainLayout from './components/layouts/main';
 import MainAdmin from './components/layouts/mainAdmin';
 import Main from './components/admin/dashBoard/Main';
@@ -43,7 +40,7 @@ import Accounts from './pages/resources/Accounts';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
-  const { setcategoryModal } = useSelector((state) => state.modal_categories);
+  // const { setcategoryModal } = useSelector((state) => state.modal_categories);
 
   const dispatch = useDispatch();
   useEffect(() => {

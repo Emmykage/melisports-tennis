@@ -65,17 +65,18 @@
 
 .auth-container form label {
   display: flex;
-  margin-top: 0px;
+  margin-top: 10px;
   font-size: 1rem;
 }
 
 .auth-container form input {
   width: 100%;
-  padding: 6px 15px;
+  padding: 10px 15px;
   border: none;
+
   border: 1px solid #cacaca;
   border-radius: 6px;
-  /* outline: red; */
+  outline: red;
   font-weight: 400;
 }
 

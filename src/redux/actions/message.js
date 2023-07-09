@@ -11,4 +11,4 @@ const sendMessage = createAsyncThunk('text/sendMessage', async (data) => {
   }).then((res) => res.json());
   return response;
 });
-export { sendMessage };
+export default sendMessage;

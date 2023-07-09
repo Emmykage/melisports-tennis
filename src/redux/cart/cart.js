@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
-import { getCarts, clearCart, addCart } from '../actions/cart';
+import { getCarts, clearCart } from '../actions/cart';
 
 const initialState = {
   cartItems: [],
@@ -62,8 +62,8 @@ const cartSlice = createSlice({
     [clearCart.fulfilled]: (state) => ({
       ...state,
     }),
-    [addCart.fulfilled]: (action) => {
-    },
+    // [addCart.fulfilled]: (action) => {
+    // },
 
   },
 });

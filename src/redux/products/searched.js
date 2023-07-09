@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { searched } from '../actions/search';
+import searched from '../actions/search';
 
 const initialState = {
   searchedProducts: [],
