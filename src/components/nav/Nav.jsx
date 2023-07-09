@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import { FiUser, FiMenu } from 'react-icons/fi';
@@ -16,7 +16,7 @@ import { userLog } from '../../redux/user/user';
 
 const Nav = () => {
   const navigate = useNavigate();
-  const { counter, cartItems, update } = useSelector((state) => state.cart);
+  const { counter, update } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
