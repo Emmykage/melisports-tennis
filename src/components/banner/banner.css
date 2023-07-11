@@ -1,4 +1,4 @@
-.hero-banner {
+.hero-mid {
   background: url('../../../public/assets/banner.jpg');
   width: 100%;
   background-position: top;
@@ -15,7 +15,7 @@
 }
 
 .hero-mid {
-  height: 250px;
+  height: 350px;
 }
 
 .card-img {

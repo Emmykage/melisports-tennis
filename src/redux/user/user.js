@@ -93,7 +93,7 @@ const userSlice = createSlice({
           logged: true,
           user: response,
           error: false,
-          message: 'log in successful',
+          message: 'log in successful'
         };
       }
 
