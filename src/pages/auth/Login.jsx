@@ -9,80 +9,119 @@ import { userLog } from '../../redux/user/user';
 import {BsFacebook} from "react-icons/bs"
 import {FcGoogle} from "react-icons/fc"
 
-const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const {
-    user, error, message, logged, loading
-  } = useSelector((state) => state.user);
-  const [show, setShow] = useState(true)
-  const [formInput, setFormInput] = useState({
-    user: {
-      email: '',
-      password: '',
-    },
-  });
-  useEffect(() => {
-    dispatch(userLog());
-  }, []);
-
-  const handleInput = (e) => {
-    if(e.target.name == "email"){
-      setFormInput({
-        user: {
-          ...formInput.user,
-          [e.target.name]: e.target.value.toLowerCase(),
-        },
-      })
-      
-    }else{
 
 
-    setFormInput({
-      user: {
-        ...formInput.user,
-        [e.target.name]: e.target.value,
-      },
-    });
-  }
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser(formInput));
-    dispatch(updater());
-    dispatch(userLog());
-  };
-  const toggleReveal = () => {
-    setShow(prev => !prev)
-  }
 
-  if (user == null || user == undefined || user == "") {
+// import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { NavLink, useNavigate } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+// import { userLog } from '../../redux/auth/user_authentication';
+// import { userSession } from '../../redux/actions/auth';
+// import { Copyright } from './Copyright';
+
+function Copyright(props) {
+
     return (
-      <div className="wallpaper centralize">
-        <div className="auth-container ">
-          <div className="form-content login-box">
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-              <div className='field input-field'>
-                <label htmlFor="email">Email</label>
-                <input type="text" value={formInput.email} onChange={handleInput} name="email" id="email" />
-              </div>
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="https://mui.com/">
+          Vortech
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+const theme = createTheme();
 
-              <div className='field input-field'>
-                <label htmlFor="password" />Password
-                <input type={show ? "password" : "text"} value={formInput.password} onChange={handleInput} name="password"  />
-                <span onClick={toggleReveal}> {show ?  <AiOutlineEyeInvisible className='eye-icon' />: <AiOutlineEye className='eye-icon'/>}</span>
-              </div>
-              <div className='form-link'>
-                <a href='#' className='forgot-pass'>Forgot password? </a>
-              </div>
-              <button className="btn" type="submit">Login </button>
-              <div className='form-link'>
-                <span> Don't have an account?  <NavLink to="/auth/sign_up">Sign up</NavLink> </span>
-              </div>
-              <div className='line'></div>
+export default function Login() {
+  const navigation = useNavigate()
+  const dispatch = useDispatch()
+  const {user, error, message, loading} = useSelector((state) => state.user)
 
-            </form>
+  useEffect(() => {
+    dispatch(userLog())
+  },[])
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const formInput = {
+      user: {
+    email: data.get('email'),
+    password: data.get('password'),
+      }
+  }
+    console.log(formInput);
+    dispatch(loginUser(formInput))
+
+  };
+  console.log(user)
+  if (user == null || user == undefined){
+
+ 
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <NavLink to={'/'}>Visit Site</NavLink>
+         
+          <Typography component="h1" variant="h5">
+            Login 
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
             <p className="blue">
               {' '}
               {loading && 'loading...' }
@@ -92,33 +131,32 @@ const Login = () => {
               {' '}
               {error && message }
             </p>
-            <div className="media-option">
-              <a href="#" className="social-field facebook"><BsFacebook className="facebook-icon"/>
-              <span>Login with Facebook</span>
-              </a>
-            </div>
-            <div className="media-option last-child">
-              <a href="#" className="social-field google"><FcGoogle className="google-icon"/>
-              <span>Login with Google</span>
-              </a>
-            </div>
-            
-            <p>
-              By clicking the sign up botton you agree to our
-              <br />
-              <a href="#">Terms and condition</a>
-              {' '}
-              and
-              <a href="#">Policy</a>
-            </p>
-          </div>
-          
-        </div>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <NavLink to="/auth/sign_up">
 
-      </div>
-    );
-  }
-  navigate('/');
-};
-
-export default Login;
+                
+                <Link variant="body2">
+                  Do not have an account? Sign Up
+                </Link>
+                </NavLink>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}else{
+  navigation("/")
+}
+}

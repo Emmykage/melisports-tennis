@@ -23,6 +23,7 @@ const userSlice = createSlice({
         return {
           ...state,
           user: JSON.parse(auth),
+          logged: true
 
         };
       } catch {

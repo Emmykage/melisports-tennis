@@ -1,167 +1,185 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { addUser } from '../../redux/actions/auth';
-import { updater } from '../../redux/cart/cart';
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import { userLog } from '../../redux/user/user';
-import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai"
-import {BsFacebook} from "react-icons/bs"
-import {FcGoogle} from "react-icons/fc"
 
-import './auth.css';
 
-const Signup = () => {
-  const navigation = useNavigate();
-  const [show, setShow] = useState(true)
+function Copyright(props) {
 
-  const dispatch = useDispatch();
-  const {
-    user, error, message, loading, logged
-  } = useSelector((state) => state.user);
-
-  const [formInput, setFormInput] = useState({
-    user: {
-      last_name: '',
-      first_name: '',
-      username:'',
-      email: '',
-      phone_no: '',
-      password: '',
-      role: 'client',
-    },
-
-  });
-  useEffect(() => {
-    dispatch(userLog());
-  }, []);
-  const handleInput = (e) => {
-    if(e.target.name == "email"){
-      setFormInput({
-        user: {
-          ...formInput.user,
-          [e.target.name]: e.target.value.toLowerCase(),
-        },
-      })
-    }else{
-    setFormInput({
-
-      user: {
-        ...formInput.user,
-        [e.target.name]: e.target.value,
-      },
-    });
-  }
-  };
-  const toggleReveal = () => {
-    setShow(prev => !prev)
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addUser(formInput));
-    dispatch(updater());
-    dispatch(userLog());
-  };
-  if (user == null || user == undefined) {
     return (
-      <div className="wallpaper centralize">
-        <div className="auth-container">
-          <div className="form-content sign-up">
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-              <div className='field input-field'>
-                <label htmlFor="first_name">First Name</label>
-                <input type="text" name="first_name" value={formInput.user.first_name} onChange={handleInput} id="first_name" required />
-              </div>
-              <div className='field input-field'>
-                <label htmlFor="last_name">Last Name</label>
-                <input type="text" name="last_name" value={formInput.user.last_name} onChange={handleInput} id="lsat_name" required />
-              </div>
-              <div className='field input-field'>
-                <label htmlFor="username">Username</label>
-                <input type="text" 
-                  name="username" 
-                  value={formInput.user.username}
-                  onChange={handleInput} id="username" required />
-              </div>
-              <div className='field input-field'>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={formInput.user.email}
-                onChange={handleInput} required />
-              </div>
-              <div className='field input-field'>
-                <label htmlFor="mobile">Mobile</label>
-                <input type="text" name="phone_no" value={formInput.user.phone_no} onChange={handleInput}  id="mobile" required />
-             
-
-              </div>
-              <div className='field input-field'>
-              <label htmlFor="password">Password</label>
-              <span onClick={toggleReveal}> {show ?  <AiOutlineEyeInvisible className='eye-icon' />: <AiOutlineEye className='eye-icon'/>}</span>
-              
-              <input
-                type={show ? "password" : "text"}  onChange={handleInput} 
-
-                value={formInput.user.password}
-                name="password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                required
-              />
-              
-
-              </div>
-             
-              <button className="btn" type="submit">Sign Up</button>
-              <div className='form-link'>
-                <span> Already have an account?  <NavLink to="/auth/login">Login in</NavLink> </span>
-              </div>
-              <div className='line'></div>
-
-            </form>
-            <p className="blue">
-              {' '}
-              {loading && 'loading...' }
-            </p>
-
-            <p className="red">
-              {' '}
-              {error && message }
-            </p>
-            <div className="media-option">
-              <a href="#" className="social-field facebook"><BsFacebook className="facebook-icon"/>
-              <span>Login with Facebook</span>
-              </a>
-            </div>
-            <div className="media-option last-child">
-              <a href="#" className="social-field google"><FcGoogle className="google-icon"/>
-              <span>Login with Google</span>
-              </a>
-            </div>
-            <p>
-              By clicking the sign up botton yo agree to our
-              <br />
-              <a href="#">Terms and condition</a>
-              {' '}
-              and
-              <a href="#">Policy</a>
-            </p>
-
-          </div>
-          <div>
-            <p className="para-2">
-              already have an account?
-              {' '}
-              <NavLink to="/auth/login">Login here</NavLink>
-            </p>
-          </div>
-
-        </div>
-      </div>
-
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="https://mui.com/">
+          Vortech
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
     );
   }
+const theme = createTheme();
 
-  navigation('/');
-};
+export default function SignUp() {
+  const navigation = useNavigate()
+  const dispatch = useDispatch()
+  const {user, error, message, loading} = useSelector((state) => state.user)
+  console.log(user)
+  useEffect(() => {
+    dispatch(userLog())
+  },[])
 
-export default Signup;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const formInput = {
+      user: {
+    first_name: data.get('firstName'),
+    last_name: data.get('lastName'),
+    email: data.get('email'),
+    password: data.get('password'),
+    phone_no: data.get('phone_no'),
+    username: data.get('username'),
+    role: "client"
+
+      }
+
+  }
+    console.log(formInput);
+    // dispatch(addUser(formInput))
+
+  };
+  if (user == null || user == undefined){
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+        <NavLink to={'/'}>Visit Site</NavLink>
+
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  
+                  fullWidth
+                  id="username"
+                  label="username"
+                  name="username"
+                  autoComplete="username"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="phone_no"
+                  label="Mobile"
+                  name="phone_no"
+                  autoComplete="phone_no"
+                />
+              </Grid>
+             
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <NavLink to="/auth/login"><Link variant="body2">
+                  Already have an account? Sign in
+                  </Link>
+                </NavLink>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
+    </ThemeProvider>
+  );
+        }else{
+          navigation("/auth/confirmation")
+        }
+}

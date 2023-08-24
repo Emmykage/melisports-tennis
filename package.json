@@ -4,9 +4,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.14",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.5",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@reduxjs/toolkit": "^1.9.0",
     "@stripe/react-stripe-js": "^2.1.0",
     "@stripe/stripe-js": "^1.53.0",
@@ -25,7 +27,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
     "styled-component": "^2.8.0",
-    "styled-components": "^5.3.9",
+    "styled-components": "^5.3.11",
     "swiper": "^9.1.1",
     "web-vitals": "^2.1.4"
   },
