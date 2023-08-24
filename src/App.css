@@ -319,9 +319,6 @@ button {
   width: fit-content;
 }
 
-.prod-page button {
-
-}
 
 .prod-page .cat-group a {
   font-size: 0.8rem;
@@ -446,9 +443,6 @@ button:active {
   flex: 1;
   border: none;
   box-shadow: 0 0 0.35rem 1px rgb(85 85 85 / 25%);
-
-  /* margin-top: 10px;
-    margin-bottom: 10px; */
   padding: 5px 5px 15px;
   text-align: left;
   transition: all 0.3s ease;
@@ -625,6 +619,7 @@ table tbody tr:last-child {
 
 .cart-div {
   width: 80%;
+  min-height: 70vh;
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -771,11 +766,13 @@ td:last-child .btn {
   text-align: center;
   background-color: white;
   padding: 2rem;
+  border-radius: 1rem;
 }
 
 .modal h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 1rem;
 }
 
 .modal .btn-container {

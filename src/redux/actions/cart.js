@@ -3,18 +3,18 @@ import baseURL from '../baseURL';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 
-const addCart = createAsyncThunk('cart/addCart', async (data) => {
-  const response = await fetch(`${baseURL}cart_items`, {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`,
+// const addCart = createAsyncThunk('cart/addCart', async (data) => {
+//   const response = await fetch(`${baseURL}cart_items`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-type': 'application/json',
+//       Authorization: `Bearer ${token()}`,
 
-    },
-    body: JSON.stringify(data),
-  });
-  return response;
-});
+//     },
+//     body: JSON.stringify(data),
+//   });
+//   return response;
+// });
 const removeItem = createAsyncThunk('cart/removeCart', async (id) => {
   const response = await fetch(`${baseURL}cart_items/${id}`, {
     method: 'DELETE',
@@ -27,18 +27,18 @@ const removeItem = createAsyncThunk('cart/removeCart', async (id) => {
   });
   return response;
 });
-const clearCart = createAsyncThunk('cart/clearCart', async () => {
-  const response = await fetch(`${baseURL}clear_cart`, {
-    method: 'DELETE',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`,
+// const clearCart = createAsyncThunk('cart/clearCart', async () => {
+//   const response = await fetch(`${baseURL}clear_cart`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-type': 'application/json',
+//       Authorization: `Bearer ${token()}`,
 
-    },
+//     },
 
-  });
-  return response;
-});
+//   });
+//   return response;
+// });
 const getCarts = createAsyncThunk('carts/getCart', async () => {
   const response = await fetch(`${baseURL}cart_items`, {
     method: 'GET',
@@ -72,5 +72,5 @@ const decreaseCart = createAsyncThunk('cart/increase_cart', async ({ id, quantit
   });
 });
 export {
-  addCart, getCarts, removeItem, increaseCart, decreaseCart, clearCart,
+   getCarts, removeItem, increaseCart, decreaseCart
 };
