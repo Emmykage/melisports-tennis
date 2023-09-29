@@ -33,7 +33,6 @@ const ProductDetails = () => {
   const increase = () => {
     setCount((setPrev) => setPrev + 1);
 
-
   };
   const decrease = () => {
     count !== 1 && setCount((setPrev) => setPrev - 1);
