@@ -28,12 +28,10 @@ const Cart = () => {
     dispatch(closeList());
     dispatch(getCarts());
   }, [update]);
-  
  
   const handleCheckout = () => {
  
     dispatch(addOrder(data));
-    // navigate('/checkout');
   };
 
   status == "success" && navigate('/checkout') 

@@ -2,6 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
 import { getCarts } from '../actions/cart';
 
+const setCart = (cartItems) => {
+  localStorage.setItem("cartitem", JSON.stringify(cartItems))
+}
+const getCart = () =>  JSON.parse(localStorage.getItem("cartitem"))
+
 
 const initialState = {
   cartItems: [],
@@ -18,25 +23,25 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addCart: (state, action)=>{
+      getCart()
       
-      let prevStorage = JSON.parse(localStorage.getItem("cartitem"))
      
-      if(prevStorage == null){
+      if(getCart() == null){
         const newCartArray = [action.payload]        
-        localStorage.setItem("cartitem", JSON.stringify(newCartArray))
+        setCart(newCartArray)
         return {
           ...state,
-          cartItems: JSON.parse(localStorage.getItem("cartitem"))
+          cartItems: getCart()
         }
       }else{
-        const cartExist = prevStorage.find(cart => cart.product_id == action.payload.product_id)
+        const cartExist = getCart().find(cart => cart.product_id == action.payload.product_id)
 
         if(cartExist == undefined){
-          const newCartArray = [...prevStorage, action.payload]
-          prevStorage = localStorage.setItem("cartitem", JSON.stringify(newCartArray))
+          const newCartArray = [...getCart(), action.payload]
+          setCart(newCartArray)
           return {
             ...state,
-            cartItems: prevStorage
+            cartItems: getCart()
           }
         }else{
           let storage = JSON.parse(localStorage.getItem("cartitem"))
@@ -52,36 +57,36 @@ const cartSlice = createSlice({
        
 
       }
-      prevStorage = JSON.parse(localStorage.getItem("cartitem"))
+      // prevStorage = JSON.parse(localStorage.getItem("cartitem"))
       return {
         ...state,
-        cartItems: prevStorage
+        cartItems: getCart()
       }
      
 
     },
     updateQty: (state, action) => {
-      let prevStorage = JSON.parse(localStorage.getItem("cartitem"))
-        let updateCart = prevStorage.map(item => {
+      
+        let updateCart = getCart().map(item => {
         if(item.product_id == action.payload.product_id){
           item.quantity = action.payload.quantity
         }
         return item
       })
-      localStorage.setItem("cartitem", JSON.stringify(updateCart))
+      setCart(updateCart)
 
       return{
         ...state,
-        cartItems: updateCart
+        cartItems: getCart()
       }
         },
 
     deleteCart: (state, action) => {
-      let prevStorage = JSON.parse(localStorage.getItem("cartitem"))
+      
 
       return{
         ...state,
-        cartItems: prevStorage.filter(cart => {
+        cartItems: getCart().filter(cart => {
           return cart.product_id == action.payload.product_id
         })
 
@@ -98,17 +103,17 @@ const cartSlice = createSlice({
     }),
     clearCart: (state) => {
       let updateCart = []
-      localStorage.setItem("cartitem", JSON.stringify(updateCart))
+      setCart(updateCart)
 
       return{
         ...state,
-        cartItems: []
+        cartItems: getCart()
       }
     },
     calculateTotal: (state) => {
       let total = 0;
       let count = 0;
-      let trans = JSON.parse(localStorage.getItem("cartitem"))
+      let trans = getCart()
       
       if(trans === null){trans = []}
       if (trans.length > 0) {
@@ -137,12 +142,14 @@ const cartSlice = createSlice({
       
       try {
         let trans = JSON.parse(localStorage.getItem("cartitem"))
+      
         return {
           ...state,
           cartItems: trans,
 
         };
       } catch {
+        console.log("first")
         return {
           ...state,
           cartItems: [],
