@@ -94,8 +94,6 @@ const EditProduct = () => {
     clearform()
   };
 
-  console.log(formInput)
-
   return (
     <div className="product-form admin">
       <form onSubmit={handleSubmit}>

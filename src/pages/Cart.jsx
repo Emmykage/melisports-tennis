@@ -16,7 +16,6 @@ const Cart = () => {
   const {status} = useSelector(state => state.orders)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(cartItems)
   const orderItems =() => cartItems.map((item) => (
     {
       product_id: item.product_id,
@@ -65,7 +64,6 @@ const Cart = () => {
 
     } else {
       if(quantity !== 1 ){ 
-        console.log("first")
         const minusQuantity = quantity - 1;
         dispatch(updateQty({ product_id: id, quantity: minusQuantity }));
        }else{ 

@@ -20,9 +20,7 @@ const cartSlice = createSlice({
     addCart: (state, action)=>{
       
       let prevStorage = JSON.parse(localStorage.getItem("cartitem"))
-            console.log(prevStorage)
-    
-
+     
       if(prevStorage == null){
         const newCartArray = [action.payload]        
         localStorage.setItem("cartitem", JSON.stringify(newCartArray))
@@ -55,7 +53,6 @@ const cartSlice = createSlice({
 
       }
       prevStorage = JSON.parse(localStorage.getItem("cartitem"))
-      // console.log(prevStorage)
       return {
         ...state,
         cartItems: prevStorage
@@ -65,8 +62,7 @@ const cartSlice = createSlice({
     },
     updateQty: (state, action) => {
       let prevStorage = JSON.parse(localStorage.getItem("cartitem"))
-      console.log(action.payload)
-      let updateCart = prevStorage.map(item => {
+        let updateCart = prevStorage.map(item => {
         if(item.product_id == action.payload.product_id){
           item.quantity = action.payload.quantity
         }
@@ -141,8 +137,6 @@ const cartSlice = createSlice({
       
       try {
         let trans = JSON.parse(localStorage.getItem("cartitem"))
-        console.log(trans)
-
         return {
           ...state,
           cartItems: trans,

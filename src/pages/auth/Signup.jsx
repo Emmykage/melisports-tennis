@@ -38,7 +38,6 @@ export default function SignUp() {
   const navigation = useNavigate()
   const dispatch = useDispatch()
   const {user, error, message, loading} = useSelector((state) => state.user)
-  console.log(user)
   useEffect(() => {
     dispatch(userLog())
   },[])
@@ -59,9 +58,6 @@ export default function SignUp() {
       }
 
   }
-    console.log(formInput);
-    // dispatch(addUser(formInput))
-
   };
   if (user == null || user == undefined){
 

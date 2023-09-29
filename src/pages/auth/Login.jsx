@@ -65,11 +65,9 @@ export default function Login() {
     password: data.get('password'),
       }
   }
-    console.log(formInput);
     dispatch(loginUser(formInput))
 
   };
-  console.log(user)
   if (user == null || user == undefined){
 
  
