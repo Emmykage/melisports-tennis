@@ -24,7 +24,6 @@ const cartSlice = createSlice({
   reducers: {
     addCart: (state, action)=>{
       getCart()
-      
      
       if(getCart() == null){
         const newCartArray = [action.payload]        
@@ -44,7 +43,7 @@ const cartSlice = createSlice({
             cartItems: getCart()
           }
         }else{
-          let storage = JSON.parse(localStorage.getItem("cartitem"))
+          let storage = getCart()
           let updateCart = storage.map(item => {
             if(item.product_id == action.payload.product_id){
               item.quantity = action.payload.quantity
@@ -57,7 +56,6 @@ const cartSlice = createSlice({
        
 
       }
-      // prevStorage = JSON.parse(localStorage.getItem("cartitem"))
       return {
         ...state,
         cartItems: getCart()
@@ -157,12 +155,6 @@ const cartSlice = createSlice({
       }
    
     },
-
-    // [clearCart.fulfilled]: (state) => ({
-    //   ...state,
-    // }),
-    // [addCart.fulfilled]: (action) => {
-    // },
 
   },
 });
