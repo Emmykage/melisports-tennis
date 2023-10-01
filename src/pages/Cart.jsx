@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateQty, updater } from '../redux/cart/cart';
@@ -6,7 +6,6 @@ import {
   decreaseCart, increaseCart, removeItem, getCarts,
 } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
-// import {addOrder}
 import { addOrder } from '../redux/actions/orders';
 import { closeNav } from '../redux/modal/nav';
 import { closeList } from '../redux/products/searched';
