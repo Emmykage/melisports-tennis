@@ -50,7 +50,7 @@ const NavInfo = () => {
             <div className='flex-1 flex justify-center'>
 
            
-            <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links flex justify-center w-full'}>
+            <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links flex w-full'}>
               <div className="mobile-menu-div  m-v4">
                 <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
               </div>
