@@ -37,6 +37,10 @@ import ShippingPolicy from './pages/resources/ShippingPolicy';
 import TermsOfServices from './pages/resources/TermsOfServices';
 import PrivacyPolicy from './pages/resources/PrivacyPolicy';
 import Accounts from './pages/resources/Accounts';
+import Services from './pages/Services';
+import MainInfoLayout from './components/layouts/mainInfo';
+import Contact from './pages/Contact';
+import About from './pages/About';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -50,8 +54,13 @@ function App() {
     <>
 
       <Routes>
+      <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
+      <Route path='products' element={<MainInfoLayout><Services/></MainInfoLayout> }/>
+      <Route path='contact' element={<MainInfoLayout><Contact/></MainInfoLayout> }/>
+      <Route path='about' element={<MainInfoLayout><About/></MainInfoLayout> }/>
         <Route path="paymentform" element={<StripeContainer />} />
-        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+       
+        <Route path="/store" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
         <Route path="/carts" element={<MainLayout><Cart /></MainLayout>} />

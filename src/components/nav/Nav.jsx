@@ -42,7 +42,6 @@ const Nav = () => {
             </a>
           </div>
           <div className="logo">
-
             <NavLink className="img-div" to="/">
               <img src={logo} alt="" />
             </NavLink>

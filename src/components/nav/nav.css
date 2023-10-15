@@ -214,6 +214,9 @@
   .nav-div {
     padding: 0;
   }
+  .nav-info .nav-item{
+    padding: 0.83rem 1.8rem;
+  }
 
   .nav-item {
     padding: 0.83rem 0.8rem;

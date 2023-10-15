@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeList } from '../redux/products/searched';
-import { Banner } from '../components/banner/Banner';
+// import { Banner } from '../components/banner/Banner';
 import FeaturedProducts from '../components/partials/FeaturedProducts';
 import { getCategories } from '../redux/category/categories';
 import Babolat from '../assets/images/product-brands/Homepage_Brands_BabolatB.jpg';
-import Adidas from '../assets/images/product-brands/Homepage_Brands_adidas.jpg';
+// import Adidas from '../assets/images/product-brands/Homepage_Brands_adidas.jpg';
 import Oasics from '../assets/images/product-brands/Homepage_Brands_AsicsB.jpg';
 import Head from '../assets/images/product-brands/Homepage_Brands_HeadB.jpg';
-import Wilson from '../assets/images/product-brands/Homepage_Brands_Wilson.jpg';
+// import Wilson from '../assets/images/product-brands/Homepage_Brands_Wilson.jpg';
 // import { Slide } from '@mui/material';
 import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
+import string from '../../src/assets/images/stringing.jpg'
+import distributor from '../../src/assets/images/distributor.avif'
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -24,8 +26,43 @@ const Home = () => {
   }, []);
   return (
     <>
-      {/* <Banner /> */}
+     
       <Slider />
+
+      <div className='service-offer py-2'>
+        <div className='flex justify-space gap-1'>
+          <div className='serv-box flex-1 relative'> 
+            <img src={string}/>
+            <div className='absolute overlay'>
+              <h3 className='white'>Stringing racquets</h3>
+
+            </div>
+          </div>
+          <div className='serv-box flex-1 relative'> 
+            <img src={string}/>
+            <div className='absolute overlay'>
+              <h3 className='white'>Stringing racquets</h3>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div>
+          <div className='serv-box flex-1 relative'>
+              <img src={distributor}/>
+              <div className='absolute overlay'>
+                
+                <h3 className='white'>Wholesale Distribution</h3>
+
+              </div>
+            </div>
+
+        </div>
+
+       
+          
+      </div>
       <div className="m-h4">
         <h3 className="center fs-3 m-h2"> Featured Products</h3>
 
