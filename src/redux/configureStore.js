@@ -17,7 +17,7 @@ import navSlice from './modal/nav';
 import levelSlice from './level/level';
 import genderSlice from './gender/gender';
 import orderSlice from './order/order';
-import catalogSlice from './catalog/catalog'
+import catalogSlice from './catalog/catalog';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -35,7 +35,7 @@ const rootReducer = combineReducers({
   level: levelSlice,
   gender: genderSlice,
   orders: orderSlice,
-  catalog: catalogSlice
+  catalog: catalogSlice,
 
 });
 

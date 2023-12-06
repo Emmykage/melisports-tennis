@@ -23,7 +23,7 @@ const userSlice = createSlice({
         return {
           ...state,
           user: JSON.parse(auth),
-          logged: true
+          logged: true,
 
         };
       } catch {
@@ -94,7 +94,7 @@ const userSlice = createSlice({
           logged: true,
           user: response,
           error: false,
-          message: 'log in successful'
+          message: 'log in successful',
         };
       }
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCatalogAccessories, getCatalogRaquets } from '../redux/catalog/catalog'
+import Hero from '../components/banner/Hero'
 
 const Services = () => {
   const dispatch = useDispatch()
@@ -13,8 +14,12 @@ const Services = () => {
   console.log(accessories)
 
   return (
-  <div className='container catalog bg-theme p-top-5'>
+    <>
+
+<Hero/>
   
+  <div className='container catalog bg-theme p-top-5'>
+ 
     <div className='products-container color-white '>
       <div className='racquets'>
         {racquets.map(racquet => (
@@ -176,7 +181,7 @@ const Services = () => {
     </div>
         
     </div>
-
+    </>
   )
 }
 

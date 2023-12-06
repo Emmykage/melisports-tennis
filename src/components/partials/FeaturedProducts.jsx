@@ -1,19 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 import './style.css';
 
 const FeaturedProducts = (props) => {
   const { name, image } = props;
   return (
-    <div className="feature-grid m-h2">
+    <div className="feature-grid m-h2 box-shadow">
       <NavLink to={`${name}`}>
 
         <div>
           <img src={image} alt="" />
         </div>
         <div className="center">
-          <h4>
+          <h4 className='text-primary'>
             {' '}
             {name}
           </h4>

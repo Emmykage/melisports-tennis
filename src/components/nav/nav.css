@@ -99,7 +99,6 @@
   align-items: center;
   min-width: 29px;
   border-radius: 0 6px 6px 0;
-
 }
 
 .search-component {
@@ -214,7 +213,8 @@
   .nav-div {
     padding: 0;
   }
-  .nav-info .nav-item{
+
+  .nav-info .nav-item {
     padding: 0.83rem 1.8rem;
   }
 

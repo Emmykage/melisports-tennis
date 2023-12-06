@@ -8,9 +8,11 @@
   height: fit-content;
   overflow: hidden;
 }
-.product-container{
+
+.product-container {
   min-height: 70vh;
 }
+
 .prod-details .btn {
   display: block;
   margin: auto;

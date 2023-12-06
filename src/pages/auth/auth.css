@@ -8,7 +8,6 @@
   width: 100%;
 }
 
-
 .auth-container .form-content {
   max-width: 460px;
   background-color: white;
@@ -20,13 +19,15 @@
 
 .sign-up {
   /* width: 360px; */
+
   /* min-height: 420px; */
- 
+
   /* background-color: aliceblue; */
+
   /* border-radius: 13px; */
+
   /* padding: 13px 0; */
 }
-
 
 .auth-container form a {
   font-weight: 400;
@@ -73,7 +74,6 @@
   width: 100%;
   padding: 10px 15px;
   border: none;
-
   border: 1px solid #cacaca;
   border-radius: 6px;
   outline: red;

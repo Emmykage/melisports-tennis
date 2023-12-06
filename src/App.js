@@ -54,12 +54,12 @@ function App() {
     <>
 
       <Routes>
-      <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
-      <Route path='products' element={<MainInfoLayout><Services/></MainInfoLayout> }/>
-      <Route path='contact' element={<MainInfoLayout><Contact/></MainInfoLayout> }/>
-      <Route path='about' element={<MainInfoLayout><About/></MainInfoLayout> }/>
+        <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
+        <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
+        <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
+        <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
         <Route path="paymentform" element={<StripeContainer />} />
-       
+
         <Route path="/store" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />

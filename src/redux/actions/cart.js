@@ -72,5 +72,5 @@ const decreaseCart = createAsyncThunk('cart/increase_cart', async ({ id, quantit
   });
 });
 export {
-   getCarts, removeItem, increaseCart, decreaseCart
+  getCarts, removeItem, increaseCart, decreaseCart,
 };

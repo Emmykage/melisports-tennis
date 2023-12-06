@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeList } from '../redux/products/searched';
-// import { Banner } from '../components/banner/Banner';
 import FeaturedProducts from '../components/partials/FeaturedProducts';
 import { getCategories } from '../redux/category/categories';
 import Babolat from '../assets/images/product-brands/Homepage_Brands_BabolatB.jpg';
-// import Adidas from '../assets/images/product-brands/Homepage_Brands_adidas.jpg';
 import Oasics from '../assets/images/product-brands/Homepage_Brands_AsicsB.jpg';
 import Head from '../assets/images/product-brands/Homepage_Brands_HeadB.jpg';
-// import Wilson from '../assets/images/product-brands/Homepage_Brands_Wilson.jpg';
-// import { Slide } from '@mui/material';
+
 import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
 import string from '../../src/assets/images/stringing.jpg'
@@ -66,7 +63,7 @@ const Home = () => {
       <div className="m-h4">
         <h3 className="center fs-3 m-h2"> Featured Products</h3>
 
-        <div className="feature-div m-auto flex-center-around">
+        <div className="feature-div gap-2 m-auto flex-center-around">
           {categories.map((category) => (
             <FeaturedProducts
               key={category.id}
@@ -90,12 +87,7 @@ const Home = () => {
           <div className="product-grid-items">
             <img src={Oasics} alt="" />
           </div>
-          {/* <div className='product-grid-items'>
-            <img src={Wilson} alt="" />
-          </div> */}
-          {/* <div className='product-grid-items'>
-            <img src={Adidas} alt="" />
-          </div> */}
+       
         </div>
         <div className="banner-text full-screen m-h5 text-center">
           <h2>

@@ -5,20 +5,22 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-.about-banner{
+
+.about-banner {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../../../public/assets/Banner_Recap2022.avif");
   background-position: center;
   background-size: cover;
 }
-.about-banner .hero-banner{
+
+.about-banner .hero-banner {
   background-color: rgba(110, 110, 110, 0.8);
 }
+
 .hero-full {
   height: 450px;
 }
 
 .product-banner {
- 
   position: relative;
 }
 
