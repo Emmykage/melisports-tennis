@@ -11,6 +11,7 @@ import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
 import string from '../../src/assets/images/stringing.jpg'
 import distributor from '../../src/assets/images/distributor.avif'
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -49,8 +50,13 @@ const Home = () => {
           <div className='serv-box flex-1 relative'>
               <img src={distributor}/>
               <div className='absolute overlay'>
+                <div className=''>
+                  <h3 className='white'>Wholesale Distribution</h3>
+                  <NavLink to={'/distributor'} className='btn block m-auto px-4 py-3 '>Become a Distributor</NavLink>
+
+                </div>
                 
-                <h3 className='white'>Wholesale Distribution</h3>
+               
 
               </div>
             </div>
@@ -85,7 +91,7 @@ const Home = () => {
             <img src={Head} alt="" />
           </div>
           <div className="product-grid-items">
-            <img src={Oasics} alt="" />
+            <img src={Oasics} alt=""/>
           </div>
        
         </div>

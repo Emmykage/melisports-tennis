@@ -191,10 +191,17 @@ body {
 }
 
 .px-4 {
-  padding-left: 4rem;
-  padding-right: 4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
-
+.px-5 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+.px-6 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
 .py-1 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -209,7 +216,10 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
-
+.py-4 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 .pb-3 {
   padding-bottom: 1.5rem;
 }
@@ -352,7 +362,9 @@ body {
 .spantara {
   font-family: spantara;
 }
-
+.line-space{
+  letter-spacing: 0.1rem;
+}
 h3,
 h4,
 h2 {
@@ -427,7 +439,9 @@ a {
   top: 0;
   height: 100vh;
   z-index: 99;
-  background-color: rgb(237, 236, 236);
+  /* background-color: rgb(237, 236, 236);
+   */
+   background: white;
   padding: 1.5rem;
   transition: all 0.73s ease-in-out;
 }
@@ -470,6 +484,9 @@ a {
 
 .chat-box .side-close {
   font-size: 3rem;
+}
+.chat-box .side-close:hover {
+  color: var(--color-orange);
 }
 
 .chat-box form input {
@@ -518,7 +535,9 @@ a {
 .about p {
   color: white;
 }
-
+.block{
+  display: block;
+}
 .segment {
   overflow: hidden;
   position: relative;
@@ -720,7 +739,7 @@ a {
 
   /* border: 2px solid var(--color-primary-variant); */
   resize: none;
-  color: var(--color-white);
+  /* color: var(--color-white); */
 }
 
 /* ==========================flex-box======================== */
@@ -828,7 +847,7 @@ a {
 }
 
 .w-full {
-  width: 100%;
+  width: 100% !important;
 }
 
 .w-8 {
@@ -889,7 +908,7 @@ button {
 
 .btn {
   width: fit-content;
-  padding: 0.5rem 0.9rem;
+  /* padding: 0.5rem 0.9rem; */
   border-radius: 8px;
   font-size: 1rem;
   background: var(--color-theme-variant);
@@ -1039,8 +1058,8 @@ button:active {
 }
 
 .px-1 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .text-xs {

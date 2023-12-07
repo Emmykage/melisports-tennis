@@ -41,6 +41,7 @@ import Services from './pages/Services';
 import MainInfoLayout from './components/layouts/mainInfo';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import BecomeADistributor from './pages/BecomeADistributor';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -57,6 +58,7 @@ function App() {
         <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
         <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
         <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
+        <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
         <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
         <Route path="paymentform" element={<StripeContainer />} />
 

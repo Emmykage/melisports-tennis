@@ -29,13 +29,14 @@ const Services = () => {
 
           </div>
           <div className='flex-2 bg-'>
-            <ul className='p-1'>
+            <ul className='px-2'>
               <li>
-                <h3 className='color-white'>Name</h3><p className='px-1 text-base'>{racquet.name}</p>
-                <h2 className='color-white'>description:</h2>
+          
+                <h2 className='line-space px-1 spantara font-normal'>{racquet.name}</h2>
+                <p className='color-white font-bold'>DESCRIPTION:</p>
                 <p className='px-1 text-sm'>{racquet.description}</p>
                   <div className='p-top-05'>
-                  <h2 className='color-white'> TECHNICAL CHARACTERISTICS </h2>
+                  <h2 className='color-white font-normal'> TECHNICAL CHARACTERISTICS </h2>
                     <ul className='characters px-1 grid grid-2 gap-1'>
                       
                     <li className=' border-t p-05 m-02'>
@@ -78,7 +79,8 @@ const Services = () => {
                         <span className='xter text-sm'>Recommended String:</span>
                         <span className='text-sm'>RPM Blast / RPM Rough</span>
                       </div>
-                    </li><li className=' border-t m-02 p-05'>
+                    </li>
+                    <li className=' border-t m-02 p-05'>
                       <div className='flex flex-between'>
                         <span className='xter text-sm'>Recommended Grip:</span>
                         <span className='text-sm'>Syntec Pro</span>

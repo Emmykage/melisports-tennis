@@ -37,7 +37,7 @@ const ChatBox = () => {
     <form onSubmit={handleSubmit}>
       <div>
       <label htmlFor='subject'>
-        <input type='text' name={"subject"} placeholder='Subject' value={formInput.subject} onChange={handleChange} id='subject' />
+        <input className='my-2' type='text' name={"subject"} placeholder='Subject' value={formInput.subject} onChange={handleChange} id='subject' />
       </label>
 
       </div>
