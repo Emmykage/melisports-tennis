@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeList } from '../redux/products/searched';
 import FeaturedProducts from '../components/partials/FeaturedProducts';
 import { getCategories } from '../redux/category/categories';
-import Babolat from '../assets/images/product-brands/Homepage_Brands_BabolatB.jpg';
-import Oasics from '../assets/images/product-brands/Homepage_Brands_AsicsB.jpg';
-import Head from '../assets/images/product-brands/Homepage_Brands_HeadB.jpg';
+import Babolat from '../assets/images/product-brands/ba4886b467-babolat-logo-babolat-cayman-sports-tennis-badminton-amp-pickleball.png';
+
 
 import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
@@ -67,7 +66,7 @@ const Home = () => {
           
       </div>
       <div className="m-h4">
-        <h3 className="center fs-3 m-h2"> Featured Products</h3>
+        <h3 className="center fs-3 m-h2"> Shop Categories</h3>
 
         <div className="feature-div gap-2 m-auto flex-center-around">
           {categories.map((category) => (
@@ -82,20 +81,7 @@ const Home = () => {
         </div>
 
       </div>
-      <div>
-        <div className="product-grid fit-screen">
-          <div className="product-grid-items">
-            <img src={Babolat} alt="" />
-          </div>
-          <div className="product-grid-items">
-            <img src={Head} alt="" />
-          </div>
-          <div className="product-grid-items">
-            <img src={Oasics} alt=""/>
-          </div>
-       
-        </div>
-        <div className="banner-text full-screen m-h5 text-center">
+      <div className="banner-text full-screen m-h5 text-center">
           <h2>
             Tennis Equipment & Supplies
           </h2>
@@ -104,6 +90,15 @@ const Home = () => {
 
           </p>
         </div>
+      <div>
+        <div className="product-grid fit-screen">
+          <div className="product-grid-items flex justify-center items-align text-center">
+            <img src={Babolat} alt="" />
+          </div>
+       
+       
+        </div>
+       
       </div>
     </>
   );

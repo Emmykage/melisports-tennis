@@ -25,7 +25,7 @@ const BecomeADistributor = () => {
       <form action="https://formspree.io/f/xayvlole" method="post">
               <div class="input"><input name="company_name" id="name" type="text" placeholder="Company name" /></div>
               <div class="input"><input name="Email" type="email" placeholder="Email address" required /></div>
-              <div class="input"><input name="State" type="email" placeholder="State"  /></div>
+              <div class="input"><input name="State" type="text" placeholder="State of Business Location"  /></div>
               <div class="input text-input"><textarea  placeholder="Enter business address"></textarea>
              
           </div>

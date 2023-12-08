@@ -13,12 +13,12 @@ const initialState = [{
 {
   id: 2,
   name: 'Shoes',
-  image: 'https://www.e-tennis.com/pub/media/catalog/product/cache/9cb80aaa700fbabda1d30deb1d8f7ff5/1/0/1041a335_001_sr_rt_glb.webp',
+  image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/t_michelin_logo/v1658505671/Product_Media/2023/Soes/30F23649-JET_TERE_ALL_COURT_MEN-4101-1-Exterieur.png',
 },
 {
   id: 4,
   name: 'Apparels',
-  image: 'https://www.tennispro.eu/media/catalog/product/cache/5/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/4/m/4mp1441-4005_bleu_1.jpg',
+  image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595784162/Product_Media/2020/APPAREL/Exercise/Exercise%20Hood%20Sweat%20M%20-%204MP1041/4MP1041-Exercise_Hood_Sweat_M-4049-1-front.png',
 },
 ];
 export default function categoryReducer(state = initialState, action) {

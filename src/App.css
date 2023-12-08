@@ -1025,8 +1025,9 @@ button:active {
 }
 
 .banner-text {
-  padding: 1.5rem;
+  padding: 9.5rem;
   line-height: 2rem;
+  background: linear-gradient(#13509218, white );
 }
 
 /* ====================product details design=================== */
@@ -1501,6 +1502,11 @@ td:last-child .btn {
     .flex-center-around {
       flex-direction: column;
     }
+    .banner-text {
+      padding: 1.5rem;
+  
+    }
+    
 
     .catalog .row {
       flex-direction: column;
