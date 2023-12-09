@@ -1499,6 +1499,9 @@ td:last-child .btn {
     width: 100%;
     flex-direction: column;
   }
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
   .serv-box.top img{
     height: 200px;
   }

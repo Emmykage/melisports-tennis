@@ -14,7 +14,7 @@ const Footer = () => (
 
       </div>
       <div>
-        <h4>Resources</h4>
+        <h4>RESOURCES</h4>
         <ul>
           {/* <li>Membership</li> */}
           <li>
