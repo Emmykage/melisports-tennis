@@ -59,6 +59,7 @@ const NavInfo = () => {
               <li className="nav-item"><NavLink to="/products">Products</NavLink></li>
               <li className="nav-item"><NavLink to="/contact">Contact Us</NavLink></li>
               <li className="nav-item"><NavLink to="/about">About</NavLink></li>
+              <li className="nav-item"><NavLink to="/brands">Brands</NavLink></li>
               
 
               {user !== null && ((user.user.role == 'admin') && (

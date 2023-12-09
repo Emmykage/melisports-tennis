@@ -538,7 +538,7 @@ a {
 }
 
 .about p {
-  color: white;
+  /* color: white; */
 }
 .block{
   display: block;
@@ -576,7 +576,7 @@ a {
   width: 100%;
 }
 
-.products-container {
+.products-container, .section-container {
   padding: 1rem;
   max-width: 1400px;
   margin: auto;
@@ -1016,7 +1016,9 @@ button:active {
 .product-grid-items:hover {
   box-shadow: none;
 }
-
+.h-fit{
+  min-height: 50vh;
+}
 .grid {
   display: grid;
 }

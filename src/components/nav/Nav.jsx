@@ -163,7 +163,7 @@ const Nav = () => {
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink href="#Home">Brands</NavLink>
+                <NavLink href="/brands">Brands</NavLink>
                 <div className="link-items flex">
                   <div>
                     <h3>
