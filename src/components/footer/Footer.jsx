@@ -72,6 +72,7 @@ const Footer = () => (
         </ul>
       </div>
     </div>
+    <div className='bg-white text-center text-gray'>Vortech<a href=""></a></div>
   </footer>
 );
 

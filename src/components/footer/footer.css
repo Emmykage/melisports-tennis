@@ -1,5 +1,6 @@
 .footer-container {
   width: 80%;
+  /* margin: 0 0 1rem; */
 }
 
 .footer-container > div {
@@ -16,8 +17,8 @@
 
 footer {
   padding-top: 1.5rem;
-  margin-top: 2rem;
-  background-color: rgba(14, 13, 13, 0.884);
+  margin: 2rem 0;
+  background-color: var(--color-theme-variant);
   line-height: 1.6rem;
 }
 
@@ -26,6 +27,7 @@ footer li,
 footer a {
   color: white;
   font-size: 0.8rem;
+  font-weight: 500;
 }
 
 footer a {
@@ -34,9 +36,12 @@ footer a {
 
 footer h3,
 footer h4 {
+  font-weight: 400;
   color: aliceblue;
 }
-
+footer h3{
+  font-size: 1.5rem;
+}
 .footer-container > div h4 {
   font-size: 1rem;
   margin: 1rem 0;

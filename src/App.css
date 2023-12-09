@@ -425,7 +425,12 @@ a {
   overflow: hidden;
   margin: 8px auto;
 }
-
+.serv-box.top img{
+  height: 400px;
+}
+.serv-box.bottom img{
+  height: 600px;
+}
 .serv-box:hover .overlay {
   height: 100%;
   background-color: rgba(132, 139, 200, 0.18);
@@ -590,13 +595,11 @@ a {
   font-weight: 300;
 }
 
-.bg-theme {
-  background-color: #135092;
-}
+
 
 .products-container p,
 .xter-info {
-  color: white;
+  /* color: white; */
 
   /* font-size: 14px; */
 }
@@ -808,9 +811,7 @@ a {
   flex: 3;
 }
 
-.bg-gray {
-  background-color: gray;
-}
+
 
 .flex-1 {
   flex: 1;
@@ -1195,6 +1196,25 @@ table tbody tr:last-child {
   color: var(--color-main-bg);
 }
 
+.text-pry {
+  color: var(--color-primary-variant) !important;
+}
+.bg-pry {
+  background: var(--color-primary-variant) !important;
+}
+.custom-bg-theme{
+  background: linear-gradient(#13509218, white );
+
+}
+.bg-theme {
+  background-color: #135092;
+}
+.bg-gray {
+  background-color: gray;
+}
+.bg-white{
+  background-color: var(--color-white);
+}
 .carter {
   width: 50%;
 }
@@ -1467,12 +1487,24 @@ td:last-child .btn {
   .cart-div {
     width: 90%;
   }
+  .serv-box.top img{
+    height: 300px;
+  }
 }
 
 @media screen and (max-width: 720px) {
   .cart-div {
     width: 100%;
     flex-direction: column;
+  }
+  .serv-box.top img{
+    height: 200px;
+  }
+  .serv-box.bottom img{
+    height: 400px;
+  }
+  .serv-box .btn{
+    padding: 6px 8px;
   }
 
   .cat-group .btn {
