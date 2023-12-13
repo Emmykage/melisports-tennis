@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '../components/banner/Hero'
 import AboutBanner from '../components/banner/AboutBanner'
+import { useDispatch } from 'react-redux'
+import { closeNav } from '../redux/modal/nav'
 
 const About = () => {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(closeNav())
+  }, [])
   return (
     <div className='container about customer-bg-theme text-white'>
     <AboutBanner/>

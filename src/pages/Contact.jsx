@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '../components/banner/Hero'
+import { useDispatch } from 'react-redux'
+import { closeNav } from '../redux/modal/nav'
 
 const Contact = () => {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(closeNav())
+  }, [])
   return (
     <div className=''>
   

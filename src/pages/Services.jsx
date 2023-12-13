@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCatalogAccessories, getCatalogRaquets } from '../redux/catalog/catalog'
 import Hero from '../components/banner/Hero'
+import { closeNav } from '../redux/modal/nav'
 
 const Services = () => {
   const dispatch = useDispatch()
@@ -9,6 +10,7 @@ const Services = () => {
   useEffect(()=>{
     dispatch(getCatalogRaquets())
     dispatch(getCatalogAccessories())
+    dispatch(closeNav())
 
   },[])
   console.log(accessories)
