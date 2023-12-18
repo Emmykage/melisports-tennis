@@ -1,5 +1,6 @@
 .footer-container {
   width: 80%;
+
   /* margin: 0 0 1rem; */
 }
 
@@ -39,9 +40,11 @@ footer h4 {
   font-weight: 400;
   color: aliceblue;
 }
-footer h3{
+
+footer h3 {
   font-size: 1.5rem;
 }
+
 .footer-container > div h4 {
   font-size: 1rem;
   margin: 1rem 0;

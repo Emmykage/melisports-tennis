@@ -7,12 +7,11 @@ import ChatBox from '../sideNav/ChatBox';
 import { closeNav } from '../../redux/modal/nav';
 
 const MainLayout = ({ children }) => {
-
   const { isOpen } = useSelector((state) => state.modal);
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(closeNav())
-  }, [])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(closeNav());
+  }, []);
   return (
 
     <div className="container">

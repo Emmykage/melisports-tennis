@@ -7,11 +7,11 @@ import NavInfo from '../nav/NavInfo';
 import { closeNav } from '../../redux/modal/nav';
 
 const MainInfoLayout = ({ children }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
-  useEffect(()=>{
-    dispatch(closeNav())
-  },[])
+  useEffect(() => {
+    dispatch(closeNav());
+  }, []);
   return (
 
     <div className="container">

@@ -126,7 +126,7 @@ const cartSlice = createSlice({
 
         };
       } catch {
-        console.log('first');
+
         return {
           ...state,
           cartItems: [],

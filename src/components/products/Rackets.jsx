@@ -3,7 +3,6 @@ import whatsap from '../../assets/images/logo//WhatsAppButtonGreenLarge.png'
 
 const Rackets = ({racquet}) => {
     const [toggle, setToggle] = useState("none")
-    console.log(racquet)
  
   return (
     <div className='flex flex-between seperator service-table '>

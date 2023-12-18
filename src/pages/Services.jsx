@@ -14,7 +14,6 @@ const Services = () => {
     dispatch(closeNav())
 
   },[])
-  // console.log(accessories)
 
   return (
     <>
