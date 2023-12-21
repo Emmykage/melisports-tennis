@@ -16,7 +16,7 @@ const Rackets = ({racquet}) => {
     
           <h2 className='line-space px-1 spantara font-normal'>{racquet.name}</h2>
           <p className='color-white font-bold'>DESCRIPTION:</p>
-          <p className='px-1 text-sm text-white' >{racquet.technical_characteristics.description}</p>
+          <p className='px-1 text-sm text-white' >{racquet.description}</p>
             <div className='p-top-05'>
             <h2 className='color-white font-normal'> TECHNICAL CHARACTERISTICS </h2>
               <ul className='characters px-1  gap-1 '>
