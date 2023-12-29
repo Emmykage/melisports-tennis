@@ -29,6 +29,7 @@ const NavInfo = () => {
     dispatch(userLog());
     navigate('/auth/login');
   };
+  console.log("first")
 
   return (
     <>
@@ -55,11 +56,11 @@ const NavInfo = () => {
                 <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
               </div>
 
-              <li className="nav-item"><NavLink to="/">Home</NavLink></li>
-              <li className="nav-item"><NavLink to="/products">Products</NavLink></li>
-              <li className="nav-item"><NavLink to="/contact">Contact Us</NavLink></li>
-              <li className="nav-item"><NavLink to="/about">About</NavLink></li>
-              <li className="nav-item"><NavLink to="/brands">Brands</NavLink></li>
+              <li className="nav-item"><NavLink to="/" onClick={()=> dispatch(closeNav())}>Home</NavLink></li>
+              <li className="nav-item"><NavLink to="/products" onClick={()=> dispatch(closeNav())}>Products</NavLink></li>
+              <li className="nav-item"><NavLink to="/contact" onClick={()=> dispatch(closeNav())}>Contact Us</NavLink></li>
+              <li className="nav-item"><NavLink to="/about" onClick={()=> dispatch(closeNav())}>About</NavLink></li>
+              <li className="nav-item"><NavLink to="/brands" onClick={()=> dispatch(closeNav())}>Brands</NavLink></li>
               
 
               {user !== null && ((user.user.role == 'admin') && (

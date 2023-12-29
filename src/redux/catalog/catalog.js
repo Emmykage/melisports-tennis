@@ -86,6 +86,7 @@ const initialState = {
     image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_3024,h_3024/v1638549414/Product_Media/2022/Tennis_Rackets/PERF_RACKETS/101470-Pure_Strike_VS-362-1-Face.png',
 
     description: 'Are you looking for extreme control and ultimate precision? Switch to the Pure Strike VS to play early and take control of the game.  Since 1875, BABOLAT has been breaking with convention by proposing the best possible solutions for the most dedicated and passionate players. Thanks to the expertise built up by observing the game, BABOLAT has invented a signature hallmark: the VS. The Pure Strike VS racquet combines the control of the Pure Strike racquet and the ultimate precision that your game requires.Team BABOLAT pro players may play with a customized or different model than the equipment depicted.',
+    category: "professional",
     technical_characteristics: {
       head_size: '645  cm² / 93 in²',
       weight: '300  g +/- 7g ',
@@ -110,7 +111,7 @@ const initialState = {
     name: 'Evo Drive',
     type: 'racquet',
     image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_576,h_576/v1598891187/Product_Media/2021/TENNIS_RACKETS/EVO/EVO%20Drive%20-%20102431/102431-EVO_Drive-136-1-face.png',
-
+    category: "intermediate",
     description: 'Enjoying the self-improvement challenge of tennis? Check out the Evo Drive. Whether you want to have fun with friends or want to see how far you can take your game (why not both?!), this affordable performance racquet provides easy power and comfort as you enjoy tennis and reach your full potential. The Evo Drive brings easy power and comfort to your game.',
     technical_characteristics: {
       head_size: '670   cm² / 104 in²',
@@ -124,8 +125,16 @@ const initialState = {
     },
     variations: [
       {
-        racquet: 'Evo Drive Lite',
+        racquet: 'Evo Drive Tour Unstrung',
         head_size: '670 cm /104 in²',
+        weight: '285   g +/- 7g / 9 oz ',
+        swing_weight: '270',
+        length: '685 mm',
+        balance: '320 mm +/- 7mm',
+      },
+      {
+        racquet: 'Evo Drive Lite Women',
+        head_size: '660 cm /102 in²',
         weight: '255   g +/- 7g / 9 oz ',
         swing_weight: '270',
         length: '685 mm',
@@ -134,10 +143,10 @@ const initialState = {
     ],
   },
   {
-    name: 'BABOLAT EVOKE 105',
+    name: 'EVOKE 105',
     type: 'racquet',
     image: 'https://www.tennispro.eu/media/catalog/product/cache/5/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/1/2/121223_1_5.jpg',
-
+    category: "beginner",
     description: 'The Babolat Evoke 105 racquet is perfect for casual players or beginners thanks to its easy grip and tolerance. Its construction combining aluminum and graphite brings lightweight, manoeuvrability and durability, for an easier tennis practice. The 680cm² head with wide sweetspot promotes ball centering and erases small placement errors to facilitate rallies and enhance game enjoyment. The light weight of this racquet (275g) and its very good balance (33cm) make it very easy to handle and will not tire your arm, even after several hours of play. The perfect combination of power and feel will allow beginners or recreational players to progress and take their game to the next leve',
     technical_characteristics: {
       head_size: '680    cm² / 105 in²',
@@ -151,7 +160,7 @@ const initialState = {
     },
     variations: [
       {
-        racquet: 'BABOLAT EVOKE 102',
+        racquet: 'EVOKE 102 Wembledon',
         head_size: '660 cm /100 in',
         weight: '270g +/- 7g / 9.7 oz ',
         length: '685 mm',
@@ -185,6 +194,7 @@ const initialState = {
     name: 'Eagle Strung',
     image: 'https://www.babolat.ca/cdn/shop/products/121204_EAGLE_face.jpg?v=1641831995',
     type: 'racquet',
+    category: "beginner",
     description: 'Ideal for players starting out in tennis, with this racket you can improve your game at a low cost while having fun on the court..',
     technical_characteristics: {
       head_size: '680 cm² / 100 in²',
@@ -198,8 +208,15 @@ const initialState = {
     },
     variations: [
       {
-        racquet: 'Pure Aero',
-        head_size: '645 cm /100 in',
+        racquet: 'Voltage',
+        head_size: '647 cm² / 102 in²',
+        weight: '285 g +/- 7g / 10.6 oz',
+        swing_weight: '285',
+        Stiffness: '73 + / - 3',
+        composition: 'Aluminium',
+        length: '685 mm / 27 in',
+        recommended_string: 'RPM Power/Xcel',
+        recommended_grip: 'Natural Grip',
       },
     ],
   },
@@ -242,7 +259,7 @@ const initialState = {
     },
     variations: [
       {
-        racquet: 'Pure Aero',
+        racquet: 'Junior 19 Wimbledon',
         head_size: '645 cm /100 in',
       },
     ],
@@ -264,30 +281,55 @@ const initialState = {
     },
     variations: [
       {
-        racquet: 'Pure Aero',
-        head_size: '645 cm /100 in',
+        racquet: 'Junior 21 Wimbledon',
+        head_size: '610 cm² / 102 in²',
+        weight: '190  g +/- 10g / 10.6 oz',
+        swing_Weight: '285',
+        stiffness: '73 + / - 3',
+        composition: 'Aluminium',
+        length: '533mm / 27 in',
+        recommended_string: 'RPM Power/Xcel',
+        recommended_grip: 'Natural Grip',
+      },
+      {
+        racquet: 'Junior 19 Wimbledon',
+        head_size: '610 cm² / 102 in²',
+        weight: '190  g +/- 10g / 10.6 oz',
+        swing_Weight: '285',
+        stiffness: '73 + / - 3',
+        composition: 'Aluminium',
+        length: '533mm / 27 in',
+    
       },
     ],
   },
   {
-    name: 'B Fly 17',
+    name: 'B Fly 19',
     image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1675439325/Product_Media/2023/TENNIS_RACKETS/140483-Bfly_17-100-1-3_4_Face_card.png',
     type: 'racquet',
+    category: "junior",
     description: 'The Junior 25 Wimbledon racquet is suitable for young beginners between 130 and 140 cm tall. Designed in the image of the legendary British Grand Slam.',
     technical_characteristics: {
-      head_size: '400 cm²',
-      weight: '138 g +/- 10g',
+      head_size: '532 cm²',
+      weight: '160 g +/- 10g',
       swing_weight: 'N/A',
       stiffness: '  String bed RA: 45 +/- 5',
       composition: 'Aluminium',
-      length: '432 mm / 25 in',
+      length: '483 mm / 25 in',
       recommended_string: 'RPM Power/Xcel',
       recommended_grip: 'MEMOGRIP',
     },
     variations: [
       {
-        racquet: 'Pure Aero',
-        head_size: '645 cm /100 in',
+        racquet: 'B Fly 17',
+        head_size: '400 cm²',
+        weight: '138 g +/- 10g',
+        swing_weight: 'N/A',
+        stiffness: '  String bed RA: 45 +/- 5',
+        composition: 'Aluminium',
+        length: '432 mm / 25 in',
+        recommended_string: 'RPM Power/Xcel',
+        recommended_grip: 'MEMOGRIP',
       },
     ],
   },
@@ -313,7 +355,36 @@ const initialState = {
     ],
   }],
   accessories: [],
-  apparels: [],
+  apparels: [{
+    name: "Men's Play Crew",
+    type: 'apparels',
+    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595785684/Product_Media/2020/APPAREL/Play/Play%20Crew%20Neck%20Tee%20M%20-%203MP1011/3MP1011-Play_Crew_Neck_Tee_M-4049-1-front.png",
+
+    description: 'Feel confident on the court in the Babolat Play Crew. This performance top features contrast raglan sleeves, quick-drying material, colorblocking, and Babolat logos at left sleeve, back hem and left chest.',
+    content: "100% Polyester",
+    colors: ['Blue', 'Blue Aster', 'Estate Blue', 'Tomota Red', 'White']
+  
+  },
+  {
+    name: "Men's Play Short",
+    type: 'apparels',
+    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595785594/Product_Media/2020/APPAREL/Play/Play%20Short%208%20M%20-%203MP1061/3MP1061-Play_Short_8_M-1000-1-front.png",
+
+    description: 'The Babolat Play Shorts are ready for any tennis session. These shorts feature an elastic waistband with drawcord, side pockets, contrast panel at back waist, and a Babolat logo at right leg hem',
+    content: "100% Polyester",
+    colors: ['Black', 'Blue Aster', 'Estate Blue', 'White']
+  
+  },
+  {
+    name: "Exercise Jogger Pant",
+    type: 'apparels',
+    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595784887/Product_Media/2020/APPAREL/Exercise/Exercise%20Jogger%20Pant%20M%20-%204MP1131/4MP1131-Exercise_Jogger_Pant_M-3002-1-front.png",
+
+    description: 'The EXERCISE collection is designed for all your training sessions and matches. All the products have been developed to be combined with the PLAY range.The garments are primarily made from cotton blended with polyester, combining the comfort of cotton with the suppleness of polyester.A few warm items are included for the transition between the seasons. The perfect clothing for your warm-up and training sessions, as well as for coaching from the courtside.',
+    content: "100% Polyester",
+    colors: ['Heather Grey', 'Blue Aster', 'Estate Blue', 'Heather Black']
+  
+  }],
   loading: true,
 
 };

@@ -3,6 +3,14 @@
 @font-face {
   font-family: spantara;
   src: url("./assets/fonts/spantaran.ttf");
+  unicode-range: U+0-2f, U+40-10FFFF;
+
+}
+@font-face {
+  font-family: spantara;
+  src: local("Franklin Gothic Medium");
+  unicode-range: U+30-39;
+
 }
 
 * {
@@ -110,7 +118,9 @@ body {
 .text-7xl {
   font-size: 44px;
 }
-
+.font-light{
+  font-weight: 300;
+}
 .font-normal {
   font-weight: 400;
 }
@@ -375,9 +385,13 @@ body {
 h3,
 h4,
 h2 {
-  /* color: #333; */
-  font-family: spantara;
+  font-weight: 600;
+  font-family: spantara, 'Courier New', Courier, monospace;
 }
+.service-table h2.technical,   .service-table h2.description{
+ 
+}
+
 
 ul {
   list-style: none;
@@ -611,7 +625,8 @@ a {
 
 .products-container h2,
 .products-container h3 {
-  font-weight: 300;
+  font-weight: 100;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 
 .products-container p,
@@ -921,7 +936,10 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
+.characters-col {
+  display: grid;
+  grid-template-columns: 1fr;
+}
 /* .characters li{
   margin-top: 1rem;
 } */
@@ -1245,16 +1263,22 @@ table tbody tr:last-child {
 }
 
 .whatsapp {
-  /* background: red; */
-  padding: 10px;
-
-  /* height: 88px; */
+  /* background: rgb(28, 198, 28); */
+  padding-top: 4px;
+  padding-bottom: 0px;
+  display: block;
   width: 188px;
+  /* margin: 1rem ; */
   margin-left: auto;
   margin-right: 2rem;
   border-radius: 8px;
 
-  /* border: 1px solid gray; */
+}
+.whatsapp a{
+  display: block;
+  padding: 0;
+  /* background-color: blue; */
+  
 }
 
 .whatsapp img {
@@ -1263,7 +1287,8 @@ table tbody tr:last-child {
 }
 
 .series-btn {
-  padding: 0.3rem 1rem;
+  padding: 8px 10px;
+  display: block;
   border-radius: 6px;
   background-color: rgba(256, 68, 4, 0.9);
 }
@@ -1568,6 +1593,14 @@ td:last-child .btn {
 .service-table table {
   /* background-color: red; */
 }
+.service-table table thead th {
+  padding: 1.4rem 1rem;
+}
+.service-table table td {
+  padding: 1.4rem 1rem;
+  font-size: 14px;
+
+}
 
 .product-overlay {
   position: absolute;
@@ -1613,9 +1646,23 @@ td:last-child .btn {
     width: 100%;
     flex-direction: column;
   }
+  .whatsapp {
+    margin: 1rem 0;
+  }
+  .products-container .p-img{
+    width: 100%;
+  }
+  .products-container .p-img img{
+    object-fit: contain;
+
+  }
 
   .service-table.flex {
     flex-direction: column;
+  }
+  .service-table .technical,   .service-table .description{
+    font-size: 18px;
+    padding: 0.6rem;
   }
 
   .grid-2 {
