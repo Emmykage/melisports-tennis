@@ -392,7 +392,9 @@ h2 {
  
 }
 
-
+.headers{
+  letter-spacing: 1rem;
+}
 ul {
   list-style: none;
 }

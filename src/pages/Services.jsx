@@ -21,16 +21,19 @@ const Services = () => {
 
 <Hero/>
   
-  <div className='container catalog bg-theme p-top-5'>
+  <div className='container catalog bg-theme'>
  
     <div className='products-container color-white '>
       <div className='racquets'>
+      <h2 className='headers'>Racquets</h2>
+
         {racquets.map(racquet => (
         <Rackets racquet={racquet}/>)
       )}      
       
       </div>
-      <div className='apparels'>
+      <div className='apparel'>
+        <h2 className='headers'>Apparels</h2>
         {apparels.map(apparel => (
           <Apparels apparel={apparel} />
         ))}
