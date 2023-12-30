@@ -16,7 +16,7 @@ const About = () => {
     <div className='about-us text-pry'>
     <div className='segment segment-one grid grid-2 gap-2 my-3 py-6'>
         <div className='flex justify-center items-align'>
-          <h2 className='text-white font-medium'>About Us</h2>
+          <h2 className='text-white font-medium'>More...</h2>
         </div>
         <div className='flex justify-center items-align p-2'>
           <p className='w-max-400 text-white'>

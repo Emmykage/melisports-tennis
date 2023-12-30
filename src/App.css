@@ -1644,6 +1644,10 @@ td:last-child .btn {
 }
 
 @media screen and (max-width: 720px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
   .cart-div {
     width: 100%;
     flex-direction: column;
