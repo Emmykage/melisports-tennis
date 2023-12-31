@@ -11,7 +11,7 @@ const Rackets = ({ racquet }) => {
 
       </div>
       <div className="flex-2 bg- relative overflow-hidden pb-4">
-        <div className="px-2 block">
+        <div className="sm px-2 block">
           <div>
 
             <h2 className="line-space px-1 ">{racquet.name}</h2>

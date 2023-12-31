@@ -1666,6 +1666,9 @@ td:last-child .btn {
     width: 100%;
     flex-direction: column;
   }
+  .sm.px-2{
+    padding: 0;
+  }
 
   .whatsapp {
     margin: 1rem 0;
