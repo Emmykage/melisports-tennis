@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { closeList } from '../redux/products/searched';
 import FeaturedProducts from '../components/partials/FeaturedProducts';
 import { getCategories } from '../redux/category/categories';
 import Babolat from '../assets/images/product-brands/ba4886b467-babolat-logo-babolat-cayman-sports-tennis-badminton-amp-pickleball.png';
-import demo_service from '../assets/images/babolat-demo.jpg'
+import demo_service from '../assets/images/babolat-demo.jpg';
 
 import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
-import string from '../../src/assets/images/stringing.jpg'
-import distributor from '../../src/assets/images/distributor.jpeg'
-import { NavLink } from 'react-router-dom';
+import string from '../assets/images/stringing.jpg';
+import distributor from '../assets/images/distributor.jpeg';
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -23,22 +23,22 @@ const Home = () => {
   }, []);
   return (
     <>
-     
-      <Slider/>
 
-      <div className='service-offer py-2'>
-        <div className='flex justify-space gap-1'>
-          <div className='serv-box flex-1 relative top'> 
-            <img src={string}/>
-            <div className='absolute overlay'>
-              <h3 className='white font-normal'>Stringing racquets</h3>
+      <Slider />
+
+      <div className="service-offer py-2">
+        <div className="flex justify-space gap-1">
+          <div className="serv-box flex-1 relative top">
+            <img src={string} />
+            <div className="absolute overlay">
+              <h3 className="white font-normal">Stringing racquets</h3>
 
             </div>
           </div>
-          <div className='serv-box flex-1 relative top w-full'> 
-            <img src={demo_service} className='w-full'/>
-            <div className='absolute overlay'>
-              <h3 className='white font-normal'>Demo Program</h3>
+          <div className="serv-box flex-1 relative top w-full">
+            <img src={demo_service} className="w-full" />
+            <div className="absolute overlay">
+              <h3 className="white font-normal">Demo Program</h3>
 
             </div>
 
@@ -46,24 +46,20 @@ const Home = () => {
 
         </div>
         <div>
-          <div className='serv-box flex-1 relative bottom'>
-              <img src={distributor}/>
-              <div className='absolute overlay'>
-                <div className=''>
-                  <h3 className='white font-normal'>Wholesale Distribution</h3>
-                  <NavLink to={'/distributor'} className='btn block m-auto px-4 py-3 '>Become a Distributor</NavLink>
-
-                </div>
-                
-               
+          <div className="serv-box flex-1 relative bottom">
+            <img src={distributor} />
+            <div className="absolute overlay">
+              <div className="">
+                <h3 className="white font-normal">Wholesale Distribution</h3>
+                <NavLink to="/distributor" className="btn block m-auto px-4 py-3 ">Become a Distributor</NavLink>
 
               </div>
+
             </div>
+          </div>
 
         </div>
 
-       
-          
       </div>
       <div className="m-h4">
         <h3 className="center fs-3 m-h2"> Shop Categories</h3>
@@ -82,23 +78,22 @@ const Home = () => {
 
       </div>
       <div className="banner-text full-screen m-h5 text-center">
-          <h2>
-            Tennis Equipment & Supplies
-          </h2>
-          <p className='text-pry'>
-            Love tennis? We specialize in Babolat tennis equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff is passionate about the sport and can guide you through our selection to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our tennis retail store.
+        <h2>
+          Tennis Equipment & Supplies
+        </h2>
+        <p className="text-pry">
+          Love tennis? We specialize in Babolat tennis equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff is passionate about the sport and can guide you through our selection to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our tennis retail store.
 
-          </p>
-        </div>
+        </p>
+      </div>
       <div>
         <div className="product-grid fit-screen">
           <div className="product-grid-items flex justify-center items-align text-center">
-            <img src={Babolat} className='w-full' alt="" />
+            <img src={Babolat} className="w-full" alt="" />
           </div>
-       
-       
+
         </div>
-       
+
       </div>
     </>
   );

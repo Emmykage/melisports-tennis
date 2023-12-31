@@ -20,7 +20,6 @@ const SearchComponent = () => {
     dispatch(searched(search));
   };
 
-
   return (
     <div className="search-component">
       <form className="search-form">

@@ -12,10 +12,10 @@ import { closeList } from '../redux/products/searched';
 
 const Cart = () => {
   const { cartItems, total, update } = useSelector((state) => state.cart);
-  const {status} = useSelector(state => state.orders)
+  const { status } = useSelector((state) => state.orders);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const orderItems =() => cartItems.map((item) => (
+  const orderItems = () => cartItems.map((item) => (
     {
       product_id: item.product_id,
       quantity: item.quantity,
@@ -27,19 +27,18 @@ const Cart = () => {
     dispatch(closeList());
     dispatch(getCarts());
   }, [update]);
- 
+
   const handleCheckout = () => {
- 
     dispatch(addOrder(data));
   };
 
-  status == "success" && navigate('/checkout') 
+  status == 'success' && navigate('/checkout');
 
   const data = {
     order_detail: {
       total,
       order_items_attributes: orderItems(),
-      status: "pending"
+      status: 'pending',
     },
   };
 
@@ -58,16 +57,12 @@ const Cart = () => {
     if (sign === '+') {
       const addQuantity = quantity + 1;
       dispatch(updateQty({ product_id: id, quantity: addQuantity }));
-
+    } else if (quantity !== 1) {
+      const minusQuantity = quantity - 1;
+      dispatch(updateQty({ product_id: id, quantity: minusQuantity }));
     } else {
-      if(quantity !== 1 ){ 
-        const minusQuantity = quantity - 1;
-        dispatch(updateQty({ product_id: id, quantity: minusQuantity }));
-       }else{ 
-        quantity
-        dispatch(updateQty({ product_id: id, quantity }));
-      }
-      
+      quantity;
+      dispatch(updateQty({ product_id: id, quantity }));
     }
 
     dispatch(updater());

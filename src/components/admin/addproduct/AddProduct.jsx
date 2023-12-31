@@ -26,9 +26,9 @@ const AddProduct = () => {
     price: '',
     image: '',
     sku: '',
-    product_category_id: "",
+    product_category_id: '',
     gender_id: 1,
-    level_id: "",
+    level_id: '',
     grip_size: '',
     head_size: '',
     rating: '',
@@ -40,66 +40,62 @@ const AddProduct = () => {
     colour: '',
     size: '',
     tension: '',
-    strung: "",
+    strung: '',
     cloth_sizes_attributes: [],
-    shoe_sizes_attributes: []
+    shoe_sizes_attributes: [],
 
   });
 
   const handleFormInput = (e) => {
-  
-    if (e.target.name =="cloth_sizes_attributes" || e.target.name =="shoe_sizes_attributes"){
-    var options = e.target.options;
-    var value = [];
-    for (var i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        value.push({abbrv: options[i].value});
+    if (e.target.name == 'cloth_sizes_attributes' || e.target.name == 'shoe_sizes_attributes') {
+      const { options } = e.target;
+      const value = [];
+      for (let i = 0, l = options.length; i < l; i++) {
+        if (options[i].selected) {
+          value.push({ abbrv: options[i].value });
+        }
       }
-    }
-  
-    setFormInput({
-      ...formInput,
-      [e.target.name]: value
-    });
-  }else{
-    setFormInput({
-           ...formInput,
-           [e.target.name]: e.target.value,
-    
-      })
-  }
 
-}
-  ;
+      setFormInput({
+        ...formInput,
+        [e.target.name]: value,
+      });
+    } else {
+      setFormInput({
+        ...formInput,
+        [e.target.name]: e.target.value,
+
+      });
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProduct(formInput));
   };
-const reset = () => {
-  setFormInput({
-    name: '',
-    price: '',
-    image: '',
-    sku: '',
-    product_category_id: '',
-    grip_size: '',
-    head_size: '',
-    rating: '',
-    colour: '',
-    weight: '',
-    length: '',
-    stiffness: '',
-    composition: '',
-    description: '',
-    size: '',
-    tension: '',
-    colour: '',
-    strung: "",
-    cloth_size_attributes: ""
-    
+  const reset = () => {
+    setFormInput({
+      name: '',
+      price: '',
+      image: '',
+      sku: '',
+      product_category_id: '',
+      grip_size: '',
+      head_size: '',
+      rating: '',
+      colour: '',
+      weight: '',
+      length: '',
+      stiffness: '',
+      composition: '',
+      description: '',
+      size: '',
+      tension: '',
+      colour: '',
+      strung: '',
+      cloth_size_attributes: '',
 
-  });
-}
+    });
+  };
   return (
     <div className="product-form admin">
 
@@ -149,7 +145,7 @@ const reset = () => {
             >
               <option value="" selected>--Select---</option>
               {levels.map((level) => (
-                
+
                 <option value={level.id}>{level.stage}</option>
               ))}
             </select>
@@ -174,7 +170,14 @@ const reset = () => {
         <div className="form-row">
 
           <div className="input-half">
-            <label htmlFor=""> <span>Head size: cm<sup>2</sup>  </span>   </label>
+            <label htmlFor="">
+              {' '}
+              <span>
+                Head size: cm
+                <sup>2</sup>
+              </span>
+              {' '}
+            </label>
             <input
               name="head_size"
               value={formInput.head_size}
@@ -199,54 +202,52 @@ const reset = () => {
         </div>
         <div className="form-row">
           <div className="input-half">
-          <label htmlFor=""> Cloth size  </label>
-          <select 
-          name="cloth_sizes_attributes" 
-          id="cloth_size"
-          multiple
-          onChange={handleFormInput}
-          size={1}
-          
-          >
-            {clothSizes.map(item => (
+            <label htmlFor=""> Cloth size  </label>
+            <select
+              name="cloth_sizes_attributes"
+              id="cloth_size"
+              multiple
+              onChange={handleFormInput}
+              size={1}
+            >
+              {clothSizes.map((item) => (
 
-            <option value={item.abbrv}>{item.abbrv}</option>
+                <option value={item.abbrv}>{item.abbrv}</option>
 
-            ))}
+              ))}
 
-          </select>
+            </select>
 
-        </div>
-        <div className="input-half">
-          <label htmlFor=""> Shoe size  </label>
-          <select 
-          name="shoe_sizes_attributes" 
-          id="shoe_size"
-          multiple
-          onChange={handleFormInput}
-          size={1}
-          
-          >
-            {shoeSizes.map(item => (
+          </div>
+          <div className="input-half">
+            <label htmlFor=""> Shoe size  </label>
+            <select
+              name="shoe_sizes_attributes"
+              id="shoe_size"
+              multiple
+              onChange={handleFormInput}
+              size={1}
+            >
+              {shoeSizes.map((item) => (
 
-            <option value={item.abbrv}>{item.abbrv}</option>
+                <option value={item.abbrv}>{item.abbrv}</option>
 
-            ))}
+              ))}
 
-          </select>
+            </select>
 
-        </div>
-        <div className="input-half">
-          <label htmlFor=""> SKU   </label>
-          <input
-            name="sku"
-            value={formInput.sku}
-            onChange={handleFormInput}
-            type="text"
-            placeholder="sku"
-          />
+          </div>
+          <div className="input-half">
+            <label htmlFor=""> SKU   </label>
+            <input
+              name="sku"
+              value={formInput.sku}
+              onChange={handleFormInput}
+              type="text"
+              placeholder="sku"
+            />
 
-        </div>
+          </div>
         </div>
         <div className="form-row">
           <div className="input-half">
@@ -256,7 +257,7 @@ const reset = () => {
             <input
               name="colour"
               value={formInput.colour}
-              placeholder='colour'        
+              placeholder="colour"
               onChange={handleFormInput}
               type="text"
             />
@@ -304,17 +305,16 @@ const reset = () => {
             <label htmlFor="">
               Composition
             </label>
-            <select 
-            name='composition'
-            id='composition'
-            onChange={handleFormInput}
-            
+            <select
+              name="composition"
+              id="composition"
+              onChange={handleFormInput}
+
             >
               <option value={null} selected>--Selected----</option>
-              <option value={'graphite'}>Graphite </option>
-              <option value={'aluminium'}>Aluminium </option>
-              <option value={'carbon'}>Carbon </option>
-
+              <option value="graphite">Graphite </option>
+              <option value="aluminium">Aluminium </option>
+              <option value="carbon">Carbon </option>
 
             </select>
 
@@ -337,7 +337,7 @@ const reset = () => {
           >
             <option value="" selected>--Select--</option>
             {product_categories.map((category) => (
-            <option value={category.id}>{category.name}</option>
+              <option value={category.id}>{category.name}</option>
             ))}
           </select>
 
@@ -347,13 +347,15 @@ const reset = () => {
           <label htmlFor="strung">
             strung/unstrung
           </label>
-          <select name="strung" id="strung"
-          value={formInput.strung}
-          onChange={handleFormInput}
+          <select
+            name="strung"
+            id="strung"
+            value={formInput.strung}
+            onChange={handleFormInput}
           >
             <option value="" selected>--Selected----</option>
-            {strung.map((item)=>(
-            <option value={item.name}>{item.name}</option>
+            {strung.map((item) => (
+              <option value={item.name}>{item.name}</option>
             ))}
           </select>
         </div>

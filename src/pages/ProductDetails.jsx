@@ -25,14 +25,14 @@ const ProductDetails = () => {
   }, []);
   const handleCart = () => {
     // dispatch(addCart({ product_id: id, quantity: count }));
-    dispatch(addCart({product_id: id, image: product.image, price: product.price, quantity: count }));
-
+    dispatch(addCart({
+      product_id: id, image: product.image, price: product.price, quantity: count,
+    }));
 
     dispatch(updater());
   };
   const increase = () => {
     setCount((setPrev) => setPrev + 1);
-
   };
   const decrease = () => {
     count !== 1 && setCount((setPrev) => setPrev - 1);

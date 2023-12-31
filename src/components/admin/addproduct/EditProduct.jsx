@@ -14,11 +14,9 @@ const EditProduct = () => {
   const { editId } = useParams();
   const dispatch = useDispatch();
 
-
-  const {product_categories} = useSelector((state) => state.product_categories);
+  const { product_categories } = useSelector((state) => state.product_categories);
 
   const { loading, report, status } = useSelector((state) => state.product);
-
 
   const levels = useSelector((state) => state.level.levels);
 
@@ -26,52 +24,46 @@ const EditProduct = () => {
 
   const [formInput, setFormInput] = useState({});
 
-  const fetchData = async() => {
+  const fetchData = async () => {
     fetch(`${baseURL}products/${editId}`)
       .then((res) => res.json()).then((json) => setFormInput(json));
-  }
+  };
   useEffect(() => {
-    fetchData()
+    fetchData();
     dispatch(getProductCategories());
     dispatch(getLevels());
     dispatch(getGenders());
-  
-
   }, []);
 
-
-
   const handleFormInput = (e) => {
-  
-    if (e.target.name =="cloth_sizes_attributes" || e.target.name =="shoe_sizes_attributes"){
-    var options = e.target.options;
-    var value = [];
-    for (var i = 0, l = options.length; i < l; i++) {
-      if (options[i].selected) {
-        value.push({abbrv: options[i].value});
+    if (e.target.name == 'cloth_sizes_attributes' || e.target.name == 'shoe_sizes_attributes') {
+      const { options } = e.target;
+      const value = [];
+      for (let i = 0, l = options.length; i < l; i++) {
+        if (options[i].selected) {
+          value.push({ abbrv: options[i].value });
+        }
       }
-    }
-  
-    setFormInput({
-      ...formInput,
-      [e.target.name]: value
-    });
-  }else{
-    setFormInput({
-           ...formInput,
-           [e.target.name]: e.target.value,
-    
-      })
-  }
 
-}
+      setFormInput({
+        ...formInput,
+        [e.target.name]: value,
+      });
+    } else {
+      setFormInput({
+        ...formInput,
+        [e.target.name]: e.target.value,
+
+      });
+    }
+  };
   const clearform = () => {
     setFormInput({
       name: '',
       price: '',
       image: '',
       sku: '',
-      product_category_id: "",
+      product_category_id: '',
       grip_size: '',
       head_size: '',
       rating: '',
@@ -81,17 +73,17 @@ const EditProduct = () => {
       composition: '',
       category: '',
       description: '',
-      tension: "",
-      colour: "",
-      strung: "",
-      size: ""
+      tension: '',
+      colour: '',
+      strung: '',
+      size: '',
 
     });
-  }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProduct(formInput));
-    clearform()
+    clearform();
   };
 
   return (
@@ -148,7 +140,7 @@ const EditProduct = () => {
             </select>
 
           </div>
-          
+
           <div className="input-half">
             <label htmlFor="">Gender </label>
             <select
@@ -194,55 +186,57 @@ const EditProduct = () => {
         </div>
         <div className="form-row">
 
-<div className="input-half">
-  <label htmlFor=""> Cloth size  </label>
-  <select 
-  name="cloth_sizes_attributes" 
-  id="cloth_size"
-  multiple
-  onChange={handleFormInput}
-  size={1}
-  >
-    {clothSizes.map(item => (
+          <div className="input-half">
+            <label htmlFor=""> Cloth size  </label>
+            <select
+              name="cloth_sizes_attributes"
+              id="cloth_size"
+              multiple
+              onChange={handleFormInput}
+              size={1}
+            >
+              {clothSizes.map((item) => (
 
-    <option value={item.abbrv}>{item.abbrv}</option>
+                <option value={item.abbrv}>{item.abbrv}</option>
 
-    ))}
+              ))}
 
-  </select>
+            </select>
 
-</div>
-<div className="input-half">
-  <label htmlFor=""> Shoe size  </label>
-  <select name="shoe_sizes_attributes" id="shoe_size"
+          </div>
+          <div className="input-half">
+            <label htmlFor=""> Shoe size  </label>
+            <select
+              name="shoe_sizes_attributes"
+              id="shoe_size"
   //  value={formInput.cloth_size_attributes}
- 
-  multiple
-   onChange={handleFormInput}
-   size={1}
-  >
-    {shoeSizes.map(item => (
 
-    <option value={item.abbrv}>{item.abbrv}</option>
+              multiple
+              onChange={handleFormInput}
+              size={1}
+            >
+              {shoeSizes.map((item) => (
 
-    ))}
+                <option value={item.abbrv}>{item.abbrv}</option>
 
-  </select>
+              ))}
 
-</div>
-<div className="input-half">
-  <label htmlFor=""> SKU   </label>
-  <input
-    name="sku"
-    value={formInput.sku}
-    onChange={handleFormInput}
-    type="text"
-    placeholder="sku"
-  />
+            </select>
 
-</div>
+          </div>
+          <div className="input-half">
+            <label htmlFor=""> SKU   </label>
+            <input
+              name="sku"
+              value={formInput.sku}
+              onChange={handleFormInput}
+              type="text"
+              placeholder="sku"
+            />
 
-</div>
+          </div>
+
+        </div>
         <div className="form-row">
           <div className="input-half">
             <label htmlFor="" className="color">
@@ -251,7 +245,8 @@ const EditProduct = () => {
             <input
               name="colour"
               value={formInput.colour}
-              placeholder='colour'              onChange={handleFormInput}
+              placeholder="colour"
+              onChange={handleFormInput}
               type="text"
             />
 
@@ -299,17 +294,16 @@ const EditProduct = () => {
               Composition
             </label>
 
-            <select 
-            name='composition'
-            id='composition'
-            onChange={handleFormInput}
-            
+            <select
+              name="composition"
+              id="composition"
+              onChange={handleFormInput}
+
             >
               <option value={null} selected>--Selected----</option>
-              <option value={'graphite'}>Graphite </option>
-              <option value={'aluminium'}>Aluminium </option>
-              <option value={'carbon'}>Carbon </option>
-
+              <option value="graphite">Graphite </option>
+              <option value="aluminium">Aluminium </option>
+              <option value="carbon">Carbon </option>
 
             </select>
 
@@ -342,12 +336,14 @@ const EditProduct = () => {
           <label htmlFor="strung">
             strung/unstrung
           </label>
-          <select name="strung" id="strung"
-          value={formInput.strung}
-          onChange={handleFormInput}
+          <select
+            name="strung"
+            id="strung"
+            value={formInput.strung}
+            onChange={handleFormInput}
           >
-            {strung.map((item)=>(
-                <option value={item.name}>{item.name}</option>
+            {strung.map((item) => (
+              <option value={item.name}>{item.name}</option>
             ))}
           </select>
 
@@ -411,7 +407,6 @@ const EditProduct = () => {
         )) }
 
       </form>
-
 
     </div>
   );

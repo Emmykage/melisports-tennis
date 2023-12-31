@@ -15,15 +15,15 @@ const EditCategories = (props) => {
               <label htmlFor="">
                 {' '}
                 Category Name
-                </label>
-                <input
-                  name="name"
-                  value={edit.name}
-                  onChange={handleFormInput}
-                  type="text"
-                  placeholder="Product category"
-                />
-            
+              </label>
+              <input
+                name="name"
+                value={edit.name}
+                onChange={handleFormInput}
+                type="text"
+                placeholder="Product category"
+              />
+
             </div>
 
           </div>
@@ -32,30 +32,30 @@ const EditCategories = (props) => {
               <label htmlFor="">
                 {' '}
                 Category type
-                </label>
-                <input
-                  name="level"
-                  value={edit.level}
-                  onChange={handleFormInput}
-                  type="text"
-                  placeholder="Product category"
-                />
-             
+              </label>
+              <input
+                name="level"
+                value={edit.level}
+                onChange={handleFormInput}
+                type="text"
+                placeholder="Product category"
+              />
+
             </div>
 
           </div>
 
           <div className="form-row">
-            <div className='input-full'>
+            <div className="input-full">
               <label htmlFor="description">
                 Description
-                </label>
-                <textarea
-                  name="description"
-                  value={edit.description}
-                  onChange={handleFormInput}
-                />
-             
+              </label>
+              <textarea
+                name="description"
+                value={edit.description}
+                onChange={handleFormInput}
+              />
+
             </div>
 
           </div>

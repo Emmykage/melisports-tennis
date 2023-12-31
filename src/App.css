@@ -4,13 +4,12 @@
   font-family: spantara;
   src: url("./assets/fonts/spantaran.ttf");
   unicode-range: U+0-2f, U+40-10FFFF;
-
 }
+
 @font-face {
   font-family: spantara;
   src: local("Franklin Gothic Medium");
   unicode-range: U+30-39;
-
 }
 
 * {
@@ -118,9 +117,11 @@ body {
 .text-7xl {
   font-size: 44px;
 }
-.font-light{
+
+.font-light {
   font-weight: 300;
 }
+
 .font-normal {
   font-weight: 400;
 }
@@ -388,13 +389,16 @@ h2 {
   font-weight: 600;
   font-family: spantara, 'Courier New', Courier, monospace;
 }
-.service-table h2.technical,   .service-table h2.description{
- 
+
+.service-table h2.technical,
+.service-table h2.description{
+
 }
 
-.headers{
+.headers {
   letter-spacing: 1rem;
 }
+
 ul {
   list-style: none;
 }
@@ -628,6 +632,7 @@ a {
 .products-container h2,
 .products-container h3 {
   font-weight: 100;
+
   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 
@@ -938,10 +943,12 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
 .characters-col {
   display: grid;
   grid-template-columns: 1fr;
 }
+
 /* .characters li{
   margin-top: 1rem;
 } */
@@ -1245,9 +1252,11 @@ table tbody tr:last-child {
 .text-pry {
   color: var(--color-primary-variant) !important;
 }
-.text-orange{
+
+.text-orange {
   color: var(--color-orange);
 }
+
 .bg-pry {
   background: var(--color-primary-variant) !important;
 }
@@ -1263,20 +1272,21 @@ table tbody tr:last-child {
 .whatsapp {
   /* background: rgb(28, 198, 28); */
   padding-top: 4px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
   display: block;
   width: 188px;
+
   /* margin: 1rem ; */
   margin-left: auto;
   margin-right: 2rem;
   border-radius: 8px;
-
 }
-.whatsapp a{
+
+.whatsapp a {
   display: block;
   padding: 0;
+
   /* background-color: blue; */
-  
 }
 
 .whatsapp img {
@@ -1587,7 +1597,8 @@ td:last-child .btn {
   background-color: #04aa6d;
   margin-bottom: 8px;
 }
-.close-btn .close.btn:hover{
+
+.close-btn .close.btn:hover {
   color: white !important;
   background-color: #ff4500;
 }
@@ -1595,13 +1606,14 @@ td:last-child .btn {
 .service-table table {
   /* background-color: red; */
 }
+
 .service-table table thead th {
   padding: 1.4rem 1rem;
 }
+
 .service-table table td {
   padding: 1.4rem 1rem;
   font-size: 14px;
-
 }
 
 .product-overlay {
@@ -1639,6 +1651,7 @@ td:last-child .btn {
     overflow-x: auto;
     white-space: nowrap;
   }
+
   .cart-div {
     width: 90%;
   }
@@ -1653,21 +1666,25 @@ td:last-child .btn {
     width: 100%;
     flex-direction: column;
   }
+
   .whatsapp {
     margin: 1rem 0;
   }
-  .products-container .p-img{
+
+  .products-container .p-img {
     width: 100%;
   }
-  .products-container .p-img img{
-    object-fit: contain;
 
+  .products-container .p-img img {
+    object-fit: contain;
   }
 
   .service-table.flex {
     flex-direction: column;
   }
-  .service-table .technical,   .service-table .description{
+
+  .service-table .technical,
+  .service-table .description {
     font-size: 18px;
     padding: 0.6rem;
   }
@@ -1723,7 +1740,6 @@ td:last-child .btn {
     .banner-text {
       padding: 1.5rem;
     }
-
 
     .catalog .row {
       flex-direction: column;

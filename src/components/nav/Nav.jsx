@@ -13,7 +13,6 @@ import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 
-
 const Nav = () => {
   const navigate = useNavigate();
   const { counter, update } = useSelector((state) => state.cart);
@@ -191,7 +190,6 @@ const Nav = () => {
                 {' '}
               </li>
               ))}
-              
 
               <li className="nav-item last">
                 <span><FiUser className="user-icon" /></span>

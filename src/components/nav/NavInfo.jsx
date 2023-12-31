@@ -12,7 +12,6 @@ import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 
-
 const NavInfo = () => {
   const navigate = useNavigate();
   const { counter, update } = useSelector((state) => state.cart);
@@ -29,7 +28,7 @@ const NavInfo = () => {
     dispatch(userLog());
     navigate('/auth/login');
   };
-  console.log("first")
+  console.log('first');
 
   return (
     <>
@@ -48,51 +47,47 @@ const NavInfo = () => {
           </div>
 
           <div className="nav-div flex-center space">
-            <div className='flex-1 flex justify-center'>
+            <div className="flex-1 flex justify-center">
 
-           
-            <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links flex w-full'}>
-              <div className="mobile-menu-div  m-v4">
-                <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
-              </div>
+              <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links flex w-full'}>
+                <div className="mobile-menu-div  m-v4">
+                  <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
+                </div>
 
-              <li className="nav-item"><NavLink to="/" onClick={()=> dispatch(closeNav())}>Home</NavLink></li>
-              <li className="nav-item"><NavLink to="/products" onClick={()=> dispatch(closeNav())}>Products</NavLink></li>
-              <li className="nav-item"><NavLink to="/contact" onClick={()=> dispatch(closeNav())}>Contact Us</NavLink></li>
-              <li className="nav-item"><NavLink to="/about" onClick={()=> dispatch(closeNav())}>About</NavLink></li>
-              <li className="nav-item"><NavLink to="/brands" onClick={()=> dispatch(closeNav())}>Brands</NavLink></li>
-              
+                <li className="nav-item"><NavLink to="/" onClick={() => dispatch(closeNav())}>Home</NavLink></li>
+                <li className="nav-item"><NavLink to="/products" onClick={() => dispatch(closeNav())}>Products</NavLink></li>
+                <li className="nav-item"><NavLink to="/contact" onClick={() => dispatch(closeNav())}>Contact Us</NavLink></li>
+                <li className="nav-item"><NavLink to="/about" onClick={() => dispatch(closeNav())}>About</NavLink></li>
+                <li className="nav-item"><NavLink to="/brands" onClick={() => dispatch(closeNav())}>Brands</NavLink></li>
 
-              {user !== null && ((user.user.role == 'admin') && (
-              <li className="nav-item">
-                <NavLink to="/admin">    go to admin </NavLink>
-                {' '}
-              </li>
-              ))}
-              
+                {user !== null && ((user.user.role == 'admin') && (
+                <li className="nav-item">
+                  <NavLink to="/admin">    go to admin </NavLink>
+                  {' '}
+                </li>
+                ))}
 
-              <li className="nav-item last">
-                <span><FiUser className="user-icon" /></span>
+                <li className="nav-item last">
+                  <span><FiUser className="user-icon" /></span>
 
-                {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
+                  {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
-              </li>
+                </li>
 
-            </ul>
+              </ul>
             </div>
-            
+
             <div className="flex-space">
-           
+
               <div className="user mobile-display ">
                 {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
                 <span><FiUser className="user-icon" /></span>
 
               </div>
-              <NavLink to={'/store'}>
-              <AiOutlineShopping className='menu-icon cart-icon'/>
-            </NavLink>
-
+              <NavLink to="/store">
+                <AiOutlineShopping className="menu-icon cart-icon" />
+              </NavLink>
 
               <div className="menu-div cart">
                 <NavLink to="/carts">

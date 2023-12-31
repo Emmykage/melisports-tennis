@@ -1,33 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { BsCartDash } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 // import { addOrder } from '../redux/actions/orders';
 import StripeContainer from './StripeContainer';
-import { useEffect } from 'react';
+
 import { reset } from '../redux/order/order';
 
 const Checkout = () => {
   // const dispatch = useDispatch();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { total, counter } = useSelector((state) => state.cart);
-  const {status} = useSelector(state => state.orders)
+  const { status } = useSelector((state) => state.orders);
 
-  useEffect(()=> {
-    dispatch(reset())
-  }, [])
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
   return (
     <div className="checkout">
       <div className=" col-left">
         <h2>Billings </h2>
-        <form action="">
-          
-
-        </form>
+        <form action="" />
         <div>
-        <h1> The store</h1>
-        <StripeContainer total_cost={total}/>
-        {/* {showItem ? <StripeContainer total_cost={total}/> : <><h3>{total}</h3><button onClick={()=> setShowItem(true) }>Purchase Product</button> </> } */}
-      </div>
+          <h1> The store</h1>
+          <StripeContainer total_cost={total} />
+          {/* {showItem ? <StripeContainer total_cost={total}/> : <><h3>{total}</h3><button onClick={()=> setShowItem(true) }>Purchase Product</button> </> } */}
+        </div>
 
       </div>
       <div className="col-right">
@@ -55,7 +52,6 @@ const Checkout = () => {
         </ul>
 
       </div>
-      
 
     </div>
   );

@@ -4,20 +4,21 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/actions/auth';
 
 import './auth.css';
-import { userLog } from '../../redux/user/user';
-import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai"
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 
-import {BsFacebook} from "react-icons/bs"
-import {FcGoogle} from "react-icons/fc"
+import { BsFacebook } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
+import { userLog } from '../../redux/user/user';
 
 const AdminLogin = () => {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const {
-    user, error,message, loading} = useSelector((state) => state.user);
+    user, error, message, loading,
+  } = useSelector((state) => state.user);
   const [formInput, setFormInput] = useState({
     user: {
       email: '',
@@ -30,25 +31,25 @@ const AdminLogin = () => {
   }, []);
 
   const handleInput = (e) => {
-    if(e.target.name == "email"){
+    if (e.target.name == 'email') {
       setFormInput({
         user: {
           ...formInput.user,
           [e.target.name]: e.target.value.toLowerCase(),
         },
-      })
-    }else{
-    setFormInput({
-      user: {
-        ...formInput.user,
-        [e.target.name]: e.target.value,
-      },
-    });
-     }
+      });
+    } else {
+      setFormInput({
+        user: {
+          ...formInput.user,
+          [e.target.name]: e.target.value,
+        },
+      });
+    }
   };
   const toggleReveal = () => {
-    setShow(prev => !prev)
-  }
+    setShow((prev) => !prev);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,21 +62,28 @@ const AdminLogin = () => {
         <div className="auth-container ">
           <div className="form-content login-box">
             <h1>Admin Login</h1>
-            <form onSubmit={handleSubmit}>            
-              <div className='field input-field'>
-              <label htmlFor="email">Email</label>
-              <input type="text" value={formInput.email} onChange={handleInput} name="email" id="email"/>
+            <form onSubmit={handleSubmit}>
+              <div className="field input-field">
+                <label htmlFor="email">Email</label>
+                <input type="text" value={formInput.email} onChange={handleInput} name="email" id="email" />
               </div>
-              <div className='field input-field'>
-                <label htmlFor="password" >Password </label>
-                <input type={show ? "password" : "text"} value={formInput.password} onChange={handleInput} name="password" />
-                <span onClick={toggleReveal}> {show ?  <AiOutlineEyeInvisible className='eye-icon' />: <AiOutlineEye className='eye-icon'/>}</span>
+              <div className="field input-field">
+                <label htmlFor="password">Password </label>
+                <input type={show ? 'password' : 'text'} value={formInput.password} onChange={handleInput} name="password" />
+                <span onClick={toggleReveal}>
+                  {' '}
+                  {show ? <AiOutlineEyeInvisible className="eye-icon" /> : <AiOutlineEye className="eye-icon" />}
+                </span>
               </div>
               <button className="btn" type="submit">Log in </button>
-              <div className='form-link'>
-                <span> Don't have an account?  <NavLink to="/auth/admin_sign_up">Sign up</NavLink> </span>
+              <div className="form-link">
+                <span>
+                  {' '}
+                  Don't have an account?
+                  <NavLink to="/auth/admin_sign_up">Sign up</NavLink>
+                </span>
               </div>
-              <div className='line'></div>
+              <div className="line" />
             </form>
             <p className="blue">
               {' '}
@@ -87,13 +95,15 @@ const AdminLogin = () => {
               {error && message }
             </p>
             <div className="media-option ">
-              <a href="#" className="social-field facebook"><BsFacebook className="facebook-icon"/>
-              <span>Login with Facebook</span>
+              <a href="#" className="social-field facebook">
+                <BsFacebook className="facebook-icon" />
+                <span>Login with Facebook</span>
               </a>
             </div>
             <div className="media-option last-child">
-              <a href="#" className="social-field google"><FcGoogle className="google-icon"/>
-              <span>Login with Google</span>
+              <a href="#" className="social-field google">
+                <FcGoogle className="google-icon" />
+                <span>Login with Google</span>
               </a>
             </div>
             <p>

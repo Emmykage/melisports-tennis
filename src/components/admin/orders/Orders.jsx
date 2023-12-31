@@ -48,17 +48,17 @@ const Orders = () => {
         Page Under construction
       </h1>
       <div>
-          <ul className='order'>
-            {orders.map(order => (
-            <OrderItem key={order.id}
-            order_prop={order}
-
+        <ul className="order">
+          {orders.map((order) => (
+            <OrderItem
+              key={order.id}
+              order_prop={order}
             />
 
-            ))}
+          ))}
 
-          </ul>
-        </div>
+        </ul>
+      </div>
     </div>
   );
 };

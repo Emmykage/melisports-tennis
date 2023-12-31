@@ -86,7 +86,7 @@ const initialState = {
     image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_3024,h_3024/v1638549414/Product_Media/2022/Tennis_Rackets/PERF_RACKETS/101470-Pure_Strike_VS-362-1-Face.png',
 
     description: 'Are you looking for extreme control and ultimate precision? Switch to the Pure Strike VS to play early and take control of the game.  Since 1875, BABOLAT has been breaking with convention by proposing the best possible solutions for the most dedicated and passionate players. Thanks to the expertise built up by observing the game, BABOLAT has invented a signature hallmark: the VS. The Pure Strike VS racquet combines the control of the Pure Strike racquet and the ultimate precision that your game requires.Team BABOLAT pro players may play with a customized or different model than the equipment depicted.',
-    category: "professional",
+    category: 'professional',
     technical_characteristics: {
       head_size: '645  cm² / 93 in²',
       weight: '300  g +/- 7g ',
@@ -104,8 +104,8 @@ const initialState = {
         head_size: '645 cm /100 in',
         weight: '285  g +/- 7g ',
         Swing_Weight: '275',
-      }, 
-       {
+      },
+      {
         racquet: 'Pure Strike 100',
         head_size: '645  cm² / 93 in²',
         weight: '300  g +/- 7g ',
@@ -123,7 +123,7 @@ const initialState = {
     name: 'Evo Drive',
     type: 'racquet',
     image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_576,h_576/v1598891187/Product_Media/2021/TENNIS_RACKETS/EVO/EVO%20Drive%20-%20102431/102431-EVO_Drive-136-1-face.png',
-    category: "intermediate",
+    category: 'intermediate',
     description: 'Enjoying the self-improvement challenge of tennis? Check out the Evo Drive. Whether you want to have fun with friends or want to see how far you can take your game (why not both?!), this affordable performance racquet provides easy power and comfort as you enjoy tennis and reach your full potential. The Evo Drive brings easy power and comfort to your game.',
     technical_characteristics: {
       head_size: '670   cm² / 104 in²',
@@ -180,7 +180,7 @@ const initialState = {
     name: 'EVOKE 105',
     type: 'racquet',
     image: 'https://www.tennispro.eu/media/catalog/product/cache/5/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/1/2/121223_1_5.jpg',
-    category: "beginner",
+    category: 'beginner',
     description: 'The Babolat Evoke 105 racquet is perfect for casual players or beginners thanks to its easy grip and tolerance. Its construction combining aluminum and graphite brings lightweight, manoeuvrability and durability, for an easier tennis practice. The 680cm² head with wide sweetspot promotes ball centering and erases small placement errors to facilitate rallies and enhance game enjoyment. The light weight of this racquet (275g) and its very good balance (33cm) make it very easy to handle and will not tire your arm, even after several hours of play. The perfect combination of power and feel will allow beginners or recreational players to progress and take their game to the next leve',
     technical_characteristics: {
       head_size: '680    cm² / 105 in²',
@@ -202,12 +202,12 @@ const initialState = {
       },
     ],
   },
-  
+
   {
     name: 'Leisure Racquets',
     image: 'https://www.babolat.ca/cdn/shop/products/121204_EAGLE_face.jpg?v=1641831995',
     type: 'racquet',
-    category: "beginner",
+    category: 'beginner',
     description: 'Ideal for players starting out in tennis, with this racket you can improve your game at a low cost while having fun on the court..',
     technical_characteristics: {
       head_size: '680 cm² / 100 in²',
@@ -278,7 +278,7 @@ const initialState = {
         swing_Weight: '285',
         stiffness: '73 + / - 3',
         composition: 'Aluminium',
-        length: '635 mm / 25 in',    
+        length: '635 mm / 25 in',
       },
       {
         racquet: 'Junior 21 Wimbledon',
@@ -299,7 +299,7 @@ const initialState = {
         stiffness: '73 + / - 3',
         composition: 'Aluminium',
         length: '533mm / 27 in',
-    
+
       },
     ],
   },
@@ -307,7 +307,7 @@ const initialState = {
     name: 'B Fly',
     image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1675439325/Product_Media/2023/TENNIS_RACKETS/140483-Bfly_17-100-1-3_4_Face_card.png',
     type: 'racquet',
-    category: "junior",
+    category: 'junior',
     description: 'The Junior 25 Wimbledon racquet is suitable for young beginners between 130 and 140 cm tall. Designed in the image of the legendary British Grand Slam.',
     technical_characteristics: {
       head_size: '532 cm²',
@@ -331,7 +331,7 @@ const initialState = {
         recommended_string: 'RPM Power/Xcel',
         recommended_grip: 'MEMOGRIP',
       },
-       {
+      {
         racquet: 'B Fly 17',
         head_size: '400 cm²',
         weight: '138 g +/- 10g',
@@ -369,82 +369,78 @@ const initialState = {
   apparels: [{
     name: "Men's Play Crew",
     type: 'apparels',
-    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595785684/Product_Media/2020/APPAREL/Play/Play%20Crew%20Neck%20Tee%20M%20-%203MP1011/3MP1011-Play_Crew_Neck_Tee_M-4049-1-front.png",
+    image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595785684/Product_Media/2020/APPAREL/Play/Play%20Crew%20Neck%20Tee%20M%20-%203MP1011/3MP1011-Play_Crew_Neck_Tee_M-4049-1-front.png',
 
     description: 'Feel confident on the court in the Babolat Play Crew. This performance top features contrast raglan sleeves, quick-drying material, colorblocking, and Babolat logos at left sleeve, back hem and left chest.',
-    content: "100% Polyester",
-    colors: ['Blue', 'Blue Aster', 'Estate Blue', 'Tomota Red', 'White']
-  
+    content: '100% Polyester',
+    colors: ['Blue', 'Blue Aster', 'Estate Blue', 'Tomota Red', 'White'],
+
   },
   {
     name: "Men's Play Short",
     type: 'apparels',
-    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595785594/Product_Media/2020/APPAREL/Play/Play%20Short%208%20M%20-%203MP1061/3MP1061-Play_Short_8_M-1000-1-front.png",
+    image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595785594/Product_Media/2020/APPAREL/Play/Play%20Short%208%20M%20-%203MP1061/3MP1061-Play_Short_8_M-1000-1-front.png',
 
     description: 'The Babolat Play Shorts are ready for any tennis session. These shorts feature an elastic waistband with drawcord, side pockets, contrast panel at back waist, and a Babolat logo at right leg hem',
-    content: "100% Polyester",
-    colors: ['Black', 'Blue Aster', 'Estate Blue', 'White']
-  
+    content: '100% Polyester',
+    colors: ['Black', 'Blue Aster', 'Estate Blue', 'White'],
+
   },
   {
-    name: "Exercise Jogger Pant",
+    name: 'Exercise Jogger Pant',
     type: 'apparels',
-    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595784887/Product_Media/2020/APPAREL/Exercise/Exercise%20Jogger%20Pant%20M%20-%204MP1131/4MP1131-Exercise_Jogger_Pant_M-3002-1-front.png",
+    image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595784887/Product_Media/2020/APPAREL/Exercise/Exercise%20Jogger%20Pant%20M%20-%204MP1131/4MP1131-Exercise_Jogger_Pant_M-3002-1-front.png',
 
     description: 'The EXERCISE collection is designed for all your training sessions and matches. All the products have been developed to be combined with the PLAY range.The garments are primarily made from cotton blended with polyester, combining the comfort of cotton with the suppleness of polyester.A few warm items are included for the transition between the seasons. The perfect clothing for your warm-up and training sessions, as well as for coaching from the courtside.',
-    content: "100% Polyester",
-    colors: ['Heather Grey', 'Blue Aster', 'Estate Blue', 'Heather Black']
-  
+    content: '100% Polyester',
+    colors: ['Heather Grey', 'Blue Aster', 'Estate Blue', 'Heather Black'],
+
   }],
   bags: [{
-    name: "RH X 9 PURE",
+    name: 'RH X 9 PURE',
     description: "Game, set and match Match ! You've attacked hard and never given up. Just like Rafa, you've left your opponent with no chance at all.The match is now over and you want to put your winning equipment away before you leave the court. The innovative RH6 Pure Aero Rafa can stand up, giving you easier access to your equipment.Created by and for Rafa, the RH6 Pure Aero Rafa offers the very best for competitive players looking for the ultimate combination of style and performance. This fully insulated bag has 2 big compartments, meaning you can arrange and protect up to 6 racquets and 2 pairs of shoes in their own section. The bag has a robust, waterproof and hard-wearing outer and a lining made of our new white highly durable insulated material. Developed for the most exacting players like Rafa, the RH6 Pure Aero Rafa gives your equipment maximum protection. This will keep your strings tight and protected from temperature fluctuations. Team BABOLAT pro players may play with a customized or different model than the equipment depicted.",
-    image: "https://i.sportisimo.com/products/images/493/493321/700x700/babolat-pure-line-rh-x9_0.jpg",
+    image: 'https://i.sportisimo.com/products/images/493/493321/700x700/babolat-pure-line-rh-x9_0.jpg',
     technical_characteristics: {
       racquet_capacity: 9,
-      capacity: "65L",
-      dimension: "75 x 41 x 32 cm",
+      capacity: '65L',
+      dimension: '75 x 41 x 32 cm',
       number_of_handles: 2,
       number_of_compartments: 2,
       number_of_straps: 2,
-      composition: "40% polyester PE30% polyurethane PU10% TPE10% EVA10% recycled polyester RPET",
+      composition: '40% polyester PE30% polyurethane PU10% TPE10% EVA10% recycled polyester RPET',
 
     },
-    
 
   },
   {
-    name: "Duffle M Classic",
-    description: "You want versatility and you don’t want to own multiple tennis bags. Say hello to the Duffel M Classic, the most versatile bag we make. Carry up to 6 racquets in the main compartment, with wide open access that is complemented by 5 internal pockets to organize all your gear. A large zippered external accessory pocket stores your valuables. Comfortable and low profile, you can wear the Duffel M classic as a backpack, over your shoulders, or carry it by the handles. Did we mention the entire bag folds into a packable size for easy storage?.",
-    image: "https://babolat.com.vn/wp-content/uploads/2021/09/758001-DUFFEL_M_CLASSIC-105-4-side.png",
+    name: 'Duffle M Classic',
+    description: 'You want versatility and you don’t want to own multiple tennis bags. Say hello to the Duffel M Classic, the most versatile bag we make. Carry up to 6 racquets in the main compartment, with wide open access that is complemented by 5 internal pockets to organize all your gear. A large zippered external accessory pocket stores your valuables. Comfortable and low profile, you can wear the Duffel M classic as a backpack, over your shoulders, or carry it by the handles. Did we mention the entire bag folds into a packable size for easy storage?.',
+    image: 'https://babolat.com.vn/wp-content/uploads/2021/09/758001-DUFFEL_M_CLASSIC-105-4-side.png',
     technical_characteristics: {
       racquet_capacity: 6,
-      capacity: "48L",
-      dimension: "28 x 13 x 7 in",
+      capacity: '48L',
+      dimension: '28 x 13 x 7 in',
       number_of_handles: 2,
       number_of_compartments: 2,
       number_of_straps: 2,
-      composition: "100% polyester",
+      composition: '100% polyester',
 
     },
-  
 
-}],
-shoes: [{
-  
-    name: "Jet Tere All Court Men",
+  }],
+  shoes: [{
+
+    name: 'Jet Tere All Court Men',
     description: "The Jet Tere is designed for speed (Tere is Māori for speed). Thanks to its understated design and breathable mesh, you'll fly around the court enjoying how light, comfortable and agile this shoe is.",
-    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/t_michelin_logo/v1658505671/Product_Media/2023/Soes/30F23649-JET_TERE_ALL_COURT_MEN-4101-1-Exterieur.png",
+    image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/t_michelin_logo/v1658505671/Product_Media/2023/Soes/30F23649-JET_TERE_ALL_COURT_MEN-4101-1-Exterieur.png',
     technical_characteristics: {
-      fit: "Standard",
-      Drop: "10mm",
-      surface_type: "All Court"
+      fit: 'Standard',
+      Drop: '10mm',
+      surface_type: 'All Court',
 
     },
-  
 
-
-}],
+  }],
   loading: true,
 
 };

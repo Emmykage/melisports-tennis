@@ -36,7 +36,7 @@ export default function Slider() {
           </SwiperSlide>
           <SwiperSlide>
             <img src={Slide3} />
-            </SwiperSlide>
+          </SwiperSlide>
 
         </Swiper>
       </div>

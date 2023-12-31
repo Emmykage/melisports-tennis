@@ -18,23 +18,29 @@ const Footer = () => (
         <ul>
           {/* <li>Membership</li> */}
           <li>
-            <NavLink to={'/my_account'}>
-            My Account
+            <NavLink to="/my_account">
+              My Account
             </NavLink>
-            </li>
-          <li><NavLink to={'/return_policy'}>
-          Return Policy
-            </NavLink> </li>
+          </li>
           <li>
-            <NavLink to={'/shipping_policy'}>
-            Shipping Policy
+            <NavLink to="/return_policy">
+              Return Policy
             </NavLink>
-           </li>
+            {' '}
+
+          </li>
           <li>
-          <NavLink to={"/terms_of_service"}>Terms of Service</NavLink>
-</li>
-          <li>           <NavLink to={"/private_policy"}>Privacy Policy</NavLink>
-</li>
+            <NavLink to="/shipping_policy">
+              Shipping Policy
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/terms_of_service">Terms of Service</NavLink>
+          </li>
+          <li>
+            {' '}
+            <NavLink to="/private_policy">Privacy Policy</NavLink>
+          </li>
           {/* <li>
             <NavLink to={"privacy_policy"}>
             Promos & Coupons
@@ -53,7 +59,7 @@ const Footer = () => (
           {' '}
           <br />
           <a href="mailto:info@melisports.com"> info@melisports.com </a>
-          
+
           {' '}
           <br />
           Gift Cards
@@ -63,16 +69,28 @@ const Footer = () => (
       <div>
         <ul>
           <h4>Connect With Us</h4>
-          <li><a href='https://web.facebook.com/melisports'>Facebook</a> </li>
-          <li> <a href='https://www.instagram.com/melisports/'>Instagram</a></li>
+          <li>
+            <a href="https://web.facebook.com/melisports">Facebook</a>
+            {' '}
+          </li>
+          <li>
+            {' '}
+            <a href="https://www.instagram.com/melisports/">Instagram</a>
+          </li>
           {/* <li>Youtube</li> */}
-          <li><a href='https://twitter.com/MeliSports'> Twitter</a> </li>
+          <li>
+            <a href="https://twitter.com/MeliSports"> Twitter</a>
+            {' '}
+          </li>
           {/* <li>TP Blog</li> */}
 
         </ul>
       </div>
     </div>
-    <div className='bg-white text-center text-gray'>Vortech<a href=""></a></div>
+    <div className="bg-white text-center text-gray">
+      Vortech
+      <a href="" />
+    </div>
   </footer>
 );
 

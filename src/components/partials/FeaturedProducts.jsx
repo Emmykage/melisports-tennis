@@ -12,7 +12,7 @@ const FeaturedProducts = (props) => {
           <img src={image} alt="" />
         </div>
         <div className="center">
-          <h4 className='text-primary'>
+          <h4 className="text-primary">
             {' '}
             {name}
           </h4>

@@ -43,7 +43,7 @@ const MainAdmin = ({ children }) => {
 
               <Right handleMenu={handleMenu} auth={auth} />
             </div>
-           
+
             <Footer />
           </div>
         </>
