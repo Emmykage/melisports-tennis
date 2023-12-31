@@ -7,9 +7,9 @@ const Apparels = ({ apparel }) => (
       <img src={apparel.image} alt="" className="w-full h-full" />
 
     </div>
-    <div className="flex-2 bg- relative overflow-hidden pb-4">
+    <div className="flex-2 bg- relative overflow-hidden pb-0">
       <div className="sm px-2 block">
-        <div>
+        <div className='py-1'>
 
           <h2 className="line-space px-1 spantara font-normal">{apparel.name}</h2>
           <h2 className="color-white font-light description">DESCRIPTION:</h2>

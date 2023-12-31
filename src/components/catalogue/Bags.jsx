@@ -7,7 +7,7 @@ const BagsCatalogue = ({ bag }) => (
       <img src={bag.image} alt="" className="w-full h-full" />
 
     </div>
-    <div className="flex-2 bg- relative overflow-hidden pb-4">
+    <div className="flex-2 bg- relative overflow-hidden pb-0">
       <div className="sm px-2 block">
         <div>
 
@@ -16,7 +16,7 @@ const BagsCatalogue = ({ bag }) => (
           <p className="px-1 text-sm text-white">{bag.description}</p>
           <div className="p-top-05">
             <h2 className="color-white font-normal technical"> TECHNICAL CHARACTERISTICS </h2>
-            <ul className="characters-col px-1  gap-1 ">
+            <ul className="characters-flex px-1  gap-1 ">
 
               <li className=" border-t p-05 m-02 flex-half">
                 <div className="flex flex-between">
@@ -55,8 +55,8 @@ const BagsCatalogue = ({ bag }) => (
                   </div>
               </li>
               <li className=" border-t p-05 m-02">
-                <div className="flex flex-between">
-                    <span className="xter text-sm">Composition</span>
+                <div className="flex flex-between gap-3">
+                    <span className="xter text-sm ">Composition: </span>
                     <span className="xter-info text-sm">{bag.technical_characteristics.composition}</span>
                   </div>
               </li>

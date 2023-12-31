@@ -6,7 +6,7 @@ const Accessories = ({ accessory }) => (
       <img src={apparel.image} alt="" className="w-full h-full" />
 
     </div>
-    <div className="flex-2 bg- relative overflow-hidden pb-4">
+    <div className="flex-2 bg- relative overflow-hidden pb-0">
       <div className="sm px-2 block">
         <div>
 

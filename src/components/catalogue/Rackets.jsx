@@ -10,9 +10,9 @@ const Rackets = ({ racquet }) => {
         <img src={racquet.image} alt="" className="w-full h-full" />
 
       </div>
-      <div className="flex-2 bg- relative overflow-hidden pb-4">
+      <div className="flex-2 bg- relative overflow-hidden pb-0">
         <div className="sm px-2 block">
-          <div>
+          <div className='py-1'>
 
             <h2 className="line-space px-1 ">{racquet.name}</h2>
             <h2 className="color-white font-light description">DESCRIPTION:</h2>
@@ -56,7 +56,7 @@ const Rackets = ({ racquet }) => {
                     <span className="xter text-sm">Tension Recommended:</span>
                     <span className="text-sm">
                       {' '}
-                      {racquet.technical_characteristics.tension}
+                      {racquet.technical_characteristics.tension ? racquet.technical_characteristics.tension : "N/A"}
                     </span>
                   </div>
                 </li>
