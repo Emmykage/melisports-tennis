@@ -1,4 +1,5 @@
 import React from 'react'
+import whatsapp from '../../assets/images/logo//WhatsAppButtonGreenLarge.png'
 
 const BagsCatalogue = ({bag}) => {
   return (
@@ -18,7 +19,7 @@ const BagsCatalogue = ({bag}) => {
             <h2 className='color-white font-normal technical'> TECHNICAL CHARACTERISTICS </h2>
               <ul className='characters-col px-1  gap-1 '>
                 
-              <li className=' border-t p-05 m-02'>
+              <li className=' border-t p-05 m-02 flex-half'>
                 <div className='flex flex-between'>
                   <span className='xter text-sm'>Racket Capacity:</span>
                   <span className='xter-info text-sm'>{bag.technical_characteristics.racquet_capacity}</span>
@@ -86,8 +87,19 @@ const BagsCatalogue = ({bag}) => {
         </div>
       
       </div>
+      <div className='flex row px-2 justify-between items-center'>
+        <span></span>
+      <div className='whatsapp'>
+        <a className='block' aria-label="Chat on WhatsApp" target='_blank' href={`https://wa.me/+2347038723093?text=I'm%20interested%20in%20the%20${bag.name}%20racquet`}> 
+        <img alt="Chat on WhatsApp" src={whatsapp} /></a>
+
+
+      </div>
+
+      </div> 
        
     </div>
+    
  
 
 </div>

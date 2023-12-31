@@ -1,4 +1,5 @@
 import React from 'react'
+import whatsapp from '../../assets/images/logo//WhatsAppButtonGreenLarge.png'
 
 const Apparels = ({apparel}) => {
   return (
@@ -63,7 +64,16 @@ const Apparels = ({apparel}) => {
       </div>
 
       </div>  */}
-     
+     <div className='flex row px-2 justify-between items-center'>
+        <span></span>
+      <div className='whatsapp'>
+        <a className='block' aria-label="Chat on WhatsApp" target='_blank' href={`https://wa.me/+2347038723093?text=I'm%20interested%20in%20the%20${apparel.name}%20racquet`}> 
+        <img alt="Chat on WhatsApp" src={whatsapp} /></a>
+
+
+      </div>
+
+      </div> 
       
     </div>
  
