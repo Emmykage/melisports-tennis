@@ -81,7 +81,7 @@ const initialState = {
 
   },
   {
-    name: 'Pure Strike 100',
+    name: 'Pure Strike',
     type: 'racquet',
     image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_3024,h_3024/v1638549414/Product_Media/2022/Tennis_Rackets/PERF_RACKETS/101470-Pure_Strike_VS-362-1-Face.png',
 
@@ -104,6 +104,18 @@ const initialState = {
         head_size: '645 cm /100 in',
         weight: '285  g +/- 7g ',
         Swing_Weight: '275',
+      }, 
+       {
+        racquet: 'Pure Strike 100',
+        head_size: '645  cm² / 93 in²',
+        weight: '300  g +/- 7g ',
+        swing_Weight: '295',
+        stiffness: '72 + / - 3',
+        balance: '320 mm +/- 7mm',
+        composition: 'Graphite',
+        length: '685 mm',
+        recommended_string: 'RPM Blast/VS',
+        recommended_grip: 'Syntec Team',
       },
     ],
   },
@@ -384,6 +396,55 @@ const initialState = {
     colors: ['Heather Grey', 'Blue Aster', 'Estate Blue', 'Heather Black']
   
   }],
+  bags: [{
+    name: "RH X 9 PURE",
+    description: "Game, set and match Match ! You've attacked hard and never given up. Just like Rafa, you've left your opponent with no chance at all.The match is now over and you want to put your winning equipment away before you leave the court. The innovative RH6 Pure Aero Rafa can stand up, giving you easier access to your equipment.Created by and for Rafa, the RH6 Pure Aero Rafa offers the very best for competitive players looking for the ultimate combination of style and performance. This fully insulated bag has 2 big compartments, meaning you can arrange and protect up to 6 racquets and 2 pairs of shoes in their own section. The bag has a robust, waterproof and hard-wearing outer and a lining made of our new white highly durable insulated material. Developed for the most exacting players like Rafa, the RH6 Pure Aero Rafa gives your equipment maximum protection. This will keep your strings tight and protected from temperature fluctuations. Team BABOLAT pro players may play with a customized or different model than the equipment depicted.",
+    image: "https://i.sportisimo.com/products/images/493/493321/700x700/babolat-pure-line-rh-x9_0.jpg",
+    technical_characteristics: {
+      racquet_capacity: 9,
+      capacity: "65L",
+      dimension: "75 x 41 x 32 cm",
+      number_of_handles: 2,
+      number_of_compartments: 2,
+      number_of_straps: 2,
+      composition: "40% polyester PE30% polyurethane PU10% TPE10% EVA10% recycled polyester RPET",
+
+    },
+    
+
+  },
+  {
+    name: "Duffle M Classic",
+    description: "You want versatility and you don’t want to own multiple tennis bags. Say hello to the Duffel M Classic, the most versatile bag we make. Carry up to 6 racquets in the main compartment, with wide open access that is complemented by 5 internal pockets to organize all your gear. A large zippered external accessory pocket stores your valuables. Comfortable and low profile, you can wear the Duffel M classic as a backpack, over your shoulders, or carry it by the handles. Did we mention the entire bag folds into a packable size for easy storage?.",
+    image: "https://babolat.com.vn/wp-content/uploads/2021/09/758001-DUFFEL_M_CLASSIC-105-4-side.png",
+    technical_characteristics: {
+      racquet_capacity: 6,
+      capacity: "48L",
+      dimension: "28 x 13 x 7 in",
+      number_of_handles: 2,
+      number_of_compartments: 2,
+      number_of_straps: 2,
+      composition: "100% polyester",
+
+    },
+  
+
+}],
+shoes: [{
+  
+    name: "Jet Tere All Court Men",
+    description: "The Jet Tere is designed for speed (Tere is Māori for speed). Thanks to its understated design and breathable mesh, you'll fly around the court enjoying how light, comfortable and agile this shoe is.",
+    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/t_michelin_logo/v1658505671/Product_Media/2023/Soes/30F23649-JET_TERE_ALL_COURT_MEN-4101-1-Exterieur.png",
+    technical_characteristics: {
+      fit: "Standard",
+      Drop: "10mm",
+      surface_type: "All Court"
+
+    },
+  
+
+
+}],
   loading: true,
 
 };

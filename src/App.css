@@ -622,7 +622,7 @@ a {
 }
 
 .text-white {
-  color: white;
+  color: white !important;
 }
 
 .products-container h2,
@@ -955,8 +955,6 @@ button {
 
 .btn {
   width: fit-content;
-
-  /* padding: 0.5rem 0.9rem; */
   border-radius: 8px;
   font-size: 1rem;
   background: var(--color-theme-variant);
@@ -985,15 +983,11 @@ button:active {
   max-width: 780px;
   row-gap: 1rem;
   column-gap: 1rem;
-
-  /* justify-content: space-around; */
 }
 
 .cat-group .btn {
   padding: 0.3rem 0.8rem;
   font-size: 0.8rem;
-
-  /* background-color: red; */
 }
 
 .btn-outline {
@@ -1251,7 +1245,9 @@ table tbody tr:last-child {
 .text-pry {
   color: var(--color-primary-variant) !important;
 }
-
+.text-orange{
+  color: var(--color-orange);
+}
 .bg-pry {
   background: var(--color-primary-variant) !important;
 }
@@ -1591,6 +1587,10 @@ td:last-child .btn {
   background-color: #04aa6d;
   margin-bottom: 8px;
 }
+.close-btn .close.btn:hover{
+  color: white !important;
+  background-color: #ff4500;
+}
 
 .service-table table {
   /* background-color: red; */
@@ -1634,6 +1634,11 @@ td:last-child .btn {
 }
 
 @media screen and (max-width: 1400px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
   .cart-div {
     width: 90%;
   }
@@ -1644,10 +1649,6 @@ td:last-child .btn {
 }
 
 @media screen and (max-width: 720px) {
-  table {
-    display: block;
-    overflow-x: auto;
-  }
   .cart-div {
     width: 100%;
     flex-direction: column;

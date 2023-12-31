@@ -5,10 +5,12 @@ import Hero from '../components/banner/Hero'
 import { closeNav } from '../redux/modal/nav'
 import Rackets from '../components/catalogue/Rackets'
 import Apparels from '../components/catalogue/Apparels'
+import BagsCatalogue from '../components/catalogue/Bags'
+import ShoesCatalogue from '../components/catalogue/Shoes'
 
 const Services = () => {
   const dispatch = useDispatch()
-  const {racquets, accessories, apparels} = useSelector(state => state.catalog)
+  const {racquets, accessories, apparels, bags, shoes} = useSelector(state => state.catalog)
   useEffect(()=>{
     dispatch(getCatalogRaquets())
     dispatch(getCatalogAccessories())
@@ -36,6 +38,23 @@ const Services = () => {
         <h2 className='headers'>Apparels</h2>
         {apparels.map(apparel => (
           <Apparels apparel={apparel} />
+        ))}
+
+      </div>
+
+      <div className='bags'>
+        <h2 className='headers'>Bags</h2>
+        {bags.map(bag => (
+          <BagsCatalogue bag={bag}/>
+        ))}
+
+      </div>
+
+      
+      <div className='bags'>
+        <h2 className='headers'>Shoes</h2>
+        {shoes.map(shoe => (
+          <ShoesCatalogue shoe={shoe}/>
         ))}
 
       </div>
