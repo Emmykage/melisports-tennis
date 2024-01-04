@@ -1769,3 +1769,19 @@ td:last-child .btn {
     }
   }
 }
+
+
+::selection{
+  background: #04aa6d68;
+  color: white;
+}
+::-webkit-scrollbar{
+  width: 10px;
+  background: #1350926c;
+  
+}
+::-webkit-scrollbar-thumb{
+  background: var(--color-orange);
+  border-radius: 10px;
+  cursor: pointer;
+}
