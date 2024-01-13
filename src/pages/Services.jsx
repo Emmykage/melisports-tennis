@@ -7,6 +7,7 @@ import Rackets from '../components/catalogue/Rackets';
 import Apparels from '../components/catalogue/Apparels';
 import BagsCatalogue from '../components/catalogue/Bags';
 import ShoesCatalogue from '../components/catalogue/Shoes';
+import Accessories from '../components/catalogue/Accessories';
 
 const Services = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,9 @@ const Services = () => {
   } = useSelector((state) => state.catalog);
   useEffect(() => {
     dispatch(getCatalogRaquets());
-    dispatch(getCatalogAccessories());
     dispatch(closeNav());
   }, []);
+  console.log(accessories)
 
   return (
     <>
@@ -54,6 +55,13 @@ const Services = () => {
             <h2 className="headers">Shoes</h2>
             {shoes.map((shoe) => (
               <ShoesCatalogue shoe={shoe} />
+            ))}
+
+          </div>
+          <div className="Accessories">
+            <h2 className="headers">Accessories</h2>
+            {accessories.map((accessory) => (
+              <Accessories accessory={accessory} />
             ))}
 
           </div>

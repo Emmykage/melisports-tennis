@@ -365,7 +365,72 @@ const initialState = {
       },
     ],
   }],
-  accessories: [],
+  accessories: [{
+    id: 1,
+    class: "string",
+    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595796231/Product_Media/2020/STRINGS/Synthetic/RPM%20Hurricane%2012m%20-%20241141/241141-RPM_HURRICANE_12M-113-1-RECTO.png",
+
+    name: "RPM HURRICANE 12M",
+    description: "RPM Hurricane adds spin, control, and durability to your game at an affordable price. If you hit big from the baseline, you’ll love the heavy spin you can hit as you wear down the competition. Your strings are the engine of your racquet. Half of your racquet’s performance comes from your strings. Which means choosing the right string is important. We invented tennis string in 1875. And we’ve been innovating ever since, so you can play your best and enjoy the game more than ever.",
+    technical_characteristics: {
+      string_type: "Polyester Mono Filament",
+      sport: "Tennis",
+      length: "12 m / 39 ft",
+      made_in: "france"
+    }
+  },{
+    id: 2,
+    class: "string",
+    name: "SYN GUT 12M",
+    image: "https://www.babolat.ca/cdn/shop/products/241144_syn_gut_12_m_101_white_recto.png?v=1640292933",
+    description: "A single wrap polyamide structure that offers a great comfort and tension hold. Ideal for beginners and intermediate players.  Often referred as “the engine of the racquet”, strings account for 50% of the racquet performance and are essential to play the perfect tennis shot. As the inventor and first producer of tennis strings more than 144 years ago, Babolat is constantly innovating to provide players with the most suited strings for their game. ",
+    technical_characteristics: {
+      string_type: "Single wrap polyamide structure",
+      sport: "Tennis",
+      length: "12 m / 39 ft",
+      made_in: "france"
+    }
+  },
+  {
+    id: 3,
+    class: "string",
+    name: "PRO LAST 200M",
+    image: "https://static.wixstatic.com/media/9c6689_30bbee9e5a334731832a2bc4cf11c650~mv2.jpg/v1/fill/w_630,h_630,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/9c6689_30bbee9e5a334731832a2bc4cf11c650~mv2.jpg",
+    description: "As perhaps the best an incentive in Babolat string line, Pro Last is ideal for the individuals who need a reasonable and durable poly. This present string's low force level will empower you to take gigantic cuts at the ball when adding twist and movement to your shots. Notwithstanding giving you uncommon strength and control when introduced as a full bed, this string is incredible for half and halves. The low value makes this an incredible choice for home stringers and successive string breakers.",
+    technical_characteristics: {
+      string_type: "100% Polyester",
+      sport: "Tennis",
+      length: "200 m / 656 ft ft",
+      made_in: "france"
+    }
+  },
+  {
+    id: 4,
+    class: "string",
+    name: "RPM HURRICANE 200M",
+    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1595795945/Product_Media/2020/STRINGS/Synthetic/RPM%20Hurricane%20200m%20-%20243141/243141-RPM_HURRICANE_200_M-113-1.png",
+    description: "RPM Hurricane adds spin, control, and durability to your game at an affordable price. If you hit big from the baseline, you’ll love the heavy spin you can hit as you wear down the competition. Your strings are the engine of your racquet. Half of your racquet’s performance comes from your strings. Which means choosing the right string is important. We invented tennis string in 1875. And we’ve been innovating ever since, so you can play your best and enjoy the game more than ever",
+    technical_characteristics: {
+      string_type: "Polyester Mono Filament",
+      sport: "Tennis",
+      length: "200 m / 656 ft ft",
+      made_in: "france"
+    }
+  },
+  {
+    id: 4,
+    class: "string",
+    name: "SYN GUT 200M",
+    image: "https://www.babolat.ca/cdn/shop/products/243144_syn_gut_200_m_105__black_00f34d10-c7fe-4616-873f-dc6102845497.png?v=1691508988",
+    description: "A single wrap polyamide structure that offers a great comfort and tension hold. Ideal for beginners and intermediate players.  Often referred as “the engine of the racquet”, strings account for 50% of the racquet performance and are essential to play the perfect tennis shot. As the inventor and first producer of tennis strings more than 144 years ago, Babolat is constantly innovating to provide players with the most suited strings for their game. ",
+    technical_characteristics: {
+      string_type: "Single wrap polyamide structure",
+      sport: "Tennis",
+      length: "200 m / 656 ft ft",
+      made_in: "france"
+    }
+  }
+],
   apparels: [{
     name: "Men's Play Crew",
     type: 'apparels',
@@ -426,6 +491,24 @@ const initialState = {
       composition: '100% polyester',
 
     },
+    
+
+  },
+  {
+    name: '3 Pairs Pack',
+    description: "Sold as 3-pair packs, Babolat's long socks are made with terrycloth on the forefeet and soles for added comfort. These technical socks are also designed with a support band under the arches and ventilated zones on the tops of the feet for enhanced breathability.",
+    image: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_3024,h_3024/v1595781332/Product_Media/2020/APPAREL_ACCESSORIES/Socks/3%20Pairs%20Pack%20-%205UA1371/5UA1371-3_PAIRS_PACK-1000-1.png",
+    technical_characteristics: {
+      racquet_capacity: null,
+      capacity: null,
+      dimension: null,
+      number_of_handles: null,
+      number_of_compartments: null,
+      number_of_straps: null,
+      composition: '78% polyester, 15% spandex, 5% rubber, 2% nylon',
+
+    },
+    
 
   }],
   shoes: [{

@@ -1,13 +1,15 @@
 import React from 'react';
+import whatsapp from '../../assets/images/logo/WhatsAppButtonGreenLarge.png';
 
 const Accessories = ({ accessory }) => (
   <div className="flex flex-between seperator service-table ">
     <div className=" p-img">
-      <img src={apparel.image} alt="" className="w-full h-full" />
+      <img src={accessory.image} alt="" className="w-full h-full" />
 
     </div>
     <div className="flex-2 bg- relative overflow-hidden pb-0">
       <div className="sm px-2 block">
+  
         <div>
 
           <h2 className="line-space px-1 spantara font-normal">{accessory.name}</h2>
@@ -19,24 +21,27 @@ const Accessories = ({ accessory }) => (
 
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Content:</span>
-                    <span className="xter-info text-sm">{accessory.content}</span>
+                    <span className="xter text-sm">String Type:</span>
+                    <span className="xter-info text-sm">{accessory.technical_characteristics.string_type}</span>
                   </div>
               </li>
-
+              
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm flex-1">Colors:</span>
-                    <div className="bg- flex-1 flex flex-between gap-1">
-
-                    {accessory.colors.map((color) => (
-
-                      <span className="xter-info text-sm">{color}</span>
-
-                    ))}
-                  </div>
+                    <span className="xter text-sm">Length:</span>
+                    <span className="xter-info text-sm">{accessory.technical_characteristics.length}</span>
                   </div>
               </li>
+              <li className=" border-t p-05 m-02">
+                <div className="flex flex-between">
+                    <span className="xter text-sm">Sport:</span>
+                    <span className="xter-info text-sm">{accessory.technical_characteristics.sport}</span>
+                  </div>
+              </li>
+              
+
+
+       
 
             </ul>
 
