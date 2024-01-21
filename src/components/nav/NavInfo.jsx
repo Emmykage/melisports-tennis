@@ -85,13 +85,14 @@ const NavInfo = () => {
                 <span><FiUser className="user-icon" /></span>
 
               </div>
-              <NavLink to="/store">
+              {/* <NavLink to="/store"> */}
+              <NavLink to="/">
                 <AiOutlineShopping className="menu-icon cart-icon" />
               </NavLink>
 
               <div className="menu-div cart">
                 <NavLink to="/carts">
-
+             
                   <BsCartDash className="menu-icon cart-icon" />
                   <span className="total-amount color-white bold">{counter}</span>
 

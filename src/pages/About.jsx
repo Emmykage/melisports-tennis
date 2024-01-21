@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Hero from '../components/banner/Hero';
+// import Hero from '../components/banner/Hero';
 import nadal_art from '../../src/assets/images/nadal-art.png'
 import AboutBanner from '../components/banner/AboutBanner';
 import { closeNav } from '../redux/modal/nav';
@@ -43,17 +43,13 @@ const About = () => {
             </div>
          
             <p className='text-base font-semibold'>
-            MeliSports is a Nigeria specialist tennis whosaler and retailer, we also stock other racquet sports equipment and accessories, including badminton.
-We offer a world-class selection of brands named tennis equipment and apparel for players of all ages and styles. Whether as a professional or just playing for fun, we've got you covered. 
-MeliSports sources the best quality products and makes them readily available to its local consumers and worldwide.<br/><br/>
-
-Having been in the business since 2014, you can count on us to deliver the best equipment to help you attain your goals in your chosen sport.<br/><br/>
-
-At MeliSport, we continuously work to offer the best prices possible without compromising on premium quality and swift delivery.<br/><br/>
-
-We are always open to collaborating with players, coaches, and clubs to work within the tennis scene. It is mutually beneficial. The more you promote us, the more benefits you'll achieve.<br/><br/>
-
-Put us to the test today. We are just a call away!
+              MeliSports is a Nigeria specialist tennis whosaler and retailer, we also stock other racquet sports equipment and accessories, including badminton.
+              We offer a world-class selection of brands named tennis equipment and apparel for players of all ages and styles. Whether as a professional or just playing for fun, we've got you covered. 
+              MeliSports sources the best quality products and makes them readily available to its local consumers and worldwide.<br/><br/>
+              Having been in the business since 2014, you can count on us to deliver the best equipment to help you attain your goals in your chosen sport.<br/><br/>
+              At MeliSport, we continuously work to offer the best prices possible without compromising on premium quality and swift delivery.<br/><br/>
+              We are always open to collaborating with players, coaches, and clubs to work within the tennis scene. It is mutually beneficial. The more you promote us, the more benefits you'll achieve.<br/><br/>
+              Put us to the test today. We are just a call away!
            
             </p>
           </div>
