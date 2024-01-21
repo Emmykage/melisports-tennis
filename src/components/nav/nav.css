@@ -77,7 +77,7 @@
   margin: auto;
   background-color: white;
   border-radius: 6px;
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 0;
 }
 
 .search-div input {
@@ -88,6 +88,10 @@
 }
 
 .search-div input:focus {
+  outline: none;
+  border: none;
+}
+.search-div input:hover {
   outline: none;
   border: none;
 }

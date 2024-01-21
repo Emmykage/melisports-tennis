@@ -37,6 +37,8 @@
   --color-orange: #ff4500;
   --color-theme: rgba(255, 69, 0, 1);
   --color-theme-variant: rgb(20, 56, 80);
+  --color-theme-light: rgba(20, 56, 80, 0.774);
+
   --color-primary: #081d2b;
   --color-white: #fff;
   --color-info-dark: #7d8da1;
@@ -107,7 +109,7 @@ hr{
 }
 
 .text-4xl {
-  font-size: 30px;
+  font-size: 30px !important;
 }
 
 .text-5xl {
@@ -751,7 +753,9 @@ a {
 .text-center {
   text-align: center;
 }
-
+.text-justify{
+  text-align: justify;
+}
 .m-auto {
   margin: auto;
 }
@@ -1667,6 +1671,7 @@ td:last-child .btn {
   overflow: hidden;
 }
 
+
 @media screen and (max-width: 1400px) {
   table {
     display: block;
@@ -1680,6 +1685,9 @@ td:last-child .btn {
 
   .serv-box.top img {
     height: 300px;
+  }
+  .p-4{
+    padding: 1rem;
   }
 }
 

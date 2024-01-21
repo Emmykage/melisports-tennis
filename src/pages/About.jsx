@@ -21,7 +21,7 @@ const About = () => {
           </div>
           <div className="flex justify-center items-align p-2">
             <p className="w-max-400 text-white">
-              Founded with a passion for sports and a commitment to serving the vibrant community of Nigerian sports enthusiasts, Melisports brings a fresh perspective to the world of sporting goods. Our mission is simple yet profound: to provide access to high-quality sports equipment and services that empower every individual to pursue their athletic goals.
+              Founded with a passion for sports and a commitment to serving the vibrant community of Nigerian sports enthusiasts, Melisports brings a fresh perspective to the world of sporting goods.<br/><br/> Our mission is simple yet profound: to provide access to high-quality sports equipment and services that empower every individual to pursue their athletic goals.
 
             </p>
 
@@ -42,7 +42,7 @@ const About = () => {
             <span className='font-bold text-lg'>About Us</span>
             </div>
          
-            <p className='text-base font-semibold'>
+            <p className='text-base font-semibold text-justify'>
               MeliSports is a Nigeria specialist tennis whosaler and retailer, we also stock other racquet sports equipment and accessories, including badminton.
               We offer a world-class selection of brands named tennis equipment and apparel for players of all ages and styles. Whether as a professional or just playing for fun, we've got you covered. 
               MeliSports sources the best quality products and makes them readily available to its local consumers and worldwide.<br/><br/>
@@ -58,7 +58,7 @@ const About = () => {
         <div className="grid grid-2  my-3 py-2">
 
           <div className="font-normal">
-            <ul>
+            <ul className='text-justify'>
               <li className="my-3 py-1">
 
                 <p className="text-gray font-semibold">
@@ -109,7 +109,7 @@ const About = () => {
           <div>
             <h1 className="text-4xl">Join the Melisports Community:</h1>
           </div>
-          <p className="font-semibold text-gray">
+          <p className="font-semibold text-gray text-justify">
 
             Beyond being a sports retailer, Melisports is a community of like-minded individuals who share a passion for fitness and an active lifestyle. Connect with us on social media, participate in our events, and be part of a growing network of sports enthusiasts across Nigeria.
 
