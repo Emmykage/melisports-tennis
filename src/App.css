@@ -77,6 +77,10 @@ body {
 .text-xs {
   font-size: 12px;
 }
+hr{
+  height: 1px;
+  border: 1px solid rgb(186, 88, 88);
+}
 
 .text-sm {
   font-size: 14px;
@@ -355,7 +359,7 @@ body {
 }
 
 .text-gray {
-  color: #333;
+  color: var(--color-dark-variant);
 }
 
 .text-orange {
@@ -764,6 +768,24 @@ a {
   max-width: 1600px;
   width: 100%;
   margin: auto;
+}
+.w-350{
+  width: 350px;
+}
+.h-350{
+  height: 350px;
+}
+.w-080{
+  width: 80%;
+}
+.h-350{
+  height: 350px;
+}
+.w-100{
+  width: 100px;
+}
+.w-50{
+  width: 50px;
 }
 
 .contact-us form {

@@ -10,7 +10,7 @@ import ShoesCatalogue from '../components/catalogue/Shoes';
 import Accessories from '../components/catalogue/Accessories';
 
 const Services = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const {
     racquets, accessories, apparels, bags, shoes,
   } = useSelector((state) => state.catalog);
