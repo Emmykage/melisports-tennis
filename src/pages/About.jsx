@@ -31,7 +31,7 @@ const About = () => {
         <div className="grid grid-2">
           <div className=' bg- text-center flex items-center justify-center'>
             <div className='w-080 bg- '>
-            <img src={nadal_art} alt=""  className='w-full '/>
+            <img src={nadal_art} alt=""  className='w-full'/>
 
             </div>
 
@@ -55,9 +55,9 @@ const About = () => {
           </div>
         </div>
 
-        <div className="grid grid-2  my-3 py-2">
+        <div className="grid grid-2  my-3 py-2 why-chose">
 
-          <div className="font-normal">
+          <div className="font-normal to-bottom">
             <ul className='text-justify'>
               <li className="my-3 py-1">
 
@@ -67,14 +67,7 @@ const About = () => {
                   As a proudly Nigerian company, we understand the unique needs of our community. Our curated selection of sports equipment meets international standards, ensuring that you have access to the best gear without compromise.
                 </p>
               </li>
-              <li className="py-1 my-2">
-
-                <p className="text-gray font-semibold">
-                  <strong className="spantara font-normal text-pry text-lg">Wide Range of Products:</strong>
-                  {' '}
-                  Whether you're into football, basketball, running, or fitness training, Melisports has you covered. Explore our diverse range of products, carefully selected to cater to athletes of all ages and skill levels.
-                </p>
-              </li>
+           
               <li className="my-2 py-1">
 
                 <p className="text-gray font-semibold">
@@ -100,7 +93,7 @@ const About = () => {
             </ul>
 
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center to-top">
             <h2 className="text-3xl line-space font-medium">Why Choose Melisports:</h2>
           </div>
           <div />

@@ -740,6 +740,10 @@ a {
 .ml {
   margin-left: 3rem;
 }
+.switch{
+  flex-flow: column;
+ 
+}
 
 .fc-white {
   color: #fff;
@@ -1796,6 +1800,9 @@ td:last-child .btn {
 
     .product-grid-items {
       flex: 1;
+    }
+    .to-top{
+    order: 1;
     }
   }
 }

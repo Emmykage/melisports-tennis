@@ -35,7 +35,7 @@ const Contact = () => {
               </div>
               {/* <button name="message" type="submit">Get in touch</button>
              */}
-              <button type="submit" className="btn btn-primary">Send Message</button>
+              <button type="submit" className="btn btn-primary py-2 w-full">Send Message</button>
             </form>
 
           </div>
