@@ -18,28 +18,28 @@ const Footer = () => (
         <ul>
           {/* <li>Membership</li> */}
           <li>
-            <NavLink to="/my_account">
+            <NavLink to="/">
               My Account
             </NavLink>
           </li>
           <li>
-            <NavLink to="/return_policy">
+            <NavLink to="/">
               Return Policy
             </NavLink>
             {' '}
 
           </li>
           <li>
-            <NavLink to="/shipping_policy">
+            <NavLink to="/">
               Shipping Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/terms_of_service">Terms of Service</NavLink>
+            <NavLink to="/">Terms of Service</NavLink>
           </li>
           <li>
             {' '}
-            <NavLink to="/private_policy">Privacy Policy</NavLink>
+            <NavLink to="/">Privacy Policy</NavLink>
           </li>
           {/* <li>
             <NavLink to={"privacy_policy"}>

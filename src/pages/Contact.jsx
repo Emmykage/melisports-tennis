@@ -21,7 +21,7 @@ const Contact = () => {
             <div className="">
 
               <h2 className="mb-2">Contact Us</h2>
-              <p>Need to get in touch with us? Either fill out the form with your inquiry or find or contact us through our emails </p>
+              <p>Need to get in touch with us? <br/> Either fill out the form with your inquiry or find or contact us through our emails </p>
             </div>
           </div>
           <div className="p-2">
@@ -30,7 +30,7 @@ const Contact = () => {
               <div className="input"><input name="name" id="name" type="text" placeholder="Full name" required minLength="30" /></div>
               <div className="input"><input name="Email" type="email" placeholder="Email address" required /></div>
               <div className="input text-input">
-                <textarea maxLength="500" placeholder="Enter text here" />
+                <textarea maxLength="500" placeholder="Message" />
 
               </div>
               {/* <button name="message" type="submit">Get in touch</button>

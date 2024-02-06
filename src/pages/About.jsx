@@ -102,7 +102,7 @@ const About = () => {
           <div>
             <h1 className="text-4xl">Join the Melisports Community:</h1>
           </div>
-          <p className="font-semibold text-gray text-justify">
+          <p className="font-semibold text-dark text-justify">
 
             Beyond being a sports retailer, Melisports is a community of like-minded individuals who share a passion for fitness and an active lifestyle. Connect with us on social media, participate in our events, and be part of a growing network of sports enthusiasts across Nigeria.
 

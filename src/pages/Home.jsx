@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { closeList } from '../redux/products/searched';
 import FeaturedProducts from '../components/partials/FeaturedProducts';
 import { getCategories } from '../redux/category/categories';
-import Babolat from '../assets/images/product-brands/ba4886b467-babolat-logo-babolat-cayman-sports-tennis-badminton-amp-pickleball.png';
+import Babolat from '../assets/images/logo/ba4886b10b-babolat-logo-babolat-logo-png-transparent-images-free-png-images-vector-psd.png';
+import melisport from '../assets/images/logo/melisport_one.png';
 import demo_service from '../assets/images/babolat-demo.jpg';
 
 import Slider from '../components/feature/Slider';
@@ -81,15 +82,20 @@ const Home = () => {
         <h2>
           Tennis Equipment & Supplies
         </h2>
+        <h3>Love Racquets Sports?</h3>
         <p className="text-pry">
-          Love tennis? We specialize in Babolat tennis equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff is passionate about the sport and can guide you through our selection to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our tennis retail store.
+
+           We specialize in Babolat tennis, Badminton and Padel equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff are passionate about the sport and can guide you through our selections to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our retail store.
 
         </p>
       </div>
       <div>
         <div className="product-grid fit-screen">
-          <div className="product-grid-items flex justify-center items-align text-center">
+        <div className="product-grid-items flex justify-center items-align text-center">
             <img src={Babolat} className="w-full" alt="" />
+          </div>
+          <div className="product-grid-items flex justify-center items-align text-center">
+            <img src={melisport} className="w-full" alt="" />
           </div>
 
         </div>

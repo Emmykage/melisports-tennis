@@ -21,7 +21,7 @@
   text-decoration: none;
   margin: 0;
   padding: 0;
-  font-size: 1rem;
+
 }
 
 :root {
@@ -56,6 +56,9 @@
   --padding-1: 1.2rem;
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
+.text-dark{
+  color: var(--color-dark);
+}
 
 .shadow {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -64,7 +67,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  font-size: 1rem;
+  font-size: 14px;
   background: var(--color-background);
 }
 
@@ -74,6 +77,12 @@ body {
 
 .text-green {
   color: green;
+}
+.text-black {
+  color: black;
+}
+.cursor-pointer{
+  cursor: pointer;
 }
 
 .text-xs {
@@ -356,9 +365,6 @@ hr{
   gap: 4%;
 }
 
-.py-2 {
-  padding: 2rem 0;
-}
 
 .text-gray {
   color: var(--color-dark-variant);
@@ -379,6 +385,9 @@ hr{
   border-bottom: 1px solid rgb(235, 83, 83);
   padding-bottom: 2rem;
   margin-top: 2rem;
+}
+td{
+  border: 1px solid rgb(208, 208, 208);
 }
 
 .spantara {
@@ -428,9 +437,6 @@ a {
   position: relative;
 }
 
-.green {
-  background-color: #04aa6d;
-}
 
 .white {
   color: white;
@@ -1083,7 +1089,9 @@ button:active {
 
 .product-grid-items {
   background-color: #fff;
-  flex: 1;
+  /* flex: 1; */
+  width: 250px;
+  height: 200px;
   border: none;
   box-shadow: 0 0 0.35rem 1px rgb(85 85 85 / 25%);
   padding: 5px 5px 15px;
@@ -1191,10 +1199,10 @@ table {
   user-select: none;
 }
 
-table td,
+/* table td,
 table th {
   padding: 1.5rem;
-}
+} */
 
 .recent-orders table tr:nth-child(even),
 .order-detail table tr:nth-child(even) {

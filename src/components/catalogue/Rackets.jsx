@@ -116,7 +116,7 @@ const Rackets = ({ racquet }) => {
           </div>
         </div>
         <div className="flex row px-2 justify-between items-center">
-          <span className="series-btn border" onClick={() => setToggle('show')}>View Series</span>
+          <a className="series-btn border cursor-pointer" onClick={() => setToggle('show')}>View Series</a>
           <div className="whatsapp">
             <a className="block" aria-label="Chat on WhatsApp" target="_blank" href={`https://wa.me/+2347038723093?text=I'm%20interested%20in%20the%20${racquet.name}%20racquet`} rel="noreferrer">
               <img alt="Chat on WhatsApp" src={whatsap} />
