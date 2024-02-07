@@ -339,7 +339,12 @@ hr{
 .mr-5 {
   margin-right: 2.5rem;
 }
-
+.mt-1{
+  margin-top: 0.5rem;
+}
+.mt-2{
+  margin-top: 1rem;
+}
 .m-auto {
   margin: auto;
 }
@@ -405,10 +410,10 @@ h2 {
   font-family: spantara, 'Courier New', Courier, monospace;
 }
 
-.service-table h2.technical,
+/* .service-table h2.technical,
 .service-table h2.description{
 
-}
+} */
 
 .headers {
   letter-spacing: 1rem;
