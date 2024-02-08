@@ -5,8 +5,6 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import './auth.css';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
-
-// import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
