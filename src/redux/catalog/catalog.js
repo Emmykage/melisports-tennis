@@ -31,6 +31,21 @@ const initialState = {
         swing_weight: '280',
         balance: '320 mm +/- 7mm',
         length: '685 mm / 27 in',
+      },  {
+        racquet: 'PURE AERO S NCV',
+        head_size: '645 cm /100 in',
+        weight: '285 g +/- 7g / 10.1 oz',
+        swing_weight: '300',
+        balance: '320 mm +/- 7mm',
+        length: '685 mm / 27 in',
+      },
+      {
+        racquet: 'PURE AERO RAFA U NO COVER',
+        head_size: '645 cm /100 in',
+        weight: '290 g +/- 7g / 10.1 oz',
+        swing_weight: '280',
+        balance: '320 mm +/- 7mm',
+        length: '685 mm / 27 in',
       },
     ],
   },
@@ -52,12 +67,19 @@ const initialState = {
       recommended_grip: 'Syntec Pro',
     },
     variations: [
-      {
-        racquet: 'Pure Drive Lite',
+       {
+        racquet: 'Pure Drive Lite U',
         head_size: '645 cm /100 in',
         weight: '270 g +/- 7g ',
         swing_weight: '270',
-        length: '700 mm',
+        length: '685 mm',
+      },   {
+        racquet: 'Pure Drive Super Lite U',
+        head_size: '645 cm /100 in',
+        weight: '255 g +/- 7g ',
+        swing_weight: '270',
+        composition: "Graphite",
+        length: '685 mm',
       },
       {
         racquet: 'Pure Drive 110',
@@ -75,6 +97,15 @@ const initialState = {
         swing_weight: '290',
         stiffness: '72 + / - 3',
         length: '700 mm',
+        balance: '320 mm +/- 7mm',
+      },
+      {
+        racquet: 'Pure Drive Team U',
+        head_size: '645 cm /100 in',
+        weight: '285 g +/- 7g ',
+        swing_weight: '285',
+        stiffness: '72 + / - 3',
+        length: '685 mm',
         balance: '320 mm +/- 7mm',
       },
     ],
@@ -103,7 +134,9 @@ const initialState = {
         racquet: 'Pure Strike Team',
         head_size: '645 cm /100 in',
         weight: '285  g +/- 7g ',
-        Swing_Weight: '275',
+        Swing_Weight: '285',
+        stiffness: "72 + / 3",
+        tension: "23-27kg"
       },
       {
         racquet: 'Pure Strike 100',
@@ -138,12 +171,23 @@ const initialState = {
     variations: [
       {
         racquet: 'Evo Drive Tour',
-        head_size: '670 cm /104 in²',
+        head_size: '660 cm /104 in²',
         weight: '285   g +/- 7g / 9 oz ',
         swing_weight: '270',
         length: '685 mm',
         balance: '320 mm +/- 7mm',
+        tension: "23-25 Kg"
       },
+      {
+        racquet: 'Evo Drive Women U',
+        head_size: '670 cm /104 in²',
+        weight: '270 g +/- 7g / 9 oz ',
+        swing_weight: '270',
+        length: '685 mm',
+        balance: '320 mm +/- 7mm',
+        tension: "23-25 Kg"
+      },
+      
       {
         racquet: 'Evo Drive Lite Women',
         head_size: '660 cm /102 in²',
@@ -151,6 +195,26 @@ const initialState = {
         swing_weight: '270',
         length: '685 mm',
         balance: '320 mm +/- 7mm',
+      },
+      {
+        racquet: 'Evo Drive Lite U',
+        head_size: '670 cm /102 in²',
+        weight: '255   g +/- 7g / 9 oz ',
+        swing_weight: '270',
+        length: '685 mm',
+        balance: '320 mm +/- 7mm',
+        composition: "graphite",
+        stiffness: "70"
+      },
+      {
+        racquet: 'Evo Drive White U',
+        head_size: '670 cm /102 in²',
+        weight: '255   g +/- 7g / 9 oz ',
+        swing_weight: '270',
+        length: '685 mm',
+        balance: '320 mm +/- 7mm',
+        composition: "graphite",
+        stiffness: "70"
       },
     ],
   },
@@ -173,32 +237,48 @@ const initialState = {
       {
         racquet: 'Pure Aero',
         head_size: '645 cm /100 in',
+      },{
+        racquet: 'Boost Aero Pink',
+        head_size: '645 cm /100 in',
+        weight: '260 g +/- 7g',
+        Stiffness: 70,
+        composition: "graphite",
+        tension: "23-25",
+        length: '685 mm / 27 in',
+
+            },
+            {
+              racquet: 'Boost RAfa @nd Gen',
+              head_size: '660 cm² / 102 in²',
+              weight: '260 g +/- 7g / 9.2 oz',
+              Stiffness: 70,
+              composition: "graphite",
+              length: '685 mm / 27 in',
+
+              tension: "23-25"},
+
+            {
+              racquet: 'Boost Drive Women',
+              head_size: '660 cm² / 102 in²',
+              weight: '260 g +/- 7g / 9.2 oz',
+              Stiffness: 70,
+              length: '685 mm / 27 in',
+
+              composition: "graphite",
+              tension: "23-25",
       },
-    ],
-  },
-  {
-    name: 'EVOKE 105',
-    type: 'racquet',
-    image: 'https://www.tennispro.eu/media/catalog/product/cache/5/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/1/2/121223_1_5.jpg',
-    category: 'beginner',
-    description: 'The Babolat Evoke 105 racquet is perfect for casual players or beginners thanks to its easy grip and tolerance. Its construction combining aluminum and graphite brings lightweight, manoeuvrability and durability, for an easier tennis practice. The 680cm² head with wide sweetspot promotes ball centering and erases small placement errors to facilitate rallies and enhance game enjoyment. The light weight of this racquet (275g) and its very good balance (33cm) make it very easy to handle and will not tire your arm, even after several hours of play. The perfect combination of power and feel will allow beginners or recreational players to progress and take their game to the next leve',
-    technical_characteristics: {
-      head_size: '680    cm² / 105 in²',
-      weight: '275   g +/- 7g / 9.7 oz ',
-      swing_weight: '285',
-      stiffness: '70 + / - 3',
-      composition: 'Graphite',
-      length: '685 mm',
-      recommended_string: 'Xcel/Addixion',
-      recommended_grip: 'Syntec Evo',
-    },
-    variations: [
       {
-        racquet: 'EVOKE 102 Wembledon',
-        head_size: '660 cm /100 in',
-        weight: '270g +/- 7g / 9.7 oz ',
-        length: '685 mm',
-        balance: '12.99 in / 33 cm',
+        racquet: 'Boost Wembledo S CV',
+        head_size: '680 cm² / 105 in²',
+        weight: '260 g +/- 7g / 9.2 oz',
+        Stiffness: "70 +/3",
+        composition: "graphite",
+        length: '685 mm / 27 in',
+
+        tension: "23-25",
+},{
+        racquet: 'Pure Aero',
+        head_size: '645 cm /100 in',
       },
     ],
   },
@@ -211,17 +291,41 @@ const initialState = {
     description: 'Ideal for players starting out in tennis, with this racket you can improve your game at a low cost while having fun on the court..',
     technical_characteristics: {
       head_size: '680 cm² / 100 in²',
-      weight: '275 g +/- 7g / 10.6 oz',
-      swing_weight: '335',
+      weight: '275   g +/- 7g / 9.7 oz ',
+      swing_weight: '285',
       stiffness: '73 + / - 3',
-      composition: 'Aluminium',
+      composition: 'Graphite',
       length: '685 mm / 27 in',
       recommended_string: 'Syn Gut',
-      recommended_grip: 'Syntec Uptake',
+      recommended_grip: 'Syntec Evo',
     },
     variations: [
       {
-        racquet: 'Voltage',
+        racquet: 'EVOKE 102 Wembledon',
+        head_size: '660 cm /100 in',
+        weight: '270g +/- 7g / 9.7 oz ',
+        length: '685 mm',
+        balance: '12.99 in / 33 cm',
+      },    {
+        racquet: 'EVOKE 102 Women Wembledon',
+        head_size: '660 cm /100 in',
+        weight: '270g +/- 7g / 9.7 oz ',
+        length: '685 mm',
+        balance: '12.99 in / 33 cm',
+      },
+      {
+        racquet: 'EVOKE 105',
+        head_size: '680    cm² / 105 in²',
+        weight: '270g +/- 7g / 10.6 oz',
+        swing_weight: '285',
+        Stiffness: '73 + / - 3',
+        composition: 'Aluminium',
+        length: '685 mm / 27 in',
+        recommended_string: 'RPM Power/Xcel',
+        recommended_grip: 'Natural Grip',
+      },
+      {
+        racquet: 'Voltage CV',
         head_size: '660 cm² / 102 in²',
         weight: '270g +/- 7g / 10.6 oz',
         swing_weight: '285',
