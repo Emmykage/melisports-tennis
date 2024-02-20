@@ -39,7 +39,7 @@ const Products = () => {
 
     return (
 
-      <>
+      <div className='w-full grid lg-grid-col-3 sm-grid-col-2 xl-grid-col-3 grid-col-5 gap-3'>
 
         {products.map((product) => (
           <div key={product.id} className="products-display">
@@ -56,7 +56,7 @@ const Products = () => {
               </h5>
               <p>{NGNaira.format(product.price)}</p>
               <a
-                className="btn btn-outline max-width"
+                className="btn btn-outline max-width my-1"
                 onClick={() => dispatch(openDelModal(product.id))}
               >
                 Delete
@@ -70,7 +70,7 @@ const Products = () => {
 
         ))}
 
-      </>
+      </div>
     );
   }
   if (status === 'failed') {

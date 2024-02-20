@@ -15,7 +15,7 @@
 
 .prod-details .btn {
   display: block;
-  margin: auto;
+  /* margin: auto; */
   text-align: center;
   width: 100%;
 }

@@ -15,9 +15,11 @@ const orderSlice = createSlice({
     }),
   },
   extraReducers: {
-    [getOrders.fulfilled]: (action) => ({
+    [getOrders.fulfilled]: (state, action) => {
+      console.log(action.payload)
+      return{
       orders: action.payload,
-    }),
+    }},
 
     [addOrder.fulfilled]: (state, action) => {
       if (action.payload.status === 201) {

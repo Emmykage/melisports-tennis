@@ -989,6 +989,9 @@ button {
   display: grid;
   grid-template-columns: 1fr;
 }
+.grid-col-5{
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
 
 /* .characters li{
   margin-top: 1rem;
@@ -1687,7 +1690,15 @@ td:last-child .btn {
 .overflow-hidden {
   overflow: hidden;
 }
+@media screen and (max-width: 1800px) {
 
+  .xl-grid-col-4{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .xl-grid-col-3{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
 @media screen and (max-width: 1400px) {
   table {
@@ -1706,9 +1717,18 @@ td:last-child .btn {
   .p-4{
     padding: 1rem;
   }
+  .lg-grid-col-4{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .lg-grid-col-3{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 @media screen and (max-width: 720px) {
+  .sm-grid-col-2{
+    grid-template-columns: 1fr 1fr;
+  }
   .cart-div {
     width: 100%;
     flex-direction: column;
