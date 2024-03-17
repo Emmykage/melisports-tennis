@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../components/banner/Hero';
 import Bags from '../components/products/Bags';
 import SideNav from '../components/sideNav/SideNav';
-import { getProducts } from '../redux/actions/product';
+import { getProducts, filterProducts } from '../redux/actions/product';
 import { closeNav } from '../redux/modal/nav';
-import { filterProducts } from '../redux/actions/product';
+
 import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
 import { getProductCategories } from '../redux/actions/product_category';
@@ -27,28 +27,28 @@ const BagsPage = () => {
     dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProducts());
-    dispatch(getProductCategories())
+    dispatch(getProductCategories());
   }, []);
 
-    return (
-      <div className="product-container">
-        <Hero />
+  return (
+    <div className="product-container">
+      <Hero />
 
-        <div className="prod-page">
-          <div className="cat-group">
-            <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
-            <button className="btn" onClick={() => handleFilteredProducts('duffle')}> Duffle</button>
-            <button className="btn" onClick={() => handleFilteredProducts('racket holder')}> Racket holder</button>
-            <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
+      <div className="prod-page">
+        <div className="cat-group">
+          <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
+          <button className="btn" onClick={() => handleFilteredProducts('duffle')}> Duffle</button>
+          <button className="btn" onClick={() => handleFilteredProducts('racket holder')}> Racket holder</button>
+          <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
 
+        </div>
+
+        <div className="flex-center level">
+          <div className="side-nav">
+            <SideNav />
           </div>
-
-          <div className="flex-center level">
-            <div className="side-nav">
-              <SideNav />
-            </div>
-            { status == "waiting" || loading ? <Loader/> : ((status == "success") ? (
-              <div className="product-align">
+          { status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
+            <div className="product-align">
               <div className="product-items">
                 <Bags products={products} status={status} error={error} />
 
@@ -63,18 +63,19 @@ const BagsPage = () => {
               </div>
             </div>
 
-            ): ( <div className="text-center full-length">
-            <h2>{error}</h2>
-          </div>) )}
+          ) : (
+            <div className="text-center full-length">
+              <h2>{error}</h2>
+            </div>
+          ))}
 
-            
-            <div />
+          <div />
 
-          </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+};
 // };
 
 export default BagsPage;

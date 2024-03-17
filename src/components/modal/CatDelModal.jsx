@@ -7,7 +7,6 @@ import { deleteCategory } from '../../redux/actions/product_category';
 const CatDelModal = (props) => {
   const { id } = props;
   const dispatch = useDispatch();
-  console.log(id);
   return (
     <div className="modal-container">
       <div className="modal">

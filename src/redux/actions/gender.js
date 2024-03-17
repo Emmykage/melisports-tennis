@@ -12,4 +12,4 @@ const getGenders = createAsyncThunk('gender/get_genders', async () => {
   return response;
 });
 
-export { getGenders };
+export default getGenders;

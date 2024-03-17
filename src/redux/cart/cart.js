@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
-import { getCarts, clearCart, addCart } from '../actions/cart';
+import { getCarts } from '../actions/cart';
+
+const setCart = (cartItems) => {
+  localStorage.setItem('cartitem', JSON.stringify(cartItems));
+};
+const getCart = () => JSON.parse(localStorage.getItem('cartitem'));
 
 const initialState = {
   cartItems: [],
@@ -16,17 +21,85 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    addCart: (state, action) => {
+      getCart();
+
+      if (getCart() == null) {
+        const newCartArray = [action.payload];
+        setCart(newCartArray);
+        return {
+          ...state,
+          cartItems: getCart(),
+        };
+      }
+      const cartExist = getCart().find((cart) => cart.product_id == action.payload.product_id);
+
+      if (cartExist == undefined) {
+        const newCartArray = [...getCart(), action.payload];
+        setCart(newCartArray);
+        return {
+          ...state,
+          cartItems: getCart(),
+        };
+      }
+      const storage = getCart();
+      const updateCart = storage.map((item) => {
+        if (item.product_id == action.payload.product_id) {
+          item.quantity = action.payload.quantity;
+        }
+        return item;
+      });
+      localStorage.setItem('cartitem', JSON.stringify(updateCart));
+
+      return {
+        ...state,
+        cartItems: getCart(),
+      };
+    },
+    updateQty: (state, action) => {
+      const updateCart = getCart().map((item) => {
+        if (item.product_id == action.payload.product_id) {
+          item.quantity = action.payload.quantity;
+        }
+        return item;
+      });
+      setCart(updateCart);
+
+      return {
+        ...state,
+        cartItems: getCart(),
+      };
+    },
+
+    deleteCart: (state, action) => ({
+      ...state,
+      cartItems: getCart().filter((cart) => cart.product_id == action.payload.product_id),
+
+    }),
+
     updater: (state) => ({
       ...state,
       update: state.update + 1,
     }),
+    clearCart: (state) => {
+      const updateCart = [];
+      setCart(updateCart);
+
+      return {
+        ...state,
+        cartItems: getCart(),
+      };
+    },
     calculateTotal: (state) => {
       let total = 0;
       let count = 0;
-      if (state.cartItems.length > 0) {
-        state.cartItems.forEach((item) => {
+      let trans = getCart();
+
+      if (trans === null) { trans = []; }
+      if (trans.length > 0) {
+        trans.forEach((item) => {
           count += item.quantity;
-          total += item.quantity * item.product.price;
+          total += item.quantity * item.price;
         });
         return {
           ...state,
@@ -44,32 +117,25 @@ const cartSlice = createSlice({
   },
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
-      const cartData = action.payload;
-      if (cartData.message) {
+      try {
+        const trans = JSON.parse(localStorage.getItem('cartitem'));
+
         return {
           ...state,
-          status: 'success',
-          message: cartData.massage,
+          cartItems: trans,
+
+        };
+      } catch {
+        return {
+          ...state,
+          cartItems: [],
         };
       }
-      return {
-        ...state,
-        status: 'success',
-        cartItems: action.payload,
-      };
-    },
-
-    [clearCart.fulfilled]: (state) => ({
-      ...state,
-    }),
-    [addCart.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      console.log('good request');
     },
 
   },
 });
 export const {
-  removeItem, increase, updater, calculateTotal, addItem,
+  removeItem, updateQty, updater, calculateTotal, addItem, addCart, clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

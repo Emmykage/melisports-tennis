@@ -1,7 +1,7 @@
 
 .swiper-slide,
 .swiper-slide {
-  background-color: green;
+  background-color: var(--color-primary-variant);
 }
 
 .swiper-slide,

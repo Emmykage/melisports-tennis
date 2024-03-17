@@ -1,52 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getGenders } from '../../../redux/actions/gender';
-import { getLevels } from '../../../redux/actions/misc';
+import getGenders from '../../../redux/actions/gender';
+import getLevels from '../../../redux/actions/misc';
 import { updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import baseURL from '../../../redux/baseURL';
 import shoeSizes from '../../mock/ShoeSizess';
 import clothSizes from '../../mock/ClothSizes';
+import strung from '../../mock/Strung';
 
 const EditProduct = () => {
   const { editId } = useParams();
-
-  const product_categories = useSelector((state) => state.product_categories);
-
   const dispatch = useDispatch();
+
+  const { product_categories } = useSelector((state) => state.product_categories);
+
   const { loading, report, status } = useSelector((state) => state.product);
+
   const levels = useSelector((state) => state.level.levels);
+
   const genders = useSelector((state) => state.gender.genders);
-  // const [marker, setMarker] = useState({color: ""})
+
   const [formInput, setFormInput] = useState({});
-  useEffect(() => {
+
+  const fetchData = async () => {
     fetch(`${baseURL}products/${editId}`)
       .then((res) => res.json()).then((json) => setFormInput(json));
-    // .catch(err => )
+  };
+  useEffect(() => {
+    fetchData();
     dispatch(getProductCategories());
     dispatch(getLevels());
     dispatch(getGenders());
-    // setFormInput(product)
-
   }, []);
 
   const handleFormInput = (e) => {
-    setFormInput({
-      ...formInput,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name == 'cloth_sizes_attributes' || e.target.name == 'shoe_sizes_attributes') {
+      const { options } = e.target;
+      const value = [];
+      for (let i = 0, l = options.length; i < l; i++) {
+        if (options[i].selected) {
+          value.push({ abbrv: options[i].value });
+        }
+      }
 
+      setFormInput({
+        ...formInput,
+        [e.target.name]: value,
+      });
+    } else {
+      setFormInput({
+        ...formInput,
+        [e.target.name]: e.target.value,
+
+      });
+    }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updateProduct(formInput));
+  const clearform = () => {
     setFormInput({
       name: '',
       price: '',
       image: '',
       sku: '',
-      product_category_id: "",
+      product_category_id: '',
       grip_size: '',
       head_size: '',
       rating: '',
@@ -56,13 +73,19 @@ const EditProduct = () => {
       composition: '',
       category: '',
       description: '',
-      tension: "",
-      colour: "",
-      strung: "",
-      size: ""
+      tension: '',
+      colour: '',
+      strung: '',
+      size: '',
 
     });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateProduct(formInput));
+    clearform();
+  };
+
   return (
     <div className="product-form admin">
       <form onSubmit={handleSubmit}>
@@ -107,8 +130,9 @@ const EditProduct = () => {
             <select
               placeholder="professionalism"
               name="level_id"
-              value={formInput.level_id}
+              value={formInput.level_id ? formInput.level_id : (formInput.level && formInput.level.id)}
               onChange={handleFormInput}
+              // disabled
             >
               {levels.map((level) => (
                 <option value={level.id}>{level.stage}</option>
@@ -116,6 +140,7 @@ const EditProduct = () => {
             </select>
 
           </div>
+
           <div className="input-half">
             <label htmlFor="">Gender </label>
             <select
@@ -123,6 +148,7 @@ const EditProduct = () => {
               name="gender_id"
               value={formInput.gender_id}
               onChange={handleFormInput}
+              disabled
             >
               {genders.map((gender) => (
                 <option value={gender.id}>{gender.name}</option>
@@ -146,7 +172,7 @@ const EditProduct = () => {
 
           </div>
           <div className="input-half">
-            <label htmlFor=""> Grip size   </label>
+            <label htmlFor=""> Grip size </label>
             <input
               name="grip_size"
               value={formInput.grip_size}
@@ -160,57 +186,57 @@ const EditProduct = () => {
         </div>
         <div className="form-row">
 
-<div className="input-half">
-  <label htmlFor=""> Cloth size  </label>
-  <select 
-  name="cloth_sizes_attributes" 
-  id="cloth_size"
-  multiple
-  onChange={handleFormInput}
-  size={1}
-  required
-  >
-    {clothSizes.map(item => (
+          <div className="input-half">
+            <label htmlFor=""> Cloth size  </label>
+            <select
+              name="cloth_sizes_attributes"
+              id="cloth_size"
+              multiple
+              onChange={handleFormInput}
+              size={1}
+            >
+              {clothSizes.map((item) => (
 
-    <option value={item.abbrv}>{item.abbrv}</option>
+                <option value={item.abbrv}>{item.abbrv}</option>
 
-    ))}
+              ))}
 
-  </select>
+            </select>
 
-</div>
-<div className="input-half">
-  <label htmlFor=""> Shoe size  </label>
-  <select name="shoe_sizes_attributes" id="shoe_size"
+          </div>
+          <div className="input-half">
+            <label htmlFor=""> Shoe size  </label>
+            <select
+              name="shoe_sizes_attributes"
+              id="shoe_size"
   //  value={formInput.cloth_size_attributes}
- 
-  multiple
-   onChange={handleFormInput}
-   size={1}
-   required
-  >
-    {shoeSizes.map(item => (
 
-    <option value={item.abbrv}>{item.abbrv}</option>
+              multiple
+              onChange={handleFormInput}
+              size={1}
+            >
+              {shoeSizes.map((item) => (
 
-    ))}
+                <option value={item.abbrv}>{item.abbrv}</option>
 
-  </select>
+              ))}
 
-</div>
-<div className="input-half">
-  <label htmlFor=""> SKU   </label>
-  <input
-    name="sku"
-    value={formInput.sku}
-    onChange={handleFormInput}
-    type="text"
-    placeholder="sku"
-  />
+            </select>
 
-</div>
+          </div>
+          <div className="input-half">
+            <label htmlFor=""> SKU   </label>
+            <input
+              name="sku"
+              value={formInput.sku}
+              onChange={handleFormInput}
+              type="text"
+              placeholder="sku"
+            />
 
-</div>
+          </div>
+
+        </div>
         <div className="form-row">
           <div className="input-half">
             <label htmlFor="" className="color">
@@ -219,7 +245,8 @@ const EditProduct = () => {
             <input
               name="colour"
               value={formInput.colour}
-placeholder='colour'              onChange={handleFormInput}
+              placeholder="colour"
+              onChange={handleFormInput}
               type="text"
             />
 
@@ -267,14 +294,18 @@ placeholder='colour'              onChange={handleFormInput}
               Composition
             </label>
 
-            <input
+            <select
               name="composition"
-
-              value={formInput.composition}
+              id="composition"
               onChange={handleFormInput}
-              type="text"
-              placeholder="composition"
-            />
+
+            >
+              <option value={null} selected>--Selected----</option>
+              <option value="graphite">Graphite </option>
+              <option value="aluminium">Aluminium </option>
+              <option value="carbon">Carbon </option>
+
+            </select>
 
           </div>
 
@@ -290,9 +321,9 @@ placeholder='colour'              onChange={handleFormInput}
           <select
             placeholder="product category"
             name="product_category_id"
-            value={formInput.product_category_id}
+            value={formInput.product_category && formInput.product_category.id}
             onChange={handleFormInput}
-            required
+            disabled
           >
             {product_categories.map((category) => (
               <option value={category.id}>{category.name}</option>
@@ -305,11 +336,14 @@ placeholder='colour'              onChange={handleFormInput}
           <label htmlFor="strung">
             strung/unstrung
           </label>
-          <select name="strung" id="strung"
-          value={formInput.strung}
+          <select
+            name="strung"
+            id="strung"
+            value={formInput.strung}
+            onChange={handleFormInput}
           >
-            {strung.map((item)=>(
-                <option value={item.name}>{item.name}</option>
+            {strung.map((item) => (
+              <option value={item.name}>{item.name}</option>
             ))}
           </select>
 
@@ -373,7 +407,6 @@ placeholder='colour'              onChange={handleFormInput}
         )) }
 
       </form>
-
 
     </div>
   );

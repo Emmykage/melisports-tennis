@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import {searched} from '../../redux/actions/search';
-import { closeList, displayList } from '../../redux/products/searched';
+import searched from '../../redux/actions/search';
+import { displayList } from '../../redux/products/searched';
 import SearchList from './SearchList';
 
 const SearchComponent = () => {
@@ -19,8 +19,6 @@ const SearchComponent = () => {
 
     dispatch(searched(search));
   };
-
-  // console.log(searchedProducts)
 
   return (
     <div className="search-component">

@@ -39,28 +39,26 @@ const Orders = () => {
   const activeLink = '';
   const { orders, status } = useSelector((state) => state.orders);
   const [isDisplayOpen, setIsDisplayOpen] = useState(false);
-  console.log(orders);
   useEffect(() => {
     dispatch(getOrders());
   }, []);
-console.log(orders)
   return (
     <div className="order-container">
       <h1 className="bolder">
         Page Under construction
       </h1>
       <div>
-          <ul className='order'>
-            {orders.map(order => (
-            <OrderItem key={order.id}
-            order_prop={order}
-
+        <ul className="order">
+          {orders.map((order) => (
+            <OrderItem
+              key={order.id}
+              order_prop={order}
             />
 
-            ))}
+          ))}
 
-          </ul>
-        </div>
+        </ul>
+      </div>
     </div>
   );
 };

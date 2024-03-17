@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Footer from './components/footer/Footer';
 import './styles/loader.css';
-import Nav from './components/nav/Nav';
 import ApparelsPage from './pages/Apparels';
 import BagsPage from './pages/BagsPage';
 import Cart from './pages/Cart';
@@ -13,7 +11,6 @@ import ProductDetails from './pages/ProductDetails';
 import ProductsPage from './pages/ProductsPage';
 import ShoesPage from './pages/Shoe';
 import { calculateTotal } from './redux/cart/cart';
-import AdminHome from './pages/admin-page/AdminHome';
 import MainLayout from './components/layouts/main';
 import MainAdmin from './components/layouts/mainAdmin';
 import Main from './components/admin/dashBoard/Main';
@@ -40,10 +37,16 @@ import ShippingPolicy from './pages/resources/ShippingPolicy';
 import TermsOfServices from './pages/resources/TermsOfServices';
 import PrivacyPolicy from './pages/resources/PrivacyPolicy';
 import Accounts from './pages/resources/Accounts';
+import Services from './pages/Services';
+import MainInfoLayout from './components/layouts/mainInfo';
+import Contact from './pages/Contact';
+import About from './pages/About';
+import BecomeADistributor from './pages/BecomeADistributor';
+import Brands from './pages/Brands';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
-  const { setcategoryModal } = useSelector((state) => state.modal_categories);
+  // const { setcategoryModal } = useSelector((state) => state.modal_categories);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -53,8 +56,15 @@ function App() {
     <>
 
       <Routes>
-        <Route path='paymentform' element={<StripeContainer/>} />
-        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
+        <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
+        <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
+        <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
+        <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
+        <Route path="paymentform" element={<StripeContainer />} />
+        <Route path="/brands" element={<MainInfoLayout><Brands /></MainInfoLayout>} />
+
+        <Route path="/store" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
         <Route path="/carts" element={<MainLayout><Cart /></MainLayout>} />
@@ -101,8 +111,8 @@ function App() {
         <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />
         <Route path="/privacy_policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
         <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
-            
-      </Routes >
+
+      </Routes>
 
     </>
   );

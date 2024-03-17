@@ -11,47 +11,45 @@ const Accessories = ({ products, status, error }) => {
 
   const accessories = products.filter((item) => item.product_category.name === 'accessory');
 
- 
-    if (accessories.length < 1) {
-      return (
-        <div>
-          <header>
-
-            <h1 className="warning-center"> Please Add some Accessories to your collection</h1>
-          </header>
-        </div>
-      );
-    }
+  if (accessories.length < 1) {
     return (
+      <div>
+        <header>
 
-      <>
-
-        {accessories.map((product) => (
-          <div key={product.id} className="products-display">
-            <div className="prod-img">
-              <NavLink to={`/productdetails/${product.id}`}>
-                <img src={product.image} alt="" />
-              </NavLink>
-
-            </div>
-            <div className="prod-details">
-              <h5 className="color-black">
-                {product.name.substring(0, 15)}
-                ...
-              </h5>
-              <p>{NGNaira.format(product.price)}</p>
-              <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
-                Buy
-              </NavLink>
-
-            </div>
-          </div>
-
-        ))}
-
-      </>
+          <h1 className="warning-center"> Please Add some Accessories to your collection</h1>
+        </header>
+      </div>
     );
-  
+  }
+  return (
+
+    <>
+
+      {accessories.map((product) => (
+        <div key={product.id} className="products-display">
+          <div className="prod-img">
+            <NavLink to={`/productdetails/${product.id}`}>
+              <img src={product.image} alt="" />
+            </NavLink>
+
+          </div>
+          <div className="prod-details">
+            <h5 className="color-black">
+              {product.name.substring(0, 15)}
+              ...
+            </h5>
+            <p>{NGNaira.format(product.price)}</p>
+            <NavLink className="btn btn-outline" to={`/productdetails/${product.id}`}>
+              Buy
+            </NavLink>
+
+          </div>
+        </div>
+
+      ))}
+
+    </>
+  );
 };
 
 export default Accessories;

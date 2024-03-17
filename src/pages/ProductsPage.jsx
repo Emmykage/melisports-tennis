@@ -4,8 +4,8 @@ import Hero from '../components/banner/Hero';
 import Products from '../components/products/Products';
 import SideNav from '../components/sideNav/SideNav';
 import { getProductCategories } from '../redux/actions/product_category';
-import { getProducts } from '../redux/actions/product';
-import { filterProducts } from '../redux/actions/product';
+import { getProducts, filterProducts } from '../redux/actions/product';
+
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 import Loader from './Loader';
@@ -47,27 +47,34 @@ const ProductsPage = () => {
             <SideNav />
           </div>
 
-          {status == "waiting" || loading ? <Loader /> : ((status== "success") ? 
-                    (<div className="product-align">
-            <div className="product-items">
-              <Products products={products} status={status} error={error} />
-            </div>
+          {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
+            ? (
+              <div className="product-align">
+                <div className="product-items">
+                  <Products products={products} status={status} error={error} />
+                </div>
 
-            <div className="product-details color-grey">
-              <h3> BABOLAT TENNIS RACKET BRANDS</h3>
-              <p>
-                { category.description}
+                <div className="product-details color-grey">
+                  <h3> BABOLAT TENNIS RACKET BRANDS</h3>
+                  <p>
+                    { category.description}
 
-              </p>
+                  </p>
+                  <p>
+                    From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
+                  </p>
 
-            </div>
-          </div>) : ( <div className="text-center full-length">
-      <h2>{error}</h2>
-    </div>))}
+                </div>
+              </div>
+            ) : (
+              <div className="text-center full-length">
+                <h2>{error}</h2>
+              </div>
+            ))}
           <div />
 
         </div>
-      
+
       </div>
     </div>
   );

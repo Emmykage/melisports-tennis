@@ -26,7 +26,11 @@ const Right = ({ handleMenu, auth }) => (
         <div className="info">
           <p>
             Hey,
-            <b>{auth.user.username}</b>
+            <b>
+              {' '}
+              {auth.user.email}
+              {' '}
+            </b>
           </p>
           <small className="text-muted">Admin</small>
         </div>

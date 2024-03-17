@@ -3,7 +3,6 @@ import baseURL from '../baseURL';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 
-
 const addUser = createAsyncThunk('user/addUser', async (data) => {
   const response = await fetch(`${baseURL}users`, {
     method: 'POST',
@@ -32,10 +31,10 @@ const getUser = createAsyncThunk('user/logUser', async () => {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`
+      Authorization: `Bearer ${token()}`,
     },
   })
     .then((res) => res.json());
   return response;
-})
-export { addUser, loginUser, getUser};
+});
+export { addUser, loginUser, getUser };

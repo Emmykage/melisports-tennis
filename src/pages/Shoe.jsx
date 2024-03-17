@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../components/banner/Hero';
 import Shoes from '../components/products/Shoes';
 import SideNav from '../components/sideNav/SideNav';
-import { getProducts } from '../redux/actions/product';
+import { getProducts, filterProducts } from '../redux/actions/product';
 import { closeNav } from '../redux/modal/nav';
-import { filterProducts } from '../redux/actions/product';
+
 import { closeList } from '../redux/products/searched';
 import { getProductCategories } from '../redux/actions/product_category';
 import Loader from './Loader';
@@ -28,7 +28,7 @@ const ShoesPage = () => {
     dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
-  
+
   return (
     <div className="product-container">
       <Hero />
@@ -45,26 +45,28 @@ const ShoesPage = () => {
           <div className="side-nav">
             <SideNav />
           </div>
-          {status == "waiting" || loading ? <Loader/> : ((status == "success") ? (
+          {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
             <div className="product-align">
-            <div className="product-items">
-              <Shoes products={products} status={status} error={error} />
+              <div className="product-items">
+                <Shoes products={products} status={status} error={error} />
 
+              </div>
+
+              <div className="product-details">
+                <h3> BABOLAT TENNIS SHOES</h3>
+                <p>
+
+                  { category.description}
+                </p>
+
+              </div>
             </div>
-
-            <div className="product-details">
-              <h3> BABOLAT TENNIS SHOES</h3>
-              <p>
-
-                { category.description}
-              </p>
-
+          ) : (
+            <div className="text-center full-length">
+              <h2>{error}</h2>
             </div>
-          </div>
-          ) : ( <div className="text-center full-length">
-          <h2>{error}</h2>
-        </div>) )}
-          
+          ))}
+
           <div />
 
         </div>

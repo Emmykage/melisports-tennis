@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProduct } from '../redux/actions/product';
-import { addCart } from '../redux/actions/cart';
+// import { addCart } from '../redux/actions/cart';
 import { updater } from '../redux/cart/cart';
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
+import { addCart } from '../redux/cart/cart';
 
 const ProductDetails = () => {
   const NGNaira = new Intl.NumberFormat('en-NG', {
@@ -23,11 +24,13 @@ const ProductDetails = () => {
     dispatch(getProduct(id));
   }, []);
   const handleCart = () => {
-    dispatch(addCart({ product_id: id, quantity: count }));
+    // dispatch(addCart({ product_id: id, quantity: count }));
+    dispatch(addCart({
+      product_id: id, image: product.image, price: product.price, quantity: count,
+    }));
 
     dispatch(updater());
   };
-  console.log(product);
   const increase = () => {
     setCount((setPrev) => setPrev + 1);
   };

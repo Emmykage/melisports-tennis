@@ -23,12 +23,13 @@ const userSlice = createSlice({
         return {
           ...state,
           user: JSON.parse(auth),
+          logged: true,
 
         };
       } catch {
         return {
           ...state,
-          user: null
+          user: null,
         };
       }
     },
@@ -37,27 +38,21 @@ const userSlice = createSlice({
     [getUser.fulfilled]: (state, action) => {
       const response = action.payload;
       if (response.user) {
-        
         return {
           ...state,
           logged: true,
           user: response,
-                };
-      }else{
+        };
+      }
 
-      
       return {
         ...state,
         loading: false,
         error: true,
         message: action.payload.error,
       };
-    }
-
-
     },
     [addUser.fulfilled]: (state, action) => {
-      console.log('fulfilled');
       const response = action.payload;
       if (response.user) {
         const collect = JSON.stringify(response);
@@ -69,23 +64,20 @@ const userSlice = createSlice({
           message: 'sign up successfull',
         };
       }
-      console.log('yes fulfillled but failed');
 
       return {
         ...state,
         loading: false,
         error: true,
+        logged: false,
         message: action.payload.error,
       };
     },
-    [addUser.rejected]: (state, action) => {
-      console.log('failed', action.payload.error);
-      return {
-        ...state,
-        error: true,
-        message: 'failed to create an account',
-      };
-    },
+    [addUser.rejected]: (state) => ({
+      ...state,
+      error: true,
+      message: 'No Internet connection',
+    }),
     [addUser.pending]: (state) => ({
       ...state,
       loading: true,
@@ -100,22 +92,29 @@ const userSlice = createSlice({
         return {
           ...state,
           logged: true,
-          user: action.payload,
+          user: response,
+          error: false,
+          message: 'log in successful',
         };
       }
 
-      console.log(action.payload.error);
       return {
         ...state,
         logged: false,
+        loading: false,
         error: true,
         message: action.payload.error,
       };
     },
-    [loginUser.rejected]: (state, action) => ({
+    [loginUser.rejected]: (state) => ({
       ...state,
+      loading: false,
       error: true,
-      message: action.error,
+      message: 'No Internet connection',
+    }),
+    [loginUser.pending]: (state) => ({
+      ...state,
+      loading: true,
     }),
   },
 });

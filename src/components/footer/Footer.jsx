@@ -6,35 +6,41 @@ const Footer = () => (
   <footer>
     <div className="m-auto footer-container flex-center">
       <div>
-        <h3>MeliSport</h3>
-        <p>
-          for over 10 years we have been dedicated to providing an incomparable
+        <h4 className='text-4xl text-center'>MeliSport</h4>
+        <p className='text-center'>
+          For over 10 years we have been dedicated to providing an incomparable
           collection of tennis and racqet sport collection
         </p>
 
       </div>
       <div>
-        <h4>Resources</h4>
+        <h4>RESOURCES</h4>
         <ul>
           {/* <li>Membership</li> */}
           <li>
-            <NavLink to={'/my_account'}>
-            My Account
+            <NavLink to="/">
+              My Account
             </NavLink>
-            </li>
-          <li><NavLink to={'/return_policy'}>
-          Return Policy
-            </NavLink> </li>
+          </li>
           <li>
-            <NavLink to={'/shipping_policy'}>
-            Shipping Policy
+            <NavLink to="/">
+              Return Policy
             </NavLink>
-           </li>
+            {' '}
+
+          </li>
           <li>
-          <NavLink to={"/terms_of_service"}>Terms of Service</NavLink>
-</li>
-          <li>           <NavLink to={"/private_policy"}>Privacy Policy</NavLink>
-</li>
+            <NavLink to="/">
+              Shipping Policy
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/">Terms of Service</NavLink>
+          </li>
+          <li>
+            {' '}
+            <NavLink to="/">Privacy Policy</NavLink>
+          </li>
           {/* <li>
             <NavLink to={"privacy_policy"}>
             Promos & Coupons
@@ -53,7 +59,7 @@ const Footer = () => (
           {' '}
           <br />
           <a href="mailto:info@melisports.com"> info@melisports.com </a>
-          
+
           {' '}
           <br />
           Gift Cards
@@ -63,14 +69,27 @@ const Footer = () => (
       <div>
         <ul>
           <h4>Connect With Us</h4>
-          <li><a href='https://web.facebook.com/melisports'>Facebook</a> </li>
-          <li> <a href='https://www.instagram.com/melisports/'>Instagram</a></li>
+          <li>
+            <a href="https://web.facebook.com/melisports">Facebook</a>
+            {' '}
+          </li>
+          <li>
+            {' '}
+            <a href="https://www.instagram.com/melisports/">Instagram</a>
+          </li>
           {/* <li>Youtube</li> */}
-          <li><a href='https://twitter.com/MeliSports'> Twitter</a> </li>
+          <li>
+            <a href="https://twitter.com/MeliSports"> Twitter</a>
+            {' '}
+          </li>
           {/* <li>TP Blog</li> */}
 
         </ul>
       </div>
+    </div>
+    <div className="bg-white text-center text-gray">
+      Vortech
+      <a href="" />
     </div>
   </footer>
 );

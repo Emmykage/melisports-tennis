@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectFade, Autoplay } from 'swiper';
 import Slide1 from '../../assets/images/banner/slide_one.jpg';
-import Slide2 from '../../assets/images/banner/slide_two.jpg';
+import Slide3 from '../../assets/images/banner/slide_three.jpeg';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -34,7 +34,9 @@ export default function Slider() {
             {' '}
             <img src={Slide1} />
           </SwiperSlide>
-          <SwiperSlide><img src={Slide2} /></SwiperSlide>
+          <SwiperSlide>
+            <img src={Slide3} />
+          </SwiperSlide>
 
         </Swiper>
       </div>

@@ -6,7 +6,6 @@ let token;
 if (auth) {
   const userInfo = JSON.parse(auth);
   token = userInfo.token;
-  console.log(token);
 }
 
 const addOrder = createAsyncThunk('order/createOrder', async (data) => {
@@ -18,7 +17,7 @@ const addOrder = createAsyncThunk('order/createOrder', async (data) => {
     },
     body: JSON.stringify(data),
   });
-  return response
+  return response;
 });
 
 const getOrders = createAsyncThunk('orders/get_orders', async () => {

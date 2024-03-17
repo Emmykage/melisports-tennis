@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import { FiUser, FiMenu } from 'react-icons/fi';
@@ -13,10 +13,9 @@ import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 
-
 const Nav = () => {
   const navigate = useNavigate();
-  const { counter, cartItems, update } = useSelector((state) => state.cart);
+  const { counter, update } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
@@ -25,7 +24,6 @@ const Nav = () => {
     dispatch(getCarts());
     dispatch(calculateTotal());
   }, [update]);
-
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '');
     dispatch(userLog());
@@ -33,7 +31,7 @@ const Nav = () => {
   };
 
   return (
-    <div>
+    <>
       <nav>
 
         <div className="navbar">
@@ -43,7 +41,6 @@ const Nav = () => {
             </a>
           </div>
           <div className="logo">
-
             <NavLink className="img-div" to="/">
               <img src={logo} alt="" />
             </NavLink>
@@ -165,7 +162,7 @@ const Nav = () => {
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink href="#Home">Brands</NavLink>
+                <NavLink href="/brands">Brands</NavLink>
                 <div className="link-items flex">
                   <div>
                     <h3>
@@ -193,7 +190,6 @@ const Nav = () => {
                 {' '}
               </li>
               ))}
-              
 
               <li className="nav-item last">
                 <span><FiUser className="user-icon" /></span>
@@ -225,7 +221,7 @@ const Nav = () => {
         </div>
         <SearchComponent />
       </nav>
-    </div>
+    </>
   );
 };
 

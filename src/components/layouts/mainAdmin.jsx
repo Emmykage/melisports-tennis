@@ -16,7 +16,6 @@ const MainAdmin = ({ children }) => {
   const { isOpen, id } = useSelector((state) => state.delModal);
   const { catOpen, catId } = useSelector((state) => state.cat_del_modal);
   const [showMenu, setShowMenu] = useState(false);
-  // console.log(auth)
   useEffect(() => {
     dispatch(userLog());
     !meli_auth && navigate('/auth/admin_sign_up');
@@ -44,7 +43,7 @@ const MainAdmin = ({ children }) => {
 
               <Right handleMenu={handleMenu} auth={auth} />
             </div>
-            { console.log('token')}
+
             <Footer />
           </div>
         </>

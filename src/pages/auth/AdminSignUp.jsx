@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink, useNavigate } from 'react-router-dom';
-import { addUser } from '../../redux/actions/auth';
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { BsFacebook } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
 import { userLog } from '../../redux/user/user';
+import { addUser } from '../../redux/actions/auth';
 
 const AdminSignUp = () => {
+  const [show, setShow] = useState(true);
+
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -14,7 +19,7 @@ const AdminSignUp = () => {
   const [formInput, setFormInput] = useState({
     user: {
       first_name: '',
-      last_name: "",
+      last_name: '',
       username: '',
       email: '',
       phone_no: '',
@@ -28,53 +33,87 @@ const AdminSignUp = () => {
   }, []);
 
   const handleInput = (e) => {
-    setFormInput({
+    if (e.target.name == 'email') {
+      setFormInput({
+        user: {
+          ...formInput.user,
+          [e.target.name]: e.target.value.toLowerCase(),
+        },
+      });
+    } else {
+      setFormInput({
 
-      user: {
-        ...formInput.user,
-        [e.target.name]: e.target.value,
-      },
-    });
+        user: {
+          ...formInput.user,
+          [e.target.name]: e.target.value,
+        },
+      });
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addUser(formInput));
-    // dispatch(updater())
     dispatch(userLog());
   };
-  console.log(user);
+  const toggleReveal = () => {
+    setShow((prev) => !prev);
+  };
   if (user == null || user == undefined) {
     return (
       <div className="wallpaper centralize">
         <div className="auth-container">
-          <div className="sign-up">
+          <div className="form-content sign-up">
             <h1>Sign Up as Admin</h1>
             <form onSubmit={handleSubmit}>
-            <label htmlFor="first_name">First Name</label>
-              <input type="text" name="first_name" value={formInput.user.first_name} onChange={handleInput} placeholder="First Name" id="first_name" required />
-              <label htmlFor="last_name">Last Name</label>
-              <input type="text" name="last_name" value={formInput.user.last_name} onChange={handleInput} placeholder="username" id="lsat_name" required />
-              <label htmlFor="username">username</label>
-              <input type="text" name="username" value={formInput.user.username} onChange={handleInput} placeholder="username" id="username" required />
-              <label htmlFor="email">email</label>
-              <input type="email" name="email" value={formInput.user.email} onChange={handleInput} placeholder="email" required />
-              <label htmlFor="mobile">mobile</label>
-              <input type="text" name="phone_no" value={formInput.user.phone_no} onChange={handleInput} placeholder="Phone no" id="mobile" required />
-              <label htmlFor="password">password</label>
-              <input
-                type="password"
-                value={formInput.user.password}
-                onChange={handleInput}
-                name="password"
-                placeholder="Enter password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                required
-              />
-              <label htmlFor="role" />
-              <input type="hidden" name="role" value={formInput.user.client} id="role" />
+              <div className="field input-field">
+                <label htmlFor="first_name">First Name</label>
+                <input type="text" name="first_name" value={formInput.user.first_name} onChange={handleInput} id="first_name" required />
+
+              </div>
+              <div className="field input-field">
+                <label htmlFor="username">Last Name</label>
+                <input type="text" name="last_name" value={formInput.user.last_name} onChange={handleInput} id="last_name" required />
+              </div>
+              <div className="field input-field">
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" value={formInput.user.username} onChange={handleInput} id="last_name" required />
+              </div>
+              <div className="field input-field">
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" value={formInput.user.email} onChange={handleInput} required />
+              </div>
+              <div className="field input-field">
+                <label htmlFor="mobile">Mobile</label>
+                <input type="text" name="phone_no" value={formInput.user.phone_no} onChange={handleInput} id="mobile" required />
+
+              </div>
+              <div className="field input-field">
+                <label htmlFor="password">Password</label>
+                <input
+                  type={show ? 'password' : 'text'}
+                  onChange={handleInput}
+                  value={formInput.user.password}
+                  name="password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                  required
+                />
+
+                <span onClick={toggleReveal}>
+                  {' '}
+                  {show ? <AiOutlineEyeInvisible className="eye-icon" /> : <AiOutlineEye className="eye-icon" />}
+                </span>
+              </div>
 
               <button className="btn" type="submit">Sign Up</button>
+              <div className="form-link">
+                <span>
+                  {' '}
+                  Already have an account?
+                  <NavLink to="/auth/admin_login">Login</NavLink>
+                </span>
+              </div>
+              <div className="line" />
             </form>
             <p className="blue">
               {' '}
@@ -85,6 +124,18 @@ const AdminSignUp = () => {
               {' '}
               {error && message }
             </p>
+            <div className="media-option">
+              <a href="#" className="social-field facebook">
+                <BsFacebook className="facebook-icon" />
+                <span>Sign Up with Facebook</span>
+              </a>
+            </div>
+            <div className="media-option last-child">
+              <a href="#" className="social-field google">
+                <FcGoogle className="google-icon" />
+                <span>Sign Up with Google</span>
+              </a>
+            </div>
             <p>
               By clicking the sign up botton yo agree to our
               <br />
@@ -94,13 +145,6 @@ const AdminSignUp = () => {
               <a href="#">Policy</a>
             </p>
 
-          </div>
-          <div>
-            <p className="para-2">
-              already have an account?
-              {' '}
-              <NavLink to="/auth/admin_login">Login here</NavLink>
-            </p>
           </div>
 
         </div>

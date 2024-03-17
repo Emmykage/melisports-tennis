@@ -1,9 +1,9 @@
-import Stripe from "stripe";
+import Stripe from 'stripe';
 
-const stripe = new Stripe("sk_test_51NA8CuHxI0r7Hp29GJQ297xqajlQKbSvjlEvvPrgYM872PVxHWmy6StYmpphzayVBBVFe3J9AhZginP1PbJvzjKP00n9tvt5SO");
+const stripe = new Stripe('sk_test_51NA8CuHxI0r7Hp29GJQ297xqajlQKbSvjlEvvPrgYM872PVxHWmy6StYmpphzayVBBVFe3J9AhZginP1PbJvzjKP00n9tvt5SO');
 
 export default async (req, res) => {
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     try {
       const { amount } = req.body;
       // Psst. For production-ready applications we recommend not using the
@@ -15,7 +15,7 @@ export default async (req, res) => {
 
       const paymentIntent = await stripe.paymentIntents.create({
         amount,
-        currency: "usd"
+        currency: 'usd',
       });
 
       res.status(200).send(paymentIntent.client_secret);
@@ -23,7 +23,7 @@ export default async (req, res) => {
       res.status(500).json({ statusCode: 500, message: err.message });
     }
   } else {
-    res.setHeader("Allow", "POST");
-    res.status(405).end("Method Not Allowed");
+    res.setHeader('Allow', 'POST');
+    res.status(405).end('Method Not Allowed');
   }
 };
