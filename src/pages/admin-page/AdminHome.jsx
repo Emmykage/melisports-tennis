@@ -13,12 +13,7 @@ const AdminHome = ({ children }) => {
   return (
     <div className="admin-container">
       hey
-      {/* <SideNav showMenu={showMenu} handleMenu={handleMenu}/>
-    <div className="full-width flex-center">
-    {children}
-    </div>
-
-    <Right handleMenu={handleMenu}/>     */}
+     
     </div>
 
   );
