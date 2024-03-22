@@ -25,9 +25,6 @@
 }
 
 :root {
-  /* --color-theme: rgba(92, 64, 101); */
-
-  /* --color-primary: #7380ec; */
   --color-main-orange: rgb(256, 68, 4);
   --color-main-bg: #135092;
   --color-contrast: rgb(256, 68, 4);
