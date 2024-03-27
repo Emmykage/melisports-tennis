@@ -38,7 +38,7 @@
   max-width: 230px;
 }
 
-.logo a {
+nav .logo a {
   position: relative;
   color: #fff;
   bottom: 0;
@@ -136,6 +136,10 @@
 .link-items a {
   color: #222629;
   font-weight: 600;
+}
+.link-items h3, .link-items h4{
+  color: var(--color-theme-variant);
+  ;
 }
 
 .link-items li {

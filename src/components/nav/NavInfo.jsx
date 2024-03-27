@@ -85,8 +85,8 @@ const NavInfo = () => {
                 <span><FiUser className="user-icon" /></span>
 
               </div>
-              {/* <NavLink to="/store"> */}
-              <NavLink to="/">
+              <NavLink to="/store">
+              {/* <NavLink to="/"> */}
                 <AiOutlineShopping className="menu-icon cart-icon" />
               </NavLink>
 

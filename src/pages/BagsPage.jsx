@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../components/banner/Hero';
 import Bags from '../components/products/Bags';
 import SideNav from '../components/sideNav/SideNav';
-import { getProducts, filterProducts } from '../redux/actions/product';
+import { getProducts } from '../redux/actions/product';
 import { closeNav } from '../redux/modal/nav';
 
 import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
 import { getProductCategories } from '../redux/actions/product_category';
+import { filterProducts } from '../redux/products/product';
 
 const BagsPage = () => {
   const dispatch = useDispatch();

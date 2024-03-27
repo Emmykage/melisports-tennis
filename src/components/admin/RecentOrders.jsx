@@ -8,15 +8,15 @@ const RecentOrders = () => (
     <table>
       <thead>
         <tr>
-          <th>Product name</th>
-          <th>Product number</th>
-          <th>Payment</th>
-          <th>Status name</th>
+          <th className='px-2'>Product name</th>
+          <th className='px-2 text-center'>Product number</th>
+          <th className='px-2 text-center'>Payment</th>
+          <th className='px-2 text-center'>Status name</th>
 
         </tr>
 
       </thead>
-      <tbody>
+      <tbody className='text-white'>
         {orders.map((order) => (
           <tr>
             <td>{order.productName}</td>

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import SideNav from '../components/sideNav/SideNav';
 import Hero from '../components/banner/Hero';
 import Apparels from '../components/products/Apparels';
-import { filterProducts, getProducts } from '../redux/actions/product';
+import { getProducts } from '../redux/actions/product';
 
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 import Loader from './Loader';
+import { filterProducts } from '../redux/products/product';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();

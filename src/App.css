@@ -1722,7 +1722,7 @@ td:last-child .btn {
   }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
   .sm-grid-col-2{
     grid-template-columns: 1fr 1fr;
   }
@@ -1799,7 +1799,7 @@ td:last-child .btn {
     background-color: #56c59d;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 640px) {
     .flex-center-around {
       flex-direction: column;
     }

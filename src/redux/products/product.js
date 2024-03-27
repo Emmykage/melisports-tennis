@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { filterProducts, getProducts } from '../actions/product';
+import { getProducts } from '../actions/product';
 
 const initialState = {
   products: [],
@@ -15,11 +15,11 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   extraReducers: {
-    [filterProducts.fulfilled]: (state, action) => ({
-      ...state,
-      products: action.payload,
+    // [filterProducts.fulfilled]: (state, action) => ({
+    //   ...state,
+    //   products: action.payload,
 
-    }),
+    // }),
     [getProducts.fulfilled]: (state, action) => ({
       ...state,
       status: 'success',
@@ -40,8 +40,18 @@ const productsSlice = createSlice({
     })
 
     ,
+    reducers: {
+      filterProducts: (state, action) => {
+        return{
+          ...state,
+          filterProducts: state.products.filter(item => item.name.toLowerCase().includes(action.payload) )
+        }
+      }
+
+    }
 
   },
 });
 
 export default productsSlice.reducer;
+export const {filterProducts} = productsSlice.actions

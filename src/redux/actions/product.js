@@ -54,5 +54,5 @@ const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
 });
 
 export {
-  getProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProducts,
+  getProducts, getProduct, addProduct, deleteProduct, updateProduct, 
 };

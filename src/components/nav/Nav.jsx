@@ -40,8 +40,8 @@ const Nav = () => {
               <FiMenu className="menu-icon" onClick={() => dispatch(openNav())} />
             </a>
           </div>
-          <div className="logo">
-            <NavLink className="img-div" to="/">
+          <div className="logo ">
+            <NavLink className="img-div" to="/store">
               <img src={logo} alt="" />
             </NavLink>
           </div>
@@ -53,7 +53,7 @@ const Nav = () => {
                 <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
               </div>
 
-              <li className="nav-item"><NavLink to="/">Home</NavLink></li>
+              <li className="nav-item"><NavLink to="/store">Home</NavLink></li>
               <li className="nav-item">
                 <NavLink to="/racquets" className="hey">Rackets </NavLink>
                 <div className="link-items flex">
@@ -69,13 +69,13 @@ const Nav = () => {
 
                     <h4>Tennis Rackets</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilson</a></li>
+                    {/* <li><a href="#">Wilson</a></li> */}
                   </ul>
                   <ul>
 
                     <h4>Badminton Rackets</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilson</a></li>
+                    {/* <li><a href="#">Wilson</a></li> */}
                   </ul>
                 </div>
               </li>
@@ -91,13 +91,13 @@ const Nav = () => {
 
                     <h4>Tennis Men's Apparels</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilson</a></li>
+                    {/* <li><a href="#">Wilson</a></li> */}
                   </ul>
                   <ul>
 
                     <h4>Tennis Women's Apparel</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilson</a></li>
+                    {/* <li><a href="#">Wilson</a></li> */}
                   </ul>
                 </div>
               </li>
@@ -111,13 +111,13 @@ const Nav = () => {
 
                     <h4>Men's Shoes</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilson</a></li>
+                    {/* <li><a href="#">Wilson</a></li> */}
                   </ul>
                   <ul>
 
                     <h4>Women's Shoes</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilson</a></li>
+                    {/* <li><a href="/">Wilson</a></li> */}
                   </ul>
                 </div>
               </li>
@@ -131,13 +131,13 @@ const Nav = () => {
 
                     <h4>Men's Shoes</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilson</a></li>
+                    {/* <li><a href="#">Wilson</a></li> */}
                   </ul>
                   <ul>
 
                     <h4>Women's Shoes</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilson</a></li>
+                    {/* <li><a href="/">Wilson</a></li> */}
                   </ul>
                 </div>
               </li>
@@ -151,13 +151,13 @@ const Nav = () => {
 
                     <h4>Men's Shoes</h4>
                     <li><a href="#">Babolat</a></li>
-                    <li><a href="#">Wilson</a></li>
+                    {/* <li><a href="#">Wilson</a></li> */}
                   </ul>
                   <ul>
 
                     <h4>Women's Shoes</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilson</a></li>
+                    {/* <li><a href="/">Wilson</a></li> */}
                   </ul>
                 </div>
               </li>
@@ -173,13 +173,13 @@ const Nav = () => {
 
                     <h4>Tennis Racquets</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilso</a></li>
+                    {/* <li><a href="/">Wilso</a></li> */}
                   </ul>
                   <ul>
 
                     <h4>Badminton Racquets</h4>
                     <li><a href="/">Babolat</a></li>
-                    <li><a href="/">Wilson</a></li>
+                    {/* <li><a href="/">Wilson</a></li> */}
                   </ul>
                 </div>
               </li>

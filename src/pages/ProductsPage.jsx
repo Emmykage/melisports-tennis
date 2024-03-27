@@ -4,11 +4,12 @@ import Hero from '../components/banner/Hero';
 import Products from '../components/products/Products';
 import SideNav from '../components/sideNav/SideNav';
 import { getProductCategories } from '../redux/actions/product_category';
-import { getProducts, filterProducts } from '../redux/actions/product';
+import { getProducts } from '../redux/actions/product';
 
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 import Loader from './Loader';
+import { filterProducts } from '../redux/products/product';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();

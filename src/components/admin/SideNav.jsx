@@ -27,10 +27,10 @@ const SideNav = (props) => {
   };
   return (
 
-    <aside className={showMenu ? 'display' : ''}>
+    <aside className={`${showMenu ? 'display' : ''} bg-white`}>
       <div className="top">
 
-        <div className="logo">
+        <div className="logo text-center">
 
           <NavLink className="img-div" to="/">
             <img src={logo} alt="" />
