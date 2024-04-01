@@ -16,7 +16,6 @@ const Cart = () => {
   const { status } = useSelector((state) => state.orders);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // console.log(cartItems)
   const orderItems = () => cartItems.map((item) => (
     {
       product_id: item.product_id,
