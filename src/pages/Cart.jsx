@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getLocalCart, updateQty, updater } from '../redux/cart/cart';
+import { getLocalCart, removeItem, updateQty, updater } from '../redux/cart/cart';
 import {
-  decreaseCart, increaseCart, removeItem, getCarts,
+  decreaseCart, increaseCart, getCarts,
 } from '../redux/actions/cart';
 import { openModal } from '../redux/modal/modal';
 import { addOrder } from '../redux/actions/orders';
@@ -16,6 +16,7 @@ const Cart = () => {
   const { status } = useSelector((state) => state.orders);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // console.log(cartItems)
   const orderItems = () => cartItems.map((item) => (
     {
       product_id: item.product_id,
@@ -33,7 +34,7 @@ const Cart = () => {
   const handleCheckout = () => {
     dispatch(addOrder(data));
   };
-  console.log(cartItems)
+  // console.log(cartItems)
 
   status == 'success' && navigate('/checkout');
 
@@ -71,6 +72,8 @@ const Cart = () => {
     dispatch(updater());
   };
   const handleDelete = (id) => {
+    // console.log(id)
+
     dispatch(removeItem(id));
     dispatch(updater());
   };
@@ -108,7 +111,7 @@ const Cart = () => {
                     <p>{naira_format(cart.price)}</p>
                   </td>
                   <td>
-                    <p>{cart.total}</p>
+                    <p>{cart.subTotal}</p>
                   </td>
 
                   <td>
@@ -142,7 +145,7 @@ const Cart = () => {
                     </div>
                   </td>
                   <td className=''>
-                    <button className="btn block" onClick={() => handleDelete(cart.id)}> remove</button>
+                    <button className="btn block" onClick={() => handleDelete(cart.product_id)}> remove</button>
 
                   </td>
                 </tr>

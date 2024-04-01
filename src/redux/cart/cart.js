@@ -2,10 +2,31 @@ import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
 import { getCarts } from '../actions/cart';
 
+
 const setCart = (cartItems) => {
   localStorage.setItem('cartitem', JSON.stringify(cartItems));
 };
-const getCart = () => JSON.parse(localStorage.getItem('cartitem'));
+const getCart = () =>{
+ const carts = JSON.parse(localStorage.getItem('cartitem'));
+
+  if(carts == null){
+    return []
+  }
+  else{
+    return carts
+  }
+
+}
+const refCart = () => getCart().map(cart => {
+  return{
+    product_id: cart.product_id,
+    price: cart.price,
+    product_name: cart.product_name,
+    image: cart.image,
+    quantity: cart.quantity,
+    subTotal: cart.quantity * cart.price
+  }
+})
 
 
 
@@ -25,17 +46,21 @@ const cartSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       getCart();
+      // console.log([action.payload], action.payload)
 
-      if (getCart() == null) {
+      if (getCart() == null || getCart().length < 1) {
         const newCartArray = [action.payload];
         setCart(newCartArray);
+        console.log("Sis less")
         return {
           ...state,
           cartItems: getCart(),
         };
       }
-      const cartExist = getCart().find((cart) => cart.product_id == action.payload.product_id);
 
+      // jjh
+      const cartExist = getCart().find((cart) => cart.product_id == action.payload.product_id);
+      console.log(cartExist)
       if (cartExist == undefined) {
         const newCartArray = [...getCart(), action.payload];
         setCart(newCartArray);
@@ -55,13 +80,13 @@ const cartSlice = createSlice({
 
       return {
         ...state,
-        cartItems: getCart(),
+        cartItems: refCart(),
       };
     },
     getLocalCart: (state) => {
       return{
         ...state,
-        cartItems: getCart()
+        cartItems: refCart()
       }
     },
     updateQty: (state, action) => {
@@ -75,15 +100,22 @@ const cartSlice = createSlice({
 
       return {
         ...state,
-        cartItems: getCart(),
+        cartItems: refCart(),
       };
     },
 
-    deleteCart: (state, action) => ({
-      ...state,
-      cartItems: getCart().filter((cart) => cart.product_id == action.payload.product_id),
+    removeItem: (state, action) => {
+      console.log(action.payload)
 
-    }),
+
+      const filterdCart = getCart().filter((cart) => cart.product_id !== action.payload)
+      console.log(getCart(), filterdCart)
+      setCart(filterdCart)
+      return{
+      ...state,
+      cartItems: refCart()
+      }
+    },
 
     updater: (state) => ({
       ...state,

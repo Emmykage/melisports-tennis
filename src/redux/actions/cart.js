@@ -15,18 +15,18 @@ const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 //   });
 //   return response;
 // });
-const removeItem = createAsyncThunk('cart/removeCart', async (id) => {
-  const response = await fetch(`${baseURL}cart_items/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`,
+// const removeItem = createAsyncThunk('cart/removeCart', async (id) => {
+//   const response = await fetch(`${baseURL}cart_items/${id}`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-type': 'application/json',
+//       Authorization: `Bearer ${token()}`,
 
-    },
+//     },
 
-  });
-  return response;
-});
+//   });
+//   return response;
+// });
 // const clearCart = createAsyncThunk('cart/clearCart', async () => {
 //   const response = await fetch(`${baseURL}clear_cart`, {
 //     method: 'DELETE',
@@ -72,5 +72,5 @@ const decreaseCart = createAsyncThunk('cart/increase_cart', async ({ id, quantit
   });
 });
 export {
-  getCarts, removeItem, increaseCart, decreaseCart,
+  getCarts, increaseCart, decreaseCart,
 };
