@@ -157,6 +157,10 @@
   --color-primary-variant: #135092;
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
+
+  --bg-green: #04aa6d;
+  --bg-gray-light: rgba(132, 139, 200, 0.18);
+  --bg-gray-dark: #363949;
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 0.8rem;
@@ -462,6 +466,9 @@ hr{
 }
 .mb-2{
   margin-bottom: 1rem;
+}
+  .mb-3{
+    margin-bottom: 1.5rem;
 }
 .mb-4{
   margin-bottom: 2rem;
@@ -834,30 +841,6 @@ a {
 
 .p-top-05 {
   padding-top: 0.5rem;
-}
-
-.m-0 {
-  margin: 0;
-}
-
-.m-1 {
-  margin: 1rem;
-}
-
-.mb-2 {
-  margin-bottom: 2rem;
-}
-
-.mb-3 {
-  margin-bottom: 3rem;
-}
-
-.mb-4 {
-  margin-bottom: 4rem;
-}
-
-.mb-5 {
-  margin-bottom: 1rem;
 }
 
 .m-05 {
@@ -1474,7 +1457,6 @@ table td {
   display: block;
   padding: 0;
 
-  /* background-color: blue; */
 }
 
 .whatsapp img {
@@ -1561,32 +1543,30 @@ table td {
 .cart-side {
   flex: 1;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid gray;
+  border-radius: 4px;
 }
 
-.cart-side > div {
-  margin: 8px 0;
-  padding: 12px 0;
-}
 
-.cart-side span {
+/* .cart-side span {
   font-size: 1.35rem;
-}
+} */
 
 .cart-side .total {
   border-top: 1px solid black;
 }
 
 .cart-side a {
-  background-color: aqua;
+  /* background-color: aqua; */
   font-weight: 600;
   width: 100%;
   display: block;
+  padding: 6px 0;
   text-align: center;
 }
 
 .cart-side a:hover {
-  background: var(--color-success);
+  background: var(--bg-gray-dark);
 }
 
 .cart-btn-div {

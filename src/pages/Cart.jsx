@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateQty, updater } from '../redux/cart/cart';
+import { getLocalCart, updateQty, updater } from '../redux/cart/cart';
 import {
   decreaseCart, increaseCart, removeItem, getCarts,
 } from '../redux/actions/cart';
@@ -26,7 +26,8 @@ const Cart = () => {
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
-    dispatch(getCarts());
+    dispatch(getLocalCart());
+    // dispatch(getCarts())
   }, [update]);
 
   const handleCheckout = () => {
@@ -100,7 +101,7 @@ const Cart = () => {
                   </td>
                   <td>
                     <p>
-                      {cart.name}
+                      {cart.product_name}
                     </p>
                   </td>
                   <td className='text-base'>
@@ -162,14 +163,14 @@ const Cart = () => {
           </div>
         </div>
         <div className="cart-side">
-          <div className="flex-space"><h2>Order Summary</h2></div>
-          <div className="flex-space">
-            <span>subtotal</span>
-            <span>{total}</span>
+          <div className="flex-space"><h2 className='mb-4'>Order Summary</h2></div>
+          <div className="flex-space my-1">
+            <span className='text-xl'>Subtotal</span>
+            <span className='text-gray font-semibold'>{naira_format(total)}</span>
           </div>
-          <div className="flex-space total">
-            <span>Total</span>
-            <span className="">{total}</span>
+          <div className="flex-space total my-1">
+            <span className='text-xl'>Total</span>
+            <span className=" text-gray font-bold">{naira_format(total)}</span>
           </div>
           <div>
             <a onClick={handleCheckout} className="btn"> CHECKOUT</a>

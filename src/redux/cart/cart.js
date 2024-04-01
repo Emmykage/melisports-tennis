@@ -7,6 +7,8 @@ const setCart = (cartItems) => {
 };
 const getCart = () => JSON.parse(localStorage.getItem('cartitem'));
 
+
+
 const initialState = {
   cartItems: [],
   message: '',
@@ -55,6 +57,12 @@ const cartSlice = createSlice({
         ...state,
         cartItems: getCart(),
       };
+    },
+    getLocalCart: (state) => {
+      return{
+        ...state,
+        cartItems: getCart()
+      }
     },
     updateQty: (state, action) => {
       const updateCart = getCart().map((item) => {
@@ -136,6 +144,6 @@ const cartSlice = createSlice({
   },
 });
 export const {
-  removeItem, updateQty, updater, calculateTotal, addItem, addCart, clearCart,
+  removeItem, updateQty, updater, calculateTotal, addItem, addCart, clearCart, getLocalCart
 } = cartSlice.actions;
 export default cartSlice.reducer;
