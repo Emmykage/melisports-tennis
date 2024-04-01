@@ -9,6 +9,7 @@ import { openModal } from '../redux/modal/modal';
 import { addOrder } from '../redux/actions/orders';
 import { closeNav } from '../redux/modal/nav';
 import { closeList } from '../redux/products/searched';
+import { naira_format } from '../components/utils/naira_format';
 
 const Cart = () => {
   const { cartItems, total, update } = useSelector((state) => state.cart);
@@ -31,6 +32,7 @@ const Cart = () => {
   const handleCheckout = () => {
     dispatch(addOrder(data));
   };
+  console.log(cartItems)
 
   status == 'success' && navigate('/checkout');
 
@@ -79,11 +81,12 @@ const Cart = () => {
           <table>
             <thead>
               <tr>
-                <th>Product</th>
-                <th>name</th>
-                <th>Price</th>
+                <th ></th>
+                <th >name</th>
+                <th >Price</th>
                 <th>Total</th>
                 <th>Quantity</th>
+                <th></th>
 
               </tr>
             </thead>
@@ -100,8 +103,8 @@ const Cart = () => {
                       {cart.name}
                     </p>
                   </td>
-                  <td>
-                    <p>{cart.price}</p>
+                  <td className='text-base'>
+                    <p>{naira_format(cart.price)}</p>
                   </td>
                   <td>
                     <p>{cart.total}</p>
@@ -137,8 +140,8 @@ const Cart = () => {
                       </div>
                     </div>
                   </td>
-                  <td>
-                    <button className=" btn m-h4" onClick={() => handleDelete(cart.id)}> remove</button>
+                  <td className=''>
+                    <button className="btn block" onClick={() => handleDelete(cart.id)}> remove</button>
 
                   </td>
                 </tr>
@@ -149,7 +152,7 @@ const Cart = () => {
 
           <div className="clear">
             <button
-              className="m-h4 btn"
+              className="btn"
               type="button"
               onClick={() => dispatch(openModal())}
             >

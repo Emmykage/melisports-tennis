@@ -1,5 +1,117 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.prompt-thin {
+  font-family: "Prompt", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.prompt-extralight {
+  font-family: "Prompt", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.prompt-light {
+  font-family: "Prompt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.prompt-regular {
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.prompt-medium {
+  font-family: "Prompt", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.prompt-semibold {
+  font-family: "Prompt", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.prompt-bold {
+  font-family: "Prompt", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.prompt-extrabold {
+  font-family: "Prompt", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.prompt-black {
+  font-family: "Prompt", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.prompt-thin-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.prompt-extralight-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.prompt-light-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.prompt-regular-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.prompt-medium-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.prompt-semibold-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.prompt-bold-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.prompt-extrabold-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.prompt-black-italic {
+  font-family: "Prompt", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
+
 @font-face {
   font-family: spantara;
   src: url("./assets/fonts/spantaran.ttf");
@@ -14,7 +126,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: "poppins", Helvetica, sans-serif;
+  font-family: Prompt, "poppins", Helvetica, sans-serif;
   list-style: none;
   appearance: none;
   border: none;
@@ -119,7 +231,7 @@ hr{
 }
 
 .text-5xl {
-  font-size: 34;
+  font-size: 34px;
 }
 
 .text-6xl {
@@ -281,7 +393,10 @@ hr{
   padding-top: 4.5rem;
   padding-bottom: 4.5rem;
 }
-
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 .my-1 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -342,6 +457,18 @@ hr{
 .mt-2{
   margin-top: 1rem;
 }
+.mb-1{
+  margin-bottom: 0.5rem;
+}
+.mb-2{
+  margin-bottom: 1rem;
+}
+.mb-4{
+  margin-bottom: 2rem;
+}
+.mb-3{
+  margin-bottom: 1.5rem;
+}
 .m-auto {
   margin: auto;
 }
@@ -371,7 +498,9 @@ hr{
 .text-gray {
   color: var(--color-dark-variant);
 }
-
+.text-gray-dark {
+  color: #333;
+}
 .text-orange {
   color: var(--color-main-orange);
 }
@@ -388,9 +517,7 @@ hr{
   padding-bottom: 2rem;
   margin-top: 2rem;
 }
-td{
-  border: 1px solid rgb(208, 208, 208);
-}
+
 
 .spantara {
   font-family: spantara;
@@ -745,8 +872,22 @@ a {
   padding: 1rem;
 }
 
-.ml {
+.ml-0 {
+  margin-left: 0rem;
+}.ml-1 {
+  margin-left: 0.5rem;
+}.ml-2 {
+  margin-left: 1rem;
+}.ml-3 {
+  margin-left: 1.5rem;
+}.ml-4 {
+  margin-left: 2rem;
+}.ml-5 {
+  margin-left: 2.5rem;
+}.ml-6 {
   margin-left: 3rem;
+}.ml-7 {
+  margin-left: 3.5rem;
 }
 .switch{
   flex-flow: column;
@@ -1003,9 +1144,10 @@ button {
 
 .btn {
   width: fit-content;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 1rem;
   background: var(--color-theme-variant);
+  cursor: pointer;
   color: var(--color-white);
 }
 
@@ -1014,7 +1156,7 @@ form .btn {
 }
 
 .btn:hover {
-  background: var(--color-theme);
+  background: var(--color-theme-light);
   color: var(--color-white);
 }
 
@@ -1174,14 +1316,20 @@ button:active {
 .green {
   color: green;
 }
-
+.border-gray{
+  border: 1px solid gray;
+}
+.border-gray-light{
+  border: 1px solid lightgray;
+}
 .right-detail-container {
-  flex-basis: 70%;
+  flex-basis: 55%;
   padding-left: 15px;
 }
 
 .left-detail-container {
-  flex-basis: 30%;
+  flex-basis: 40%;
+  border-radius: 6px;
 }
 
 .product-details p {
@@ -1204,27 +1352,28 @@ table {
   user-select: none;
 }
 
-/* table td,
-table th {
-  padding: 1.5rem;
-} */
 
+table tbody tr:last-child {
+  border-bottom: 1px solid #222629;
+}
 .recent-orders table tr:nth-child(even),
 .order-detail table tr:nth-child(even) {
   background-color: rgb(209, 209, 209);
 }
 
 table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+
+  padding: 12px 16px;
   text-align: left;
   background-color: #04aa6d;
   color: white;
 }
-
-table tbody tr:last-child {
-  border-bottom: 1px solid #222629;
+table td {
+  padding: 12px 16px;
+    border: 1px solid rgb(208, 208, 208);
 }
+
+
 
 .div-center-flex {
   justify-content: center;
@@ -1265,13 +1414,9 @@ table tbody tr:last-child {
 .prev-details p,
 .prev-details span {
   margin-right: 12px;
-  color: #333;
-  font-weight: 600;
+
 }
 
-.prev-details span {
-  font-size: 1.24rem;
-}
 
 .prev-details .btn {
   padding: 6px 12px;
@@ -1280,7 +1425,7 @@ table tbody tr:last-child {
 .prev-details a:hover,
 .prev-details > div button:hover {
   color: white;
-  background: var(--color-primary-variant);
+  /* background: var(--color-primary-variant); */
 }
 
 .prev-details > div button {
@@ -1376,7 +1521,8 @@ table tbody tr:last-child {
 }
 
 .description-details p {
-  font-size: 18px;
+  font-size: 14px;
+  text-align: justify;
 }
 
 /* ===================== carts======================== */
@@ -1393,11 +1539,12 @@ table tbody tr:last-child {
 }
 
 .cart-div {
+
   width: 80%;
   min-height: 70vh;
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .cart-div li .cart-img {
@@ -1445,12 +1592,13 @@ table tbody tr:last-child {
 .cart-btn-div {
   width: 100%;
   align-items: center;
-  border: 1px solid #222629;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
 }
 
 .cart-div table p,
 .cart-div table span {
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 
 td .btn.change {
@@ -1459,9 +1607,11 @@ td .btn.change {
   background: transparent;
 }
 
-td:last-child .btn {
+.cart-div table td:last-child .btn {
   background: var(--color-danger);
   font-weight: 600;
+  padding: 8px 6px;
+  margin: auto;
 }
 
 .cart-div ul {
@@ -1510,6 +1660,7 @@ td:last-child .btn {
   display: flex;
   align-items: center;
   height: 30px;
+  border-radius: 6px;
 }
 
 .cart-div .cart-btn button {
@@ -1522,6 +1673,8 @@ td:last-child .btn {
 }
 
 .cart-div .clear .btn {
+  margin-top: 14px;
+  padding: 7px 12px;
   background-color: var(--color-warning);
 }
 
@@ -1699,13 +1852,14 @@ td:last-child .btn {
 
 @media screen and (max-width: 1400px) {
   table {
-    display: block;
+    /* display: block; */
     overflow-x: auto;
     white-space: nowrap;
   }
 
   .cart-div {
     width: 90%;
+    margin-top: 20px;
   }
 
   .serv-box.top img {

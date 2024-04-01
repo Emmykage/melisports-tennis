@@ -162,8 +162,8 @@ const Nav = () => {
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink href="/brands">Brands</NavLink>
-                <div className="link-items flex">
+                <NavLink to="/brands">Brands</NavLink>
+                {/* <div className="link-items flex">
                   <div>
                     <h3>
                       Sport Brands
@@ -172,16 +172,14 @@ const Nav = () => {
                   <ul>
 
                     <h4>Tennis Racquets</h4>
-                    <li><a href="/">Babolat</a></li>
-                    {/* <li><a href="/">Wilso</a></li> */}
+                    <li><a href="/brands">Babolat</a></li>
                   </ul>
                   <ul>
 
                     <h4>Badminton Racquets</h4>
-                    <li><a href="/">Babolat</a></li>
-                    {/* <li><a href="/">Wilson</a></li> */}
+                    <li><a href="/brands">Babolat</a></li>
                   </ul>
-                </div>
+                </div> */}
               </li>
 
               {user !== null && ((user.user.role == 'admin') && (

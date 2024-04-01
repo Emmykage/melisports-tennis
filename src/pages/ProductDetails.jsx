@@ -40,29 +40,29 @@ const ProductDetails = () => {
   return (
     <div className="p-container">
       <div className="row detail-container">
-        <div className="left-detail-container col-md-6 border-white">
+        <div className="left-detail-container col-md-6 border-gray-light centralize">
 
           <div className="product-display-image">
 
             <img src={product.image} alt="yeo" />
           </div>
         </div>
-        <div className="col-md-6 right-detail-container  prev-details border-white">
-          <h2 className="m-h4">{product.name}</h2>
+        <div className="col-md-6 right-detail-container  prev-details">
+          <h2 className="my-0">{product.name}</h2>
           <div className="price">
 
-            <span>
+            <span className='text-xl'>
               {NGNaira.format(product.price)}
             </span>
 
           </div>
           {product.head_size && (
           <div className="headsize">
-            <span>
-              Head size:
+            <span className='block text-xl'>
+              Head size
             </span>
 
-            <span>
+            <span className='text-base text-gray-dark font-medium'>
               {product.head_size}
               {' '}
               &#13216;
@@ -73,10 +73,10 @@ const ProductDetails = () => {
           {product.grip_size && (
           <div>
 
-            <span>
+            <span className='text-xl block'>
               Grip size:
             </span>
-            <span>
+            <span className='text-gray-dark'>
               {' '}
               {product.grip_size}
             </span>
@@ -97,7 +97,7 @@ const ProductDetails = () => {
           </div>
           ) }
 
-          <div className="flex-center center ">
+          <div className="flex gap-3">
             <div className="btn-div">
               <button
                 type="button"
@@ -114,14 +114,17 @@ const ProductDetails = () => {
               </button>
 
             </div>
-            <a
-              className="btn"
+            
+
+          </div>
+          <div>
+          <a
+              className="btn block"
               onClick={handleCart}
             >
               {' '}
               Add to Cart
             </a>
-
           </div>
         </div>
 
@@ -133,10 +136,10 @@ const ProductDetails = () => {
         && (
         <div className="">
           <div className="col-6">
-            <span className="x-bold">Head Size</span>
+            <span className="font-semibold text-gray-dark">Head Size</span>
           </div>
           <div className="col-6">
-            <span>
+            <span className='text-gray-dark font-medium'>
               {product.head_size}
               {' '}
               &#13216;
@@ -148,7 +151,7 @@ const ProductDetails = () => {
         && (
         <div>
           <div className="col-6">
-            <span>weight</span>
+            <span className="font-semibold text-gray-dark">weight</span>
 
           </div>
           <div className="col-6">
@@ -165,7 +168,7 @@ const ProductDetails = () => {
         && (
         <div>
           <div className="col-6">
-            <span>Size</span>
+            <span className="font-semibold text-gray-dark">Size</span>
 
           </div>
           <div className="col-6">
@@ -178,7 +181,7 @@ const ProductDetails = () => {
         && (
         <div>
           <div className="col-6">
-            <span>Length </span>
+            <span  className="font-semibold text-gray-dark">Length </span>
 
           </div>
           <div className="col-6">
@@ -195,7 +198,7 @@ const ProductDetails = () => {
         && (
         <div>
           <div className="col-6">
-            <span>Composition </span>
+            <span className="font-semibold text-gray-dark">Composition </span>
 
           </div>
           <div className="col-6">
@@ -208,7 +211,7 @@ const ProductDetails = () => {
         && (
         <div>
           <div>
-            <span>Strung/Unstrung</span>
+            <span className="font-semibold text-gray-dark">Strung/Unstrung</span>
 
           </div>
           <div className="col-6">
@@ -222,7 +225,7 @@ const ProductDetails = () => {
         <div>
 
           <div className="col-6">
-            <span>Recommended Tension</span>
+            <span className="font-semibold text-gray-dark">Recommended Tension</span>
 
           </div>
           <div className="col-6">
@@ -239,7 +242,7 @@ const ProductDetails = () => {
       </div>
 
       <div className="description-details m-h4">
-        <h2>Description</h2>
+        <h2 className='ml-0'>Description</h2>
         <p>
           {product.description}
 

@@ -62,7 +62,7 @@ function App() {
         <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
         <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
         <Route path="paymentform" element={<StripeContainer />} />
-        <Route path="/brands" element={<MainInfoLayout><Brands /></MainInfoLayout>} />
+        <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
         <Route path="/store" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
