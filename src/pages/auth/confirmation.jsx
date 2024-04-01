@@ -1,41 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { loginUser } from '../../redux/actions/auth';
-
-import './auth.css';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-
+import './auth.css';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { userLog } from '../../redux/user/user';
-import { ThemeProvider } from 'styled-components';
-import { Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, Link, TextField, Typography, createTheme } from '@mui/material';
+import { updater } from '../../redux/cart/cart';
+import { loginUser } from '../../redux/actions/auth';
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Vortech
-      </Link>
-      {' '}
-      {new Date().getFullYear()}
-      .
-    </Typography>
-  );
-}
 const theme = createTheme();
-const AdminLogin = () => {
-  const [show, setShow] = useState(true);
 
-
-
-  // const toggleReveal = () => {
-  //   setShow((prev) => !prev);
-  // };
-
+export default function Confirmation() {
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -45,12 +34,6 @@ const AdminLogin = () => {
   useEffect(() => {
     dispatch(userLog());
   }, []);
-
-  const handleRedirect = () => {
-    localStorage.setItem('meli_auth', '');
-    dispatch(userLog());
-    navigate('/auth/login');
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -63,9 +46,9 @@ const AdminLogin = () => {
     };
     dispatch(loginUser(formInput));
   };
-  if (user == null || user == undefined || Object.keys(user) == 0) {
+  // if (user == null || user == undefined) {
     return (
-     <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
@@ -76,10 +59,9 @@ const AdminLogin = () => {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/">Visit Site</NavLink>
 
             <Typography component="h1" variant="h5">
-             Admin Login
+              Confirm Account
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
@@ -105,12 +87,7 @@ const AdminLogin = () => {
                   autoComplete="new-password"
                 />
               </Grid>
-                <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+                
               </Grid>
               <p className="blue">
                 {' '}
@@ -127,51 +104,14 @@ const AdminLogin = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Admin 
               Login
               </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                <NavLink to="/auth/sign_up">
-
-                  <Link variant="body2">
-                    Do not have an account? Sign Up
-                  </Link>
-                </NavLink>
-              </Grid>
-              </Grid>
+              
             </Box>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
         </Container>
       </ThemeProvider>
-      );
-  } if (user.user.role == 'client') {
-    return (
-      <div>
-        <h1 className='text-center'>
-          You are not Authorized Please sign in
-          <NavLink onClick={handleRedirect} className={'block text-center'} to="/auth/login">here</NavLink>
-        </h1>
-
-      </div>
     );
-  }else{
-    navigation('/admin');
-
   }
-
-};
-
-export default AdminLogin;
-// else if( user.user.role == "client"){
-//   return(
-//     <div>
-//       <h1>You are not Authorized Please sign in <NavLink to="/auth/login">here</NavLink> </h1>
-
-//     </div>
-//   )
-
+//   navigation('/');
 // }
-
-// || Object.keys(user == 0)

@@ -17,6 +17,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { userLog } from '../../redux/user/user';
+import { addUser } from '../../redux/actions/auth';
 
 function Copyright(props) {
   return (
@@ -59,6 +60,8 @@ export default function SignUp() {
       },
 
     };
+    dispatch(addUser(formInput));
+
   };
   if (user == null || user == undefined) {
     return (

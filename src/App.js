@@ -43,6 +43,7 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import BecomeADistributor from './pages/BecomeADistributor';
 import Brands from './pages/Brands';
+import Confirmation from './pages/auth/confirmation';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -100,6 +101,7 @@ function App() {
         <Route path="/auth">
           <Route path="sign_up" element={<Signup />} />
           <Route path="login" element={<Login />} />
+          <Route path="confirmation" element={<Confirmation />} />
           <Route path="admin_sign_up" element={<AdminSignUp />} />
           <Route path="admin_login" element={<AdminLogin />} />
 
