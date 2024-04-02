@@ -46,12 +46,10 @@ const cartSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       getCart();
-      // console.log([action.payload], action.payload)
 
       if (getCart() == null || getCart().length < 1) {
         const newCartArray = [action.payload];
         setCart(newCartArray);
-        console.log("Sis less")
         return {
           ...state,
           cartItems: getCart(),
@@ -60,7 +58,6 @@ const cartSlice = createSlice({
 
       // jjh
       const cartExist = getCart().find((cart) => cart.product_id == action.payload.product_id);
-      console.log(cartExist)
       if (cartExist == undefined) {
         const newCartArray = [...getCart(), action.payload];
         setCart(newCartArray);
@@ -105,11 +102,9 @@ const cartSlice = createSlice({
     },
 
     removeItem: (state, action) => {
-      console.log(action.payload)
 
 
       const filterdCart = getCart().filter((cart) => cart.product_id !== action.payload)
-      console.log(getCart(), filterdCart)
       setCart(filterdCart)
       return{
       ...state,

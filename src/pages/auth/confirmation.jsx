@@ -27,7 +27,6 @@ export default function Confirmation() {
   useEffect(() => {
     dispatch(userLog());
   }, []);
-  console.log(user)
 
   const handleSubmit = (event) => {
     event.preventDefault();

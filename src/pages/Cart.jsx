@@ -33,7 +33,6 @@ const Cart = () => {
   const handleCheckout = () => {
     dispatch(addOrder(data));
   };
-  // console.log(cartItems)
 
   status == 'success' && navigate('/checkout');
 
@@ -71,7 +70,6 @@ const Cart = () => {
     dispatch(updater());
   };
   const handleDelete = (id) => {
-    // console.log(id)
 
     dispatch(removeItem(id));
     dispatch(updater());

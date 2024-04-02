@@ -28,8 +28,6 @@ const NavInfo = () => {
     dispatch(userLog());
     navigate('/auth/login');
   };
-  console.log('first');
-
   return (
     <>
       <nav>

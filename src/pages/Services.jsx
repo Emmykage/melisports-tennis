@@ -18,7 +18,6 @@ const Services = () => {
     dispatch(getCatalogRaquets());
     dispatch(closeNav());
   }, []);
-  console.log(accessories)
 
   return (
     <>

@@ -37,7 +37,6 @@ const AddProduct = () => {
     if(e.target.photo.files[0] ||  e.target.image.value ){
       const shoeValues = Array.from(e.target.shoe_sizes).map(option => option.value)
       const clothValues = Array.from(e.target.cloth_sizes).map(option => option.value)
-      console.log(e.target.image.value)
       const formData = new FormData()
       formData.append("product[name]", e.target.name.value)
       formData.append("product[price]", e.target.price.value)
@@ -60,11 +59,6 @@ const AddProduct = () => {
       formData.append("product[photo]", e.target.photo.files[0])
 
       
-      // if(e.target.photo.files[0]){
-      //   formData.append("product[photo]", e.target.photo.files[0])
-      // }
-      const data = Object.fromEntries(formData)
-      console.log(data)
       dispatch(addProduct(formData));
     }else{
       alert("No image: Add a product image")

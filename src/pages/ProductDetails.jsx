@@ -24,7 +24,6 @@ const ProductDetails = () => {
     dispatch(getProduct(id));
   }, []);
   const handleCart = () => {
-    // console.log(product.name)  
     dispatch(addCart({
       product_id: id, image: product.image, price: product.price, quantity: count, product_name: product.name
     }));

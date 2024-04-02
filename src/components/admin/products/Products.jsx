@@ -16,7 +16,6 @@ const Products = () => {
   const { updater } = useSelector((state) => state.product);
 
   const dispatch = useDispatch();
-  console.log(products)
 
   useEffect(() => {
     dispatch(getProducts());
@@ -46,7 +45,7 @@ const Products = () => {
           <div key={product.id} className="products-display">
             <div className="prod-img">
               <a>
-                <img src={product.photo_url ? product.photo_url : product.image} alt="" />
+                <img src={product.photo_url ? product.photo_url : product.image} alt={product.name} />
               </a>
 
             </div>
