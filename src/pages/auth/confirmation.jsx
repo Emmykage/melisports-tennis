@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 import './auth.css';
-import { BsFacebook } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { userLog } from '../../redux/user/user';
-import { updater } from '../../redux/cart/cart';
 import { loginUser } from '../../redux/actions/auth';
 
 
@@ -34,6 +27,7 @@ export default function Confirmation() {
   useEffect(() => {
     dispatch(userLog());
   }, []);
+  console.log(user)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,7 +40,7 @@ export default function Confirmation() {
     };
     dispatch(loginUser(formInput));
   };
-  // if (user == null || user == undefined) {
+  if ((user && !user.confirmed_at)) {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -89,12 +83,12 @@ export default function Confirmation() {
               </Grid>
                 
               </Grid>
-              <p className="blue">
+              <p className="text-blue">
                 {' '}
-                {loading && 'loading...' }
+                {loading && 'loading...'}
               </p>
 
-              <p className="red">
+              <p className="text-red">
                 {' '}
                 {error && message }
               </p>
@@ -113,5 +107,5 @@ export default function Confirmation() {
       </ThemeProvider>
     );
   }
-//   navigation('/');
-// }
+  navigation('/');
+}

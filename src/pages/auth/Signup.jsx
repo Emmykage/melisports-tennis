@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -40,6 +40,8 @@ export default function SignUp() {
   const {
     user, error, message, loading,
   } = useSelector((state) => state.user);
+
+  const [notification, setNotification] = useState({color: '', text: null})
   useEffect(() => {
     dispatch(userLog());
   }, []);
@@ -156,6 +158,15 @@ export default function SignUp() {
                   />
                 </Grid>
               </Grid>
+              <p className="text-blue">
+                {' '}
+                {loading && 'loading...' }
+              </p>
+
+              <p className="text-red">
+                {' '}
+                {error && message }
+              </p>
               <Button
                 type="submit"
                 fullWidth

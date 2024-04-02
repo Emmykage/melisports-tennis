@@ -1179,6 +1179,9 @@ button:active {
 .bg-blue {
   background-color: blue;
 }
+.text-blue{
+  color: blue;
+}
 
 .full-width {
   flex-basis: 78%;

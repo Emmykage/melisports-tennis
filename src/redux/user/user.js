@@ -60,8 +60,10 @@ const userSlice = createSlice({
         return {
           ...state,
           logged: true,
+          loading: false,
           user: response,
-          message: 'sign up successfull',
+          error: false,
+          message: response.message,
         };
       }
 
