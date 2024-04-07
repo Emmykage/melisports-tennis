@@ -111,14 +111,15 @@ export default function SignUp() {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-
+                    required
                     fullWidth
-                    id="username"
-                    label="username"
-                    name="username"
-                    autoComplete="username"
+                    id="phone_no"
+                    label="Mobile"
+                    name="phone_no"
+                    autoComplete="phone_no"
                   />
                 </Grid>
+                
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -129,16 +130,7 @@ export default function SignUp() {
                     autoComplete="email"
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="phone_no"
-                    label="Mobile"
-                    name="phone_no"
-                    autoComplete="phone_no"
-                  />
-                </Grid>
+               
 
                 <Grid item xs={12}>
                   <TextField

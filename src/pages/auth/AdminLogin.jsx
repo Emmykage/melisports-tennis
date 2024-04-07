@@ -146,7 +146,7 @@ const AdminLogin = () => {
         </Container>
       </ThemeProvider>
       );
-  } if (user.user.role == 'client') {
+  } if (user.role == 'client') {
     return (
       <div>
         <h1 className='text-center'>

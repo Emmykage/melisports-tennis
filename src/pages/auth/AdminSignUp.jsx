@@ -41,7 +41,7 @@ const AdminSignUp = () => {
         last_name: data.get('lastName'),
         email: data.get('email'),
         password: data.get('password'),
-        phone_no: data.get('phone_no'),
+        // phone_no: data.get('phone_no'),
         username: data.get('username'),
         role: 'admin',
 
@@ -123,7 +123,7 @@ const AdminSignUp = () => {
                   autoComplete="email"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -132,7 +132,7 @@ const AdminSignUp = () => {
                   name="phone_no"
                   autoComplete="phone_no"
                 />
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12}>
                 <TextField

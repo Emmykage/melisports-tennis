@@ -19,10 +19,10 @@ const userSlice = createSlice({
     userLog: (state) => {
       try {
         const auth = localStorage.getItem('meli_auth');
-
+          console.log(JSON.parse(auth).user)
         return {
           ...state,
-          user: JSON.parse(auth),
+          user: JSON.parse(auth).user,
           logged: true,
 
         };
@@ -61,7 +61,7 @@ const userSlice = createSlice({
           ...state,
           logged: true,
           loading: false,
-          user: response,
+          user: response.user,
           error: false,
           message: response.message,
         };
@@ -94,8 +94,9 @@ const userSlice = createSlice({
         return {
           ...state,
           logged: true,
-          user: response,
+          user: response.user,
           error: false,
+          loading:false,
           message: 'log in successful',
         };
       }

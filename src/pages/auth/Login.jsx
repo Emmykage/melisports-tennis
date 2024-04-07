@@ -20,12 +20,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { userLog } from '../../redux/user/user';
 import { updater } from '../../redux/cart/cart';
 import { loginUser } from '../../redux/actions/auth';
-// import { NavLink, useNavigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useEffect } from 'react';
-// import { userLog } from '../../redux/auth/user_authentication';
-// import { userSession } from '../../redux/actions/auth';
-// import { Copyright } from './Copyright';
+
 
 function Copyright(props) {
   return (
