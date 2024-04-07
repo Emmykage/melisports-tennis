@@ -6,6 +6,8 @@ import { userLog } from '../../redux/user/user';
 import { addUser } from '../../redux/actions/auth';
 import {Link, Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, TextField, ThemeProvider, Typography, createTheme } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { BsEyeSlash } from 'react-icons/bs';
+import { AiOutlineEye } from 'react-icons/ai';
 
 function Copyright(props) {
   return (
@@ -23,6 +25,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 const AdminSignUp = () => {
+  const [seePassword, setSeePassword] = useState(false)
   const [show, setShow] = useState(true);
 
   const navigation = useNavigate();
@@ -93,7 +96,9 @@ const AdminSignUp = () => {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              {/* <div className='relative'> */}
+
+              <Grid className='relative'  item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -102,7 +107,11 @@ const AdminSignUp = () => {
                   name="lastName"
                   autoComplete="family-name"
                 />
+                
+               
               </Grid>
+              {/* </div> */}
+
               <Grid item xs={12}>
                 <TextField
 
@@ -134,16 +143,21 @@ const AdminSignUp = () => {
                 />
               </Grid> */}
 
-              <Grid item xs={12}>
+              <Grid className='relative' item xs={12}>
                 <TextField
                   required
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={seePassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
+                  
                 />
+                <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !seePassword)}>
+                
+                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
+                </span>
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel

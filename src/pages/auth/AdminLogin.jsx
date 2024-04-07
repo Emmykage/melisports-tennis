@@ -6,7 +6,7 @@ import { loginUser } from '../../redux/actions/auth';
 import './auth.css';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 
-import { BsFacebook } from 'react-icons/bs';
+import { BsEyeSlash, BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { userLog } from '../../redux/user/user';
 import { ThemeProvider } from 'styled-components';
@@ -28,6 +28,8 @@ function Copyright(props) {
 }
 const theme = createTheme();
 const AdminLogin = () => {
+  const [seePassword, setSeePassword] = useState(false)
+
   const [show, setShow] = useState(true);
 
 
@@ -94,16 +96,20 @@ const AdminLogin = () => {
                   autoComplete="email"
                 />
               </Grid>
-                <Grid item xs={12}>
+                <Grid className='relative' item xs={12}>
                 <TextField
                   required
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={seePassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
                 />
+                 <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !prev)}>
+                
+                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
+                </span>
               </Grid>
                 <Grid item xs={12}>
                 <FormControlLabel

@@ -573,6 +573,12 @@ a {
   position: relative;
 }
 
+.right-mid{
+  right: 7px;
+  top: 50%;
+  /* transform: translateY(0%); */
+}
+
 
 .white {
   color: white;

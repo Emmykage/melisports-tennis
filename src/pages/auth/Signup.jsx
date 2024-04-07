@@ -18,6 +18,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { userLog } from '../../redux/user/user';
 import { addUser } from '../../redux/actions/auth';
+import { BsEyeSlash } from 'react-icons/bs';
+import { AiOutlineEye } from 'react-icons/ai';
 
 function Copyright(props) {
   return (
@@ -35,6 +37,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [seePassword, setSeePassword] = useState(false)
+
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -109,17 +113,7 @@ export default function SignUp() {
                     autoComplete="family-name"
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="phone_no"
-                    label="Mobile"
-                    name="phone_no"
-                    autoComplete="phone_no"
-                  />
-                </Grid>
-                
+               
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -131,17 +125,31 @@ export default function SignUp() {
                   />
                 </Grid>
                
-
                 <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="phone_no"
+                    label="Mobile"
+                    name="phone_no"
+                    autoComplete="phone_no"
+                  />
+                </Grid>
+                
+                <Grid className='relative' item xs={12}>
                   <TextField
                     required
                     fullWidth
                     name="password"
                     label="Password"
-                    type="password"
+                    type={seePassword ? "text" : "password"}
                     id="password"
                     autoComplete="new-password"
                   />
+                    <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !seePassword)}>
+                
+                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
+                </span>
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel

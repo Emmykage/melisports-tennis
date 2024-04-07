@@ -13,11 +13,15 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { userLog } from '../../redux/user/user';
 import { loginUser } from '../../redux/actions/auth';
+import { BsEyeSlash } from 'react-icons/bs';
+import { AiOutlineEye } from 'react-icons/ai';
 
 
 const theme = createTheme();
 
 export default function Confirmation() {
+  const [seePassword, setSeePassword] = useState(false)
+
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -76,10 +80,14 @@ export default function Confirmation() {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={seePassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
                 />
+                <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !prev)}>
+                
+                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
+                </span>
               </Grid>
                 
               </Grid>

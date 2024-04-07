@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import './auth.css';
-import { BsFacebook } from 'react-icons/bs';
+import { BsEyeSlash, BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -38,6 +38,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+  const [seePassword, setSeePassword] = useState(false)
+
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -90,16 +92,20 @@ export default function Login() {
                   autoComplete="email"
                 />
               </Grid>
-                <Grid item xs={12}>
+                <Grid className='relative' item xs={12}>
                 <TextField
                   required
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={seePassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
                 />
+                  <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !seePassword)}>
+                
+                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
+                </span>
               </Grid>
                 <Grid item xs={12}>
                 <FormControlLabel
