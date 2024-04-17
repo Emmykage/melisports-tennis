@@ -41,7 +41,7 @@ const EditProduct = () => {
   return (
     <div className="product-form admin">
       <form onSubmit={handleSubmit}>
-      <div className='quantity'>
+        <div className='quantity'>
           <label htmlFor="quantity">Quantity</label>
           <input onChange={handleFormInput} type="number" value={product.quantity} name="quantity" id="quantity"/>
         </div>

@@ -39,6 +39,7 @@ const AddProduct = () => {
       const clothValues = Array.from(e.target.cloth_sizes).map(option => option.value)
       const formData = new FormData()
       formData.append("product[name]", e.target.name.value)
+      formData.append("product[quantity]", e.target.quantity.value)
       formData.append("product[price]", e.target.price.value)
       formData.append("product[sku]", e.target.sku.value)
       formData.append("product[product_category_id]", e.target.product_category_id.value)
@@ -70,9 +71,9 @@ const AddProduct = () => {
     <div className="product-form admin">
 
       <form onSubmit={handleSubmit} ref={formRef}>
-        <div>
-          <label htmlFor="">Quantity</label>
-          <input type="number" name="quantity" id="quantity"/>
+      <div className='quantity'>
+          <label htmlFor="quantity">Quantity</label>
+          <input onChange={handleFormInput} type="number" value={product.quantity} name="quantity" id="quantity"/>
         </div>
         <div className="form-row text-sm my-1">
           <div className="input-half">
