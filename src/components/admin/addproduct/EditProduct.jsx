@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import getGenders from '../../../redux/actions/gender';
 import getLevels from '../../../redux/actions/misc';
-import { updateProduct } from '../../../redux/actions/product';
+import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
-import baseURL from '../../../redux/baseURL';
 import shoeSizes from '../../mock/ShoeSizess';
 import clothSizes from '../../mock/ClothSizes';
 import strung from '../../mock/Strung';
+import { writeProduct } from '../../../redux/product/product';
 
 const EditProduct = () => {
   const { editId } = useParams();
@@ -16,79 +16,35 @@ const EditProduct = () => {
 
   const { product_categories } = useSelector((state) => state.product_categories);
 
-  const { loading, report, status } = useSelector((state) => state.product);
+  const {product, loading, report, status } = useSelector((state) => state.product);
 
   const levels = useSelector((state) => state.level.levels);
 
   const genders = useSelector((state) => state.gender.genders);
 
-  const [formInput, setFormInput] = useState({});
 
-  const fetchData = async () => {
-    fetch(`${baseURL}products/${editId}`)
-      .then((res) => res.json()).then((json) => setFormInput(json));
-  };
   useEffect(() => {
-    fetchData();
     dispatch(getProductCategories());
+    dispatch(getProduct(editId))
     dispatch(getLevels());
     dispatch(getGenders());
   }, []);
-
   const handleFormInput = (e) => {
-    if (e.target.name == 'cloth_sizes_attributes' || e.target.name == 'shoe_sizes_attributes') {
-      const { options } = e.target;
-      const value = [];
-      for (let i = 0, l = options.length; i < l; i++) {
-        if (options[i].selected) {
-          value.push({ abbrv: options[i].value });
-        }
-      }
+    dispatch(writeProduct(e.target))
 
-      setFormInput({
-        ...formInput,
-        [e.target.name]: value,
-      });
-    } else {
-      setFormInput({
-        ...formInput,
-        [e.target.name]: e.target.value,
-
-      });
-    }
-  };
-  const clearform = () => {
-    setFormInput({
-      name: '',
-      price: '',
-      image: '',
-      sku: '',
-      product_category_id: '',
-      grip_size: '',
-      head_size: '',
-      rating: '',
-      weight: '',
-      length: '',
-      stiffness: '',
-      composition: '',
-      category: '',
-      description: '',
-      tension: '',
-      colour: '',
-      strung: '',
-      size: '',
-
-    });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProduct(formInput));
-    clearform();
+    dispatch(updateProduct(product));
   };
 
   return (
     <div className="product-form admin">
       <form onSubmit={handleSubmit}>
+      <div className='quantity'>
+          <label htmlFor="quantity">Quantity</label>
+          <input onChange={handleFormInput} type="number" value={product.quantity} name="quantity" id="quantity"/>
+        </div>
         <div className="form-row">
           <div className="input-half">
             <label>
@@ -98,7 +54,7 @@ const EditProduct = () => {
               {' '}
             </label>
             <input
-              value={formInput.name}
+              value={product.name}
               name="name"
               onChange={handleFormInput}
               type="text"
@@ -114,7 +70,7 @@ const EditProduct = () => {
               <span>*</span>
             </label>
             <input
-              value={formInput.price}
+              value={product.price}
               name="price"
               onChange={handleFormInput}
               type="number"
@@ -130,9 +86,8 @@ const EditProduct = () => {
             <select
               placeholder="professionalism"
               name="level_id"
-              value={formInput.level_id ? formInput.level_id : (formInput.level && formInput.level.id)}
+              value={product.level_id ? product.level_id : (product.level && product.level.id)}
               onChange={handleFormInput}
-              // disabled
             >
               {levels.map((level) => (
                 <option value={level.id}>{level.stage}</option>
@@ -146,9 +101,9 @@ const EditProduct = () => {
             <select
               placeholder="gender"
               name="gender_id"
-              value={formInput.gender_id}
+              value={product.gender_id}
               onChange={handleFormInput}
-              disabled
+              
             >
               {genders.map((gender) => (
                 <option value={gender.id}>{gender.name}</option>
@@ -164,7 +119,7 @@ const EditProduct = () => {
             <label htmlFor=""> Head size   </label>
             <input
               name="head_size"
-              value={formInput.head_size}
+              value={product.head_size}
               onChange={handleFormInput}
               type="text"
               placeholder="headsize"
@@ -175,7 +130,7 @@ const EditProduct = () => {
             <label htmlFor=""> Grip size </label>
             <input
               name="grip_size"
-              value={formInput.grip_size}
+              value={product.grip_size}
               onChange={handleFormInput}
               type="text"
               placeholder="grip size"
@@ -209,7 +164,7 @@ const EditProduct = () => {
             <select
               name="shoe_sizes_attributes"
               id="shoe_size"
-  //  value={formInput.cloth_size_attributes}
+              value={product?.cloth_size_attributes}
 
               multiple
               onChange={handleFormInput}
@@ -228,7 +183,7 @@ const EditProduct = () => {
             <label htmlFor=""> SKU   </label>
             <input
               name="sku"
-              value={formInput.sku}
+              value={product.sku}
               onChange={handleFormInput}
               type="text"
               placeholder="sku"
@@ -244,7 +199,7 @@ const EditProduct = () => {
             </label>
             <input
               name="colour"
-              value={formInput.colour}
+              value={product.colour}
               placeholder="colour"
               onChange={handleFormInput}
               type="text"
@@ -255,7 +210,7 @@ const EditProduct = () => {
             <label htmlFor=""> Length            </label>
             <input
               name="length"
-              value={formInput.length}
+              value={product.length}
               onChange={handleFormInput}
               type="text"
               placeholder="lenght"
@@ -270,7 +225,7 @@ const EditProduct = () => {
             <label htmlFor="">Weight     </label>
             <input
               name="weight"
-              value={formInput.weight}
+              value={product.weight}
               onChange={handleFormInput}
               type="text"
               placeholder="weight"
@@ -282,7 +237,7 @@ const EditProduct = () => {
             <label htmlFor="">tension  </label>
             <input
               name="tension"
-              value={formInput.tension}
+              value={product.tension}
               onChange={handleFormInput}
               type="text"
               placeholder="tension"
@@ -298,6 +253,7 @@ const EditProduct = () => {
               name="composition"
               id="composition"
               onChange={handleFormInput}
+              value={product?.composition}
 
             >
               <option value={null} selected>--Selected----</option>
@@ -321,7 +277,7 @@ const EditProduct = () => {
           <select
             placeholder="product category"
             name="product_category_id"
-            value={formInput.product_category && formInput.product_category.id}
+            value={product?.product_category }
             onChange={handleFormInput}
             disabled
           >
@@ -339,7 +295,7 @@ const EditProduct = () => {
           <select
             name="strung"
             id="strung"
-            value={formInput.strung}
+            value={product.strung}
             onChange={handleFormInput}
           >
             {strung.map((item) => (
@@ -361,7 +317,7 @@ const EditProduct = () => {
             type="url"
             name="image"
             onChange={handleFormInput}
-            value={formInput.image}
+            value={product.image}
             placeholder="image url"
             required
           />
@@ -379,7 +335,7 @@ const EditProduct = () => {
           <textarea
             name="description"
             onChange={handleFormInput}
-            value={formInput.description}
+            value={product.description}
             placeholder="Enter description"
             required
           />

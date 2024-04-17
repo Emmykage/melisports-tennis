@@ -15,7 +15,7 @@ const ProdDelModal = (props) => {
         <div className="btn-container">
           <button
             type="button"
-            className="btn confirm-btn"
+            className="btn confirm-btn px-2 py-1"
             onClick={() => {
               dispatch(deleteProduct(id));
               dispatch(closeDelModal());
@@ -27,7 +27,7 @@ const ProdDelModal = (props) => {
 
           <button
             type="button"
-            className="btn confirm-btn"
+            className="btn confirm-btn px-2 py-1"
             onClick={() => dispatch(closeDelModal())}
           >
             cancel

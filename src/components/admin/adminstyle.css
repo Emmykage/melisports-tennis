@@ -618,7 +618,10 @@ main .recent-orders a {
 .right .sales-analytics .add-product h3 {
   font-weight: 600;
 }
-
+form .quantity{
+  width: 200px;
+  margin-left: auto;
+}
 /* -------------------END OF ASIDE -------------------------- */
 
 /* =====================MEDIA QUERIES ================================ */

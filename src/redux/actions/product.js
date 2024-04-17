@@ -50,7 +50,8 @@ const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
+    // .then(res => res.text());
 });
 
 export {

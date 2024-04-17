@@ -83,15 +83,43 @@ const productSlice = createSlice({
       loading: false,
       report: 'failed to update',
     }),
-    [deleteProduct.fulfilled]: (state) => ({
+    [deleteProduct.fulfilled]: (state, action) => {
+      return {
       ...state,
       status: 'success',
       loading: false,
       report: 'deleted',
       updater: !state.updater,
 
-    }),
+    }},
+
   },
+  reducers: {
+    writeProduct:(state, action) =>{
+      if (action.payload.name == 'cloth_sizes_attributes' || action.payload.name == 'shoe_sizes_attributes') {
+        const { options } = action.payload;
+        const value = [];
+        for (let i = 0, l = options.length; i < l; i++) {
+          if (options[i].selected) {
+            value.push({ abbrv: options[i].value });
+          }
+        }
+  
+       return{
+        ...state,
+        product: {...state.product,
+        [action.payload.name]: value}
+       }
+      } else {
+      return{
+        ...state,
+        product: {...state.product,
+        [action.payload.name]: action.payload.value}
+      }
+    }
+    }
+  }
 });
 
 export default productSlice.reducer;
+export const {writeProduct} = productSlice.actions

@@ -70,6 +70,10 @@ const AddProduct = () => {
     <div className="product-form admin">
 
       <form onSubmit={handleSubmit} ref={formRef}>
+        <div>
+          <label htmlFor="">Quantity</label>
+          <input type="number" name="quantity" id="quantity"/>
+        </div>
         <div className="form-row text-sm my-1">
           <div className="input-half">
             <label>
