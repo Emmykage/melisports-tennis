@@ -166,6 +166,15 @@ const AdminSignUp = () => {
                 />
               </Grid>
             </Grid>
+            <p className="blue">
+                {' '}
+                {loading && 'loading...' }
+              </p>
+
+              <p className="red">
+                {' '}
+                {error && message }
+              </p>
             <Button
               type="submit"
               fullWidth
