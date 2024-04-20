@@ -73,7 +73,7 @@ const AddProduct = () => {
       <form onSubmit={handleSubmit} ref={formRef}>
       <div className='quantity'>
           <label htmlFor="quantity">Quantity</label>
-          <input onChange={handleFormInput} type="number" value={product.quantity} name="quantity" id="quantity"/>
+          <input type="number" name="quantity" id="quantity"/>
         </div>
         <div className="form-row text-sm my-1">
           <div className="input-half">
