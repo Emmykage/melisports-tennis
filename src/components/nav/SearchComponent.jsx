@@ -1,40 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import searched from '../../redux/actions/search';
-import { displayList } from '../../redux/products/searched';
 import SearchList from './SearchList';
+import { filterProducts, searchedProducts } from '../../redux/products/product';
 
 const SearchComponent = () => {
+  const searchForm = useRef(null)
   const dispatch = useDispatch();
-  const { searchedProducts, displayedList } = useSelector((state) => state.searched_products);
+  const { searched_products } = useSelector((state) => state.products);
+  const [showSearchList, setShowSearchList] = useState(false); // State variable to control visibility
   const [search, setSearch] = useState({ search: '' });
-  const handleInput = (e) => {
-    dispatch(displayList());
+
+  const handleSearch = (e)=>{
+    e.preventDefault()
+
+  }
+  const handleInput = (e) => {    
     setSearch({ search: e.target.value });
-    clearTimeout(0);
     if (search.search.trim().length == 0) {
       return;
     }
-
-    dispatch(searched(search));
+    const data =  e.target.value
+    dispatch(searchedProducts(data));
   };
+
+  const triggerClose = (e) => {
+  setSearch({ search: "" })
+  dispatch(searchedProducts(""));
+  }
+
+  useEffect(()=>{
+    if(searched_products) setShowSearchList(true)
+  },[searched_products])
+
 
   return (
     <div className="search-component">
-      <form className="search-form">
+      <form className="search-form" onSubmit={handleSearch} ref={searchForm}>
         <div className="search-div">
-          <input type="text" placeholder="Search item" value={search.search} onChange={handleInput} />
+          <input type="text" placeholder="Search item" value={search.search} name='search' id='search' onChange={handleInput} />
           <button type="submit">
-            <BsSearch />
+            <BsSearch/>
             {' '}
           </button>
 
         </div>
 
       </form>
-      {displayedList && <SearchList items={searchedProducts} />}
-
+      {/* <div className='bg-red' onClick={triggerClose} > */}
+      {showSearchList && <SearchList items={searched_products} triggerClose={triggerClose}  />} 
+      {/* </div> */}
     </div>
   );
 };

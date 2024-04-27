@@ -27,7 +27,6 @@ const BagsPage = () => {
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
-    dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
 

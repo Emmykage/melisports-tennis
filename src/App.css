@@ -197,6 +197,9 @@ body {
 .cursor-pointer{
   cursor: pointer;
 }
+.w-full{
+  width: 100%;
+}
 
 .text-xs {
   font-size: 12px;
@@ -1322,10 +1325,6 @@ button:active {
 .left-detail-container {
   flex-basis: 40%;
   border-radius: 6px;
-}
-
-.product-details p {
-  color: #333;
 }
 
 .img-prev {

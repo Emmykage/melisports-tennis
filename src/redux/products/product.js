@@ -3,6 +3,7 @@ import { getProducts } from '../actions/product';
 
 const initialState = {
   products: [],
+  searched_products:[],
   filteredProducts: [],
   loading: false,
   status: 'success',
@@ -15,11 +16,6 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   extraReducers: {
-    // [filterProducts.fulfilled]: (state, action) => ({
-    //   ...state,
-    //   products: action.payload,
-
-    // }),
     [getProducts.fulfilled]: (state, action) => ({
       ...state,
       status: 'success',
@@ -38,20 +34,28 @@ const productsSlice = createSlice({
       loading: false,
       status: 'failed',
     })
-
-    ,
-    reducers: {
-      filterProducts: (state, action) => {
-        return{
-          ...state,
-          filterProducts: state.products.filter(item => item.name.toLowerCase().includes(action.payload) )
-        }
-      }
-
-    }
+    
 
   },
+  reducers: {
+    searchedProducts: (state, action) => {
+      let  f_product = action.payload.length < 1 ? [] : state.products.filter(product => {
+        return product.name.toLowerCase().includes(action.payload.toLowerCase())
+      })
+      return{
+        ...state,
+        searched_products: f_product
+      }
+    },
+    filterProducts: (state, action) => {
+      return{
+        ...state,
+        filterProducts: state.products.filter(item => item.name.toLowerCase().includes(action.payload) )
+      }
+    }
+
+  }
 });
 
 export default productsSlice.reducer;
-export const {filterProducts} = productsSlice.actions
+export const {filterProducts, searchedProducts} = productsSlice.actions

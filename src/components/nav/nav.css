@@ -184,8 +184,15 @@ nav .logo a {
   position: absolute;
   background-color: var(--color-theme-variant);
   width: 100%;
-  padding: 1rem 0 1.8rem 2.5rem;
+  padding: 0rem 0 0 0rem;
   z-index: 51;
+}
+.search-list a{
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.search-list a:hover{
+  background-color: #114364;
 }
 
 .search-list li {

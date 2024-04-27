@@ -26,7 +26,6 @@ const AccessoriesPage = () => {
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
-    dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
   if (loading) {

@@ -12,14 +12,17 @@ import SearchComponent from './SearchComponent';
 import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
+import { getProducts } from '../../redux/actions/product';
 
 const Nav = () => {
+
   const navigate = useNavigate();
   const { counter, update } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
   useEffect(() => {
+    dispatch(getProducts())
     dispatch(userLog());
     dispatch(getCarts());
     dispatch(calculateTotal());

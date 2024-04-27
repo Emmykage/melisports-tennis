@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addProduct, deleteProduct, getProduct, updateProduct,
 } from '../actions/product';
+import searched from '../actions/search';
 
 const initialState = {
   product: {},
@@ -95,6 +96,7 @@ const productSlice = createSlice({
 
   },
   reducers: {
+    
     writeProduct:(state, action) =>{
       if (action.payload.name == 'cloth_sizes_attributes' || action.payload.name == 'shoe_sizes_attributes') {
         const { options } = action.payload;

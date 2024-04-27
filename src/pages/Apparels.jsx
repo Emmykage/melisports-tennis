@@ -23,7 +23,6 @@ const ApparelsPage = () => {
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
-    dispatch(getProducts());
   }, []);
   return (
     <div className="product-container">

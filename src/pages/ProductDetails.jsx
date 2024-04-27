@@ -22,7 +22,7 @@ const ProductDetails = () => {
     dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProduct(id));
-  }, []);
+  }, [product]);
   const handleCart = () => {
     dispatch(addCart({
       product_id: id, image: product.image, price: product.price, quantity: count, product_name: product.name

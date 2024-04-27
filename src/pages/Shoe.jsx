@@ -26,7 +26,6 @@ const ShoesPage = () => {
   useEffect(() => {
     dispatch(closeList());
     dispatch(closeNav());
-    dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
 
