@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import { FiUser, FiMenu } from 'react-icons/fi';
@@ -18,14 +18,28 @@ const Nav = () => {
 
   const navigate = useNavigate();
   const { counter, update } = useSelector((state) => state.cart);
+  const [stickyNav, setStickyNav] = useState('')
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
+
+  const toggleScrollNav = (e) => {
+    if (window.scrollY >= 120) {
+      setStickyNav('sticky-nav')
+      
+    }
+    else{
+      setStickyNav('')
+    }
+      
+  }
   useEffect(() => {
     dispatch(getProducts())
     dispatch(userLog());
     dispatch(getCarts());
     dispatch(calculateTotal());
+
+    window.addEventListener('scroll', toggleScrollNav)
   }, [update]);
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '');
@@ -35,9 +49,9 @@ const Nav = () => {
 
   return (
     <>
-      <nav>
+      <nav >
 
-        <div className="navbar">
+        <div className={`${stickyNav} navbar`}>
           <div className="mobile-menu-div">
             <a className="menu">
               <FiMenu className="menu-icon" onClick={() => dispatch(openNav())} />

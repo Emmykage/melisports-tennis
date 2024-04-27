@@ -1710,7 +1710,7 @@ td .btn.change {
 .user span,
 .user a {
   margin: 0 12px;
-  color: white;
+  cursor: pointer;
 }
 
 .user .user-icon {

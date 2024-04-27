@@ -21,7 +21,7 @@ const Shoes = ({ products, status, error }) => {
       <div>
         <header>
 
-          <h1 className="warning-center"> Please Add some products to your collection</h1>
+          <h1 className="warning-center"> No Shoes In Collection</h1>
         </header>
       </div>
     );

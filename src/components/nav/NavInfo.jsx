@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import { FiUser, FiMenu } from 'react-icons/fi';
@@ -18,10 +18,25 @@ const NavInfo = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
+  const [stickyNav, setStickyNav] = useState('')
+
+  
+  const toggleScrollNav = (e) => {
+    if (window.scrollY >= 120) {
+      setStickyNav('sticky-nav')
+      
+    }
+    else{
+      setStickyNav('')
+    }
+      
+  }
   useEffect(() => {
     dispatch(userLog());
     dispatch(getCarts());
     dispatch(calculateTotal());
+    window.addEventListener('scroll', toggleScrollNav)
+
   }, [update]);
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '');
@@ -32,7 +47,7 @@ const NavInfo = () => {
     <>
       <nav>
 
-        <div className="navbar nav-info">
+        <div className={`${stickyNav} navbar nav-info`}>
           <div className="mobile-menu-div">
             <a className="menu">
               <FiMenu className="menu-icon" onClick={() => dispatch(openNav())} />
@@ -80,7 +95,7 @@ const NavInfo = () => {
               <div className="user mobile-display ">
                 {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
-                <span><FiUser className="user-icon" /></span>
+                <span className='text-dark'><FiUser className="user-icon" /></span>
 
               </div>
               <NavLink to="/store">

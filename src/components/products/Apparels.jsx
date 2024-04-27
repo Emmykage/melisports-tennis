@@ -16,7 +16,7 @@ const Apparels = ({ products, status, error }) => {
       <div>
         <header>
 
-          <h1 className="warning-center"> Please Add some some Apparels to your collection</h1>
+          <h1 className="warning-center"> No Shoes in collection</h1>
         </header>
       </div>
     );
