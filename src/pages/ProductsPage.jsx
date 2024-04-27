@@ -21,7 +21,12 @@ const ProductsPage = () => {
 
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
-    dispatch(filterProducts(lowerCaseSieve));
+
+    dispatch(getProducts()).then(()=>{
+         dispatch(filterProducts(lowerCaseSieve))}
+         
+    )
+   
   };
 
   useEffect(() => {

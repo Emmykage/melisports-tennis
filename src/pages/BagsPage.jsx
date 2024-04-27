@@ -22,11 +22,14 @@ const BagsPage = () => {
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
-    dispatch(filterProducts(lowerCaseSieve));
-  };
+    dispatch(getProducts()).then(()=>{
+      dispatch(filterProducts(lowerCaseSieve))}
+      
+ )  };
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
+    dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
 

@@ -18,11 +18,15 @@ const ApparelsPage = () => {
   const category = product_categories.find((cat) => cat.name === 'apparel');
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.loLowerCase();
-    dispatch(filterProducts(lowerCaseSieve));
-  };
+  
+    dispatch(getProducts()).then(()=>{
+      dispatch(filterProducts(lowerCaseSieve))}
+      
+ )  };
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
+    dispatch(getProducts());
   }, []);
   return (
     <div className="product-container">

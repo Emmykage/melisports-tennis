@@ -48,9 +48,11 @@ const productsSlice = createSlice({
       }
     },
     filterProducts: (state, action) => {
+      console.log(action.payload)
+
       return{
         ...state,
-        filterProducts: state.products.filter(item => item.name.toLowerCase().includes(action.payload) )
+        products: state.products.filter(item => item.name.toLowerCase().includes(action.payload) )
       }
     }
 

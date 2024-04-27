@@ -20,12 +20,16 @@ const ShoesPage = () => {
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
-    dispatch(filterProducts(lowerCaseSieve));
+    dispatch(getProducts()).then(()=>{
+      dispatch(filterProducts(lowerCaseSieve))}
+      
+ )
   };
 
   useEffect(() => {
     dispatch(closeList());
     dispatch(closeNav());
+    dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
 
