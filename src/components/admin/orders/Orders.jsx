@@ -39,6 +39,7 @@ const Orders = () => {
   const activeLink = '';
   const { orders, status } = useSelector((state) => state.orders);
   const [isDisplayOpen, setIsDisplayOpen] = useState(false);
+  // console.log(orders)
   useEffect(() => {
     dispatch(getOrders());
   }, []);
