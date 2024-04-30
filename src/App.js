@@ -44,6 +44,7 @@ import About from './pages/About';
 import BecomeADistributor from './pages/BecomeADistributor';
 import Brands from './pages/Brands';
 import Confirmation from './pages/auth/confirmation';
+import ViewCustomer from './components/admin/customers/ViewCustomer';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -80,6 +81,7 @@ function App() {
           <Route path="dashboard" element={<MainAdmin><Main /></MainAdmin>} />
           <Route path="" element={<MainAdmin><Main /></MainAdmin>} />
           <Route path="customers" element={<MainAdmin><Customers /></MainAdmin>} />
+          <Route path="customers/:id" element={<MainAdmin><ViewCustomer /></MainAdmin>} />
           <Route path="analytics" element={<MainAdmin><Analytics /></MainAdmin>} />
           <Route path="messages" element={<MainAdmin><Messages /></MainAdmin>} />
           <Route path="orders" element={<MainAdmin><Orders /></MainAdmin>} />

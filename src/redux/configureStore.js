@@ -12,6 +12,7 @@ import delProductSlice from './modal/delModal';
 import productCategory from './product_category/productCategory';
 import delCatSlice from './modal/catDelModal';
 import userSlice from './user/user';
+import usersSlice from './users/user';
 import searchSlice from './products/searched';
 import navSlice from './modal/nav';
 import levelSlice from './level/level';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   delModal: delProductSlice,
   product_categories: productCategory,
   user: userSlice,
+  users: usersSlice,
   cat_del_modal: delCatSlice,
   searched_products: searchSlice,
   navToggle: navSlice,

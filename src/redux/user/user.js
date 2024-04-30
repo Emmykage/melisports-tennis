@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addUser,
-  getUser,
   loginUser,
 } from '../actions/auth';
 
 const initialState = {
-  user: null,
+  user: {},
+  users: [],
+  userEdit:{},
   error: false,
   message: '',
   loading: false,
@@ -19,7 +20,7 @@ const userSlice = createSlice({
     userLog: (state) => {
       try {
         const auth = localStorage.getItem('meli_auth');
-          console.log(JSON.parse(auth).user)
+          // console.log(JSON.parse(auth).user)
         return {
           ...state,
           user: JSON.parse(auth).user,
@@ -35,23 +36,8 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [getUser.fulfilled]: (state, action) => {
-      const response = action.payload;
-      if (response.user) {
-        return {
-          ...state,
-          logged: true,
-          user: response,
-        };
-      }
-
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        message: action.payload.error,
-      };
-    },
+    
+   
     [addUser.fulfilled]: (state, action) => {
       const response = action.payload;
       if (response.user) {

@@ -464,6 +464,10 @@ hr{
 .mt-2{
   margin-top: 1rem;
 }
+.mt-4 {
+  margin-top: 2rem;
+  /* margin-bottom: 2rem; */
+}
 .mb-1{
   margin-bottom: 0.5rem;
 }
@@ -544,10 +548,12 @@ h2 {
   font-family: spantara, 'Courier New', Courier, monospace;
 }
 
-/* .service-table h2.technical,
-.service-table h2.description{
-
-} */
+.c-form-row label{
+  width: 20%;
+}
+.c-form-row input, .c-form-row select{
+  width: 75%;
+}
 
 .headers {
   letter-spacing: 1rem;
@@ -1699,6 +1705,17 @@ td .btn.change {
   display: flex;
   justify-content: space-around;
   gap: 4%;
+}
+.dash-container{
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 1100px;
+  margin:  34px auto;
+  /* border: 1px solid gray; */
+  box-shadow: 0 0 2px 0 rgb(112, 112, 112);
+}
+.ml-auto{
+  margin-left: auto;
 }
 
 .user {
