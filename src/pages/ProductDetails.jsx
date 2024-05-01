@@ -8,6 +8,7 @@ import { updater } from '../redux/cart/cart';
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 import { addCart } from '../redux/cart/cart';
+import Loader from './Loader';
 
 const ProductDetails = () => {
   const NGNaira = new Intl.NumberFormat('en-NG', {
@@ -16,7 +17,7 @@ const ProductDetails = () => {
   });
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const product = useSelector((state) => state.product.product);
+  const {product, loading} = useSelector((state) => state.product);
   const { id } = useParams();
   useEffect(() => {
     dispatch(closeNav());
@@ -37,6 +38,11 @@ const ProductDetails = () => {
     count !== 1 && setCount((setPrev) => setPrev - 1);
   };
   console.log(product)
+  if(loading){
+    return(<Loader/>)
+  }
+  else{
+
   return (
     <div className="p-container">
       <div className="row sm-flex-col detail-container justify-between">
@@ -48,8 +54,8 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="col-md-6 right-detail-container  prev-details">
-          <h2 className="my-0">{product.name}</h2>
-          <p className='my-2'>Tennis {product.product_category.name}</p>
+          <h2 className="my-0">{product?.name}</h2>
+          <p className='my-2'>Tennis {product?.product_category?.name}</p>
           <div className="price">
 
             <span className='text-2xl font-semibold'>
@@ -255,5 +261,6 @@ const ProductDetails = () => {
     </div>
   );
 };
+}
 
 export default ProductDetails;

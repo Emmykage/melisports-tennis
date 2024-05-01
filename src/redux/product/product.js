@@ -20,6 +20,7 @@ const productSlice = createSlice({
       ...state,
       render: false,
       product: action.payload,
+      loading: false
     }),
     [getProduct.pending]: (state) => ({
       ...state,
@@ -27,6 +28,7 @@ const productSlice = createSlice({
     }),
     [getProduct.rejected]: (state) => ({
       ...state,
+      pending: false
     }),
     [addProduct.fulfilled]: (state, action) => {
       if (action.payload.ok) {

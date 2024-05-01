@@ -3,8 +3,6 @@ import IMG_BANNER from '../../assets/images/banner/banner.jpg';
 import './banner.css';
 
 const Hero = ({image, title}) => {
-  console.log(title)
-
   return(
   <div className="relative product-banner hero-mid">
     <div className="card-img">
