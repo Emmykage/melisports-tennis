@@ -4,7 +4,7 @@ import SideNav from '../components/sideNav/SideNav';
 import Hero from '../components/banner/Hero';
 import Apparels from '../components/products/Apparels';
 import { getProducts } from '../redux/actions/product';
-
+import imageBanner from '../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif'
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 import Loader from './Loader';
@@ -30,7 +30,7 @@ const ApparelsPage = () => {
   }, []);
   return (
     <div className="product-container">
-      <Hero />
+      <Hero image={imageBanner} title="Apparels"/>
       <div className="prod-page">
         <div className="cat-group">
           <button className="btn" onClick={() => handleFilteredProducts('men')}> Men</button>

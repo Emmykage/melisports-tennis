@@ -7,7 +7,8 @@ import { getCategories } from '../redux/category/categories';
 import Babolat from '../assets/images/logo/ba4886b10b-babolat-logo-babolat-logo-png-transparent-images-free-png-images-vector-psd.png';
 import melisport from '../assets/images/logo/melisport_one.png';
 import demo_service from '../assets/images/babolat-demo.jpg';
-
+import shoeImage from '../assets/images/banner/Jet_Tere_692x364_1.avif'
+import badmington from '../assets/images/banner/X-feel_692_x_364_px.avif'
 import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
 import string from '../assets/images/stringing.jpg';
@@ -59,6 +60,17 @@ const Home = () => {
             </div>
           </div>
 
+        </div>
+
+      </div>
+      <div>
+        <div className='flex m-auto section-container gap-2'>
+          <NavLink to="/" className='flex-1 zoom-hover'>
+            <img src={shoeImage} alt="" className=' w-full h-full' />
+          </NavLink>
+          <NavLink to={'/'} className='flex-1 zoom-hover'>
+            <img src={badmington} alt=""   className='w-full h-full'/>
+          </NavLink>
         </div>
 
       </div>

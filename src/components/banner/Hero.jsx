@@ -2,14 +2,25 @@ import React from 'react';
 import IMG_BANNER from '../../assets/images/banner/banner.jpg';
 import './banner.css';
 
-const Hero = () => (
-  <div className="product-banner hero-mid">
+const Hero = ({image, title}) => {
+  console.log(title)
+
+  return(
+  <div className="relative product-banner hero-mid">
     <div className="card-img">
-      <img src={IMG_BANNER} alt="" />
+      <img src={image} alt="" />
+
+    </div>
+    <div className='banner overlay'>
+
+      {title && (<h2 className='text-white bg-lucent py-1 px-6'>{title}</h2>
+)}
 
     </div>
 
+
   </div>
 );
+}
 
 export default Hero;

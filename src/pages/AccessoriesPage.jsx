@@ -11,7 +11,7 @@ import { filterProducts } from '../redux/products/product';
 import { closeList } from '../redux/products/searched';
 import { getProductCategories } from '../redux/actions/product_category';
 import Loader from './Loader';
-
+import bannerImage from '../assets/images/banner/2021-Category-Banner-Tennis-Accessories.jpg'
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
   const { products, status, error } = useSelector((state) => state.products);
@@ -41,7 +41,7 @@ const AccessoriesPage = () => {
 
   return (
     <div className="product-container">
-      <Hero />
+      <Hero image={bannerImage} title="Accessories"/>
 
       <div className="prod-page">
         <div className="cat-group">

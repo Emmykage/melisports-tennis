@@ -792,6 +792,10 @@ a {
   color: white !important;
 }
 
+.zoom-hover:hover{
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.03);
+}
 .products-container h2,
 .products-container h3 {
   font-weight: 100;
@@ -1393,8 +1397,9 @@ table td {
 }
 
 .product-display-image {
-  width: 350px;
-  height: 350px;
+  width: 100%;
+  max-width: 650px;
+  height: 750px;
   margin: 10px;
 }
 
@@ -1503,6 +1508,7 @@ table td {
 
 .btn-div {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  width: max-content;
 
   /* border: 0.7px solid rgb(116, 116, 116); */
 }
@@ -1961,6 +1967,16 @@ td .btn.change {
   @media screen and (max-width: 640px) {
     .flex-center-around {
       flex-direction: column;
+    }
+    /* .product-display-image {
+      width: 100%;
+      max-width: 650px;
+      height: 750px;
+      margin: 10px;
+    } */
+    .sm-flex-col{
+      flex-direction: column;
+
     }
 
     .banner-text {

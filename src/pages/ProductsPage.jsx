@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../components/banner/Hero';
+import bannerImage from '../assets/images/banner/Banner_racquets.webp'
 import Products from '../components/products/Products';
 import SideNav from '../components/sideNav/SideNav';
 import { getProductCategories } from '../redux/actions/product_category';
@@ -37,7 +38,7 @@ const ProductsPage = () => {
 
   return (
     <div className="product-container">
-      <Hero />
+      <Hero image={bannerImage} title={'Racquet'} />
 
       <div className="prod-page">
         <div className="cat-group">

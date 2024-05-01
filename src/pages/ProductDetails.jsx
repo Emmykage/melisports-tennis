@@ -36,9 +36,10 @@ const ProductDetails = () => {
   const decrease = () => {
     count !== 1 && setCount((setPrev) => setPrev - 1);
   };
+  console.log(product)
   return (
     <div className="p-container">
-      <div className="row detail-container">
+      <div className="row sm-flex-col detail-container justify-between">
         <div className="left-detail-container col-md-6 border-gray-light centralize">
 
           <div className="product-display-image">
@@ -48,9 +49,10 @@ const ProductDetails = () => {
         </div>
         <div className="col-md-6 right-detail-container  prev-details">
           <h2 className="my-0">{product.name}</h2>
+          <p className='my-2'>Tennis {product.product_category.name}</p>
           <div className="price">
 
-            <span className='text-xl'>
+            <span className='text-2xl font-semibold'>
               {NGNaira.format(product.price)}
             </span>
 
@@ -68,6 +70,7 @@ const ProductDetails = () => {
             </span>
           </div>
           ) }
+          {/* {product?.head_size} */}
 
           {product.grip_size && (
           <div>

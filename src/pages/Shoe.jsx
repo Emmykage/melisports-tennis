@@ -6,7 +6,7 @@ import Shoes from '../components/products/Shoes';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
 import { closeNav } from '../redux/modal/nav';
-
+import bannerImage from '../assets/images/banner/2023-01_BAB_Banner_70_pourcents_Propulse_Fury_1365x510px-2.avif'
 import { closeList } from '../redux/products/searched';
 import { getProductCategories } from '../redux/actions/product_category';
 import Loader from './Loader';
@@ -35,7 +35,7 @@ const ShoesPage = () => {
 
   return (
     <div className="product-container">
-      <Hero />
+      <Hero image={bannerImage} title="Shoes" />
 
       <div className="prod-page">
         <div className="cat-group">

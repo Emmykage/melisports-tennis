@@ -8,6 +8,8 @@ import Apparels from '../components/catalogue/Apparels';
 import BagsCatalogue from '../components/catalogue/Bags';
 import ShoesCatalogue from '../components/catalogue/Shoes';
 import Accessories from '../components/catalogue/Accessories';
+import bannerImage from '../assets/images/banner/Banner_racquets.webp'
+
 
 const Services = () => {
   const dispatch = useDispatch()
@@ -22,7 +24,7 @@ const Services = () => {
   return (
     <>
 
-      <Hero />
+      <Hero image={bannerImage} title="Catalogue" />
 
       <div className="container catalog bg-theme">
 

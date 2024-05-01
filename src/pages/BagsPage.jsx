@@ -7,7 +7,7 @@ import Bags from '../components/products/Bags';
 import SideNav from '../components/sideNav/SideNav';
 import { getProducts } from '../redux/actions/product';
 import { closeNav } from '../redux/modal/nav';
-
+import bannerImage from '../assets/images/banner/2021-Category-Banner-Tennis-Bags.jpg'
 import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
 import { getProductCategories } from '../redux/actions/product_category';
@@ -35,7 +35,7 @@ const BagsPage = () => {
 
   return (
     <div className="product-container">
-      <Hero />
+      <Hero image={bannerImage}/>
 
       <div className="prod-page">
         <div className="cat-group">
