@@ -74,6 +74,7 @@ const Cart = () => {
     dispatch(removeItem(id));
     dispatch(updater());
   };
+  console.log(cartItems)
   return (
     <>
       <div className="cart-div">
@@ -108,7 +109,7 @@ const Cart = () => {
                     <p>{naira_format(cart.price)}</p>
                   </td>
                   <td>
-                    <p>{cart.subTotal}</p>
+                    <p>{naira_format(cart.subTotal)}</p>
                   </td>
 
                   <td>

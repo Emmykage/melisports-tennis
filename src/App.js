@@ -45,6 +45,7 @@ import BecomeADistributor from './pages/BecomeADistributor';
 import Brands from './pages/Brands';
 import Confirmation from './pages/auth/confirmation';
 import ViewCustomer from './components/admin/customers/ViewCustomer';
+import ImagePreview from './components/products/ImagePreview';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -108,6 +109,7 @@ function App() {
           <Route path="admin_login" element={<AdminLogin />} />
 
         </Route>
+        <Route path="/preview" element={<MainLayout><ImagePreview /></MainLayout>} />
 
         <Route path="/loader" element={<MainLayout><Loader /></MainLayout>} />
         <Route path="/return_policy" element={<MainLayout><ReturnPolicy /></MainLayout>} />

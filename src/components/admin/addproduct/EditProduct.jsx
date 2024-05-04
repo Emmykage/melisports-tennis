@@ -5,9 +5,7 @@ import getGenders from '../../../redux/actions/gender';
 import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
-import shoeSizes from '../../mock/ShoeSizess';
-import clothSizes from '../../mock/ClothSizes';
-import strung from '../../mock/Strung';
+import {clothSizes, shoeSizes, strung} from '../../mock/variance';
 import { writeProduct } from '../../../redux/product/product';
 
 const EditProduct = () => {

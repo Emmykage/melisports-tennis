@@ -81,6 +81,7 @@ const cartSlice = createSlice({
       };
     },
     getLocalCart: (state) => {
+      console.log(refCart())
       return{
         ...state,
         cartItems: refCart()
@@ -153,11 +154,11 @@ const cartSlice = createSlice({
   extraReducers: {
     [getCarts.fulfilled]: (state, action) => {
       try {
-        const trans = JSON.parse(localStorage.getItem('cartitem'));
+        // const trans = JSON.parse(localStorage.getItem('cartitem'));
 
         return {
           ...state,
-          cartItems: trans,
+          cartItems: refCart(),
 
         };
       } catch {

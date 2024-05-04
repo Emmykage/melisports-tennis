@@ -5,10 +5,8 @@ import getGenders from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
-import strung from '../../mock/Strung';
-import clothSizes from '../../mock/ClothSizes';
-import shoeSizes from '../../mock/ShoeSizess';
-
+import {clothSizes, colors, composition, shoeSizes, strung} from '../../mock/variance';
+import Select, { MultiValue } from "react-select";
 const AddProduct = () => {
   const { product_categories, updater } = useSelector((state) => state.product_categories);
   const levels = useSelector((state) => state.level.levels);
@@ -34,19 +32,22 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(e.target.photo.files[0] ||  e.target.image.value ){
+    // console.log(e.target.product_colour.value)
+    if(e.target.photo.files.length > 0 ||  e.target.image.value ){
       const shoeValues = Array.from(e.target.shoe_sizes).map(option => option.value)
       const clothValues = Array.from(e.target.cloth_sizes).map(option => option.value)
+      const colorsValues = Array.from(e.target.product_colour).map(option => option.value)
       const formData = new FormData()
       formData.append("product[name]", e.target.name.value)
       formData.append("product[quantity]", e.target.quantity.value)
       formData.append("product[price]", e.target.price.value)
       formData.append("product[sku]", e.target.sku.value)
       formData.append("product[product_category_id]", e.target.product_category_id.value)
+      formData.append("product[level_id]", e.target.level_id.value)
       formData.append("product[gender_id]", e.target.gender_id.value)
       formData.append("product[grip_size]", e.target.grip_size.value)
       formData.append("product[head_size]", e.target.head_size.value)
-      formData.append("product[colour]", e.target.colour.value)
+      formData.append("product[colours]", colorsValues)
       formData.append("product[weight]", e.target.weight.value)
       formData.append("product[length]", e.target.length.value)
       formData.append("product[stiffness]", e.target.stiffness.value)
@@ -57,9 +58,14 @@ const AddProduct = () => {
       formData.append("product[image]", e.target.image.value)
       formData.append("product[cloth_sizes]", clothValues)
       formData.append("product[shoe_sizes]", shoeValues)
-      formData.append("product[photo]", e.target.photo.files[0])
+      // formData.append("product[photo]", e.target.photo.files[0])
 
-      
+      Array.from(e.target.photo.files).forEach((file, index) => {
+        formData.append(`product[photos][${index}]`, file)
+      })
+
+      const data = Object.fromEntries(formData)
+      // console.log(data)
       dispatch(addProduct(formData));
     }else{
       alert("No image: Add a product image")
@@ -111,7 +117,7 @@ const AddProduct = () => {
         <div className='form-row my-1'>
 
     
-        <div className="input-half">
+        {/* <div className="input-half">
             <label htmlFor="" className='text-dark font-semibold text-sm'> Quantity          </label>
             <input
               name="quantity"
@@ -121,7 +127,7 @@ const AddProduct = () => {
               placeholder="Number of Items "
             />
 
-          </div>
+          </div> */}
           <div className="input-half">
             <label htmlFor="" className='text-dark font-semibold text-sm'> SKU   </label>
             <input
@@ -136,11 +142,12 @@ const AddProduct = () => {
             <label htmlFor="colour"  className='text-dark font-semibold text-sm'>
               Colour
             </label>
-            <input
-              name="colour"              
+            <Select
+              name="product_colour"              
               placeholder="colour"
               id='colour'
-              type="text"
+              options={colors}
+              isMulti
             />
 
           </div>
@@ -148,29 +155,33 @@ const AddProduct = () => {
         <div className="form-row my-1">
           <div className="input-half">
             <label htmlFor="" className='text-dark font-semibold text-sm'>Professionalism  </label>
-            <select
+            <Select
               placeholder="professionalism"
               id='level_id'
               name="level_id"
-            >
-              <option value="" selected>--Select---</option>
+              options={levels.map((level) => ({
+                value: level.id,
+                label: level.stage
+              }))}
+            />
+              {/* <option value="" selected>--Select---</option>
               {levels.map((level) => (
 
                 <option value={level.id}>{level.stage}</option>
               ))}
-            </select>
+            </select> */}
 
           </div>
           <div className="input-half">
             <label htmlFor="" className='text-dark font-semibold text-sm'>Gender </label>
-            <select
+            <Select
               placeholder="gender"
               name="gender_id"
-            >
-              {genders.map((gender) => (
-                <option value={gender.id}>{gender.name}</option>
-              ))}
-            </select>
+              options={genders.map(gender => ({
+                value: gender.id, label: gender.name
+              }))}
+            />
+              
 
           </div>
 
@@ -209,38 +220,34 @@ const AddProduct = () => {
         <div className="form-row my-1">
           <div className="input-half">
             <label htmlFor="" className='text-dark font-semibold text-sm'> Cloth size  </label>
-            <select
+            <Select
               name="cloth_sizes"
               id="cloth_sizes"
-              multiple
+              options={clothSizes}
+              isMulti
               
-              size={1}
-            >
-              {clothSizes.map((item) => (
+              // size={1}
+              />
+              {/* {clothSizes.map((item) => (
 
                 <option value={item.abbrv}>{item.abbrv}</option>
 
               ))}
 
-            </select>
+            </select> */}
 
           </div>
           <div className="input-half">
             <label htmlFor="" className='text-dark font-semibold text-sm'> Shoe size  </label>
-            <select
+            <Select
+            defaultValue=""
               name="shoe_sizes"
               id="shoe_sizes"
-              multiple
-              
+              isMulti
+              options={shoeSizes}
               size={1}
-            >
-              {shoeSizes.map((item) => (
-
-                <option value={item.abbrv}>{item.abbrv}</option>
-
-              ))}
-
-            </select>
+              />
+             
 
           </div>
       
@@ -262,17 +269,15 @@ const AddProduct = () => {
             <label htmlFor="" className='text-dark font-semibold text-sm'>
               Composition
             </label>
-            <select
+            <Select
               name="composition"
               id="composition"
+              options={composition}
               
-            >
-              <option value="">--Select--</option>
-              <option value="graphite">Graphite </option>
-              <option value="aluminium">Aluminium </option>
-              <option value="carbon">Carbon </option>
+            />
+            
 
-            </select>
+        
 
           </div>
 
@@ -321,17 +326,16 @@ const AddProduct = () => {
             {' '}
           </label>
 
-          <select
+          <Select
             placeholder="product category"
             name="product_category_id"
             id='product_category_id'
-            required
-          >
-            <option value="" selected>--Select--</option>
-            {product_categories.map((category) => (
-              <option value={category.id}>{category.name}</option>
+            options={product_categories.map(cat => (
+              {value: cat.id, label: cat.name}
             ))}
-          </select>
+            // required
+          />
+          
 
         </div>
 
@@ -339,16 +343,13 @@ const AddProduct = () => {
           <label htmlFor="strung" className='text-dark font-semibold text-sm'>
             strung/unstrung
           </label>
-          <select
+          <Select
             name="strung"
             id="strung"
+            options={strung}
             
-          >
-            <option value="" selected>--Selected----</option>
-            {strung.map((item) => (
-              <option value={item.name}>{item.name}</option>
-            ))}
-          </select>
+          />
+           
         </div>
         <div>
           <label htmlFor="" className='text-dark font-semibold text-sm'>
@@ -377,6 +378,7 @@ const AddProduct = () => {
             type="file"
             name="photo"
             id='photo'
+            multiple
             
           />
 

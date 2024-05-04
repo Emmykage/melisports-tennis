@@ -9,6 +9,7 @@ import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 import { addCart } from '../redux/cart/cart';
 import Loader from './Loader';
+import ImagePreview from '../components/products/ImagePreview';
 
 const ProductDetails = () => {
   const NGNaira = new Intl.NumberFormat('en-NG', {
@@ -26,7 +27,7 @@ const ProductDetails = () => {
   }, [id]);
   const handleCart = () => {
     dispatch(addCart({
-      product_id: id, image: product.image, price: product.price, quantity: count, product_name: product.name
+      product_id: id, image: product.photo_urls[0] ? product.photo_urls[0] : product.image , price: product.price, quantity: count, product_name: product.name
     }));
 
     dispatch(updater());
@@ -44,16 +45,18 @@ const ProductDetails = () => {
   else{
 
   return (
-    <div className="p-container">
-      <div className="row sm-flex-col detail-container justify-between">
-        <div className="left-detail-container col-md-6 border-gray-light centralize">
+    <section className='px-1'>
 
-          <div className="product-display-image">
-
-            <img src={product.image} alt="yeo" />
+    <div className="p-container border-theme rounded-md shadow">
+      <div className="row sm-flex-col detail-container">
+        <div className="left-detail-container col-md-6 sm-row-col centralize">
+            {product.photo_urls ? <ImagePreview images={product.photo_urls}/> : 
+          <div className="image-card relative  ">
+            <img src={product.image} alt="yeo" className='w-full h-full' />
           </div>
+  }
         </div>
-        <div className="col-md-6 right-detail-container  prev-details">
+        <div className="col-md-6 right-detail-container border-l prev-details px-4">
           <h2 className="my-0">{product?.name}</h2>
           <p className='my-2'>Tennis {product?.product_category?.name}</p>
           <div className="price">
@@ -91,7 +94,7 @@ const ProductDetails = () => {
 
           </div>
           ) }
-          {product.colour && (
+          {product.colours && (
           <div>
 
             <span>
@@ -99,7 +102,7 @@ const ProductDetails = () => {
             </span>
             <span>
               {' '}
-              {product.colour}
+              {product.colours.map(color => (<span>{color}</span>))}
             </span>
 
           </div>
@@ -259,6 +262,9 @@ const ProductDetails = () => {
       </div>
 
     </div>
+
+    </section>
+
   );
 };
 }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import StripeContainer from './StripeContainer';
 
 import { reset } from '../redux/order/order';
+import { naira_format } from '../components/utils/naira_format';
 
 const Checkout = () => {
   // const dispatch = useDispatch();
@@ -42,12 +43,12 @@ const Checkout = () => {
           <li className="flex-space">
             <span> SUBTOTAL</span>
             {' '}
-            <span>{total}</span>
+            <span>{naira_format(total)}</span>
           </li>
           <hr />
           <li className="flex-space">
             <span> CART TOTAL</span>
-            <span>{total}</span>
+            <span>{naira_format(total)}</span>
           </li>
         </ul>
 
