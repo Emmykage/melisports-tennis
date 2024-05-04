@@ -27,7 +27,7 @@ const ProductDetails = () => {
   }, [id]);
   const handleCart = () => {
     dispatch(addCart({
-      product_id: id, image: product.photo_urls[0] ? product.photo_urls[0] : product.image , price: product.price, quantity: count, product_name: product.name
+      product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image , price: product.price, quantity: count, product_name: product.name
     }));
 
     dispatch(updater());

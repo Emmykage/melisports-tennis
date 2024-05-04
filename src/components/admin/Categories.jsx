@@ -59,6 +59,8 @@ const Categories = () => {
           <tr>
             <th className='px-2 text-sm'>categories</th>
             <th className='px-2 text-sm'>description</th>
+            <th className='px-2 text-sm'></th>
+            <th className='px-2 text-sm'></th>
 
           </tr>
         </thead>
