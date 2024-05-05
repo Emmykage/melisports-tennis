@@ -6,7 +6,7 @@ import { HiLightBulb } from 'react-icons/hi';
 import { MdDarkMode } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import IMG from '../../assets/images/profile/878e146d-997e-4a24-8cff-16682ea47cd6.jpg';
+import IMG from '../../assets/images/profile/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
 import { setModal } from '../../redux/modal/categoryModal';
 
 const Right = ({ handleMenu, auth }) => (
