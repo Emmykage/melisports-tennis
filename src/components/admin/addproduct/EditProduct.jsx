@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import getGenders from '../../../redux/actions/gender';
 import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
-import {clothSizes, shoeSizes, strung} from '../../mock/variance';
+import {clothSizes, colors, composition, shoeSizes, strung} from '../../mock/variance';
 import { writeProduct } from '../../../redux/product/product';
+import Select, { MultiValue } from "react-select";
+import Loader from '../../../pages/Loader';
 
 const EditProduct = () => {
   const { editId } = useParams();
@@ -19,7 +21,7 @@ const EditProduct = () => {
   const levels = useSelector((state) => state.level.levels);
 
   const genders = useSelector((state) => state.gender.genders);
-
+  const formRef = useRef(null)
 
   useEffect(() => {
     dispatch(getProductCategories());
@@ -31,31 +33,71 @@ const EditProduct = () => {
     dispatch(writeProduct(e.target))
 
   };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProduct(product));
+      const shoeValues = Array.from(e.target.shoe_sizes).map(option => option.value)
+      const clothValues = Array.from(e.target.cloth_sizes).map(option => option.value)
+      const colorsValues = Array.from(e.target.product_colour).map(option => { console.log(option.value); return option.value})
+      console.log(colorsValues)
+      const formData = new FormData()
+
+      e.target.level_id.value && formData.append("product[level_id]", e.target.level_id.value)
+      e.target.gender_id && formData.append("product[gender_id]", e.target.gender_id.value)
+
+      formData.append("product[name]", product.name)
+      formData.append("product[quantity]", product.quantity)
+      formData.append("product[price]", product.price)
+      formData.append("product[sku]", product.sku)
+      formData.append("product[product_category_id]", e.target.product_category_id.value)
+      formData.append("product[grip_size]", product.grip_size)
+      formData.append("product[head_size]", product.head_size)
+      formData.append("product[colours]", colorsValues)
+      formData.append("product[weight]", product.weight)
+      formData.append("product[length]", product.length)
+      formData.append("product[stiffness]", product.stiffness)
+      formData.append("product[composition]", e.target.composition.value)
+      formData.append("product[description]", product.description)
+      formData.append("product[tension]", product.tension)
+      formData.append("product[strung]", e.target.strung.value)
+      formData.append("product[image]", product.image)
+      formData.append("product[cloth_sizes]", clothValues)
+      formData.append("product[shoe_sizes]", shoeValues)
+
+     
+      // const data = Object.fromEntries(formData)
+      // console.log(data)
+      dispatch(updateProduct({editId, formData}));
+
+
   };
 
+
   return (
+
     <div className="product-form admin">
-      <form onSubmit={handleSubmit}>
-        <div className='quantity'>
+
+      {loading ? <Loader/> :
+
+      <form onSubmit={handleSubmit} ref={formRef}>
+      <div className='quantity'>
           <label htmlFor="quantity">Quantity</label>
-          <input onChange={handleFormInput} type="number" value={product.quantity} name="quantity" id="quantity"/>
+          <input onChange={handleFormInput} value={product.quantity} type="number" name="quantity" id="quantity"/>
         </div>
-        <div className="form-row">
+        <div className="form-row text-sm my-1">
           <div className="input-half">
             <label>
-              <span>Product Name</span>
+              <span className='text-dark font-semibold text-sm'>Product Name</span>
               {' '}
-              <span>*</span>
+              <span></span>
               {' '}
             </label>
             <input
               value={product.name}
-              name="name"
               onChange={handleFormInput}
-              type="text"
+              name="name"
+               type="text"
               placeholder="product name"
               required
             />
@@ -63,14 +105,16 @@ const EditProduct = () => {
           </div>
           <div className="input-half">
             <label>
-              <span>Price</span>
+              <span className='text-dark font-semibold text-sm'>Price: NGN</span>
               {' '}
-              <span>*</span>
+              <span></span>
             </label>
             <input
-              value={product.price}
+                          onChange={handleFormInput}
+                          value={product.price}
+
               name="price"
-              onChange={handleFormInput}
+              id='price'
               type="number"
               placeholder="price"
               required
@@ -78,35 +122,61 @@ const EditProduct = () => {
 
           </div>
         </div>
-        <div className="form-row">
+        <div className='form-row my-1'>
+
           <div className="input-half">
-            <label htmlFor="">Professionalism  </label>
-            <select
-              placeholder="professionalism"
-              name="level_id"
-              value={product.level_id ? product.level_id : (product.level && product.level.id)}
+            <label htmlFor="" className='text-dark font-semibold text-sm'> SKU   </label>
+            <input
+              name="sku"
               onChange={handleFormInput}
-            >
-              {levels.map((level) => (
-                <option value={level.id}>{level.stage}</option>
-              ))}
-            </select>
+              value={product.sku}
+              id='sku'
+              type="text"
+              placeholder="sku"
+            />
 
           </div>
-
           <div className="input-half">
-            <label htmlFor="">Gender </label>
-            <select
+            <label htmlFor="colour"  className='text-dark font-semibold text-sm'>
+              Colour
+            </label>
+            <Select
+              defaultValue={product.colours?.map(color => ({value: color, label: color}))}
+              name="product_colour"              
+              placeholder="colour"
+              id='colour'
+              options={colors}
+              isMulti
+            />
+
+          </div>
+          </div>
+        <div className="form-row my-1">
+          <div className="input-half">
+            <label htmlFor="" className='text-dark font-semibold text-sm'>Professionalism  </label>
+            <Select
+              placeholder="professionalism"
+              defaultValue={{value: product.level?.id, label: product.level?.stage}}
+              id='level_id'
+              name="level_id"
+              options={levels.map((level) => ({
+                value: level.id,
+                label: level.stage
+              }))}
+            />
+
+          </div>
+          <div className="input-half">
+            <label htmlFor="" className='text-dark font-semibold text-sm'>Gender </label>
+            <Select
+               defaultValue={{value: product.gender.id, label: product.gender.name}}
               placeholder="gender"
               name="gender_id"
-              value={product.gender_id}
-              onChange={handleFormInput}
+              options={genders.map(gender => ({
+                value: gender.id, label: gender.name
+              }))}
+            />
               
-            >
-              {genders.map((gender) => (
-                <option value={gender.id}>{gender.name}</option>
-              ))}
-            </select>
 
           </div>
 
@@ -114,22 +184,31 @@ const EditProduct = () => {
         <div className="form-row">
 
           <div className="input-half">
-            <label htmlFor=""> Head size   </label>
+            <label htmlFor="">
+              {' '}
+              <span className='text-dark font-semibold text-sm'>
+                Head size: cm
+                <sup>2</sup>
+              </span>
+              {' '}
+            </label>
             <input
+            onChange={handleFormInput}
+            value={product.head_size}
               name="head_size"
-              value={product.head_size}
-              onChange={handleFormInput}
+              id='head_size'
               type="text"
               placeholder="headsize"
             />
 
           </div>
           <div className="input-half">
-            <label htmlFor=""> Grip size </label>
+            <label htmlFor=" " className='text-dark font-semibold text-sm'> Grip size   </label>
             <input
+            onChange={handleFormInput}
+            value={product.grip_size}
               name="grip_size"
-              value={product.grip_size}
-              onChange={handleFormInput}
+                            id='grip_size'
               type="text"
               placeholder="grip size"
             />
@@ -137,94 +216,76 @@ const EditProduct = () => {
           </div>
 
         </div>
-        <div className="form-row">
-
+        <div className="form-row my-1">
           <div className="input-half">
-            <label htmlFor=""> Cloth size  </label>
-            <select
-              name="cloth_sizes_attributes"
-              id="cloth_size"
-              multiple
-              onChange={handleFormInput}
+            <label htmlFor="" className='text-dark font-semibold text-sm'> Cloth size  </label>
+            <Select
+            defaultValue={product.cloth_sizes?.map(size => ({value: size, label: size}))}
+              name="cloth_sizes"
+              id="cloth_sizes"
+              options={clothSizes}
+              isMulti
+          
+              />
+      
+
+          </div>
+          <div className="input-half">
+            <label htmlFor="" className='text-dark font-semibold text-sm'> Shoe size  </label>
+            <Select
+            defaultValue={{value: product.shoe_sizes, label: product.shoe_sizes}}
+              name="shoe_sizes"
+              id="shoe_sizes"
+              isMulti
+              options={shoeSizes}
               size={1}
-            >
-              {clothSizes.map((item) => (
-
-                <option value={item.abbrv}>{item.abbrv}</option>
-
-              ))}
-
-            </select>
+              />
+             
 
           </div>
-          <div className="input-half">
-            <label htmlFor=""> Shoe size  </label>
-            <select
-              name="shoe_sizes_attributes"
-              id="shoe_size"
-              value={product?.cloth_size_attributes}
-
-              multiple
-              onChange={handleFormInput}
-              size={1}
-            >
-              {shoeSizes.map((item) => (
-
-                <option value={item.abbrv}>{item.abbrv}</option>
-
-              ))}
-
-            </select>
-
-          </div>
-          <div className="input-half">
-            <label htmlFor=""> SKU   </label>
-            <input
-              name="sku"
-              value={product.sku}
-              onChange={handleFormInput}
-              type="text"
-              placeholder="sku"
-            />
-
-          </div>
-
+      
         </div>
         <div className="form-row">
+          
           <div className="input-half">
-            <label htmlFor="" className="color">
-              Colour
-            </label>
-            <input
-              name="colour"
-              value={product.colour}
-              placeholder="colour"
-              onChange={handleFormInput}
-              type="text"
-            />
-
-          </div>
-          <div className="input-half">
-            <label htmlFor=""> Length            </label>
+            <label htmlFor="" className='text-dark font-semibold text-sm'> Length (mm)          </label>
             <input
               name="length"
-              value={product.length}
+              id='length'
               onChange={handleFormInput}
+              value={product.length}
               type="text"
               placeholder="lenght"
             />
 
           </div>
+          <div className='flex-1'>
+            <label htmlFor="" className='text-dark font-semibold text-sm'>
+              Composition
+            </label>
+            <Select
+              defaultValue={{value: product.composition, label: product.composition}}
+              name="composition"
+              id="composition"
+              options={composition}
+              
+            />
+            
+
+        
+
+          </div>
 
         </div>
 
-        <div className="form-row">
+        <div className="form-row my-1">
           <div className="input-half">
-            <label htmlFor="">Weight     </label>
+            <label htmlFor="" className='text-dark font-semibold text-sm'>Weight (g)    </label>
             <input
+            onChange={handleFormInput}
+            value={product.weight}
               name="weight"
-              value={product.weight}
-              onChange={handleFormInput}
+              id='weight'
               type="text"
               placeholder="weight"
             />
@@ -232,108 +293,99 @@ const EditProduct = () => {
           </div>
 
           <div className="input-half">
-            <label htmlFor="">tension  </label>
+            <label htmlFor="" className='text-dark font-semibold text-sm'>tension (kg) </label>
             <input
+            onChange={handleFormInput}
+            value={product.tension}
               name="tension"
-              value={product.tension}
-              onChange={handleFormInput}
+              id='tension'
               type="text"
               placeholder="tension"
             />
 
           </div>
-          <div>
-            <label htmlFor="">
-              Composition
-            </label>
-
-            <select
-              name="composition"
-              id="composition"
-              onChange={handleFormInput}
-              value={product?.composition}
-
-            >
-              <option value={null} selected>--Selected----</option>
-              <option value="graphite">Graphite </option>
-              <option value="aluminium">Aluminium </option>
-              <option value="carbon">Carbon </option>
-
-            </select>
+          <div className="input-half">
+            <label htmlFor="" className='text-dark font-semibold text-sm'>Stiffness (kg) </label>
+            <input
+            onChange={handleFormInput}
+            value={product.stiffness}
+              name="stiffness"
+              id='stiffness'
+              type="text"
+              placeholder="tension"
+            />
 
           </div>
+          
 
         </div>
-        <div className="text-form-container">
-          <label htmlFor="">
+        <div className="text-form-container my-1">
+          <label htmlFor="" className='text-dark font-semibold text-sm'>
             <span> Select product category</span>
             {' '}
-            <span>*</span>
+            <span></span>
             {' '}
           </label>
 
-          <select
+          <Select
             placeholder="product category"
+            defaultValue={ {value: product.product_category.id, label: product.product_category.name }}
             name="product_category_id"
-            value={product?.product_category }
-            onChange={handleFormInput}
-            disabled
-          >
-            {product_categories.map((category) => (
-              <option value={category.id}>{category.name}</option>
+            id='product_category_id'
+            options={product_categories.map(cat => (
+              {value: cat.id, label: cat.name}
             ))}
-          </select>
+            // required
+          />
+          
 
         </div>
 
-        <div>
-          <label htmlFor="strung">
+        <div className='my-1'>
+          <label htmlFor="strung" className='text-dark font-semibold text-sm'>
             strung/unstrung
           </label>
-          <select
+          <Select
+          defaultValue={{value: product.strung, label: product.strung}}
             name="strung"
             id="strung"
-            value={product.strung}
-            onChange={handleFormInput}
-          >
-            {strung.map((item) => (
-              <option value={item.name}>{item.name}</option>
-            ))}
-          </select>
-
-          {/* <input type="text" placeholder="strung" /> */}
-
+            options={strung}
+            
+          />
+           
         </div>
         <div>
-          <label htmlFor="">
+          <label htmlFor="" className='text-dark font-semibold text-sm'>
             {' '}
-            <span>image</span>
+            <span>image url</span>
 
-            <span>*</span>
+            <span></span>
           </label>
           <input
+          onChange={handleFormInput}
+          value={product.image}
             type="url"
             name="image"
-            onChange={handleFormInput}
-            value={product.image}
+            id='image'
             placeholder="image url"
-            required
+            
           />
 
         </div>
+        
 
         <div>
-          <label htmlFor="">
+          <label htmlFor="" className='text-dark font-semibold text-sm'>
             {' '}
             <span>Description</span>
             {' '}
-            <span>*</span>
+            <span></span>
             {' '}
           </label>
           <textarea
+          onChange={handleFormInput}
+          value={product.description}
             name="description"
-            onChange={handleFormInput}
-            value={product.description}
             placeholder="Enter description"
             required
           />
@@ -349,7 +401,7 @@ const EditProduct = () => {
             {report}
           </p>
         ) : (status == 'success' ? (
-          <p className="green">
+          <p className="text-green">
             {' '}
             {report}
           </p>
@@ -361,8 +413,9 @@ const EditProduct = () => {
         )) }
 
       </form>
+}
 
-    </div>
+    </div> 
   );
 };
 

@@ -20,13 +20,13 @@ const getProduct = createAsyncThunk('product/getproduct', async (id) => {
   return response;
 });
 
-const updateProduct = createAsyncThunk('updateProduct', async (id) => {
-  const response = await fetch(`${baseURL}products/${id.id}`, {
+const updateProduct = createAsyncThunk('updateProduct', async ({editId, formData}) => {
+    const response = await fetch(`${baseURL}products/${editId}`, {
     method: 'PUT',
     headers: {
-      'Content-type': 'application/json',
+      Authorization: `Bearer ${token()}`
     },
-    body: JSON.stringify(id),
+    body: formData
   });
 
   return response;

@@ -7,6 +7,7 @@ import { getProductCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
 import {clothSizes, colors, composition, shoeSizes, strung} from '../../mock/variance';
 import Select, { MultiValue } from "react-select";
+import product from '../../../redux/products/product';
 const AddProduct = () => {
   const { product_categories, updater } = useSelector((state) => state.product_categories);
   const levels = useSelector((state) => state.level.levels);
@@ -32,7 +33,6 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target.product_colour.value)
     if(e.target.photo.files.length > 0 ||  e.target.image.value ){
       const shoeValues = Array.from(e.target.shoe_sizes).map(option => option.value)
       const clothValues = Array.from(e.target.cloth_sizes).map(option => option.value)
@@ -65,13 +65,13 @@ const AddProduct = () => {
       })
 
       const data = Object.fromEntries(formData)
-      // console.log(data)
       dispatch(addProduct(formData));
     }else{
       alert("No image: Add a product image")
     }
 
   };
+
 
   return (
     <div className="product-form admin">
