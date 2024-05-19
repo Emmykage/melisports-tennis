@@ -138,7 +138,7 @@ const AdminLogin = () => {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                <NavLink to="/auth/sign_up">
+                <NavLink to="/auth/admin_sign_up">
 
                   <Link variant="body2">
                     Do not have an account? Sign Up

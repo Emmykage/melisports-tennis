@@ -40,6 +40,7 @@ const AddProduct = () => {
       const formData = new FormData()
       formData.append("product[name]", e.target.name.value)
       formData.append("product[quantity]", e.target.quantity.value)
+      formData.append("product[ms_code]", e.target.ms_code.value)
       formData.append("product[price]", e.target.price.value)
       formData.append("product[sku]", e.target.sku.value)
       formData.append("product[product_category_id]", e.target.product_category_id.value)
@@ -77,8 +78,13 @@ const AddProduct = () => {
     <div className="product-form admin">
 
       <form onSubmit={handleSubmit} ref={formRef}>
-      <div className='quantity'>
-          <label htmlFor="quantity">Quantity</label>
+     
+        <div className='ms_code quantity bg-green-500'>
+          <label htmlFor="quantity bg-red-400 font-medium text-gray-700">ms product code</label>
+          <input type="text" name="ms_code" id="ms_code" className='bg-green-200' required/>
+        </div>
+        <div className='quantity my-2'>
+          <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity</label>
           <input type="number" name="quantity" id="quantity"/>
         </div>
         <div className="form-row text-sm my-1">

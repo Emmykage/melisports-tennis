@@ -14,7 +14,7 @@ const MainInfoLayout = ({ children }) => {
   }, []);
   return (
 
-    <div className="container">
+    <div className="">
       {isOpen && <Modal />}
       <NavInfo />
       {children}

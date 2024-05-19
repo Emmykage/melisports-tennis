@@ -81,6 +81,10 @@ const EditProduct = () => {
       {loading ? <Loader/> :
 
       <form onSubmit={handleSubmit} ref={formRef}>
+         <div className='ms_code quantity bg-green-300'>
+          <label htmlFor="quantity bg-red-400 font-medium text-gray-500">ms product code</label>
+          <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className='bg-green-200' required/>
+        </div>
       <div className='quantity'>
           <label htmlFor="quantity">Quantity</label>
           <input onChange={handleFormInput} value={product.quantity} type="number" name="quantity" id="quantity"/>

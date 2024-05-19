@@ -30,7 +30,7 @@ const MainAdmin = ({ children }) => {
     if (auth.user.role === 'admin') {
       return (
         <>
-          <div className="container">
+          <div className="">
             <div className="admin-container">
 
               {isOpen && <ProdDelModal id={id} />}
