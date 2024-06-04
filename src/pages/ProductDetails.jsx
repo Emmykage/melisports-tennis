@@ -18,7 +18,7 @@ const ProductDetails = () => {
   });
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const {product, loading} = useSelector((state) => state.product);
+  const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
   useEffect(() => {
     dispatch(closeNav());
@@ -27,7 +27,7 @@ const ProductDetails = () => {
   }, [id]);
   const handleCart = () => {
     dispatch(addCart({
-      product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image , price: product.price, quantity: count, product_name: product.name
+      product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,
     }));
 
     dispatch(updater());
@@ -38,119 +38,121 @@ const ProductDetails = () => {
   const decrease = () => {
     count !== 1 && setCount((setPrev) => setPrev - 1);
   };
-  console.log(product)
-  if(loading){
-    return(<Loader/>)
+  console.log(product);
+  if (loading) {
+    return (<Loader />);
   }
-  else{
 
   return (
-    <section className='px-1'>
+    <section className="px-1">
 
-    <div className="p-container border-theme rounded-md shadow">
-      <div className="row sm-flex-col detail-container">
-        <div className="left-detail-container col-md-6 sm-row-col centralize">
-            {product.photo_urls ? <ImagePreview images={product.photo_urls}/> : 
-          <div className="image-card relative  ">
-            <img src={product.image} alt="yeo" className='w-full h-full' />
+      <div className="p-container border-theme rounded-md shadow">
+        <div className="row sm-flex-col detail-container">
+          <div className="left-detail-container col-md-6 sm-row-col centralize">
+            {product.photo_urls ? <ImagePreview images={product.photo_urls} />
+              : (
+                <div className="image-card relative  ">
+                  <img src={product.image} alt="yeo" className="w-full h-full" />
+                </div>
+              )}
           </div>
-  }
-        </div>
-        <div className="col-md-6 right-detail-container border-l prev-details px-4">
-          <h2 className="my-0">{product?.name}</h2>
-          <p className='my-2'>Tennis {product?.product_category?.name}</p>
-          <div className="price">
+          <div className="col-md-6 right-detail-container border-l prev-details px-4">
+            <h2 className="my-0">{product?.name}</h2>
+            <p className="my-2">
+              Tennis
+              {product?.product_category?.name}
+            </p>
+            <div className="price">
 
-            <span className='text-2xl font-semibold'>
-              {NGNaira.format(product.price)}
-            </span>
-
-          </div>
-          {product.head_size && (
-          <div className="headsize">
-            <span className='block text-xl'>
-              Head size
-            </span>
-
-            <span className='text-base text-gray-dark font-medium'>
-              {product.head_size}
-              {' '}
-              &#13216;
-            </span>
-          </div>
-          ) }
-          {/* {product?.head_size} */}
-
-          {product.grip_size && (
-          <div>
-
-            <span className='text-xl block'>
-              Grip size:
-            </span>
-            <span className='text-gray-dark'>
-              {' '}
-              {product.grip_size}
-            </span>
-
-          </div>
-          ) }
-          {product.colours && (
-          <div>
-
-            <span>
-              colour:
-            </span>
-            <span>
-              {' '}
-              {product.colours.map(color => (<span>{color}</span>))}
-            </span>
-
-          </div>
-          ) }
-
-          <div className="flex gap-3">
-            <div className="btn-div">
-              <button
-                type="button"
-                onClick={decrease}
-              >
-                -
-              </button>
-              <span>{count}</span>
-              <button
-                type="button"
-                onClick={increase}
-              >
-                +
-              </button>
+              <span className="text-2xl font-semibold">
+                {NGNaira.format(product.price)}
+              </span>
 
             </div>
-            
+            {product.head_size && (
+            <div className="headsize">
+              <span className="block text-xl">
+                Head size
+              </span>
 
+              <span className="text-base text-gray-dark font-medium">
+                {product.head_size}
+                {' '}
+                &#13216;
+              </span>
+            </div>
+            ) }
+            {/* {product?.head_size} */}
+
+            {product.grip_size && (
+            <div>
+
+              <span className="text-xl block">
+                Grip size:
+              </span>
+              <span className="text-gray-dark">
+                {' '}
+                {product.grip_size}
+              </span>
+
+            </div>
+            ) }
+            {product.colours && (
+            <div>
+
+              <span>
+                colour:
+              </span>
+              <span>
+                {' '}
+                {product.colours.map((color) => (<span>{color}</span>))}
+              </span>
+
+            </div>
+            ) }
+
+            <div className="flex gap-3">
+              <div className="btn-div">
+                <button
+                  type="button"
+                  onClick={decrease}
+                >
+                  -
+                </button>
+                <span>{count}</span>
+                <button
+                  type="button"
+                  onClick={increase}
+                >
+                  +
+                </button>
+
+              </div>
+
+            </div>
+            <div>
+              <a
+                className="btn block"
+                onClick={handleCart}
+              >
+                {' '}
+                Add to Cart
+              </a>
+            </div>
           </div>
-          <div>
-          <a
-              className="btn block"
-              onClick={handleCart}
-            >
-              {' '}
-              Add to Cart
-            </a>
-          </div>
+
         </div>
-
-      </div>
-      <div className="technical-details">
-        <h3>Technical Characteristics</h3>
-        <div className="Xteristic">
-          {product.head_size
+        <div className="technical-details">
+          <h3>Technical Characteristics</h3>
+          <div className="Xteristic">
+            {product.head_size
         && (
         <div className="">
           <div className="col-6">
             <span className="font-semibold text-gray-dark">Head Size</span>
           </div>
           <div className="col-6">
-            <span className='text-gray-dark font-medium'>
+            <span className="text-gray-dark font-medium">
               {product.head_size}
               {' '}
               &#13216;
@@ -158,7 +160,7 @@ const ProductDetails = () => {
           </div>
         </div>
         ) }
-          {product.weight
+            {product.weight
         && (
         <div>
           <div className="col-6">
@@ -175,7 +177,7 @@ const ProductDetails = () => {
           </div>
         </div>
         )}
-          {product.size
+            {product.size
         && (
         <div>
           <div className="col-6">
@@ -188,11 +190,11 @@ const ProductDetails = () => {
           </div>
         </div>
         )}
-          {product.length
+            {product.length
         && (
         <div>
           <div className="col-6">
-            <span  className="font-semibold text-gray-dark">Length </span>
+            <span className="font-semibold text-gray-dark">Length </span>
 
           </div>
           <div className="col-6">
@@ -205,7 +207,7 @@ const ProductDetails = () => {
           </div>
         </div>
         )}
-          {product.composition
+            {product.composition
         && (
         <div>
           <div className="col-6">
@@ -218,7 +220,7 @@ const ProductDetails = () => {
           </div>
         </div>
         )}
-          {product.strung
+            {product.strung
         && (
         <div>
           <div>
@@ -231,7 +233,7 @@ const ProductDetails = () => {
           </div>
         </div>
         )}
-          {product.tension
+            {product.tension
         && (
         <div>
 
@@ -249,24 +251,23 @@ const ProductDetails = () => {
           </div>
         </div>
         )}
+          </div>
         </div>
+
+        <div className="description-details m-h4">
+          <h2 className="ml-0">Description</h2>
+          <p>
+            {product.description}
+
+          </p>
+
+        </div>
+
       </div>
-
-      <div className="description-details m-h4">
-        <h2 className='ml-0'>Description</h2>
-        <p>
-          {product.description}
-
-        </p>
-
-      </div>
-
-    </div>
 
     </section>
 
   );
 };
-}
 
 export default ProductDetails;

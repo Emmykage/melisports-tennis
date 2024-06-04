@@ -16,10 +16,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { userLog } from '../../redux/user/user';
-import { addUser } from '../../redux/actions/auth';
 import { BsEyeSlash } from 'react-icons/bs';
 import { AiOutlineEye } from 'react-icons/ai';
+import { userLog } from '../../redux/user/user';
+import { addUser } from '../../redux/actions/auth';
 
 function Copyright(props) {
   return (
@@ -37,7 +37,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const [seePassword, setSeePassword] = useState(false)
+  const [seePassword, setSeePassword] = useState(false);
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export default function SignUp() {
     user, error, message, loading,
   } = useSelector((state) => state.user);
 
-  const [notification, setNotification] = useState({color: '', text: null})
+  const [notification, setNotification] = useState({ color: '', text: null });
   useEffect(() => {
     dispatch(userLog());
   }, []);
@@ -67,7 +67,6 @@ export default function SignUp() {
 
     };
     dispatch(addUser(formInput));
-
   };
   if (user == null || user == undefined) {
     return (
@@ -113,7 +112,7 @@ export default function SignUp() {
                     autoComplete="family-name"
                   />
                 </Grid>
-               
+
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -124,7 +123,7 @@ export default function SignUp() {
                     autoComplete="email"
                   />
                 </Grid>
-               
+
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -135,21 +134,21 @@ export default function SignUp() {
                     autoComplete="phone_no"
                   />
                 </Grid>
-                
-                <Grid className='relative' item xs={12}>
+
+                <Grid className="relative" item xs={12}>
                   <TextField
                     required
                     fullWidth
                     name="password"
                     label="Password"
-                    type={seePassword ? "text" : "password"}
+                    type={seePassword ? 'text' : 'password'}
                     id="password"
                     autoComplete="new-password"
                   />
-                    <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !seePassword)}>
-                
-                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
-                </span>
+                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !seePassword)}>
+
+                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                  </span>
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
@@ -179,8 +178,8 @@ export default function SignUp() {
                 <Grid item>
                   <NavLink to="/auth/login">
                     <Link variant="body2">
-                    Already have an account? Sign in
-                  </Link>
+                      Already have an account? Sign in
+                    </Link>
                   </NavLink>
                 </Grid>
               </Grid>

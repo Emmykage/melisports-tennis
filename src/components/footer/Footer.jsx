@@ -6,8 +6,8 @@ const Footer = () => (
   <footer>
     <div className="m-auto footer-container flex-center">
       <div>
-        <h4 className='text-4xl text-center'>MeliSport</h4>
-        <p className='text-center'>
+        <h4 className="text-4xl text-center">MeliSport</h4>
+        <p className="text-center">
           For over 10 years we have been dedicated to providing an incomparable
           collection of tennis and racqet sport collection
         </p>

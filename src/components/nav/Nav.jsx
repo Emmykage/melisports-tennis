@@ -15,31 +15,27 @@ import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
 
 const Nav = () => {
-
   const navigate = useNavigate();
   const { counter, update } = useSelector((state) => state.cart);
-  const [stickyNav, setStickyNav] = useState('')
+  const [stickyNav, setStickyNav] = useState('');
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
 
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
-      setStickyNav('sticky-nav')
-      
+      setStickyNav('sticky-nav');
+    } else {
+      setStickyNav('');
     }
-    else{
-      setStickyNav('')
-    }
-      
-  }
+  };
   useEffect(() => {
-    dispatch(getProducts())
+    dispatch(getProducts());
     dispatch(userLog());
     dispatch(getCarts());
     dispatch(calculateTotal());
 
-    window.addEventListener('scroll', toggleScrollNav)
+    window.addEventListener('scroll', toggleScrollNav);
   }, [update]);
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '');
@@ -49,7 +45,7 @@ const Nav = () => {
 
   return (
     <>
-      <nav >
+      <nav>
 
         <div className={`${stickyNav} navbar`}>
           <div className="mobile-menu-div">

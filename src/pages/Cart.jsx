@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getLocalCart, removeItem, updateQty, updater } from '../redux/cart/cart';
+import {
+  getLocalCart, removeItem, updateQty, updater,
+} from '../redux/cart/cart';
 import {
   decreaseCart, increaseCart, getCarts,
 } from '../redux/actions/cart';
@@ -70,11 +72,10 @@ const Cart = () => {
     dispatch(updater());
   };
   const handleDelete = (id) => {
-
     dispatch(removeItem(id));
     dispatch(updater());
   };
-  console.log(cartItems)
+  console.log(cartItems);
   return (
     <>
       <div className="cart-div">
@@ -83,12 +84,12 @@ const Cart = () => {
           <table>
             <thead>
               <tr>
-                <th ></th>
-                <th >name</th>
-                <th >Price</th>
+                <th />
+                <th>name</th>
+                <th>Price</th>
                 <th>Total</th>
                 <th>Quantity</th>
-                <th></th>
+                <th />
 
               </tr>
             </thead>
@@ -105,7 +106,7 @@ const Cart = () => {
                       {cart.product_name}
                     </p>
                   </td>
-                  <td className='text-base'>
+                  <td className="text-base">
                     <p>{naira_format(cart.price)}</p>
                   </td>
                   <td>
@@ -142,7 +143,7 @@ const Cart = () => {
                       </div>
                     </div>
                   </td>
-                  <td className=''>
+                  <td className="">
                     <button className="btn block" onClick={() => handleDelete(cart.product_id)}> remove</button>
 
                   </td>
@@ -164,13 +165,13 @@ const Cart = () => {
           </div>
         </div>
         <div className="cart-side">
-          <div className="flex-space"><h2 className='mb-4'>Order Summary</h2></div>
+          <div className="flex-space"><h2 className="mb-4">Order Summary</h2></div>
           <div className="flex-space my-1">
-            <span className='text-xl'>Subtotal</span>
-            <span className='text-gray font-semibold'>{naira_format(total)}</span>
+            <span className="text-xl">Subtotal</span>
+            <span className="text-gray font-semibold">{naira_format(total)}</span>
           </div>
           <div className="flex-space total my-1">
-            <span className='text-xl'>Total</span>
+            <span className="text-xl">Total</span>
             <span className=" text-gray font-bold">{naira_format(total)}</span>
           </div>
           <div>

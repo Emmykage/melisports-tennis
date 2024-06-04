@@ -19,55 +19,40 @@ const usersSlice = createSlice({
   initialState,
 
   extraReducers: {
-    [delUsers.fulfilled]: (state) => {
-      return{
-        ...state,
-        notice: "",
-        loading: false,
+    [delUsers.fulfilled]: (state) => ({
+      ...state,
+      notice: '',
+      loading: false,
 
+    }),
+    [delUsers.pending]: (state) => ({
+      ...state,
+      notice: '',
+      loading: true,
 
-      }
-    },
-    [delUsers.pending]: (state) => {
-      return{
-        ...state,
-        notice: "",
-        loading: true,
-        
+    }),
+    [updateUser.fulfilled]: (state) => ({
+      ...state,
+      notice: '',
+      loading: false,
 
-      }
-    },
-    [updateUser.fulfilled]: (state) => {
-      return{
-        ...state,
-        notice: "",
-        loading: false,
+    }),
+    [updateUser.pending]: (state) => ({
+      ...state,
+      notice: '',
+      loading: true,
 
+    }),
+    [updateUser.rejected]: (state) => ({
+      ...state,
+      notice: '',
+      loading: false,
 
-      }
-    },
-    [updateUser.pending]: (state) => {
-      return{
-        ...state,
-        notice: "",
-        loading: true,
-        
-
-      }
-    },
-    [updateUser.rejected]: (state) => {
-      return{
-        ...state,
-        notice: "",
-        loading: false,        
-
-      }
-    },
+    }),
     [getUser.fulfilled]: (state, action) => {
       const response = action.payload;
 
       if (response) {
-
         return {
           ...state,
           logged: true,
@@ -84,7 +69,7 @@ const usersSlice = createSlice({
     },
     [getUsers.fulfilled]: (state, action) => {
       const response = action.payload;
-      console.log(response)
+      console.log(response);
 
       if (response) {
         return {
@@ -101,20 +86,20 @@ const usersSlice = createSlice({
         message: action.payload.error,
       };
     },
-    
+
   },
   reducers: {
 
     updateUserInput: (state, action) => {
-      console.log(action.payload.value)
-      return{
+      console.log(action.payload.value);
+      return {
         ...state,
-        user: {...state.user, [action.payload.name]: action.payload.value}
-      }
+        user: { ...state.user, [action.payload.name]: action.payload.value },
+      };
     },
 
   },
 });
 
 export default usersSlice.reducer;
-export const {  updateUserInput } = usersSlice.actions;
+export const { updateUserInput } = usersSlice.actions;

@@ -13,7 +13,7 @@ const AdminHome = ({ children }) => {
   return (
     <div className="admin-container">
       hey
-     
+
     </div>
 
   );

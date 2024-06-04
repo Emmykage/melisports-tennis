@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // import Hero from '../components/banner/Hero';
-import nadal_art from '../../src/assets/images/nadal-art.png'
+import nadal_art from '../assets/images/nadal-art.png';
 import AboutBanner from '../components/banner/AboutBanner';
 import { closeNav } from '../redux/modal/nav';
 
@@ -21,7 +21,11 @@ const About = () => {
           </div>
           <div className="flex justify-center items-align p-2">
             <p className="w-max-400 text-white">
-              Founded with a passion for sports and a commitment to serving the vibrant community of Nigerian sports enthusiasts, Melisports brings a fresh perspective to the world of sporting goods.<br/><br/> Our mission is simple yet profound: to provide access to high-quality sports equipment and services that empower every individual to pursue their athletic goals.
+              Founded with a passion for sports and a commitment to serving the vibrant community of Nigerian sports enthusiasts, Melisports brings a fresh perspective to the world of sporting goods.
+              <br />
+              <br />
+              {' '}
+              Our mission is simple yet profound: to provide access to high-quality sports equipment and services that empower every individual to pursue their athletic goals.
 
             </p>
 
@@ -29,28 +33,36 @@ const About = () => {
 
         </div>
         <div className="grid grid-2">
-          <div className=' bg- text-center flex items-center justify-center'>
-            <div className='w-080 bg- '>
-            <img src={nadal_art} alt=""  className='w-full'/>
+          <div className=" bg- text-center flex items-center justify-center">
+            <div className="w-080 bg- ">
+              <img src={nadal_art} alt="" className="w-full" />
 
             </div>
 
           </div>
-          <div className='p-4 bg- text-sm'>
-            <div className='flex items-center'>
-            <hr className='w-50'></hr>
-            <span className='font-bold text-lg'>About Us</span>
+          <div className="p-4 bg- text-sm">
+            <div className="flex items-center">
+              <hr className="w-50" />
+              <span className="font-bold text-lg">About Us</span>
             </div>
-         
-            <p className='text-base font-semibold text-justify'>
+
+            <p className="text-base font-semibold text-justify">
               MeliSports is a Nigeria specialist tennis whosaler and retailer, we also stock other racquet sports equipment and accessories, including badminton.
-              We offer a world-class selection of brands named tennis equipment and apparel for players of all ages and styles. Whether as a professional or just playing for fun, we've got you covered. 
-              MeliSports sources the best quality products and makes them readily available to its local consumers and worldwide.<br/><br/>
-              Having been in the business since 2014, you can count on us to deliver the best equipment to help you attain your goals in your chosen sport.<br/><br/>
-              At MeliSport, we continuously work to offer the best prices possible without compromising on premium quality and swift delivery.<br/><br/>
-              We are always open to collaborating with players, coaches, and clubs to work within the tennis scene. It is mutually beneficial. The more you promote us, the more benefits you'll achieve.<br/><br/>
+              We offer a world-class selection of brands named tennis equipment and apparel for players of all ages and styles. Whether as a professional or just playing for fun, we've got you covered.
+              MeliSports sources the best quality products and makes them readily available to its local consumers and worldwide.
+              <br />
+              <br />
+              Having been in the business since 2014, you can count on us to deliver the best equipment to help you attain your goals in your chosen sport.
+              <br />
+              <br />
+              At MeliSport, we continuously work to offer the best prices possible without compromising on premium quality and swift delivery.
+              <br />
+              <br />
+              We are always open to collaborating with players, coaches, and clubs to work within the tennis scene. It is mutually beneficial. The more you promote us, the more benefits you'll achieve.
+              <br />
+              <br />
               Put us to the test today. We are just a call away!
-           
+
             </p>
           </div>
         </div>
@@ -58,7 +70,7 @@ const About = () => {
         <div className="grid grid-2  my-3 py-2 why-chose">
 
           <div className="font-normal to-bottom">
-            <ul className='text-justify'>
+            <ul className="text-justify">
               <li className="my-3 py-1">
 
                 <p className="text-gray font-semibold">
@@ -67,7 +79,7 @@ const About = () => {
                   As a proudly Nigerian company, we understand the unique needs of our community. Our curated selection of sports equipment meets international standards, ensuring that you have access to the best gear without compromise.
                 </p>
               </li>
-           
+
               <li className="my-2 py-1">
 
                 <p className="text-gray font-semibold">

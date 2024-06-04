@@ -7,8 +7,8 @@ import { getCategories } from '../redux/category/categories';
 import Babolat from '../assets/images/logo/ba4886b10b-babolat-logo-babolat-logo-png-transparent-images-free-png-images-vector-psd.png';
 import melisport from '../assets/images/logo/melisport_one.png';
 import demo_service from '../assets/images/babolat-demo.jpg';
-import shoeImage from '../assets/images/banner/Jet_Tere_692x364_1.avif'
-import badmington from '../assets/images/banner/X-feel_692_x_364_px.avif'
+import shoeImage from '../assets/images/banner/Jet_Tere_692x364_1.avif';
+import badmington from '../assets/images/banner/X-feel_692_x_364_px.avif';
 import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
 import string from '../assets/images/stringing.jpg';
@@ -64,12 +64,12 @@ const Home = () => {
 
       </div>
       <div>
-        <div className='flex m-auto section-container gap-2'>
-          <NavLink to="/" className='flex-1 zoom-hover'>
-            <img src={shoeImage} alt="" className=' w-full h-full' />
+        <div className="flex m-auto section-container gap-2">
+          <NavLink to="/" className="flex-1 zoom-hover">
+            <img src={shoeImage} alt="" className=" w-full h-full" />
           </NavLink>
-          <NavLink to={'/'} className='flex-1 zoom-hover'>
-            <img src={badmington} alt=""   className='w-full h-full'/>
+          <NavLink to="/" className="flex-1 zoom-hover">
+            <img src={badmington} alt="" className="w-full h-full" />
           </NavLink>
         </div>
 
@@ -97,13 +97,13 @@ const Home = () => {
         <h3>Love Racquets Sports?</h3>
         <p className="text-pry">
 
-           We specialize in Babolat tennis, Badminton and Padel equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff are passionate about the sport and can guide you through our selections to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our retail store.
+          We specialize in Babolat tennis, Badminton and Padel equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff are passionate about the sport and can guide you through our selections to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our retail store.
 
         </p>
       </div>
       <div>
         <div className="product-grid fit-screen">
-        <div className="product-grid-items flex justify-center items-align text-center">
+          <div className="product-grid-items flex justify-center items-align text-center">
             <img src={Babolat} className="w-full" alt="" />
           </div>
           <div className="product-grid-items flex justify-center items-align text-center">

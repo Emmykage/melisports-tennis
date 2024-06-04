@@ -3,7 +3,6 @@ import baseURL from '../baseURL';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 
-
 const getProducts = createAsyncThunk('products/getProducts', async () => {
   const response = await fetch(`${baseURL}products`).then((res) => res.json());
   return response;
@@ -20,49 +19,44 @@ const getProduct = createAsyncThunk('product/getproduct', async (id) => {
   return response;
 });
 
-const updateProduct = createAsyncThunk('updateProduct', async ({editId, formData}) => {
-    const response = await fetch(`${baseURL}products/${editId}`, {
+const updateProduct = createAsyncThunk('updateProduct', async ({ editId, formData }) => {
+  const response = await fetch(`${baseURL}products/${editId}`, {
     method: 'PUT',
     headers: {
-      Authorization: `Bearer ${token()}`
+      Authorization: `Bearer ${token()}`,
     },
-    body: formData
+    body: formData,
   });
 
   return response;
 });
 
-const addProduct = createAsyncThunk('product/addproduct', async (data, {rejectWithValue}) => {
-  
-  try{
+const addProduct = createAsyncThunk('product/addproduct', async (data, { rejectWithValue }) => {
+  try {
     const response = await fetch(`${baseURL}products`, {
       method: 'POST',
       headers: {
-  
-        Authorization: `Bearer ${token()}`
+
+        Authorization: `Bearer ${token()}`,
       },
-      body: data
+      body: data,
     });
 
-    if(!response.ok){
-      const err = await response.json()
+    if (!response.ok) {
+      const err = await response.json();
       const errorMessages = err.message;
       const formattedError = Object.entries(errorMessages)
-      .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
-      .join(`\n`);
-      console.log(formattedError)
-      return rejectWithValue({message: formattedError})
+        .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+        .join('\n');
+      console.log(formattedError);
+      return rejectWithValue({ message: formattedError });
     }
 
-    const result = await response.json()
+    const result = await response.json();
     return result;
-
-  }catch(error){
+  } catch (error) {
     return rejectWithValue({ message: 'Network error, please try again later.' });
-
   }
-  
-
 });
 
 const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
@@ -71,10 +65,10 @@ const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    // .then(res => res.text());
+  });
+  // .then(res => res.text());
 });
 
 export {
-  getProducts, getProduct, addProduct, deleteProduct, updateProduct, 
+  getProducts, getProduct, addProduct, deleteProduct, updateProduct,
 };

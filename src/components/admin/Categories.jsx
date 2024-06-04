@@ -57,23 +57,23 @@ const Categories = () => {
       <table>
         <thead>
           <tr>
-            <th className='px-2 text-sm'>categories</th>
-            <th className='px-2 text-sm'>description</th>
-            <th className='px-2 text-sm'></th>
-            <th className='px-2 text-sm'></th>
+            <th className="px-2 text-sm">categories</th>
+            <th className="px-2 text-sm">description</th>
+            <th className="px-2 text-sm" />
+            <th className="px-2 text-sm" />
 
           </tr>
         </thead>
         <tbody>
           {product_categories.map((category) => (
             <tr key={category.id}>
-              <td className='px-2'>{category.name}</td>
-              <td className='px-2 py-2 text-gray text-sm'>
+              <td className="px-2">{category.name}</td>
+              <td className="px-2 py-2 text-gray text-sm">
                 {category.description.substring(0, 103)}
                 ...
               </td>
-              <td className='px-2 text-sm'><a className="btn py-1 px-4 text-sm" onClick={() => handleDelete(category.id)}>del</a></td>
-              <td className='px-2 text-sm'><a className="btn py-1 px-4 text-sm"  onClick={() => handleEdit(category.id)}>edit</a></td>
+              <td className="px-2 text-sm"><a className="btn py-1 px-4 text-sm" onClick={() => handleDelete(category.id)}>del</a></td>
+              <td className="px-2 text-sm"><a className="btn py-1 px-4 text-sm" onClick={() => handleEdit(category.id)}>edit</a></td>
 
             </tr>
           ))}

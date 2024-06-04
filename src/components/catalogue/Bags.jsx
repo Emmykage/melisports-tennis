@@ -20,45 +20,45 @@ const BagsCatalogue = ({ bag }) => (
 
               <li className=" border-t p-05 m-02 flex-half">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Racket Capacity:</span>
-                    <span className="xter-info text-sm">{bag.technical_characteristics.racquet_capacity}</span>
-                  </div>
+                  <span className="xter text-sm">Racket Capacity:</span>
+                  <span className="xter-info text-sm">{bag.technical_characteristics.racquet_capacity}</span>
+                </div>
               </li>
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Capacity:</span>
-                    <span className="xter-info text-sm">{bag.technical_characteristics.capacity}</span>
-                  </div>
+                  <span className="xter text-sm">Capacity:</span>
+                  <span className="xter-info text-sm">{bag.technical_characteristics.capacity}</span>
+                </div>
               </li>
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Dimension:</span>
-                    <span className="xter-info text-sm">{bag.technical_characteristics.racquet_capacity}</span>
-                  </div>
+                  <span className="xter text-sm">Dimension:</span>
+                  <span className="xter-info text-sm">{bag.technical_characteristics.racquet_capacity}</span>
+                </div>
               </li>
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Number of Handles:</span>
-                    <span className="xter-info text-sm">{bag.technical_characteristics.number_of_handles}</span>
-                  </div>
+                  <span className="xter text-sm">Number of Handles:</span>
+                  <span className="xter-info text-sm">{bag.technical_characteristics.number_of_handles}</span>
+                </div>
               </li>
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Number of Compartments:</span>
-                    <span className="xter-info text-sm">{bag.technical_characteristics.number_of_compartments}</span>
-                  </div>
+                  <span className="xter text-sm">Number of Compartments:</span>
+                  <span className="xter-info text-sm">{bag.technical_characteristics.number_of_compartments}</span>
+                </div>
               </li>
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Number of Straps:</span>
-                    <span className="xter-info text-sm">{bag.technical_characteristics.number_of_straps}</span>
-                  </div>
+                  <span className="xter text-sm">Number of Straps:</span>
+                  <span className="xter-info text-sm">{bag.technical_characteristics.number_of_straps}</span>
+                </div>
               </li>
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between gap-3">
-                    <span className="xter text-sm ">Composition: </span>
-                    <span className="xter-info text-sm">{bag.technical_characteristics.composition}</span>
-                  </div>
+                  <span className="xter text-sm ">Composition: </span>
+                  <span className="xter-info text-sm">{bag.technical_characteristics.composition}</span>
+                </div>
               </li>
 
             </ul>

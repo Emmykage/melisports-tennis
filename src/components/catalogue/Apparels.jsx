@@ -9,7 +9,7 @@ const Apparels = ({ apparel }) => (
     </div>
     <div className="flex-2 bg- relative overflow-hidden pb-0">
       <div className="sm px-2 block">
-        <div className='py-1'>
+        <div className="py-1">
 
           <h2 className="line-space px-1 spantara font-normal">{apparel.name}</h2>
           <h2 className="color-white font-light description">DESCRIPTION:</h2>
@@ -20,15 +20,15 @@ const Apparels = ({ apparel }) => (
 
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Content:</span>
-                    <span className="xter-info text-sm">{apparel.content}</span>
-                  </div>
+                  <span className="xter text-sm">Content:</span>
+                  <span className="xter-info text-sm">{apparel.content}</span>
+                </div>
               </li>
 
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm flex-1">Colors:</span>
-                    <div className="bg- flex-1 flex flex-between gap-1">
+                  <span className="xter text-sm flex-1">Colors:</span>
+                  <div className="bg- flex-1 flex flex-between gap-1">
 
                     {apparel.colors.map((color) => (
 
@@ -36,7 +36,7 @@ const Apparels = ({ apparel }) => (
 
                     ))}
                   </div>
-                  </div>
+                </div>
               </li>
 
             </ul>

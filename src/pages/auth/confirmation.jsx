@@ -11,16 +11,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { userLog } from '../../redux/user/user';
-import { loginUser } from '../../redux/actions/auth';
 import { BsEyeSlash } from 'react-icons/bs';
 import { AiOutlineEye } from 'react-icons/ai';
-
+import { userLog } from '../../redux/user/user';
+import { loginUser } from '../../redux/actions/auth';
 
 const theme = createTheme();
 
 export default function Confirmation() {
-  const [seePassword, setSeePassword] = useState(false)
+  const [seePassword, setSeePassword] = useState(false);
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ export default function Confirmation() {
     };
     dispatch(loginUser(formInput));
   };
-  console.log(user)
+  console.log(user);
   if ((user && !user.confirmed_at)) {
     return (
       <ThemeProvider theme={theme}>
@@ -65,31 +64,31 @@ export default function Confirmation() {
               <Grid container spacing={2}>
 
                 <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
                 <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type={seePassword ? "text" : "password"}
-                  id="password"
-                  autoComplete="new-password"
-                />
-                <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !prev)}>
-                
-                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
-                </span>
-              </Grid>
-                
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type={seePassword ? 'text' : 'password'}
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !prev)}>
+
+                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                  </span>
+                </Grid>
+
               </Grid>
               <p className="text-blue">
                 {' '}
@@ -106,9 +105,9 @@ export default function Confirmation() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-              Login
+                Login
               </Button>
-              
+
             </Box>
           </Box>
         </Container>

@@ -2,33 +2,26 @@ import { createSlice } from '@reduxjs/toolkit';
 // import cartItems from '../../service/cartItems';
 import { getCarts } from '../actions/cart';
 
-
 const setCart = (cartItems) => {
   localStorage.setItem('cartitem', JSON.stringify(cartItems));
 };
-const getCart = () =>{
- const carts = JSON.parse(localStorage.getItem('cartitem'));
+const getCart = () => {
+  const carts = JSON.parse(localStorage.getItem('cartitem'));
 
-  if(carts == null){
-    return []
-  }
-  else{
-    return carts
+  if (carts == null) {
+    return [];
   }
 
-}
-const refCart = () => getCart().map(cart => {
-  return{
-    product_id: cart.product_id,
-    price: cart.price,
-    product_name: cart.product_name,
-    image: cart.image,
-    quantity: cart.quantity,
-    subTotal: cart.quantity * cart.price
-  }
-})
-
-
+  return carts;
+};
+const refCart = () => getCart().map((cart) => ({
+  product_id: cart.product_id,
+  price: cart.price,
+  product_name: cart.product_name,
+  image: cart.image,
+  quantity: cart.quantity,
+  subTotal: cart.quantity * cart.price,
+}));
 
 const initialState = {
   cartItems: [],
@@ -81,11 +74,11 @@ const cartSlice = createSlice({
       };
     },
     getLocalCart: (state) => {
-      console.log(refCart())
-      return{
+      console.log(refCart());
+      return {
         ...state,
-        cartItems: refCart()
-      }
+        cartItems: refCart(),
+      };
     },
     updateQty: (state, action) => {
       const updateCart = getCart().map((item) => {
@@ -103,14 +96,12 @@ const cartSlice = createSlice({
     },
 
     removeItem: (state, action) => {
-
-
-      const filterdCart = getCart().filter((cart) => cart.product_id !== action.payload)
-      setCart(filterdCart)
-      return{
-      ...state,
-      cartItems: refCart()
-      }
+      const filterdCart = getCart().filter((cart) => cart.product_id !== action.payload);
+      setCart(filterdCart);
+      return {
+        ...state,
+        cartItems: refCart(),
+      };
     },
 
     updater: (state) => ({
@@ -172,6 +163,6 @@ const cartSlice = createSlice({
   },
 });
 export const {
-  removeItem, updateQty, updater, calculateTotal, addItem, addCart, clearCart, getLocalCart
+  removeItem, updateQty, updater, calculateTotal, addItem, addCart, clearCart, getLocalCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

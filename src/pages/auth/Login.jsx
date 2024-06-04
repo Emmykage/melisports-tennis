@@ -21,7 +21,6 @@ import { userLog } from '../../redux/user/user';
 import { updater } from '../../redux/cart/cart';
 import { loginUser } from '../../redux/actions/auth';
 
-
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -38,7 +37,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-  const [seePassword, setSeePassword] = useState(false)
+  const [seePassword, setSeePassword] = useState(false);
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
@@ -83,36 +82,36 @@ export default function Login() {
               <Grid container spacing={2}>
 
                 <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-                <Grid className='relative' item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type={seePassword ? "text" : "password"}
-                  id="password"
-                  autoComplete="new-password"
-                />
-                  <span className='cursor-pointer absolute right-mid' onClick={()=> setSeePassword(prev => !seePassword)}>
-                
-                {seePassword ?  <BsEyeSlash />  : <AiOutlineEye />}
-                </span>
-              </Grid>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
+                <Grid className="relative" item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type={seePassword ? 'text' : 'password'}
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !seePassword)}>
+
+                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                  </span>
+                </Grid>
                 <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+                  <FormControlLabel
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  />
+                </Grid>
               </Grid>
               <p className="blue">
                 {' '}
@@ -129,17 +128,17 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-              Login
+                Login
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                <NavLink to="/auth/sign_up">
+                  <NavLink to="/auth/sign_up">
 
-                  <Link variant="body2">
-                    Do not have an account? Sign Up
-                  </Link>
-                </NavLink>
-              </Grid>
+                    <Link variant="body2">
+                      Do not have an account? Sign Up
+                    </Link>
+                  </NavLink>
+                </Grid>
               </Grid>
             </Box>
           </Box>

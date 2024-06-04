@@ -33,7 +33,7 @@ const deleteCategory = createAsyncThunk('product_category/delete_product_categor
 });
 const getProductCategories = createAsyncThunk('product_category/get_product_category', async () => {
   const response = await fetch(`${baseURL}product_categories`).then((res) => res.json());
-    return response;
+  return response;
 });
 export {
   addProductCategory, getProductCategories, updateCategory, deleteCategory,

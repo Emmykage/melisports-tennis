@@ -20,22 +20,22 @@ const ShoesCatalogue = ({ shoe }) => (
 
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Fit:</span>
-                    <span className="xter-info text-sm text-orange">{shoe.technical_characteristics.fit}</span>
-                  </div>
+                  <span className="xter text-sm">Fit:</span>
+                  <span className="xter-info text-sm text-orange">{shoe.technical_characteristics.fit}</span>
+                </div>
               </li>
 
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm">Drop:</span>
-                    <span className="xter-info text-sm text-orange">{shoe.technical_characteristics.Drop}</span>
-                  </div>
+                  <span className="xter text-sm">Drop:</span>
+                  <span className="xter-info text-sm text-orange">{shoe.technical_characteristics.Drop}</span>
+                </div>
               </li>
               <li className=" border-t p-05 m-02">
                 <div className="flex flex-between">
-                    <span className="xter text-sm ">Surface Type:</span>
-                    <span className="xter-info text-sm text-orange">{shoe.technical_characteristics.surface_type}</span>
-                  </div>
+                  <span className="xter text-sm ">Surface Type:</span>
+                  <span className="xter-info text-sm text-orange">{shoe.technical_characteristics.surface_type}</span>
+                </div>
               </li>
 
             </ul>

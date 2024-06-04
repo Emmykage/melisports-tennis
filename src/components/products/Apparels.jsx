@@ -29,7 +29,7 @@ const Apparels = ({ products, status, error }) => {
         <div key={product.id} className="products-display">
           <div className="prod-img">
             <NavLink to={`/productdetails/${product.id}`}>
-            <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name} />
+              <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name} />
             </NavLink>
 
           </div>

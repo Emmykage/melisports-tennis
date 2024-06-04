@@ -16,7 +16,7 @@ const Products = () => {
   const { updater } = useSelector((state) => state.product);
 
   const dispatch = useDispatch();
-  console.log(products)
+  console.log(products);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -40,7 +40,7 @@ const Products = () => {
 
     return (
 
-      <div className='w-full grid lg-grid-col-3 sm-grid-col-2 xl-grid-col-3 grid-col-5 gap-3'>
+      <div className="w-full grid lg-grid-col-3 sm-grid-col-2 xl-grid-col-3 grid-col-5 gap-3">
 
         {products.map((product) => (
           <div key={product.id} className="products-display">

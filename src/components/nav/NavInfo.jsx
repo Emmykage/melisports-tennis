@@ -18,25 +18,20 @@ const NavInfo = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
-  const [stickyNav, setStickyNav] = useState('')
+  const [stickyNav, setStickyNav] = useState('');
 
-  
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
-      setStickyNav('sticky-nav')
-      
+      setStickyNav('sticky-nav');
+    } else {
+      setStickyNav('');
     }
-    else{
-      setStickyNav('')
-    }
-      
-  }
+  };
   useEffect(() => {
     dispatch(userLog());
     dispatch(getCarts());
     dispatch(calculateTotal());
-    window.addEventListener('scroll', toggleScrollNav)
-
+    window.addEventListener('scroll', toggleScrollNav);
   }, [update]);
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '');
@@ -95,17 +90,17 @@ const NavInfo = () => {
               <div className="user mobile-display ">
                 {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
-                <span className='text-dark'><FiUser className="user-icon" /></span>
+                <span className="text-dark"><FiUser className="user-icon" /></span>
 
               </div>
               <NavLink to="/store">
-              {/* <NavLink to="/"> */}
+                {/* <NavLink to="/"> */}
                 <AiOutlineShopping className="menu-icon cart-icon" />
               </NavLink>
 
               <div className="menu-div cart">
                 <NavLink to="/carts">
-             
+
                   <BsCartDash className="menu-icon cart-icon" />
                   <span className="total-amount color-white bold">{counter}</span>
 

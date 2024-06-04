@@ -7,7 +7,7 @@ import {
 const initialState = {
   user: {},
   users: [],
-  userEdit:{},
+  userEdit: {},
   error: false,
   message: '',
   loading: false,
@@ -20,7 +20,7 @@ const userSlice = createSlice({
     userLog: (state) => {
       try {
         const auth = localStorage.getItem('meli_auth');
-          // console.log(JSON.parse(auth).user)
+        // console.log(JSON.parse(auth).user)
         return {
           ...state,
           user: JSON.parse(auth).user,
@@ -36,8 +36,7 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    
-   
+
     [addUser.fulfilled]: (state, action) => {
       const response = action.payload;
       if (response.user) {
@@ -82,7 +81,7 @@ const userSlice = createSlice({
           logged: true,
           user: response.user,
           error: false,
-          loading:false,
+          loading: false,
           message: 'log in successful',
         };
       }

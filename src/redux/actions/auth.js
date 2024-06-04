@@ -38,38 +38,40 @@ const getUser = createAsyncThunk('user/getUser', async (id) => {
   return response;
 });
 
-const getUsers = createAsyncThunk('users/getusers', async() => {
+const getUsers = createAsyncThunk('users/getusers', async () => {
   const response = await fetch(`${baseURL}users`, {
-    method: "GET", 
+    method: 'GET',
     headers: {
       'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`
-    }
-  }).then(res => res.json())
-  return response
-})
-
-const delUsers = createAsyncThunk('users/del_users', async(id) => {
-  const response = await fetch(`${baseURL}users/${id}`, {
-    method: "DELETE", 
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`
-    }
-  }).then(res => res.json())
-  return response
-})
-
-const updateUser = createAsyncThunk('users/update_user', async({id, user}) => {
-  const response = await fetch(`${baseURL}users/${id}`, {
-    method: "PATCH", 
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`
+      Authorization: `Bearer ${token()}`,
     },
-    body: JSON.stringify(user)
-  })
+  }).then((res) => res.json());
+  return response;
+});
+
+const delUsers = createAsyncThunk('users/del_users', async (id) => {
+  const response = await fetch(`${baseURL}users/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token()}`,
+    },
+  }).then((res) => res.json());
+  return response;
+});
+
+const updateUser = createAsyncThunk('users/update_user', async ({ id, user }) => {
+  const response = await fetch(`${baseURL}users/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token()}`,
+    },
+    body: JSON.stringify(user),
+  });
   // .then(res => res.json())
-  return response
-})
-export { addUser, loginUser, getUser,getUsers, delUsers, updateUser };
+  return response;
+});
+export {
+  addUser, loginUser, getUser, getUsers, delUsers, updateUser,
+};

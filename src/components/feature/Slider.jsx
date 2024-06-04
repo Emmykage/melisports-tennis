@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectFade, Autoplay } from 'swiper';
 import Slide1 from '../../assets/images/banner/slide_one.jpg';
 import Slide3 from '../../assets/images/banner/slide_three.jpeg';
-import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-720_20231201.webm'
+import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-720_20231201.webm';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -31,7 +31,7 @@ export default function Slider() {
           modules={[EffectFade, Autoplay]}
           className="mySwiper"
         >
-           {/* <SwiperSlide>
+          {/* <SwiperSlide>
             <video src={videoAdd} controls autoplay muted loop></video>
           </SwiperSlide> */}
           <SwiperSlide>
@@ -41,11 +41,10 @@ export default function Slider() {
           <SwiperSlide>
             <img src={Slide3} />
           </SwiperSlide>
-         
 
         </Swiper>
       </div>
-      <video src={videoAdd} autoPlay loop muted ></video>
+      <video src={videoAdd} autoPlay loop muted />
     </>
   );
 }

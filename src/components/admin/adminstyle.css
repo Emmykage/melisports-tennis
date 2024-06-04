@@ -123,11 +123,6 @@ aside .top .logo a {
   margin-top: 1.4rem;
 }
 
-.product-form {
-  margin: 100px auto;
-  width: 80%;
-}
-
 .product-form label {
   display: flex;
   justify-content: space-between;
