@@ -32,16 +32,37 @@ const updateProduct = createAsyncThunk('updateProduct', async ({editId, formData
   return response;
 });
 
-const addProduct = createAsyncThunk('product/addproduct', async (data) => {
-  const response = await fetch(`${baseURL}products`, {
-    method: 'POST',
-    headers: {
+const addProduct = createAsyncThunk('product/addproduct', async (data, {rejectWithValue}) => {
+  
+  try{
+    const response = await fetch(`${baseURL}products`, {
+      method: 'POST',
+      headers: {
+  
+        Authorization: `Bearer ${token()}`
+      },
+      body: data
+    });
 
-      Authorization: `Bearer ${token()}`
-    },
-    body: data
-  });
-  return response;
+    if(!response.ok){
+      const err = await response.json()
+      const errorMessages = err.message;
+      const formattedError = Object.entries(errorMessages)
+      .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+      .join(`\n`);
+      console.log(formattedError)
+      return rejectWithValue({message: formattedError})
+    }
+
+    const result = await response.json()
+    return result;
+
+  }catch(error){
+    return rejectWithValue({ message: 'Network error, please try again later.' });
+
+  }
+  
+
 });
 
 const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {

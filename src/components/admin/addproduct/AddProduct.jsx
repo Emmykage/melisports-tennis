@@ -85,7 +85,7 @@ const AddProduct = () => {
         </div>
         <div className='quantity my-2'>
           <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity</label>
-          <input type="number" name="quantity" id="quantity"/>
+          <input type="number" name="quantity" id="quantity" required/>
         </div>
         <div className="form-row text-sm my-1">
           <div className="input-half">
@@ -122,18 +122,6 @@ const AddProduct = () => {
         </div>
         <div className='form-row my-1'>
 
-    
-        {/* <div className="input-half">
-            <label htmlFor="" className='text-dark font-semibold text-sm'> Quantity          </label>
-            <input
-              name="quantity"
-              id='quantity'
-              
-              type="number"
-              placeholder="Number of Items "
-            />
-
-          </div> */}
           <div className="input-half">
             <label htmlFor="" className='text-dark font-semibold text-sm'> SKU   </label>
             <input
@@ -334,6 +322,7 @@ const AddProduct = () => {
 
           <Select
             placeholder="product category"
+            required
             name="product_category_id"
             id='product_category_id'
             options={product_categories.map(cat => (

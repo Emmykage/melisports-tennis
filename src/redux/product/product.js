@@ -31,26 +31,20 @@ const productSlice = createSlice({
       pending: false
     }),
     [addProduct.fulfilled]: (state, action) => {
-      if (action.payload.ok) {
-        return {
-          ...state,
-          loading: false,
-          status: 'success',
-          report: 'product has been added',
-        };
-      }
+
       return {
         ...state,
         loading: false,
-        status: 'rejected',
-        report: 'failed to created product',
+        error: false,
+        status: 'success',
+        report: 'product has been added',
       };
     },
-    [addProduct.rejected]: (state) => ({
+    [addProduct.rejected]: (state, action) => ({
       ...state,
       loading: false,
       status: 'rejected',
-      report: "product can't be added",
+      report: action.payload.message
     }),
     [addProduct.pending]: (state) => ({
       ...state,
