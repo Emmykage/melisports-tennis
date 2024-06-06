@@ -14,47 +14,47 @@ const BagsCatalogue = ({ bag }) => (
           <h2 className="line-space px-1 spantara font-normal">{bag.name}</h2>
           <h2 className="color-white font-light description">DESCRIPTION:</h2>
           <p className="px-1 text-sm text-white">{bag.description}</p>
-          <div className="p-top-05">
+          <div className="pt-5">
             <h2 className="color-white font-normal technical"> TECHNICAL CHARACTERISTICS </h2>
             <ul className="characters-flex px-1  gap-1 ">
 
-              <li className=" border-t p-05 m-02 flex-half">
+              <li className=" border-t p-5 m-5 flex-half">
                 <div className="flex flex-between">
                   <span className="xter text-sm">Racket Capacity:</span>
                   <span className="xter-info text-sm">{bag.technical_characteristics.racquet_capacity}</span>
                 </div>
               </li>
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between">
                   <span className="xter text-sm">Capacity:</span>
                   <span className="xter-info text-sm">{bag.technical_characteristics.capacity}</span>
                 </div>
               </li>
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between">
                   <span className="xter text-sm">Dimension:</span>
                   <span className="xter-info text-sm">{bag.technical_characteristics.racquet_capacity}</span>
                 </div>
               </li>
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between">
                   <span className="xter text-sm">Number of Handles:</span>
                   <span className="xter-info text-sm">{bag.technical_characteristics.number_of_handles}</span>
                 </div>
               </li>
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between">
                   <span className="xter text-sm">Number of Compartments:</span>
                   <span className="xter-info text-sm">{bag.technical_characteristics.number_of_compartments}</span>
                 </div>
               </li>
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between">
                   <span className="xter text-sm">Number of Straps:</span>
                   <span className="xter-info text-sm">{bag.technical_characteristics.number_of_straps}</span>
                 </div>
               </li>
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between gap-3">
                   <span className="xter text-sm ">Composition: </span>
                   <span className="xter-info text-sm">{bag.technical_characteristics.composition}</span>

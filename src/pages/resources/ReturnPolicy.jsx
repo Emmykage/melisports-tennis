@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReturnPolicy = () => (
   <div className="portrait-container">
-    <h2 className="m-h2">
+    <h2 className="my-3">
       Return Policy
     </h2>
 

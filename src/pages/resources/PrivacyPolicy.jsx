@@ -2,7 +2,7 @@ import React from 'react';
 
 const PrivacyPolicy = () => (
   <div className="portrait-container">
-    <h2 className="m-h4">    Privacy Policy - Melisports Nigeria</h2>
+    <h2 className="my-6">    Privacy Policy - Melisports Nigeria</h2>
     <p>
       Effective Date: 20 - 04 - 2023
 

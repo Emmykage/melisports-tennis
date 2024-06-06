@@ -2,7 +2,7 @@ import React from 'react';
 
 const ShippingPolicy = () => (
   <div className="portrait-container">
-    <h2 className="m-h4">
+    <h2 className="my-6">
       Shipping Policy
     </h2>
     <p>

@@ -74,7 +74,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="product-form admin">
+    <div className="product-form admin m-auto">
 
       <form onSubmit={handleSubmit} ref={formRef}>
 

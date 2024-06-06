@@ -2,7 +2,7 @@ import React from 'react';
 
 const TermsOfServices = () => (
   <div className="portrait-container">
-    <h2 className="m-h4">
+    <h2 className="my-6">
       Terms of Service Policy
 
     </h2>

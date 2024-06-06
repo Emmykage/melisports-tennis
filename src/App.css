@@ -194,15 +194,7 @@ body {
 .text-green {
   color: green;
 }
-.text-black {
-  color: black;
-}
-.cursor-pointer{
-  cursor: pointer;
-}
-.w-full{
-  width: 100%;
-}
+
 
 .text-xs {
   font-size: 12px;
@@ -212,67 +204,6 @@ hr{
   border: 1px solid rgb(186, 88, 88);
 }
 
-.text-sm {
-  font-size: 14px;
-}
-
-.text-base {
-  font-size: 16px;
-}
-
-.text-lg {
-  font-size: 18px;
-}
-
-.text-xl {
-  font-size: 20px;
-}
-
-.text-2xl {
-  font-size: 22px;
-}
-
-.text-3xl {
-  font-size: 26px;
-}
-
-.text-4xl {
-  font-size: 30px !important;
-}
-
-.text-5xl {
-  font-size: 34px;
-}
-
-.text-6xl {
-  font-size: 38px;
-}
-
-.text-7xl {
-  font-size: 44px;
-}
-
-.font-light {
-  font-weight: 300;
-}
-
-.font-normal {
-  font-weight: 400;
-}
-
-.font-medium {
-  font-weight: 500;
-}
-
-.font-semibold {
-  font-weight: 600;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.grid,
 .grid-display {
   display: grid;
 }
@@ -394,15 +325,6 @@ a {
   min-height: 100vh;
   padding: 0;
 }
-
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
 .right-mid{
   right: 7px;
   top: 50%;
@@ -556,9 +478,6 @@ a {
   /* color: white; */
 }
 
-.block {
-  display: block;
-}
 
 .bg-red {
   background-color: red;
@@ -650,67 +569,11 @@ a {
   line-height: 1.8rem;
 }
 
-.m-h5 {
-  margin: 6rem 0;
-}
-
-.m-h4 {
-  margin: 2rem 0;
-}
-
-.m-h2 {
-  margin: 1rem 0;
-}
-
-.p-top-5 {
-  padding-top: 2.5rem;
-}
-
-.p-top-3 {
-  padding-top: 3rem;
-}
-
-.p-top-2 {
-  padding-top: 2rem;
-}
-
-.p-top-1 {
-  padding-top: 1rem;
-}
-
-.p-top-05 {
-  padding-top: 0.5rem;
-}
-
-.m-05 {
-  margin: 0.5rem;
-}
-
-.m-02 {
-  margin: 0.2rem;
-}
 
 .prod-page {
   padding: 1rem;
 }
 
-.ml-0 {
-  margin-left: 0rem;
-}.ml-1 {
-  margin-left: 0.5rem;
-}.ml-2 {
-  margin-left: 1rem;
-}.ml-3 {
-  margin-left: 1.5rem;
-}.ml-4 {
-  margin-left: 2rem;
-}.ml-5 {
-  margin-left: 2.5rem;
-}.ml-6 {
-  margin-left: 3rem;
-}.ml-7 {
-  margin-left: 3.5rem;
-}
 .switch{
   flex-flow: column;
  
@@ -724,16 +587,7 @@ a {
   font-size: 1.5rem;
 }
 
-.center,
-.text-center {
-  text-align: center;
-}
-.text-justify{
-  text-align: justify;
-}
-.m-auto {
-  margin: auto;
-}
+
 
 .w-7 {
   width: 70%;
@@ -1008,10 +862,6 @@ button:active {
 }
 .text-blue{
   color: blue;
-}
-
-.full-width {
-  flex-basis: 78%;
 }
 
 .m-v2 {

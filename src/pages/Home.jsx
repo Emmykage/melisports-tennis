@@ -74,8 +74,8 @@ const Home = () => {
         </div>
 
       </div>
-      <div className="m-h4">
-        <h3 className="center fs-3 m-h2"> Shop Categories</h3>
+      <div className="my-6">
+        <h3 className="center fs-3 my-3"> Shop Categories</h3>
 
         <div className="feature-div gap-2 m-auto flex-center-around">
           {categories.map((category) => (
@@ -90,7 +90,7 @@ const Home = () => {
         </div>
 
       </div>
-      <div className="banner-text full-screen m-h5 text-center">
+      <div className="banner-text full-screen my-3 text-center">
         <h2>
           Tennis Equipment & Supplies
         </h2>

@@ -88,7 +88,7 @@ const PaymentForm = ({ total_cost }) => {
       >
         <fieldset className="FormGroup">
           <PaymentField billingDetails={billingDetails} setBillingDetails={setBillingDetails} />
-          <div className="FormRow m-h2">
+          <div className="FormRow my-3">
             <CardElement options={CARD_OPTIONS} />
 
           </div>

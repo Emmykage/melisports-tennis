@@ -14,18 +14,18 @@ const Apparels = ({ apparel }) => (
           <h2 className="line-space px-1 spantara font-normal">{apparel.name}</h2>
           <h2 className="color-white font-light description">DESCRIPTION:</h2>
           <p className="px-1 text-sm text-white">{apparel.description}</p>
-          <div className="p-top-05">
+          <div className="pt-5">
             <h2 className="color-white font-normal technical"> TECHNICAL CHARACTERISTICS </h2>
             <ul className="characters-col px-1  gap-1 ">
 
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between">
                   <span className="xter text-sm">Content:</span>
                   <span className="xter-info text-sm">{apparel.content}</span>
                 </div>
               </li>
 
-              <li className=" border-t p-05 m-02">
+              <li className=" border-t p-5 m-5">
                 <div className="flex flex-between">
                   <span className="xter text-sm flex-1">Colors:</span>
                   <div className="bg- flex-1 flex flex-between gap-1">

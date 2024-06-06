@@ -5,7 +5,7 @@ import './style.css';
 const FeaturedProducts = (props) => {
   const { name, image } = props;
   return (
-    <div className="feature-grid m-h2 box-shadow">
+    <div className="feature-grid my-3 box-shadow">
       <NavLink to={`/${name}`}>
 
         <div>

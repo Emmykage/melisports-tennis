@@ -17,41 +17,41 @@ const Rackets = ({ racquet }) => {
             <h2 className="line-space px-1 ">{racquet.name}</h2>
             <h2 className="color-white font-light description">DESCRIPTION:</h2>
             <p className="px-1 text-sm text-white">{racquet.description}</p>
-            <div className="p-top-05">
+            <div className="pt-5">
               <h2 className="color-white font-normal technical"> TECHNICAL CHARACTERISTICS </h2>
               <ul className="characters px-1  gap-1 ">
 
-                <li className=" border-t p-05 m-02">
+                <li className=" border-t p-5 m-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Head Size:</span>
                     <span className="xter-info text-sm">{racquet.technical_characteristics.head_size}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
+                <li className=" border-t m-5 p-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Weight (unstrung):</span>
                     <span className="text-sm">{racquet.technical_characteristics.weight}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
+                <li className=" border-t m-5 p-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Swing Weight:</span>
                     <span className="text-sm">{racquet.technical_characteristics.swing_weight}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
+                <li className=" border-t m-5 p-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Stiffness (RA):</span>
                     <span className="text-sm">{racquet.technical_characteristics.stiffness}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
+                <li className=" border-t m-5 p-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Composition:</span>
                     <span className="text-sm">{racquet.technical_characteristics.composition}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
+                <li className=" border-t m-5 p-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Tension Recommended:</span>
                     <span className="text-sm">
@@ -60,19 +60,19 @@ const Rackets = ({ racquet }) => {
                     </span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
+                <li className=" border-t m-5 p-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Length:</span>
                     <span className="text-sm">{racquet.technical_characteristics.length}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
+                <li className=" border-t m-5 p-5">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Recommended String:</span>
                     <span className="text-sm">{racquet.technical_characteristics.recommended_string}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05 block">
+                <li className=" border-t m-5 p-5 block">
                   <div className="flex flex-between">
                     <span className="xter text-sm">Recommended Grip:</span>
                     <span className="text-sm">{racquet.technical_characteristics.recommended_grip}</span>
