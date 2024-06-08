@@ -62,7 +62,7 @@ const Nav = () => {
           <div className="nav-div flex-center space">
 
             <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links'}>
-              <div className="mobile-menu-div  m-v4">
+              <div className="mobile-menu-div  my-4">
                 <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
               </div>
 
@@ -222,7 +222,7 @@ const Nav = () => {
                 <NavLink to="/carts">
 
                   <BsCartDash className="menu-icon cart-icon" />
-                  <span className="total-amount color-white bold">{counter}</span>
+                  <span className="total-amount text-white bold">{counter}</span>
 
                 </NavLink>
               </div>

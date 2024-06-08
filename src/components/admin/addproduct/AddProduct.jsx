@@ -79,7 +79,7 @@ const AddProduct = () => {
       <form onSubmit={handleSubmit} ref={formRef}>
 
         <div className="ms_code quantity bg-green-500">
-          <label htmlFor="quantity bg-red-400 font-medium text-gray-700">ms product code *</label>
+          <label htmlFor="quantity font-medium text-gray-700">ms product code *</label>
           <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required />
         </div>
         <div className="quantity my-2">
@@ -124,7 +124,7 @@ const AddProduct = () => {
           <div className="flex justify-between gap-3 text-sm my-1">
 
             <div className="input-half">
-              <label htmlFor="" className="text-gray-500 font-semibold text-sm"> SKU  * </label>
+              <label htmlFor="sku" className="text-gray-500 font-semibold text-sm"> SKU  * </label>
               <input
                 name="sku"
                 id="sku"
@@ -200,16 +200,16 @@ const AddProduct = () => {
                 />
               </div>
               <div className="input-half">
-              <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
-                strung/unstrung
-              </label>
-              <Select
-                name="strung"
-                id="strung"
-                options={strung}
-              />
+                <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
+                  strung/unstrung
+                </label>
+                <Select
+                  name="strung"
+                  id="strung"
+                  options={strung}
+                />
 
-            </div>
+              </div>
 
             </div>
 
@@ -272,8 +272,6 @@ const AddProduct = () => {
               </div>
 
             </div>
-
-           
 
             <div className="form-row my-1">
               <div className="input-half">
@@ -401,12 +399,12 @@ const AddProduct = () => {
               {report}
             </p>
           ) : (status == 'success' ? (
-            <p className="text-green">
+            <p className="text-green bg-green-200 rounded">
               {' '}
               {report}
             </p>
           ) : (
-            <p className="red">
+            <p className="text-red-800 bg-red-200 rounded">
               {' '}
               {report}
             </p>

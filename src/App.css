@@ -196,9 +196,6 @@ body {
 }
 
 
-.text-xs {
-  font-size: 12px;
-}
 hr{
   height: 1px;
   border: 1px solid rgb(186, 88, 88);
@@ -542,13 +539,6 @@ a {
   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 
-.products-container p,
-.xter-info {
-  /* color: white; */
-
-  /* font-size: 14px; */
-}
-
 .products-container .p-img {
   width: 300px;
   height: 300px;
@@ -633,11 +623,7 @@ a {
   padding: 1.5rem;
   border-radius: 0.5rem;
   background: transparent;
-
-  /* border: 2px solid var(--color-primary-variant); */
   resize: none;
-
-  /* color: var(--color-white); */
 }
 
 /* ==========================flex-box======================== */
@@ -662,26 +648,6 @@ a {
   align-items: center;
 }
 
-.py-1 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.py-2 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.centralize {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.border-t {
-  border-top: 1px solid white;
-}
-
 .justify-center {
   justify-content: center;
 }
@@ -695,25 +661,12 @@ a {
   flex: 3;
 }
 
-.pb-4 {
-  padding-bottom: 2rem;
-}
-
-.flex-1 {
-  flex: 1;
-}
 
 .flex-2 {
   flex: 2;
 }
 
-.gap-1 {
-  gap: 1%;
-}
 
-.gap-2 {
-  gap: 2%;
-}
 
 .flex-center-around {
   display: flex;
@@ -733,18 +686,10 @@ a {
   gap: 5%;
 }
 
-.w-full {
-  width: 100% !important;
-}
 
 .w-8 {
   width: 80%;
   background-color: chartreuse;
-}
-
-.p-x5 {
-  padding-left: 5rem;
-  padding-right: 5rem;
 }
 
 .level {
@@ -768,20 +713,6 @@ button {
   background-color: var(--color-theme-variant);
   color: var(--color-info-light);
 }
-
-.color-black {
-  color: black;
-}
-
-.color-white {
-  color: white;
-}
-
-.bold {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
 .characters {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -864,15 +795,6 @@ button:active {
   color: blue;
 }
 
-.m-v2 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.m-v4 {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
 
 .red {
   color: red;
@@ -1124,10 +1046,6 @@ table td {
   width: 50%;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .btn-div {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   width: max-content;
@@ -1190,10 +1108,6 @@ table td {
 }
 
 
-/* .cart-side span {
-  font-size: 1.35rem;
-} */
-
 .cart-side .total {
   border-top: 1px solid black;
 }
@@ -1218,10 +1132,7 @@ table td {
   border-radius: 6px;
 }
 
-.cart-div table p,
-.cart-div table span {
-  /* font-size: 20px; */
-}
+
 
 td .btn.change {
   font-size: 21px;
@@ -1402,17 +1313,12 @@ td .btn.change {
 
 .checkout .col-right ul li {
   padding: 15px 8px;
-
-  /* border: 1px solid black; */
 }
 
 .service-table {
   position: relative;
 }
 
-.relative {
-  /* position: relative; */
-}
 
 .border-white {
   border: 1px solid white;

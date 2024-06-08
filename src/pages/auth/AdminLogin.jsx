@@ -33,9 +33,6 @@ const AdminLogin = () => {
 
   const [show, setShow] = useState(true);
 
-  // const toggleReveal = () => {
-  //   setShow((prev) => !prev);
-  // };
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
@@ -140,7 +137,7 @@ const AdminLogin = () => {
                   <NavLink to="/auth/admin_sign_up">
 
                     <Link variant="body2">
-                     Do not have an account? Sign Up
+                      Do not have an account? Sign Up
                     </Link>
                   </NavLink>
                 </Grid>
