@@ -416,7 +416,7 @@ const EditProduct = () => {
 
               </div>
               <div className="flex gap-4 my-6">
-                {product.photo_urls.map((image, index) => (
+                {product.photo_urls?.map((image, index) => (
                   <img src={image} alt="" key={index} className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3" />
                 ))}
               </div>
