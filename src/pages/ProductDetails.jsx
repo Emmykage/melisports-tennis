@@ -10,12 +10,22 @@ import { closeNav } from '../redux/modal/nav';
 import { addCart } from '../redux/cart/cart';
 import Loader from './Loader';
 import ImagePreview from '../components/products/ImagePreview';
+import { naira_format } from '../components/utils/naira_format';
 
 const ProductDetails = () => {
-  const NGNaira = new Intl.NumberFormat('en-NG', {
-    style: 'currency',
-    currency: 'NGN',
-  });
+  const pickColor = (color) => {
+    switch (color) {
+      case 'blue':
+        return 'blue';
+      case 'red':
+        return 'red';
+      case 'green':
+        return 'green';
+      default:
+        return 'gray';
+    }
+  };
+
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const { product, loading } = useSelector((state) => state.product);
@@ -65,7 +75,7 @@ const ProductDetails = () => {
             <div className="price">
 
               <span className="text-2xl font-semibold">
-                {NGNaira.format(product.price)}
+                {naira_format(product.price)}
               </span>
 
             </div>
@@ -100,13 +110,22 @@ const ProductDetails = () => {
             {product.colours && (
             <div>
 
-              <span>
+              <span className="font-medium text-gray-600 ">
                 colour:
               </span>
-              <span>
+              <div className="flex gap-3">
                 {' '}
-                {product.colours.map((color) => (<span>{color}</span>))}
-              </span>
+                {product?.colours && product.colours.length > 0 ? (
+                  product.colours.map((color) => (
+                    <span
+                      key={color}
+                      className={`block w-10 h-10 rounded-full border bg-${color}-600`}
+                    />
+                  ))
+                ) : (
+                  'N/A'
+                )}
+              </div>
 
             </div>
             ) }

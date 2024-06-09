@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select, { MultiValue } from 'react-select';
+import { MdReportGmailerrorred } from 'react-icons/md';
+import { FaCheckCircle } from 'react-icons/fa';
 import getLevels from '../../../redux/actions/misc';
 import getGenders from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
@@ -12,6 +14,8 @@ import {
 import product from '../../../redux/products/product';
 
 const AddProduct = () => {
+  const [imagePreviews, setImagePreviews] = useState([]);
+
   const { product_categories, updater } = useSelector((state) => state.product_categories);
   const levels = useSelector((state) => state.level.levels);
   const genders = useSelector((state) => state.gender.genders);
@@ -32,12 +36,32 @@ const AddProduct = () => {
     }
   }, [status]);
 
+  const handleImageChange = (e) => {
+    // (e)=> setImages(e.target.files)
+
+    const files = Array.from(e.target.files);
+    const previews = files.map((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      return new Promise((resolve) => {
+        reader.onload = () => {
+          resolve(reader.result);
+        };
+      });
+    });
+
+    Promise.all(previews).then((images) => {
+      setImagePreviews(images);
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (e.target.photo.files.length > 0 || e.target.image.value) {
+    if (imagePreviews.length > 0 || e.target.image.value) {
       const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
       const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
       const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
+      console.log(colorsValues, clothValues);
       const formData = new FormData();
       formData.append('product[name]', e.target.name.value);
       formData.append('product[quantity]', e.target.quantity.value);
@@ -90,7 +114,7 @@ const AddProduct = () => {
 
           <div className="flex justify-between gap-3 text-sm my-1">
             <div className="input-half">
-              <label>
+              <label htmlFor="name">
                 <span className="text-gray-500 font-semibold text-sm">Product Name *</span>
                 {' '}
                 <span />
@@ -100,6 +124,7 @@ const AddProduct = () => {
 
                 name="name"
                 type="text"
+                id="name"
                 placeholder="product name"
                 required
               />
@@ -366,6 +391,7 @@ const AddProduct = () => {
               <span />
             </label>
             <input
+              onChange={handleImageChange}
               type="file"
               name="photo"
               id="photo"
@@ -390,6 +416,12 @@ const AddProduct = () => {
 
           </div>
 
+          <div className="flex gap-4 my-6">
+            {imagePreviews.map((image, index) => (
+              <img src={image} alt="" key={index} className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3" />
+            ))}
+          </div>
+
           <button className="btn">
             add product
           </button>
@@ -399,13 +431,17 @@ const AddProduct = () => {
               {report}
             </p>
           ) : (status == 'success' ? (
-            <p className="text-green bg-green-200 rounded">
+            <p className="text-green bg-green-200 rounded my-3 p-5 flex gap-3 items-center">
               {' '}
+
+              <FaCheckCircle className="text-green-700 text-3xl" />
               {report}
             </p>
-          ) : (
-            <p className="text-red-800 bg-red-200 rounded">
+          ) : status == 'rejected' && (
+            <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
               {' '}
+
+              <MdReportGmailerrorred className="text-red-700 text-3xl" />
               {report}
             </p>
           )) }

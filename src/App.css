@@ -129,7 +129,6 @@
   font-family: Prompt, "poppins", Helvetica, sans-serif;
   list-style: none;
   appearance: none;
-  border: none;
   text-decoration: none;
   margin: 0;
   padding: 0;
@@ -224,7 +223,7 @@ transition: translate 0.3s ease-in-out;
   height: 100%;
 }
 .image-slider-btn{
-  all: unset;
+  /* all: unset; */
   display: block;
   top: 0;
   bottom: 0;
@@ -875,7 +874,9 @@ button:active {
   flex-basis: 55%;
   padding-left: 25px;
 }
-
+.border-t{
+  border-top: 1px solid white;
+}
 .left-detail-container {
   flex-basis: 40%;
   border-radius: 6px;

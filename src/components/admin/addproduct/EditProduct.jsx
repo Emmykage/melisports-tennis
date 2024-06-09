@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Select, { MultiValue } from 'react-select';
+import { MdReportGmailerrorred } from 'react-icons/md';
+import { FaCheckCircle } from 'react-icons/fa';
 import getGenders from '../../../redux/actions/gender';
 import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
@@ -36,7 +38,7 @@ const EditProduct = () => {
   const handleFormInput = (e) => {
     dispatch(writeProduct(e.target));
   };
-
+  console.log(product);
   const handleSubmit = (e) => {
     e.preventDefault();
     const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
@@ -170,7 +172,7 @@ const EditProduct = () => {
 
                   <Select
                     placeholder="product category"
-                    defaultValue={{ value: product.product_category.id, label: product.product_category.name }}
+                    defaultValue={{ value: product.product_category?.id, label: product.product_category?.name }}
                     name="product_category_id"
                     id="product_category_id"
                     options={product_categories.map((cat) => (
@@ -413,6 +415,11 @@ const EditProduct = () => {
                 />
 
               </div>
+              <div className="flex gap-4 my-6">
+                {product.photo_urls.map((image, index) => (
+                  <img src={image} alt="" key={index} className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3" />
+                ))}
+              </div>
 
               <button className="btn">
                 add product
@@ -423,13 +430,16 @@ const EditProduct = () => {
                   {report}
                 </p>
               ) : (status == 'success' ? (
-                <p className="text-green bg-green-200 rounded">
+                <p className="text-green bg-green-200 rounded flex my-3 p-5 gap-3 items-center">
                   {' '}
+                  <FaCheckCircle className="text-green-700 text-3xl" />
+
                   {report}
                 </p>
-              ) : (
-                <p className="text-red-800 bg-red-200 rounded">
+              ) : status == 'rejected' && (
+                <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
                   {' '}
+                  <MdReportGmailerrorred className="text-red-700 text-3xl" />
                   {report}
                 </p>
               )) }

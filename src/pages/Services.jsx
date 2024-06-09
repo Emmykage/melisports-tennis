@@ -25,20 +25,20 @@ const Services = () => {
 
       <Hero image={bannerImage} title="Catalogue" />
 
-      <div className="container catalog bg-theme">
+      <div className="catalog bg-theme">
 
-        <div className="products-container color-white ">
+        <div className="products-container text-white ">
           <div className="racquets">
             <h2 className="headers">Racquets</h2>
 
             {racquets.map((racquet) => (
-              <Rackets racquet={racquet} />))}
+              <Rackets racquet={racquet} key={racquet.name} />))}
 
           </div>
           <div className="apparel">
             <h2 className="headers">Apparels</h2>
             {apparels.map((apparel) => (
-              <Apparels apparel={apparel} />
+              <Apparels apparel={apparel} key={apparel.name} />
             ))}
 
           </div>
@@ -46,7 +46,7 @@ const Services = () => {
           <div className="bags">
             <h2 className="headers">Bags</h2>
             {bags.map((bag) => (
-              <BagsCatalogue bag={bag} />
+              <BagsCatalogue bag={bag} key={bag.name} />
             ))}
 
           </div>
@@ -54,14 +54,14 @@ const Services = () => {
           <div className="bags">
             <h2 className="headers">Shoes</h2>
             {shoes.map((shoe) => (
-              <ShoesCatalogue shoe={shoe} />
+              <ShoesCatalogue shoe={shoe} key={shoe.name} />
             ))}
 
           </div>
           <div className="Accessories">
             <h2 className="headers">Accessories</h2>
             {accessories.map((accessory) => (
-              <Accessories accessory={accessory} />
+              <Accessories accessory={accessory} key={accessory.name} />
             ))}
 
           </div>

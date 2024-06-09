@@ -34,7 +34,7 @@ const Accessories = ({ products, status, error }) => {
 
           </div>
           <div className="prod-details">
-            <h5 className="color-black">
+            <h5 className="text-gray-900">
               {product.name.substring(0, 15)}
               ...
             </h5>

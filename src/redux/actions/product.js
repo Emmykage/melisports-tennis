@@ -53,6 +53,7 @@ const addProduct = createAsyncThunk('product/addproduct', async (data, { rejectW
     }
 
     const result = await response.json();
+    console.log(result);
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Network error, please try again later.' });

@@ -44,11 +44,11 @@ const ImagePreview = ({ images }) => {
         </div>
 
       </div>
-      <div className="my-2 flex  flex-col thumbnail-div">
+      <div className="my-2 flex gap-3 thumbnail-div">
         {images.map((image, index) => (
           <>
             {' '}
-            <div onClick={() => setView(index)} className="thumbnail border my-1"><img src={image} alt="" className="w-full h-full" /></div>
+            <div onClick={() => setView(index)} className="thumbnail border my-1 border-gray-300 p-1"><img src={image} alt="" className="w-full h-full   gap-3  -red-200" /></div>
             {/* <div onClick={()=>setView(index)} className='thumbnail border'><img src={image} alt="" className='w-full h-full' /></div> */}
 
           </>
