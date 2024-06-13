@@ -5,7 +5,7 @@ const composition = [{ value: 'graphite', label: 'Graphite' }, { value: 'alumini
 const gripSizes = [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }, { label: '5', value: '5' }];
 const headSizes = [{ value: '630', label: '630' }, { value: '645', label: '645' }, { value: '660', label: '660' }, { value: '680', label: '680' }, { label: '700', value: '700' }, { label: '742', value: '742' }];
 const length = [{ value: '685', label: '685' }, { value: '700', label: '700' }];
-const strung = [{ value: 'string', label: 'Strung' }, { value: 'unstrung', label: 'Unstrung' }];
+const strung = [{ value: 'strung', label: 'Strung' }, { value: 'unstrung', label: 'Unstrung' }];
 export {
   clothSizes, colors, shoeSizes, composition, strung, gripSizes, headSizes, length,
 };
