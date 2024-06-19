@@ -11,12 +11,14 @@ import { getProductCategories } from '../../../redux/actions/product_category';
 import {
   clothSizes, colors, composition, shoeSizes, strung,
 } from '../../mock/variance';
-import { writeProduct } from '../../../redux/product/product';
+import { resetProduct, writeProduct } from '../../../redux/product/product';
 import Loader from '../../../pages/Loader';
 
 const EditProduct = () => {
   const { editId } = useParams();
   const dispatch = useDispatch();
+
+  const [imagePreviews, setImagePreviews] = useState([]);
 
   const { product_categories } = useSelector((state) => state.product_categories);
 
@@ -38,13 +40,40 @@ const EditProduct = () => {
   const handleFormInput = (e) => {
     dispatch(writeProduct(e.target));
   };
-  console.log(product);
+
+  useEffect(() => {
+    if (status === 'success') {
+      const timeOutOp = setTimeout(() => {
+        dispatch(resetProduct());
+      }, 5000);
+
+      return () => { clearTimeout(timeOutOp); };
+    }
+  }, [status]);
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    const previews = files.map((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      return new Promise((resolve) => {
+        reader.onload = () => {
+          resolve(reader.result);
+        };
+      });
+    });
+
+    Promise.all(previews).then((images) => {
+      setImagePreviews(images);
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
     const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
-    const colorsValues = Array.from(e.target.product_colour).map((option) => { console.log(option.value); return option.value; });
-    console.log(colorsValues);
+    const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
+
     const formData = new FormData();
 
     e.target.level_id.value && formData.append('product[level_id]', e.target.level_id.value);
@@ -69,11 +98,14 @@ const EditProduct = () => {
     formData.append('product[cloth_sizes]', clothValues);
     formData.append('product[shoe_sizes]', shoeValues);
 
+    Array.from(e.target.photo.files).forEach((file, index) => {
+      formData.append(`product[photos][${index}]`, file);
+    });
+
     // const data = Object.fromEntries(formData)
     // console.log(data)
     dispatch(updateProduct({ editId, formData }));
   };
-  console.log(product);
 
   return (
 
@@ -83,13 +115,19 @@ const EditProduct = () => {
 
         : (
           <form onSubmit={handleSubmit} ref={formRef} className="w-full">
-            <div className="ms_code quantity bg-green-500">
-              <label htmlFor="quantity font-medium text-gray-700">ms product code</label>
-              <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required />
-            </div>
-            <div className="quantity my-2">
-              <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity</label>
-              <input onChange={handleFormInput} value={product.quantity} type="number" name="quantity" id="quantity" />
+            <div className="px-3">
+
+              <div className="ms_code ml-auto w-48">
+
+                <div className="ms_code quantity bg-green-500">
+                  <label htmlFor="quantity font-medium text-gray-700">ms product code</label>
+                  <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required />
+                </div>
+                <div className="quantity my-2">
+                  <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity</label>
+                  <input onChange={handleFormInput} value={product.quantity} type="number" name="quantity" id="quantity" />
+                </div>
+              </div>
             </div>
 
             <div className="bg-white p-4 rounded shadow">
@@ -398,6 +436,24 @@ const EditProduct = () => {
 
               </div>
 
+              <div className="my-1">
+                <label htmlFor="" className="text-dark font-semibold text-sm">
+                  {' '}
+                  <span>image *</span>
+
+                  <span />
+                </label>
+                <input
+                  onInput={handleImageChange}
+                  type="file"
+                  accept="image/*"
+                  name="photo"
+                  id="photo"
+                  multiple
+                />
+
+              </div>
+
               <div>
                 <label htmlFor="" className="text-dark font-semibold text-sm">
                   {' '}
@@ -415,7 +471,16 @@ const EditProduct = () => {
                 />
 
               </div>
+
               <div className="flex gap-4 my-6">
+                {imagePreviews && imagePreviews.length > 0 && <h4 className="text-green-600">New Photos</h4>}
+                {imagePreviews.map((image, index) => (
+                  <img src={image} alt="" key={index} className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3" />
+                ))}
+              </div>
+              <div className="flex gap-4 my-6">
+                {imagePreviews && imagePreviews.length > 0 && <h4 className="text-red-600">Old Photos</h4>}
+
                 {product.photo_urls?.map((image, index) => (
                   <img src={image} alt="" key={index} className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3" />
                 ))}

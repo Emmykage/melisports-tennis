@@ -19,7 +19,7 @@ import levelSlice from './level/level';
 import genderSlice from './gender/gender';
 import orderSlice from './order/order';
 import catalogSlice from './catalog/catalog';
-import appSlice from './app/app'
+import appSlice from './app/app';
 
 const rootReducer = combineReducers({
   cart: cartReducer,

@@ -69,7 +69,6 @@ const usersSlice = createSlice({
     },
     [getUsers.fulfilled]: (state, action) => {
       const response = action.payload;
-      console.log(response);
 
       if (response) {
         return {
@@ -90,13 +89,10 @@ const usersSlice = createSlice({
   },
   reducers: {
 
-    updateUserInput: (state, action) => {
-      console.log(action.payload.value);
-      return {
-        ...state,
-        user: { ...state.user, [action.payload.name]: action.payload.value },
-      };
-    },
+    updateUserInput: (state, action) => ({
+      ...state,
+      user: { ...state.user, [action.payload.name]: action.payload.value },
+    }),
 
   },
 });

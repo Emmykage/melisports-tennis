@@ -20,7 +20,7 @@ const userSlice = createSlice({
     userLog: (state) => {
       try {
         const auth = localStorage.getItem('meli_auth');
-        // console.log(JSON.parse(auth).user)
+
         return {
           ...state,
           user: JSON.parse(auth).user,

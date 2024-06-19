@@ -75,7 +75,7 @@ const Cart = () => {
     dispatch(removeItem(id));
     dispatch(updater());
   };
-  console.log(cartItems);
+
   return (
     <>
       <div className="cart-div">

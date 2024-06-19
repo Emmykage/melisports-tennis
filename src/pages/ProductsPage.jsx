@@ -18,7 +18,6 @@ const ProductsPage = () => {
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
   const category = product_categories.find((cat) => cat.name === 'racquet');
-  // console.log(category, product_categories, products)
 
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();

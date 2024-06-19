@@ -48,7 +48,7 @@ const ProductDetails = () => {
   const decrease = () => {
     count !== 1 && setCount((setPrev) => setPrev - 1);
   };
-  console.log(product);
+
   if (loading) {
     return (<Loader />);
   }

@@ -21,7 +21,6 @@ const AddProduct = () => {
   const genders = useSelector((state) => state.gender.genders);
   const { loading, status, report } = useSelector((state) => state.product);
   const formRef = useRef(null);
-  console.log(status)
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,19 +32,15 @@ const AddProduct = () => {
   useEffect(() => {
     const element = formRef.current;
     if (status === 'success') {
-      // element.reset();
-      console.log(status)
+      element.reset();
 
-    const timeOutOp =  setTimeout(()=> {
-      dispatch(resetProduct())
-    console.log("first")}, 5000)
+      const timeOutOp = setTimeout(() => {
+        dispatch(resetProduct());
+      }, 5000);
 
-    return () => {clearTimeout(timeOutOp)}
+      return () => { clearTimeout(timeOutOp); };
     }
   }, [status]);
-
-  console.log(status)
-
 
   const handleImageChange = (e) => {
     // (e)=> setImages(e.target.files)
@@ -72,7 +67,7 @@ const AddProduct = () => {
       const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
       const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
       const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
-      console.log(colorsValues, clothValues);
+
       const formData = new FormData();
       formData.append('product[name]', e.target.name.value);
       formData.append('product[quantity]', e.target.quantity.value);
@@ -111,18 +106,21 @@ const AddProduct = () => {
   return (
     <div className="product-form bg-white admin m-auto w-full">
 
-<form onSubmit={handleSubmit} ref={formRef}>
-<div className="ms_code ml-auto w-48 bg-green-500">
-          <label htmlFor="quantity font-medium text-gray-700">ms product code *</label>
-          <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required />
-        </div>
-        <div className="ml-auto w-48 my-2">
-          <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
-          <input type="number" name="quantity" id="quantity" required />
+      <form onSubmit={handleSubmit} ref={formRef}>
+        <div className="p-3">
+
+          <div className="ms_code ml-auto w-48 bg-green-500 p-3">
+            <label htmlFor="quantity font-medium text-gray-700">ms product code *</label>
+            <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required />
+          </div>
+          <div className="ml-auto w-48 my-2">
+            <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
+            <input type="number" name="quantity" id="quantity" required />
+          </div>
         </div>
 
         <div className=" bg-white p-4 rounded shadow">
-        <div className="flex justify-between gap-3 text-sm my-1">
+          <div className="flex justify-between gap-3 text-sm my-1">
             <div className="input-half">
               <label htmlFor="name">
                 <span className="text-gray-500 font-semibold text-sm">Product Name *</span>
@@ -427,14 +425,13 @@ const AddProduct = () => {
 
           </div>
 
-          
           <div className="flex gap-4 my-6">
             {imagePreviews.map((image, index) => (
               <img src={image} alt="" key={index} className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3" />
             ))}
           </div>
 
-          <button className="btn" type='submit'>
+          <button className="btn" type="submit">
             add product
           </button>
 
@@ -451,21 +448,19 @@ const AddProduct = () => {
               {report}
             </p>
           ) : status == 'rejected' && (
-            <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
-              {' '}
+          <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
+            {' '}
 
-              <MdReportGmailerrorred className="text-red-700 text-3xl" />
-              {report}
-            </p>
+            <MdReportGmailerrorred className="text-red-700 text-3xl" />
+            {report}
+          </p>
           )) }
 
         </div>
 
-</form>
+      </form>
 
-<Categories />
-
-
+      {/* <Categories /> */}
 
     </div>
   );

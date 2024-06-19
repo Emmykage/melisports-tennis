@@ -44,15 +44,10 @@ const productsSlice = createSlice({
         searched_products: f_product,
       };
     },
-    filterProducts: (state, action) => {
-      console.log(action.payload);
-
-      return {
-        ...state,
-        products: state.products.filter((item) => item.name.toLowerCase().includes(action.payload)),
-      };
-    },
-
+    filterProducts: (state, action) => ({
+      ...state,
+      products: state.products.filter((item) => item.name.toLowerCase().includes(action.payload)),
+    }),
 
   },
 });

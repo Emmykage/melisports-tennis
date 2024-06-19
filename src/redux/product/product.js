@@ -28,6 +28,7 @@ const productSlice = createSlice({
     }),
     [getProduct.rejected]: (state) => ({
       ...state,
+      loading: false,
       pending: false,
     }),
     [addProduct.fulfilled]: (state, action) => ({
@@ -49,33 +50,23 @@ const productSlice = createSlice({
       status: 'waiting',
       report: 'loading...',
     }),
-    [updateProduct.fulfilled]: (state, action) => {
-      if (action.payload.ok) {
-        return {
-          ...state,
-          loading: false,
-          status: 'success',
-          report: 'product has been updated',
-        };
-      }
-      return {
-        ...state,
-        loading: false,
-        status: 'rejected',
-        report: 'failed to update',
-      };
-    },
+    [updateProduct.fulfilled]: (state, action) => ({
+      ...state,
+      loading: false,
+      status: 'success',
+      report: 'product has been updated',
+    }),
     [updateProduct.pending]: (state) => ({
       ...state,
       status: 'waiting',
       loading: true,
       report: 'loading...',
     }),
-    [updateProduct.rejected]: (state) => ({
+    [updateProduct.rejected]: (state, action) => ({
       ...state,
       status: 'rejected',
       loading: false,
-      report: 'failed to update',
+      report: action.payload.message,
     }),
     [deleteProduct.fulfilled]: (state, action) => ({
       ...state,
@@ -115,18 +106,15 @@ const productSlice = createSlice({
         },
       };
     },
-    
-    resetProduct: (state) => {
 
-      console.log("second")
-      return{
+    resetProduct: (state) => ({
       ...state,
       loading: false,
       status: null,
       error: false,
       counter: 0,
       report: null,
-    }}
+    }),
   },
 });
 

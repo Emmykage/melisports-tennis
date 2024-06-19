@@ -31,7 +31,7 @@ const MainAdmin = ({ children }) => {
       return (
         <>
           <div className="">
-            <div className="grid grid-cols-grid-admin sm:grid-cols-md-admin md:grid-cols-sm-admin lg:grid-cols-grid-admin gap-4 bg-gray-200 h-screen overflow-y-auto">
+            <div className="grid grid-cols-grid-admin sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 bg-gray-200 h-screen overflow-y-auto">
 
               {isOpen && <ProdDelModal id={id} />}
               {catOpen && <CatDelModal id={catId} />}

@@ -10,7 +10,7 @@ const Customers = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
-  console.log(users);
+
   return (
     <div className="w-full">
       <h1 className="bolder">     </h1>

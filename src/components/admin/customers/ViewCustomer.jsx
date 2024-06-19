@@ -24,7 +24,7 @@ const ViewCustomer = () => {
   useEffect(() => {
     dispatch(getUser(id));
   }, []);
-  console.log(loading);
+
   return (
     <div className=" w-full">
       <div className="customer-v dash-container">

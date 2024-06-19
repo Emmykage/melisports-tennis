@@ -42,7 +42,7 @@ export default function Confirmation() {
     };
     dispatch(loginUser(formInput));
   };
-  console.log(user);
+
   if ((user && !user.confirmed_at)) {
     return (
       <ThemeProvider theme={theme}>

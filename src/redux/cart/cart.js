@@ -73,13 +73,10 @@ const cartSlice = createSlice({
         cartItems: refCart(),
       };
     },
-    getLocalCart: (state) => {
-      console.log(refCart());
-      return {
-        ...state,
-        cartItems: refCart(),
-      };
-    },
+    getLocalCart: (state) => ({
+      ...state,
+      cartItems: refCart(),
+    }),
     updateQty: (state, action) => {
       const updateCart = getCart().map((item) => {
         if (item.product_id == action.payload.product_id) {
