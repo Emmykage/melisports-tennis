@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductCategory } from '../../../redux/actions/product_category';
 import strung from '../../mock/Strung';
+import { resetProduct } from '../../../redux/product/product';
 
 const AddCategory = () => {
   const dispatch = useDispatch();
+  const formRef = useRef(null);
+
   const { loading, status, report } = useSelector((state) => state.product_categories);
   const [formData, setFormData] = useState({
     name: '',
@@ -31,6 +34,19 @@ const AddCategory = () => {
     }
   };
 
+  useEffect(() => {
+    const element = formRef.current;
+    if (status === 'success') {
+      element.reset();
+
+      const timeOutOp = setTimeout(() => {
+        dispatch(resetProduct());
+      }, 5000);
+
+      return () => { clearTimeout(timeOutOp); };
+    }
+  }, [status]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProductCategory(formData));
@@ -40,7 +56,7 @@ const AddCategory = () => {
       <div className="category-div">
         <div className="close" />
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} ref={formRef}>
           <div className="form-row">
             <div className="input-half">
               <label htmlFor="">

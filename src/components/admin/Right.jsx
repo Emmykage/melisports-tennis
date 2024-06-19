@@ -10,7 +10,7 @@ import IMG from '../../assets/images/profile/depositphotos_179308454-stock-illus
 import { setModal } from '../../redux/modal/categoryModal';
 
 const Right = ({ handleMenu, auth }) => (
-  <div className="right min-h-screen">
+  <div className="right h-screen overflow-y-auto">
     <div className="top">
       <button id="menu-btn">
         <span onClick={handleMenu}>
@@ -83,12 +83,12 @@ const Right = ({ handleMenu, auth }) => (
     </div>
     <div className="sales-analytics">
       <h2>Sales Analytics</h2>
-      <div className="item online">
+      <div className="item online border rounded">
         <div className="icon">
           <span><AiOutlineShoppingCart /></span>
         </div>
         <div className="right">
-          <div className="info">
+          <div className="info ">
             <h3>ONLINE ORDERS</h3>
             <small className="text-muted">
               last 24 hours
@@ -98,7 +98,7 @@ const Right = ({ handleMenu, auth }) => (
           <h3>3849</h3>
         </div>
       </div>
-      <div className="item offline">
+      <div className="item offline border rounded">
         <div className="icon">
           <span><AiOutlineShop /></span>
         </div>
@@ -113,7 +113,7 @@ const Right = ({ handleMenu, auth }) => (
           <h3>1100</h3>
         </div>
       </div>
-      <div className="item customers">
+      <div className="item customers border rounded">
         <div className="icon">
           <span><AiOutlineUser /></span>
         </div>

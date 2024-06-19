@@ -6,9 +6,9 @@ import {
 const initialState = {
   product_categories: [],
   loading: true,
-  status: 'failed',
-  report: 'nuller',
-  updater: true,
+  status: null,
+  report: null,
+  updater: false,
 };
 const productCategorySlice = createSlice({
   name: 'product_category',
@@ -38,11 +38,11 @@ const productCategorySlice = createSlice({
       loading: false,
       report: 'categgory has been added',
     }),
-    [addProductCategory.rejected]: (state) => ({
+    [addProductCategory.rejected]: (state, action) => ({
       ...state,
       status: 'rejected',
       loading: false,
-      report: 'categgory has been added',
+      report: action.payload.message
     }),
     [addProductCategory.pending]: (state) => ({
       ...state,
