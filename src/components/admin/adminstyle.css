@@ -457,7 +457,10 @@ main .recent-orders a {
 }
 
 .right {
-  margin-top: 1.4rem;
+  /* padding-top: 1.4rem; */
+  padding: 1.4rem 0.5rem;
+  background: white;
+  
 }
 
 .right .top {
