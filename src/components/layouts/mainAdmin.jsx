@@ -31,12 +31,12 @@ const MainAdmin = ({ children }) => {
       return (
         <>
           <div className="">
-            <div className="grid grid-cols-grid-admin sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 bg-gray-200 h-screen overflow-y-auto">
+            <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 bg-gray-200 h-screen overflow-y-auto">
 
               {isOpen && <ProdDelModal id={id} />}
               {catOpen && <CatDelModal id={catId} />}
               <SideNav showMenu={showMenu} handleMenu={handleMenu} />
-              <div className="px-4 pt-4">
+              <div className="px-4 pt-24 md:pt-6">
                 {' '}
                 {children}
               </div>

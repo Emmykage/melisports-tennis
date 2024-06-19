@@ -486,9 +486,7 @@ const EditProduct = () => {
                 ))}
               </div>
 
-              <button className="btn">
-                Update product
-              </button>
+           
               {loading ? (
                 <p className="normal">
                   {' '}
@@ -508,6 +506,9 @@ const EditProduct = () => {
                   {report}
                 </p>
               )) }
+              <button className="btn" type='submit'>
+                Update product
+              </button>
             </div>
 
           </form>

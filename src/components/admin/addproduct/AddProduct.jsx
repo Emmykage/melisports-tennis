@@ -431,9 +431,6 @@ const AddProduct = () => {
             ))}
           </div>
 
-          <button className="btn" type="submit">
-            add product
-          </button>
 
           {loading ? (
             <p className="normal">
@@ -455,6 +452,11 @@ const AddProduct = () => {
             {report}
           </p>
           )) }
+
+          
+<button className="btn" type="submit">
+            add product
+          </button>
 
         </div>
 
