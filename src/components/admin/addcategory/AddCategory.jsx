@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductCategory } from '../../../redux/actions/product_category';
 import strung from '../../mock/Strung';
-import { resetProduct } from '../../../redux/product/product';
+import { resetCategory } from '../../../redux/product_category/productCategory';
 
 const AddCategory = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const AddCategory = () => {
       element.reset();
 
       const timeOutOp = setTimeout(() => {
-        dispatch(resetProduct());
+        dispatch(resetCategory());
       }, 5000);
 
       return () => { clearTimeout(timeOutOp); };
@@ -73,7 +73,7 @@ const AddCategory = () => {
             </div>
 
           </div>
-          <div className="form-row">
+          {/* <div className="form-row">
             <div className="input-half">
               <label htmlFor="">
                 {' '}
@@ -88,7 +88,7 @@ const AddCategory = () => {
               </label>
             </div>
 
-          </div>
+          </div> */}
 
           <div className="form-row">
             <div>

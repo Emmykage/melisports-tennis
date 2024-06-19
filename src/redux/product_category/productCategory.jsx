@@ -77,6 +77,18 @@ const productCategorySlice = createSlice({
     }),
 
   },
+  reducers: {
+    
+    resetCategory: (state) => ({
+      ...state,
+      loading: false,
+      status: null,
+      error: false,
+      report: null,
+    }),
+  }
 });
 
 export default productCategorySlice.reducer;
+export  const {resetCategory} = productCategorySlice.actions
+ 
