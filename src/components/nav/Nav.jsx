@@ -59,7 +59,9 @@ const Nav = () => {
             </NavLink>
           </div>
 
-          <div className="nav-div flex space">
+          <div className="nav-div flex">
+          <div className="flex-1 flex">
+
 
             <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links'}>
               <div className="mobile-menu-div  my-4">
@@ -210,6 +212,7 @@ const Nav = () => {
               </li>
 
             </ul>
+            </div>
             <div className="flex justify-between items-center ">
               <div className="user mobile-display ">
                 {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }

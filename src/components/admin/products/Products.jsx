@@ -42,7 +42,7 @@ const Products = () => {
       <div className="w-full grid lg-grid-col-3 sm-grid-col-2 xl-grid-col-3 grid-col-5 gap-3">
 
         {products.map((product) => (
-          <div key={product.id} className="products-display bg-white">
+          <div key={product.id} className="products-display">
             <div className="prod-img">
               <a>
                 <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name} />

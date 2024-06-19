@@ -725,6 +725,7 @@ button:active {
   max-width: 780px;
   row-gap: 1rem;
   column-gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .cat-group .btn {

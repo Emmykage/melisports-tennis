@@ -54,7 +54,7 @@ const NavInfo = () => {
             </NavLink>
           </div>
 
-          <div className="nav-div flex space">
+          <div className="nav-div flex">
             <div className="flex-1 flex justify-center">
 
               <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links flex w-full'}>
