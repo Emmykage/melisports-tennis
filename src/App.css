@@ -172,20 +172,11 @@
   color: var(--color-dark);
 }
 
-.shadow {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-}
 
 body {
-  width: 100vw;
-  height: 100vh;
   font-size: 14px;
   background: var(--color-background);
 }
-.rounded-md{
-  border-radius: var(--border-radium-3);
-}
-
 .text-red {
   color: red;
 }
@@ -627,13 +618,6 @@ a {
 
 /* ==========================flex-box======================== */
 
-
-.flex-space {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .w-max-400 {
   max-width: 400%;
 }
@@ -643,18 +627,7 @@ a {
   background-color: red;
 }
 
-.items-center {
-  align-items: center;
-}
 
-.justify-center {
-  justify-content: center;
-}
-
-.flex-center {
-  display: flex;
-  gap: 1%;
-}
 
 .flex-3 {
   flex: 3;
@@ -663,17 +636,6 @@ a {
 
 .flex-2 {
   flex: 2;
-}
-
-
-
-.flex-center-around {
-  display: flex;
-  justify-content: space-around;
-}
-
-.space {
-  justify-content: space-between;
 }
 
 .bg-green {
@@ -691,9 +653,7 @@ a {
   background-color: chartreuse;
 }
 
-.level {
-  padding-top: 1rem;
-}
+
 
 .feature-div {
   width: 85%;
@@ -725,9 +685,7 @@ button {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-/* .characters li{
-  margin-top: 1rem;
-} */
+
 .characters .xter {
   font-weight: bold;
 }
@@ -820,7 +778,6 @@ button:active {
 
 .product-grid-items {
   background-color: #fff;
-  /* flex: 1; */
   width: 250px;
   height: 200px;
   border: none;
@@ -972,7 +929,6 @@ table td {
 .prev-details a:hover,
 .prev-details > div button:hover {
   color: white;
-  /* background: var(--color-primary-variant); */
 }
 
 .prev-details > div button {
@@ -1005,13 +961,10 @@ table td {
 }
 
 .whatsapp {
-  /* background: rgb(28, 198, 28); */
   padding-top: 4px;
   padding-bottom: 0;
   display: block;
   width: 188px;
-
-  /* margin: 1rem ; */
   margin-left: auto;
   margin-right: 2rem;
   border-radius: 8px;
@@ -1050,15 +1003,11 @@ table td {
 .btn-div {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   width: max-content;
-
-  /* border: 0.7px solid rgb(116, 116, 116); */
 }
 
 .btn-div span {
   padding-left: 6px;
   padding-right: 6px;
-
-  /* background-color: green; */
   margin: 0;
   height: 100%;
 }
@@ -1114,7 +1063,6 @@ table td {
 }
 
 .cart-side a {
-  /* background-color: aqua; */
   font-weight: 600;
   width: 100%;
   display: block;
@@ -1464,14 +1412,6 @@ td .btn.change {
 
   .cat-group .btn {
     font-size: 0.8rem;
-  }
-
-  .full-width {
-    width: 100%;
-  }
-
-  .flex-center {
-    width: 100%;
   }
 
   .product-align {

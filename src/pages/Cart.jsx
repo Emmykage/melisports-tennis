@@ -115,7 +115,7 @@ const Cart = () => {
 
                   <td>
                     <div className="cart-btn">
-                      <div className="cart-btn-div flex-center space">
+                      <div className="cart-btn-div flex space">
 
                         <button
                           className="btn change"
@@ -165,12 +165,12 @@ const Cart = () => {
           </div>
         </div>
         <div className="cart-side">
-          <div className="flex-space"><h2 className="mb-4">Order Summary</h2></div>
-          <div className="flex-space my-1">
+          <div className="flex justify-between items-center"><h2 className="mb-4">Order Summary</h2></div>
+          <div className="flex justify-between items-center my-1">
             <span className="text-xl">Subtotal</span>
             <span className="text-gray font-semibold">{naira_format(total)}</span>
           </div>
-          <div className="flex-space total my-1">
+          <div className="flex justify-between items-center total my-1">
             <span className="text-xl">Total</span>
             <span className=" text-gray font-bold">{naira_format(total)}</span>
           </div>

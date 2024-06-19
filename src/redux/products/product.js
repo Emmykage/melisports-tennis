@@ -6,8 +6,8 @@ const initialState = {
   searched_products: [],
   filteredProducts: [],
   loading: false,
-  status: 'success',
-  error: 'none',
+  status: null,
+  error: false,
   counter: 0,
   report: null,
 };
@@ -52,6 +52,7 @@ const productsSlice = createSlice({
         products: state.products.filter((item) => item.name.toLowerCase().includes(action.payload)),
       };
     },
+
 
   },
 });

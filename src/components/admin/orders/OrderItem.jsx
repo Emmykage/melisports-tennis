@@ -9,7 +9,7 @@ const OrderItem = ({ order_prop }) => {
   };
   return (
     <li className="order-item">
-      <div className="order-header flex-space">
+      <div className="order-header flex justify-between items-center">
         <span>Menanya Morris</span>
         <a onClick={toggleClass}>
           show details

@@ -422,7 +422,7 @@ const EditProduct = () => {
               </div>
 
               <button className="btn">
-                add product
+                Update product
               </button>
               {loading ? (
                 <p className="normal">

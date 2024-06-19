@@ -6,7 +6,7 @@ import searched from '../actions/search';
 
 const initialState = {
   product: {},
-  status: 'false',
+  status: null,
   loading: true,
   report: null,
   updater: false,
@@ -115,8 +115,20 @@ const productSlice = createSlice({
         },
       };
     },
+    
+    resetProduct: (state) => {
+
+      console.log("second")
+      return{
+      ...state,
+      loading: false,
+      status: null,
+      error: false,
+      counter: 0,
+      report: null,
+    }}
   },
 });
 
 export default productSlice.reducer;
-export const { writeProduct } = productSlice.actions;
+export const { writeProduct, resetProduct } = productSlice.actions;

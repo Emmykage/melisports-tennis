@@ -52,7 +52,7 @@ const AccessoriesPage = () => {
 
         </div>
 
-        <div className="flex-center level">
+        <div className="flex level">
           <div className="side-nav">
             <SideNav />
           </div>

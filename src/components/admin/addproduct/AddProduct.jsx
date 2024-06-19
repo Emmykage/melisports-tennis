@@ -11,7 +11,7 @@ import Categories from '../Categories';
 import {
   clothSizes, colors, composition, gripSizes, headSizes, length, shoeSizes, strung,
 } from '../../mock/variance';
-import product from '../../../redux/products/product';
+import { resetProduct } from '../../../redux/product/product';
 
 const AddProduct = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -21,6 +21,7 @@ const AddProduct = () => {
   const genders = useSelector((state) => state.gender.genders);
   const { loading, status, report } = useSelector((state) => state.product);
   const formRef = useRef(null);
+  console.log(status)
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,10 +32,20 @@ const AddProduct = () => {
 
   useEffect(() => {
     const element = formRef.current;
-    if (status == 'success') {
-      element.reset();
+    if (status === 'success') {
+      // element.reset();
+      console.log(status)
+
+    const timeOutOp =  setTimeout(()=> {
+      dispatch(resetProduct())
+    console.log("first")}, 5000)
+
+    return () => {clearTimeout(timeOutOp)}
     }
   }, [status]);
+
+  console.log(status)
+
 
   const handleImageChange = (e) => {
     // (e)=> setImages(e.target.files)
@@ -98,21 +109,20 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="product-form admin m-auto">
+    <div className="product-form bg-white admin m-auto w-full">
 
-      <form onSubmit={handleSubmit} ref={formRef}>
-
-        <div className="ms_code quantity bg-green-500">
+<form onSubmit={handleSubmit} ref={formRef}>
+<div className="ms_code ml-auto w-48 bg-green-500">
           <label htmlFor="quantity font-medium text-gray-700">ms product code *</label>
           <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required />
         </div>
-        <div className="quantity my-2">
+        <div className="ml-auto w-48 my-2">
           <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
           <input type="number" name="quantity" id="quantity" required />
         </div>
-        <div className=" bg-white p-4 rounded shadow">
 
-          <div className="flex justify-between gap-3 text-sm my-1">
+        <div className=" bg-white p-4 rounded shadow">
+        <div className="flex justify-between gap-3 text-sm my-1">
             <div className="input-half">
               <label htmlFor="name">
                 <span className="text-gray-500 font-semibold text-sm">Product Name *</span>
@@ -146,6 +156,7 @@ const AddProduct = () => {
 
             </div>
           </div>
+
           <div className="flex justify-between gap-3 text-sm my-1">
 
             <div className="input-half">
@@ -333,7 +344,6 @@ const AddProduct = () => {
 
             </div>
           </fieldset>
-
           <fieldset disabled="disabled" className="p-3 bg-gray-100 border-gray-light rounded my-5">
             <legend className="font-bold">Shoes</legend>
             <div className="input-half">
@@ -383,6 +393,7 @@ const AddProduct = () => {
             />
 
           </div>
+
           <div className="my-1">
             <label htmlFor="" className="text-dark font-semibold text-sm">
               {' '}
@@ -416,15 +427,17 @@ const AddProduct = () => {
 
           </div>
 
+          
           <div className="flex gap-4 my-6">
             {imagePreviews.map((image, index) => (
               <img src={image} alt="" key={index} className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3" />
             ))}
           </div>
 
-          <button className="btn">
+          <button className="btn" type='submit'>
             add product
           </button>
+
           {loading ? (
             <p className="normal">
               {' '}
@@ -445,9 +458,14 @@ const AddProduct = () => {
               {report}
             </p>
           )) }
+
         </div>
-      </form>
-      <Categories />
+
+</form>
+
+<Categories />
+
+
 
     </div>
   );

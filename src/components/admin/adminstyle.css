@@ -10,9 +10,7 @@
   --color-light: rgba(0, 0, 0, 0.4);
   --box-shadow: 0 2rem 3rem var(var(--color-light));
 }
-
 body {
-  /* user-select: none; */
   overflow-x: hidden;
   font-size: 0.88rem;
   width: 100vw;
@@ -20,13 +18,11 @@ body {
   color: var(--color-dark);
 }
 
+
 .admin-container * {
   font-family: poppins, sans-serif;
 }
 
-.full-width.flex-center {
-  padding: 1rem;
-}
 
 .admin-img {
   display: block;
@@ -97,13 +93,7 @@ b {
   color: var(--color-warning);
 }
 
-.admin-container {
-  padding-right: 20px;
-  display: grid;
-  padding-right: 10px;
-  gap: 0%;
-  grid-template-columns: 14rem auto 23rem;
-}
+
 
 .bolder {
   text-align: center;
@@ -613,10 +603,7 @@ main .recent-orders a {
 .right .sales-analytics .add-product h3 {
   font-weight: 600;
 }
-form .quantity{
-  width: 200px;
-  margin-left: auto;
-}
+
 /* -------------------END OF ASIDE -------------------------- */
 
 /* =====================MEDIA QUERIES ================================ */

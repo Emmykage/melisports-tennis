@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Footer = () => (
   <footer>
-    <div className="m-auto footer-container flex-center">
+    <div className="m-auto footer-container flex gap-3">
       <div>
         <h4 className="text-4xl text-center">MeliSport</h4>
         <p className="text-center">

@@ -4,7 +4,14 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'grid-admin': '14rem 4fr 1fr',
+        'sm-admin': '4rem 3fr 1fr',
+        'md-admin': '2fr 1fr',
+
+      },
+    },
   },
   plugins: [],
 };

@@ -20,9 +20,9 @@ const Customers = () => {
           <thead>
             <tr>
               <th className="px-2">name</th>
-              <th className="px-2 text-center">Email</th>
-              <th className="px-2 text-center">Role</th>
-              <th className="px-2 text-center" />
+              <th className="px-2 ">Email</th>
+              <th className="px-2 ">Role</th>
+              <th className="px-2 " />
 
             </tr>
 

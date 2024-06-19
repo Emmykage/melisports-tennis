@@ -40,13 +40,13 @@ const Checkout = () => {
             </span>
           </li>
           <hr />
-          <li className="flex-space">
+          <li className="flex justify-between items-center">
             <span> SUBTOTAL</span>
             {' '}
             <span>{naira_format(total)}</span>
           </li>
           <hr />
-          <li className="flex-space">
+          <li className="flex justify-between items-center">
             <span> CART TOTAL</span>
             <span>{naira_format(total)}</span>
           </li>
