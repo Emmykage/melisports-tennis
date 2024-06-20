@@ -75,7 +75,7 @@ const Home = () => {
 
       </div>
       <div className="my-6">
-        <h3 className="center fs-3 my-3"> Shop Categories</h3>
+        <h3 className=" text-center fs-3 my-3"> Shop Categories</h3>
 
         <div className="feature-div gap-2 m-auto flex justify-around">
           {categories.map((category) => (

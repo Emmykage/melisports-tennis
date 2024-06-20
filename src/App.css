@@ -1467,14 +1467,6 @@ td .btn.change {
       font-size: 1rem;
     }
 
-    .flex {
-      flex-direction: column;
-    }
-
-    .flex.row {
-      flex-direction: row;
-    }
-
     .cart-div {
       width: 100%;
     }
