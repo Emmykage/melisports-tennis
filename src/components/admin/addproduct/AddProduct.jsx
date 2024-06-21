@@ -66,7 +66,10 @@ const AddProduct = () => {
     if (imagePreviews.length > 0 || e.target.image.value) {
       const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
       const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
+      const gripSizes = Array.from(e.target.grip_sizes).map((option) => option.value);
       const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
+
+
 
       const formData = new FormData();
       formData.append('product[name]', e.target.name.value);
@@ -77,7 +80,7 @@ const AddProduct = () => {
       formData.append('product[product_category_id]', e.target.product_category_id.value);
       formData.append('product[level_id]', e.target.level_id.value);
       formData.append('product[gender_id]', e.target.gender_id.value);
-      formData.append('product[grip_size]', e.target.grip_size.value);
+      formData.append('product[grip_sizes]', gripSizes);
       formData.append('product[head_size]', e.target.head_size.value);
       formData.append('product[colours]', colorsValues);
       formData.append('product[weight]', e.target.weight.value);
@@ -96,7 +99,8 @@ const AddProduct = () => {
         formData.append(`product[photos][${index}]`, file);
       });
 
-      const data = Object.fromEntries(formData);
+      // const data = Object.fromEntries(formData);
+      // console.log(data)
       dispatch(addProduct(formData));
     } else {
       alert('No image: Add a product image');
@@ -270,11 +274,12 @@ const AddProduct = () => {
               <div className="input-half">
                 <label htmlFor=" " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
                 <Select
-                  name="grip_size"
-                  id="grip_size"
+                  name="grip_sizes"
+                  id="grip_sizes"
                   type="text"
                   options={gripSizes}
-                  placeholder="grip size"
+                  placeholder="grip sizes"
+                  isMulti
                 />
 
               </div>

@@ -9,7 +9,7 @@ import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import {
-  clothSizes, colors, composition, shoeSizes, strung,
+  clothSizes, colors, composition, gripSizes, headSizes, length, shoeSizes, strung,
 } from '../../mock/variance';
 import { resetProduct, writeProduct } from '../../../redux/product/product';
 import Loader from '../../../pages/Loader';
@@ -73,6 +73,7 @@ const EditProduct = () => {
     const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
     const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
     const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
+    const gripSizes = Array.from(e.target.grip_sizes).map((option) => option.value);
 
     const formData = new FormData();
 
@@ -84,7 +85,7 @@ const EditProduct = () => {
     formData.append('product[price]', product.price);
     formData.append('product[sku]', product.sku);
     formData.append('product[product_category_id]', e.target.product_category_id.value);
-    formData.append('product[grip_size]', product.grip_size);
+    formData.append('product[grip_sizes]', gripSizes);
     formData.append('product[head_size]', product.head_size);
     formData.append('product[colours]', colorsValues);
     formData.append('product[weight]', product.weight);
@@ -102,10 +103,12 @@ const EditProduct = () => {
       formData.append(`product[photos][${index}]`, file);
     });
 
-    // const data = Object.fromEntries(formData)
-    // console.log(data)
-    dispatch(updateProduct({ editId, formData }));
+    const data = Object.fromEntries(formData)
+    console.log(data)
+    // dispatch(updateProduct({ editId, formData }));
   };
+
+  console.log(product)
 
   return (
 
@@ -278,9 +281,9 @@ const EditProduct = () => {
                       </span>
                       {' '}
                     </label>
-                    <input
-                      onChange={handleFormInput}
-                      value={product.head_size}
+                    <Select
+                    defaultValue={product.head_size}
+                      options={headSizes}
                       name="head_size"
                       id="head_size"
                       type="text"
@@ -290,14 +293,15 @@ const EditProduct = () => {
                   </div>
 
                   <div className="input-half">
-                    <label htmlFor="grip_size " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
-                    <input
-                      onChange={handleFormInput}
-                      value={product.grip_size}
-                      name="grip_size"
-                      id="grip_size"
+                    <label htmlFor="grip_sizes " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
+                    <Select
+                    defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
+                      name="grip_sizes"
+                      id="grip_sizes"
                       type="text"
+                      options={gripSizes}
                       placeholder="grip size"
+                      isMulti
                     />
 
                   </div>
@@ -306,11 +310,12 @@ const EditProduct = () => {
                 <div className="flex gap-4 flex-col md:flex-row my-1">
                   <div className="input-half">
                     <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
-                    <input
+                    <Select
                       name="length"
                       id="length"
-                      onChange={handleFormInput}
-                      value={product.length}
+                      options={length}
+
+                      defaultValue={product.length}
                       type="text"
                       placeholder="lenght"
                     />
