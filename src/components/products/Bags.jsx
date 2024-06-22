@@ -29,7 +29,7 @@ const Bags = ({ products, status, error }) => {
     <>
 
       {bags.map((product) => (
-        <div key={product.id} className="products-display products-display min-w-48 w-full ">
+        <div key={product.id} className="products-display products-display sm:min-w-48 w-full ">
           <div className="prod-img">
             <NavLink to={`/productdetails/${product.id}`}>
               <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name} />

@@ -33,7 +33,7 @@ const Products = ({ products, status, error }) => {
       <>
 
         {racketProducts.map((product) => (
-          <div key={product.id} className="products-display min-w-48 w-full ">
+          <div key={product.id} className="products-display sm:min-w-48 w-full ">
             <div className="prod-img">
               <NavLink to={`/productdetails/${product.id}`}>
                 <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name} />

@@ -54,7 +54,7 @@ const ProductsPage = () => {
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (
               <div className="product-align ">
-                <div className="product-items flex justify-between sm:p-8 bg-gray-100">
+                <div className="product-items flex justify-between sm:p-6 bg-gray-100">
                   <Products products={products} status={status} error={error} />
                 </div>
 
