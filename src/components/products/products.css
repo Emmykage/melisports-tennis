@@ -2,7 +2,7 @@
   border: 1px solid var(--color-info-dark);
   flex-basis: 24%;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
   margin-bottom: 1.3rem;
   border-radius: 18px;
   height: fit-content;
@@ -16,7 +16,6 @@
 
 .prod-details .btn {
   display: block;
-  /* margin: auto; */
   text-align: center;
   width: 100%;
 }
