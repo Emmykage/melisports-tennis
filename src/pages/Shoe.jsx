@@ -16,7 +16,7 @@ const ShoesPage = () => {
   const dispatch = useDispatch();
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
-  const category = product_categories.find((cat) => cat.name === 'shoe');
+  const category = product_categories?.find((cat) => cat.name === 'shoe');
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
@@ -49,8 +49,8 @@ const ShoesPage = () => {
             <SideNav />
           </div>
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
-            <div className="product-align">
-              <div className="product-items">
+            <div className="product-align ">
+              <div className="product-items flex justify-between sm:p-8 bg-gray-100">
                 <Shoes products={products} status={status} error={error} />
 
               </div>

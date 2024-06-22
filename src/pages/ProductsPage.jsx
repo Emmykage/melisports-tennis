@@ -17,7 +17,7 @@ const ProductsPage = () => {
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
-  const category = product_categories.find((cat) => cat.name === 'racquet');
+  const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
@@ -46,15 +46,15 @@ const ProductsPage = () => {
 
         </div>
 
-        <div className="flex gap-10">
+        <div className="flex md:gap-10">
           <div className="side-nav">
             <SideNav />
           </div>
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (
-              <div className="product-align">
-                <div className="product-items">
+              <div className="product-align ">
+                <div className="product-items flex justify-between sm:p-8 bg-gray-100">
                   <Products products={products} status={status} error={error} />
                 </div>
 

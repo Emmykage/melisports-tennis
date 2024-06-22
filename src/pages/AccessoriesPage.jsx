@@ -18,7 +18,7 @@ const AccessoriesPage = () => {
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
-  const category = product_categories.find((cat) => cat.name === 'accessory');
+  const category = product_categories?.find((cat) => cat.name === 'accessory');
 
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.loLowerCase();
@@ -59,11 +59,11 @@ const AccessoriesPage = () => {
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
             <div className="product-align">
-              <div className="product-items">
+              <div className="product-items flex justify-between sm:p-8 bg-gray-100">
 
                 <Accessories products={products} status={status} error={error} />
               </div>
-              <div className="product-details">
+              <div className="product-details ">
                 <h3> BABOLAT TENNIS ACCESSORIES BRANDS</h3>
                 <p>
                   {category.description}
