@@ -40,7 +40,7 @@ const ApparelsPage = () => {
 
         </div>
 
-        <div className="flex gap-10">
+        <div className="flex md:gap-10">
           <div className="side-nav">
 
             <SideNav />
