@@ -39,10 +39,10 @@ const ProductsPage = () => {
 
       <div className="prod-page">
         <div className="cat-group">
-          <button className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</button>
-          <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure strike</button>
-          <button className="btn" onClick={() => handleFilteredProducts('boost')}> Boost</button>
-          <button className="btn" onClick={() => dispatch(getProducts())}>All rackets</button>
+          <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
+          <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure strike</a>
+          <a className="btn" onClick={() => handleFilteredProducts('boost')}> Boost</a>
+          <a className="btn" onClick={() => dispatch(getProducts())}>All rackets</a>
 
         </div>
 
