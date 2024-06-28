@@ -41,11 +41,17 @@ const Products = ({ products, status, error }) => {
 
             </div>
             <div className="prod-details">
-              <h5 className="text-gray-900">
+              <h5 className="text-gray-900 block md:hidden">
 
-                {product.name.substring(0, 15)}
+                {product.name.substring(0, 10)}
                 ...
               </h5>
+
+              <h5 className="text-gray-900 hidden md:block">
+
+{product.name.substring(0, 15)}
+...
+</h5>
               <p>
                 {' '}
                 {NGNaira.format(product.price)}
