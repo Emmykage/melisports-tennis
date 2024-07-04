@@ -993,10 +993,6 @@ table td {
   background-color: gray;
 }
 
-.bg-white {
-  background-color: var(--color-white);
-}
-
 .carter {
   width: 50%;
 }

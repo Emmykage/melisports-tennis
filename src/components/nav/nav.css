@@ -1,9 +1,4 @@
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-}
-
 .navbar.sticky-nav{
   position: fixed;
   z-index: 2;

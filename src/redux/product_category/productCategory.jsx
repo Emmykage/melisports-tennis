@@ -42,7 +42,7 @@ const productCategorySlice = createSlice({
       ...state,
       status: 'rejected',
       loading: false,
-      report: action.payload.message
+      report: action.payload.message,
     }),
     [addProductCategory.pending]: (state) => ({
       ...state,
@@ -78,7 +78,7 @@ const productCategorySlice = createSlice({
 
   },
   reducers: {
-    
+
     resetCategory: (state) => ({
       ...state,
       loading: false,
@@ -86,9 +86,8 @@ const productCategorySlice = createSlice({
       error: false,
       report: null,
     }),
-  }
+  },
 });
 
 export default productCategorySlice.reducer;
-export  const {resetCategory} = productCategorySlice.actions
- 
+export const { resetCategory } = productCategorySlice.actions;

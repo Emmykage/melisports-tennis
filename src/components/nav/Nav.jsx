@@ -60,125 +60,124 @@ const Nav = () => {
           </div>
 
           <div className="nav-div flex">
-          <div className="flex-1 flex">
+            <div className="flex-1 flex">
 
-
-            <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links'}>
-              <div className="mobile-menu-div  my-4">
-                <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
-              </div>
-
-              <li className="nav-item"><NavLink to="/store">Home</NavLink></li>
-              <li className="nav-item">
-                <NavLink to="/racquets" className="hey">Rackets </NavLink>
-                <div className="link-items flex">
-                  <div className="">
-                    <h3>
-                      Rackets &
-                      <br />
-                      {' '}
-                      Paddles
-                    </h3>
-                  </div>
-                  <ul>
-
-                    <h4>Tennis Rackets</h4>
-                    <li><a href="#">Babolat</a></li>
-                    {/* <li><a href="#">Wilson</a></li> */}
-                  </ul>
-                  <ul>
-
-                    <h4>Badminton Rackets</h4>
-                    <li><a href="#">Babolat</a></li>
-                    {/* <li><a href="#">Wilson</a></li> */}
-                  </ul>
+              <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links'}>
+                <div className="mobile-menu-div  my-4">
+                  <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
                 </div>
-              </li>
-              <li className="nav-item">
 
-                <NavLink to="/apparels">Apparels</NavLink>
+                <li className="nav-item"><NavLink to="/store">Home</NavLink></li>
+                <li className="nav-item">
+                  <NavLink to="/racquets" className="hey">Rackets </NavLink>
+                  <div className="link-items flex">
+                    <div className="">
+                      <h3>
+                        Rackets &
+                        <br />
+                        {' '}
+                        Paddles
+                      </h3>
+                    </div>
+                    <ul>
 
-                <div className="link-items flex">
-                  <div>
-                    <h3>Apparels</h3>
+                      <h4>Tennis Rackets</h4>
+                      <li><a href="#">Babolat</a></li>
+                      {/* <li><a href="#">Wilson</a></li> */}
+                    </ul>
+                    <ul>
+
+                      <h4>Badminton Rackets</h4>
+                      <li><a href="#">Babolat</a></li>
+                      {/* <li><a href="#">Wilson</a></li> */}
+                    </ul>
                   </div>
-                  <ul>
+                </li>
+                <li className="nav-item">
 
-                    <h4>Tennis Men's Apparels</h4>
-                    <li><a href="#">Babolat</a></li>
-                    {/* <li><a href="#">Wilson</a></li> */}
-                  </ul>
-                  <ul>
+                  <NavLink to="/apparels">Apparels</NavLink>
 
-                    <h4>Tennis Women's Apparel</h4>
-                    <li><a href="#">Babolat</a></li>
-                    {/* <li><a href="#">Wilson</a></li> */}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/shoes">Shoes</NavLink>
-                <div className="link-items">
-                  <div>
-                    <h3>Shoes</h3>
+                  <div className="link-items flex">
+                    <div>
+                      <h3>Apparels</h3>
+                    </div>
+                    <ul>
+
+                      <h4>Tennis Men's Apparels</h4>
+                      <li><a href="#">Babolat</a></li>
+                      {/* <li><a href="#">Wilson</a></li> */}
+                    </ul>
+                    <ul>
+
+                      <h4>Tennis Women's Apparel</h4>
+                      <li><a href="#">Babolat</a></li>
+                      {/* <li><a href="#">Wilson</a></li> */}
+                    </ul>
                   </div>
-                  <ul>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/shoes">Shoes</NavLink>
+                  <div className="link-items">
+                    <div>
+                      <h3>Shoes</h3>
+                    </div>
+                    <ul>
 
-                    <h4>Men's Shoes</h4>
-                    <li><a href="#">Babolat</a></li>
-                    {/* <li><a href="#">Wilson</a></li> */}
-                  </ul>
-                  <ul>
+                      <h4>Men's Shoes</h4>
+                      <li><a href="#">Babolat</a></li>
+                      {/* <li><a href="#">Wilson</a></li> */}
+                    </ul>
+                    <ul>
 
-                    <h4>Women's Shoes</h4>
-                    <li><a href="/">Babolat</a></li>
-                    {/* <li><a href="/">Wilson</a></li> */}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/bags">Bags</NavLink>
-                <div className="link-items flex">
-                  <div>
-                    <h3>Bags</h3>
+                      <h4>Women's Shoes</h4>
+                      <li><a href="/">Babolat</a></li>
+                      {/* <li><a href="/">Wilson</a></li> */}
+                    </ul>
                   </div>
-                  <ul>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/bags">Bags</NavLink>
+                  <div className="link-items flex">
+                    <div>
+                      <h3>Bags</h3>
+                    </div>
+                    <ul>
 
-                    <h4>Men's Shoes</h4>
-                    <li><a href="#">Babolat</a></li>
-                    {/* <li><a href="#">Wilson</a></li> */}
-                  </ul>
-                  <ul>
+                      <h4>Men's Shoes</h4>
+                      <li><a href="#">Babolat</a></li>
+                      {/* <li><a href="#">Wilson</a></li> */}
+                    </ul>
+                    <ul>
 
-                    <h4>Women's Shoes</h4>
-                    <li><a href="/">Babolat</a></li>
-                    {/* <li><a href="/">Wilson</a></li> */}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/accessories">Acccessories</NavLink>
-                <div className="link-items flex">
-                  <div>
-                    <h3>Shoes</h3>
+                      <h4>Women's Shoes</h4>
+                      <li><a href="/">Babolat</a></li>
+                      {/* <li><a href="/">Wilson</a></li> */}
+                    </ul>
                   </div>
-                  <ul>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/accessories">Acccessories</NavLink>
+                  <div className="link-items flex">
+                    <div>
+                      <h3>Shoes</h3>
+                    </div>
+                    <ul>
 
-                    <h4>Men's Shoes</h4>
-                    <li><a href="#">Babolat</a></li>
-                    {/* <li><a href="#">Wilson</a></li> */}
-                  </ul>
-                  <ul>
+                      <h4>Men's Shoes</h4>
+                      <li><a href="#">Babolat</a></li>
+                      {/* <li><a href="#">Wilson</a></li> */}
+                    </ul>
+                    <ul>
 
-                    <h4>Women's Shoes</h4>
-                    <li><a href="/">Babolat</a></li>
-                    {/* <li><a href="/">Wilson</a></li> */}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/brands">Brands</NavLink>
-                {/* <div className="link-items flex">
+                      <h4>Women's Shoes</h4>
+                      <li><a href="/">Babolat</a></li>
+                      {/* <li><a href="/">Wilson</a></li> */}
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/brands">Brands</NavLink>
+                  {/* <div className="link-items flex">
                   <div>
                     <h3>
                       Sport Brands
@@ -195,23 +194,23 @@ const Nav = () => {
                     <li><a href="/brands">Babolat</a></li>
                   </ul>
                 </div> */}
-              </li>
+                </li>
 
-              {user !== null && ((user.role == 'admin') && (
-              <li className="nav-item">
-                <NavLink to="/admin">    go to admin </NavLink>
-                {' '}
-              </li>
-              ))}
+                {user !== null && ((user.role == 'admin') && (
+                <li className="nav-item">
+                  <NavLink to="/admin">    go to admin </NavLink>
+                  {' '}
+                </li>
+                ))}
 
-              <li className="nav-item last">
-                <span><FiUser className="user-icon" /></span>
+                <li className="nav-item last">
+                  <span><FiUser className="user-icon" /></span>
 
-                {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
+                  {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
-              </li>
+                </li>
 
-            </ul>
+              </ul>
             </div>
             <div className="flex justify-between items-center ">
               <div className="user mobile-display ">

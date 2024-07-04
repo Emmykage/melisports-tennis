@@ -16,7 +16,6 @@
 }
 
 .side-row label {
-  display: block;
   font-size: 0.8rem !important;
   font-weight: 300;
 }
@@ -24,14 +23,8 @@
 .side-row h6 {
   font-size: 1rem;
   margin: 1px;
-
-  /* color: red; */
 }
 
-.side-row input {
-  background-color: red;
-  margin-right: 12px;
-}
 
 @media screen and (max-width: 720px) {
   .side-nav {

@@ -69,8 +69,6 @@ const AddProduct = () => {
       const gripSizes = Array.from(e.target.grip_sizes).map((option) => option.value);
       const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
 
-
-
       const formData = new FormData();
       formData.append('product[name]', e.target.name.value);
       formData.append('product[quantity]', e.target.quantity.value);
@@ -436,7 +434,6 @@ const AddProduct = () => {
             ))}
           </div>
 
-
           {loading ? (
             <p className="normal">
               {' '}
@@ -458,8 +455,7 @@ const AddProduct = () => {
           </p>
           )) }
 
-          
-<button className="btn" type="submit">
+          <button className="btn" type="submit">
             add product
           </button>
 

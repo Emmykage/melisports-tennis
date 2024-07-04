@@ -49,8 +49,34 @@ const productsSlice = createSlice({
       products: state.products.filter((item) => item.name.toLowerCase().includes(action.payload)),
     }),
 
+    filterActivities: (state, action) => {
+      console.log(action.payload);
+
+      const filts = state.products.filter((item) => item.level?.stage.toLowerCase().includes(action.payload));
+      return {
+        ...state,
+        products: filts,
+      };
+    },
+    filterFeatures: (state, action) => {
+      const filts = state.products.filter((item) => item?.description.toLowerCase().includes(action.payload));
+      return {
+        ...state,
+        products: filts,
+      };
+    },
+    filterGender: (state, action) => {
+      const filts = state.products.filter((item) => item?.gender?.name.toLowerCase().includes(action.payload));
+      return {
+        ...state,
+        products: filts,
+      };
+    },
+
   },
 });
 
 export default productsSlice.reducer;
-export const { filterProducts, searchedProducts } = productsSlice.actions;
+export const {
+  filterProducts, searchedProducts, filterActivities, filterFeatures, filterGender
+} = productsSlice.actions;

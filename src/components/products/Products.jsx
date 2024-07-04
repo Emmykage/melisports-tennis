@@ -22,7 +22,7 @@ const Products = ({ products, status, error }) => {
         <div>
           <header>
 
-            <h1 className="warning-center"> Please Add some Rackets to your collection</h1>
+            <h1 className="font-sans text-center text-3xl font-semibold"> No Item in this Collection</h1>
           </header>
         </div>
       );
@@ -49,9 +49,9 @@ const Products = ({ products, status, error }) => {
 
               <h5 className="text-gray-900 hidden md:block">
 
-{product.name.substring(0, 15)}
-...
-</h5>
+                {product.name.substring(0, 15)}
+                ...
+              </h5>
               <p>
                 {' '}
                 {NGNaira.format(product.price)}

@@ -27,6 +27,29 @@ const AccessoriesPage = () => {
       dispatch(filterProducts(lowerCaseSieve));
     });
   };
+
+  const handleFilteredActivities = (e) => {
+    if (e.target.checked) {
+      dispatch(getProducts()).then(() => {
+        dispatch(filterActivities(e.target.value));
+      });
+    } else {
+      dispatch(getProducts());
+      // console.log(e.target.checked)
+    }
+  };
+
+  const handleFilteredFeatures = (e) => {
+    if (e.target.checked) {
+      dispatch(getProducts()).then(() => {
+        dispatch(filterFeatures(e.target.value));
+      });
+    } else {
+      dispatch(getProducts());
+      // console.log(e.target.checked)
+    }
+  };
+
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
@@ -54,7 +77,72 @@ const AccessoriesPage = () => {
 
         <div className="flex md:gap-10">
           <div className="side-nav">
-            <SideNav />
+            <div className="side-row">
+              <h6>Activities</h6>
+
+            </div>
+            <div />
+            <div className="side-row">
+              <div className='flex items-center'>
+              <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+
+              <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
+
+<span>
+  Tennis
+</span>
+</label>
+              </div>
+              <div className='flex items-center'>
+              <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
+
+Badminton
+</label>
+              </div>
+             
+             
+            </div>
+            <div className="side-row">
+              <h6>Category</h6>
+
+              <div className="flex items-center">
+                <input type="checkbox" id="racket" value="racket" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
+
+                <label htmlFor="racket" style={{ fontSize: '1rem' }}>
+                  Racket
+                </label>
+
+              </div>
+              <div className="flex items-center">
+
+                <input onChange={handleFilteredFeatures} value="power" type="checkbox" id="power-beginner" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+
+                <label htmlFor="power-beginner" style={{ fontSize: '1rem' }}>
+                  Apparels
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input onChange={handleFilteredFeatures} value="grip" type="checkbox" id="grip" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+
+                <label htmlFor="grip" style={{ fontSize: '1rem' }}>
+                  Grip
+                </label>
+
+              </div>
+
+            </div>
+            
+            <div className="side-row">
+              <h6>Brand</h6>
+
+              <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+
+                <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                babolat
+              </label>
+            </div>
+
           </div>
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (

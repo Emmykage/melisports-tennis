@@ -103,12 +103,12 @@ const EditProduct = () => {
       formData.append(`product[photos][${index}]`, file);
     });
 
-    const data = Object.fromEntries(formData)
-    console.log(data)
+    const data = Object.fromEntries(formData);
+    console.log(data);
     // dispatch(updateProduct({ editId, formData }));
   };
 
-  console.log(product)
+  console.log(product);
 
   return (
 
@@ -282,7 +282,7 @@ const EditProduct = () => {
                       {' '}
                     </label>
                     <Select
-                    defaultValue={product.head_size}
+                      defaultValue={product.head_size}
                       options={headSizes}
                       name="head_size"
                       id="head_size"
@@ -295,7 +295,7 @@ const EditProduct = () => {
                   <div className="input-half">
                     <label htmlFor="grip_sizes " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
                     <Select
-                    defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
+                      defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
                       name="grip_sizes"
                       id="grip_sizes"
                       type="text"
@@ -491,7 +491,6 @@ const EditProduct = () => {
                 ))}
               </div>
 
-           
               {loading ? (
                 <p className="normal">
                   {' '}
@@ -511,7 +510,7 @@ const EditProduct = () => {
                   {report}
                 </p>
               )) }
-              <button className="btn" type='submit'>
+              <button className="btn" type="submit">
                 Update product
               </button>
             </div>
