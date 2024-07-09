@@ -67,7 +67,7 @@ const AccessoriesPage = () => {
       <Hero image={bannerImage} title="Accessories" />
 
       <div className="prod-page">
-        <div className="cat-group">
+        <div className="cat-group justify-between max-w-md my-6">
           <button className="btn" onClick={() => handleFilteredProducts('racquet')}> Racket Accessories</button>
           <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Court Accessories</button>
           <button className="btn" onClick={() => handleFilteredProducts('boost')}> Fan Accessories</button>

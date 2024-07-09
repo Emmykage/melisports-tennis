@@ -664,7 +664,7 @@ button {
   width: fit-content;
 }
 
-.prod-page .cat-group a {
+.prod-page .cat-group justify-between max-w-md my-6 a {
   font-size: 0.8rem;
   font-weight: 600;
   margin-right: 0.2rem;
@@ -1405,7 +1405,7 @@ td .btn.change {
     padding: 6px 8px;
   }
 
-  .cat-group .btn {
+  .cat-group justify-between max-w-md my-6 .btn {
     font-size: 0.8rem;
   }
 

@@ -17,7 +17,7 @@ const ProductsPage = () => {
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
-  console.log(products);
+  // console.log(products);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {
@@ -35,7 +35,7 @@ const ProductsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
+
     }
   };
 
@@ -46,7 +46,6 @@ const ProductsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 
@@ -59,7 +58,6 @@ const ProductsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 
