@@ -83,25 +83,24 @@ const AccessoriesPage = () => {
             </div>
             <div />
             <div className="side-row">
-              <div className='flex items-center'>
-              <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <div className="flex items-center">
+                <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
-              <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
+                <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
 
-<span>
-  Tennis
-</span>
-</label>
+                  <span>
+                    Tennis
+                  </span>
+                </label>
               </div>
-              <div className='flex items-center'>
-              <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
+              <div className="flex items-center">
+                <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
 
-Badminton
-</label>
+                  Badminton
+                </label>
               </div>
-             
-             
+
             </div>
             <div className="side-row">
               <h6>Category</h6>
@@ -132,7 +131,7 @@ Badminton
               </div>
 
             </div>
-            
+
             <div className="side-row">
               <h6>Brand</h6>
 

@@ -45,7 +45,7 @@ const ApparelsPage = () => {
       // console.log(e.target.checked)
     }
   };
-  
+
   const handleFilterGender = (e) => {
     if (e.target.checked) {
       dispatch(getProducts()).then(() => {
@@ -56,7 +56,6 @@ const ApparelsPage = () => {
       // console.log(e.target.checked)
     }
   };
-  
 
   useEffect(() => {
     dispatch(closeNav());
@@ -84,23 +83,22 @@ const ApparelsPage = () => {
             <div />
             <div className="side-row">
 
-              <div className='mb-2 flex items-center'>
-              <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <div className="mb-2 flex items-center">
+                <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
-              <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
-              <span>
-                  Tennis
-                </span>
-              </label>
-               
+                <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
+                  <span>
+                    Tennis
+                  </span>
+                </label>
+
               </div>
-    <div className='flex items-center'>
-    <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <div className="flex items-center">
+                <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
-              <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
-              Badminton
-              </label>
-             
+                <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
+                  Badminton
+                </label>
 
               </div>
 
@@ -124,7 +122,6 @@ const ApparelsPage = () => {
                   Women
                 </label>
               </div>
-              
 
             </div>
 
@@ -165,14 +162,13 @@ const ApparelsPage = () => {
             </div> */}
             <div className="side-row">
               <h6>Brand</h6>
-<div className='flex items-center'>
-<input onChange={()=> dispatch(getProducts())} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-<label htmlFor="activity" style={{ fontSize: '1rem' }}>
-              babolat
-              </label>
-</div>
-            
-              
+              <div className="flex items-center">
+                <input onChange={() => dispatch(getProducts())} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+                  babolat
+                </label>
+              </div>
+
             </div>
 
           </div>

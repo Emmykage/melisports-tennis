@@ -60,6 +60,7 @@ const productsSlice = createSlice({
     },
     filterFeatures: (state, action) => {
       const filts = state.products.filter((item) => item?.description.toLowerCase().includes(action.payload));
+      console.log(filts, action.payload)
       return {
         ...state,
         products: filts,
@@ -78,5 +79,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, filterActivities, filterFeatures, filterGender
+  filterProducts, searchedProducts, filterActivities, filterFeatures, filterGender,
 } = productsSlice.actions;

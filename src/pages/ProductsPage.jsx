@@ -50,6 +50,8 @@ const ProductsPage = () => {
     }
   };
 
+  
+
   const handleFilterGender = (e) => {
     if (e.target.checked) {
       dispatch(getProducts()).then(() => {
@@ -72,11 +74,11 @@ const ProductsPage = () => {
       <Hero image={bannerImage} title="Racquet" />
 
       <div className="prod-page">
-        <div className="cat-group">
+        <div className="cat-group justify-between max-w-md my-6">
           <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure strike</a>
-          <a className="btn" onClick={() => handleFilteredProducts('boost')}> Boost</a>
-          <a className="btn" onClick={() => dispatch(getProducts())}>All rackets</a>
+          <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
+          <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
+          <a className="btn" onClick={() => dispatch(getProducts())}>All Rackets</a>
 
         </div>
 
@@ -89,31 +91,30 @@ const ProductsPage = () => {
             </div>
             <div />
             <div className="side-row">
-              <div className='flex  items-center mb-2'>
-              <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
+              <div className="flex  items-center mb-2">
+                <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
 
-<span>
-  Tennis
-</span>
-</label>
+                  <span>
+                    Tennis
+                  </span>
+                </label>
 
               </div>
-              <div className='flex items-center mb-2'>
-              <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-              <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
+              <div className="flex items-center mb-2">
+                <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
 
-Badminton
-</label>
+                  Badminton
+                </label>
               </div>
-             
-           
+
             </div>
             <div className="side-row">
               <h6>Racket Type</h6>
 
               <div className="flex items-center mb-2">
-                <input type="checkbox" id="control" value="control" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
+                <input type="checkbox" id="control" value="control" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
 
                 <label htmlFor="control" style={{ fontSize: '1rem' }}>
                   Control
@@ -122,16 +123,16 @@ Badminton
               </div>
               <div className="flex items-center mb-2">
 
-                <input onChange={handleFilteredFeatures} value="power" type="checkbox" id="power-beginner" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input onChange={handleFilteredFeatures} value="power" type="checkbox" id="power" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
-                <label htmlFor="power-beginner" style={{ fontSize: '1rem' }}>
+                <label htmlFor="power" style={{ fontSize: '1rem' }}>
                   Power
                 </label>
               </div>
               <div className="flex items-center">
-                <input onChange={handleFilteredActivities} value="spin" type="checkbox" id="junior" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input onChange={handleFilteredFeatures} value="spin" type="checkbox" id="spin" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
-                <label htmlFor="junior" style={{ fontSize: '1rem' }}>
+                <label htmlFor="spin" style={{ fontSize: '1rem' }}>
                   Spin
                 </label>
 
@@ -141,15 +142,15 @@ Badminton
             <div className="side-row">
               <h6>Skill level</h6>
               <span className="flex items-center mb-2">
-              <input type="checkbox" id="beginner" value="beginner" onChange={handleFilteredActivities} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
+                <input type="checkbox" id="beginner" value="beginner" onChange={handleFilteredActivities} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
 
                 <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
                   Beginner
                 </label>
               </span>
 
-              <span className='flex items-center mb-2'>
-              <input onChange={handleFilteredActivities} value="professional" type="checkbox" name="professional" id="professional" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <span className="flex items-center mb-2">
+                <input onChange={handleFilteredActivities} value="professional" type="checkbox" name="professional" id="professional" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
                 <label htmlFor="professional">
                   Professional
@@ -166,10 +167,10 @@ Badminton
               </span>
 
               <span className="items-center flex mb-2">
-                <input type="checkbox" id="advanced" value="advanced" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-100 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
+                <input type="checkbox" id="junior" value="junior" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-100 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
 
-                <label htmlFor="advanced" style={{ fontSize: '1rem' }}>
-                  Advanced
+                <label htmlFor="junior" style={{ fontSize: '1rem' }}>
+                Junior
                 </label>
 
               </span>

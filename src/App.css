@@ -722,9 +722,7 @@ button:active {
 .cat-group {
   display: flex;
   flex-wrap: wrap;
-  max-width: 780px;
   row-gap: 1rem;
-  column-gap: 1rem;
   margin-bottom: 1rem;
 }
 
