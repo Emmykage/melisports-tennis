@@ -34,7 +34,6 @@ const BagsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 
@@ -45,7 +44,6 @@ const BagsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 

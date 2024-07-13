@@ -31,7 +31,6 @@ const ApparelsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 
@@ -42,7 +41,6 @@ const ApparelsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 
@@ -53,7 +51,6 @@ const ApparelsPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 

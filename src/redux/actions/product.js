@@ -58,7 +58,6 @@ const addProduct = createAsyncThunk('product/addproduct', async (data, { rejectW
       const formattedError = Object.entries(errorMessages)
         .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
         .join('\n');
-      console.log(formattedError);
       return rejectWithValue({ message: formattedError });
     }
 

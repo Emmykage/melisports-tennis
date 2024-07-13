@@ -48,6 +48,7 @@ import ViewCustomer from './components/admin/customers/ViewCustomer';
 import ImagePreview from './components/products/ImagePreview';
 import Padels from './pages/Padels';
 import BadmintonsPage from './pages/Badminton';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -69,6 +70,7 @@ function App() {
         <Route path="paymentform" element={<StripeContainer />} />
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
+        <Route path="/search_page" element={<MainLayout><SearchPage/></MainLayout>} />
         <Route path="/store" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/padels" element={<MainLayout><Padels /></MainLayout>} />

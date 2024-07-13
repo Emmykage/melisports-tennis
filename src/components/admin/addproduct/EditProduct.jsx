@@ -107,11 +107,8 @@ const EditProduct = () => {
     });
 
     const data = Object.fromEntries(formData);
-    console.log(data);
-    // dispatch(updateProduct({ editId, formData }));
+    dispatch(updateProduct({ editId, formData }));
   };
-
-  console.log(product);
 
   return (
 

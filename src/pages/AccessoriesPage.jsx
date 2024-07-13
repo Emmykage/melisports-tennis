@@ -35,7 +35,6 @@ const AccessoriesPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 
@@ -46,7 +45,6 @@ const AccessoriesPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 

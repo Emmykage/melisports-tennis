@@ -32,7 +32,6 @@ const ShoesPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 
@@ -43,7 +42,6 @@ const ShoesPage = () => {
       });
     } else {
       dispatch(getProducts());
-      // console.log(e.target.checked)
     }
   };
 

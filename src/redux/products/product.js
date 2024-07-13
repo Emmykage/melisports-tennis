@@ -4,6 +4,7 @@ import { getProducts } from '../actions/product';
 const initialState = {
   products: [],
   searched_products: [],
+  search_product_page: [],
   padelRacquets: [],
   badmintonRacquets: [],
   filteredProducts: [],
@@ -21,7 +22,6 @@ const productsSlice = createSlice({
     [getProducts.fulfilled]: (state, action) => {
       const products_badminton = action.payload.filter((badminton) => badminton.sport_category == 'badminton');
       const products_padel = action.payload.filter((padel) => padel.sport_category == 'padel');
-      console.log(products_badminton);
 
       return {
         ...state,
@@ -54,13 +54,19 @@ const productsSlice = createSlice({
         searched_products: f_product,
       };
     },
+    searchedPage: (state, action) => {
+      const f_product = action.payload.length < 1 ? [] : state.products.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()));
+      return {
+        ...state,
+        search_product_page: f_product
+      };
+    },
     filterProducts: (state, action) => ({
       ...state,
       products: state.products.filter((item) => item.name.toLowerCase().includes(action.payload)),
     }),
 
     filterActivities: (state, action) => {
-      console.log(action.payload);
 
       const filts = state.products.filter((item) => item.level?.stage.toLowerCase().includes(action.payload));
       return {
@@ -70,7 +76,6 @@ const productsSlice = createSlice({
     },
     filterFeatures: (state, action) => {
       const filts = state.products.filter((item) => item?.description.toLowerCase().includes(action.payload));
-      console.log(filts, action.payload);
       return {
         ...state,
         products: filts,
@@ -89,5 +94,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, filterActivities, filterFeatures, filterGender,
+  filterProducts, searchedProducts, searchedPage, filterActivities, filterFeatures, filterGender,
 } = productsSlice.actions;

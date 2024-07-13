@@ -16,7 +16,6 @@ const BadmintonsPage = () => {
   const dispatch = useDispatch();
   const { badmintonRacquets, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
-  console.log(badmintonRacquets);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {

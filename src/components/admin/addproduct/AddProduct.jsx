@@ -22,8 +22,6 @@ const AddProduct = () => {
   const { loading, status, report } = useSelector((state) => state.product);
   const formRef = useRef(null);
 
-  console.log(sport_categories[0]?.name, sport_categories);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductCategories());
@@ -100,7 +98,7 @@ const AddProduct = () => {
       });
 
       // const data = Object.fromEntries(formData);
-      // console.log(data)
+
       dispatch(addProduct(formData));
     } else {
       alert('No image: Add a product image');
