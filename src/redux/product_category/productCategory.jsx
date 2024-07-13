@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  addProductCategory, deleteCategory, getProductCategories, updateCategory,
+  addProductCategory, deleteCategory, getProductCategories, getSportCategories, updateCategory,
 } from '../actions/product_category';
 
 const initialState = {
   product_categories: [],
+  sport_categories: [],
   loading: true,
   status: null,
   report: null,
@@ -19,6 +20,12 @@ const productCategorySlice = createSlice({
       loading: false,
       status: 'success',
       product_categories: action.payload,
+    }),
+    [getSportCategories.fulfilled]: (state, action) => ({
+      ...state,
+      loading: false,
+      status: 'success',
+      sport_categories: action.payload,
     }),
     [getProductCategories.pending]: (state) => ({
       ...state,

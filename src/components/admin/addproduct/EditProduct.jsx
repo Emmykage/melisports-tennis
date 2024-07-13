@@ -7,7 +7,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import getGenders from '../../../redux/actions/gender';
 import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
-import { getProductCategories } from '../../../redux/actions/product_category';
+import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
 import {
   clothSizes, colors, composition, gripSizes, headSizes, length, shoeSizes, strung,
 } from '../../mock/variance';
@@ -20,7 +20,7 @@ const EditProduct = () => {
 
   const [imagePreviews, setImagePreviews] = useState([]);
 
-  const { product_categories } = useSelector((state) => state.product_categories);
+  const { product_categories, sport_categories } = useSelector((state) => state.product_categories);
 
   const {
     product, loading, report, status,
@@ -33,6 +33,8 @@ const EditProduct = () => {
 
   useEffect(() => {
     dispatch(getProductCategories());
+    dispatch(getSportCategories());
+
     dispatch(getProduct(editId));
     dispatch(getLevels());
     dispatch(getGenders());
@@ -85,6 +87,7 @@ const EditProduct = () => {
     formData.append('product[price]', product.price);
     formData.append('product[sku]', product.sku);
     formData.append('product[product_category_id]', e.target.product_category_id.value);
+    formData.append('product[sport_category_id]', e.target.sport_category_id.value);
     formData.append('product[grip_sizes]', gripSizes);
     formData.append('product[head_size]', product.head_size);
     formData.append('product[colours]', colorsValues);
@@ -118,17 +121,33 @@ const EditProduct = () => {
 
         : (
           <form onSubmit={handleSubmit} ref={formRef} className="w-full">
-            <div className="px-3">
+            <div className="px-3 flex">
+              <div className="ms_code mr-auto max-w-80 w-full p-3">
+                <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
 
-              <div className="ms_code ml-auto w-48">
+                <Select
+                  placeholder="product category"
+                  defaultValue={{ value: product.sport_category?.id, label: product.sport_category?.name }}
 
-                <div className="ms_code quantity bg-green-500">
-                  <label htmlFor="quantity font-medium text-gray-700">ms product code</label>
-                  <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required />
-                </div>
-                <div className="quantity my-2">
-                  <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity</label>
-                  <input onChange={handleFormInput} value={product.quantity} type="number" name="quantity" id="quantity" />
+                  required
+                  name="sport_category_id"
+                  id="sport_category_id"
+                  options={sport_categories.map((cat) => ({ value: cat.id, label: cat.name }))}
+                />
+              </div>
+
+              <div>
+
+                <div className="ms_code ml-auto w-48">
+
+                  <div className="ms_code quantity bg-green-500">
+                    <label htmlFor="quantity font-medium text-gray-700">ms product code</label>
+                    <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required />
+                  </div>
+                  <div className="quantity my-2">
+                    <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity</label>
+                    <input onChange={handleFormInput} value={product.quantity} type="number" name="quantity" id="quantity" />
+                  </div>
                 </div>
               </div>
             </div>

@@ -9,7 +9,6 @@ const Products = ({ products, status, error }) => {
     style: 'currency',
     currency: 'NGN',
   });
-
   const racketProducts = products.filter((item) => item.product_category.name === 'racquet');
 
   if (status === 'waiting') {

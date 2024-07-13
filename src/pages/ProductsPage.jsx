@@ -35,7 +35,6 @@ const ProductsPage = () => {
       });
     } else {
       dispatch(getProducts());
-
     }
   };
 
@@ -48,8 +47,6 @@ const ProductsPage = () => {
       dispatch(getProducts());
     }
   };
-
-  
 
   const handleFilterGender = (e) => {
     if (e.target.checked) {
@@ -168,7 +165,7 @@ const ProductsPage = () => {
                 <input type="checkbox" id="junior" value="junior" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-100 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
 
                 <label htmlFor="junior" style={{ fontSize: '1rem' }}>
-                Junior
+                  Junior
                 </label>
 
               </span>

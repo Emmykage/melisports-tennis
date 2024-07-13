@@ -82,14 +82,19 @@ const Nav = () => {
                     <ul>
 
                       <h4>Tennis Rackets</h4>
-                      <li><a href="#">Babolat</a></li>
-                      {/* <li><a href="#">Wilson</a></li> */}
+                      <li><NavLink to="/racquets">Babolat</NavLink></li>
+
+                    </ul>
+                    <ul>
+                      <h4>Padel Rackets</h4>
+                      <li><NavLink to="/padels">Babolat</NavLink></li>
+
                     </ul>
                     <ul>
 
                       <h4>Badminton Rackets</h4>
-                      <li><a href="#">Babolat</a></li>
-                      {/* <li><a href="#">Wilson</a></li> */}
+                      <li><NavLink to="/badminton">Babolat</NavLink></li>
+
                     </ul>
                   </div>
                 </li>

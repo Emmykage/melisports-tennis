@@ -6,7 +6,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import getLevels from '../../../redux/actions/misc';
 import getGenders from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
-import { getProductCategories } from '../../../redux/actions/product_category';
+import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
 import Categories from '../Categories';
 import {
   clothSizes, colors, composition, gripSizes, headSizes, length, shoeSizes, strung,
@@ -16,15 +16,18 @@ import { resetProduct } from '../../../redux/product/product';
 const AddProduct = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
 
-  const { product_categories, updater } = useSelector((state) => state.product_categories);
+  const { product_categories, sport_categories, updater } = useSelector((state) => state.product_categories);
   const levels = useSelector((state) => state.level.levels);
   const genders = useSelector((state) => state.gender.genders);
   const { loading, status, report } = useSelector((state) => state.product);
   const formRef = useRef(null);
 
+  console.log(sport_categories[0]?.name, sport_categories);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductCategories());
+    dispatch(getSportCategories());
     dispatch(getLevels());
     dispatch(getGenders());
   }, [updater]);
@@ -43,8 +46,6 @@ const AddProduct = () => {
   }, [status]);
 
   const handleImageChange = (e) => {
-    // (e)=> setImages(e.target.files)
-
     const files = Array.from(e.target.files);
     const previews = files.map((file) => {
       const reader = new FileReader();
@@ -76,6 +77,7 @@ const AddProduct = () => {
       formData.append('product[price]', e.target.price.value);
       formData.append('product[sku]', e.target.sku.value);
       formData.append('product[product_category_id]', e.target.product_category_id.value);
+      formData.append('product[sport_category_id]', e.target.sport_category_id.value);
       formData.append('product[level_id]', e.target.level_id.value);
       formData.append('product[gender_id]', e.target.gender_id.value);
       formData.append('product[grip_sizes]', gripSizes);
@@ -109,15 +111,33 @@ const AddProduct = () => {
     <div className="product-form bg-white admin m-auto w-full">
 
       <form onSubmit={handleSubmit} ref={formRef}>
-        <div className="p-3">
 
-          <div className="ms_code ml-auto w-48 bg-green-500 p-3">
-            <label htmlFor="quantity font-medium text-gray-700">ms product code *</label>
-            <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required />
+        <div className="p-3 flex">
+          <div className="ms_code mr-auto max-w-80 w-full p-3">
+            <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
+
+            {sport_categories && sport_categories.length > 0 && (
+            <Select
+              placeholder="product category"
+              defaultValue={{ value: sport_categories[0]?.id, label: sport_categories[0]?.name }}
+              required
+              name="sport_category_id"
+              id="sport_category_id"
+              options={sport_categories.map((cat) => ({ value: cat.id, label: cat.name }))}
+            />
+            )}
           </div>
-          <div className="ml-auto w-48 my-2">
-            <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
-            <input type="number" name="quantity" id="quantity" required />
+
+          <div>
+
+            <div className="ms_code ml-auto w-48 bg-green-500 p-3">
+              <label htmlFor="quantity font-medium text-gray-700">ms product code *</label>
+              <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required />
+            </div>
+            <div className="ml-auto w-48 my-2">
+              <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
+              <input type="number" name="quantity" id="quantity" required />
+            </div>
           </div>
         </div>
 

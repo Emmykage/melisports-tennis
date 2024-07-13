@@ -4,6 +4,8 @@ import { getProducts } from '../actions/product';
 const initialState = {
   products: [],
   searched_products: [],
+  padelRacquets: [],
+  badmintonRacquets: [],
   filteredProducts: [],
   loading: false,
   status: null,
@@ -16,12 +18,20 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   extraReducers: {
-    [getProducts.fulfilled]: (state, action) => ({
-      ...state,
-      status: 'success',
-      loading: false,
-      products: action.payload,
-    }),
+    [getProducts.fulfilled]: (state, action) => {
+      const products_badminton = action.payload.filter((badminton) => badminton.sport_category == 'badminton');
+      const products_padel = action.payload.filter((padel) => padel.sport_category == 'padel');
+      console.log(products_badminton);
+
+      return {
+        ...state,
+        status: 'success',
+        loading: false,
+        products: action.payload,
+        padelRacquets: products_padel,
+        badmintonRacquets: products_badminton,
+      };
+    },
 
     [getProducts.pending]: (state) => ({
       ...state,
@@ -60,7 +70,7 @@ const productsSlice = createSlice({
     },
     filterFeatures: (state, action) => {
       const filts = state.products.filter((item) => item?.description.toLowerCase().includes(action.payload));
-      console.log(filts, action.payload)
+      console.log(filts, action.payload);
       return {
         ...state,
         products: filts,

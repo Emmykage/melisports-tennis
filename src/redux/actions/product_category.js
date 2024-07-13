@@ -46,6 +46,10 @@ const getProductCategories = createAsyncThunk('product_category/get_product_cate
   const response = await fetch(`${baseURL}product_categories`).then((res) => res.json());
   return response;
 });
+const getSportCategories = createAsyncThunk('sport_category/get_sport_category', async () => {
+  const response = await fetch(`${baseURL}sport_categories`).then((res) => res.json());
+  return response;
+});
 export {
-  addProductCategory, getProductCategories, updateCategory, deleteCategory,
+  addProductCategory, getProductCategories, updateCategory, deleteCategory, getSportCategories,
 };
