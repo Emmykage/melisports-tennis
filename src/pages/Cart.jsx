@@ -78,47 +78,48 @@ const Cart = () => {
 
   return (
     <>
-      <div className="cart-div">
+      <div className="cart-div bg-white">
         <div className=" cart-inner-div">
 
           <table>
+            <caption className='py-6 text-lg bg-gray-200'>Cart Items</caption>
             <thead>
               <tr>
-                <th />
-                <th>name</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th>Quantity</th>
-                <th />
+                <th className='hidden lg:table-cell'/>
+                <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">name</th>
+                <th className=" hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Price</th>
+                <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Total</th>
+                <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Quantity</th>
+                <th className='hidden lg:table-cell'  />
 
               </tr>
             </thead>
             <tbody>
               {cartItems.map((cart) => (
                 <tr>
-                  <td>
+                  <td data-cell="image" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal' >
                     <div className="cart-img">
                       <img src={cart.image} />
                     </div>
                   </td>
-                  <td>
+                  <td data-cell="name" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
                     <p>
                       {cart.product_name}
                     </p>
                   </td>
-                  <td className="text-base">
+                  <td data-cell="price" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
                     <p>{naira_format(cart.price)}</p>
                   </td>
-                  <td>
+                  <td data-cell="total" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
                     <p>{naira_format(cart.subTotal)}</p>
                   </td>
 
-                  <td>
-                    <div className="cart-btn">
-                      <div className="cart-btn-div flex space">
+                  <td data-cell="quantity" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
+                    <div className="cart-btn ">
+                      <div className="cart-btn-div flex space bg-green-400">
 
                         <button
-                          className="btn change"
+                          className="btn change px-2"
                           onClick={() => {
                             selectCart(cart.product_id, cart.quantity, '-');
                             cart.quantity === 1 && dispatch(removeItem(cart.id));
@@ -143,7 +144,7 @@ const Cart = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="">
+                  <td className='whitespace-nowrap block sm:table-cell border-b border-gray-200 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
                     <button className="btn block" onClick={() => handleDelete(cart.product_id)}> remove</button>
 
                   </td>
@@ -155,7 +156,7 @@ const Cart = () => {
 
           <div className="clear">
             <button
-              className="btn"
+              className="btn "
               type="button"
               onClick={() => dispatch(openModal())}
             >

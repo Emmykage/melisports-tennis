@@ -5,6 +5,7 @@ import Modal from '../modal/Modal';
 import ChatBox from '../sideNav/ChatBox';
 import NavInfo from '../nav/NavInfo';
 import { closeNav } from '../../redux/modal/nav';
+import MobileFooter from '../footer/mobile_footer';
 
 const MainInfoLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const MainInfoLayout = ({ children }) => {
       {children}
       <Footer />
       <ChatBox />
+      <MobileFooter/>
+
     </div>
   );
 };

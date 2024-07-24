@@ -1016,7 +1016,7 @@ table td {
 
 .cart-inner-div {
   flex: 4;
-  background-color: #e4e1ea;
+  /* background-color: #e4e1ea; */
   color: black;
   overflow-x: auto;
 }
@@ -1070,24 +1070,26 @@ table td {
 }
 
 .cart-btn-div {
-  width: 100%;
   align-items: center;
   border: 1px solid #bdbdbd;
   border-radius: 6px;
-}
+
+margin-top: 10px;}
 
 
 
 td .btn.change {
   font-size: 21px;
-  padding: 6px;
+  padding: 10px;
   background: transparent;
 }
+
+
 
 .cart-div table td:last-child .btn {
   background: var(--color-danger);
   font-weight: 600;
-  padding: 8px 6px;
+  padding: 10px 6px;
   margin: auto;
 }
 
@@ -1363,6 +1365,34 @@ td .btn.change {
     width: 100%;
     flex-direction: column;
   }
+  .cart-div td:first-child{
+   padding-top: 2rem;
+  
+  }
+  .cart-div td:nth-child(odd) {
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  
+  }
+  .cart-div td:nth-of-type() {
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  
+  }
+  /* .cart-div td:nth-child() {
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  
+  } */
+  .cart-div td::before{
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  
+  }
   .sm.px-2{
     padding: 0;
   }
@@ -1421,7 +1451,7 @@ td .btn.change {
     width: 100%;
     overflow-x: auto;
     flex: 4;
-    background-color: #56c59d;
+
   }
 
   @media screen and (max-width: 640px) {

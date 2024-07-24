@@ -20,8 +20,8 @@ const productsSlice = createSlice({
   initialState,
   extraReducers: {
     [getProducts.fulfilled]: (state, action) => {
-      const products_badminton = action.payload.filter((badminton) => badminton.sport_category == 'badminton');
-      const products_padel = action.payload.filter((padel) => padel.sport_category == 'padel');
+      const products_badminton = action.payload.filter((badminton) => badminton.sport_category?.name == 'Badminton');
+      const products_padel = action.payload.filter((padel) => padel.sport_category?.name == 'Padel');
 
       return {
         ...state,

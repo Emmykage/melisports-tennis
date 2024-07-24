@@ -5,6 +5,7 @@ import Footer from '../footer/Footer';
 import Modal from '../modal/Modal';
 import ChatBox from '../sideNav/ChatBox';
 import { closeNav } from '../../redux/modal/nav';
+import MobileFooter from '../footer/mobile_footer';
 
 const MainLayout = ({ children }) => {
   const { isOpen } = useSelector((state) => state.modal);
@@ -16,13 +17,14 @@ const MainLayout = ({ children }) => {
   }, []);
   return (
 
-    <div className="">
+    <div className="relative h-screen overflow-y-auto">
       {(user && !user.confirmed_at) && <div className="py-05 text-red px-4">Confirm your Account from the message sent to you Email</div>}
       {isOpen && <Modal />}
       <Nav />
       {children}
       <Footer />
       <ChatBox />
+      <MobileFooter/>
     </div>
   );
 };
