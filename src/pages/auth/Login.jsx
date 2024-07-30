@@ -73,7 +73,7 @@ export default function Login() {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/">Visit Site</NavLink>
+            <NavLink to="/"  className={'hover:text-blue-600 font-semibold '}>Visit Site</NavLink>
 
             <Typography component="h1" variant="h5">
               Login
@@ -106,12 +106,12 @@ export default function Login() {
                     {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
                   </span>
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox value="allowExtraEmails" color="primary" />}
                     label="I want to receive inspiration, marketing promotions and updates via email."
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
               <p className="blue">
                 {' '}

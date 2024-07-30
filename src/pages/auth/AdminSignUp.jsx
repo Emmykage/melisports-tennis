@@ -74,7 +74,7 @@ const AdminSignUp = () => {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/">Visit Site</NavLink>
+            <NavLink to="/"  className={'hover:text-blue-600 font-semibold '}>Visit Site</NavLink>
 
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />

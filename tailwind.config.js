@@ -11,6 +11,9 @@ module.exports = {
         'md-admin': '2fr 1fr',
 
       },
+      colors: {
+        theme: "rgb(20, 56, 80)"
+      }
     },
   },
   plugins: [],

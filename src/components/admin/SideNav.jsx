@@ -27,7 +27,7 @@ const SideNav = (props) => {
   };
   return (
 
-    <aside className={`${showMenu ? 'display' : ''} bg-white`}>
+    <aside className={`${showMenu ? 'display' : ''}`}>
       <div className="top">
 
         <div className="logo text-center">
@@ -36,9 +36,9 @@ const SideNav = (props) => {
             <img src={logo} alt="" />
           </NavLink>
         </div>
-        <div className="close">
+        <div className="close ml-3">
           <span onClick={handleMenu}>
-            <AiOutlineClose className="iconStyle" />
+            <AiOutlineClose className="iconStyle text-gray-500" />
           </span>
 
         </div>
@@ -48,6 +48,7 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/dashboard"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
         >
           <span>
             {' '}
@@ -59,6 +60,8 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/customers"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
           <span>
             {' '}
@@ -69,6 +72,8 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/orders"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
           <span>
             {' '}
@@ -81,6 +86,8 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/analytics"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
           <span>
             {' '}
@@ -92,6 +99,8 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/messages"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
           <span>
             {' '}
@@ -105,6 +114,8 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/products"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
           <span>
             {' '}
@@ -116,6 +127,8 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/settings"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
           <span>
             {' '}
@@ -126,6 +139,8 @@ const SideNav = (props) => {
         <NavLink
           to="/admin/addproduct"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
           <span>
             {' '}
@@ -146,6 +161,8 @@ const SideNav = (props) => {
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          onClick={handleMenu}
+
         >
 
           <h3>Go to store</h3>
