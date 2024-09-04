@@ -45,10 +45,6 @@ footer h3 {
   font-size: 1.5rem;
 }
 
-.footer-container > div h4 {
-  font-size: 1rem;
-  margin: 1rem 0;
-}
 
 @media screen and (max-width: 600px) {
   .footer-container > div {

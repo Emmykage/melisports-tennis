@@ -11,8 +11,11 @@ const About = () => {
     dispatch(closeNav());
   }, []);
   return (
-    <div className="container about customer-bg-theme text-white">
+    <div className="about customer-bg-theme text-white">
       <AboutBanner />
+
+      <div className='px-4'> 
+
 
       <div className="about-us text-pry">
         <div className="segment segment-one grid grid-2 gap-2 my-3 py-6">
@@ -70,7 +73,7 @@ const About = () => {
         <div className="grid grid-2  my-3 py-2 why-chose">
 
           <div className="font-normal to-bottom">
-            <ul className="text-justify">
+            <ul className="text-justify text-base">
               <li className="my-3 py-1">
 
                 <p className="text-gray font-semibold">
@@ -110,9 +113,9 @@ const About = () => {
           </div>
           <div />
         </div>
-        <div className="segment segment-three grid grid-2 p-4">
+        <div className="segment items-center segment-three grid grid-2 p-4">
           <div>
-            <h1 className="text-4xl">Join the Melisports Community:</h1>
+            <h2 className="text-3xl font-medium">Join the Melisports Community:</h2>
           </div>
           <p className="font-semibold text-dark text-justify">
 
@@ -123,6 +126,8 @@ const About = () => {
         </div>
 
       </div>
+      </div>
+
     </div>
   );
 };

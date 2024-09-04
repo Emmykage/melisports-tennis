@@ -24,7 +24,7 @@ const MainLayout = ({ children }) => {
       {children}
       <Footer />
       <ChatBox />
-      <MobileFooter/>
+      <MobileFooter />
     </div>
   );
 };

@@ -30,7 +30,7 @@ const BecomeADistributor = () => (
               </div>
               {/* <button name="message" type="submit">Get in touch</button>
            */}
-              <button type="submit" className="btn btn-primary py-2 w-full block">Send Message</button>
+              <button type="submit" className="btn btn-primary py-2 w-full px-3 block">Send Message</button>
             </form>
 
           </div>

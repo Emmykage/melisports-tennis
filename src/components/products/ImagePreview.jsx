@@ -31,10 +31,10 @@ const ImagePreview = ({ images }) => {
   };
   const [imageIndex, setImageIndex] = useState(0);
   return (
-    <div className="image-slider centralize gap-2 sm-row-col">
+    <div className="image-slider  rounded-bl-2xl centralize gap-2 sm-row-col">
       <div className="border-gray-light relative image-card overflow-hidden">
         <button onClick={showPrevImage} className="z-10 absolute image-slider-btn" style={{ left: '0' }}><FaArrowLeft /></button>
-        <button onClick={showNextImage} className="z-10 absolute image-slider-btn" style={{ right: '0px' }}><FaArrowRight /></button>
+        <button onClick={showNextImage} className="z-10 absolute image-slider-btn " style={{ right: '0px' }}><FaArrowRight /></button>
 
         <div className="h-full w-full flex z-0">
           {images.map((image) => (

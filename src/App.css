@@ -127,7 +127,6 @@
 * {
   box-sizing: border-box;
   font-family: Prompt, "poppins", Helvetica, sans-serif;
-  list-style: none;
   appearance: none;
   text-decoration: none;
   margin: 0;
@@ -298,9 +297,7 @@ h2 {
   letter-spacing: 1rem;
 }
 
-ul {
-  list-style: none;
-}
+
 
 a {
   text-decoration: none;
@@ -367,9 +364,8 @@ a {
   top: 0;
   height: 100vh;
   z-index: 99;
+  cursor: pointer;
 
-  /* background-color: rgb(237, 236, 236);
-   */
   background: white;
   padding: 1.5rem;
   transition: all 0.73s ease-in-out;
@@ -541,13 +537,6 @@ a {
   object-fit: contain;
 }
 
-.portrait-container {
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 4rem;
-  margin: 1.8rem auto;
-  line-height: 1.8rem;
-}
 
 
 .prod-page {
@@ -701,6 +690,11 @@ button {
   background: var(--color-theme-variant);
   cursor: pointer;
   color: var(--color-white);
+}
+@media (max-width: 480px) {
+  .btn.contact{
+    width: 100%;
+  }  
 }
 
 form .btn {

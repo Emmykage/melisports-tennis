@@ -82,39 +82,39 @@ const Cart = () => {
         <div className=" cart-inner-div">
 
           <table>
-            <caption className='py-6 text-lg bg-gray-200'>Cart Items</caption>
+            <caption className="py-6 text-lg bg-gray-200">Cart Items</caption>
             <thead>
               <tr>
-                <th className='hidden lg:table-cell'/>
+                <th className="hidden lg:table-cell" />
                 <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">name</th>
                 <th className=" hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Price</th>
                 <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Total</th>
                 <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Quantity</th>
-                <th className='hidden lg:table-cell'  />
+                <th className="hidden lg:table-cell" />
 
               </tr>
             </thead>
             <tbody>
               {cartItems.map((cart) => (
                 <tr>
-                  <td data-cell="image" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal' >
+                  <td data-cell="image" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <div className="cart-img">
                       <img src={cart.image} />
                     </div>
                   </td>
-                  <td data-cell="name" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
+                  <td data-cell="name" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <p>
                       {cart.product_name}
                     </p>
                   </td>
-                  <td data-cell="price" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
+                  <td data-cell="price" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <p>{naira_format(cart.price)}</p>
                   </td>
-                  <td data-cell="total" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
+                  <td data-cell="total" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <p>{naira_format(cart.subTotal)}</p>
                   </td>
 
-                  <td data-cell="quantity" className='whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
+                  <td data-cell="quantity" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <div className="cart-btn ">
                       <div className="cart-btn-div flex space bg-green-400">
 
@@ -144,7 +144,7 @@ const Cart = () => {
                       </div>
                     </div>
                   </td>
-                  <td className='whitespace-nowrap block sm:table-cell border-b border-gray-200 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal'>
+                  <td className="whitespace-nowrap block sm:table-cell border-b border-gray-200 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <button className="btn block" onClick={() => handleDelete(cart.product_id)}> remove</button>
 
                   </td>

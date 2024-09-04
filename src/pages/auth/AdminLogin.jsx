@@ -73,7 +73,7 @@ const AdminLogin = () => {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/" className={'hover:text-blue-600 font-semibold '}>Visit Site</NavLink>
+            <NavLink to="/" className="hover:text-blue-600 font-semibold ">Visit Site</NavLink>
 
             <Typography component="h1" variant="h5">
               Admin Login

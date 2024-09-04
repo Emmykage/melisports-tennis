@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 const Footer = () => (
   <footer>
-    <div className="m-auto footer-container flex gap-3">
+    <div className="m-auto footer-container flex gap-3 my-10 ">
       <div>
-        <h4 className="text-4xl text-center">MeliSport</h4>
+        <h4 className="text-2xl text-center">MeliSport</h4>
         <p className="text-center">
           For over 10 years we have been dedicated to providing an incomparable
           collection of tennis and racqet sport collection
@@ -18,28 +18,28 @@ const Footer = () => (
         <ul>
           {/* <li>Membership</li> */}
           <li>
-            <NavLink to="/">
+            <NavLink to="/auth/login" className="no-underline text-sm">
               My Account
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink to="/return_policy" className="no-underline text-sm">
               Return Policy
             </NavLink>
             {' '}
 
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink to="/shipping_policy" className="no-underline text-sm">
               Shipping Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">Terms of Service</NavLink>
+            <NavLink to="/terms_of_service" className="no-underline text-sm">Terms of Service</NavLink>
           </li>
           <li>
             {' '}
-            <NavLink to="/">Privacy Policy</NavLink>
+            <NavLink to="/privacy_policy" className="no-underline text-sm" >Privacy Policy</NavLink>
           </li>
           {/* <li>
             <NavLink to={"privacy_policy"}>

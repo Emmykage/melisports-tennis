@@ -58,7 +58,7 @@ const productsSlice = createSlice({
       const f_product = action.payload.length < 1 ? [] : state.products.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()));
       return {
         ...state,
-        search_product_page: f_product
+        search_product_page: f_product,
       };
     },
     filterProducts: (state, action) => ({
@@ -67,7 +67,6 @@ const productsSlice = createSlice({
     }),
 
     filterActivities: (state, action) => {
-
       const filts = state.products.filter((item) => item.level?.stage.toLowerCase().includes(action.payload));
       return {
         ...state,

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import SearchList from './SearchList';
 import { filterProducts, searchedProducts } from '../../redux/products/product';
-import { useNavigate } from 'react-router-dom';
 
 const SearchComponent = () => {
   const searchForm = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const { searched_products } = useSelector((state) => state.products);
@@ -16,13 +16,11 @@ const SearchComponent = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/search_page?query=${search}`)
-    triggerClose()
-
-
+    navigate(`/search_page?query=${search}`);
+    triggerClose();
   };
   const handleInput = (e) => {
-    setSearch(e.target.value.trim() );
+    setSearch(e.target.value.trim());
     if (search.length == 0) {
       return;
     }
@@ -31,7 +29,7 @@ const SearchComponent = () => {
   };
 
   const triggerClose = () => {
-    setSearch("");
+    setSearch('');
     dispatch(searchedProducts(''));
   };
 
@@ -43,7 +41,7 @@ const SearchComponent = () => {
       <form className="search-form" onSubmit={handleSearch} ref={searchForm}>
         <div className="search-div">
           <input type="text" placeholder="Search item" value={search} name="search" id="search" onChange={handleInput} />
-          <button type="submit" >
+          <button type="submit">
             <BsSearch />
             {' '}
           </button>
@@ -52,7 +50,7 @@ const SearchComponent = () => {
 
       </form>
       {/* <div className='bg-red' onClick={triggerClose} > */}
-      {showSearchList && <SearchList items={searched_products} triggerClose={triggerClose} setSearch={setSearch}/>}
+      {showSearchList && <SearchList items={searched_products} triggerClose={triggerClose} setSearch={setSearch} />}
       {/* </div> */}
     </div>
   );

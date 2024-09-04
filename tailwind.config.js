@@ -12,8 +12,8 @@ module.exports = {
 
       },
       colors: {
-        theme: "rgb(20, 56, 80)"
-      }
+        theme: 'rgb(20, 56, 80)',
+      },
     },
   },
   plugins: [],

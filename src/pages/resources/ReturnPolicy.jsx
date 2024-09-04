@@ -1,7 +1,147 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const ReturnPolicy = () => (
-  <div className="portrait-container">
+  <div className="portra gap-20 flex max-w-7xl m-auto px-4">
+    {/* <div className="w-56 shadow py-40 h-screen border">
+      <ul className="">
+        <li className="hover:shadow ">
+          <NavLink to="/return_policy" className="block  py-5 w-full px-4 bg-gray-50">
+            <p>What is our return Policy</p>
+          </NavLink>
+
+        </li>
+      </ul>
+
+    </div> */}
+
+    <div className="py-16 lg:px-5  max-w-4xl bg-red-">
+      <h2 className="text-3xl font">What is Our Retun Policy</h2>
+
+      <p className="my-4 text-base">
+        At Melisports, we want you to be completely satisfied with your purchase. If for any reason you're not, we offer a flexible return policy.
+
+      </p>
+
+      <h3 className="text-lg">Eligibility for Returns</h3>
+      <ul className="text-base">
+        <li>- Items must be returned within 7 days of delivery    </li>
+        <li>
+          -  Items must be in their original condition with all tags attached
+        </li>
+        <li>- Items must not have been worn, used, or altered in any way    </li>
+      </ul>
+
+      <h3 className="my-3 text-lg">
+        Return Procedure
+
+      </h3>
+
+      <ul className="list-inside text-base list-disc px-4 leading-7">
+        <li className="px-">
+          <span className="inline-blo">
+
+            Contact us via
+            {' '}
+            <a href="mailto:support@melisports.com" className="text-blue-700">email </a>
+            (support@melisports.com) or phone (+234 703 872 3093) to initiate the return process
+          </span>
+
+        </li>
+        <li>
+          Provide your order number and reason for return
+
+        </li>
+        <li>
+          We will issue a Return Merchandise Authorization (RMA) number
+        </li>
+        <li>
+          Ship the item back to us with the RMA number included
+
+        </li>
+        <li>
+          Once received, we will process a refund or exchange within 5-7 business days
+
+        </li>
+
+      </ul>
+      <h3 className="text-lg my-3">Refunds</h3>
+      <ul className="leading-7 px-4 text-base leading-7">
+        <li>
+          - Refunds will be issued in the original payment method
+
+        </li>
+        <li>
+          - Refunds will be processed within 5-7 business days of receiving the returned item
+
+        </li>
+        <li>
+          - Refunds will include the full amount paid for the item, minus any shipping costs
+
+        </li>
+      </ul>
+
+      <h3 className="text-lg my-3">
+        Exchanges
+
+      </h3>
+
+      <ul className="leading-7 text-base px-4">
+        <li>
+          - Exchanges are only available for the same item in a different size or color
+
+        </li>
+        <li>
+          - Exchanges will be processed within 5-7 business days of receiving the returned item
+
+        </li>
+        <li>
+          - Customer is responsible for return shipping costs
+
+        </li>
+      </ul>
+
+      <p className="font-bold text-base  text-gray-600 my-3">
+        Items Not Eligible for Returns
+
+      </p>
+      <ul className="px-4 text-base ">
+        <li>- Final sale items</li>
+        <li>- Customized or personalized items</li>
+        <li>- Items damaged or altered by the customer</li>
+      </ul>
+
+      <h3 className="text-lg my-3">
+        Damaged or Defective Items
+
+      </h3>
+      <ul className="px-4 text-base leading-7">
+        <li>
+          - If you receive a damaged or defective item, please contact us within 3 days
+
+        </li>
+        <li>
+          - We will provide a replacement or refund, including return shipping costs
+
+        </li>
+
+      </ul>
+
+      <h3 className="text-lg my-3">
+        Changes to Return Policy
+
+      </h3>
+      <p className="leading-7 text-base ">
+        We reserve the right to modify this return policy at any time. Please check this page for updates.
+
+        By placing an order, you agree to our return policy. Thank you for shopping at Melisports!
+
+      </p>
+
+    </div>
+
+    {/* <div>
+
     <h2 className="my-3">
       Return Policy
     </h2>
@@ -46,7 +186,10 @@ const ReturnPolicy = () => (
     Please note that this Return Policy is subject to change without prior notice. We recommend reviewing this policy each time before making a purchase. For more detailed information or any questions regarding our return process, please contact our customer support team.
 
     Melisports reserves the right to make the final decision on all return and exchange requests, taking into account the guidelines outlined in this policy.
+  </div> */}
+
   </div>
+
 );
 
 export default ReturnPolicy;

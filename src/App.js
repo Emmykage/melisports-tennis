@@ -70,7 +70,7 @@ function App() {
         <Route path="paymentform" element={<StripeContainer />} />
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
-        <Route path="/search_page" element={<MainLayout><SearchPage/></MainLayout>} />
+        <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
         <Route path="/store" element={<MainLayout><Home /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/padels" element={<MainLayout><Padels /></MainLayout>} />
@@ -81,6 +81,7 @@ function App() {
         <Route path="/shoes" element={<MainLayout><ShoesPage /></MainLayout>} />
         <Route path="/accessories" element={<MainLayout><AccessoriesPage /></MainLayout>} />
         <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
+        {/* <Route path="/return-policy" element={<MainLayout><ReturnPolicy /></MainLayout>} /> */}
 
         <Route path="/apparels" element={<MainLayout><ApparelsPage /></MainLayout>} />
         {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}

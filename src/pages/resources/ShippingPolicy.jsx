@@ -1,58 +1,194 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const ShippingPolicy = () => (
-  <div className="portrait-container">
-    <h2 className="my-6">
-      Shipping Policy
-    </h2>
-    <p>
-      Thank you for choosing Melisports as your go-to sport store. This Shipping Policy outlines the guidelines and procedures we follow to ensure the smooth and efficient delivery of your orders.
+  <div className="portra gap-20 flex max-w-7xl bg--200 m-auto px-4">
+    {/* <div className="w-56 shadow py-40 h-screen border">
+      <ul className="">
+        <li className="hover:shadow ">
+          <NavLink to="/return_policy" className="block  py-5 w-full px-4 bg-gray-50">
+            <p>What is our return Policy</p>
+          </NavLink>
 
-      Shipping Locations:
+        </li>
+      </ul>
 
-      We currently offer shipping within Nigeria. We are committed to delivering your orders to various locations across the country.
-      Order Processing Time:
+    </div> */}
 
-      Once you place an order with Melisports, our team will process it within [X] business days.
-      Please note that during busy periods or promotional events, processing times may be slightly longer due to increased order volumes.
-      Shipping Methods and Carriers:
+    <div className="py-16 lg:px-5  max-w-4xl bg-red-">
+      <h2 className="text-3xl font">
+        Shipping Policy
+      </h2>
 
-      We utilize reliable shipping methods to ensure prompt and secure delivery of your packages.
-      Our trusted shipping partners within Nigeria may include but are not limited to [list of shipping carriers or partners you work with].
-      Shipping Timeframes:
+      <p className="my-4 text-base px-4">
+        At Melisports, we strive to deliver your orders promptly and efficiently. We have partnered with reputable shipping providers to ensure reliable and fast delivery. Please find our shipping details below:
 
-      The estimated delivery time will depend on your location within Nigeria and the shipping method chosen during checkout.
-      We strive to provide accurate delivery estimates; however, please note that the actual delivery times may vary due to factors beyond our control, such as unforeseen delays or natural disasters.
-      Shipping Costs:
+      </p>
 
-      Shipping costs are calculated based on various factors, including package weight, dimensions, shipping method, and delivery location.
-      The shipping cost will be displayed during the checkout process, allowing you to review and confirm it before completing your purchase.
-      We may offer free shipping promotions for specific order values or during promotional periods. Please refer to our website or promotional materials for more information.
-      Order Tracking:
+      <h3 className="text-lg">
+        Shipping Methods
+      </h3>
+      <ul className="text-base px-4">
+        <li>
+          - Standard Shipping: 0-7 business days
+        </li>
+        <li>
+          - Express Shipping (Lagos): 1 business days
 
-      Once your order is shipped, you will receive a shipping confirmation email containing a tracking number and a link to track your package's progress.
-      Alternatively, you can visit our website's "Track Order" page and enter your order details to access real-time updates on the whereabouts of your package.
-      Delivery Issues:
+        </li>
 
-      In the rare event of a delivery issue, such as a lost package or damaged items, please contact our customer support team promptly.
-      We will work closely with the shipping carrier to resolve the issue and ensure a satisfactory outcome for you.
-      Customs and Duties:
+      </ul>
 
-      For orders within Nigeria, customs duties and fees are generally not applicable.
-      However, if any additional charges or taxes are imposed by local authorities, the customer is responsible for their payment.
-      Store Pickup Option:
+      <h3 className="my-3 text-lg">
+        Shipping Providers
 
-      In addition to shipping, we offer a store pickup option for customers who prefer to collect their orders directly from our physical store.
-      Please note that store pickup availability may vary based on location and product availability. You will be notified via email or phone when your order is ready for pickup.
-      Delayed or Undelivered Packages:
+      </h3>
 
-      While we strive for timely deliveries, unforeseen circumstances may occasionally cause delays or undelivered packages.
-      If you experience any issues with your delivery, please contact our customer support team, and we will investigate the matter promptly to ensure a satisfactory resolution.
-      Please note that this Shipping Policy is subject to change without prior notice. We recommend reviewing this policy periodically. If you have any questions or concerns regarding our shipping process, please contact our customer support team.
+      <ul className="list-inside text-base list-disc px-4 leading-7">
+        <li className="px-">
+           Uber Logistics
 
-      At Melisports, we are committed to providing excellent customer service and ensuring a seamless shipping experience for all our valued customers. Thank you for choosing us for your sporting needs!
-    </p>
+        </li>
+        <li>
+          GIG Logistics
+
+        </li>
+        <li>
+           Konga Express
+
+        </li>
+
+      </ul>
+      <h3 className="text-lg my-3">
+        Shipping Rates
+      </h3>
+      <ul className="leading-7 px-4 text-base">
+        <li>
+          - Lagos & Abuja Location: ₦4,000
+
+        </li>
+        <li>
+          - Express (Lagos): ₦5,000
+
+        </li>
+        <li>
+          - Other State Location Shipping: ₦6,000 - ₦10,000
+
+        </li>
+      </ul>
+
+      <h3 className="text-lg my-3">
+        Delivery Areas
+
+      </h3>
+      <p className="text-base leading-7 px-4">
+        We ship to all states in Nigeria and some international destinations. If your area is not listed, please contact us for a custom quote.
+
+      </p>
+
+      <h3 className="text-lg">
+        Order Processing
+
+      </h3>
+
+      <ul className="leading-7 text-base px-4">
+        <li>
+          - Orders are processed within 24-48 hours of receipt.
+
+        </li>
+        <li>
+          - Orders placed on weekends or holidays will be processed the next business day.
+
+        </li>
+
+      </ul>
+
+      <h3 className="text-lg my-3">
+        Tracking
+
+      </h3>
+      <ul className="text-base leading-7 px-4">
+        <li>
+          - Once shipped, you will receive tracking information via email.
+
+        </li>
+        <li>
+          - Use this to track the status of your order.
+        </li>
+
+      </ul>
+
+      <h3 className="text-lg my-3">
+        Delivery Issues
+
+      </h3>
+      <ul className="text-base leading-7 px-4">
+        <li>
+          - If your order is lost, damaged, or delayed, please contact us within 3 days.
+
+        </li>
+        <li>
+          - We will work with you to resolve the issue promptly.
+
+        </li>
+      </ul>
+
+      <h3 className="text-lg my-3">Return Shipping</h3>
+      <ul className="px-4 text-base ">
+        <li>
+          - For returns, please see our Return Policy
+          {' '}
+        </li>
+
+        <li>- Customized or personalized items</li>
+        <li>
+          - Return shipping is the responsibility of the customer unless otherwise agreed upon.
+        </li>
+      </ul>
+
+      <h3 className="text-lg my-3">International Shipping Notes </h3>
+      <ul className="px-4 text-base ">
+        <li>
+          - International orders may incur additional fees, duties, or taxes.
+        </li>
+
+        <li>
+          - Please check with your local authorities for more information.
+
+        </li>
+        <li>
+          - Please check with your local authorities for more information.
+
+        </li>
+      </ul>
+
+      <h3 className="font-bold text-base  text-gray-600 my-3">
+        Contact Us
+
+      </h3>
+
+      <p className="text-gray-600">
+        If you have any shipping-related questions or concerns, please don't hesitate to contact us at <a className='text-blue-700' href='mailto:Info@melisports.com'>Info@melisports.com </a>
+
+      </p>
+
+      <h3 className="text-lg my-3">
+        Changes to Shipping Policy
+
+      </h3>
+      <p className="leading-7 text-base ">
+        We reserve the right to modify this shipping policy at any time. Please check this page for updates.
+
+      </p>
+
+      <p className="text-sm">
+        By placing an order, you agree to our shipping policy. Thank you for shopping at Melisports!
+      </p>
+
+    </div>
+
   </div>
+
 );
 
 export default ShippingPolicy;

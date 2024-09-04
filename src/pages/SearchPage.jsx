@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import Hero from '../components/banner/Hero';
 import bannerImage from '../assets/images/banner/Banner_racquets.webp';
 import Products from '../components/products/Products';
@@ -10,13 +11,14 @@ import { getProducts } from '../redux/actions/product';
 import { closeList } from '../redux/products/searched';
 import { closeNav } from '../redux/modal/nav';
 import Loader from './Loader';
-import { filterActivities, filterFeatures, filterProducts, searchedPage, searchedProducts } from '../redux/products/product';
+import {
+  filterActivities, filterFeatures, filterProducts, searchedPage, searchedProducts,
+} from '../redux/products/product';
 import AllProducts from '../components/products/AllProducts';
-import { useSearchParams } from 'react-router-dom';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
   const { search_product_page, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
@@ -61,9 +63,8 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-    const query = searchParams.get('query')
-    dispatch(searchedPage(query))
-
+    const query = searchParams.get('query');
+    dispatch(searchedPage(query));
 
     dispatch(closeNav());
     dispatch(closeList());
