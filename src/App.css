@@ -217,12 +217,15 @@ transition: translate 0.3s ease-in-out;
   display: block;
   top: 0;
   bottom: 0;
-  background-color: #3333331e;
+  background-color: rgba(219, 219, 219, 0.103);
   padding: 10px ;
+  opacity: 0.2;
 
 }
 .image-slider-btn:hover{
   background: #33333328;
+  opacity: 0.3;
+
 }
 .image-slider-btn > *{
   color: black;
@@ -234,6 +237,18 @@ transition: translate 0.3s ease-in-out;
   height: 300px;
   width: 300px;
   order: 2;
+}
+.imagePrevModal{
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+
+}
+
+.imagePrevModal.show{
+  opacity: 1;
+  pointer-events: auto;
+
 }
 .thumbnail-div{
   order: 1;
