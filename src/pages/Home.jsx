@@ -13,6 +13,7 @@ import Slider from '../components/feature/Slider';
 import { closeNav } from '../redux/modal/nav';
 import string from '../assets/images/stringing.jpg';
 import distributor from '../assets/images/distributor.jpeg';
+import SurveyButton from '../components/feature/survey-button';
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -101,6 +102,8 @@ const Home = () => {
 
         </p>
       </div>
+          <SurveyButton/>
+      
       <div>
         <div className="product-grid fit-screen">
           <div className="product-grid-items flex justify-center items-align text-center">

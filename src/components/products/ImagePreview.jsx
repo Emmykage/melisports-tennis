@@ -58,7 +58,7 @@ const ImagePreview = ({ images }) => {
         <button onClick={showPrevImage} className="z-10 absolute image-slider-btn" style={{ left: '0' }}><FaArrowLeft /></button>
         <button onClick={showNextImage} className="z-10 absolute image-slider-btn " style={{ right: '0px' }}><FaArrowRight /></button>
 
-        <div className="h-full w-full flex z-0  bg-red-500">
+        <div className="h-full w-full flex z-0">
           {images.map((image) => (
             <img onClick={(e) => {
               e.stopPropagation()

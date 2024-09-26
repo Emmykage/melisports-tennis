@@ -13,7 +13,12 @@ module.exports = {
       },
       colors: {
         theme: 'rgb(20, 56, 80)',
+        primary: "rgb(20, 56, 80)"
       },
+      backgroundColor: {
+        primary: "rgb(20, 56, 80)"
+
+      }
     },
   },
   plugins: [],
