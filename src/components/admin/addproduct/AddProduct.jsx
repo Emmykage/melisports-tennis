@@ -21,6 +21,7 @@ const AddProduct = () => {
   const genders = useSelector((state) => state.gender.genders);
   const { loading, status, report } = useSelector((state) => state.product);
   const formRef = useRef(null);
+  const [selectSport, setSelectedSport] = useState(sport_categories[0]?.id)
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,11 +32,10 @@ const AddProduct = () => {
   }, [updater]);
 
 
-  // useEffect(() => {
-  //   // if(){
+  useEffect(() => {
+    setSelectedSport(sport_categories[0]?.name)
 
-  //   // }
-  // }, [setSelectedSport]);
+  }, [sport_categories]);
 
   useEffect(() => {
     const element = formRef.current;
@@ -115,7 +115,6 @@ const AddProduct = () => {
   };
 
 
-  const [selectSport, setSelectedSport] = useState(sport_categories[0]?.id)
   console.log(selectSport)
 
   const handleValue = (value) => {
@@ -132,7 +131,7 @@ const AddProduct = () => {
       <form onSubmit={handleSubmit} ref={formRef}>
 
         <div className="p-3 flex">
-          <div className="ms_code mr-auto max-w-80 w-full p-3">
+          <div className="ms_code mr-auto max-w-80 w-full">
             <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
 
             {sport_categories && sport_categories.length > 0 && (
@@ -148,18 +147,36 @@ const AddProduct = () => {
             )}
           </div>
 
-          <div>
-
-            <div className="ms_code ml-auto w-48 bg-green-500 p-3">
+          <div className="ms_code ml-auto w-48 bg-green-500 p-3">
               <label htmlFor="quantity font-medium text-gray-700">ms product code *</label>
               <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required />
             </div>
-            <div className="ml-auto w-48 my-2">
+
+          </div>
+
+
+          <div className='p-3 flex justify-between'>
+            <div className="max-w-80 w-full">
+            <label htmlFor="font-medium text-gray-700">Status</label>
+            <Select
+              onChange={(selectedOption) => handleValue(selectedOption.value) }
+              placeholder="product category"
+              defaultValue={{ value: "active", label: "active"}}
+              required
+              name="status"
+              id="status"
+              options={[{value: "inactive", label: "inactive"},{value: "active", label: "active"}]}
+            />
+          </div>
+
+            <div className=" w-48">
               <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
               <input type="number" name="quantity" id="quantity" required />
             </div>
+
+            {/* </div> */}
+           
           </div>
-        </div>
 
         <div className=" bg-white p-4 rounded shadow">
           <div className="flex justify-between gap-3 text-sm my-1">
@@ -392,11 +409,11 @@ const AddProduct = () => {
             <legend className="font-bold">Padel</legend>
 
             <div className="flex gap-4 ">
-              <div className="input-half">
+              <div className="bg-r w-full">
                 <label htmlFor="" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
                 <Select
-                  placeholder="professionalism"
-                  id="level_id"
+                  placeholder="Player Typology"
+                  id="player_typology"
                   name="level_id"
                   options={playType.map((type) => ({
                     value: type.value,
@@ -428,15 +445,15 @@ const AddProduct = () => {
 
               </div>
               <div className="input-half">
-                <label htmlFor="">
+                <label htmlFor="recommended_grip">
                   {' '}
                   <span className="text-gray-500 font-semibold text-sm">
-                    Recommended Grip {recommendedGrip[0]?.value}
+                    Recommended Grip
                   </span>
                   {' '}
                 </label>
                 <Select
-                defaultValue={{value: recommendedGrip[0]?.value, label: recommendedGrip[0]?.label}}
+                  defaultValue={{value: recommendedGrip[0]?.value, label: recommendedGrip[0]?.label}}
                   name="recommended_grip"
                   id="recommended_grip"
                   type="text"
@@ -512,87 +529,31 @@ const AddProduct = () => {
 
           </>) : 
           <>
-
-<fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
+              <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
             <legend className="font-bold">Badminton</legend>
 
             <div className="flex gap-4 ">
-              <div className="input-half">
-                <label htmlFor="" className="text-gray-500 font-semibold text-sm">Professionalism  </label>
+              <div className="bg-r w-full">
+                <label htmlFor="" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
                 <Select
-                  placeholder="professionalism"
-                  id="level_id"
-                  name="level_id"
-                  options={levels.map((level) => ({
-                    value: level.id,
-                    label: level.stage,
+                  placeholder="Player Typology"
+                  id="player_typology"
+                  name="player_typology"
+                  options={playType.map((type) => ({
+                    value: type.value,
+                    label: type.label,
                   }))}
                 />
               </div>
-              <div className="input-half">
-                <label htmlFor="" className="text-gray-500 font-semibold text-sm">Professionalism  </label>
-                <Select
-                  placeholder="professionalism"
-                  id="level_id"
-                  name="level_id"
-                  options={levels.map((level) => ({
-                    value: level.id,
-                    label: level.stage,
-                  }))}
-                />
-              </div>
-              <div className="input-half">
-                <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
-                  strung/unstrung
-                </label>
-                <Select
-                  name="strung"
-                  id="strung"
-                  options={strung}
-                />
-
-              </div>
+              
 
             </div>
 
+        
             <div className="flex gap-4 flex-col md:flex-row my-1">
 
               <div className="input-half">
-                <label htmlFor="">
-                  {' '}
-                  <span className="text-gray-500 font-semibold text-sm">
-                    Head size: cm
-                    <sup>2</sup>
-                  </span>
-                  {' '}
-                </label>
-                <Select
-                  name="head_size"
-                  id="head_size"
-                  type="text"
-                  options={headSizes}
-                  placeholder="headsize"
-                />
-
-              </div>
-              <div className="input-half">
-                <label htmlFor=" " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
-                <Select
-                  name="grip_sizes"
-                  id="grip_sizes"
-                  type="text"
-                  options={gripSizes}
-                  placeholder="grip sizes"
-                  isMulti
-                />
-
-              </div>
-
-            </div>
-            <div className="flex gap-4 flex-col md:flex-row my-1">
-
-              <div className="input-half">
-                <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
+                <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
                 <Select
                   name="length"
                   id="length"
@@ -618,7 +579,7 @@ const AddProduct = () => {
 
             <div className="form-row my-1">
               <div className="input-half">
-                <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
+                <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)</label>
                 <input
                   name="weight"
                   id="weight"
@@ -629,12 +590,12 @@ const AddProduct = () => {
               </div>
 
               <div className="input-half">
-                <label htmlFor="" className="text-gray-500 font-semibold text-sm">tension (kg) </label>
+                <label htmlFor="" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
                 <input
-                  name="tension"
-                  id="tension"
+                  name="thickness"
+                  id="thickness"
                   type="text"
-                  placeholder="tension"
+                  placeholder="thickness"
                 />
 
               </div>
