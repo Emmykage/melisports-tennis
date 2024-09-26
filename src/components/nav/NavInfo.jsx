@@ -84,6 +84,8 @@ const NavInfo = () => {
 
               </ul>
             </div>
+            <a href="#survey" className='bg-gray-60 py-1 rounded px-3 '> Survey</a>
+
 
             <div className="flex justify-between items-center">
 
