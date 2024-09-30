@@ -13,6 +13,8 @@ import {
   clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, playType, recommendedGrip, shoeSizes, strung,
 } from '../../mock/variance';
 import { resetProduct } from '../../../redux/product/product';
+import "trix"
+import "trix/dist/trix.css"; 
 
 const AddProduct = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -69,44 +71,59 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(e.target.thickness?.value ??  "" )
+    
     if (imagePreviews.length > 0 || e.target.image.value) {
       const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
       const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
       const gripSizes = Array.from(e.target.grip_sizes).map((option) => option.value);
       const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
+      console.log(e.target.thickness?.value ??  "" )
 
       const formData = new FormData();
-      formData.append('product[name]', e.target.name.value);
-      formData.append('product[quantity]', e.target.quantity.value);
-      formData.append('product[thickness]', e.target.thickness.value);
+      formData.append('product[name]', e.target.name?.value ?? "" );
+      formData.append('product[quantity]', e.target.quantity?.value ?? "");
+      formData.append('product[thickness]', e.target.thickness?.value ??  "" );
       
-      formData.append('product[ms_code]', e.target.ms_code.value);
-      formData.append('product[price]', e.target.price.value);
-      formData.append('product[sku]', e.target.sku.value);
-      formData.append('product[product_category_id]', e.target.product_category_id.value);
-      formData.append('product[sport_category_id]', e.target.sport_category_id.value);
-      formData.append('product[level_id]', e.target.level_id.value);
-      formData.append('product[gender_id]', e.target.gender_id.value);
+
+
+      formData.append('product[status]', e.target.status?.value ?? "");
+      formData.append('product[player_type]', e.target.player_type?.value ?? "");
+      formData.append('product[head_shape]', e.target.head_shape?.value ?? "");
+      formData.append('product[recommended_grip]', e.target.recommended_grip?.value ?? "");
+
+      formData.append('product[ms_code]', e.target.ms_code?.value ?? "");
+      formData.append('product[price]', e.target.price?.value ?? "");
+      formData.append('product[sku]', e.target.sku?.value ?? "");
+      formData.append('product[product_category_id]', e.target.product_category_id?.value ?? "");
+      formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? "");
+      formData.append('product[level_id]', e.target.level_id?.value ?? "");
+      formData.append('product[gender_id]', e.target.gender_id?.value ?? "");
       formData.append('product[grip_sizes]', gripSizes);
-      formData.append('product[head_size]', e.target.head_size.value);
+      formData.append('product[head_size]', e.target.head_size?.value ?? "");
       formData.append('product[colours]', colorsValues);
-      formData.append('product[weight]', e.target.weight.value);
-      formData.append('product[length]', e.target.length.value);
-      formData.append('product[stiffness]', e.target.stiffness.value);
-      formData.append('product[composition]', e.target.composition.value);
-      formData.append('product[description]', e.target.description.value);
-      formData.append('product[tension]', e.target.tension.value);
-      formData.append('product[strung]', e.target.strung.value);
-      formData.append('product[image]', e.target.image.value);
+      formData.append('product[weight]', e.target.weight?.value ?? "");
+      formData.append('product[length]', e.target.length?.value ?? "");
+      formData.append('product[stiffness]', e.target.stiffness?.value ?? "");
+      formData.append('product[composition]', e.target.composition?.value ?? "");
+      formData.append('product[description]', e.target.description?.value ?? "");
+      formData.append('product[tension]', e.target.tension?.value ?? "");
+      formData.append('product[strung]', e.target.strung?.value ?? "");
+      formData.append('product[image]', e.target.image?.value ?? "");
       formData.append('product[cloth_sizes]', clothValues);
       formData.append('product[shoe_sizes]', shoeValues);
       // formData.append("product[photo]", e.target.photo.files[0])
+
+      formData.append('product[description_body]', e.target.description_body?.value ?? "");
+
 
       Array.from(e.target.photo.files).forEach((file, index) => {
         formData.append(`product[photos][${index}]`, file);
       });
 
-      // const data = Object.fromEntries(formData);
+      const data = Object.fromEntries(formData);
+
+      // console.log(data)
 
       dispatch(addProduct(formData));
     } else {
@@ -160,7 +177,6 @@ const AddProduct = () => {
             <label htmlFor="font-medium text-gray-700">Status</label>
             <Select
               onChange={(selectedOption) => handleValue(selectedOption.value) }
-              placeholder="product category"
               defaultValue={{ value: "active", label: "active"}}
               required
               name="status"
@@ -410,11 +426,11 @@ const AddProduct = () => {
 
             <div className="flex gap-4 ">
               <div className="bg-r w-full">
-                <label htmlFor="" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
+                <label htmlFor="player_type" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
                 <Select
                   placeholder="Player Typology"
-                  id="player_typology"
-                  name="level_id"
+                  id="player_type"
+                  name="player_type"
                   options={playType.map((type) => ({
                     value: type.value,
                     label: type.label,
@@ -428,7 +444,7 @@ const AddProduct = () => {
             <div className="flex gap-4 flex-col md:flex-row my-1">
 
               <div className="input-half">
-                <label htmlFor="">
+                <label htmlFor="head_shape">
                   {' '}
                   <span className="text-gray-500 font-semibold text-sm">
                     Head shape
@@ -504,7 +520,7 @@ const AddProduct = () => {
               </div>
 
               <div className="input-half">
-                <label htmlFor="" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
+                <label htmlFor="thickness" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
                 <input
                   name="thickness"
                   id="thickness"
@@ -537,8 +553,8 @@ const AddProduct = () => {
                 <label htmlFor="" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
                 <Select
                   placeholder="Player Typology"
-                  id="player_typology"
-                  name="player_typology"
+                  id="player_type"
+                  name="head_shape"
                   options={playType.map((type) => ({
                     value: type.value,
                     label: type.label,
@@ -684,7 +700,7 @@ const AddProduct = () => {
 
           </div>
 
-          <div>
+          {/* <div>
             <label htmlFor="" className="text-dark font-semibold text-sm">
               {' '}
               <span>Description *</span>
@@ -697,6 +713,12 @@ const AddProduct = () => {
               placeholder="Enter description"
               required
             />
+
+          </div>  */}
+          <div>
+          <input id='trix' type='hidden' name='description_body' />
+          dsd
+           <trix-editor input="trix"/>
 
           </div>
 

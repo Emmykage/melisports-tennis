@@ -52,6 +52,7 @@ const ProductDetails = () => {
   if (loading) {
     return (<Loader />);
   }
+  console.log(product)
 
   return (
     <section className="px-1">
@@ -275,10 +276,9 @@ const ProductDetails = () => {
 
         <div className="description-details my-6">
           <h2 className="ml-0">Description</h2>
-          <p>
-            {product.description}
+          <div dangerouslySetInnerHTML={{__html:  product?.description_body}}/>
+          {/* <div dangerouslySetInnerHTML={{_html: product?.description_body ? product?.description_body : product?.description}}/> */}
 
-          </p>
 
         </div>
 

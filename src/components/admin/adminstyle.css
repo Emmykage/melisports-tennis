@@ -175,6 +175,13 @@ form input:hover {
   border-radius: var(--border-radius-2);
 }
 
+.admin form trix-toolbar button {
+background: white;
+width: max-content;
+border-radius: 0px;
+}
+/* trix-toolbar */
+
 aside .top .logo {
   display: flex;
   justify-content: center;
