@@ -39,7 +39,7 @@ const Footer = () => (
           </li>
           <li>
             {' '}
-            <NavLink to="/privacy_policy" className="no-underline text-sm" >Privacy Policy</NavLink>
+            <NavLink to="/privacy_policy" className="no-underline text-sm">Privacy Policy</NavLink>
           </li>
           {/* <li>
             <NavLink to={"privacy_policy"}>

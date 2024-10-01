@@ -9,10 +9,13 @@ import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
 import {
-  clothSizes, colors, composition, gripSizes, headSizes, length, shoeSizes, strung,
+  balanceTypes,
+  clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, playType, recommendedGrip, shoeSizes, strung,
 } from '../../mock/variance';
 import { resetProduct, writeProduct } from '../../../redux/product/product';
 import Loader from '../../../pages/Loader';
+import 'trix';
+import 'trix/dist/trix.css';
 
 const EditProduct = () => {
   const { editId } = useParams();
@@ -25,6 +28,7 @@ const EditProduct = () => {
   const {
     product, loading, report, status,
   } = useSelector((state) => state.product);
+  const [selectSport, setSelectedSport] = useState(product?.sport_category?.name);
 
   const levels = useSelector((state) => state.level.levels);
 
@@ -75,57 +79,83 @@ const EditProduct = () => {
     const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
     const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
     const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
-    const gripSizes = Array.from(e.target.grip_sizes).map((option) => option.value);
+    console.log(colorsValues);
+
+    // const gripSizes = Array.from(e.target.grip_sizes)
+
+    const gripSizes = Array.from(e.target.grip_sizes ?? []).map((option) => option.value);
+    console.log(e.target.level_id?.value);
 
     const formData = new FormData();
 
-    e.target.level_id.value && formData.append('product[level_id]', e.target.level_id.value);
+    e.target.level_id?.value && formData.append('product[level_id]', e.target.level_id.value);
     e.target.gender_id && formData.append('product[gender_id]', e.target.gender_id.value);
 
     formData.append('product[name]', product.name);
     formData.append('product[quantity]', product.quantity);
+
+    formData.append('product[thickness]', e.target.thickness?.value ?? '');
+
+    formData.append('product[status]', e.target.status?.value ?? '');
+    formData.append('product[player_type]', e.target.player_type?.value ?? '');
+    formData.append('product[head_shape]', e.target.head_shape?.value ?? '');
+    formData.append('product[recommended_grip]', e.target.recommended_grip?.value ?? '');
+
     formData.append('product[price]', product.price);
     formData.append('product[sku]', product.sku);
-    formData.append('product[product_category_id]', e.target.product_category_id.value);
-    formData.append('product[sport_category_id]', e.target.sport_category_id.value);
+    formData.append('product[product_category_id]', e.target.product_category_id?.value ?? '');
+    formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? '');
     formData.append('product[grip_sizes]', gripSizes);
     formData.append('product[head_size]', product.head_size);
     formData.append('product[colours]', colorsValues);
     formData.append('product[weight]', product.weight);
     formData.append('product[length]', product.length);
     formData.append('product[stiffness]', product.stiffness);
-    formData.append('product[composition]', e.target.composition.value);
+    formData.append('product[composition]', e.target.composition?.value ?? '');
     formData.append('product[description]', product.description);
     formData.append('product[tension]', product.tension);
-    formData.append('product[strung]', e.target.strung.value);
+    formData.append('product[strung]', e.target.strung?.value ?? '');
     formData.append('product[image]', product.image);
     formData.append('product[cloth_sizes]', clothValues);
     formData.append('product[shoe_sizes]', shoeValues);
+    formData.append('product[description_body]', e.target.description_body?.value ?? '');
 
     Array.from(e.target.photo.files).forEach((file, index) => {
       formData.append(`product[photos][${index}]`, file);
     });
 
     const data = Object.fromEntries(formData);
-    dispatch(updateProduct({ editId, formData }));
+    // dispatch(updateProduct({ editId, formData }));
+    console.log(data);
+  };
+  console.log(product, selectSport);
+  useEffect(() => {
+    setSelectedSport(product?.sport_category?.name);
+  }, [product]);
+
+  const handleValue = (value) => {
+    const cat = sport_categories.find((item) => item.id == value);
+    console.log(sport_categories, value);
+    setSelectedSport(cat.name);
   };
 
   return (
 
-    <div className="product-form admin m-auto w-full">
+    <div className="product-form bg-white admin m-auto w-full">
 
       {loading ? <Loader />
 
         : (
           <form onSubmit={handleSubmit} ref={formRef} className="w-full">
-            <div className="px-3 flex">
-              <div className="ms_code mr-auto max-w-80 w-full p-3">
+            <div className="p-3 flex">
+              <div className="ms_code mr-auto max-w-80 w-full">
                 <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
 
                 <Select
+                  onChange={(selectedOption) => handleValue(selectedOption.value)}
                   placeholder="product category"
                   defaultValue={{ value: product.sport_category?.id, label: product.sport_category?.name }}
-
+                  // isDisabled={true}
                   required
                   name="sport_category_id"
                   id="sport_category_id"
@@ -141,12 +171,30 @@ const EditProduct = () => {
                     <label htmlFor="quantity font-medium text-gray-700">ms product code</label>
                     <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required />
                   </div>
-                  <div className="quantity my-2">
-                    <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity</label>
-                    <input onChange={handleFormInput} value={product.quantity} type="number" name="quantity" id="quantity" />
-                  </div>
+
                 </div>
               </div>
+            </div>
+            <div className="p-3 flex justify-between">
+              <div className="max-w-80 w-full">
+                <label htmlFor="font-medium text-gray-700">Status</label>
+                <Select
+              // onChange={(selectedOption) => handleValue(selectedOption.value) }
+                  defaultValue={{ value: product.status, label: product.status }}
+                  required
+                  name="status"
+                  id="status"
+                  options={[{ value: 'inactive', label: 'inactive' }, { value: 'active', label: 'active' }]}
+                />
+              </div>
+
+              <div className=" w-48">
+                <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
+                <input type="number" name="quantity" value={product.quantity} id="quantity" required />
+              </div>
+
+              {/* </div> */}
+
             </div>
 
             <div className="bg-white p-4 rounded shadow">
@@ -252,148 +300,385 @@ const EditProduct = () => {
                 </div>
               </div>
 
-              <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
-                <legend className="font-bold">Racquets</legend>
+              {selectSport == 'Tennis' ? (
+                <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
+                  <legend className="font-bold">Racquets</legend>
 
-                <div className="flex gap-4 ">
-                  <div className="input-half">
-                    <label htmlFor="level_id" className="text-dark font-semibold text-sm">Professionalism  </label>
-                    <Select
-                      placeholder="professionalism"
-                      defaultValue={{ value: product.level?.id, label: product.level?.stage }}
-                      id="level_id"
-                      name="level_id"
-                      options={levels.map((level) => ({
-                        value: level.id,
-                        label: level.stage,
-                      }))}
-                    />
+                  <div className="flex gap-4 ">
+                    <div className="input-half">
+                      <label htmlFor="level_id" className="text-dark font-semibold text-sm">Professionalism  </label>
+                      <Select
+                        placeholder="professionalism"
+                        defaultValue={{ value: product.level?.id, label: product.level?.stage }}
+                        id="level_id"
+                        name="level_id"
+                        options={levels.map((level) => ({
+                          value: level.id,
+                          label: level.stage,
+                        }))}
+                      />
 
-                  </div>
+                    </div>
 
-                  <div className="input-half">
-                    <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
-                      strung/unstrung
-                    </label>
-                    <Select
-                      defaultValue={{ value: product.strung, label: product.strung }}
-                      name="strung"
-                      id="strung"
-                      options={strung}
-                    />
+                    <div className="input-half">
+                      <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
+                        strung/unstrung
+                      </label>
+                      <Select
+                        defaultValue={{ value: product.strung, label: product.strung }}
+                        name="strung"
+                        id="strung"
+                        options={strung}
+                      />
 
-                  </div>
-
-                </div>
-
-                <div className="flex gap-4 flex-col md:flex-row my-1">
-
-                  <div className="input-half">
-                    <label htmlFor="head_size">
-                      {' '}
-                      <span className="text-dark font-semibold text-sm">
-                        Head size: cm
-                        <sup>2</sup>
-                      </span>
-                      {' '}
-                    </label>
-                    <Select
-                      defaultValue={product.head_size}
-                      options={headSizes}
-                      name="head_size"
-                      id="head_size"
-                      type="text"
-                      placeholder="headsize"
-                    />
+                    </div>
 
                   </div>
 
-                  <div className="input-half">
-                    <label htmlFor="grip_sizes " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
-                    <Select
-                      defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
-                      name="grip_sizes"
-                      id="grip_sizes"
-                      type="text"
-                      options={gripSizes}
-                      placeholder="grip size"
-                      isMulti
-                    />
+                  <div className="flex gap-4 flex-col md:flex-row my-1">
+
+                    <div className="input-half">
+                      <label htmlFor="head_size">
+                        {' '}
+                        <span className="text-dark font-semibold text-sm">
+                          Head size: cm
+                          <sup>2</sup>
+                        </span>
+                        {' '}
+                      </label>
+                      <Select
+                        defaultValue={product.head_size}
+                        options={headSizes}
+                        name="head_size"
+                        id="head_size"
+                        type="text"
+                        placeholder="headsize"
+                      />
+
+                    </div>
+
+                    <div className="input-half">
+                      <label htmlFor="grip_sizes " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
+                      <Select
+                        defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
+                        name="grip_sizes"
+                        id="grip_sizes"
+                        type="text"
+                        options={gripSizes}
+                        placeholder="grip size"
+                        isMulti
+                      />
+
+                    </div>
+
+                  </div>
+                  <div className="flex gap-4 flex-col md:flex-row my-1">
+                    <div className="input-half">
+                      <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
+                      <Select
+                        name="length"
+                        id="length"
+                        options={length}
+
+                        defaultValue={product.length}
+                        type="text"
+                        placeholder="lenght"
+                      />
+
+                    </div>
+
+                    <div className="flex-1">
+                      <label htmlFor="" className="text-gray-500 font-semibold text-sm">
+                        Composition
+                      </label>
+                      <Select
+                        defaultValue={{ value: product.composition, label: product.composition }}
+                        name="composition"
+                        id="composition"
+                        options={composition}
+                      />
+
+                    </div>
 
                   </div>
 
-                </div>
-                <div className="flex gap-4 flex-col md:flex-row my-1">
-                  <div className="input-half">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
-                    <Select
-                      name="length"
-                      id="length"
-                      options={length}
+                  <div className="form-row my-1">
+                    <div className="input-half">
+                      <label htmlFor="weight" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
+                      <input
+                        onChange={handleFormInput}
+                        value={product.weight}
+                        name="weight"
+                        id="weight"
+                        type="text"
+                        placeholder="weight"
+                      />
 
-                      defaultValue={product.length}
-                      type="text"
-                      placeholder="lenght"
-                    />
+                    </div>
 
-                  </div>
+                    <div className="input-half">
+                      <label htmlFor="" className="text-gray-500 font-semibold text-sm">tension (kg) </label>
+                      <input
+                        onChange={handleFormInput}
+                        value={product.tension}
+                        name="tension"
+                        id="tension"
+                        type="text"
+                        placeholder="tension"
+                      />
 
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">
-                      Composition
-                    </label>
-                    <Select
-                      defaultValue={{ value: product.composition, label: product.composition }}
-                      name="composition"
-                      id="composition"
-                      options={composition}
-                    />
+                    </div>
+                    <div className="input-half">
+                      <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
+                      <input
+                        onChange={handleFormInput}
+                        value={product.stiffness}
+                        name="stiffness"
+                        id="stiffness"
+                        type="text"
+                        placeholder="tension"
+                      />
 
-                  </div>
-
-                </div>
-
-                <div className="form-row my-1">
-                  <div className="input-half">
-                    <label htmlFor="weight" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
-                    <input
-                      onChange={handleFormInput}
-                      value={product.weight}
-                      name="weight"
-                      id="weight"
-                      type="text"
-                      placeholder="weight"
-                    />
+                    </div>
 
                   </div>
+                </fieldset>
+              )
+                : selectSport == 'Padel' ? (
+                  <>
+                    <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
+                      <legend className="font-bold">Padel</legend>
 
-                  <div className="input-half">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">tension (kg) </label>
-                    <input
-                      onChange={handleFormInput}
-                      value={product.tension}
-                      name="tension"
-                      id="tension"
-                      type="text"
-                      placeholder="tension"
-                    />
+                      <div className="flex gap-4 ">
+                        <div className="bg-r w-full">
+                          <label htmlFor="player_type" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
+                          <Select
+                            defaultValue={{ value: product?.player_type, label: product?.player_type }}
+                            placeholder="Player Typology"
+                            id="player_type"
+                            name="player_type"
+                            options={playType.map((type) => ({
+                              value: type.value,
+                              label: type.label,
+                            }))}
+                          />
+                        </div>
 
-                  </div>
-                  <div className="input-half">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
-                    <input
-                      onChange={handleFormInput}
-                      value={product.stiffness}
-                      name="stiffness"
-                      id="stiffness"
-                      type="text"
-                      placeholder="tension"
-                    />
+                      </div>
 
-                  </div>
+                      <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                </div>
-              </fieldset>
+                        <div className="input-half">
+                          <label htmlFor="head_shape">
+                            {' '}
+                            <span className="text-gray-500 font-semibold text-sm">
+                              Head shape
+                            </span>
+                            {' '}
+                          </label>
+                          <Select
+                            defaultValue={{ value: product?.head_shape, label: product?.head_shape }}
+                            name="head_shape"
+                            id="head_shape"
+                            type="text"
+                            options={headShapes}
+                            placeholder="head Shape"
+                          />
+
+                        </div>
+                        <div className="input-half">
+                          <label htmlFor="recommended_grip">
+                            {' '}
+                            <span className="text-gray-500 font-semibold text-sm">
+                              Recommended Grip
+                            </span>
+                            {' '}
+                          </label>
+                          <Select
+                            defaultValue={{ value: product?.recommended_grip, label: product?.recommended_grip }}
+                            name="recommended_grip"
+                            id="recommended_grip"
+                            type="text"
+                            options={recommendedGrip}
+                          />
+                        </div>
+
+                      </div>
+                      <div className="flex gap-4 flex-col md:flex-row my-1">
+
+                        <div className="input-half">
+                          <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
+                          <input
+                            onChange={handleFormInput}
+                            name="length"
+                            id="length"
+                            value={product.length}
+                            type="text"
+                            placeholder="length in mm"
+                          />
+
+                        </div>
+                        <div className="flex-1">
+                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">
+                            Composition
+                          </label>
+                          <Select
+                            defaultValue={{ value: product?.composition, label: product?.composition }}
+                            name="composition"
+                            id="composition"
+                            options={composition}
+                          />
+
+                        </div>
+
+                      </div>
+
+                      <div className="form-row my-1">
+                        <div className="input-half">
+                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
+                          <input
+                            value={product.weight}
+                            onChange={handleFormInput}
+                            name="weight"
+                            id="weight"
+                            type="text"
+                            placeholder="weight"
+                          />
+
+                        </div>
+
+                        <div className="input-half">
+                          <label htmlFor="thickness" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
+                          <input
+                            value={product.thickness}
+                            onChange={handleFormInput}
+                            name="thickness"
+                            id="thickness"
+                            type="text"
+                            placeholder="thickness"
+                          />
+
+                        </div>
+                        <div className="input-half">
+                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
+                          <input
+                            name="stiffness"
+                            id="stiffness"
+                            type="text"
+                            placeholder="tension"
+                          />
+
+                        </div>
+
+                      </div>
+                    </fieldset>
+
+                  </>
+                )
+
+                  : selectSport == 'Badminton' ? (
+                    <>
+                      <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
+                        <legend className="font-bold">Badminton</legend>
+
+                        <div className="flex gap-4 ">
+                          <div className="bg-r w-full">
+                            <label htmlFor="" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
+                            <Select
+                              preventDefault={{ value: product?.player_type, label: product.player_type }}
+                              placeholder="Player Typology"
+                              id="player_type"
+                              name="head_shape"
+                              options={playType.map((type) => ({
+                                value: type.value,
+                                label: type.label,
+                              }))}
+                            />
+                          </div>
+
+                        </div>
+
+                        <div className="flex gap-4 flex-col md:flex-row my-1">
+
+                          <div className="input-half">
+                            <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
+                            <Select
+                              defaultValue={{ value: product?.length, label: product?.length }}
+                              name="length"
+                              id="length"
+                              options={length}
+                  // type="text"
+                              placeholder="lenght"
+                            />
+
+                          </div>
+                          <div className="flex-1">
+                            <label htmlFor="" className="text-gray-500 font-semibold text-sm">
+                              Composition
+                            </label>
+                            <Select
+                              defaultValue={{ value: product?.composition, label: product?.composition }}
+                              name="composition"
+                              id="composition"
+                              options={composition}
+                            />
+
+                          </div>
+
+                        </div>
+
+                        <div className="form-row my-1">
+                          <div className="input-half">
+                            <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)</label>
+                            <input
+                              defaultValue={product.weight}
+                              onChange={handleFormInput}
+                              name="weight"
+                              id="weight"
+                              type="text"
+                              placeholder="weight"
+                            />
+
+                          </div>
+
+                          <div className="input-half">
+                            <label htmlFor="" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
+                            <input
+                              value={product.thickness}
+                              onChange={handleFormInput}
+                              name="thickness"
+                              id="thickness"
+                              type="text"
+                              placeholder="thickness"
+                            />
+
+                          </div>
+                          <div className="input-half">
+                            <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
+                            <input
+                              value={product.stiffness}
+                              onChange={handleFormInput}
+                              name="stiffness"
+                              id="stiffness"
+                              type="text"
+                              placeholder="tension"
+                            />
+
+                          </div>
+
+                        </div>
+                      </fieldset>
+
+                    </>
+                  ) : (
+                    <>
+                      <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
+                        <legend className="font-bold">Unselected Category</legend>
+
+                      </fieldset>
+
+                    </>
+                  ) }
 
               <fieldset disabled="disabled" className="p-3 bg-gray-100 border-gray-light rounded my-5">
                 <legend className="font-bold">Shoes</legend>
@@ -475,7 +760,7 @@ const EditProduct = () => {
 
               </div>
 
-              <div>
+              {/* <div>
                 <label htmlFor="" className="text-dark font-semibold text-sm">
                   {' '}
                   <span>Description</span>
@@ -490,6 +775,11 @@ const EditProduct = () => {
                   placeholder="Enter description"
                   required
                 />
+
+              </div> */}
+              <div>
+                <input id="trix" type="hidden" name="description_body" />
+                <trix-editor input="trix" />
 
               </div>
 

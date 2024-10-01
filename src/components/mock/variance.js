@@ -9,7 +9,7 @@ const balanceTypes = [{ value: 'head_heavy', label: 'Head Heavy' }];
 const recommendedGrip = [{ value: 'syntec_pro', label: 'Syntec Pro' }];
 const length = [{ value: '432', label: '432' }, { value: '483', label: '483' }, { value: '534', label: '534' }, { value: '584', label: '584' }, { value: '635', label: '635' }, { value: '685', label: '685' }, { value: '700', label: '700' }];
 const strung = [{ value: 'strung', label: 'Strung' }, { value: 'unstrung', label: 'Unstrung' }];
-export const playType = [{ value: 'versatile', label: 'versatile' }, { value: 'air_striker', label: 'Air Striker' },{ value: 'offensive', label: 'Offensive' },{ value: 'counter_striker', label: 'Counter Striker' }, {label: "Technical Striker", value: "technical_striker"}];
+export const playType = [{ value: 'versatile', label: 'versatile' }, { value: 'air_striker', label: 'Air Striker' }, { value: 'offensive', label: 'Offensive' }, { value: 'counter_striker', label: 'Counter Striker' }, { label: 'Technical Striker', value: 'technical_striker' }];
 export {
   clothSizes, recommendedGrip, balanceTypes, colors, shoeSizes, composition, strung, headShapes, gripSizes, headSizes, length,
 };

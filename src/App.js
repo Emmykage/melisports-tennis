@@ -1,30 +1,10 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import './styles/loader.css';
-import ApparelsPage from './pages/Apparels';
-import BagsPage from './pages/BagsPage';
-import Cart from './pages/Cart';
-import Home from './pages/Home';
-import ProductDetails from './pages/ProductDetails';
-import ProductsPage from './pages/ProductsPage';
-import ShoesPage from './pages/Shoe';
 import { calculateTotal } from './redux/cart/cart';
-import MainLayout from './components/layouts/main';
-import MainAdmin from './components/layouts/mainAdmin';
 import Main from './components/admin/dashBoard/Main';
-import Messages from './components/admin/messages/Messages';
-import Orders from './components/admin/orders/Orders';
-import Settings from './components/admin/settings/Settings';
-import Analytics from './components/admin/analytics/Analytics';
-import Customers from './components/admin/customers/Customers';
-import AddProduct from './components/admin/addproduct/AddProduct';
-import Reports from './components/admin/reports/Reports';
-import Products from './components/admin/products/Products';
-import AddCategory from './components/admin/addcategory/AddCategory';
-import AccessoriesPage from './pages/AccessoriesPage';
-import EditProduct from './components/admin/addproduct/EditProduct';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 import AdminSignUp from './pages/auth/AdminSignUp';
@@ -37,18 +17,40 @@ import ShippingPolicy from './pages/resources/ShippingPolicy';
 import TermsOfServices from './pages/resources/TermsOfServices';
 import PrivacyPolicy from './pages/resources/PrivacyPolicy';
 import Accounts from './pages/resources/Accounts';
-import Services from './pages/Services';
-import MainInfoLayout from './components/layouts/mainInfo';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import BecomeADistributor from './pages/BecomeADistributor';
-import Brands from './pages/Brands';
-import Confirmation from './pages/auth/confirmation';
-import ViewCustomer from './components/admin/customers/ViewCustomer';
-import ImagePreview from './components/products/ImagePreview';
-import Padels from './pages/Padels';
-import BadmintonsPage from './pages/Badminton';
-import SearchPage from './pages/SearchPage';
+
+const ApparelsPage = lazy(() => import('./pages/Apparels'));
+const BagsPage = lazy(() => import('./pages/BagsPage'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Home = lazy(() => import('./pages/Home'));
+
+const ProductDetails = lazy(() => import('./pages/ProductDetails'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const ShoesPage = lazy(() => import('./pages/Shoe'));
+const MainLayout = lazy(() => import('./components/layouts/main'));
+const MainAdmin = lazy(() => import('./components/layouts/mainAdmin'));
+const Messages = lazy(() => import('./components/admin/messages/Messages'));
+const Orders = lazy(() => import('./components/admin/orders/Orders'));
+const Settings = lazy(() => import('./components/admin/settings/Settings'));
+const Analytics = lazy(() => import('./components/admin/analytics/Analytics'));
+const Customers = lazy(() => import('./components/admin/customers/Customers'));
+const AddProduct = lazy(() => import('./components/admin/addproduct/AddProduct'));
+const Reports = lazy(() => import('./components/admin/reports/Reports'));
+const Products = lazy(() => import('./components/admin/products/Products'));
+const AddCategory = lazy(() => import('./components/admin/addcategory/AddCategory'));
+const AccessoriesPage = lazy(() => import('./pages/AccessoriesPage'));
+const EditProduct = lazy(() => import('./components/admin/addproduct/EditProduct'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const MainInfoLayout = lazy(() => import('./components/layouts/mainInfo'));
+const Contact = lazy(() => import('./pages/Contact'));
+const BecomeADistributor = lazy(() => import('./pages/BecomeADistributor'));
+const Brands = lazy(() => import('./pages/Brands'));
+const Confirmation = lazy(() => import('./pages/auth/confirmation'));
+const ViewCustomer = lazy(() => import('./components/admin/customers/ViewCustomer'));
+const ImagePreview = lazy(() => import('./components/products/ImagePreview'));
+const Padels = lazy(() => import('./pages/Padels'));
+const BadmintonsPage = lazy(() => import('./pages/Badminton'));
+const SearchPage = lazy(() => import('./pages/SearchPage'));
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -59,7 +61,8 @@ function App() {
     dispatch(calculateTotal());
   }, [cartItems]);
   return (
-    <>
+
+    <Suspense fallback={<Loader />}>
 
       <Routes>
         <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
@@ -126,8 +129,9 @@ function App() {
         <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
 
       </Routes>
+    </Suspense>
 
-    </>
+  // </>
   );
 }
 

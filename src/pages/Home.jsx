@@ -102,8 +102,8 @@ const Home = () => {
 
         </p>
       </div>
-          <SurveyButton/>
-      
+      <SurveyButton />
+
       <div>
         <div className="product-grid fit-screen">
           <div className="product-grid-items flex justify-center items-align text-center">

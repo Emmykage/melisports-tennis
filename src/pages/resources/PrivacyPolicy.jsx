@@ -3,15 +3,15 @@ import React from 'react';
 const PrivacyPolicy = () => (
   <div className="portrait-container max-w-7xl m-auto">
     <h2 className="my-6">    Privacy Policy - Melisports Nigeria</h2>
-    <p className='leading-6'>
+    <p className="leading-6">
       Effective Date: 20 - 04 - 2023
 
       Melisports ("we," "us," or "our") is committed to protecting your privacy when using our e-commerce platform and services. This Privacy Policy outlines how we collect, use, disclose, and safeguard your personal information within Nigeria. By accessing or using our website, you consent to the practices described in this policy.
-      <h4 className='text-lg'>
-      Information We Collect:
+      <h4 className="text-lg">
+        Information We Collect:
 
       </h4>
-      <ul className='text-sm leading-6'>
+      <ul className="text-sm leading-6">
         <li>
           a. Personal Information: We may collect personal information, such as your name, email address, phone number, shipping address, billing address, and payment details when you create an account, place an order, or interact with our website.
 
@@ -26,12 +26,12 @@ const PrivacyPolicy = () => (
         </li>
       </ul>
 
-      <h4 className='my-3 text-sm'>
+      <h4 className="my-3 text-sm">
         Use of Information:
 
       </h4>
 
-      <ul className='leading-6'>
+      <ul className="leading-6">
         <li>
 
           a. We may use the collected information to:
@@ -63,11 +63,11 @@ const PrivacyPolicy = () => (
         </li>
       </ul>
 
-      <h4 className='text-sm my-3'>
+      <h4 className="text-sm my-3">
         Data Security:
 
       </h4>
-      <ul className='leading-6'>
+      <ul className="leading-6">
         <li>
           a. We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
 
@@ -78,12 +78,12 @@ const PrivacyPolicy = () => (
         </li>
       </ul>
 
-      <h4 className='text-sm my-3'>
+      <h4 className="text-sm my-3">
         Your Rights and Choices:
 
       </h4>
 
-      <ul className='leading-6'>
+      <ul className="leading-6">
         <li>
           a. You have the right to access, correct, update, or delete your personal information. You can do so by logging into your account or contacting our customer support team.
 
@@ -99,12 +99,12 @@ const PrivacyPolicy = () => (
 
       </ul>
 
-      <h4 className='text-sm my-3'>
+      <h4 className="text-sm my-3">
         Children's Privacy:
 
       </h4>
 
-      <ul className='leading-6'>
+      <ul className="leading-6">
         <li>
           a. Our website is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that we have inadvertently collected information from a child, we will take appropriate steps to delete it.
 
@@ -112,11 +112,11 @@ const PrivacyPolicy = () => (
         <li />
       </ul>
 
-      <h4 className='text-base my-3'>
+      <h4 className="text-base my-3">
         Contact Us:
 
       </h4>
-      <p className='leading-6'>
+      <p className="leading-6">
         If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact our Data Protection Officer at [contact email or address].
 
         By using our website or providing us with your personal information, you acknowledge that you have read, understood, and agreed to this Privacy Policy.
@@ -133,7 +133,6 @@ const PrivacyPolicy = () => (
 
       a. We reserve the right to update or modify this Privacy Policy at any time. Any changes will be posted on this page with a revised "Effective Date." We encourage you to review this policy periodically to stay informed about how we handle your information. */}
 
-      
       {' '}
     </p>
 

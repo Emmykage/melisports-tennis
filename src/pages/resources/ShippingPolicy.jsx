@@ -46,7 +46,7 @@ const ShippingPolicy = () => (
 
       <ul className="list-inside text-base list-disc px-4 leading-7">
         <li className="px-">
-           Uber Logistics
+          Uber Logistics
 
         </li>
         <li>
@@ -54,7 +54,7 @@ const ShippingPolicy = () => (
 
         </li>
         <li>
-           Konga Express
+          Konga Express
 
         </li>
 
@@ -168,7 +168,9 @@ const ShippingPolicy = () => (
       </h3>
 
       <p className="text-gray-600">
-        If you have any shipping-related questions or concerns, please don't hesitate to contact us at <a className='text-blue-700' href='mailto:Info@melisports.com'>Info@melisports.com </a>
+        If you have any shipping-related questions or concerns, please don't hesitate to contact us at
+        {' '}
+        <a className="text-blue-700" href="mailto:Info@melisports.com">Info@melisports.com </a>
 
       </p>
 
