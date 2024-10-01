@@ -62,12 +62,15 @@ const productSlice = createSlice({
       loading: true,
       report: 'loading...',
     }),
-    [updateProduct.rejected]: (state, action) => ({
+    [updateProduct.rejected]: (state, action) => {
+      console.log("response not ok but should load false")
+      console.log(action.payload)
+      return {
       ...state,
       status: 'rejected',
       loading: false,
       report: action.payload.message,
-    }),
+    }},
     [deleteProduct.fulfilled]: (state, action) => ({
       ...state,
       status: 'success',

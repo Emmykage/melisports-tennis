@@ -30,6 +30,8 @@ const EditProduct = () => {
   } = useSelector((state) => state.product);
   const [selectSport, setSelectedSport] = useState(product?.sport_category?.name);
 
+  console.log(loading)
+
   const levels = useSelector((state) => state.level.levels);
 
   const genders = useSelector((state) => state.gender.genders);
@@ -84,7 +86,7 @@ const EditProduct = () => {
     // const gripSizes = Array.from(e.target.grip_sizes)
 
     const gripSizes = Array.from(e.target.grip_sizes ?? []).map((option) => option.value);
-    console.log(e.target.level_id?.value);
+    // console.log(e.target.level_id?.value);
 
     const formData = new FormData();
 
@@ -100,6 +102,7 @@ const EditProduct = () => {
     formData.append('product[player_type]', e.target.player_type?.value ?? '');
     formData.append('product[head_shape]', e.target.head_shape?.value ?? '');
     formData.append('product[recommended_grip]', e.target.recommended_grip?.value ?? '');
+    formData.append('product[ms_code]', e.target.ms_code?.value ?? '');
 
     formData.append('product[price]', product.price);
     formData.append('product[sku]', product.sku);
@@ -125,8 +128,8 @@ const EditProduct = () => {
     });
 
     const data = Object.fromEntries(formData);
-    // dispatch(updateProduct({ editId, formData }));
-    console.log(data);
+    dispatch(updateProduct({ editId, formData }));
+    // console.log(data);
   };
   console.log(product, selectSport);
   useEffect(() => {
@@ -190,7 +193,7 @@ const EditProduct = () => {
 
               <div className=" w-48">
                 <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
-                <input type="number" name="quantity" value={product.quantity} id="quantity" required />
+                <input type="number" name="quantity" onChange={handleFormInput} value={product.quantity} id="quantity" required />
               </div>
 
               {/* </div> */}

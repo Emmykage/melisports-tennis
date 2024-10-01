@@ -66,7 +66,7 @@ const NavInfo = () => {
                 <li className="nav-item"><NavLink to="/products" onClick={() => dispatch(closeNav())}>Products</NavLink></li>
                 <li className="nav-item"><NavLink to="/contact" onClick={() => dispatch(closeNav())}>Contact Us</NavLink></li>
                 <li className="nav-item"><NavLink to="/about" onClick={() => dispatch(closeNav())}>About Us</NavLink></li>
-                {/* <li className="nav-item"><NavLink to="/brands" onClick={() => dispatch(closeNav())}>Brands</NavLink></li> */}
+                <li className="nav-item"><NavLink to="/store" onClick={() => dispatch(closeNav())}>Go to store</NavLink></li>
 
                 {user !== null && ((user.role == 'admin') && (
                 <li className="nav-item">
@@ -84,7 +84,7 @@ const NavInfo = () => {
 
               </ul>
             </div>
-            <a href="#survey" className="bg-gray-60 py-1 rounded px-3 "> Survey</a>
+            <a href="#survey" className="bg-gray-60 py-1 rounded px-3 hidden md:block"> Survey</a>
 
             <div className="flex justify-between items-center">
 

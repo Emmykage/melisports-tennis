@@ -117,7 +117,6 @@ const AddProduct = () => {
       });
 
       const data = Object.fromEntries(formData);
-
       // console.log(data)
 
       dispatch(addProduct(formData));
