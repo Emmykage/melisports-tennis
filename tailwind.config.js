@@ -13,10 +13,18 @@ module.exports = {
       },
       colors: {
         theme: 'rgb(20, 56, 80)',
-        primary: 'rgb(20, 56, 80)',
+        "theme-light": "#f1f1f1",
+        "theme-dark": "#2e2e2e",
+        primary:"#ff4500",
+        alt: "#929098"
       },
       backgroundColor: {
-        primary: 'rgb(20, 56, 80)',
+        theme: 'rgb(20, 56, 80)',
+        "theme-light": "#f1f1f1",
+        "theme-dark": "#2e2e2e",
+        primary: '#ff4500',
+        alt: "#929098"
+
 
       },
     },

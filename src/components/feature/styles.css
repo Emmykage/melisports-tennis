@@ -7,4 +7,18 @@
 .swiper-slide,
 .swiper-slide img {
   width: 100%;
+  /* height: 700px; */
+}
+@media (max-width: 700px) {
+  
+.swiper-slide,
+.swiper-slide img{
+  height: 100%;
+
+}
+.swiper-slide,
+.swiper-slide {
+  height: 200px;
+}
+  
 }

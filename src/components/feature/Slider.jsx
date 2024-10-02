@@ -44,7 +44,8 @@ export default function Slider() {
 
         </Swiper>
       </div>
-      <video src={videoAdd} autoPlay loop muted />
+      <video src={videoAdd} autoPlay loop muted  className='h-full w-full'/>
+
     </>
   );
 }

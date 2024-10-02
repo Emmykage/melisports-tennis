@@ -175,6 +175,7 @@
 body {
   font-size: 14px;
   background: var(--color-background);
+  color: rgb(20, 56, 80);
 }
 .text-red {
   color: red;
@@ -338,7 +339,7 @@ a {
 .overlay h3 {
   font-size: 29px;
 }
-
+.service-prod{}
 .overlay {
   height: 0%;
   overflow: hidden;
@@ -350,25 +351,6 @@ a {
   justify-content: center;
   align-items: center;
   transition: 1s all ease;
-}
-
-.serv-box {
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 8px auto;
-}
-
-.serv-box.top img {
-  height: 400px;
-}
-
-.serv-box.bottom img {
-  height: 600px;
-}
-
-.serv-box:hover .overlay {
-  height: 100%;
-  background-color: rgba(132, 139, 200, 0.18);
 }
 
 .chat-box {
@@ -668,7 +650,7 @@ button {
   width: fit-content;
 }
 
-.prod-page .cat-group justify-between max-w-md my-6 a {
+.prod-page .cat-group a {
   font-size: 0.8rem;
   font-weight: 600;
   margin-right: 0.2rem;
@@ -1352,9 +1334,7 @@ td .btn.change {
     margin-top: 20px;
   }
 
-  .serv-box.top img {
-    height: 300px;
-  }
+
   .p-4{
     padding: 1rem;
   }
@@ -1432,19 +1412,10 @@ td .btn.change {
     grid-template-columns: 1fr;
   }
 
-  .serv-box.top img {
-    height: 200px;
-  }
 
-  .serv-box.bottom img {
-    height: 400px;
-  }
 
-  .serv-box .btn {
-    padding: 6px 8px;
-  }
 
-  .cat-group justify-between max-w-md my-6 .btn {
+   .cat-group .btn {
     font-size: 0.8rem;
   }
 
@@ -1467,12 +1438,7 @@ td .btn.change {
     .flex-center-around {
       flex-direction: column;
     }
-    /* .product-display-image {
-      width: 100%;
-      max-width: 650px;
-      height: 750px;
-      margin: 10px;
-    } */
+ 
     .sm-flex-col, .sm-row-col {
       flex-direction: column;
 

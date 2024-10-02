@@ -29,16 +29,16 @@ const Home = () => {
 
       <Slider />
 
-      <div className="service-offer py-2">
-        <div className="flex justify-space gap-1">
-          <div className="serv-box flex-1 relative top">
-            <img src={string} />
+      <div className="py-2 service-prod">
+        <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
+          <div className="relative top h-40 md:h-80">
+            <img src={string} className='w-full h-full'/>
             <div className="absolute overlay">
               <h3 className="white font-normal">Stringing racquets</h3>
 
             </div>
           </div>
-          <div className="serv-box flex-1 relative top w-full">
+          <div className="relative top h-40 md:h-80">
             <img src={demo_service} className="w-full" />
             <div className="absolute overlay">
               <h3 className="white font-normal">Demo Program</h3>
@@ -48,9 +48,9 @@ const Home = () => {
           </div>
 
         </div>
-        <div>
-          <div className="serv-box flex-1 relative bottom">
-            <img src={distributor} />
+        <div className=' bg-gray-500 my-2'>
+          <div className="relative top h-40 md:h-80 xl:h-[500px]">
+            <img src={distributor} className='h-full w-full'/>
             <div className="absolute overlay">
               <div className="">
                 <h3 className="white font-normal">Wholesale Distribution</h3>
@@ -89,6 +89,23 @@ const Home = () => {
           ))}
 
         </div>
+
+      </div>
+
+      <div className='relative pt-0 bg-green-200 gap-3 flex w-96 h-[400px] m-auto overflow-hidden'>
+        <div className={`absolute flex top-0 -left-full h-full  bg-red-400 w-full`}>
+
+        {categories.map(cat => (
+       <div className='w-96 shrink-0 relative  top-0 border border-red-500 h-full bg-red-300'>
+        <div className='bg-green-200 h-full'>
+          <img src={cat.image} className='w-full h-full'/>
+        </div>
+
+       </div>
+        ))}
+                </div>
+
+ 
 
       </div>
       <div className="banner-text full-screen my-3 text-center">
