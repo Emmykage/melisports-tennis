@@ -14,8 +14,15 @@ import { getSportCategories } from '../../redux/actions/product_category';
 import { closeNav } from '../../redux/modal/nav';
 import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
-
-
+import VideoView from '../../components/banner/Video';
+import CollectImage from '../../assets/images/banner/692x364_FW_Lebron_1.avif'
+import RangeImage from '../../assets/images/banner/Satelite_692x364__px.avif'
+import DiscoverBtn from '../../components/buttons/DiscoverBtn';
+import ProductSlider from './component/ProductSlider';
+import Tennis from '../../assets/images/banner/Cat_product_tennis.avif'
+import Padel from '../../assets/images/banner/Cat_product_padel.avif'
+import Badminton from '../../assets/images/banner/test_badminton.avif'
+import './home.scss'
 const ShopHome = () => {
   const categories = useSelector((state) => state.categories);
 
@@ -28,43 +35,66 @@ const ShopHome = () => {
   return (
     <>
 
-      <Slider />
-
-      <div className="py-2 service-prod">
-        <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
-          <div className="relative item top h-52 md:h-80">
-            <img src={string} className='w-full h-full'/>
-            <div className="absolute overlay  bg-theme/20">
-              <h3 className="white font-normal">Stringing racquets</h3>
-
-            </div>
+      <VideoView />
+      <section>
+      <div className='grid gap-6 md:grid-cols-2 max-w-7xl m-auto my-6'>
+        <div>
+          <div className='h-96'>
+            <img src={CollectImage} alt="collection Image" className='object-cover h-full' />
           </div>
-          <div className="relative item top h-52 md:h-80">
-            <img src={demo_service} className="w-full" />
-            <div className="absolute overlay  bg-theme/20">
-              <h3 className="white font-normal">Demo Program</h3>
-
-            </div>
-
+          <div className='flex py-4 justify-between'>
+            <h3>NEW JUAN LEBRON COLLECTION</h3>
+            <DiscoverBtn btnText={"Discover"}/>
           </div>
-
         </div>
-        <div className=' bg-gray-500 my-2'>
-          <div className="relative item top h-52 md:h-80 xl:h-[500px]">
-            <img src={distributor} className='h-full w-full'/>
-            <div className="absolute overlay bg-theme/20">
-              <div className="">
-                <h3 className="white font-normal">Wholesale Distribution</h3>
-                <NavLink to="/distributor" className="btn block m-auto px-4 py-3 ">Become a Distributor</NavLink>
-
-              </div>
-
-            </div>
+        <div>
+          <div className='h-96'>
+            <img src={RangeImage} alt="collection Image" className='h-full'/>
           </div>
-
+          <div className='flex py-4 justify-between'>
+            <h3>NEW JUAN LEBRON COLLECTION</h3>
+            <DiscoverBtn btnText={"Discover"}/>
+          </div>
         </div>
+      </div>
+
+      </section>
+
+      <section className='px-4 py-10 bg-white/90 my-10'>
+        <div className='max-w-7xl m-auto feature'>
+          <h3 className='text-3xl text-center my-4'>Feature</h3>
+          <ProductSlider/>
+          
+        </div>
+      </section>
+
+      <section className='px-4 bg-theme py-32'>
+        <div className='grid gap-10 md:grid-cols-3 m-auto max-w-[1400px]'>
+    <div className='relative zoom-effect overflow-hidden'>
+      <img src={Tennis} alt="" className='w-full h-full hover:scale-105'/>
+      <div className='absolute flex top-0 left-0 h-full w-full '>
+        <h3 className='mt-auto mb-10 text-3xl text-white ml-10'>Tennis</h3>
 
       </div>
+    </div>
+    <div className='relative zoom-effect overflow-hidden'>
+      <img src={Padel} alt="" />
+      <div className='absolute flex top-0 left-0 h-full w-full '>
+        <h3 className='mt-auto mb-10 text-3xl text-white ml-10'>Padel</h3>
+
+      </div>
+    </div>
+    <div className='relative zoom-effect overflow-hidden'>
+      <img src={Badminton} alt="" />
+      <div className='absolute flex top-0 left-0 h-full w-full '>
+        <h3 className='mt-auto mb-10 text-3xl text-white ml-10'>Badminton</h3>
+
+      </div>
+    </div>
+        </div>
+
+      </section>
+
       <div>
         <div className="flex m-auto section-container gap-2">
           <NavLink to="/" className="flex-1 zoom-hover h-52 md:h-80">

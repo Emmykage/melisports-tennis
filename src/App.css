@@ -341,9 +341,27 @@ a {
 }
 .service-prod .item:hover .overlay{
   height: 100%;
-  /* background: #135092; */
 
+}
+.feature .card .overlay{
 
+  padding: 0rem 2rem;
+}
+.feature .card:hover .overlay{
+  height: 50%;
+  padding: 2rem;
+  
+}
+.feature .card .info-fix {
+  height: 50px;
+  
+}
+.feature .card:hover .info-fix {
+  height: 0px;
+  
+}
+.feature .card{
+  
 }
 .overlay {
   height: 0%;
@@ -351,9 +369,9 @@ a {
   left: 0;
   width: 100%;
   bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   transition: 0.4s all ease;
 }
 
