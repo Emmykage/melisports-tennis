@@ -6,8 +6,6 @@
   border: 8px solid lightblue;
   border-right-color: var(--color-theme);
   animation: skimmer 1s infinite linear;
-
-  /* background-color: blue; */
 }
 
 .progress__container {
@@ -15,6 +13,7 @@
   justify-content: center;
   padding: 3rem;
   width: 100%;
+  align-items: center;
   
 }
 

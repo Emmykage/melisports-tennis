@@ -17,6 +17,7 @@ import ShippingPolicy from './pages/resources/ShippingPolicy';
 import TermsOfServices from './pages/resources/TermsOfServices';
 import PrivacyPolicy from './pages/resources/PrivacyPolicy';
 import Accounts from './pages/resources/Accounts';
+import LoadingPage from './components/feature/LoadingPage';
 
 const ApparelsPage = lazy(() => import('./pages/Apparels'));
 const BagsPage = lazy(() => import('./pages/BagsPage'));
@@ -62,7 +63,7 @@ function App() {
   }, [cartItems]);
   return (
 
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={ <LoadingPage />}>
 
       <Routes>
         <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
@@ -121,7 +122,7 @@ function App() {
         </Route>
         <Route path="/preview" element={<MainLayout><ImagePreview /></MainLayout>} />
 
-        <Route path="/loader" element={<MainLayout><Loader /></MainLayout>} />
+        <Route path="/loader" element={<><LoadingPage /></>} />
         <Route path="/return_policy" element={<MainLayout><ReturnPolicy /></MainLayout>} />
         <Route path="/shipping_policy" element={<MainLayout><ShippingPolicy /></MainLayout>} />
         <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />

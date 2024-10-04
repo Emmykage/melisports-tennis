@@ -781,7 +781,7 @@ const EditProduct = () => {
 
               </div> */}
               <div>
-                <input id="trix" type="hidden" name="description_body" />
+                <input id="trix" type="hidden" name="description_body" value={product?.description_body}/>
                 <trix-editor input="trix" />
 
               </div>

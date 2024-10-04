@@ -14,6 +14,8 @@ import { closeNav } from '../redux/modal/nav';
 import string from '../assets/images/stringing.jpg';
 import distributor from '../assets/images/distributor.jpeg';
 import SurveyButton from '../components/feature/survey-button';
+import CategorySlider from '../components/slider/CategorySlider';
+import ReactSlider from '../components/slider/ReactSlider';
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -31,16 +33,16 @@ const Home = () => {
 
       <div className="py-2 service-prod">
         <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
-          <div className="relative top h-40 md:h-80">
+          <div className="relative item top h-52 md:h-80">
             <img src={string} className='w-full h-full'/>
-            <div className="absolute overlay">
+            <div className="absolute overlay  bg-theme/20">
               <h3 className="white font-normal">Stringing racquets</h3>
 
             </div>
           </div>
-          <div className="relative top h-40 md:h-80">
+          <div className="relative item top h-52 md:h-80">
             <img src={demo_service} className="w-full" />
-            <div className="absolute overlay">
+            <div className="absolute overlay  bg-theme/20">
               <h3 className="white font-normal">Demo Program</h3>
 
             </div>
@@ -49,9 +51,9 @@ const Home = () => {
 
         </div>
         <div className=' bg-gray-500 my-2'>
-          <div className="relative top h-40 md:h-80 xl:h-[500px]">
+          <div className="relative item top h-52 md:h-80 xl:h-[500px]">
             <img src={distributor} className='h-full w-full'/>
-            <div className="absolute overlay">
+            <div className="absolute overlay bg-theme/20">
               <div className="">
                 <h3 className="white font-normal">Wholesale Distribution</h3>
                 <NavLink to="/distributor" className="btn block m-auto px-4 py-3 ">Become a Distributor</NavLink>
@@ -66,10 +68,10 @@ const Home = () => {
       </div>
       <div>
         <div className="flex m-auto section-container gap-2">
-          <NavLink to="/" className="flex-1 zoom-hover">
+          <NavLink to="/" className="flex-1 zoom-hover h-52 md:h-80">
             <img src={shoeImage} alt="" className=" w-full h-full" />
           </NavLink>
-          <NavLink to="/" className="flex-1 zoom-hover">
+          <NavLink to="/" className="flex-1 zoom-hover h-52 md:h-80">
             <img src={badmington} alt="" className="w-full h-full" />
           </NavLink>
         </div>
@@ -78,36 +80,13 @@ const Home = () => {
       <div className="my-6">
         <h3 className=" text-center fs-3 my-3"> Shop Categories</h3>
 
-        <div className="feature-div gap-2 m-auto flex justify-around">
-          {categories.map((category) => (
-            <FeaturedProducts
-              key={category.id}
-              id={category.id}
-              name={category.name}
-              image={category.image}
-            />
-          ))}
-
-        </div>
+        <div className='px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7  border-black'>
+        <ReactSlider categories={categories} />
+      </div>
 
       </div>
 
-      <div className='relative pt-0 bg-green-200 gap-3 flex w-96 h-[400px] m-auto overflow-hidden'>
-        <div className={`absolute flex top-0 -left-full h-full  bg-red-400 w-full`}>
-
-        {categories.map(cat => (
-       <div className='w-96 shrink-0 relative  top-0 border border-red-500 h-full bg-red-300'>
-        <div className='bg-green-200 h-full'>
-          <img src={cat.image} className='w-full h-full'/>
-        </div>
-
-       </div>
-        ))}
-                </div>
-
- 
-
-      </div>
+      
       <div className="banner-text full-screen my-3 text-center">
         <h2>
           Tennis Equipment & Supplies

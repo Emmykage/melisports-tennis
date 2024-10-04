@@ -339,18 +339,22 @@ a {
 .overlay h3 {
   font-size: 29px;
 }
-.service-prod{}
+.service-prod .item:hover .overlay{
+  height: 100%;
+  /* background: #135092; */
+
+
+}
 .overlay {
   height: 0%;
   overflow: hidden;
   left: 0;
   width: 100%;
   bottom: 0;
-  background: #135092;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 1s all ease;
+  transition: 0.4s all ease;
 }
 
 .chat-box {
@@ -615,14 +619,6 @@ a {
 
 
 
-.flex-3 {
-  flex: 3;
-}
-
-
-.flex-2 {
-  flex: 2;
-}
 
 .bg-green {
   background-color: green;
