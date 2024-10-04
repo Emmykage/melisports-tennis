@@ -18,11 +18,12 @@ import TermsOfServices from './pages/resources/TermsOfServices';
 import PrivacyPolicy from './pages/resources/PrivacyPolicy';
 import Accounts from './pages/resources/Accounts';
 import LoadingPage from './components/feature/LoadingPage';
+import ShopHome from './pages/shop-page/Home';
 
 const ApparelsPage = lazy(() => import('./pages/Apparels'));
 const BagsPage = lazy(() => import('./pages/BagsPage'));
 const Cart = lazy(() => import('./pages/Cart'));
-const Home = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import('./pages/landing-page/Home'));
 
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
@@ -66,6 +67,7 @@ function App() {
     <Suspense fallback={ <LoadingPage />}>
 
       <Routes>
+        {/* landing page  */}
         <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
         <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
         <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
@@ -75,7 +77,10 @@ function App() {
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
-        <Route path="/store" element={<MainLayout><Home /></MainLayout>} />
+
+
+        {/* store page  */}
+        <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/padels" element={<MainLayout><Padels /></MainLayout>} />
         <Route path="/badminton" element={<MainLayout><BadmintonsPage /></MainLayout>} />
