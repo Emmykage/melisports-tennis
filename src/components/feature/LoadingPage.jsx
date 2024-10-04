@@ -3,7 +3,7 @@ import Loader from '../../pages/Loader'
 
 const LoadingPage = () => {
   return (
-    <div className='flex h-screen bg-theme'>
+    <div className='flex h-screen bg-theme/50'>
         <Loader/>
     </div>
   )

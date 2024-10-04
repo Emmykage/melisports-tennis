@@ -41,7 +41,7 @@ const ReactSlider = ({ categories }) => {
               <div className='h-full'>
                 <img src={item.image} className='w-full h-full' alt={`Slide ${index}`} />
               </div>
-              <h3 className='overlay absolute bottom-0  text-center w-full bg-black h-full bg-theme/20 text-white  text-3xl'>
+              <h3 className='overlay flex justify-center items-center absolute bottom-0  text-center w-full bg-black h-full bg-theme/20 text-white  text-3xl'>
               
               <NavLink to={`/${item.name}`} className={"hover:text-primary"}>
               {item.name}

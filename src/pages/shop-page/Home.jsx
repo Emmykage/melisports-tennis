@@ -36,23 +36,23 @@ const ShopHome = () => {
     <>
 
       <VideoView />
-      <section>
+      <section className='px-3'>
       <div className='grid gap-6 md:grid-cols-2 max-w-7xl m-auto my-6'>
-        <div>
-          <div className='h-96'>
+        <div className=''>
+          <div className='h-60 md:h-96'>
             <img src={CollectImage} alt="collection Image" className='object-cover h-full' />
           </div>
           <div className='flex py-4 justify-between'>
-            <h3>NEW JUAN LEBRON COLLECTION</h3>
+            <h3 className='text-xs md:text-base'>NEW JUAN LEBRON COLLECTION</h3>
             <DiscoverBtn btnText={"Discover"}/>
           </div>
         </div>
-        <div>
-          <div className='h-96'>
+        <div className=''>
+          <div className='h-60 md:h-96'>
             <img src={RangeImage} alt="collection Image" className='h-full'/>
           </div>
           <div className='flex py-4 justify-between'>
-            <h3>NEW JUAN LEBRON COLLECTION</h3>
+            <h3 className='text-xs md:text-base'>NEW JUAN LEBRON COLLECTION</h3>
             <DiscoverBtn btnText={"Discover"}/>
           </div>
         </div>
@@ -71,25 +71,26 @@ const ShopHome = () => {
       <section className='px-4 bg-theme py-32'>
         <div className='grid gap-10 md:grid-cols-3 m-auto max-w-[1400px]'>
     <div className='relative zoom-effect overflow-hidden'>
+      
       <img src={Tennis} alt="" className='w-full h-full hover:scale-105'/>
-      <div className='absolute flex top-0 left-0 h-full w-full '>
+      <NavLink to={"/racquets"} className='absolute flex top-0 left-0 h-full w-full '>
         <h3 className='mt-auto mb-10 text-3xl text-white ml-10'>Tennis</h3>
 
-      </div>
+      </NavLink>
     </div>
     <div className='relative zoom-effect overflow-hidden'>
-      <img src={Padel} alt="" />
-      <div className='absolute flex top-0 left-0 h-full w-full '>
+      <img src={Padel} alt="" className='w-full h-full hover:scale-105'/>
+      <NavLink to={"/padels"} className='absolute flex top-0 left-0 h-full w-full '>
         <h3 className='mt-auto mb-10 text-3xl text-white ml-10'>Padel</h3>
 
-      </div>
+      </NavLink>
     </div>
     <div className='relative zoom-effect overflow-hidden'>
-      <img src={Badminton} alt="" />
-      <div className='absolute flex top-0 left-0 h-full w-full '>
+      <img src={Badminton} alt=""  className='w-full h-full'/>
+      <NavLink to={"/badminton"} className='absolute flex top-0 left-0 h-full w-full '>
         <h3 className='mt-auto mb-10 text-3xl text-white ml-10'>Badminton</h3>
 
-      </div>
+      </NavLink>
     </div>
         </div>
 
@@ -97,10 +98,10 @@ const ShopHome = () => {
 
       <div>
         <div className="flex m-auto section-container gap-2">
-          <NavLink to="/" className="flex-1 zoom-hover h-52 md:h-80">
+          <NavLink to="/store" className="flex-1 zoom-hover h-52 md:h-80">
             <img src={shoeImage} alt="" className=" w-full h-full" />
           </NavLink>
-          <NavLink to="/" className="flex-1 zoom-hover h-52 md:h-80">
+          <NavLink to="/store" className="flex-1 zoom-hover h-52 md:h-80">
             <img src={badmington} alt="" className="w-full h-full" />
           </NavLink>
         </div>
