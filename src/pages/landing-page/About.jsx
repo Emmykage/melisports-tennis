@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // import Hero from '../components/banner/Hero';
-import nadal_art from '../assets/images/nadal-art.png';
-import AboutBanner from '../components/banner/AboutBanner';
-import { closeNav } from '../redux/modal/nav';
+import nadal_art from '../../assets/images/nadal-art.png';
+import AboutBanner from '../../components/banner/AboutBanner';
+import { closeNav } from '../../redux/modal/nav';
 
 const About = () => {
   const dispatch = useDispatch();

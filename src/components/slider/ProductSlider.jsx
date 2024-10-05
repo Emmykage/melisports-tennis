@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Autoplay, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { naira_format } from '../../../components/utils/naira_format'
+import { naira_format } from '../utils/naira_format'
 import { NavLink } from 'react-router-dom'
 
-const ProductSlider = () => {
+const ProductSlider = ({products, views=4}) => {
     const [mobileView, setMobileView] = useState(false)
-    const {products} = useSelector(state => state.products)
-    console.log(products)
 useEffect(()=> {
 
     const handleResize = () => {
@@ -28,7 +26,7 @@ useEffect(()=> {
 <Swiper
   loop={true}
   speed={700}
-  slidesPerView={mobileView ? 1 : 4}
+  slidesPerView={mobileView ? 1 : views}
   autoplay={{ delay: 3000, disableOnInteraction: false }}  // Autoplay configuration
   modules={[EffectFade, Autoplay]}
     spaceBetween={10}
@@ -36,14 +34,14 @@ useEffect(()=> {
   className="mySwiper"
 >
 
-    {products.slice(0, 12).map(item => (
+    {products?.slice(0, 12).map(item => (
             <SwiperSlide key={item.id}>
 
                 <div className='h-96 px-1 relative rounded overflow-hidden border w-full card'>
                     <div className='h-full'>
                         <NavLink to={`/productdetails/${item?.id}`}>
 
-                    <img src={item.photo_urls[0]} className='h-full w-full object-contain' />
+                    <img src={item?.photo_urls ? item?.photo_urls[0] :  item?.image} className='h-full w-full object-contain' />
                     </NavLink>
 
                     </div>

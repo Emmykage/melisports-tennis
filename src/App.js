@@ -19,15 +19,17 @@ import PrivacyPolicy from './pages/resources/PrivacyPolicy';
 import Accounts from './pages/resources/Accounts';
 import LoadingPage from './components/feature/LoadingPage';
 import ShopHome from './pages/shop-page/Home';
+import Arrivals from './pages/shop-page/Arrivals';
+import NotFound from './pages/NotFound';
 
-const ApparelsPage = lazy(() => import('./pages/Apparels'));
-const BagsPage = lazy(() => import('./pages/BagsPage'));
+const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
+const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
 const Cart = lazy(() => import('./pages/Cart'));
 const Home = lazy(() => import('./pages/landing-page/Home'));
 
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage'));
-const ShoesPage = lazy(() => import('./pages/Shoe'));
+const ProductsPage = lazy(() => import('./pages/shop-page/ProductsPage'));
+const ShoesPage = lazy(() => import('./pages/shop-page/Shoe'));
 const MainLayout = lazy(() => import('./components/layouts/main'));
 const MainAdmin = lazy(() => import('./components/layouts/mainAdmin'));
 const Messages = lazy(() => import('./components/admin/messages/Messages'));
@@ -39,19 +41,19 @@ const AddProduct = lazy(() => import('./components/admin/addproduct/AddProduct')
 const Reports = lazy(() => import('./components/admin/reports/Reports'));
 const Products = lazy(() => import('./components/admin/products/Products'));
 const AddCategory = lazy(() => import('./components/admin/addcategory/AddCategory'));
-const AccessoriesPage = lazy(() => import('./pages/AccessoriesPage'));
+const AccessoriesPage = lazy(() => import('./pages/shop-page/AccessoriesPage'));
 const EditProduct = lazy(() => import('./components/admin/addproduct/EditProduct'));
-const About = lazy(() => import('./pages/About'));
+const About = lazy(() => import('./pages/landing-page/About'));
 const Services = lazy(() => import('./pages/Services'));
 const MainInfoLayout = lazy(() => import('./components/layouts/mainInfo'));
-const Contact = lazy(() => import('./pages/Contact'));
+const Contact = lazy(() => import('./pages/landing-page/Contact'));
 const BecomeADistributor = lazy(() => import('./pages/BecomeADistributor'));
 const Brands = lazy(() => import('./pages/Brands'));
 const Confirmation = lazy(() => import('./pages/auth/confirmation'));
 const ViewCustomer = lazy(() => import('./components/admin/customers/ViewCustomer'));
 const ImagePreview = lazy(() => import('./components/products/ImagePreview'));
-const Padels = lazy(() => import('./pages/Padels'));
-const BadmintonsPage = lazy(() => import('./pages/Badminton'));
+const Padels = lazy(() => import('./pages/shop-page/padel/Padels'));
+const BadmintonsPage = lazy(() => import('./pages/shop-page/Badminton/Badminton'));
 const SearchPage = lazy(() => import('./pages/SearchPage'));
 
 function App() {
@@ -81,6 +83,7 @@ function App() {
 
         {/* store page  */}
         <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
+        <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/padels" element={<MainLayout><Padels /></MainLayout>} />
         <Route path="/badminton" element={<MainLayout><BadmintonsPage /></MainLayout>} />
@@ -90,10 +93,8 @@ function App() {
         <Route path="/shoes" element={<MainLayout><ShoesPage /></MainLayout>} />
         <Route path="/accessories" element={<MainLayout><AccessoriesPage /></MainLayout>} />
         <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
-        {/* <Route path="/return-policy" element={<MainLayout><ReturnPolicy /></MainLayout>} /> */}
 
         <Route path="/apparels" element={<MainLayout><ApparelsPage /></MainLayout>} />
-        {/* <Route path='/admin/dashboard' element={<AdminHome><Main /></AdminHome> } /> */}
         <Route path="admin">
           <Route path="dashboard" element={<MainAdmin><Main /></MainAdmin>} />
           <Route path="" element={<MainAdmin><Main /></MainAdmin>} />
@@ -127,7 +128,7 @@ function App() {
         </Route>
         <Route path="/preview" element={<MainLayout><ImagePreview /></MainLayout>} />
 
-        <Route path="/loader" element={<><LoadingPage /></>} />
+        <Route path="*" element={<><NotFound /></>} />
         <Route path="/return_policy" element={<MainLayout><ReturnPolicy /></MainLayout>} />
         <Route path="/shipping_policy" element={<MainLayout><ShippingPolicy /></MainLayout>} />
         <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />

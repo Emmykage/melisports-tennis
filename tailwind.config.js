@@ -16,7 +16,8 @@ module.exports = {
         "theme-light": "#f1f1f1",
         "theme-dark": "#2e2e2e",
         primary:"#ff4500",
-        alt: "#929098"
+        alt: "#929098",
+        "theme-darker": "rgb(20, 56, 80)"
       },
       backgroundColor: {
         theme: 'rgb(20, 56, 80)',

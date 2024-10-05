@@ -78,6 +78,27 @@ const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
   // .then(res => res.text());
 });
 
+const getLetestProducts = createAsyncThunk('products/getProductsLatest', async (_, {rejectWithValue}) => {
+
+  try {
+    const response = await fetch(`${baseURL}products/new_arrivals`)
+
+    if(!response.ok){
+      return rejectWithValue({message: response.message})
+    }
+
+
+    const result = await response.json()
+    return result
+
+    
+  } catch (error) {
+    return rejectWithValue({message: "Something went wrong"})
+    
+  }
+  return response;
+});
+
 export {
-  getProducts, getProduct, addProduct, deleteProduct, updateProduct,
+  getProducts, getProduct, addProduct, deleteProduct, updateProduct, getLetestProducts
 };

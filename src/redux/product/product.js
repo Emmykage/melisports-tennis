@@ -63,8 +63,7 @@ const productSlice = createSlice({
       report: 'loading...',
     }),
     [updateProduct.rejected]: (state, action) => {
-      console.log("response not ok but should load false")
-      console.log(action.payload)
+
       return {
       ...state,
       status: 'rejected',

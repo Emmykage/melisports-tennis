@@ -736,9 +736,6 @@ button:active {
   font-size: 0.8rem;
 }
 
-.btn-outline {
-  border: 1px solid black;
-}
 
 .color-grey {
   color: #333;
@@ -938,10 +935,6 @@ table td {
 .prev-details > div button {
   padding: 5px 10px;
   border-radius: 3px;
-}
-
-.text-primary {
-  color: var(--color-main-bg);
 }
 
 .text-pry {

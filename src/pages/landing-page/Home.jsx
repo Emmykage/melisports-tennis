@@ -9,7 +9,7 @@ import badmington from '../../assets/images/banner/X-feel_692_x_364_px.avif';
 import string from '../../assets/images/stringing.jpg';
 import distributor from '../../assets/images/distributor.jpeg';
 import Slider from '../../components/feature/Slider';
-import ReactSlider from '../../components/slider/ReactSlider';
+import ReactSlider from '../../components/slider/CategoriesSlider';
 import { getSportCategories } from '../../redux/actions/product_category';
 import { closeNav } from '../../redux/modal/nav';
 import { closeList } from '../../redux/products/searched';

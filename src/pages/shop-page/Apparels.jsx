@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import SideNav from '../components/sideNav/SideNav';
-import Hero from '../components/banner/Hero';
-import Apparels from '../components/products/Apparels';
-import { getProducts } from '../redux/actions/product';
-import imageBanner from '../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif';
-import { closeList } from '../redux/products/searched';
-import { closeNav } from '../redux/modal/nav';
-import Loader from './Loader';
-import { filterProducts } from '../redux/products/product';
+import { getProducts } from '../../redux/actions/product';
+import imageBanner from '../../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif';
+import { closeList } from '../../redux/products/searched';
+import { closeNav } from '../../redux/modal/nav';
+import { filterProducts } from '../../redux/products/product';
+import Hero from '../../components/banner/Hero';
+import Loader from '../Loader';
+import ProductsGrid from '../../components/products/ProductsGridDisplay';
+import { getProductCategories } from '../../redux/actions/product_category';
+import Nav from '../../components/nav/Nav';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -58,8 +59,12 @@ const ApparelsPage = () => {
     dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProducts());
+    dispatch(getProductCategories());
+
   }, []);
+
   return (
+    <>
     <div className="product-container">
       <Hero image={imageBanner} title="Apparels" />
       <div className="prod-page">
@@ -172,7 +177,7 @@ const ApparelsPage = () => {
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
             <div className="product-align">
               <div className="product-items">
-                <Apparels products={products} status={status} error={error} />
+                <ProductsGrid products={products} status={status} error={error} filter={"apparel"}/>
 
               </div>
 
@@ -196,6 +201,8 @@ const ApparelsPage = () => {
       </div>
 
     </div>
+    </>
+
   );
 };
 

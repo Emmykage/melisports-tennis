@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
-import Slide3 from '../../assets/images/banner/slide_three.jpeg';
 import 'swiper/swiper-bundle.css';
 import { NavLink } from 'react-router-dom';
 
-const ReactSlider = ({ categories }) => {
+const CatSlider = ({ categories, views= 3 }) => {
     const [mobileView, setMobileView] = useState(false)
     useEffect(()=> {
         const handleResize = () => {
@@ -23,19 +22,18 @@ const ReactSlider = ({ categories }) => {
     },[])
 
 
-    console.log(mobileView)
   return (
     <div className='h-96'>
       <Swiper
         loop={true}  // Equivalent to infinite scrolling
         speed={700}  // Equivalent to the speed setting in slick
-        slidesPerView={ mobileView ? 1 : 3}  // Equivalent to slidesToShow
+        slidesPerView={ mobileView ? 1 : views}  // Equivalent to slidesToShow
         autoplay={{ delay: 3000, disableOnInteraction: false }}  // Autoplay configuration
         pagination={{ clickable: true }}  // Equivalent to dots
         modules={[Navigation, Pagination, Autoplay]}  // Include Pagination for dots, Navigation if you want next/prev arrows
         className="mySwiper"
       >
-        {categories.map((item, index) => (
+        {categories?.map((item, index) => (
           <SwiperSlide key={index}>
             <div key={item.id} className='h-96  block mx-1 shrink-0 relative  border swiper-category'>
               <div className='h-full'>
@@ -58,4 +56,4 @@ const ReactSlider = ({ categories }) => {
   );
 };
 
-export default ReactSlider;
+export default CatSlider;

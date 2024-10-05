@@ -1,24 +1,9 @@
-.products-display {
-  border: 1px solid var(--color-info-dark);
-  flex-basis: 24%;
-  text-align: center;
-  padding: 1rem;
-  margin-bottom: 1.3rem;
-  border-radius: 5px;
-  height: fit-content;
-  overflow: hidden;
-  background: white;
-}
+
 
 .product-container {
   min-height: 70vh;
 }
 
-.prod-details .btn {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
 
 .product-details h3 {
   line-height: 2rem;

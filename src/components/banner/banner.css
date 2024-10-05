@@ -52,11 +52,6 @@
   object-fit: cover;
 }
 
-h5 {
-  font-size: 1.8rem;
-  color: #fff;
-}
-
 @media screen and (max-width: 600px) {
   .hero-full {
     height: 270px;

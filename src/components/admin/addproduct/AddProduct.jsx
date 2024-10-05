@@ -69,14 +69,12 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.thickness?.value ?? '');
 
     if (imagePreviews.length > 0 || e.target.image.value) {
       const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
       const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
       const gripSizes = Array.from(e.target.grip_sizes ?? []).map((option) => option.value);
       const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
-      console.log(e.target.thickness?.value ?? '');
 
       const formData = new FormData();
       formData.append('product[name]', e.target.name?.value ?? '');
@@ -117,7 +115,6 @@ const AddProduct = () => {
       });
 
       const data = Object.fromEntries(formData);
-      // console.log(data)
 
       dispatch(addProduct(formData));
     } else {
@@ -125,11 +122,8 @@ const AddProduct = () => {
     }
   };
 
-  console.log(selectSport);
-
   const handleValue = (value) => {
     const cat = sport_categories.find((item) => item.id == value);
-    console.log(sport_categories, value);
     setSelectedSport(cat.name);
   };
 

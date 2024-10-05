@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import Hero from '../components/banner/Hero';
-import Shoes from '../components/products/Shoes';
-import SideNav from '../components/sideNav/SideNav';
-import { getProducts } from '../redux/actions/product';
-import { closeNav } from '../redux/modal/nav';
-import bannerImage from '../assets/images/banner/2023-01_BAB_Banner_70_pourcents_Propulse_Fury_1365x510px-2.avif';
-import { closeList } from '../redux/products/searched';
-import { getProductCategories } from '../redux/actions/product_category';
-import Loader from './Loader';
-import { filterProducts } from '../redux/products/product';
+import Hero from '../../components/banner/Hero';
+import SideNav from '../../components/sideNav/SideNav';
+import { getProducts } from '../../redux/actions/product';
+import { closeNav } from '../../redux/modal/nav';
+import bannerImage from '../../assets/images/banner/2023-01_BAB_Banner_70_pourcents_Propulse_Fury_1365x510px-2.avif';
+import { closeList } from '../../redux/products/searched';
+import { getProductCategories } from '../../redux/actions/product_category';
+import Loader from '../Loader';
+import { filterProducts } from '../../redux/products/product';
+import ProductsGrid from '../../components/products/ProductsGridDisplay';
 
 const ShoesPage = () => {
   const dispatch = useDispatch();
@@ -156,7 +156,7 @@ const ShoesPage = () => {
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
             <div className="product-align ">
               <div className="product-items">
-                <Shoes products={products} status={status} error={error} />
+                <ProductsGrid filter={"shoe"} products={products} status={status} error={error} />
 
               </div>
 

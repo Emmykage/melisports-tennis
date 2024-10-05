@@ -69,7 +69,7 @@ const Nav = () => {
 
                 <li className="nav-item"><NavLink to="/store">Home</NavLink></li>
                 <li className="nav-item">
-                  <NavLink to="/racquets" className="hey">Rackets </NavLink>
+                  <NavLink to={`/racquets?brand=${"babolat"}`} className="hey">Rackets </NavLink>
                   <div className="link-items flex">
                     <div className="">
                       <h3>

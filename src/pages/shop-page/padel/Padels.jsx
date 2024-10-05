@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Hero from '../components/banner/Hero';
-import bannerImage from '../assets/images/banner/Banner_racquets.webp';
-import Products from '../components/products/Products';
-import SideNav from '../components/sideNav/SideNav';
-import { getProductCategories } from '../redux/actions/product_category';
-import { getProducts } from '../redux/actions/product';
+import Hero from '../../../components/banner/Hero'
+import { getProducts } from '../../../redux/actions/product';
+import {
+  filterActivities, filterFeatures, filterGender, filterProducts,
+} from '../../../redux/products/product';
+import { closeNav } from '../../../redux/modal/nav';
+import { closeList } from '../../../redux/products/searched';
+import { getProductCategories } from '../../../redux/actions/product_category';
+import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
+import Loader from '../../Loader';
+import Products from '../../../components/products/ProductsGridDisplay';
 
-import { closeList } from '../redux/products/searched';
-import { closeNav } from '../redux/modal/nav';
-import Loader from './Loader';
-import { filterActivities, filterFeatures, filterProducts } from '../redux/products/product';
-
-const ProductsPage = () => {
+const Padels = () => {
   const dispatch = useDispatch();
-  const { products, status, error } = useSelector((state) => state.products);
+  const { padelRacquets, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
   const category = product_categories?.find((cat) => cat.name === 'racquet');
@@ -65,7 +65,7 @@ const ProductsPage = () => {
 
   return (
     <div className="product-container">
-      <Hero image={bannerImage} title="Racquet" />
+      <Hero image={bannerImage} title="Padel" />
 
       <div className="prod-page">
         <div className="cat-group justify-between max-w-md my-6">
@@ -98,7 +98,6 @@ const ProductsPage = () => {
               <div className="flex items-center mb-2">
                 <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
-
                   Badminton
                 </label>
               </div>
@@ -186,7 +185,7 @@ const ProductsPage = () => {
             ? (
               <div className="product-align ">
                 <div className="product-items">
-                  <Products products={products} status={status} error={error} />
+                  <Products products={padelRacquets} status={status} error={error} />
                 </div>
 
                 <div className="product-details color-grey">
@@ -215,4 +214,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default Padels;

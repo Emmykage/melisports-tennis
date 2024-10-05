@@ -52,7 +52,6 @@ const ProductDetails = () => {
   if (loading) {
     return (<Loader />);
   }
-  console.log(product);
 
   return (
     <section className="px-1">

@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
-import Hero from '../components/banner/Hero';
-import Accessories from '../components/products/Accessories';
-import SideNav from '../components/sideNav/SideNav';
-import { getProducts } from '../redux/actions/product';
-import { closeNav } from '../redux/modal/nav';
-import { filterProducts } from '../redux/products/product';
-import { closeList } from '../redux/products/searched';
-import { getProductCategories } from '../redux/actions/product_category';
-import Loader from './Loader';
-import bannerImage from '../assets/images/banner/2021-Category-Banner-Tennis-Accessories.jpg';
+import Hero from '../../components/banner/Hero';
+import { getProducts } from '../../redux/actions/product';
+import { closeNav } from '../../redux/modal/nav';
+import { filterProducts } from '../../redux/products/product';
+import { closeList } from '../../redux/products/searched';
+import { getProductCategories } from '../../redux/actions/product_category';
+import Loader from '../Loader';
+import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-Accessories.jpg';
+import ProductsGrid from '../../components/products/ProductsGridDisplay';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
@@ -146,7 +145,7 @@ const AccessoriesPage = () => {
             <div className="product-align">
               <div className="product-items">
 
-                <Accessories products={products} status={status} error={error} />
+                <ProductsGrid filter={"accessory"} products={products} status={status} error={error} />
               </div>
               <div className="product-details ">
                 <h3> BABOLAT TENNIS ACCESSORIES BRANDS</h3>

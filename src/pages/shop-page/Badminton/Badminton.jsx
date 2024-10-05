@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Hero from '../components/banner/Hero';
-import { getProducts } from '../redux/actions/product';
+import Hero from '../../../components/banner/Hero';
+import { getProducts } from '../../../redux/actions/product';
 import {
   filterActivities, filterFeatures, filterGender, filterProducts,
-} from '../redux/products/product';
-import { closeNav } from '../redux/modal/nav';
-import { closeList } from '../redux/products/searched';
-import { getProductCategories } from '../redux/actions/product_category';
-import bannerImage from '../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
-import Loader from './Loader';
-import Products from '../components/products/Products';
+} from '../../../redux/products/product';
+import { closeNav } from '../../../redux/modal/nav';
+import { closeList } from '../../../redux/products/searched';
+import { getProductCategories } from '../../../redux/actions/product_category';
+import bannerImage from '../../../assets/images/banner/best-badminton-background-gyixxvloqmf5t6of.webp';
+import Loader from '../../Loader';
+import ProductFilter from '../../../components/products/ProductFilter';
+import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 
-const Padels = () => {
+const BadmintonsPage = () => {
   const dispatch = useDispatch();
-  const { padelRacquets, status, error } = useSelector((state) => state.products);
+  const { badmintonRacquets, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
-
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {
@@ -64,7 +64,7 @@ const Padels = () => {
   }, []);
   return (
     <div className="product-container">
-      <Hero image={bannerImage} title="Padel" />
+      <Hero image={bannerImage} title="Badminton" />
 
       <div className="prod-page">
         <div className="cat-group justify-between max-w-md my-6">
@@ -184,7 +184,7 @@ const Padels = () => {
             ? (
               <div className="product-align ">
                 <div className="product-items">
-                  <Products products={padelRacquets} status={status} error={error} />
+                  <ProductsGrid products={badmintonRacquets} status={status} error={error} />
                 </div>
 
                 <div className="product-details color-grey">
@@ -213,4 +213,4 @@ const Padels = () => {
   );
 };
 
-export default Padels;
+export default BadmintonsPage;

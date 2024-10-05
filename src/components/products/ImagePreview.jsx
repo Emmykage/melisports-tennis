@@ -27,15 +27,13 @@ const ImagePreview = ({ images }) => {
   const handlePrev = (image, index) => {
     setImagePrev(image);
     setShowImage((prev) => !prev);
-    console.log(showImage);
   };
 
   useEffect(() => {
     const closeModal = (e) => {
-      console.log(e.target, imageBoxRef.current);
+
       if (!imageBoxRef.current.contains(e.target)) {
         setShowImage(false);
-        console.log('does not contain');
       }
     };
 

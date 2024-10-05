@@ -63,10 +63,10 @@ const NavInfo = () => {
                 </div>
 
                 <li className="nav-item"><NavLink to="/" onClick={() => dispatch(closeNav())}>Home</NavLink></li>
-                <li className="nav-item"><NavLink to="/products" onClick={() => dispatch(closeNav())}>Products</NavLink></li>
+                <li className="nav-item"><NavLink to="/store" onClick={() => dispatch(closeNav())}>Go to store</NavLink></li>
                 <li className="nav-item"><NavLink to="/contact" onClick={() => dispatch(closeNav())}>Contact Us</NavLink></li>
                 <li className="nav-item"><NavLink to="/about" onClick={() => dispatch(closeNav())}>About Us</NavLink></li>
-                <li className="nav-item"><NavLink to="/store" onClick={() => dispatch(closeNav())}>Go to store</NavLink></li>
+                <li className="nav-item"><NavLink to="/products" onClick={() => dispatch(closeNav())}>Products</NavLink></li>
 
                 {user !== null && ((user.role == 'admin') && (
                 <li className="nav-item">

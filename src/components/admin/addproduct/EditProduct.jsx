@@ -30,8 +30,6 @@ const EditProduct = () => {
   } = useSelector((state) => state.product);
   const [selectSport, setSelectedSport] = useState(product?.sport_category?.name);
 
-  console.log(loading)
-
   const levels = useSelector((state) => state.level.levels);
 
   const genders = useSelector((state) => state.gender.genders);
@@ -81,12 +79,10 @@ const EditProduct = () => {
     const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
     const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
     const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
-    console.log(colorsValues);
 
     // const gripSizes = Array.from(e.target.grip_sizes)
 
     const gripSizes = Array.from(e.target.grip_sizes ?? []).map((option) => option.value);
-    // console.log(e.target.level_id?.value);
 
     const formData = new FormData();
 
@@ -129,16 +125,14 @@ const EditProduct = () => {
 
     const data = Object.fromEntries(formData);
     dispatch(updateProduct({ editId, formData }));
-    // console.log(data);
   };
-  console.log(product, selectSport);
+
   useEffect(() => {
     setSelectedSport(product?.sport_category?.name);
   }, [product]);
 
   const handleValue = (value) => {
     const cat = sport_categories.find((item) => item.id == value);
-    console.log(sport_categories, value);
     setSelectedSport(cat.name);
   };
 

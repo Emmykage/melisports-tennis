@@ -4,10 +4,10 @@ import {
   FaPhone, FaWhatsapp, FaFacebook, FaInstagram,
 } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
-import Hero from '../components/banner/Hero';
-import { closeNav } from '../redux/modal/nav';
+import Hero from '../../components/banner/Hero';
+import { closeNav } from '../../redux/modal/nav';
 
-import bannerImage from '../assets/images/banner/Babolat_NEWS-Banniere_1365x510_PureDrive21.webp';
+import bannerImage from '../../assets/images/banner/Babolat_NEWS-Banniere_1365x510_PureDrive21.webp';
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Contact = () => {
                 {' '}
                 <FaPhone />
                 {' '}
-                <a href="tel:+2348062329699" className="text-dark">+2348062329699</a>
+                <a href="tel:+2347038723093" className="text-dark">+2347038723093</a>
                 {' '}
               </div>
               <div className="flex items-center gap-4">
