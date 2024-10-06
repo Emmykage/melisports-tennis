@@ -14,6 +14,7 @@ import { getSportCategories } from '../../redux/actions/product_category';
 import { closeNav } from '../../redux/modal/nav';
 import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
+import CommunityBanner from '../../components/banner/CommunityBanner';
 
 
 const Home = () => {
@@ -109,6 +110,8 @@ const Home = () => {
           </div>
 
         </div>
+
+        <CommunityBanner/>
 
       </div>
     </>

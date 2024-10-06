@@ -143,7 +143,7 @@
   --color-warning: #fb5;
   --color-orange: #ff4500;
   --color-theme: rgba(255, 69, 0, 1);
-  --color-theme-variant: rgb(20, 56, 80);
+  --color-theme-variant: #143850;
   --color-theme-light: rgba(20, 56, 80, 0.774);
 
   --color-primary: #081d2b;
@@ -953,9 +953,6 @@ table td {
   background: linear-gradient(#13509218, white);
 }
 
-.bg-theme {
-  background-color: #135092;
-}
 
 .whatsapp {
   padding-top: 4px;

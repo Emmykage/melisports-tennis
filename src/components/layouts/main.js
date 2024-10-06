@@ -6,6 +6,7 @@ import Modal from '../modal/Modal';
 import ChatBox from '../sideNav/ChatBox';
 import { closeNav } from '../../redux/modal/nav';
 import MobileFooter from '../footer/mobile_footer';
+import FooterInfo from '../footer-info/FooterInfo';
 
 const MainLayout = ({ children }) => {
   const { isOpen } = useSelector((state) => state.modal);
@@ -22,6 +23,8 @@ const MainLayout = ({ children }) => {
       {isOpen && <Modal />}
       <Nav />
       {children}
+      <FooterInfo/>
+
       <Footer />
       <ChatBox />
       <MobileFooter />
