@@ -38,6 +38,14 @@ useEffect(()=> {
             <SwiperSlide key={item.id}>
 
                 <div className='h-96 px-1 relative rounded overflow-hidden border w-full card'>
+                  {item.new_product &&               
+                  <div className='absolute top-6 left-0 p-2 bg-red-600/70 rounded'>
+                    <p className='text-white font-semibold'>New</p>
+
+
+                  </div>}
+              
+    
                     <div className='h-full'>
                         <NavLink to={`/productdetails/${item?.id}`}>
 
@@ -52,7 +60,7 @@ useEffect(()=> {
 
                     <p className='text-lg text-white font- my-6'>{naira_format(item?.price)}</p>
                     </div>
-                    <div className='info-fix absolute bottom-0 left-0 w-full bg-theme/70 text-center flex items-center justify-center transition-all ease-linear duration-300'>
+                    <div className='info-fix min-h-16 absolute bottom-0 left-0 w-full bg-theme/70 text-center flex items-center justify-center transition-all ease-linear duration-300 px-5'>
                     <p className='text-white  underline-offset-2 text-base font-'>{item?.name}</p>
 
                     </div>

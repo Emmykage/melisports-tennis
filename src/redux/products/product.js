@@ -23,6 +23,7 @@ const productsSlice = createSlice({
     [getProducts.fulfilled]: (state, action) => {
       const products_badminton = action.payload.filter((badminton) => badminton.sport_category?.name == 'Badminton');
       const products_padel = action.payload.filter((padel) => padel.sport_category?.name == 'Padel');
+      const sortedLatest  = [...state.products].filter((item) => item.new_product);
 
       return {
         ...state,
@@ -30,6 +31,8 @@ const productsSlice = createSlice({
         loading: false,
         products: action.payload,
         padelRacquets: products_padel,
+        latestArrival: sortedLatest,
+
         badmintonRacquets: products_badminton,
       };
     },
