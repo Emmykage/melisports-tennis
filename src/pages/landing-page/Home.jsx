@@ -35,14 +35,14 @@ const Home = () => {
         <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
           <div className="relative item top h-52 md:h-80">
             <img src={string} className='w-full h-full'/>
-            <div className="absolute overlay  bg-theme/20">
+            <div className="absolute overlay flex items-center justify-center bg-theme/20">
               <h3 className="white font-normal">Stringing racquets</h3>
 
             </div>
           </div>
           <div className="relative item top h-52 md:h-80">
             <img src={demo_service} className="w-full" />
-            <div className="absolute overlay  bg-theme/20">
+            <div className="absolute overlay flex items-center justify-center  bg-theme/20">
               <h3 className="white font-normal">Demo Program</h3>
 
             </div>
@@ -53,7 +53,7 @@ const Home = () => {
         <div className=' bg-gray-500 my-2'>
           <div className="relative item top h-52 md:h-80 xl:h-[500px]">
             <img src={distributor} className='h-full w-full'/>
-            <div className="absolute overlay bg-theme/20">
+            <div className="absolute overlay flex items-center justify-center bg-theme/20">
               <div className="">
                 <h3 className="white font-normal">Wholesale Distribution</h3>
                 <NavLink to="/distributor" className="btn block m-auto px-4 py-3 ">Become a Distributor</NavLink>

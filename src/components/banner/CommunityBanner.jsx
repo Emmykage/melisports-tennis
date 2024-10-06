@@ -13,7 +13,7 @@ const CommunityBanner = () => {
         Join the Melisport Comunity
 
         </h3>
-        <div className='flex-1 bg-red- flex items-center flex-wrap gap-5'>
+        <div className='flex-1 bg-red- flex items-center sm:justify-center lg:justify-start flex-wrap gap-5'>
         <a href='https://www.facebook.com/melisports' target='_blank' className='flex items-center text-light font-medium'> <FaFacebookF className='md:text-2xl text-xl text-white' /> @Melisports </a>
         <a href='https://x.com/melisports' target='_blank' className='flex items-center text-light font-medium'> <BsTwitterX  className='md:text-2xl text-xl text-white' /> @Melisports </a>
         <a href='https://www.instagram.com/melisports/' target='_blank' className='flex items-center text-light font-medium gap-1'> <BsInstagram   className='md:text-2xl text-xl text-white' /> @Melisports </a>
