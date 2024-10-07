@@ -167,18 +167,11 @@
   --padding-1: 1.2rem;
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
-.text-dark{
-  color: var(--color-dark);
-}
-
 
 body {
   font-size: 14px;
   background: var(--color-background);
   color: rgb(20, 56, 80);
-}
-.text-red {
-  color: red;
 }
 
 .text-green {
@@ -191,21 +184,6 @@ hr{
   border: 1px solid rgb(186, 88, 88);
 }
 
-.grid-display {
-  display: grid;
-}
-
-.grid-third {
-  grid-template-columns: 3fr 1fr;
-}
-
-.grid-3 {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.grid-2 {
-  grid-template-columns: 1fr 1fr;
-}
 .image-slider-img{
 transition: translate 0.3s ease-in-out;
 }
@@ -798,10 +776,6 @@ button:active {
 
 .grid {
   display: grid;
-}
-
-.grid-2 {
-  grid-template-columns: 1fr 1fr;
 }
 
 .banner-text {
@@ -1412,21 +1386,11 @@ td .btn.change {
     padding: 0.6rem;
   }
 
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
-
-
-
-
    .cat-group .btn {
     font-size: 0.8rem;
   }
 
-  .product-align {
-    width: 100%;
-  }
-
+ 
   .flex.row {
     flex-direction: row;
   }

@@ -1,12 +1,16 @@
 import React from 'react';
 import './footer.css';
 import { NavLink } from 'react-router-dom';
+import logo from '../../assets/images/logo/melisport_3.png';
+
 
 const Footer = () => (
-  <footer>
+  <footer className='bg-theme pt-6 leading-7 px-5'>
     <div className="m-auto footer-container flex gap-3 my-10 ">
       <div>
-        <h4 className="text-2xl text-center">MeliSport</h4>
+        <h4 className="text-2xl text-center">
+          <NavLink> <img src={logo} alt="logo" className="w-28 m-auto" /> </NavLink>
+        </h4>
         <p className="text-center">
           For over 10 years we have been dedicated to providing an incomparable
           collection of tennis and racqet sport collection
@@ -14,7 +18,7 @@ const Footer = () => (
 
       </div>
       <div>
-        <h4>RESOURCES</h4>
+        <h4 className="text-xl text-light">RESOURCES</h4>
         <ul>
           {/* <li>Membership</li> */}
           <li>
@@ -50,7 +54,7 @@ const Footer = () => (
         </ul>
       </div>
       <div>
-        <h4> CONTACT US</h4>
+        <h4  className="text-xl text-light tracking-wide"> CONTACT US</h4>
         <p>
           Phone: +234-7064334160
           {' '}
@@ -68,7 +72,7 @@ const Footer = () => (
       </div>
       <div>
         <ul>
-          <h4>Connect With Us</h4>
+          <h4  className="text-xl text-light tracking-wide">Connect With Us</h4>
           <li>
             <a href="https://web.facebook.com/melisports">Facebook</a>
             {' '}

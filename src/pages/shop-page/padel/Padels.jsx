@@ -183,7 +183,7 @@ const Padels = () => {
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (
-              <div className="product-align ">
+              <div className="product-align w-full">
                 <div className="product-items">
                   <Products products={padelRacquets} status={status} error={error} />
                 </div>

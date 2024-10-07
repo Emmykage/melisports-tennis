@@ -9,7 +9,7 @@ const BecomeADistributor = () => (
 
       <div className="contact-us ">
 
-        <div className="grid grid-2 gap-1">
+        <div className="grid grid-cols-2 gap-1">
 
           <div className="p-3">
             <div className="">

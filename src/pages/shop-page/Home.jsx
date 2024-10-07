@@ -74,21 +74,21 @@ const ShopHome = () => {
       
       <img src={Tennis} alt="" className='w-full h-full hover:scale-105'/>
       <NavLink to={"/racquets"} className='absolute flex top-0 left-0 h-full w-full '>
-        <h3 className='mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-theme-light ml-10'>Tennis</h3>
+        <h3 className='mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-light ml-10'>Tennis</h3>
 
       </NavLink>
     </div>
     <div className='relative zoom-effect overflow-hidden'>
       <img src={Padel} alt="" className='w-full h-full hover:scale-105'/>
       <NavLink to={"/padels"} className='absolute flex top-0 left-0 h-full w-full '>
-        <h3 className='mt-auto mb-10 text-xl md:text-2xl tracking-widest bg-theme-darker/40 px-6 py-3  rounded text-theme-light ml-10'>Padel</h3>
+        <h3 className='mt-auto mb-10 text-xl md:text-2xl tracking-widest bg-theme-darker/40 px-6 py-3  rounded text-light ml-10'>Padel</h3>
 
       </NavLink>
     </div>
     <div className='relative zoom-effect overflow-hidden'>
       <img src={Badminton} alt=""  className='w-full h-full'/>
       <NavLink to={"/badminton"} className='absolute flex top-0 left-0 h-full w-full '>
-        <h3 className='mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-theme-light ml-10'>Badminton</h3>
+        <h3 className='mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-light ml-10'>Badminton</h3>
 
       </NavLink>
     </div>
@@ -98,7 +98,7 @@ const ShopHome = () => {
 
       <section className='px-3  py-20'>
         <h3 className='text-2xl text-center'> <NavLink className={"hover:text-primary"} to={"/arrivals"}> New Arrivals</NavLink></h3>
-        <div className='m-auto max-w-7xl my-6 '>
+        <div className='m-auto max-w-7xl my-6 bg-white p-4 md:p-10 border rounded shadow-sm'>
         <ProductSlider products={latestArrival}views={4} />
 
         </div>

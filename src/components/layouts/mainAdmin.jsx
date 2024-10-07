@@ -36,7 +36,7 @@ const MainAdmin = ({ children }) => {
               {isOpen && <ProdDelModal id={id} />}
               {catOpen && <CatDelModal id={catId} />}
               <SideNav showMenu={showMenu} handleMenu={handleMenu} />
-              <div className="px-4 pt-24 md:pt-6 overflow-y-auto h-screen">
+              <div className="px-4 pt-24 md:pt-6 overflow-y-auto h-screen no-scroll">
                 {' '}
                 {children}
               </div>

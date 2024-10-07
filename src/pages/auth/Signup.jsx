@@ -162,7 +162,7 @@ export default function SignUp() {
                 {loading && 'loading...' }
               </p>
 
-              <p className="text-red">
+              <p className="text-red-500">
                 {' '}
                 {error && message }
               </p>

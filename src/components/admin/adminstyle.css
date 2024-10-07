@@ -22,6 +22,10 @@ body {
 .admin-container * {
   font-family: poppins, sans-serif;
 }
+.no-scroll::-webkit-scrollbar{
+  display: none;
+
+}
 
 
 .admin-img {

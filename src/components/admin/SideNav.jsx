@@ -27,7 +27,7 @@ const SideNav = (props) => {
   };
   return (
 
-    <aside className={`${showMenu ? 'display' : ''}`}>
+    <aside className={`${showMenu ? 'display' : ''} no-scroll border-r shadow`}>
       <div className="top">
 
         <div className="logo text-center">

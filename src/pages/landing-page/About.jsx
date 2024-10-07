@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import nadal_art from '../../assets/images/nadal-art.png';
 import AboutBanner from '../../components/banner/AboutBanner';
 import { closeNav } from '../../redux/modal/nav';
+import CommunityBanner from '../../components/banner/CommunityBanner';
 
 const About = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const About = () => {
       <div className="px-4">
 
         <div className="about-us text-pry">
-          <div className="segment segment-one grid grid-2 gap-2 my-3 py-6">
+          <div className="segment segment-one grid grid-cols-2 gap-2 my-3 py-6">
             <div className="flex justify-center items-align">
               <h2 className="text-white font-medium">More...</h2>
             </div>
@@ -34,7 +35,7 @@ const About = () => {
             </div>
 
           </div>
-          <div className="grid grid-2">
+          <div className="grid grid-cols-2">
             <div className=" bg- text-center flex items-center justify-center">
               <div className="w-080 bg- ">
                 <img src={nadal_art} alt="" className="w-full" />
@@ -69,7 +70,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="grid grid-2  my-3 py-2 why-chose">
+          <div className="grid grid-cols-2  my-3 py-2 why-chose">
 
             <div className="font-normal to-bottom">
               <ul className="text-justify text-base">
@@ -112,7 +113,7 @@ const About = () => {
             </div>
             <div />
           </div>
-          <div className="segment items-center segment-three grid grid-2 p-4">
+          <div className="segment items-center segment-three grid grid-cols-2 p-4">
             <div>
               <h2 className="text-3xl font-medium">Join the Melisports Community:</h2>
             </div>
@@ -126,6 +127,7 @@ const About = () => {
 
         </div>
       </div>
+      <CommunityBanner/>
 
     </div>
   );

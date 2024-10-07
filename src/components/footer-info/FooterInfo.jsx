@@ -9,7 +9,7 @@ import { CiMail } from "react-icons/ci";
 const FooterInfo = () => {
   return (
     <section className='mt-10'>
-    <div className='grid grid-cols-2 md:grid-cols-info-bottom'>
+    <div className='grid grid-cols-2 md:grid-cols-4 xl:grid-cols-info-bottom'>
       <div className='md:border flex flex-col justify-center items-center md:shadow py-6 text-center'>
         <img src={delivery} alt="" />
         <p className='text-base font-medium'>Free Delivery over NGN300000</p>

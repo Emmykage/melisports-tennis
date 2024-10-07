@@ -13,10 +13,10 @@ module.exports = {
 
       },
       colors: {
-        theme: 'rgb(20, 56, 80)',
+        theme: '#16304b',
         "theme-alt": "#16304b",
-        "theme-light": "#93c4e4",
-
+        "theme-light": "rgb(20, 56, 80)",
+        dark: "#363949",
         "light": "#f1f1f1",
         "theme-dark": "#2e2e2e",
         primary:"#ff4500",

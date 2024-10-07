@@ -192,7 +192,7 @@ const Arrivals = () => {
   
             {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
               ? (
-                <div className="product-align ">
+                <div className="product-align w-full ">
                   <div className="product-items">
                     <ProductFilter products={latestArrival} status={status} error={error} />
                   </div>

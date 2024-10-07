@@ -49,19 +49,19 @@ const Products = () => {
               </a>
 
             </div>
-            <div className="prod-details">
+            <div className="prod-details text-center">
               <h5 className="text-gray-900">
                 {product.name.substring(0, 15)}
                 ...
               </h5>
               <p>{NGNaira.format(product.price)}</p>
               <a
-                className="btn btn-outline max-width my-1"
+                className="btn btn-outline max-width my-1 py-1 text-center"
                 onClick={() => dispatch(openDelModal(product.id))}
               >
                 Delete
               </a>
-              <a className="btn btn-outline max-width" onClick={() => toEdit(product.id)}>
+              <a className="btn btn-outline max-width text-center py-1" onClick={() => toEdit(product.id)}>
                 Edit
               </a>
 

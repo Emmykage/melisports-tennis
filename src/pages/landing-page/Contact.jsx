@@ -8,6 +8,7 @@ import Hero from '../../components/banner/Hero';
 import { closeNav } from '../../redux/modal/nav';
 
 import bannerImage from '../../assets/images/banner/Babolat_NEWS-Banniere_1365x510_PureDrive21.webp';
+import CommunityBanner from '../../components/banner/CommunityBanner';
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const Contact = () => {
 
       <div className="contact-us ">
 
-        <div className="grid grid-2 gap-1">
+        <div className="grid grid-cols-2 gap-1">
 
           <div className="p-3">
             <div className="">
@@ -72,6 +73,8 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      <CommunityBanner/>
     </div>
   );
 };

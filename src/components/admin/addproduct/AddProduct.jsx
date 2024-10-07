@@ -683,21 +683,7 @@ const AddProduct = () => {
 
           </div>
 
-          {/* <div>
-            <label htmlFor="" className="text-dark font-semibold text-sm">
-              {' '}
-              <span>Description *</span>
-              {' '}
-              <span />
-              {' '}
-            </label>
-            <textarea
-              name="description"
-              placeholder="Enter description"
-              required
-            />
-
-          </div>  */}
+       
           <div>
             <input id="trix" type="hidden" name="description_body" />
             <trix-editor input="trix" />

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Babolat from '../../assets/images/logo/ba4886b10b-babolat-logo-babolat-logo-png-transparent-images-free-png-images-vector-psd.png';
 import melisport from '../../assets/images/logo/melisport_one.png';
-import demo_service from '../../assets/images/babolat-demo.jpg';
+import demo_service from '../../assets/images/demo.webp';
 import shoeImage from '../../assets/images/banner/Jet_Tere_692x364_1.avif';
 import badmington from '../../assets/images/banner/X-feel_692_x_364_px.avif';
-import string from '../../assets/images/stringing.jpg';
+import string from '../../assets/images/babolat_stringing.webp';
 import distributor from '../../assets/images/distributor.jpeg';
 import Slider from '../../components/feature/Slider';
 import ReactSlider from '../../components/slider/CategoriesSlider';
@@ -15,6 +15,7 @@ import { closeNav } from '../../redux/modal/nav';
 import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
 import CommunityBanner from '../../components/banner/CommunityBanner';
+import DiscoverBtn from '../../components/buttons/DiscoverBtn';
 
 
 const Home = () => {
@@ -56,8 +57,10 @@ const Home = () => {
             <div className="absolute overlay flex items-center justify-center bg-theme/20">
               <div className="">
                 <h3 className="white font-normal">Wholesale Distribution</h3>
-                <NavLink to="/distributor" className="btn block m-auto px-4 py-3 ">Become a Distributor</NavLink>
+                <div className='w-max bg-red-400 m-auto '>
+                <DiscoverBtn btnText='Become a Distributor' link={"/distributor"}/>
 
+                </div>
               </div>
 
             </div>

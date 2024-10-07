@@ -192,7 +192,7 @@ const SearchPage = () => {
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (
-              <div className="product-align ">
+              <div className="product-align w-full ">
                 <div className="product-items">
                   <AllProducts products={search_product_page} status={status} error={error} />
                 </div>

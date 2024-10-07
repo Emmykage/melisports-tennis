@@ -95,7 +95,7 @@ export default function Confirmation() {
                 {loading && 'loading...'}
               </p>
 
-              <p className="text-red">
+              <p className="text-red-600">
                 {' '}
                 {error && message }
               </p>
