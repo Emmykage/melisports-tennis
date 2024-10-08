@@ -3,8 +3,9 @@ import baseURL from '../baseURL';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 
-const getProducts = createAsyncThunk('products/getProducts', async () => {
+const getProducts = createAsyncThunk('products/getProducts', async (_, {rejectWithValue}) => {
   const response = await fetch(`${baseURL}products`).then((res) => res.json());
+  console.log(response)
   return response;
 });
 

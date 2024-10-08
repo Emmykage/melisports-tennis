@@ -37,8 +37,8 @@ const SearchComponent = () => {
     if (searched_products) setShowSearchList(true);
   }, [searched_products]);
   return (
-    <div className="search-component">
-      <form className="search-form" onSubmit={handleSearch} ref={searchForm}>
+    <div className="search-component  bg-theme">
+      <form className="search-form p-4" onSubmit={handleSearch} ref={searchForm}>
         <div className="search-div">
           <input type="text" placeholder="Search item" value={search} name="search" id="search" onChange={handleInput} />
           <button type="submit">

@@ -21,15 +21,15 @@ const productsSlice = createSlice({
   initialState,
   extraReducers: {
     [getProducts.fulfilled]: (state, action) => {
-      const products_badminton = action.payload.filter((badminton) => badminton.sport_category?.name == 'Badminton');
-      const products_padel = action.payload.filter((padel) => padel.sport_category?.name == 'Padel');
-      const sortedLatest  = [...state.products].filter((item) => item.new_product);
+      const products_badminton = action.payload.data.filter((badminton) => badminton.sport_category?.name == 'Badminton');
+      const products_padel = action.payload.data.filter((padel) => padel.sport_category?.name == 'Padel');
+      const sortedLatest  = action.payload.data.filter((item) => item.new_product);
 
       return {
         ...state,
         status: 'success',
         loading: false,
-        products: action.payload,
+        products: action.payload.data,
         padelRacquets: products_padel,
         latestArrival: sortedLatest,
 

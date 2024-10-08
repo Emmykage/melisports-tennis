@@ -114,15 +114,9 @@ nav .logo a {
   border-radius: 0 6px 6px 0;
 }
 
-.search-component {
-  position: relative;
-  padding: 0;
-  margin: 0;
-  background-color: var(--color-theme-variant);
-}
 
 .search-component form {
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .link-items {
