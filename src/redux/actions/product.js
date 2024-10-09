@@ -2,11 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
+// console.log(token(), "fectched")
 
 const getProducts = createAsyncThunk('products/getProducts', async (_, {rejectWithValue}) => {
+  let count = 0
   const response = await fetch(`${baseURL}products`).then((res) => res.json());
-  console.log(response)
-  return response;
+  // console.log("first")
+  console.log("response count:", count++)
+// console.log(token(), "fectched")
+console.log(response)
+return response;
 });
 
 const filterProducts = createAsyncThunk('products/getProducts', async (sieve) => {

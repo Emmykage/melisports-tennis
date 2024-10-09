@@ -58,7 +58,7 @@ const ApparelsPage = () => {
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
-    dispatch(getProducts());
+    products.length == 0 && dispatch(getProducts());
     dispatch(getProductCategories());
 
   }, []);

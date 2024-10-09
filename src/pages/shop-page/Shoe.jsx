@@ -48,7 +48,7 @@ const ShoesPage = () => {
   useEffect(() => {
     dispatch(closeList());
     dispatch(closeNav());
-    dispatch(getProducts());
+    products.length == 0 && dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
 

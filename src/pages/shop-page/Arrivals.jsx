@@ -57,10 +57,7 @@ const Arrivals = () => {
     };
   
     useEffect(() => {
-    // dispatch(getProducts()).then(() => {
-    //     dispatch(getLatest())
-
-    // })
+  
       dispatch(getProductCategories());
 
     }, []);

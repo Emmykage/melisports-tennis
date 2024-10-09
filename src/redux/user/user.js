@@ -2,10 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addUser,
   loginUser,
+  userProfile,
 } from '../actions/auth';
 
 const initialState = {
-  user: {},
+  user: null,
   users: [],
   userEdit: {},
   error: false,
@@ -18,21 +19,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userLog: (state) => {
-      try {
-        const auth = localStorage.getItem('meli_auth');
 
         return {
           ...state,
-          user: JSON.parse(auth).user,
-          logged: true,
+          // user: JSON.parse(auth).user
 
         };
-      } catch {
-        return {
-          ...state,
-          user: null,
-        };
-      }
+      
     },
   },
   extraReducers: {
@@ -71,39 +64,43 @@ const userSlice = createSlice({
     }),
     [loginUser.fulfilled]: (state, action) => {
       const response = action.payload;
-
-      if (response.user) {
-        const collect = JSON.stringify(response);
-        localStorage.setItem('meli_auth', collect);
-
         return {
           ...state,
           logged: true,
-          user: response.user,
           error: false,
           loading: false,
-          message: 'log in successful',
+          message: response.message,
+          user: response.data
         };
-      }
-
-      return {
-        ...state,
-        logged: false,
-        loading: false,
-        error: true,
-        message: action.payload.error,
-      };
+  
     },
-    [loginUser.rejected]: (state) => ({
+    [loginUser.rejected]: (state, action) => ({
       ...state,
       loading: false,
       error: true,
-      message: 'No Internet connection',
+      message: action.payload.message,
     }),
     [loginUser.pending]: (state) => ({
       ...state,
       loading: true,
     }),
+
+    [userProfile.fulfilled]: (state, action) => {
+
+      return{
+        ...state,
+        user: action.payload.data
+      }
+    },
+    [userProfile.rejected]: (state, action) => {
+      console.log("reture=ned token", action.payload)
+
+      return{
+        ...state,
+        message: action.payload.message,
+        user: null
+      }
+    }
   },
 });
 

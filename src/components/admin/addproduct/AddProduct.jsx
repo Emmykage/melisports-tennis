@@ -208,7 +208,6 @@ const AddProduct = () => {
                 id="price"
                 type="number"
                 placeholder="price"
-                required
               />
 
             </div>

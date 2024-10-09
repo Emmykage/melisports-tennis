@@ -757,23 +757,8 @@ const EditProduct = () => {
 
               </div>
 
-              {/* <div>
-                <label htmlFor="" className="text-dark font-semibold text-sm">
-                  {' '}
-                  <span>Description</span>
-                  {' '}
-                  <span />
-                  {' '}
-                </label>
-                <textarea
-                  onChange={handleFormInput}
-                  value={product.description}
-                  name="description"
-                  placeholder="Enter description"
-                  required
-                />
-
-              </div> */}
+              
+              {product?.description && <div> <p>{product?.description} </p> </div>}
               <div>
                 <input id="trix" type="hidden" name="description_body" value={product?.description_body}/>
                 <trix-editor input="trix" />

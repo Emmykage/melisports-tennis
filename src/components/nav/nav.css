@@ -9,7 +9,7 @@
 
 }
 
-.navbar.sticky-nav a{
+.navbar.sticky-nav a,.navbar.sticky-nav .menu-icon{
 color: #fff;
 
 }
@@ -73,6 +73,7 @@ nav .logo a {
   color: white;
   display: flex;
   align-items: flex-start;
+  text-wrap: nowrap;
 }
 
 .nav-item a {
@@ -116,7 +117,6 @@ nav .logo a {
 
 
 .search-component form {
-  /* padding: 1rem; */
 }
 
 .link-items {

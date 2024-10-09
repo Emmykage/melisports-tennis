@@ -48,9 +48,10 @@ const AccessoriesPage = () => {
   };
 
   useEffect(() => {
+    products.length == 0 && dispatch(getProducts());
+
     dispatch(closeNav());
     dispatch(closeList());
-    dispatch(getProducts());
     dispatch(getProductCategories());
   }, []);
   if (loading) {

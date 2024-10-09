@@ -42,7 +42,7 @@ export default function Login() {
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, loading,
+    user, error, message, loading, logged
   } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -58,9 +58,22 @@ export default function Login() {
         password: data.get('password'),
       },
     };
-    dispatch(loginUser(formInput));
+    dispatch(loginUser(formInput))
+    // .then((response) => {
+    //   if(response.meta.requestStatus == "pending"){
+    //     console.log("Login loading", response)
+    //   } else if(response.meta.requestStatus == "fulfilled"){
+    //     console.log("Login Successful", response)
+    //   }else if(response.meta.requestStatus == "rejected"){
+    //     console.log("Login rejected", response.meta.payload)
+
+    //   }
+    // }).catch(error => {
+    //   console.log("Login somehting", error)
+
+    // });
   };
-  if (user == null || user == undefined) {
+  if (!logged) {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">

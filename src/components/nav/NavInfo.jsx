@@ -11,6 +11,7 @@ import SearchComponent from './SearchComponent';
 import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
+import { userProfile } from '../../redux/actions/auth';
 
 const NavInfo = () => {
   const navigate = useNavigate();
@@ -27,15 +28,16 @@ const NavInfo = () => {
       setStickyNav('');
     }
   };
+  console.log(user)
+
   useEffect(() => {
-    dispatch(userLog());
     dispatch(getCarts());
     dispatch(calculateTotal());
     window.addEventListener('scroll', toggleScrollNav);
   }, [update]);
   const handleLogOut = () => {
-    localStorage.setItem('meli_auth', '');
-    dispatch(userLog());
+    localStorage.removeItem('meli_auth', '');
+    dispatch(userProfile())
     navigate('/auth/login');
   };
   return (
@@ -48,7 +50,7 @@ const NavInfo = () => {
               <FiMenu className="menu-icon" onClick={() => dispatch(openNav())} />
             </a>
           </div>
-          <div className="logo">
+          <div className="logo shrink-0">
             <NavLink className="img-div" to="/">
               <img src={logo} alt="" />
             </NavLink>
@@ -89,9 +91,8 @@ const NavInfo = () => {
             <div className="flex justify-between items-center">
 
               <div className="user mobile-display ">
-                {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
-
-                <span className="text-dark"><FiUser className="user-icon" /></span>
+                {user ? <a onClick={handleLogOut}>Log Out</a> :  <NavLink to="/auth/login">Login</NavLink> }
+                <span className="text-dark"><FiUser className="menu-icon user-icon" /></span>
 
               </div>
               <NavLink to="/store">

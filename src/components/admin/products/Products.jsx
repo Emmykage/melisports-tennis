@@ -18,7 +18,7 @@ const Products = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
+    products.length == 0 && dispatch(getProducts());
   }, [updater]);
   const toEdit = (id) => {
     dispatch(getProduct(id));

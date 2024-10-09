@@ -29,6 +29,7 @@ const ProductsPage = () => {
     });
   };
 
+
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
       dispatch(getProducts()).then(() => {
@@ -62,6 +63,8 @@ const ProductsPage = () => {
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
+    products.length == 0 && dispatch(getProducts());
+
     dispatch(getProductCategories());
   }, []);
 

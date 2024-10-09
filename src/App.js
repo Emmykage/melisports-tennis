@@ -21,6 +21,7 @@ import LoadingPage from './components/feature/LoadingPage';
 import ShopHome from './pages/shop-page/Home';
 import Arrivals from './pages/shop-page/Arrivals';
 import NotFound from './pages/NotFound';
+import useInitializeData from './hooks/useInitializeData';
 
 const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
 const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
@@ -59,7 +60,7 @@ const SearchPage = lazy(() => import('./pages/SearchPage'));
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
   // const { setcategoryModal } = useSelector((state) => state.modal_categories);
-
+  useInitializeData()
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(calculateTotal());

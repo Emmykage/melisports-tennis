@@ -28,9 +28,10 @@ const Nav = () => {
       setStickyNav('');
     }
   };
+  console.log(user)
+
   useEffect(() => {
     dispatch(getProducts());
-    dispatch(userLog());
     dispatch(getCarts());
     dispatch(calculateTotal());
 
@@ -222,12 +223,12 @@ const Nav = () => {
               <div className="user mobile-display ">
                 {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
-                <span><FiUser className="user-icon" /></span>
+                <span><FiUser className="user-icon menu-icon" /></span>
 
               </div>
 
               <div className="menu-div cart">
-                <NavLink to="/carts">
+                <NavLink  to="/carts">
 
                   <BsCartDash className="menu-icon cart-icon" />
                   <span className="total-amount text-white bold">{counter}</span>
