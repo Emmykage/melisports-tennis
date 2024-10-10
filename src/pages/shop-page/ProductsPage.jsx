@@ -74,7 +74,7 @@ const ProductsPage = () => {
     <div className="product-container">
       <Hero image={bannerImage} title="Racquet" />
 
-      <div className="prod-page">
+      <div className="prod-page  max-w-[1600px] m-auto">
         <div className="cat-group justify-between max-w-md my-6">
           <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>

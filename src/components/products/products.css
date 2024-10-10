@@ -18,9 +18,16 @@
 }
 
 .product-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2%;
+}
+@media (max-width: 768px) {
+  .product-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2%;
+  }
 }
 
 .product-items > div {

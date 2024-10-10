@@ -10,7 +10,7 @@ const Hero = ({ image, title }) => (
     </div>
     <div className="banner overlay flex justify-center items-center">
 
-      {title && (<h2 className="text-white bg-lucent py-4 px-16">{title}</h2>
+      {title && (<h2 className="bg-theme/30 tracking-wider rounded text-2xl text-light py-4 px-16">{title}</h2>
       )}
 
     </div>

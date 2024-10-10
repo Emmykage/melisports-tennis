@@ -18,9 +18,9 @@ const ProductCard = ({product}) => {
 
                   </div>}
             <div className="">
-              <h5 className="text-gray-900 block text-xl md:hidden">
+              <h5 className="text-gray-900 block text-base md:hidden">
 
-                {product.name.substring(0, 10)}
+                {product.name.substring(0, 12)}
                 ...
               </h5>
 

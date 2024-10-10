@@ -28,8 +28,6 @@ const Nav = () => {
       setStickyNav('');
     }
   };
-  console.log(user)
-
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCarts());
@@ -39,7 +37,7 @@ const Nav = () => {
   }, [update]);
   const handleLogOut = () => {
     localStorage.setItem('meli_auth', '');
-    dispatch(userLog());
+    // dispatch(userLog());
     navigate('/auth/login');
   };
 

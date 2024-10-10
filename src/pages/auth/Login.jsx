@@ -47,7 +47,7 @@ export default function Login() {
 
   useEffect(() => {
     dispatch(userLog());
-  }, []);
+  }, [user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

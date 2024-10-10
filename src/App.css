@@ -538,6 +538,8 @@ a {
 
 .prod-page {
   padding: 0.5rem;
+  max-width: 1500px;
+  margin: auto;
 }
 
 .switch{
