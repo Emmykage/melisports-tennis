@@ -22,13 +22,13 @@ const EditProduct = () => {
   const dispatch = useDispatch();
 
   const [imagePreviews, setImagePreviews] = useState([]);
-
   const { product_categories, sport_categories } = useSelector((state) => state.product_categories);
 
   const {
     product, loading, report, status,
   } = useSelector((state) => state.product);
   const [selectSport, setSelectedSport] = useState(product?.sport_category?.name);
+  const [productStatus, setProductStatus] = useState(product?.status)
 
   const levels = useSelector((state) => state.level.levels);
 
@@ -129,6 +129,7 @@ const EditProduct = () => {
 
   useEffect(() => {
     setSelectedSport(product?.sport_category?.name);
+    setProductStatus(product?.status)
   }, [product]);
 
   const handleValue = (value) => {
@@ -136,6 +137,8 @@ const EditProduct = () => {
     setSelectedSport(cat.name);
   };
 
+
+  console.log(product)
   return (
 
     <div className="product-form bg-white admin m-auto w-full">
@@ -165,8 +168,8 @@ const EditProduct = () => {
                 <div className="ms_code ml-auto w-48">
 
                   <div className="ms_code quantity bg-green-500">
-                    <label htmlFor="quantity font-medium text-gray-700">ms product code</label>
-                    <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required />
+                    <label htmlFor="quantity font-medium text-gray-700">ms product code {productStatus== "active" && "*"} </label>
+                    <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required={productStatus==="active"}/>
                   </div>
 
                 </div>
@@ -176,7 +179,7 @@ const EditProduct = () => {
               <div className="max-w-80 w-full">
                 <label htmlFor="font-medium text-gray-700">Status</label>
                 <Select
-              // onChange={(selectedOption) => handleValue(selectedOption.value) }
+              onChange={(selectedOption) => setProductStatus(selectedOption.value)}
                   defaultValue={{ value: product.status, label: product.status }}
                   required
                   name="status"
@@ -199,7 +202,7 @@ const EditProduct = () => {
               <div className="form-row text-sm my-1">
                 <div className="input-half">
                   <label>
-                    <span className="text-gray-500 font-semibold text-sm">Product Name</span>
+                    <span className="text-gray-500 font-semibold text-sm">Product Name *</span>
                     {' '}
                     <span />
                     {' '}
@@ -216,7 +219,7 @@ const EditProduct = () => {
                 </div>
                 <div className="input-half">
                   <label>
-                    <span className="text-gray-500 font-semibold text-sm">Price: NGN</span>
+                    <span className="text-gray-500 font-semibold text-sm">Price: NGN {productStatus== "active" && "*"} </span>
                     {' '}
                     <span />
                   </label>
@@ -228,15 +231,15 @@ const EditProduct = () => {
                     id="price"
                     type="number"
                     placeholder="price"
-                    required
-                  />
+                    required={productStatus==="active"} 
+                    />
 
                 </div>
               </div>
               <div className="form-row my-1">
 
                 <div className="input-half">
-                  <label htmlFor="sku" className="text-dark font-semibold text-sm"> SKU   </label>
+                  <label htmlFor="sku" className="text-dark font-semibold text-sm"> SKU  {productStatus== "active" && "*"}  </label>
                   <input
                     name="sku"
                     onChange={handleFormInput}
@@ -244,6 +247,8 @@ const EditProduct = () => {
                     id="sku"
                     type="text"
                     placeholder="sku"
+                    required={productStatus==="active"} 
+
                   />
 
                 </div>
