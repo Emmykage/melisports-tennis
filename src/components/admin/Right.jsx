@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import IMG from '../../assets/images/profile/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
 import { setModal } from '../../redux/modal/categoryModal';
 
-const Right = ({ handleMenu, auth }) => (
+const Right = ({ handleMenu, user }) => (
   <div className="right h-screen overflow-y-auto">
     <div className="top">
       <button id="menu-btn">
@@ -28,7 +28,7 @@ const Right = ({ handleMenu, auth }) => (
             Hey,
             <b>
               {' '}
-              {auth.user.email}
+              {user.email}
               {' '}
             </b>
           </p>

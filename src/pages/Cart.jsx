@@ -11,7 +11,7 @@ import { openModal } from '../redux/modal/modal';
 import { addOrder } from '../redux/actions/orders';
 import { closeNav } from '../redux/modal/nav';
 import { closeList } from '../redux/products/searched';
-import { naira_format } from '../components/utils/naira_format';
+import { naira_format } from '../utils/naira_format';
 
 const Cart = () => {
   const { cartItems, total, update } = useSelector((state) => state.cart);

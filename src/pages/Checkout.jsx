@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import StripeContainer from './StripeContainer';
 
 import { reset } from '../redux/order/order';
-import { naira_format } from '../components/utils/naira_format';
+import { naira_format } from '../utils/naira_format';
 
 const Checkout = () => {
   // const dispatch = useDispatch();

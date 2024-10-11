@@ -10,7 +10,7 @@ import { closeNav } from '../redux/modal/nav';
 import { addCart } from '../redux/cart/cart';
 import Loader from './Loader';
 import ImagePreview from '../components/products/ImagePreview';
-import { naira_format } from '../components/utils/naira_format';
+import { naira_format } from '../utils/naira_format';
 
 const ProductDetails = () => {
   const pickColor = (color) => {

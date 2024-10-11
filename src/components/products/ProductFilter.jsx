@@ -3,7 +3,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Loader from '../../pages/Loader';
 import './products.css';
-import { naira_format } from '../utils/naira_format';
 import ProductCard from '../card/ProductCard';
 
 const ProductFilter = ({ products, status, error }) => {

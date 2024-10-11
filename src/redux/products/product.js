@@ -14,6 +14,8 @@ const initialState = {
   error: false,
   counter: 0,
   report: null,
+  message: null,
+  sortedProducts: []
 };
 
 const productsSlice = createSlice({
@@ -32,7 +34,7 @@ const productsSlice = createSlice({
         products: action.payload.data,
         padelRacquets: products_padel,
         latestArrival: sortedLatest,
-
+        error: false,
         badmintonRacquets: products_badminton,
       };
     },
@@ -40,13 +42,12 @@ const productsSlice = createSlice({
     [getProducts.pending]: (state) => ({
       ...state,
       loading: true,
-      status: 'waiting',
     }),
-    [getProducts.rejected]: (state) => ({
+    [getProducts.rejected]: (state, action) => ({
       ...state,
-      error: 'No Internet Connection',
+      error: true,
       loading: false,
-      status: 'failed',
+      message: 'Somethin went wrong',
     }),
     [getLetestProducts.fulfilled]: (state, action) => {
 
@@ -55,14 +56,14 @@ const productsSlice = createSlice({
         ...state,
         loading: false,
         latestArrival: action.payload,
-        status: 'success'
+        error: false
       }
     },
     [getLetestProducts.rejected]: (state, action) => {
       return{
         ...state,
         loading: false,
-        status: 'failed',
+        error: true,
         message: action.payload.message
       }
     }
@@ -91,10 +92,17 @@ const productsSlice = createSlice({
         search_product_page: f_product,
       };
     },
-    filterProducts: (state, action) => ({
+    filterProducts: (state, action) => {
+      const char = action.payload.toLowerCase()
+      const sortedProduct = state.products.filter((item) => item.name.toLowerCase().includes(char))
+      return{
       ...state,
-      products: state.products.filter((item) => item.name.toLowerCase().includes(action.payload)),
-    }),
+      filteredProducts: sortedProduct,
+      sortedProducts: sortedProduct
+      
+      
+
+    }},
 
     filterActivities: (state, action) => {
       const filts = state.products.filter((item) => item.level?.stage.toLowerCase().includes(action.payload));
@@ -127,11 +135,15 @@ const productsSlice = createSlice({
 
       };
     },
+    resetProduct: (state) => ({
+      ...state,
+      sortedProducts: state.products
+    })
 
   },
 });
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, getLatest, searchedPage, filterActivities, filterFeatures, filterGender,
+  filterProducts, searchedProducts, getLatest, searchedPage, filterActivities, filterFeatures, filterGender, resetProduct
 } = productsSlice.actions;

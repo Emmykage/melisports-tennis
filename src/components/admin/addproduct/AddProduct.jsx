@@ -215,7 +215,7 @@ const AddProduct = () => {
 
           <div className="flex justify-between gap-3 text-sm my-1">
 
-            <div className="input-half">
+            <div className="flex-1">
               <label htmlFor="sku" className="text-gray-500 font-semibold text-sm"> SKU  * </label>
               <input
                 name="sku"
@@ -225,7 +225,7 @@ const AddProduct = () => {
               />
 
             </div>
-            <div className="input-half">
+            <div className="flex-1">
               <label htmlFor="colour" className="text-gray-500 font-semibold text-sm">
                 Colour
               </label>

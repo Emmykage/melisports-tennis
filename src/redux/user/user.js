@@ -11,7 +11,7 @@ const initialState = {
   userEdit: {},
   error: false,
   message: '',
-  loading: false,
+  loading: true,
   logged: false,
 };
 const userSlice = createSlice({
@@ -22,8 +22,7 @@ const userSlice = createSlice({
 
         return {
           ...state,
-          logged: false
-
+          logged: false,
         };
       
     },
@@ -89,7 +88,8 @@ const userSlice = createSlice({
 
       return{
         ...state,
-        user: action.payload.data
+        user: action.payload.data,
+        loading: false
       }
     },
     [userProfile.rejected]: (state, action) => {
@@ -98,7 +98,15 @@ const userSlice = createSlice({
       return{
         ...state,
         message: action.payload.message,
-        user: null
+        user: null,
+        loading: false
+      }
+    },
+    [userProfile.pending]: (state, action) => {
+
+      return{
+        ...state,
+        loading: true
       }
     }
   },

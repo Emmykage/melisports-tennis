@@ -36,8 +36,8 @@ const Nav = () => {
     window.addEventListener('scroll', toggleScrollNav);
   }, [update]);
   const handleLogOut = () => {
-    localStorage.setItem('meli_auth', '');
-    // dispatch(userLog());
+    localStorage.removeItem('meli_auth');
+    dispatch(userProfile())
     navigate('/auth/login');
   };
 

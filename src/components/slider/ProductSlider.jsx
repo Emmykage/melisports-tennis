@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Autoplay, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { naira_format } from '../utils/naira_format'
+import { naira_format } from '../../utils/naira_format'
 import { NavLink } from 'react-router-dom'
 
 const ProductSlider = ({products, views=4}) => {

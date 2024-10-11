@@ -1314,10 +1314,6 @@ td .btn.change {
     margin-top: 20px;
   }
 
-
-  .p-4{
-    padding: 1rem;
-  }
   .lg-grid-col-4{
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }

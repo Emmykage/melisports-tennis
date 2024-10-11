@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { naira_format } from '../utils/naira_format'
+import { naira_format } from '../../utils/naira_format'
 
 const ProductCard = ({product}) => {
   return (

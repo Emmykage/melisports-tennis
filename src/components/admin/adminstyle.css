@@ -155,8 +155,7 @@ form input,
 select {
   width: 100%;
   padding: 8px;
-  font-size: 0.88rem;
-  border: 1px solid rgb(204, 204, 204);
+  font-size: 0.88rem;  border: 1px solid rgb(204, 204, 204);
   outline: #111e88;
   border-radius: var(--border-radius-1);
 }

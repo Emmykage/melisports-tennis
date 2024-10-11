@@ -5,13 +5,20 @@ const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 // console.log(token(), "fectched")
 
 const getProducts = createAsyncThunk('products/getProducts', async (_, {rejectWithValue}) => {
-  let count = 0
-  const response = await fetch(`${baseURL}products`).then((res) => res.json());
-  // console.log("first")
-  console.log("response count:", count++)
-// console.log(token(), "fectched")
-console.log(response)
-return response;
+
+try {
+  const response = await fetch(`${baseURL}products`)
+  
+  const result =  await response.json()
+  if(!response.ok){
+    return rejectWithValue({message: result.message})
+  }
+  return result
+  
+} catch (error) {
+  return rejectWithValue({message: "Something went wrong"})
+  
+} 
 });
 
 const filterProducts = createAsyncThunk('products/getProducts', async (sieve) => {
@@ -102,7 +109,6 @@ const getLetestProducts = createAsyncThunk('products/getProductsLatest', async (
     return rejectWithValue({message: "Something went wrong"})
     
   }
-  return response;
 });
 
 export {
