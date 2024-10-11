@@ -42,7 +42,7 @@ export default function Login() {
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, loading, logged
+    user, error, message, loading, logged,
   } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function Login() {
         password: data.get('password'),
       },
     };
-    dispatch(loginUser(formInput))
+    dispatch(loginUser(formInput));
     // .then((response) => {
     //   if(response.meta.requestStatus == "pending"){
     //     console.log("Login loading", response)

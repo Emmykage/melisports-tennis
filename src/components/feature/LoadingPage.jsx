@@ -1,12 +1,10 @@
-import React from 'react'
-import Loader from '../../pages/Loader'
+import React from 'react';
+import Loader from '../../pages/Loader';
 
-const LoadingPage = () => {
-  return (
-    <div className='flex h-screen bg-theme/50'>
-        <Loader/>
-    </div>
-  )
-}
+const LoadingPage = () => (
+  <div className="flex h-screen bg-theme/50">
+    <Loader />
+  </div>
+);
 
-export default LoadingPage
+export default LoadingPage;

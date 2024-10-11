@@ -12,13 +12,13 @@ import { FiSettings } from 'react-icons/fi';
 
 import { BiLogOut } from 'react-icons/bi';
 import { NavLink, useNavigate } from 'react-router-dom';
-import logo from '../../assets/images/logo/melisport_1.png';
 import { useDispatch } from 'react-redux';
+import logo from '../../assets/images/logo/melisport_1.png';
 import { userProfile } from '../../redux/actions/auth';
 
 const SideNav = (props) => {
   const { showMenu, handleMenu } = props;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const activeLink = 'active';
@@ -26,7 +26,7 @@ const SideNav = (props) => {
 
   const signOut = () => {
     localStorage.removeItem('meli_auth');
-    dispatch(userProfile())
+    dispatch(userProfile());
     navigate('/auth/admin_login');
   };
   return (

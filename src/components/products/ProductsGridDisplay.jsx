@@ -4,9 +4,10 @@ import Loader from '../../pages/Loader';
 import './products.css';
 import ProductCard from '../card/ProductCard';
 
-const ProductsGrid = ({ products, status, error, filter }) => {
-
-  const sortProduct = filter ?  products.filter((item) => item.product_category.name === filter) : products;
+const ProductsGrid = ({
+  products, status, error, filter,
+}) => {
+  const sortProduct = filter ? products.filter((item) => item.product_category.name === filter) : products;
 
   if (status === 'waiting') {
     return (
@@ -29,7 +30,7 @@ const ProductsGrid = ({ products, status, error, filter }) => {
       <>
 
         {sortProduct.map((product) => (
-          <ProductCard key={product.id} product={product}/>
+          <ProductCard key={product.id} product={product} />
 
         ))}
 

@@ -62,14 +62,12 @@ const productSlice = createSlice({
       loading: true,
       report: 'loading...',
     }),
-    [updateProduct.rejected]: (state, action) => {
-
-      return {
+    [updateProduct.rejected]: (state, action) => ({
       ...state,
       status: 'rejected',
       loading: false,
       report: action.payload.message,
-    }},
+    }),
     [deleteProduct.fulfilled]: (state, action) => ({
       ...state,
       status: 'success',

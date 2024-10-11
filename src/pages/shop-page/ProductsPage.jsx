@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import Hero from '../../components/banner/Hero';
 import bannerImage from '../../assets/images/banner/Banner_racquets.webp';
 import Products from '../../components/products/ProductsGridDisplay';
@@ -10,12 +11,11 @@ import { closeList } from '../../redux/products/searched';
 import { closeNav } from '../../redux/modal/nav';
 import Loader from '../Loader';
 import { filterActivities, filterFeatures, filterProducts } from '../../redux/products/product';
-import { useLocation, useSearchParams } from 'react-router-dom';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const [queryParams] = useSearchParams()
-  const location = useLocation()
+  const [queryParams] = useSearchParams();
+  const location = useLocation();
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
@@ -28,7 +28,6 @@ const ProductsPage = () => {
       dispatch(filterProducts(lowerCaseSieve));
     });
   };
-
 
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
@@ -193,7 +192,7 @@ const ProductsPage = () => {
             ? (
               <div className="product-align w-full">
                 <div className="product-items">
-                  <Products products={products} status={status} error={error} filter={"racquet"} />
+                  <Products products={products} status={status} error={error} filter="racquet" />
                 </div>
 
                 <div className="product-details color-grey">

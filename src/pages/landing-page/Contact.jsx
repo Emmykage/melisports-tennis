@@ -74,7 +74,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <CommunityBanner/>
+      <CommunityBanner />
     </div>
   );
 };

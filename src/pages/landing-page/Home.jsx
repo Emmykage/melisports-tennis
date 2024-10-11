@@ -17,7 +17,6 @@ import SurveyButton from '../../components/feature/survey-button';
 import CommunityBanner from '../../components/banner/CommunityBanner';
 import DiscoverBtn from '../../components/buttons/DiscoverBtn';
 
-
 const Home = () => {
   const categories = useSelector((state) => state.categories);
 
@@ -35,7 +34,7 @@ const Home = () => {
       <div className="py-2 service-prod">
         <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
           <div className="relative item top h-52 md:h-80">
-            <img src={string} className='w-full h-full'/>
+            <img src={string} className="w-full h-full" />
             <div className="absolute overlay flex items-center justify-center bg-theme/20">
               <h3 className="white font-normal">Stringing racquets</h3>
 
@@ -51,14 +50,14 @@ const Home = () => {
           </div>
 
         </div>
-        <div className=' bg-gray-500 my-2'>
+        <div className=" bg-gray-500 my-2">
           <div className="relative item top h-52 md:h-80 xl:h-[500px]">
-            <img src={distributor} className='h-full w-full'/>
+            <img src={distributor} className="h-full w-full" />
             <div className="absolute overlay flex items-center justify-center bg-theme/20">
               <div className="">
                 <h3 className="white font-normal">Wholesale Distribution</h3>
-                <div className='w-max bg-red-400 m-auto '>
-                <DiscoverBtn btnText='Become a Distributor' link={"/distributor"}/>
+                <div className="w-max bg-red-400 m-auto ">
+                  <DiscoverBtn btnText="Become a Distributor" link="/distributor" />
 
                 </div>
               </div>
@@ -83,13 +82,12 @@ const Home = () => {
       <div className="my-6">
         <h3 className=" text-center fs-3 my-3"> Shop Categories</h3>
 
-        <div className='px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7  border-black'>
-        <ReactSlider categories={categories} />
-      </div>
+        <div className="px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7  border-black">
+          <ReactSlider categories={categories} />
+        </div>
 
       </div>
 
-      
       <div className="banner-text full-screen my-3 text-center">
         <h2>
           Tennis Equipment & Supplies
@@ -114,7 +112,7 @@ const Home = () => {
 
         </div>
 
-        <CommunityBanner/>
+        <CommunityBanner />
 
       </div>
     </>

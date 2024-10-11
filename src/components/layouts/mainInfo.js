@@ -20,7 +20,7 @@ const MainInfoLayout = ({ children }) => {
       {isOpen && <Modal />}
       <NavInfo />
       {children}
-      <FooterInfo/>
+      <FooterInfo />
 
       <Footer />
       <ChatBox />

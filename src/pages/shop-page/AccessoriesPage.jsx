@@ -146,7 +146,7 @@ const AccessoriesPage = () => {
             <div className="product-align w-full">
               <div className="product-items">
 
-                <ProductsGrid filter={"accessory"} products={products} status={status} error={error} />
+                <ProductsGrid filter="accessory" products={products} status={status} error={error} />
               </div>
               <div className="product-details ">
                 <h3> BABOLAT TENNIS ACCESSORIES BRANDS</h3>

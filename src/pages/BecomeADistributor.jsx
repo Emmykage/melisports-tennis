@@ -21,11 +21,11 @@ const BecomeADistributor = () => (
           <div className="p-2">
 
             <form action="https://formspree.io/f/xayvlole" method="post">
-              <div className="input"><input name="company_name" id="name" type="text" placeholder="Company name " className='border'/></div>
-              <div className="input"><input name="Email" type="email" placeholder="Email address" required className='border'/></div>
-              <div className="input"><input name="State" type="text" placeholder="State of Business Location" className='border'/></div>
+              <div className="input"><input name="company_name" id="name" type="text" placeholder="Company name " className="border" /></div>
+              <div className="input"><input name="Email" type="email" placeholder="Email address" required className="border" /></div>
+              <div className="input"><input name="State" type="text" placeholder="State of Business Location" className="border" /></div>
               <div className="input text-input">
-                <textarea placeholder="Enter business address" className='border' />
+                <textarea placeholder="Enter business address" className="border" />
 
               </div>
               {/* <button name="message" type="submit">Get in touch</button>

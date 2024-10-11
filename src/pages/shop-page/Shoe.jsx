@@ -156,7 +156,7 @@ const ShoesPage = () => {
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
             <div className="product-align w-full">
               <div className="product-items">
-                <ProductsGrid filter={"shoe"} products={products} status={status} error={error} />
+                <ProductsGrid filter="shoe" products={products} status={status} error={error} />
 
               </div>
 

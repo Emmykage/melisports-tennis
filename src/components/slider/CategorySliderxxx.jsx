@@ -1,7 +1,6 @@
-
 // import { Carousel } from "flowbite-react";
 
-import Slider from "react-slick";
+import Slider from 'react-slick';
 
 //  function CategorySlider({categories}) {
 //   return (
@@ -13,35 +12,33 @@ import Slider from "react-slick";
 //           <img src={cat.image} className='w-full h-full'/>
 
 //        </div>
-//         ))}     
+//         ))}
 //         </Carousel>
 //     </div>
 //   );
 // }
 
-
 // export default CategorySlider
 
-
-export default function SimpleSlider({categories}) {
-    var settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
-    return (
-        <div className="bg-green-200 h-full flex overflow-hidden">
+export default function SimpleSlider({ categories }) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  return (
+    <div className="bg-green-200 h-full flex overflow-hidden">
 
       <Slider {...settings}>
-        {categories.map(cat => (
-            <div className='h-full w-full'>        
-                <img src={cat.image} className='w-full h-full'/>
-            </div>       
-        ))}   
+        {categories.map((cat) => (
+          <div className="h-full w-full">
+            <img src={cat.image} className="w-full h-full" />
+          </div>
+        ))}
       </Slider>
-      </div>
+    </div>
 
-    );
-  }
+  );
+}

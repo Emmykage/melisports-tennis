@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Hero from '../../../components/banner/Hero'
+import Hero from '../../../components/banner/Hero';
 import { getProducts } from '../../../redux/actions/product';
 import {
   filterActivities, filterFeatures, filterGender, filterProducts,

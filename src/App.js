@@ -60,14 +60,14 @@ const SearchPage = lazy(() => import('./pages/SearchPage'));
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
   // const { setcategoryModal } = useSelector((state) => state.modal_categories);
-  useInitializeData()
+  useInitializeData();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(calculateTotal());
   }, [cartItems]);
   return (
 
-    <Suspense fallback={ <LoadingPage />}>
+    <Suspense fallback={<LoadingPage />}>
 
       <Routes>
         {/* landing page  */}
@@ -80,7 +80,6 @@ function App() {
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
-
 
         {/* store page  */}
         <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />

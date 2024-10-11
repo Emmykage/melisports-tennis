@@ -35,9 +35,8 @@ const NavInfo = () => {
   }, [update]);
   const handleLogOut = () => {
     localStorage.removeItem('meli_auth');
-    dispatch(userProfile())
+    dispatch(userProfile());
     navigate('/auth/login');
-
   };
   return (
     <>
@@ -90,7 +89,7 @@ const NavInfo = () => {
             <div className="flex justify-between items-center">
 
               <div className="user mobile-display ">
-                {user ? <a onClick={handleLogOut}>Log Out</a> :  <NavLink to="/auth/login">Login</NavLink> }
+                {user ? <a onClick={handleLogOut}>Log Out</a> : <NavLink to="/auth/login">Login</NavLink> }
                 <span className="text-dark"><FiUser className="menu-icon user-icon" /></span>
 
               </div>

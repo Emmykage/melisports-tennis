@@ -127,7 +127,7 @@ const About = () => {
 
         </div>
       </div>
-      <CommunityBanner/>
+      <CommunityBanner />
 
     </div>
   );

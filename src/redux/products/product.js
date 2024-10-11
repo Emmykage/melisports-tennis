@@ -15,7 +15,7 @@ const initialState = {
   counter: 0,
   report: null,
   message: null,
-  sortedProducts: []
+  sortedProducts: [],
 };
 
 const productsSlice = createSlice({
@@ -23,9 +23,9 @@ const productsSlice = createSlice({
   initialState,
   extraReducers: {
     [getProducts.fulfilled]: (state, action) => {
-      const products_badminton = action.payload.data.filter((badminton) => badminton.sport_category?.name == 'Badminton');
-      const products_padel = action.payload.data.filter((padel) => padel.sport_category?.name == 'Padel');
-      const sortedLatest  = action.payload.data.filter((item) => item.new_product);
+      const products_badminton = action.payload.data.filter((badminton) => badminton.sport_category?.name === 'Badminton');
+      const products_padel = action.payload.data.filter((padel) => padel.sport_category?.name === 'Padel');
+      const sortedLatest = action.payload.data.filter((item) => item.new_product);
 
       return {
         ...state,
@@ -49,32 +49,23 @@ const productsSlice = createSlice({
       loading: false,
       message: 'Somethin went wrong',
     }),
-    [getLetestProducts.fulfilled]: (state, action) => {
+    [getLetestProducts.fulfilled]: (state, action) => ({
+      ...state,
+      loading: false,
+      latestArrival: action.payload,
+      error: false,
+    }),
+    [getLetestProducts.rejected]: (state, action) => ({
+      ...state,
+      loading: false,
+      error: true,
+      message: action.payload.message,
+    }),
+    [getLetestProducts.pending]: (state, action) => ({
+      ...state,
+      loading: true,
 
-
-      return{
-        ...state,
-        loading: false,
-        latestArrival: action.payload,
-        error: false
-      }
-    },
-    [getLetestProducts.rejected]: (state, action) => {
-      return{
-        ...state,
-        loading: false,
-        error: true,
-        message: action.payload.message
-      }
-    }
-    ,
-    [getLetestProducts.pending]: (state, action) => {
-      return{
-        ...state,
-        loading: true,
-
-      }
-    }
+    }),
 
   },
   reducers: {
@@ -93,16 +84,15 @@ const productsSlice = createSlice({
       };
     },
     filterProducts: (state, action) => {
-      const char = action.payload.toLowerCase()
-      const sortedProduct = state.products.filter((item) => item.name.toLowerCase().includes(char))
-      return{
-      ...state,
-      filteredProducts: sortedProduct,
-      sortedProducts: sortedProduct
-      
-      
+      const char = action.payload.toLowerCase();
+      const sortedProduct = state.products.filter((item) => item.name.toLowerCase().includes(char));
+      return {
+        ...state,
+        filteredProducts: sortedProduct,
+        sortedProducts: sortedProduct,
 
-    }},
+      };
+    },
 
     filterActivities: (state, action) => {
       const filts = state.products.filter((item) => item.level?.stage.toLowerCase().includes(action.payload));
@@ -126,24 +116,23 @@ const productsSlice = createSlice({
       };
     },
     getLatest: (state) => {
-
-      const sortedProducts  = [...state.products].filter((item) => item.new_product);
+      const sortedProducts = [...state.products].filter((item) => item.new_product);
       return {
         ...state,
         latestArrival: sortedProducts,
-        loading: false
+        loading: false,
 
       };
     },
     resetProduct: (state) => ({
       ...state,
-      sortedProducts: state.products
-    })
+      sortedProducts: state.products,
+    }),
 
   },
 });
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, getLatest, searchedPage, filterActivities, filterFeatures, filterGender, resetProduct
+  filterProducts, searchedProducts, getLatest, searchedPage, filterActivities, filterFeatures, filterGender, resetProduct,
 } = productsSlice.actions;

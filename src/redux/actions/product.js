@@ -4,21 +4,18 @@ import baseURL from '../baseURL';
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 // console.log(token(), "fectched")
 
-const getProducts = createAsyncThunk('products/getProducts', async (_, {rejectWithValue}) => {
+const getProducts = createAsyncThunk('products/getProducts', async (_, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`${baseURL}products`);
 
-try {
-  const response = await fetch(`${baseURL}products`)
-  
-  const result =  await response.json()
-  if(!response.ok){
-    return rejectWithValue({message: result.message})
+    const result = await response.json();
+    if (!response.ok) {
+      return rejectWithValue({ message: result.message });
+    }
+    return result;
+  } catch (error) {
+    return rejectWithValue({ message: 'Something went wrong' });
   }
-  return result
-  
-} catch (error) {
-  return rejectWithValue({message: "Something went wrong"})
-  
-} 
 });
 
 const filterProducts = createAsyncThunk('products/getProducts', async (sieve) => {
@@ -32,7 +29,7 @@ const getProduct = createAsyncThunk('product/getproduct', async (id) => {
   return response;
 });
 
-const updateProduct = createAsyncThunk('updateProduct', async ({ editId, formData }, {rejectWithValue}) => {
+const updateProduct = createAsyncThunk('updateProduct', async ({ editId, formData }, { rejectWithValue }) => {
   try {
     const response = await fetch(`${baseURL}products/${editId}`, {
       method: 'PUT',
@@ -42,9 +39,9 @@ const updateProduct = createAsyncThunk('updateProduct', async ({ editId, formDat
       body: formData,
     });
     if (!response.ok) {
-      const {message} = await response.json();
+      const { message } = await response.json();
 
-      return rejectWithValue({message});
+      return rejectWithValue({ message });
     }
 
     const result = await response.json();
@@ -91,26 +88,21 @@ const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
   // .then(res => res.text());
 });
 
-const getLetestProducts = createAsyncThunk('products/getProductsLatest', async (_, {rejectWithValue}) => {
-
+const getLetestProducts = createAsyncThunk('products/getProductsLatest', async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseURL}products/new_arrivals`)
+    const response = await fetch(`${baseURL}products/new_arrivals`);
 
-    if(!response.ok){
-      return rejectWithValue({message: response.message})
+    if (!response.ok) {
+      return rejectWithValue({ message: response.message });
     }
 
-
-    const result = await response.json()
-    return result
-
-    
+    const result = await response.json();
+    return result;
   } catch (error) {
-    return rejectWithValue({message: "Something went wrong"})
-    
+    return rejectWithValue({ message: 'Something went wrong' });
   }
 });
 
 export {
-  getProducts, getProduct, addProduct, deleteProduct, updateProduct, getLetestProducts
+  getProducts, getProduct, addProduct, deleteProduct, updateProduct, getLetestProducts,
 };

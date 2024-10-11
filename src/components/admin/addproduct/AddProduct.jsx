@@ -682,7 +682,6 @@ const AddProduct = () => {
 
           </div>
 
-       
           <div>
             <input id="trix" type="hidden" name="description_body" />
             <trix-editor input="trix" />

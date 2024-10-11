@@ -3,4 +3,4 @@ const NGNaira = new Intl.NumberFormat('en-NG', {
   currency: 'NGN',
 });
 const naira_format = (amount) => NGNaira.format(amount);
-export { naira_format };
+export { naira_format, NGNaira };

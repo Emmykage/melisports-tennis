@@ -37,7 +37,7 @@ const Nav = () => {
   }, [update]);
   const handleLogOut = () => {
     localStorage.removeItem('meli_auth');
-    dispatch(userProfile())
+    dispatch(userProfile());
     navigate('/auth/login');
   };
 
@@ -67,7 +67,7 @@ const Nav = () => {
 
                 <li className="nav-item"><NavLink to="/store">Home</NavLink></li>
                 <li className="nav-item">
-                  <NavLink to={`/racquets?brand=${"babolat"}`} className="hey">Rackets </NavLink>
+                  <NavLink to={`/racquets?brand=${'babolat'}`} className="hey">Rackets </NavLink>
                   <div className="link-items flex">
                     <div className="">
                       <h3>
@@ -226,7 +226,7 @@ const Nav = () => {
               </div>
 
               <div className="menu-div cart">
-                <NavLink  to="/carts">
+                <NavLink to="/carts">
 
                   <BsCartDash className="menu-icon cart-icon" />
                   <span className="total-amount text-white bold">{counter}</span>

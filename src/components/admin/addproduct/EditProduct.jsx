@@ -757,10 +757,18 @@ const EditProduct = () => {
 
               </div>
 
-              
-              {product?.description && <div> <p>{product?.description} </p> </div>}
+              {product?.description && (
               <div>
-                <input id="trix" type="hidden" name="description_body" value={product?.description_body}/>
+                {' '}
+                <p>
+                  {product?.description}
+                  {' '}
+                </p>
+                {' '}
+              </div>
+              )}
+              <div>
+                <input id="trix" type="hidden" name="description_body" value={product?.description_body} />
                 <trix-editor input="trix" />
 
               </div>

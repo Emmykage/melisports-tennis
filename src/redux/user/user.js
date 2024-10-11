@@ -18,14 +18,10 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    userLog: (state) => {
-
-        return {
-          ...state,
-          logged: false,
-        };
-      
-    },
+    userLog: (state) => ({
+      ...state,
+      logged: false,
+    }),
   },
   extraReducers: {
 
@@ -63,15 +59,14 @@ const userSlice = createSlice({
     }),
     [loginUser.fulfilled]: (state, action) => {
       const response = action.payload;
-        return {
-          ...state,
-          logged: true,
-          error: false,
-          loading: false,
-          message: response.message,
-          user: response.data
-        };
-  
+      return {
+        ...state,
+        logged: true,
+        error: false,
+        loading: false,
+        message: response.message,
+        user: response.data,
+      };
     },
     [loginUser.rejected]: (state, action) => ({
       ...state,
@@ -84,31 +79,25 @@ const userSlice = createSlice({
       loading: true,
     }),
 
-    [userProfile.fulfilled]: (state, action) => {
-
-      return{
-        ...state,
-        user: action.payload.data,
-        loading: false
-      }
-    },
+    [userProfile.fulfilled]: (state, action) => ({
+      ...state,
+      user: action.payload.data,
+      loading: false,
+    }),
     [userProfile.rejected]: (state, action) => {
-      console.log("reture=ned token", action.payload)
+      console.log('reture=ned token', action.payload);
 
-      return{
+      return {
         ...state,
         message: action.payload.message,
         user: null,
-        loading: false
-      }
+        loading: false,
+      };
     },
-    [userProfile.pending]: (state, action) => {
-
-      return{
-        ...state,
-        loading: true
-      }
-    }
+    [userProfile.pending]: (state) => ({
+      ...state,
+      loading: true,
+    }),
   },
 });
 

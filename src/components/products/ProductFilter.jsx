@@ -6,7 +6,6 @@ import './products.css';
 import ProductCard from '../card/ProductCard';
 
 const ProductFilter = ({ products, status, error }) => {
-
   if (status === 'waiting') {
     return (
       <Loader />
@@ -28,7 +27,7 @@ const ProductFilter = ({ products, status, error }) => {
       <>
 
         {products.map((product) => (
-        <ProductCard product={product} />
+          <ProductCard product={product} />
 
         ))}
 

@@ -12,12 +12,12 @@ import Loader from '../../pages/Loader';
 const MainAdmin = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { isOpen, id } = useSelector((state) => state.delModal);
   const { catOpen, catId } = useSelector((state) => state.cat_del_modal);
   const [showMenu, setShowMenu] = useState(false);
-  const { user, loading } = useSelector(state => state.user);
-  
+  const { user, loading } = useSelector((state) => state.user);
+
   useEffect(() => {
     dispatch(userLog());
   }, [dispatch]);
@@ -25,8 +25,8 @@ const MainAdmin = ({ children }) => {
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
-  if(loading){
-    return(<Loader/>)
+  if (loading) {
+    return (<Loader />);
   }
 
   if (user) {
@@ -44,19 +44,15 @@ const MainAdmin = ({ children }) => {
       );
     }
 
-    else{
-      return (
-        <div>
-          <h1>You are not an Admin</h1>
-          <NavLink to="/store">Go to Store</NavLink>
-        </div>
-      );
-    }
-    
-   
+    return (
+      <div>
+        <h1>You are not an Admin</h1>
+        <NavLink to="/store">Go to Store</NavLink>
+      </div>
+    );
   }
-    navigate('/auth/admin_login');
-  return null;  // Ensure no further rendering happens after navigation
+  navigate('/auth/admin_login');
+  return null; // Ensure no further rendering happens after navigation
 };
 
 export default MainAdmin;
