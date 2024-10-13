@@ -118,10 +118,10 @@ const ShopHome = () => {
         </div>
 
       </div>
-      <div className="my-6">
+      <div className="my-6 bg-white py-10">
         <h3 className=" text-center fs-3 my-3"> Shop Categories</h3>
 
-        <div className="px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7  border-black">
+        <div className="px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7 bg-white border-black">
           <ReactSlider categories={categories} />
         </div>
 

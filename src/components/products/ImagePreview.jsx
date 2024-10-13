@@ -42,34 +42,40 @@ const ImagePreview = ({ images }) => {
 
     <>
 
-      <div className="image-slider  rounded-bl-2xl centralize gap-2 sm-row-col">
-        <div className="border-gray-light relative image-card overflow-hidde  ">
+      <div className="">
+        <div className="border flex relative h-96 md:h-[600px] overflow-hidden ">
           <button onClick={showPrevImage} className="z-10 absolute image-slider-btn" style={{ left: '0' }}><FaArrowLeft /></button>
           <button onClick={showNextImage} className="z-10 absolute image-slider-btn " style={{ right: '0px' }}><FaArrowRight /></button>
 
-          <div className="h-full w-full flex z-0">
             {images.map((image) => (
-              <img
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrev(image);
-                }}
-                key={image}
-                src={image}
-                style={{ translate: `${-100 * imageIndex}%` }}
-                alt="image"
-                className="h-full w-full image-slider-img z-[1]"
-              />
+                        <div
+                     
+                        key={image}
+                        style={{ translate: `${-100 * imageIndex}%` }}
+                         className="h-full w-full flex  image-slider-img border shrink-0  z-0">
 
-            ))}
+              <img
+                    src={image}
+
+                   onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrev(image);
+                  }}
+                alt="image"
+                className="h-full w-full object-contain "
+              />
           </div>
 
+            ))}
+
         </div>
-        <div className="my-2 flex gap-3 thumbnail-div">
+        <div className="my-2 flex flex-wrap gap-3 ">
           {images.map((image, index) => (
             <>
               {' '}
-              <div onClick={() => setView(index)} className="thumbnail border my-1 border-gray-300 p-1"><img src={image} alt="" className="w-full h-full gap-3" /></div>
+              <div onClick={() => setView(index)} className="w-16 h-16 md:w-20 md:h-20 border my-1 border-gray-300 p-1">
+                  <img src={image} alt="" className="w-full h-full gap-3" />
+                </div>
               {/* <div onClick={()=>setView(index)} className='thumbnail border'><img src={image} alt="" className='w-full h-full' /></div> */}
 
             </>

@@ -209,14 +209,7 @@ transition: translate 0.3s ease-in-out;
 .image-slider-btn > *{
   color: black;
 }
-.image-card{
-  -ms-flex-order: 2;
-  overflow: hidden;
-  position: relative;
-  height: 300px;
-  width: 300px;
-  order: 2;
-}
+
 .imagePrevModal{
   transition: all 0.3s ease-in-out;
   opacity: 0;
@@ -437,7 +430,6 @@ a {
 .about-us {
   max-width: 1500px;
   width: 100%;
-  padding: 1.5rem;
   margin: 20px auto;
 }
 
@@ -452,10 +444,6 @@ a {
 
 .about-us ul li {
   list-style: disc;
-}
-
-.about p {
-  /* color: white; */
 }
 
 
@@ -542,10 +530,6 @@ a {
   margin: auto;
 }
 
-.switch{
-  flex-flow: column;
- 
-}
 
 .fc-white {
   color: #fff;
@@ -556,20 +540,6 @@ a {
 }
 
 
-
-.w-7 {
-  width: 70%;
-}
-
-.row {
-  display: flex;
-}
-
-.detail-container {
-  max-width: 1600px;
-  width: 100%;
-  margin: auto;
-}
 .w-350{
   width: 350px;
 }
@@ -622,18 +592,6 @@ a {
   background-color: green;
 }
 
-.col-md-6 {
-  flex-basis: 45%;
-  gap: 5%;
-}
-
-
-.w-8 {
-  width: 80%;
-  background-color: chartreuse;
-}
-
-
 
 .feature-div {
   width: 85%;
@@ -661,10 +619,6 @@ button {
   display: grid;
   grid-template-columns: 1fr;
 }
-.grid-col-5{
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
 
 .characters .xter {
   font-weight: bold;
@@ -795,37 +749,6 @@ button:active {
 }
 
 
-.green {
-  color: green;
-}
-.border-gray{
-  border: 1px solid gray;
-}
-.border-gray-light{
-  border: 1px solid lightgray;
-}
-.right-detail-container {
-  flex-basis: 55%;
-  padding-left: 25px;
-}
-.border-t{
-  border-top: 1px solid white;
-}
-.left-detail-container {
-  flex-basis: 40%;
-  border-radius: 6px;
-}
-
-.img-prev {
-  width: 60%;
-}
-
-.img-prev img {
-  width: 60px;
-  height: 70px;
-  background-color: green;
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -882,36 +805,6 @@ table td {
   margin: 10px;
 }
 
-.description-details p {
-  color: #333;
-  font-size: 0.8rem;
-  line-height: 40px;
-}
-
-.prev-details > div {
-  margin: 1rem 0;
-}
-
-.prev-details p,
-.prev-details span {
-  margin-right: 12px;
-
-}
-
-
-.prev-details .btn {
-  padding: 6px 12px;
-}
-
-.prev-details a:hover,
-.prev-details > div button:hover {
-  color: white;
-}
-
-.prev-details > div button {
-  padding: 5px 10px;
-  border-radius: 3px;
-}
 
 .text-pry {
   color: var(--color-primary-variant) !important;
@@ -978,10 +871,6 @@ table td {
   height: 100%;
 }
 
-.description-details p {
-  font-size: 14px;
-  text-align: justify;
-}
 
 /* ===================== carts======================== */
 

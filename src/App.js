@@ -28,7 +28,7 @@ const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
 const Cart = lazy(() => import('./pages/Cart'));
 const Home = lazy(() => import('./pages/landing-page/Home'));
 
-const ProductDetails = lazy(() => import('./pages/ProductDetails'));
+const ProductDetails = lazy(() => import('./pages/shop-page/ProductDetails'));
 const ProductsPage = lazy(() => import('./pages/shop-page/ProductsPage'));
 const ShoesPage = lazy(() => import('./pages/shop-page/Shoe'));
 const MainLayout = lazy(() => import('./components/layouts/main'));
