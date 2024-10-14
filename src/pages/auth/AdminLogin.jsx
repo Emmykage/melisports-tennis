@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import './auth.css';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { userLog } from '../../redux/user/user';
 import { loginUser } from '../../redux/actions/auth';
+
 
 function Copyright(props) {
   return (
@@ -30,6 +31,7 @@ function Copyright(props) {
 const theme = createTheme();
 const AdminLogin = () => {
   const [seePassword, setSeePassword] = useState(false);
+  const location = useLocation()
 
   const [show, setShow] = useState(true);
 
@@ -158,18 +160,7 @@ const AdminLogin = () => {
       </div>
     );
   }
-  navigation('/admin');
+  navigation( location.state.from, '/admin');
 };
 
 export default AdminLogin;
-// else if( user.user.role == "client"){
-//   return(
-//     <div>
-//       <h1>You are not Authorized Please sign in <NavLink to="/auth/login">here</NavLink> </h1>
-
-//     </div>
-//   )
-
-// }
-
-// || Object.keys(user == 0)

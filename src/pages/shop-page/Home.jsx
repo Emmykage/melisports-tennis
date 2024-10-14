@@ -20,7 +20,8 @@ import Tennis from '../../assets/images/banner/Cat_product_tennis.avif';
 import Padel from '../../assets/images/banner/Cat_product_padel.avif';
 import Badminton from '../../assets/images/banner/test_badminton.avif';
 import './home.scss';
-import FooterInfo from '../../components/footer-info/FooterInfo';
+import videoAd from '../../assets/videos/master_of_Strings_1920x720.webm';
+import VideoComp from '../../components/video-comp/VideoComp';
 
 const ShopHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -35,7 +36,8 @@ const ShopHome = () => {
   return (
     <>
 
-      <VideoView />
+    {/* <VideoView/> */}
+      <VideoComp videoAd={videoAd} />
       <section className="px-3">
         <div className="grid gap-6 md:grid-cols-2 max-w-7xl m-auto my-6">
           <div className="">

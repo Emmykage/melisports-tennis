@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import './auth.css';
 import { BsEyeSlash, BsFacebook } from 'react-icons/bs';
@@ -38,7 +38,7 @@ const theme = createTheme();
 
 export default function Login() {
   const [seePassword, setSeePassword] = useState(false);
-
+  const location = useLocation()
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -48,6 +48,8 @@ export default function Login() {
   useEffect(() => {
     dispatch(userLog());
   }, [user]);
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -160,5 +162,5 @@ export default function Login() {
       </ThemeProvider>
     );
   }
-  navigation('/');
+  navigation(location.state?.from ||  '/');
 }

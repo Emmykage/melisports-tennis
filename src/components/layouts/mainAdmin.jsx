@@ -8,6 +8,7 @@ import ProdDelModal from '../modal/ProdDelModal';
 import CatDelModal from '../modal/CatDelModal';
 import { userLog } from '../../redux/user/user';
 import Loader from '../../pages/Loader';
+import { fetchToken } from '../../hooks/localStorage';
 
 const MainAdmin = ({ children }) => {
   const dispatch = useDispatch();
@@ -16,11 +17,12 @@ const MainAdmin = ({ children }) => {
   const { isOpen, id } = useSelector((state) => state.delModal);
   const { catOpen, catId } = useSelector((state) => state.cat_del_modal);
   const [showMenu, setShowMenu] = useState(false);
-  const { user, loading } = useSelector((state) => state.user);
-
+  const {message, user, loading } = useSelector((state) => state.user);
+  const [token] = useState(fetchToken())
   useEffect(() => {
     dispatch(userLog());
   }, [dispatch]);
+
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
@@ -28,9 +30,11 @@ const MainAdmin = ({ children }) => {
   if (loading) {
     return (<Loader />);
   }
+  // setToken(fetchToken())
 
+  console.log(token, user)
   if (user) {
-    if (user.role === 'admin') {
+    if (user?.role === 'admin') {
       return (
         <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 bg-gray-200 h-screen overflow-y-auto">
           {isOpen && <ProdDelModal id={id} />}
@@ -43,6 +47,7 @@ const MainAdmin = ({ children }) => {
         </div>
       );
     }
+   
 
     return (
       <div>
@@ -50,6 +55,14 @@ const MainAdmin = ({ children }) => {
         <NavLink to="/store">Go to Store</NavLink>
       </div>
     );
+  } else if(token){
+    return(<div className='text-center'>
+        <h1 className='text-3xl '>{message}</h1>
+        <NavLink to="/store" className={"text-xl"}>Go to Store</NavLink>
+      </div>
+
+    )
+      
   }
   navigate('/auth/admin_login');
   return null; // Ensure no further rendering happens after navigation

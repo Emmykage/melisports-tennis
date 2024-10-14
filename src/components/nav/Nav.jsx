@@ -12,6 +12,7 @@ import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
+import { userProfile } from '../../redux/actions/auth';
 
 const Nav = () => {
   const navigate = useNavigate();

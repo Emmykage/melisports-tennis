@@ -56,7 +56,7 @@ const Products = () => {
           )
 
           : (
-            <div className="w-full grid lg-grid-col-3 sm-grid-col-2 xl-grid-col-3 grid-col-5 gap-3 my-6">
+            <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
 
               {!search == '' ? sortedProducts.map((product) => (
                 <AdminProductCard product={product} key={product.id} toEdit={toEdit} />

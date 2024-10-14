@@ -513,6 +513,7 @@ a {
 .products-container .p-img {
   width: 300px;
   height: 300px;
+  flex-shrink: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
   background-position: center;
 }
@@ -724,14 +725,6 @@ button:active {
 
 .product-grid-items:hover {
   box-shadow: none;
-}
-
-.h-fit {
-  min-height: 50vh;
-}
-
-.grid {
-  display: grid;
 }
 
 .banner-text {

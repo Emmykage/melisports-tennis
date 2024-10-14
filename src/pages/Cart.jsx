@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   getLocalCart, removeItem, updateQty, updater,
 } from '../redux/cart/cart';
@@ -14,10 +14,13 @@ import { closeList } from '../redux/products/searched';
 import { naira_format } from '../utils/naira_format';
 
 const Cart = () => {
+  const {user } = useSelector(state => state.user)
   const { cartItems, total, update } = useSelector((state) => state.cart);
   const { status } = useSelector((state) => state.orders);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+const location = useLocation()
   const orderItems = () => cartItems.map((item) => (
     {
       product_id: item.product_id,
@@ -31,6 +34,11 @@ const Cart = () => {
     dispatch(getLocalCart());
     // dispatch(getCarts())
   }, [update]);
+
+  console.log(user)
+  useEffect(() => {
+    !user && navigate('/auth/login', {state: {from: location.pathname}})
+  }, []) 
 
   const handleCheckout = () => {
     dispatch(addOrder(data));
