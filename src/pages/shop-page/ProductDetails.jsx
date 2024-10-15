@@ -118,7 +118,7 @@ const ProductDetails = () => {
                           className={`block w-8 h-8 rounded-full border border-gray-300 ${pickColor(color)[0]}`}
                         /> : <span
                         key={color}
-                        className={`w-8 h-8 rounded-full border border-gray-300 flex justify-center items-center ${pickColor(color)[0]}`}
+                        className={`w-8 h-8 rounded-full border  border-gray-300 flex justify-center items-center ${pickColor(color)[0]}`}
                       > 
                       <span 
                       className={`block w-4 h-4 rounded-full border ${pickColor(color)[1]}`}

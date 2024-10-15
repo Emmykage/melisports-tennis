@@ -12,6 +12,7 @@ import { addOrder } from '../redux/actions/orders';
 import { closeNav } from '../redux/modal/nav';
 import { closeList } from '../redux/products/searched';
 import { naira_format } from '../utils/naira_format';
+import { fetchToken } from '../hooks/localStorage';
 
 const Cart = () => {
   const {user } = useSelector(state => state.user)
@@ -25,6 +26,7 @@ const location = useLocation()
     {
       product_id: item.product_id,
       quantity: item.quantity,
+      amount: item.price
     }
 
   ));
@@ -35,9 +37,10 @@ const location = useLocation()
     // dispatch(getCarts())
   }, [update]);
 
-  console.log(user)
+  // console.log(user)
+
   useEffect(() => {
-    !user && navigate('/auth/login', {state: {from: location.pathname}})
+    (!user && fetchToken()) && navigate('/auth/login', {state: {from: location.pathname}})
   }, []) 
 
   const handleCheckout = () => {

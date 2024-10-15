@@ -1,19 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import cartItems from '../../service/cartItems';
 import { getCarts } from '../actions/cart';
+import { getCart, setCart } from '../../hooks/localStorage';
 
-const setCart = (cartItems) => {
-  localStorage.setItem('cartitem', JSON.stringify(cartItems));
-};
-const getCart = () => {
-  const carts = JSON.parse(localStorage.getItem('cartitem'));
-
-  if (carts == null) {
-    return [];
-  }
-
-  return carts;
-};
 const refCart = () => getCart().map((cart) => ({
   product_id: cart.product_id,
   price: cart.price,
@@ -40,33 +28,28 @@ const cartSlice = createSlice({
     addCart: (state, action) => {
       getCart();
 
-      if (getCart() == null || getCart().length < 1) {
+      if (!getCart() || getCart().length < 1) {
         const newCartArray = [action.payload];
         setCart(newCartArray);
-        return {
-          ...state,
-          cartItems: getCart(),
-        };
+ 
       }
 
-      // jjh
-      const cartExist = getCart().find((cart) => cart.product_id == action.payload.product_id);
-      if (cartExist == undefined) {
+      const cartExist = getCart().find((cart) => cart?.product_id == action.payload.product_id);
+      if (!cartExist) {
         const newCartArray = [...getCart(), action.payload];
         setCart(newCartArray);
-        return {
-          ...state,
-          cartItems: getCart(),
-        };
+  
       }
-      const storage = getCart();
-      const updateCart = storage.map((item) => {
-        if (item.product_id == action.payload.product_id) {
-          item.quantity = action.payload.quantity;
-        }
-        return item;
-      });
-      localStorage.setItem('cartitem', JSON.stringify(updateCart));
+      else{
+        const updateCart =  getCart().map((item) => {
+          if (item.product_id == action.payload.product_id) {
+            item.quantity = action.payload.quantity;
+          }
+          return item;
+        });
+        setCart(updateCart)
+      }
+      
 
       return {
         ...state,
