@@ -37,8 +37,6 @@ const location = useLocation()
     // dispatch(getCarts())
   }, [update]);
 
-  // console.log(user)
-
   useEffect(() => {
     (!user && fetchToken()) && navigate('/auth/login', {state: {from: location.pathname}})
   }, []) 

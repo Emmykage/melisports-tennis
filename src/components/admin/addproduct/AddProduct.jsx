@@ -19,6 +19,11 @@ import 'trix/dist/trix.css';
 const AddProduct = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const { product_categories, sport_categories, updater } = useSelector((state) => state.product_categories);
+  
+  const [productColour, setProductColour] = useState([])
+  const [productShoeSize, setProductShoeSize] = useState([])
+  const [productClothSize, setProductClothSize] = useState([])
+  const [productGripSize, setProductGripSize] = useState([])
   const levels = useSelector((state) => state.level.levels);
   const genders = useSelector((state) => state.gender.genders);
   const { loading, status, report } = useSelector((state) => state.product);
@@ -72,12 +77,30 @@ const AddProduct = () => {
     e.preventDefault();
 
     if (imagePreviews.length > 0 || e.target.image.value) {
-      const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
-      const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
-      const gripSizes = Array.from(e.target.grip_sizes ?? []).map((option) => option.value);
-      const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
-
+   
+      const shoeValues = productShoeSize.map((option) => option.value);
+      const clothValues = productClothSize.map((option) => option.value);
+      const colorsValues = productColour.map((option) => option.value);
+      const gripSizes = productGripSize.map((option) => option.value);
+  
       const formData = new FormData();
+
+      colorsValues && colorsValues.forEach((item, index) => (
+        formData.append(`product[colours][]`, item)
+      ))
+  
+      gripSizes && gripSizes.forEach((item) => (
+        formData.append('product[grip_sizes][]', item)
+  
+      ))
+      shoeValues && shoeValues.forEach((item) => (
+        formData.append('product[shoe_sizes][]', item)
+  
+      ))
+      clothValues && clothValues.forEach((item) => (
+        formData.append('product[cloth_sizes][]', item)
+  
+      ))
       formData.append('product[name]', e.target.name?.value ?? '');
       formData.append('product[quantity]', e.target.quantity?.value ?? '');
       formData.append('product[thickness]', e.target.thickness?.value ?? '');
@@ -94,9 +117,7 @@ const AddProduct = () => {
       formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? '');
       formData.append('product[level_id]', e.target.level_id?.value ?? '');
       formData.append('product[gender_id]', e.target.gender_id?.value ?? '');
-      formData.append('product[grip_sizes]', gripSizes);
       formData.append('product[head_size]', e.target.head_size?.value ?? '');
-      formData.append('product[colours]', colorsValues);
       formData.append('product[weight]', e.target.weight?.value ?? '');
       formData.append('product[length]', e.target.length?.value ?? '');
       formData.append('product[stiffness]', e.target.stiffness?.value ?? '');
@@ -105,8 +126,7 @@ const AddProduct = () => {
       formData.append('product[tension]', e.target.tension?.value ?? '');
       formData.append('product[strung]', e.target.strung?.value ?? '');
       formData.append('product[image]', e.target.image?.value ?? '');
-      formData.append('product[cloth_sizes]', clothValues);
-      formData.append('product[shoe_sizes]', shoeValues);
+
       // formData.append("product[photo]", e.target.photo.files[0])
 
       formData.append('product[description_body]', e.target.description_body?.value ?? '');
@@ -127,8 +147,6 @@ const AddProduct = () => {
     const cat = sport_categories.find((item) => item.id == value);
     setSelectedSport(cat.name);
   };
-
-  console.log(productStatus)
   return (
     <div className="product-form bg-white admin m-auto w-full">
 
@@ -238,6 +256,8 @@ const AddProduct = () => {
                 placeholder="colour"
                 id="colour"
                 options={colors}
+                onChange={(selectedOption) =>  setProductColour(selectedOption)}
+
                 isMulti
               />
 
@@ -338,6 +358,8 @@ const AddProduct = () => {
                     type="text"
                     options={gripSizes}
                     placeholder="grip sizes"
+                    onChange={(selectedOption) =>  setProductGripSize(selectedOption)}
+
                     isMulti
                   />
 
@@ -627,6 +649,7 @@ const AddProduct = () => {
                 defaultValue=""
                 name="shoe_sizes"
                 id="shoe_sizes"
+                onChange={(selectedOption) =>  setProductShoeSize(selectedOption)}
                 isMulti
                 options={shoeSizes}
                 size={1}
@@ -644,6 +667,8 @@ const AddProduct = () => {
                   name="cloth_sizes"
                   id="cloth_sizes"
                   options={clothSizes}
+                  onChange={(selectedOption) =>  setProductClothSize(selectedOption)}
+
                   isMulti
                 />
 

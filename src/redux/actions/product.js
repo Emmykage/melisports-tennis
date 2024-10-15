@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
+import { fetchToken } from '../../hooks/localStorage';
 
-const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
-// console.log(token(), "fectched")
 
 const getProducts = createAsyncThunk('products/getProducts', async (_, { rejectWithValue }) => {
   try {
@@ -34,7 +33,7 @@ const updateProduct = createAsyncThunk('updateProduct', async ({ editId, formDat
     const response = await fetch(`${baseURL}products/${editId}`, {
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${token()}`,
+        Authorization: `Bearer ${fetchToken()}`,
       },
       body: formData,
     });
@@ -57,7 +56,7 @@ const addProduct = createAsyncThunk('product/addproduct', async (data, { rejectW
       method: 'POST',
       headers: {
 
-        Authorization: `Bearer ${token()}`,
+        Authorization: `Bearer ${fetchToken()}`,
       },
       body: data,
     });

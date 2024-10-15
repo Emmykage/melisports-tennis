@@ -30,9 +30,7 @@ const MainAdmin = ({ children }) => {
   if (loading) {
     return (<Loader />);
   }
-  // setToken(fetchToken())
 
-  console.log(token, user)
   if (user) {
     if (user?.role === 'admin') {
       return (

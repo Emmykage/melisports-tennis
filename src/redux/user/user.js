@@ -85,8 +85,6 @@ const userSlice = createSlice({
       loading: false,
     }),
     [userProfile.rejected]: (state, action) => {
-      console.log('reture=ned token', action.payload);
-
       return {
         ...state,
         message: action.payload.message,

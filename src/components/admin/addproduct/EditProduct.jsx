@@ -25,20 +25,22 @@ const EditProduct = () => {
   const { product_categories, sport_categories } = useSelector((state) => state.product_categories);
 
   const {
-    product, loading, report, status,
+    product, loading, message, status, pending
   } = useSelector((state) => state.product);
   const [selectSport, setSelectedSport] = useState(product?.sport_category?.name);
   const [productStatus, setProductStatus] = useState(product?.status)
 
   const levels = useSelector((state) => state.level.levels);
-
+  const [productColour, setProductColour] = useState([])
+  const [productShoeSize, setProductShoeSize] = useState([])
+  const [productClothSize, setProductClothSize] = useState([])
+  const [productGripSize, setProductGripSize] = useState([])
   const genders = useSelector((state) => state.gender.genders);
   const formRef = useRef(null);
 
   useEffect(() => {
     dispatch(getProductCategories());
     dispatch(getSportCategories());
-
     dispatch(getProduct(editId));
     dispatch(getLevels());
     dispatch(getGenders());
@@ -47,10 +49,13 @@ const EditProduct = () => {
     dispatch(writeProduct(e.target));
   };
 
+  
   useEffect(() => {
+
     if (status === 'success') {
       const timeOutOp = setTimeout(() => {
         dispatch(resetProduct());
+
       }, 5000);
 
       return () => { clearTimeout(timeOutOp); };
@@ -76,16 +81,28 @@ const EditProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const shoeValues = Array.from(e.target.shoe_sizes).map((option) => option.value);
-    const clothValues = Array.from(e.target.cloth_sizes).map((option) => option.value);
-    const colorsValues = Array.from(e.target.product_colour).map((option) => option.value);
-
-    // const gripSizes = Array.from(e.target.grip_sizes)
-
-    const gripSizes = Array.from(e.target.grip_sizes ?? []).map((option) => option.value);
+    const shoeValues = productShoeSize.map((option) => option.value);
+    const clothValues = productClothSize.map((option) => option.value);
+    const colorsValues = productColour.map((option) => option.value);
+    const gripSizes = productGripSize.map((option) => option.value);
 
     const formData = new FormData();
+    colorsValues.forEach((item) => (
+      formData.append(`product[colours][]`, item)
+    ))
 
+    gripSizes.forEach((item) => (
+      formData.append('product[grip_sizes][]', item)
+
+    ))
+    shoeValues.forEach((item) => (
+      formData.append('product[shoe_sizes][]', item)
+
+    ))
+    clothValues.forEach((item) => (
+      formData.append('product[cloth_sizes][]', item)
+
+    ))
     e.target.level_id?.value && formData.append('product[level_id]', e.target.level_id.value);
     e.target.gender_id && formData.append('product[gender_id]', e.target.gender_id.value);
 
@@ -104,9 +121,7 @@ const EditProduct = () => {
     formData.append('product[sku]', product.sku);
     formData.append('product[product_category_id]', e.target.product_category_id?.value ?? '');
     formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? '');
-    formData.append('product[grip_sizes]', gripSizes);
     formData.append('product[head_size]', product.head_size);
-    formData.append('product[colours]', colorsValues);
     formData.append('product[weight]', product.weight);
     formData.append('product[length]', product.length);
     formData.append('product[stiffness]', product.stiffness);
@@ -115,8 +130,6 @@ const EditProduct = () => {
     formData.append('product[tension]', product.tension);
     formData.append('product[strung]', e.target.strung?.value ?? '');
     formData.append('product[image]', product.image);
-    formData.append('product[cloth_sizes]', clothValues);
-    formData.append('product[shoe_sizes]', shoeValues);
     formData.append('product[description_body]', e.target.description_body?.value ?? '');
 
     Array.from(e.target.photo.files).forEach((file, index) => {
@@ -137,8 +150,6 @@ const EditProduct = () => {
     setSelectedSport(cat.name);
   };
 
-
-  console.log(product)
   return (
 
     <div className="product-form bg-white admin m-auto w-full">
@@ -262,6 +273,7 @@ const EditProduct = () => {
                     placeholder="colour"
                     id="colour"
                     options={colors}
+                    onChange={(selectedOption) =>  setProductColour(selectedOption)}
                     isMulti
                   />
 
@@ -368,6 +380,8 @@ const EditProduct = () => {
                         type="text"
                         options={gripSizes}
                         placeholder="grip size"
+                        onChange={(selectedOption) =>  setProductGripSize(selectedOption)}
+
                         isMulti
                       />
 
@@ -688,10 +702,12 @@ const EditProduct = () => {
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Shoe size  </label>
                   <Select
 
-                    defaultValue={{ value: product.shoe_sizes, label: product.shoe_sizes }}
+                    defaultValue={product.shoe_sizes?.map(item => ({ value: item, label: item }))}
                     name="shoe_sizes"
                     id="shoe_sizes"
                     isMulti
+                    onChange={(selectedOption) =>  setProductShoeSize(selectedOption)}
+
                     options={shoeSizes}
                     size={1}
                   />
@@ -711,6 +727,8 @@ const EditProduct = () => {
                       id="cloth_sizes"
                       options={clothSizes}
                       isMulti
+                      onChange={(selectedOption) =>  setProductClothSize(selectedOption)}
+
                     />
 
                   </div>
@@ -792,23 +810,23 @@ const EditProduct = () => {
                 ))}
               </div>
 
-              {loading ? (
+              {pending ? (
                 <p className="normal">
                   {' '}
-                  {report}
+                  {message}
                 </p>
               ) : (status == 'success' ? (
                 <p className="text-green bg-green-200 rounded flex my-3 p-5 gap-3 items-center">
                   {' '}
                   <FaCheckCircle className="text-green-700 text-3xl" />
 
-                  {report}
+                  {message}
                 </p>
               ) : status == 'rejected' && (
                 <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
                   {' '}
                   <MdReportGmailerrorred className="text-red-700 text-3xl" />
-                  {report}
+                  {message}
                 </p>
               )) }
               <button className="btn" type="submit">

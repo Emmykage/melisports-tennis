@@ -18,7 +18,7 @@ const addOrder = createAsyncThunk('order/createOrder', async (data, {rejectWithV
   if(!response.ok){
     return rejectWithValue({message: result.message})
   }
-  console.log(result)
+
   return result;
  }catch(error){
   return rejectWithValue({message: "SOmething went wrong"})

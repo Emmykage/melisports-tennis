@@ -26,7 +26,6 @@ const loginUser = createAsyncThunk('user/logUser', async (data, { rejectWithValu
 
     if (!response.ok) {
       const errorMessage = result.error || result.message || 'unknownerror occured ';
-      console.log('first it was reject', result.message);
       return rejectWithValue({ message: errorMessage });
     }
     setToken(result.token);
@@ -67,8 +66,6 @@ const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithV
     }
     return result;
   } catch (error) {
-    console.log('notock token');
-
     return rejectWithValue({ message: 'Something went wrong' });
   }
 });

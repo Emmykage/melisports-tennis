@@ -6,7 +6,6 @@ const useInitializeData = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('first call');
     dispatch(userProfile());
   }, []);
 

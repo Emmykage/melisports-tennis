@@ -61,19 +61,7 @@ export default function Login() {
       },
     };
     dispatch(loginUser(formInput));
-    // .then((response) => {
-    //   if(response.meta.requestStatus == "pending"){
-    //     console.log("Login loading", response)
-    //   } else if(response.meta.requestStatus == "fulfilled"){
-    //     console.log("Login Successful", response)
-    //   }else if(response.meta.requestStatus == "rejected"){
-    //     console.log("Login rejected", response.meta.payload)
 
-    //   }
-    // }).catch(error => {
-    //   console.log("Login somehting", error)
-
-    // });
   };
   if (!logged) {
     return (

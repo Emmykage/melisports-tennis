@@ -13,29 +13,25 @@ const selectColor = (color) => colors[color] || "bg-purple-500"
 
 export const pickColor = (color) => {
 
-    const singleColor = (color) => {
-        console.log(color)
+    // const singleColor = (color) => {
+    //     console.log(color)
 
-        if(color == "white"){
-            return `bg-white`
-        }
-        else if(color =="black"){
-            return `bg-black`        }
-        else if(color){
-            return `bg-${color}-500`        }
-        else{
-                return  "bg-purple-500"
-         }
+    //     if(color == "white"){
+    //         return `bg-white`
+    //     }
+    //     else if(color =="black"){
+    //         return `bg-black`        }
+    //     else if(color){
+    //         return `bg-${color}-500`        }
+    //     else{
+    //             return  "bg-purple-500"
+    //      }
        
-    }
+    // }
 
     const splitColor = (color) => {
     let colorArr =   color.split("/")
-    console.log(colorArr[0])
-
     if(colorArr.length ==  1) {
-        console.log(selectColor(colorArr[0]))
-
         return [selectColor(colorArr[0])]
         
     }
@@ -48,8 +44,6 @@ export const pickColor = (color) => {
     }
 
     }
-
-    // console.log(splitColor(color))
 
  return   splitColor(color)
 
