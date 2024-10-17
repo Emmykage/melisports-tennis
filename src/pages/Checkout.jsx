@@ -18,19 +18,19 @@ const Checkout = () => {
     dispatch(reset());
   }, []);
   return (
-    <div className="checkout">
-      <div className=" col-left">
+    <div className="checkout bg-light flex flex-col md:flex-row gap-10 max-w-[1500px]  m-auto p-4 md:p-20">
+      <div className="flex-1 col-left bg-white p-4 rounded">
         <h2>Billings </h2>
         <form action="" />
         <div className="p-1">
-          <h1 className="text-xl font-normal"> Melisport</h1>
+          <h1 className="text-xl font-medium"> Melisport</h1>
           {/* <StripeContainer total_cost={total} /> */}
           <PaymentForm amount={total} />
 
         </div>
 
       </div>
-      <div className="col-right">
+      <div className="col-right md:max-w-[300px] w-full px-1.5 py-6 bg-white rounded shadow h-max flex-1  ">
         <h3> Order summary</h3>
         <ul>
           <li className="flex">

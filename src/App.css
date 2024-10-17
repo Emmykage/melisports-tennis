@@ -1010,42 +1010,6 @@ td .btn.change {
   font-size: 1.6rem;
 }
 
-.checkout {
-  width: 100%;
-  max-width: 1500px;
-  margin: auto;
-  background-color: #dce1eb;
-  padding: 100px;
-  display: flex;
-  gap: 2%;
-}
-
-.checkout form {
-  width: 100%;
-}
-
-.checkout form input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid black;
-}
-
-.checkout .col-left {
-  flex: 1;
-  background: white;
-  padding: 14px;
-  border-radius: 6px;
-}
-
-.checkout .col-right {
-  max-width: 300px;
-  height: fit-content;
-  flex: 1;
-  background-color: white;
-  padding: 18px 5px;
-  border-radius: 6px;
-  box-shadow: var(--box-shadow);
-}
 
 .checkout .col-right span {
   font-size: 0.8rem;
