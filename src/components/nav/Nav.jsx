@@ -216,13 +216,13 @@ const Nav = () => {
 
               </ul>
             </div>
-            <div className="flex justify-between items-center ">
+            <div className="flex justify-between items-center py-2.5">
 
-              <a href="#survey" className="bg-gray-60 py-1 rounded px-3 "> Survey</a>
-              <div className="user mobile-display ">
-                {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
+              <a href="#survey" className="bg-gray-60 py-1 rounded px-3 text-base font-medium"> Survey</a>
+              <div className="flex items-center gap-3 mobile-display font-medium">
+                {!user ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
 
-                <span><FiUser className="user-icon menu-icon" /></span>
+                <span><FiUser className="user-icon menu-icon text-dark text-xl" /></span>
 
               </div>
 

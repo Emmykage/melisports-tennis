@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
+import { PaystackButton } from 'react-paystack';
 
 const PaymentField = ({ billingDetails, setBillingDetails }) => {
   const handleChange = (e) => {
     setBillingDetails({
       ...billingDetails,
       [e.target.name]: e.target.value,
-      // address: {
-      //   ...billingDetails.address,
-      //   [e.target.name]: e.target.value
-      // }
-
     });
   };
+
+
   return (
+    <form onSubmit={handleSUbmit}>
+
+
     <div>
       <div>
         <label htmlFor="">Name</label>
@@ -49,6 +50,9 @@ const PaymentField = ({ billingDetails, setBillingDetails }) => {
       </div>
 
     </div>
+    <PaystackButton type="button"/>
+    </form>
+
   );
 };
 

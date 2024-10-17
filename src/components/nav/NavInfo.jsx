@@ -84,13 +84,14 @@ const NavInfo = () => {
 
               </ul>
             </div>
-            <a href="#survey" className="bg-gray-60 py-1 rounded px-3 hidden md:block"> Survey</a>
+            <div className="flex justify-between items-center py-2.5">
+            <a href="#survey" className="bg-gray-60 py-1 rounded px-3  text-base font-medium hidden md:block"> Survey</a>
 
-            <div className="flex justify-between items-center">
+            {/* <div className="flex justify-between items-center"> */}
 
-              <div className="user mobile-display ">
+              <div className="font-medium flex items-center gap-3 mobile-display">
                 {user ? <a onClick={handleLogOut}>Log Out</a> : <NavLink to="/auth/login">Login</NavLink> }
-                <span className="text-dark"><FiUser className="menu-icon user-icon" /></span>
+                <span className="text-dark"><FiUser className="menu-icon user-icon text-xl" /></span>
 
               </div>
               <NavLink to="/store">
@@ -107,6 +108,7 @@ const NavInfo = () => {
                 </NavLink>
               </div>
             </div>
+            {/* </div> */}
           </div>
 
         </div>

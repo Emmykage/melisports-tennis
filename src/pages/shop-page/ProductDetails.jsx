@@ -195,13 +195,13 @@ const ProductDetails = () => {
         <div className="technical-details my-5 pb-6">
           <h3 className='text-2xl tracking-wider font-medium'>Technical Characteristics</h3>
             <div className="Xteristic">
-                    {product.head_size
+                    {product?.head_size
                 && (
                 <div className="">
-                  <div className="title ">
+                  <div className="title flex-1">
                     <span className="font-semibold text-base">Head Size</span>
                   </div>
-                  <div className="value">
+                  <div className="value flex-1">
                     <span className="text-gray-dark font-medium">
                       {product.head_size}
                       {' '}

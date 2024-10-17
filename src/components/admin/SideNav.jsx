@@ -34,9 +34,9 @@ const SideNav = (props) => {
     <aside className={`${showMenu ? 'display' : ''} no-scroll border-r shadow`}>
       <div className="top">
 
-        <div className="logo text-center">
+        <div className="logo  text-center">
 
-          <NavLink className="img-div" to="/">
+          <NavLink className="img-div w-28" to="/">
             <img src={logo} alt="" />
           </NavLink>
         </div>

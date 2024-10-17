@@ -150,6 +150,7 @@ const EditProduct = () => {
     setSelectedSport(cat.name);
   };
 
+  console.log(product)
   return (
 
     <div className="product-form bg-white admin m-auto w-full">
@@ -361,7 +362,7 @@ const EditProduct = () => {
                         {' '}
                       </label>
                       <Select
-                        defaultValue={product.head_size}
+                        defaultValue={{label: product.head_size, value: product.head_size}}
                         options={headSizes}
                         name="head_size"
                         id="head_size"
@@ -396,7 +397,7 @@ const EditProduct = () => {
                         id="length"
                         options={length}
 
-                        defaultValue={product.length}
+                        defaultValue={{value: product.length, label: product.length}}
                         type="text"
                         placeholder="lenght"
                       />

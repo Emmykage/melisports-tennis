@@ -76,7 +76,7 @@ function App() {
         <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
         <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
         <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
-        <Route path="paymentform" element={<StripeContainer />} />
+        {/* <Route path="paymentform" element={<StripeContainer />} /> */}
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />

@@ -6,6 +6,7 @@ import StripeContainer from './StripeContainer';
 
 import { reset } from '../redux/order/order';
 import { naira_format } from '../utils/naira_format';
+import PaymentForm from '../components/form-payment/PaymentForm';
 
 const Checkout = () => {
   // const dispatch = useDispatch();
@@ -22,9 +23,10 @@ const Checkout = () => {
         <h2>Billings </h2>
         <form action="" />
         <div className="p-1">
-          <h1 className="text-xl font-normal"> The store</h1>
-          <StripeContainer total_cost={total} />
-          {/* {showItem ? <StripeContainer total_cost={total}/> : <><h3>{total}</h3><button onClick={()=> setShowItem(true) }>Purchase Product</button> </> } */}
+          <h1 className="text-xl font-normal"> Melisport</h1>
+          {/* <StripeContainer total_cost={total} /> */}
+          <PaymentForm amount={total} />
+
         </div>
 
       </div>

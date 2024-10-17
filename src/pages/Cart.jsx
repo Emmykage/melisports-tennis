@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   getLocalCart, removeItem, updateQty, updater,
 } from '../redux/cart/cart';
@@ -87,8 +87,8 @@ const location = useLocation()
 
   return (
     <>
-      <div className="cart-div bg-white">
-        <div className=" cart-inner-div">
+      <div className="cart-div  my-4 px-4 gap-4 bg-light flex m-auto w-2/3 min-h-[70%]">
+        <div className="overflow-x-scroll cart-inner-div">
 
           <table>
             <caption className="py-6 text-lg bg-gray-200">Cart Items</caption>
@@ -107,19 +107,19 @@ const location = useLocation()
               {cartItems.map((cart) => (
                 <tr>
                   <td data-cell="image" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
-                    <div className="cart-img">
-                      <img src={cart.image} />
+                    <div className="cart-img shrink-0 w-36 ">
+                      <img src={cart.image} className='w-full h-full' />
                     </div>
                   </td>
-                  <td data-cell="name" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
+                  <td data-cell="name" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
                     <p>
                       {cart.product_name}
                     </p>
                   </td>
-                  <td data-cell="price" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
+                  <td data-cell="price" className="whitespace-nowrap border-b font- border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
                     <p>{naira_format(cart.price)}</p>
                   </td>
-                  <td data-cell="total" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
+                  <td data-cell="total" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
                     <p>{naira_format(cart.subTotal)}</p>
                   </td>
 
@@ -174,18 +174,22 @@ const location = useLocation()
 
           </div>
         </div>
-        <div className="cart-side">
+        <div className="cart-side w-96 shrink-0 flex-1 py-4 px-2 border rounded-lg">
           <div className="flex justify-between items-center"><h2 className="mb-4">Order Summary</h2></div>
           <div className="flex justify-between items-center my-1">
-            <span className="text-xl">Subtotal</span>
+            <span className="text-lg">Subtotal</span>
             <span className="text-gray font-semibold">{naira_format(total)}</span>
+          </div>
+          <div className="flex justify-between items-center my-2">
+            <span className="text-lg">Shipping</span>
+            <span className="text-gray font-semibold">--</span>
           </div>
           <div className="flex justify-between items-center total my-1">
             <span className="text-xl">Total</span>
             <span className=" text-gray font-bold">{naira_format(total)}</span>
           </div>
           <div>
-            <a onClick={handleCheckout} className="btn"> CHECKOUT</a>
+            <NavLink to={'/checkout'} onClick={handleCheckout} className="btn"> CHECKOUT</NavLink>
 
           </div>
 
