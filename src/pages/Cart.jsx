@@ -87,8 +87,8 @@ const location = useLocation()
 
   return (
     <>
-      <div className="cart-div  my-4 px-4 gap-4 bg-light flex m-auto w-2/3 min-h-[70%]">
-        <div className="overflow-x-scroll cart-inner-div">
+      <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto w-2/3 min-h-[70%]">
+        <div className="overflow-x-scroll flex-1 cart-inner-div">
 
           <table>
             <caption className="py-6 text-lg bg-gray-200">Cart Items</caption>
@@ -174,7 +174,7 @@ const location = useLocation()
 
           </div>
         </div>
-        <div className="cart-side w-96 shrink-0 flex-1 py-4 px-2 border rounded-lg">
+        <div className="cart-side md:w-72 shrink-0  py-4 px-2 border rounded-lg">
           <div className="flex justify-between items-center"><h2 className="mb-4">Order Summary</h2></div>
           <div className="flex justify-between items-center my-1">
             <span className="text-lg">Subtotal</span>
