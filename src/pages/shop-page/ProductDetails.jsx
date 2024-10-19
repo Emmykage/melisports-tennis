@@ -14,18 +14,6 @@ import { naira_format } from '../../utils/naira_format';
 import { pickColor } from '../../utils/get_colors';
 
 const ProductDetails = () => {
-  // const pickColor = (color) => {
-  //   switch (color) {
-  //     case 'blue':
-  //       return 'blue';
-  //     case 'red':
-  //       return 'red';
-  //     case 'green':
-  //       return 'green';
-  //     default:
-  //       return 'gray';
-  //   }
-  // };
 
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -37,14 +25,18 @@ const ProductDetails = () => {
     dispatch(getProduct(id));
   }, [id]);
   const handleCart = () => {
+   if(product.quantity > 0 ){ 
     dispatch(addCart({
       product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,
-    }));
+    }))
 
-    dispatch(updater());
+    dispatch(updater());}
+    else{
+      alert("Out of Stock")
+    } 
   };
   const increase = () => {
-    setCount((setPrev) => setPrev + 1);
+    count !== product.quantity && setCount((setPrev) => setPrev + 1);
   };
   const decrease = () => {
     count !== 1 && setCount((setPrev) => setPrev - 1);
@@ -53,6 +45,8 @@ const ProductDetails = () => {
   if (loading) {
     return (<Loader />);
   }
+
+  console.log(product)
   return (
     <section className="px-1">
 
@@ -159,7 +153,7 @@ const ProductDetails = () => {
             </div>
             ) }
 
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
               <div className="btn-div my-3">
                 <button
                   type="button"
@@ -178,11 +172,14 @@ const ProductDetails = () => {
                 </button>
 
               </div>
+              <div>
+                <p className='text-base font-medium'>Av Qty: {product.quantity}</p>
+              </div>
 
             </div>
             <div>
               <a
-                className="btn block py-2 px-3"
+                className={`text-center block max-w-xl py-2 px-3 ${product.quantity == 0 ? "bg-light text-dark cursor-not-allowed" : "bg-theme-light text-light cursor-pointer"}`}
                 onClick={handleCart}
               >
                 {' '}
