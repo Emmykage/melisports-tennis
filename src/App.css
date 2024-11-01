@@ -127,10 +127,10 @@
 * {
   box-sizing: border-box;
   font-family: Prompt, "poppins", Helvetica, sans-serif;
-  appearance: none;
   text-decoration: none;
   margin: 0;
   padding: 0;
+  appearance: none;
 
 }
 
@@ -493,10 +493,6 @@ a {
 
 .products-container h3 {
   font-size: 1.245rem;
-}
-
-.text-white {
-  color: white !important;
 }
 
 .zoom-hover:hover{
@@ -1036,12 +1032,7 @@ td .btn.change {
 }
 
 .close-btn .close.btn:hover {
-  color: white !important;
   background-color: #ff4500;
-}
-
-.service-table table {
-  /* background-color: red; */
 }
 
 .service-table table thead th {

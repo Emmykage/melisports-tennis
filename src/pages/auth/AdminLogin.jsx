@@ -14,7 +14,6 @@ import {
 import { userLog } from '../../redux/user/user';
 import { loginUser } from '../../redux/actions/auth';
 
-
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -31,14 +30,14 @@ function Copyright(props) {
 const theme = createTheme();
 const AdminLogin = () => {
   const [seePassword, setSeePassword] = useState(false);
-  const location = useLocation()
+  const location = useLocation();
 
   const [show, setShow] = useState(true);
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, loading,
+    user, error, message, loading, logged,
   } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -62,7 +61,18 @@ const AdminLogin = () => {
     };
     dispatch(loginUser(formInput));
   };
-  if (user == null || user == undefined || Object.keys(user) == 0) {
+  if (!logged) {
+    if (user?.role == 'client') {
+      return (
+        <div>
+          <h1 className="text-center">
+            You are not Authorized Please sign in
+            <NavLink onClick={handleRedirect} className="block text-center" to="/auth/login">here</NavLink>
+          </h1>
+
+        </div>
+      );
+    }
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -149,18 +159,8 @@ const AdminLogin = () => {
         </Container>
       </ThemeProvider>
     );
-  } if (user.role == 'client') {
-    return (
-      <div>
-        <h1 className="text-center">
-          You are not Authorized Please sign in
-          <NavLink onClick={handleRedirect} className="block text-center" to="/auth/login">here</NavLink>
-        </h1>
-
-      </div>
-    );
   }
-  navigation( location.state.from, '/admin');
+  navigation(location.state?.from || '/admin');
 };
 
 export default AdminLogin;

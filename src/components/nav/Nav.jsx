@@ -71,7 +71,7 @@ const Nav = () => {
                   <NavLink to={`/racquets?brand=${'babolat'}`} className="">Rackets </NavLink>
                   <div className="link-items flex">
                     <div className="">
-                      <h3 className='text-lg tracking-wider font-medium'>
+                      <h3 className="text-lg tracking-wider font-medium">
                         Rackets &
                         <br />
                         {' '}
@@ -80,18 +80,18 @@ const Nav = () => {
                     </div>
                     <ul>
 
-                      <h4 className='text-base font-medium'> Tennis Rackets</h4>
+                      <h4 className="text-base font-medium"> Tennis Rackets</h4>
                       <li><NavLink to="/racquets">Babolat</NavLink></li>
 
                     </ul>
                     <ul>
-                      <h4 className='text-base font-medium'>Padel Rackets</h4>
+                      <h4 className="text-base font-medium">Padel Rackets</h4>
                       <li><NavLink to="/padels">Babolat</NavLink></li>
 
                     </ul>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Badminton Rackets</h4>
+                      <h4 className="text-base font-medium">Badminton Rackets</h4>
                       <li><NavLink to="/badminton">Babolat</NavLink></li>
 
                     </ul>
@@ -103,17 +103,17 @@ const Nav = () => {
 
                   <div className="link-items flex">
                     <div>
-                      <h3 lassName='text-lg tracking-wider font-medium'>Apparels</h3>
+                      <h3 lassName="text-lg tracking-wider font-medium">Apparels</h3>
                     </div>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Tennis Men's Apparels</h4>
+                      <h4 className="text-base font-medium">Tennis Men's Apparels</h4>
                       <li><a href="#">Babolat</a></li>
                       {/* <li><a href="#">Wilson</a></li> */}
                     </ul>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Tennis Women's Apparel</h4>
+                      <h4 className="text-base font-medium">Tennis Women's Apparel</h4>
                       <li><a href="#">Babolat</a></li>
                       {/* <li><a href="#">Wilson</a></li> */}
                     </ul>
@@ -123,17 +123,17 @@ const Nav = () => {
                   <NavLink to="/shoes">Shoes</NavLink>
                   <div className="link-items">
                     <div>
-                      <h3 lassName='text-lg tracking-wider font-medium'>Shoes</h3>
+                      <h3 lassName="text-lg tracking-wider font-medium">Shoes</h3>
                     </div>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Men's Shoes</h4>
+                      <h4 className="text-base font-medium">Men's Shoes</h4>
                       <li><a href="#">Babolat</a></li>
                       {/* <li><a href="#">Wilson</a></li> */}
                     </ul>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Women's Shoes</h4>
+                      <h4 className="text-base font-medium">Women's Shoes</h4>
                       <li><a href="/">Babolat</a></li>
                       {/* <li><a href="/">Wilson</a></li> */}
                     </ul>
@@ -143,17 +143,17 @@ const Nav = () => {
                   <NavLink to="/bags">Bags</NavLink>
                   <div className="link-items flex">
                     <div>
-                      <h3 lassName='text-lg tracking-wider font-medium'>Bags</h3>
+                      <h3 lassName="text-lg tracking-wider font-medium">Bags</h3>
                     </div>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Men's Shoes</h4>
+                      <h4 className="text-base font-medium">Men's Shoes</h4>
                       <li><a href="#">Babolat</a></li>
                       {/* <li><a href="#">Wilson</a></li> */}
                     </ul>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Women's Shoes</h4>
+                      <h4 className="text-base font-medium">Women's Shoes</h4>
                       <li><a href="/">Babolat</a></li>
                       {/* <li><a href="/">Wilson</a></li> */}
                     </ul>
@@ -167,7 +167,7 @@ const Nav = () => {
                     </div>
                     <ul>
 
-                      <h4 className='text-base font-medium'>Men's Shoes</h4>
+                      <h4 className="text-base font-medium">Men's Shoes</h4>
                       <li><a href="#">Babolat</a></li>
                       {/* <li><a href="#">Wilson</a></li> */}
                     </ul>
@@ -200,7 +200,7 @@ const Nav = () => {
                 </div> */}
                 </li>
 
-                {user !== null && ((user.role == 'admin') && (
+                {user !== null && ((user?.role == 'admin') && (
                 <li className="nav-item">
                   <NavLink to="/admin">    go to admin </NavLink>
                   {' '}

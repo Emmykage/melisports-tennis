@@ -25,16 +25,16 @@ const EditProduct = () => {
   const { product_categories, sport_categories } = useSelector((state) => state.product_categories);
 
   const {
-    product, loading, message, status, pending
+    product, loading, message, status, pending,
   } = useSelector((state) => state.product);
   const [selectSport, setSelectedSport] = useState(product?.sport_category?.name);
-  const [productStatus, setProductStatus] = useState(product?.status)
+  const [productStatus, setProductStatus] = useState(product?.status);
 
   const levels = useSelector((state) => state.level.levels);
-  const [productColour, setProductColour] = useState([])
-  const [productShoeSize, setProductShoeSize] = useState([])
-  const [productClothSize, setProductClothSize] = useState([])
-  const [productGripSize, setProductGripSize] = useState([])
+  const [productColour, setProductColour] = useState([]);
+  const [productShoeSize, setProductShoeSize] = useState([]);
+  const [productClothSize, setProductClothSize] = useState([]);
+  const [productGripSize, setProductGripSize] = useState([]);
   const genders = useSelector((state) => state.gender.genders);
   const formRef = useRef(null);
 
@@ -49,13 +49,10 @@ const EditProduct = () => {
     dispatch(writeProduct(e.target));
   };
 
-  
   useEffect(() => {
-
     if (status === 'success') {
       const timeOutOp = setTimeout(() => {
         dispatch(resetProduct());
-
       }, 5000);
 
       return () => { clearTimeout(timeOutOp); };
@@ -88,21 +85,21 @@ const EditProduct = () => {
 
     const formData = new FormData();
     colorsValues.forEach((item) => (
-      formData.append(`product[colours][]`, item)
-    ))
+      formData.append('product[colours][]', item)
+    ));
 
     gripSizes.forEach((item) => (
       formData.append('product[grip_sizes][]', item)
 
-    ))
+    ));
     shoeValues.forEach((item) => (
       formData.append('product[shoe_sizes][]', item)
 
-    ))
+    ));
     clothValues.forEach((item) => (
       formData.append('product[cloth_sizes][]', item)
 
-    ))
+    ));
     e.target.level_id?.value && formData.append('product[level_id]', e.target.level_id.value);
     e.target.gender_id && formData.append('product[gender_id]', e.target.gender_id.value);
 
@@ -142,15 +139,13 @@ const EditProduct = () => {
 
   useEffect(() => {
     setSelectedSport(product?.sport_category?.name);
-    setProductStatus(product?.status)
+    setProductStatus(product?.status);
   }, [product]);
 
   const handleValue = (value) => {
     const cat = sport_categories.find((item) => item.id == value);
     setSelectedSport(cat.name);
   };
-
-  console.log(product)
   return (
 
     <div className="product-form bg-white admin m-auto w-full">
@@ -180,8 +175,11 @@ const EditProduct = () => {
                 <div className="ms_code ml-auto w-48">
 
                   <div className="ms_code quantity bg-green-500">
-                    <label htmlFor="quantity font-medium text-gray-700">ms product code {productStatus== "active" && "*"} </label>
-                    <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required={productStatus==="active"}/>
+                    <label htmlFor="quantity font-medium text-gray-700">
+                      ms product code
+                      {productStatus == 'active' && '*'}
+                    </label>
+                    <input onChange={handleFormInput} type="text" name="ms_code" id="ms_code" value={product.ms_code} className="bg-green-200" required={productStatus === 'active'} />
                   </div>
 
                 </div>
@@ -191,7 +189,7 @@ const EditProduct = () => {
               <div className="max-w-80 w-full">
                 <label htmlFor="font-medium text-gray-700">Status</label>
                 <Select
-              onChange={(selectedOption) => setProductStatus(selectedOption.value)}
+                  onChange={(selectedOption) => setProductStatus(selectedOption.value)}
                   defaultValue={{ value: product.status, label: product.status }}
                   required
                   name="status"
@@ -231,7 +229,10 @@ const EditProduct = () => {
                 </div>
                 <div className="input-half">
                   <label>
-                    <span className="text-gray-500 font-semibold text-sm">Price: NGN {productStatus== "active" && "*"} </span>
+                    <span className="text-gray-500 font-semibold text-sm">
+                      Price: NGN
+                      {productStatus == 'active' && '*'}
+                    </span>
                     {' '}
                     <span />
                   </label>
@@ -243,15 +244,19 @@ const EditProduct = () => {
                     id="price"
                     type="number"
                     placeholder="price"
-                    required={productStatus==="active"} 
-                    />
+                    required={productStatus === 'active'}
+                  />
 
                 </div>
               </div>
               <div className="form-row my-1">
 
                 <div className="input-half">
-                  <label htmlFor="sku" className="text-dark font-semibold text-sm"> SKU  {productStatus== "active" && "*"}  </label>
+                  <label htmlFor="sku" className="text-dark font-semibold text-sm">
+                    {' '}
+                    SKU
+                    {productStatus == 'active' && '*'}
+                  </label>
                   <input
                     name="sku"
                     onChange={handleFormInput}
@@ -259,7 +264,7 @@ const EditProduct = () => {
                     id="sku"
                     type="text"
                     placeholder="sku"
-                    required={productStatus==="active"} 
+                    required={productStatus === 'active'}
 
                   />
 
@@ -274,7 +279,7 @@ const EditProduct = () => {
                     placeholder="colour"
                     id="colour"
                     options={colors}
-                    onChange={(selectedOption) =>  setProductColour(selectedOption)}
+                    onChange={(selectedOption) => setProductColour(selectedOption)}
                     isMulti
                   />
 
@@ -362,7 +367,7 @@ const EditProduct = () => {
                         {' '}
                       </label>
                       <Select
-                        defaultValue={{label: product.head_size, value: product.head_size}}
+                        defaultValue={{ label: product.head_size, value: product.head_size }}
                         options={headSizes}
                         name="head_size"
                         id="head_size"
@@ -381,7 +386,7 @@ const EditProduct = () => {
                         type="text"
                         options={gripSizes}
                         placeholder="grip size"
-                        onChange={(selectedOption) =>  setProductGripSize(selectedOption)}
+                        onChange={(selectedOption) => setProductGripSize(selectedOption)}
 
                         isMulti
                       />
@@ -397,7 +402,7 @@ const EditProduct = () => {
                         id="length"
                         options={length}
 
-                        defaultValue={{value: product.length, label: product.length}}
+                        defaultValue={{ value: product.length, label: product.length }}
                         type="text"
                         placeholder="lenght"
                       />
@@ -703,11 +708,11 @@ const EditProduct = () => {
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Shoe size  </label>
                   <Select
 
-                    defaultValue={product.shoe_sizes?.map(item => ({ value: item, label: item }))}
+                    defaultValue={product.shoe_sizes?.map((item) => ({ value: item, label: item }))}
                     name="shoe_sizes"
                     id="shoe_sizes"
                     isMulti
-                    onChange={(selectedOption) =>  setProductShoeSize(selectedOption)}
+                    onChange={(selectedOption) => setProductShoeSize(selectedOption)}
 
                     options={shoeSizes}
                     size={1}
@@ -728,7 +733,7 @@ const EditProduct = () => {
                       id="cloth_sizes"
                       options={clothSizes}
                       isMulti
-                      onChange={(selectedOption) =>  setProductClothSize(selectedOption)}
+                      onChange={(selectedOption) => setProductClothSize(selectedOption)}
 
                     />
 

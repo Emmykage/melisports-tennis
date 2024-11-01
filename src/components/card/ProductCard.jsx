@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { naira_format } from '../../utils/naira_format';
+import { nairaFormat } from '../../utils/nairaFormat';
 
 const ProductCard = ({ product }) => (
   <div key={product.id} className="relative text-center md:basis-[24%] basis-[48%] border border-theme-dark p-3 mb-6 rounded-xl h-max bg-white overflow-hidden sm:min-w-48 w-full ">
@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => (
       </h5>
       <p className="text-base my-3">
         {' '}
-        {naira_format(product.price)}
+        {nairaFormat(product.price)}
       </p>
       <NavLink className="w-full bg-theme-darker text-white block py-2 rounded" to={`/productdetails/${product.id}`}>
         Buy

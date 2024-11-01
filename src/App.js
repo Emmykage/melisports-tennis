@@ -22,6 +22,7 @@ import ShopHome from './pages/shop-page/Home';
 import Arrivals from './pages/shop-page/Arrivals';
 import NotFound from './pages/NotFound';
 import useInitializeData from './hooks/useInitializeData';
+import ConfirmOrder from './pages/ConfirmOrder';
 
 const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
 const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
@@ -76,7 +77,6 @@ function App() {
         <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
         <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
         <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
-        {/* <Route path="paymentform" element={<StripeContainer />} /> */}
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
@@ -93,6 +93,7 @@ function App() {
         <Route path="/shoes" element={<MainLayout><ShoesPage /></MainLayout>} />
         <Route path="/accessories" element={<MainLayout><AccessoriesPage /></MainLayout>} />
         <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
+        <Route path="/confirm-order" element={<MainLayout><ConfirmOrder /></MainLayout>} />
 
         <Route path="/apparels" element={<MainLayout><ApparelsPage /></MainLayout>} />
         <Route path="admin">

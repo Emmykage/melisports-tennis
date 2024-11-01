@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
 import { fetchToken } from '../../hooks/localStorage';
-
+import { refreshToken } from '../../utils/refreshToken';
 
 const getProducts = createAsyncThunk('products/getProducts', async (_, { rejectWithValue }) => {
   try {
@@ -9,7 +9,7 @@ const getProducts = createAsyncThunk('products/getProducts', async (_, { rejectW
 
     const result = await response.json();
     if (!response.ok) {
-      return rejectWithValue({ message: result.message });
+
     }
     return result;
   } catch (error) {

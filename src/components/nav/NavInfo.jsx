@@ -12,6 +12,7 @@ import { closeNav, openNav } from '../../redux/modal/nav';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { userProfile } from '../../redux/actions/auth';
+import { fetchToken, removeToken } from '../../hooks/localStorage';
 
 const NavInfo = () => {
   const navigate = useNavigate();
@@ -33,8 +34,9 @@ const NavInfo = () => {
     dispatch(calculateTotal());
     window.addEventListener('scroll', toggleScrollNav);
   }, [update]);
+
   const handleLogOut = () => {
-    localStorage.removeItem('meli_auth');
+    removeToken()
     dispatch(userProfile());
     navigate('/auth/login');
   };
@@ -85,9 +87,9 @@ const NavInfo = () => {
               </ul>
             </div>
             <div className="flex justify-between items-center py-2.5">
-            <a href="#survey" className="bg-gray-60 py-1 rounded px-3  text-base font-medium hidden md:block"> Survey</a>
+              <a href="#survey" className="bg-gray-60 py-1 rounded px-3  text-base font-medium hidden md:block"> Survey</a>
 
-            {/* <div className="flex justify-between items-center"> */}
+              {/* <div className="flex justify-between items-center"> */}
 
               <div className="font-medium flex items-center gap-3 mobile-display">
                 {user ? <a onClick={handleLogOut}>Log Out</a> : <NavLink to="/auth/login">Login</NavLink> }

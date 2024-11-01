@@ -13,7 +13,7 @@ const Modal = () => {
         <h3 className="center font-normal text-xl my-4">remove all items from shopping cart?</h3>
         <div className="btn-container">
           <Button
- 
+
             btnFunc={() => {
               dispatch(clearCart());
               dispatch(closeModal());

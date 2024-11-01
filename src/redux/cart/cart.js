@@ -31,25 +31,21 @@ const cartSlice = createSlice({
       if (!getCart() || getCart().length < 1) {
         const newCartArray = [action.payload];
         setCart(newCartArray);
- 
       }
 
       const cartExist = getCart().find((cart) => cart?.product_id == action.payload.product_id);
       if (!cartExist) {
         const newCartArray = [...getCart(), action.payload];
         setCart(newCartArray);
-  
-      }
-      else{
-        const updateCart =  getCart().map((item) => {
+      } else {
+        const updateCart = getCart().map((item) => {
           if (item.product_id == action.payload.product_id) {
             item.quantity = action.payload.quantity;
           }
           return item;
         });
-        setCart(updateCart)
+        setCart(updateCart);
       }
-      
 
       return {
         ...state,

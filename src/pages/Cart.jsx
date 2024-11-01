@@ -4,66 +4,30 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   getLocalCart, removeItem, updateQty, updater,
 } from '../redux/cart/cart';
-import {
-  decreaseCart, increaseCart, getCarts,
-} from '../redux/actions/cart';
+
 import { openModal } from '../redux/modal/modal';
-import { addOrder } from '../redux/actions/orders';
 import { closeNav } from '../redux/modal/nav';
 import { closeList } from '../redux/products/searched';
-import { naira_format } from '../utils/naira_format';
+import { nairaFormat } from '../utils/nairaFormat';
 import { fetchToken } from '../hooks/localStorage';
 
 const Cart = () => {
-  const {user } = useSelector(state => state.user)
+  const { user, loading } = useSelector((state) => state.user);
   const { cartItems, total, update } = useSelector((state) => state.cart);
   const { status } = useSelector((state) => state.orders);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-const location = useLocation()
-  const orderItems = () => cartItems.map((item) => (
-    {
-      product_id: item.product_id,
-      quantity: item.quantity,
-      amount: item.price
-    }
+  const location = useLocation();
 
-  ));
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
     dispatch(getLocalCart());
-    // dispatch(getCarts())
   }, [update]);
 
-  useEffect(() => {
-    (!user && fetchToken()) && navigate('/auth/login', {state: {from: location.pathname}})
-  }, []) 
-
-  const handleCheckout = () => {
-    dispatch(addOrder(data));
-  };
-
-  status == 'success' && navigate('/checkout');
-
-  const data = {
-    order_detail: {
-      total,
-      order_items_attributes: orderItems(),
-      status: 'pending',
-    },
-  };
-
-  if (cartItems.length < 1) {
-    return (
-      <div className="warning-center product-container">
-
-        <h2> Add to Cart</h2>
-        <h4> You cart is currently empty</h4>
-
-      </div>
-    );
+  if ((!user && !loading && !fetchToken())) {
+    navigate('/auth/login', { state: { from: location.pathname } });
   }
 
   const selectCart = (id, quantity, sign) => {
@@ -85,9 +49,20 @@ const location = useLocation()
     dispatch(updater());
   };
 
+  if (cartItems.length < 1) {
+    return (
+      <div className="warning-center product-container">
+
+        <h2> Add to Cart</h2>
+        <h4> You cart is currently empty</h4>
+
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto w-2/3 min-h-[70%]">
+      <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto max-w-[1500px] min-h-[70%]">
         <div className="overflow-x-scroll flex-1 cart-inner-div">
 
           <table>
@@ -108,7 +83,7 @@ const location = useLocation()
                 <tr>
                   <td data-cell="image" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <div className="cart-img shrink-0 w-36 ">
-                      <img src={cart.image} className='w-full h-full' />
+                      <img src={cart.image} className="w-full h-full" />
                     </div>
                   </td>
                   <td data-cell="name" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
@@ -117,10 +92,10 @@ const location = useLocation()
                     </p>
                   </td>
                   <td data-cell="price" className="whitespace-nowrap border-b font- border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
-                    <p>{naira_format(cart.price)}</p>
+                    <p>{nairaFormat(cart.price)}</p>
                   </td>
                   <td data-cell="total" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
-                    <p>{naira_format(cart.subTotal)}</p>
+                    <p>{nairaFormat(cart.subTotal)}</p>
                   </td>
 
                   <td data-cell="quantity" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
@@ -178,7 +153,7 @@ const location = useLocation()
           <div className="flex justify-between items-center"><h2 className="mb-4">Order Summary</h2></div>
           <div className="flex justify-between items-center my-1">
             <span className="text-lg">Subtotal</span>
-            <span className="text-gray font-semibold">{naira_format(total)}</span>
+            <span className="text-gray font-semibold">{nairaFormat(total)}</span>
           </div>
           <div className="flex justify-between items-center my-2">
             <span className="text-lg">Shipping</span>
@@ -186,10 +161,10 @@ const location = useLocation()
           </div>
           <div className="flex justify-between items-center total my-1">
             <span className="text-xl">Total</span>
-            <span className=" text-gray font-bold">{naira_format(total)}</span>
+            <span className=" text-gray font-bold">{nairaFormat(total)}</span>
           </div>
           <div>
-            <NavLink to={'/checkout'} onClick={handleCheckout} className="btn"> CHECKOUT</NavLink>
+            <NavLink to="/checkout" className="btn"> CHECKOUT</NavLink>
 
           </div>
 

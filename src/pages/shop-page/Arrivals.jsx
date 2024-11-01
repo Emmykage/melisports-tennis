@@ -94,8 +94,8 @@ const Arrivals = () => {
                 <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
 
                   <span>
-                      Tennis
-                    </span>
+                    Tennis
+                  </span>
                 </label>
 
               </div>
@@ -104,7 +104,7 @@ const Arrivals = () => {
                 <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
 
                   Badminton
-                  </label>
+                </label>
               </div>
 
             </div>
@@ -116,7 +116,7 @@ const Arrivals = () => {
 
                 <label htmlFor="control" style={{ fontSize: '1rem' }}>
                   Control
-                  </label>
+                </label>
 
               </div>
               <div className="flex items-center mb-2">
@@ -125,14 +125,14 @@ const Arrivals = () => {
 
                 <label htmlFor="power" style={{ fontSize: '1rem' }}>
                   Power
-                  </label>
+                </label>
               </div>
               <div className="flex items-center">
                 <input onChange={handleFilteredFeatures} value="spin" type="checkbox" id="spin" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
                 <label htmlFor="spin" style={{ fontSize: '1rem' }}>
                   Spin
-                  </label>
+                </label>
 
               </div>
 
@@ -144,7 +144,7 @@ const Arrivals = () => {
 
                 <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
                   Beginner
-                  </label>
+                </label>
               </span>
 
               <span className="flex items-center mb-2">
@@ -152,7 +152,7 @@ const Arrivals = () => {
 
                 <label htmlFor="professional">
                   Professional
-                  </label>
+                </label>
 
               </span>
               <span className="flex items-center mb-2">
@@ -160,7 +160,7 @@ const Arrivals = () => {
 
                 <label htmlFor="intermediate" style={{ fontSize: '1rem' }}>
                   Intermediate
-                  </label>
+                </label>
 
               </span>
 
@@ -169,7 +169,7 @@ const Arrivals = () => {
 
                 <label htmlFor="junior" style={{ fontSize: '1rem' }}>
                   Junior
-                  </label>
+                </label>
 
               </span>
 
@@ -196,12 +196,12 @@ const Arrivals = () => {
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>
                   <p>
-                      { category?.description}
+                    { category?.description}
 
-                    </p>
+                  </p>
                   <p className="font-semibold text-gray">
-                      From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
-                    </p>
+                    From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
+                  </p>
 
                 </div>
               </div>

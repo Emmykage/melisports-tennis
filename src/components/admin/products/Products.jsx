@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { CiSearch } from 'react-icons/ci';
-import Loader from '../../../pages/Loader';
+import { useNavigate } from 'react-router-dom';
 import { getProduct, getProducts } from '../../../redux/actions/product';
-import { openDelModal } from '../../../redux/modal/delModal';
-import { naira_format } from '../../../utils/naira_format';
 import Search from '../../search/Search';
 import { filterProducts } from '../../../redux/products/product';
 import AdminProductCard from '../../card/AdminProductCard';
@@ -22,7 +18,8 @@ const Products = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    products.length == 0 && dispatch(getProducts());
+    // eslint-disable-next-line no-unused-expressions
+    products.length === 0 && dispatch(getProducts());
   }, [updater]);
 
   const toEdit = (id) => {
@@ -32,7 +29,7 @@ const Products = () => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    if (e.target.value.trim() == '') {
+    if (e.target.value.trim() === '') {
       dispatch(resetProduct());
     } else {
       dispatch(filterProducts(e.target.value.trim()));
@@ -58,7 +55,7 @@ const Products = () => {
           : (
             <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
 
-              {!search == '' ? sortedProducts.map((product) => (
+              {!search === '' ? sortedProducts.map((product) => (
                 <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
 
               )) : products.map((product) => (
@@ -79,10 +76,6 @@ const Products = () => {
         {message}
       </h2>
     </div>
-  );
-
-  return (
-    <Loader />
   );
 };
 

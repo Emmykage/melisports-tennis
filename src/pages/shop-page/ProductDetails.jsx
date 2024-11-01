@@ -10,11 +10,10 @@ import { closeNav } from '../../redux/modal/nav';
 import { addCart } from '../../redux/cart/cart';
 import Loader from '../Loader';
 import ImagePreview from '../../components/products/ImagePreview';
-import { naira_format } from '../../utils/naira_format';
+import { nairaFormat } from '../../utils/nairaFormat';
 import { pickColor } from '../../utils/get_colors';
 
 const ProductDetails = () => {
-
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const { product, loading } = useSelector((state) => state.product);
@@ -25,15 +24,15 @@ const ProductDetails = () => {
     dispatch(getProduct(id));
   }, [id]);
   const handleCart = () => {
-   if(product.quantity > 0 ){ 
-    dispatch(addCart({
-      product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,
-    }))
+    if (product.quantity > 0) {
+      dispatch(addCart({
+        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,
+      }));
 
-    dispatch(updater());}
-    else{
-      alert("Out of Stock")
-    } 
+      dispatch(updater());
+    } else {
+      alert('Out of Stock');
+    }
   };
   const increase = () => {
     count !== product.quantity && setCount((setPrev) => setPrev + 1);
@@ -45,8 +44,6 @@ const ProductDetails = () => {
   if (loading) {
     return (<Loader />);
   }
-
-  console.log(product)
   return (
     <section className="px-1">
 
@@ -63,13 +60,15 @@ const ProductDetails = () => {
           <div className="col-md-6 right-detail-container prev-details md:px-4">
             <h2 className="my-0 text-3xl font-medium">{product?.name}</h2>
             <p className="my-2 text-base text-gray-500">
-              Tennis {" "}
+              Tennis
+              {' '}
+              {' '}
               {product?.product_category?.name}
             </p>
             <div className="price ">
 
               <span className="text-2xl font-semibold">
-                {naira_format(product.price)}
+                {nairaFormat(product.price)}
               </span>
 
             </div>
@@ -88,13 +87,10 @@ const ProductDetails = () => {
             ) }
             {/* {product?.head_size} */}
 
-            
-            
-            
             {product?.colours && (
-              <div className='my-3'>
+              <div className="my-3">
 
-                <div className=' items-center'>
+                <div className=" items-center">
 
                   <span className="text-gray-600 text-xl font-semibold ">
                     colours:
@@ -104,51 +100,53 @@ const ProductDetails = () => {
                     {product.colours.length > 0 ? (
                       product.colours.map((color) => (
 
-                        pickColor(color).length == 1 ? 
-                        <span
-                          key={color}
-                          className={`block w-8 h-8 rounded-full border border-gray-300 ${pickColor(color)[0]}`}
-                        /> : <span
-                        key={color}
-                        className={`w-8 h-8 rounded-full border  border-gray-300 flex justify-center items-center ${pickColor(color)[0]}`}
-                      > 
-                      <span 
-                      className={`block w-4 h-4 rounded-full border ${pickColor(color)[1]}`}
-                      />
+                        pickColor(color).length == 1
+                          ? (
+                            <span
+                              key={color}
+                              className={`block w-8 h-8 rounded-full border border-gray-300 ${pickColor(color)[0]}`}
+                            />
+                          ) : (
+                            <span
+                              key={color}
+                              className={`w-8 h-8 rounded-full border  border-gray-300 flex justify-center items-center ${pickColor(color)[0]}`}
+                            >
+                              <span
+                                className={`block w-4 h-4 rounded-full border ${pickColor(color)[1]}`}
+                              />
 
-                    
-                      </span>
+                            </span>
+                          )
                       ))
                     ) : (
-                      <span className='flex h-full'>
-                      N/A
+                      <span className="flex h-full">
+                        N/A
 
                       </span>
                     )}
                   </div>
 
                 </div>
-            </div>
+              </div>
 
             ) }
 
             {product?.grip_sizes && product?.grip_sizes.length > 0 && (
             <div>
-              
+
               <p className="block text-gray-600 text-xl font-semibold">
                 Grip sizes:
               </p>
-              <div className='flex gap-1 flex-wrap my-2'> 
+              <div className="flex gap-1 flex-wrap my-2">
                 {' '}
-                {product.grip_sizes.map(size => (
-              <span className="text-gray-dark px-6 py-0.5 bg-gray-200 text-base text-gray-dark rounded">
-                {size}
-              </span>
+                {product.grip_sizes.map((size) => (
+                  <span className="text-gray-dark px-6 py-0.5 bg-gray-200 text-base text-gray-dark rounded">
+                    {size}
+                  </span>
 
                 ))}
 
               </div>
-            
 
             </div>
             ) }
@@ -157,7 +155,7 @@ const ProductDetails = () => {
               <div className="btn-div my-3">
                 <button
                   type="button"
-                  className='py-1 px-2.5'
+                  className="py-1 px-2.5"
                   onClick={decrease}
                 >
                   -
@@ -165,7 +163,7 @@ const ProductDetails = () => {
                 <span>{count}</span>
                 <button
                   type="button"
-                   className='py-1 px-2.5'
+                  className="py-1 px-2.5"
                   onClick={increase}
                 >
                   +
@@ -173,13 +171,16 @@ const ProductDetails = () => {
 
               </div>
               <div>
-                <p className='text-base font-medium'>Av Qty: {product.quantity}</p>
+                <p className="text-base font-medium">
+                  Av Qty:
+                  {product.quantity}
+                </p>
               </div>
 
             </div>
             <div>
               <a
-                className={`text-center block max-w-xl py-2 px-3 ${product.quantity == 0 ? "bg-light text-dark cursor-not-allowed" : "bg-theme-light text-light cursor-pointer"}`}
+                className={`text-center block max-w-xl py-2 px-3 ${product.quantity == 0 ? 'bg-light text-dark cursor-not-allowed' : 'bg-theme-light text-light cursor-pointer'}`}
                 onClick={handleCart}
               >
                 {' '}
@@ -190,9 +191,9 @@ const ProductDetails = () => {
 
         </div>
         <div className="technical-details my-5 pb-6">
-          <h3 className='text-2xl tracking-wider font-medium'>Technical Characteristics</h3>
-            <div className="Xteristic">
-                    {product?.head_size
+          <h3 className="text-2xl tracking-wider font-medium">Technical Characteristics</h3>
+          <div className="Xteristic">
+            {product?.head_size
                 && (
                 <div className="">
                   <div className="title flex-1">
@@ -207,7 +208,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 ) }
-                    {product.weight
+            {product.weight
                       && (
                       <div>
                         <div className="col-6">
@@ -224,7 +225,7 @@ const ProductDetails = () => {
                         </div>
                       </div>
                       )}
-                    {product.size
+            {product.size
                 && (
                 <div>
                   <div className="col-6">
@@ -237,7 +238,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 )}
-                    {product.length
+            {product.length
                 && (
                 <div>
                   <div className="col-6">
@@ -254,7 +255,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 )}
-                    {product.composition
+            {product.composition
                 && (
                 <div>
                   <div className="col-6">
@@ -267,7 +268,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 )}
-                    {product.strung
+            {product.strung
                 && (
                 <div>
                   <div>
@@ -280,7 +281,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 )}
-                    {product.tension
+            {product.tension
                 && (
                 <div>
 
@@ -304,7 +305,7 @@ const ProductDetails = () => {
         <div className="description-details my-6">
           <h2 className="text-2xl font-medium">Description</h2>
 
-          {product.description_body ? <p className='md:text-base' dangerouslySetInnerHTML={{ __html: product?.description_body }} /> : <p className='text-lg'>{ product.description }</p> }
+          {product.description_body ? <p className="md:text-base" dangerouslySetInnerHTML={{ __html: product?.description_body }} /> : <p className="text-lg">{ product.description }</p> }
 
         </div>
 

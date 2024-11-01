@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
-import { fetchToken, setToken } from '../../hooks/localStorage';
+import { fetchToken, removeToken, setToken } from '../../hooks/localStorage';
+import { refreshToken } from '../../utils/refreshToken';
 
 const addUser = createAsyncThunk('user/addUser', async (data) => {
   const response = await fetch(`${baseURL}users`, {
@@ -28,6 +29,7 @@ const loginUser = createAsyncThunk('user/logUser', async (data, { rejectWithValu
       const errorMessage = result.error || result.message || 'unknownerror occured ';
       return rejectWithValue({ message: errorMessage });
     }
+
     setToken(result.token);
     return result;
   } catch (error) {
@@ -51,7 +53,7 @@ const getUser = createAsyncThunk('user/getUser', async (id) => {
 
 const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseURL}users/userProfile`, {
+    let response = await fetch(`${baseURL}users/userProfile`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -59,11 +61,34 @@ const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithV
       },
     });
 
-    const result = await response.json();
+    let result = await response.json();
     if (!response.ok) {
-      const errorMessage = result.message || result.error;
-      return rejectWithValue({ message: errorMessage });
+      const refreshSuccess = await new Promise((resolve, reject) => {
+        refreshToken(
+          async () => {
+            response = await fetch(`${baseURL}users/userProfile`, {
+              method: 'GET',
+              headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${fetchToken()}`,
+              },
+            });
+            result = await response.json();
+            resolve(response);
+          },
+          () => {
+            removeToken();
+            reject(response);
+          },
+        );
+      })
+        .catch((error) => error);
+
+      if (!refreshSuccess.ok) {
+        return rejectWithValue({ message: result.message });
+      }
     }
+
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -92,15 +117,26 @@ const delUsers = createAsyncThunk('users/del_users', async (id) => {
   return response;
 });
 
-const updateUser = createAsyncThunk('users/update_user', async ({ id, user }) => {
-  const response = await fetch(`${baseURL}users/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${fetchToken()}`,
-    },
-    body: JSON.stringify(user),
-  });
+const updateUser = createAsyncThunk('users/update_user', async ({ id, user }, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`${baseURL}users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${fetchToken()}`,
+      },
+      body: JSON.stringify(user),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      return rejectWithValue({ message: result.message ?? result.error });
+    }
+
+    return result;
+  } catch (err) {
+    return ({ message: 'Something went wrong' });
+  }
   // .then(res => res.json())
   return response;
 });

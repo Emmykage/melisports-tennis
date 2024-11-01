@@ -19,17 +19,17 @@ import 'trix/dist/trix.css';
 const AddProduct = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const { product_categories, sport_categories, updater } = useSelector((state) => state.product_categories);
-  
-  const [productColour, setProductColour] = useState([])
-  const [productShoeSize, setProductShoeSize] = useState([])
-  const [productClothSize, setProductClothSize] = useState([])
-  const [productGripSize, setProductGripSize] = useState([])
+
+  const [productColour, setProductColour] = useState([]);
+  const [productShoeSize, setProductShoeSize] = useState([]);
+  const [productClothSize, setProductClothSize] = useState([]);
+  const [productGripSize, setProductGripSize] = useState([]);
   const levels = useSelector((state) => state.level.levels);
   const genders = useSelector((state) => state.gender.genders);
   const { loading, status, report } = useSelector((state) => state.product);
   const formRef = useRef(null);
   const [selectSport, setSelectedSport] = useState(sport_categories[0]?.id);
-  const [productStatus, setProductStatus] = useState('active')
+  const [productStatus, setProductStatus] = useState('active');
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -77,30 +77,29 @@ const AddProduct = () => {
     e.preventDefault();
 
     if (imagePreviews.length > 0 || e.target.image.value) {
-   
       const shoeValues = productShoeSize.map((option) => option.value);
       const clothValues = productClothSize.map((option) => option.value);
       const colorsValues = productColour.map((option) => option.value);
       const gripSizes = productGripSize.map((option) => option.value);
-  
+
       const formData = new FormData();
 
       colorsValues && colorsValues.forEach((item, index) => (
-        formData.append(`product[colours][]`, item)
-      ))
-  
+        formData.append('product[colours][]', item)
+      ));
+
       gripSizes && gripSizes.forEach((item) => (
         formData.append('product[grip_sizes][]', item)
-  
-      ))
+
+      ));
       shoeValues && shoeValues.forEach((item) => (
         formData.append('product[shoe_sizes][]', item)
-  
-      ))
+
+      ));
       clothValues && clothValues.forEach((item) => (
         formData.append('product[cloth_sizes][]', item)
-  
-      ))
+
+      ));
       formData.append('product[name]', e.target.name?.value ?? '');
       formData.append('product[quantity]', e.target.quantity?.value ?? '');
       formData.append('product[thickness]', e.target.thickness?.value ?? '');
@@ -170,8 +169,11 @@ const AddProduct = () => {
           </div>
 
           <div className="ms_code ml-auto w-48 bg-green-500">
-            <label htmlFor="quantity font-medium text-gray-700">ms product code {productStatus== "active" && "*"} </label>
-            <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required={productStatus==="active"}  />
+            <label htmlFor="quantity font-medium text-gray-700">
+              ms product code
+              {productStatus == 'active' && '*'}
+            </label>
+            <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required={productStatus === 'active'} />
           </div>
 
         </div>
@@ -180,7 +182,7 @@ const AddProduct = () => {
           <div className="max-w-80 w-full">
             <label htmlFor="font-medium text-gray-700">Status</label>
             <Select
-              onChange={(selectedOption) => setProductStatus(selectedOption.value) }
+              onChange={(selectedOption) => setProductStatus(selectedOption.value)}
               defaultValue={{ value: 'active', label: 'active' }}
               required
               name="status"
@@ -190,7 +192,10 @@ const AddProduct = () => {
           </div>
 
           <div className=" w-48">
-            <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity {productStatus== "active" && "*"} </label>
+            <label htmlFor="quantity text-gray-700 font-bold bg-red-400">
+              Quantity
+              {productStatus == 'active' && '*'}
+            </label>
             <input type="number" name="quantity" id="quantity" required />
           </div>
 
@@ -219,7 +224,10 @@ const AddProduct = () => {
             </div>
             <div className="input-half">
               <label>
-                <span className="text-gray-500 font-semibold text-sm">Price: NGN {productStatus== "active" && "*"} </span>
+                <span className="text-gray-500 font-semibold text-sm">
+                  Price: NGN
+                  {productStatus == 'active' && '*'}
+                </span>
                 {' '}
                 <span />
               </label>
@@ -228,7 +236,7 @@ const AddProduct = () => {
                 id="price"
                 type="number"
                 placeholder="price"
-                required={productStatus==="active"} 
+                required={productStatus === 'active'}
               />
 
             </div>
@@ -237,13 +245,17 @@ const AddProduct = () => {
           <div className="flex justify-between gap-3 text-sm my-1">
 
             <div className="flex-1">
-              <label htmlFor="sku" className="text-gray-500 font-semibold text-sm"> SKU  {productStatus== "active" && "*"}  </label>
+              <label htmlFor="sku" className="text-gray-500 font-semibold text-sm">
+                {' '}
+                SKU
+                {productStatus == 'active' && '*'}
+              </label>
               <input
                 name="sku"
                 id="sku"
                 type="text"
                 placeholder="sku"
-                required={productStatus==="active"} 
+                required={productStatus === 'active'}
               />
 
             </div>
@@ -256,7 +268,7 @@ const AddProduct = () => {
                 placeholder="colour"
                 id="colour"
                 options={colors}
-                onChange={(selectedOption) =>  setProductColour(selectedOption)}
+                onChange={(selectedOption) => setProductColour(selectedOption)}
 
                 isMulti
               />
@@ -358,7 +370,7 @@ const AddProduct = () => {
                     type="text"
                     options={gripSizes}
                     placeholder="grip sizes"
-                    onChange={(selectedOption) =>  setProductGripSize(selectedOption)}
+                    onChange={(selectedOption) => setProductGripSize(selectedOption)}
 
                     isMulti
                   />
@@ -649,7 +661,7 @@ const AddProduct = () => {
                 defaultValue=""
                 name="shoe_sizes"
                 id="shoe_sizes"
-                onChange={(selectedOption) =>  setProductShoeSize(selectedOption)}
+                onChange={(selectedOption) => setProductShoeSize(selectedOption)}
                 isMulti
                 options={shoeSizes}
                 size={1}
@@ -667,7 +679,7 @@ const AddProduct = () => {
                   name="cloth_sizes"
                   id="cloth_sizes"
                   options={clothSizes}
-                  onChange={(selectedOption) =>  setProductClothSize(selectedOption)}
+                  onChange={(selectedOption) => setProductClothSize(selectedOption)}
 
                   isMulti
                 />

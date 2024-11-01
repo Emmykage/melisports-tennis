@@ -67,7 +67,6 @@ const ProductsPage = () => {
   }, []);
 
   // const searched = new URLSearchParams(location.search)
-  // console.log(searched.get('brand'), queryParams.get('brand'))
   return (
     <div className="product-container">
       <Hero image={bannerImage} title="Racquet" />

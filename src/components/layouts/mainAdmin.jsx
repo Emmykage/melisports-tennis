@@ -17,12 +17,11 @@ const MainAdmin = ({ children }) => {
   const { isOpen, id } = useSelector((state) => state.delModal);
   const { catOpen, catId } = useSelector((state) => state.cat_del_modal);
   const [showMenu, setShowMenu] = useState(false);
-  const {message, user, loading } = useSelector((state) => state.user);
-  const [token] = useState(fetchToken())
+  const { message, user, loading } = useSelector((state) => state.user);
+  const [token] = useState(fetchToken());
   useEffect(() => {
     dispatch(userLog());
   }, [dispatch]);
-
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
@@ -45,7 +44,6 @@ const MainAdmin = ({ children }) => {
         </div>
       );
     }
-   
 
     return (
       <div>
@@ -53,14 +51,14 @@ const MainAdmin = ({ children }) => {
         <NavLink to="/store">Go to Store</NavLink>
       </div>
     );
-  } else if(token){
-    return(<div className='text-center'>
-        <h1 className='text-3xl '>{message}</h1>
-        <NavLink to="/store" className={"text-xl"}>Go to Store</NavLink>
+  } if (token) {
+    return (
+      <div className="text-center">
+        <h1 className="text-3xl ">{message}</h1>
+        <NavLink to="/store" className="text-xl">Go to Store</NavLink>
       </div>
 
-    )
-      
+    );
   }
   navigate('/auth/admin_login');
   return null; // Ensure no further rendering happens after navigation

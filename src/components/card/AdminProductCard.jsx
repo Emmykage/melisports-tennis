@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { naira_format } from '../../utils/naira_format';
-import { getProduct } from '../../redux/actions/product';
+import { nairaFormat } from '../../utils/nairaFormat';
 import { openDelModal } from '../../redux/modal/delModal';
 
 const AdminProductCard = ({ product, toEdit }) => {
@@ -19,7 +18,7 @@ const AdminProductCard = ({ product, toEdit }) => {
           {product.name.substring(0, 15)}
           ...
         </h5>
-        <p>{naira_format(product.price)}</p>
+        <p>{nairaFormat(product.price)}</p>
         <a
           className="btn btn-outline max-width my-1 py-1 text-center"
           onClick={() => dispatch(openDelModal(product.id))}

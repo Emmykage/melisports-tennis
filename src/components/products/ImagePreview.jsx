@@ -47,26 +47,27 @@ const ImagePreview = ({ images }) => {
           <button onClick={showPrevImage} className="z-10 absolute image-slider-btn" style={{ left: '0' }}><FaArrowLeft /></button>
           <button onClick={showNextImage} className="z-10 absolute image-slider-btn " style={{ right: '0px' }}><FaArrowRight /></button>
 
-            {images.map((image) => (
-                        <div
-                     
-                        key={image}
-                        style={{ translate: `${-100 * imageIndex}%` }}
-                         className="h-full w-full flex  image-slider-img border shrink-0  z-0">
+          {images.map((image) => (
+            <div
+
+              key={image}
+              style={{ translate: `${-100 * imageIndex}%` }}
+              className="h-full w-full flex  image-slider-img border shrink-0  z-0"
+            >
 
               <img
-                    src={image}
+                src={image}
 
-                   onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrev(image);
-                  }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev(image);
+                }}
                 alt="image"
                 className="h-full w-full object-contain "
               />
-          </div>
+            </div>
 
-            ))}
+          ))}
 
         </div>
         <div className="my-2 flex flex-wrap gap-3 ">
@@ -74,8 +75,8 @@ const ImagePreview = ({ images }) => {
             <>
               {' '}
               <div onClick={() => setView(index)} className="w-16 h-16 md:w-20 md:h-20 border my-1 border-gray-300 p-1">
-                  <img src={image} alt="" className="w-full h-full gap-3" />
-                </div>
+                <img src={image} alt="" className="w-full h-full gap-3" />
+              </div>
               {/* <div onClick={()=>setView(index)} className='thumbnail border'><img src={image} alt="" className='w-full h-full' /></div> */}
 
             </>

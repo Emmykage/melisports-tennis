@@ -38,7 +38,7 @@ const theme = createTheme();
 
 export default function Login() {
   const [seePassword, setSeePassword] = useState(false);
-  const location = useLocation()
+  const location = useLocation();
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -48,8 +48,6 @@ export default function Login() {
   useEffect(() => {
     dispatch(userLog());
   }, [user]);
-
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -61,7 +59,6 @@ export default function Login() {
       },
     };
     dispatch(loginUser(formInput));
-
   };
   if (!logged) {
     return (
@@ -150,5 +147,5 @@ export default function Login() {
       </ThemeProvider>
     );
   }
-  navigation(location.state?.from ||  '/');
+  navigation(location.state?.from || '/');
 }

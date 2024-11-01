@@ -36,7 +36,7 @@ const ShopHome = () => {
   return (
     <>
 
-    {/* <VideoView/> */}
+      {/* <VideoView/> */}
       <VideoComp videoAd={videoAd} />
       <section className="px-3">
         <div className="grid gap-6 md:grid-cols-2 max-w-7xl m-auto my-6">

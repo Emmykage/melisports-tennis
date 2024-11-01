@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Autoplay, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { NavLink } from 'react-router-dom';
-import { naira_format } from '../../utils/naira_format';
+import { nairaFormat } from '../../utils/nairaFormat';
 
 const ProductSlider = ({ products, views = 4 }) => {
   const [mobileView, setMobileView] = useState(false);
@@ -56,7 +56,7 @@ const ProductSlider = ({ products, views = 4 }) => {
                 <p className="text-white underline">{item?.sport_category?.name}</p>
                 <p className="text-white  underline-offset-2 text-base font- block">{item?.name}</p>
 
-                <p className="text-lg text-white font- my-6">{naira_format(item?.price)}</p>
+                <p className="text-lg text-white font- my-6">{nairaFormat(item?.price)}</p>
               </div>
               <div className="info-fix min-h-16 absolute bottom-0 left-0 w-full bg-theme/70 text-center flex items-center justify-center transition-all ease-linear duration-300 px-5">
                 <p className="text-white  underline-offset-2 text-base font-">{item?.name}</p>

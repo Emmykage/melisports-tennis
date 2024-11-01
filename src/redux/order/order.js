@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addOrder, getOrders } from '../actions/orders';
+import { createOrder, getOrder, getOrders } from '../actions/orders';
 
 const initialState = {
   orders: [],
   status: 'pending',
+  loading: false,
+  error: false,
+  order: {},
 };
 const orderSlice = createSlice({
   name: 'orders',
@@ -19,18 +22,44 @@ const orderSlice = createSlice({
       orders: action.payload,
     }),
 
-    [addOrder.fulfilled]: (state, action) => {
-      if (action.payload.status === 201) {
-        return {
-          ...state,
-          status: 'success',
-        };
-      }
-      return {
-        ...state,
-        status: 'failed',
-      };
-    },
+    [createOrder.fulfilled]: (state, action) => ({
+      ...state,
+      status: 'success',
+      loading: false,
+      error: false,
+      order: action.payload.data,
+
+    }),
+    [createOrder.rejected]: (state, action) => ({
+      ...state,
+      status: 'failed',
+      loading: false,
+      error: false,
+
+    }),
+    [createOrder.pending]: (state) => ({
+      ...state,
+      status: 'failed',
+      loading: true,
+
+    }),
+    [getOrder.fulfilled]: (state, action) => ({
+      ...state,
+      loading: false,
+      error: false,
+      order: action.payload.data,
+    }),
+    [getOrder.rejected]: (state, action) => ({
+      ...state,
+      loading: false,
+      error: true,
+      message: action.payload.message,
+
+    }),
+    [getOrder.pending]: (state) => ({
+      ...state,
+      loading: true,
+    }),
   },
 });
 
