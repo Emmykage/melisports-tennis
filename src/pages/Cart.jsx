@@ -26,9 +26,9 @@ const Cart = () => {
     dispatch(getLocalCart());
   }, [update]);
 
-  if ((!user && !loading && !fetchToken())) {
-    navigate('/auth/login', { state: { from: location.pathname } });
-  }
+  // if ((!user && !loading && !fetchToken())) {
+  //   navigate('/auth/login', { state: { from: location.pathname } });
+  // }
 
   const selectCart = (id, quantity, sign) => {
     if (sign === '+') {
@@ -49,6 +49,7 @@ const Cart = () => {
     dispatch(updater());
   };
 
+  console.log(cartItems)
   if (cartItems.length < 1) {
     return (
       <div className="warning-center product-container">
@@ -82,7 +83,7 @@ const Cart = () => {
               {cartItems.map((cart) => (
                 <tr>
                   <td data-cell="image" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
-                    <div className="cart-img shrink-0 w-36 ">
+                    <div className="cart-img m-auto shrink-0 w-36  ">
                       <img src={cart.image} className="w-full h-full" />
                     </div>
                   </td>

@@ -17,10 +17,10 @@ const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
 
   return (
     <div className="">
-      <div className="border mb-6 relative rounded-2xl border-theme px-3 py-8 gap-4 flex items-center">
+      <div className="border mb-6 relative rounded-2xl border-theme md:px-3 py-4 md:py-8 gap-4 flex items-center">
         .
         <label htmlFor="delivery" className="absolute cursor-pointer top-0 left-0 w-full h-full" />
-        <input type="radio" onChange={handlePaymentMethod} value="pay later" name="payment_method" id="delivery" className="border w-6 h-6 rounded  cus custom-checkbox" checked={billingDetails.payment_method == 'pay later' && true} />
+        <input type="radio" onChange={handlePaymentMethod} value="pay later" name="payment_method" id="delivery" className="border w-6 h-6   shrink-0 custom-checkbox" checked={billingDetails.payment_method == 'pay later' && true} />
 
         <div>
           <p className="py-0 font-semibold text-xl">Pay On Confirmation</p>
@@ -28,10 +28,10 @@ const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
 
         </div>
       </div>
-      <div className="border  my-6 relative rounded-2xl border-theme px-3 py-8 gap-4 flex items-center">
+      <div className="border  my-6 relative rounded-2xl border-theme md:px-3  py-4 md:py-8 gap-4 flex items-center">
         .
         <label htmlFor="paystack" className="absolute cursor-pointer top-0 left-0 w-full h-full" />
-        <input type="radio" onChange={handlePaymentMethod} value="paystack" name="payment_method" id="paystack" className="border w-6 h-6 rounded custom-checkbox" checked={billingDetails.payment_method == 'paystack' && true} />
+        <input type="radio" onChange={handlePaymentMethod} value="paystack" name="payment_method" id="paystack" className="border w-6 h-6  shrink-0 custom-checkbox" checked={billingDetails.payment_method == 'paystack' && true} />
 
         <div>
           <p className="py-0 font-semibold text-xl">Paystack</p>
@@ -40,9 +40,9 @@ const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-3">
         <Button
-          className="flex gap-2"
+          className="flex gap-2 flex-1"
           btnFunc={() => setStep((prev) => prev - 1)}
         >
           <FaArrowLeft />
@@ -51,7 +51,7 @@ const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
         </Button>
 
         <Button
-          className="flex gap-2"
+          className="flex gap-2 flex-1"
           btnFunc={() => {
             billingDetails.payment_method && setStep((prev) => prev + 1);
           }}

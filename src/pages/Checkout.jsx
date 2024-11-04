@@ -49,7 +49,7 @@ const Checkout = () => {
       .then((result) => {
         if (createOrder.fulfilled.match(result)) {
           dispatch(clearCart());
-          navigate(`/confirm-order?orderId=${result.payload.id}`);
+          navigate(`/confirm-order?orderId=${result.payload.data.id}`);
         } else if (createOrder.fulfilled.match(result)) {
           console.error(result.payload.message);
         }
@@ -98,7 +98,7 @@ const Checkout = () => {
       </div>
 
       <section className="px-4 lg:px-20 py-10">
-        <div className="max-w-[1500px] bg-white py-10 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-10">
+        <div className="max-w-[1500px] bg-white py-5 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-5">
           <div className="checkout flex-1 bg-ligh  flex-col justify-between md:flex-row gap-10 max-w-[1500px] ">
 
             {paymentSteps.map(((item) => {

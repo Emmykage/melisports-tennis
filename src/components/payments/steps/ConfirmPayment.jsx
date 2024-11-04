@@ -85,9 +85,9 @@ const ConfirmPayment = ({
 
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-6">
         <Button
-          className="flex gap-2"
+          className="flex flex-1 gap-2"
           btnFunc={() => setStep((prev) => prev - 1)}
         >
           {' '}
@@ -98,7 +98,7 @@ const ConfirmPayment = ({
 
         {billingDetails.payment_method == 'pay later' ? (
           <Button
-            className="flex gap-2 w-full text-center justify-center"
+            className="flex gap-2 w-full text-center flex-1 justify-center"
             btnFunc={handleCheckout}
             disabled={loading}
           >

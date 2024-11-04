@@ -1,34 +1,38 @@
 import React, { useEffect } from 'react';
 
-import { FaArrowLeft, FaArrowRight, FaCheck } from 'react-icons/fa';
-import { PaystackButton } from 'react-paystack';
+import {FaCheck } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import Button from '../components/buttons/Button';
 import { nairaFormat } from '../utils/nairaFormat';
 import CheckoutSummary from '../components/checkoutSummary/CheckoutSummary';
 import { getOrder } from '../redux/actions/orders';
 import DiscoverBtn from '../components/buttons/DiscoverBtn';
+import resetPageLoction from '../hooks/resetPageLoction';
+import Loader from './Loader';
 
 const ConfirmOrder = () => {
   const [query] = useSearchParams();
   const orderId = query.get('orderId');
   const dispatch = useDispatch();
-  const { order, status } = useSelector((state) => state.orders);
-  console.log(order);
-
+  const { order, status, loading } = useSelector((state) => state.orders);
+  resetPageLoction()
   useEffect(() => {
     dispatch(getOrder(orderId));
   }, []);
 
-  return (
+ if (loading){
+    return(<Loader/>)
+
+ }else{
+
+      return (
     <section className="py-10 px-4 sm:px-10 ">
 
       <div className="flex m-auto max-w-7xl gap-5 flex-col md:flex-row">
 
         <div className="flex-1 p-5 rounded-lg py-10  bg-white">
           <div>
-            <p className="text-4xl">
+            <p className="uppercase text-xl md:text-3xl">
               <span>Invoice </span>
               {' '}
               : #
@@ -78,7 +82,7 @@ const ConfirmOrder = () => {
 
           <div className="my-4">
             <span className="text-lg uppercase">Items</span>
-            {Object.keys(order).length > 0 ? order?.order_items.map((item) => (
+             {Object.keys(order)?.length > 0 ? order?.order_items?.map((item) => (
               <div className="flex justify-between border my-2 rounded-xl py-4 px-4 gap-3">
                 <div className="w-16 h-16 border rounded p-1">
                   <img src={item?.photo_url ? item?.photo_url : item?.product?.image} alt="" className="w-full h-full object-contain" />
@@ -88,13 +92,13 @@ const ConfirmOrder = () => {
                   <p className="text-sm font-medium">{item?.product?.name}</p>
                   <p>
                     Quantity:
-                    {item.quantity}
+                    {item?.quantity}
                   </p>
 
                 </div>
                 <div>
                   <p className="text-base font-semibold">
-                    {nairaFormat(item.product.price)}
+                    {nairaFormat(item?.product?.price)}
                   </p>
                 </div>
 
@@ -116,12 +120,13 @@ const ConfirmOrder = () => {
           </div>
 
         </div>
-        <CheckoutSummary amount={order.total_amount} counter={order.order_items.length} />
+        <CheckoutSummary amount={order?.total_amount} counter={order?.order_items?.length} />
       </div>
 
     </section>
 
   );
+}
 };
 
 export default ConfirmOrder;

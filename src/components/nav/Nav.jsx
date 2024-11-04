@@ -13,6 +13,8 @@ import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
 import { userProfile } from '../../redux/actions/auth';
+import { TbLogin2, TbLogout2 } from "react-icons/tb";
+import ToolTip from '../tool-tip/ToolTip';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -58,10 +60,10 @@ const Nav = () => {
             </NavLink>
           </div>
 
-          <div className="nav-div flex">
+          <div className="nav-div flex flex-wrap">
             <div className="flex-1 flex">
 
-              <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links'}>
+              <ul className={toggleNav ? 'nav-links  show-menu ' : 'nav-links'}>
                 <div className="mobile-menu-div  my-4">
                   <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
                 </div>
@@ -220,11 +222,13 @@ const Nav = () => {
 
               <a href="#survey" className="bg-gray-60 py-1 rounded px-3 text-base font-medium"> Survey</a>
               <div className="flex items-center gap-3 mobile-display font-medium">
-                {!user ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
+                {!user ? <NavLink to="/auth/login">
+                <><TbLogin2 className='text-2xl'/></> </NavLink> : <a onClick={handleLogOut}> <><TbLogout2 className='text-2xl'/> </>  </a> }
 
-                <span><FiUser className="user-icon menu-icon text-dark text-xl" /></span>
+                {/* <span><FiUser className="user-icon menu-icon text-dark text-xl" /></span> */}
 
               </div>
+              <ToolTip/>
 
               <div className="menu-div cart">
                 <NavLink to="/carts">
