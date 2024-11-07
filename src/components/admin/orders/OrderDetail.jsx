@@ -1,10 +1,13 @@
+import { createColumnHelper } from '@tanstack/react-table';
 import React from 'react';
 import styled from 'styled-components';
 
-const OrderDetail = ({ order_prop, isActive }) => {
+const OrderDetail = ({ orderProp, isActive }) => {
   const showDetail = {
     height: 'fit-content',
   };
+
+  console.log(orderProp);
 
   const activeLink = 'order-detail show';
   const normalLink = 'order-detail';
@@ -12,9 +15,11 @@ const OrderDetail = ({ order_prop, isActive }) => {
     <div className={isActive ? activeLink : normalLink}>
 
       <h3 className="center">
-        Order number: 00000000101
+        Order number:
+        {orderProp?.invoice_number}
       </h3>
       <table>
+
         <thead>
           <tr>
             <th />
@@ -26,42 +31,17 @@ const OrderDetail = ({ order_prop, isActive }) => {
 
         </thead>
         <tbody>
-          <tr>
-            <td><img src="#" alt="product_image" /></td>
-            <td> Pure drive Lite</td>
-            <td>120000</td>
-            <td>2</td>
-            <td>240000</td>
-          </tr>
-          <tr>
-            <td><img src="#" alt="product_image" /></td>
-            <td> Pure drive Lite</td>
-            <td>120000</td>
-            <td>2</td>
-            <td>240000</td>
-          </tr>
-          <tr>
 
-            <td>
-              <img src="#" alt="product_image" />
-            </td>
-            <td>
-              evo drive
-            </td>
-            <td>80000</td>
-            <td>1</td>
-            <td>8000</td>
-          </tr>
-          <tr>
-            <td />
-            <td />
-            <td />
-            <td />
+          {orderProp?.order_items.map((item) => (
+            <tr>
+              <td><img className="w-20 h-20" src={item?.photo_url} alt="product_image" /></td>
+              <td>{item?.product.name}</td>
+              <td>{item?.product.price}</td>
+              <td>{item?.product.quantity}</td>
+              <td>{item?.product.quantity * item?.product.price }</td>
+            </tr>
+          ))}
 
-            <td>
-              560000
-            </td>
-          </tr>
         </tbody>
       </table>
 

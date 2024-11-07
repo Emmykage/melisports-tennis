@@ -9,6 +9,8 @@ import CatDelModal from '../modal/CatDelModal';
 import { userLog } from '../../redux/user/user';
 import Loader from '../../pages/Loader';
 import { fetchToken } from '../../hooks/localStorage';
+import ToastAlert from '../toast/ToastAlert';
+import { toggleAlert } from '../../redux/app/app';
 
 const MainAdmin = ({ children }) => {
   const dispatch = useDispatch();
@@ -34,10 +36,11 @@ const MainAdmin = ({ children }) => {
     if (user?.role === 'admin') {
       return (
         <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 bg-gray-200 h-screen overflow-y-auto">
+          <ToastAlert />
           {isOpen && <ProdDelModal id={id} />}
           {catOpen && <CatDelModal id={catId} />}
           <SideNav showMenu={showMenu} handleMenu={handleMenu} />
-          <div className="px-4 pt-24 md:pt-6 overflow-y-auto h-screen no-scroll">
+          <div className="px-4 pt-0 md:pt-0 overflow-y-auto h-screen no-scroll">
             {children}
           </div>
           <Right handleMenu={handleMenu} user={user} />

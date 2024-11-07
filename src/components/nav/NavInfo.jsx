@@ -36,7 +36,7 @@ const NavInfo = () => {
   }, [update]);
 
   const handleLogOut = () => {
-    removeToken()
+    removeToken();
     dispatch(userProfile());
     navigate('/auth/login');
   };

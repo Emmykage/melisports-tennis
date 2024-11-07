@@ -10,7 +10,7 @@ import IMG from '../../assets/images/profile/depositphotos_179308454-stock-illus
 import { setModal } from '../../redux/modal/categoryModal';
 
 const Right = ({ handleMenu, user }) => (
-  <div className="right h-screen overflow-y-auto">
+  <div className="right h-screen overflow-y-auto no-scroll">
     <div className="top">
       <button id="menu-btn">
         <span onClick={handleMenu}>

@@ -5,6 +5,7 @@ import { FiUser, FiMenu } from 'react-icons/fi';
 import './nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
+import { TbLogin2, TbLogout2 } from 'react-icons/tb';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
@@ -13,7 +14,6 @@ import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
 import { userProfile } from '../../redux/actions/auth';
-import { TbLogin2, TbLogout2 } from "react-icons/tb";
 import ToolTip from '../tool-tip/ToolTip';
 
 const Nav = () => {
@@ -222,13 +222,25 @@ const Nav = () => {
 
               <a href="#survey" className="bg-gray-60 py-1 rounded px-3 text-base font-medium"> Survey</a>
               <div className="flex items-center gap-3 mobile-display font-medium">
-                {!user ? <NavLink to="/auth/login">
-                <><TbLogin2 className='text-2xl'/></> </NavLink> : <a onClick={handleLogOut}> <><TbLogout2 className='text-2xl'/> </>  </a> }
+                {!user ? (
+                  <NavLink to="/auth/login">
+                    <><TbLogin2 className="text-2xl" /></>
+                  </NavLink>
+                ) : (
+                  <a onClick={handleLogOut}>
+                    {' '}
+                    <>
+                      <TbLogout2 className="text-2xl" />
+                      {' '}
+                    </>
+                    {' '}
+                  </a>
+                ) }
 
                 {/* <span><FiUser className="user-icon menu-icon text-dark text-xl" /></span> */}
 
               </div>
-              <ToolTip/>
+              <ToolTip />
 
               <div className="menu-div cart">
                 <NavLink to="/carts">

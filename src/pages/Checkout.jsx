@@ -7,7 +7,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import StripeContainer from './StripeContainer';
 
-import { reset } from '../redux/order/order';
+import { resetOrder } from '../redux/order/order';
 import CheckoutSummary from '../components/checkoutSummary/CheckoutSummary';
 import CreditForm from '../components/payments/steps/CredittForm';
 import PaymentMethod from '../components/payments/steps/PaymentMethod';
@@ -54,8 +54,7 @@ const Checkout = () => {
           console.error(result.payload.message);
         }
       });
-
-    };
+  };
 
   const paymentSteps = [
     {
@@ -80,7 +79,7 @@ const Checkout = () => {
   ];
 
   useEffect(() => {
-    dispatch(reset());
+    dispatch(resetOrder());
   }, []);
   return (
     <>

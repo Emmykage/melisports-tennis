@@ -84,14 +84,12 @@ const userSlice = createSlice({
       user: action.payload.data,
       loading: false,
     }),
-    [userProfile.rejected]: (state, action) =>
-
-      ({
-        ...state,
-        message: action.payload.message,
-        user: null,
-        loading: false,
-      }),
+    [userProfile.rejected]: (state, action) => ({
+      ...state,
+      message: action.payload.message,
+      user: null,
+      loading: false,
+    }),
     [userProfile.pending]: (state) => ({
       ...state,
       loading: true,

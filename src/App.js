@@ -10,8 +10,6 @@ import Login from './pages/auth/Login';
 import AdminSignUp from './pages/auth/AdminSignUp';
 import AdminLogin from './pages/auth/AdminLogin';
 import Checkout from './pages/Checkout';
-import Loader from './pages/Loader';
-import StripeContainer from './pages/StripeContainer';
 import ReturnPolicy from './pages/resources/ReturnPolicy';
 import ShippingPolicy from './pages/resources/ShippingPolicy';
 import TermsOfServices from './pages/resources/TermsOfServices';
@@ -23,6 +21,7 @@ import Arrivals from './pages/shop-page/Arrivals';
 import NotFound from './pages/NotFound';
 import useInitializeData from './hooks/useInitializeData';
 import ConfirmOrder from './pages/ConfirmOrder';
+import OrderDetails from './pages/admin-page/OrderDetails';
 
 const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
 const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
@@ -67,79 +66,82 @@ function App() {
     dispatch(calculateTotal());
   }, [cartItems]);
   return (
+    <>
 
-    <Suspense fallback={<LoadingPage />}>
+      <Suspense fallback={<LoadingPage />}>
 
-      <Routes>
-        {/* landing page  */}
-        <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
-        <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
-        <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
-        <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
-        <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
-        <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
+        <Routes>
+          {/* landing page  */}
+          <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
+          <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
+          <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
+          <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
+          <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
+          <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
 
-        <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
+          <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
 
-        {/* store page  */}
-        <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
-        <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
-        <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
-        <Route path="/padels" element={<MainLayout><Padels /></MainLayout>} />
-        <Route path="/badminton" element={<MainLayout><BadmintonsPage /></MainLayout>} />
-        <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
-        <Route path="/carts" element={<MainLayout><Cart /></MainLayout>} />
-        <Route path="/bags" element={<MainLayout><BagsPage /></MainLayout>} />
-        <Route path="/shoes" element={<MainLayout><ShoesPage /></MainLayout>} />
-        <Route path="/accessories" element={<MainLayout><AccessoriesPage /></MainLayout>} />
-        <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
-        <Route path="/confirm-order" element={<MainLayout><ConfirmOrder /></MainLayout>} />
+          {/* store page  */}
+          <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
+          <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
+          <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
+          <Route path="/padels" element={<MainLayout><Padels /></MainLayout>} />
+          <Route path="/badminton" element={<MainLayout><BadmintonsPage /></MainLayout>} />
+          <Route path="/productdetails/:id" element={<MainLayout><ProductDetails /></MainLayout>} />
+          <Route path="/carts" element={<MainLayout><Cart /></MainLayout>} />
+          <Route path="/bags" element={<MainLayout><BagsPage /></MainLayout>} />
+          <Route path="/shoes" element={<MainLayout><ShoesPage /></MainLayout>} />
+          <Route path="/accessories" element={<MainLayout><AccessoriesPage /></MainLayout>} />
+          <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
+          <Route path="/confirm-order" element={<MainLayout><ConfirmOrder /></MainLayout>} />
 
-        <Route path="/apparels" element={<MainLayout><ApparelsPage /></MainLayout>} />
-        <Route path="admin">
-          <Route path="dashboard" element={<MainAdmin><Main /></MainAdmin>} />
-          <Route path="" element={<MainAdmin><Main /></MainAdmin>} />
-          <Route path="customers" element={<MainAdmin><Customers /></MainAdmin>} />
-          <Route path="customers/:id" element={<MainAdmin><ViewCustomer /></MainAdmin>} />
-          <Route path="analytics" element={<MainAdmin><Analytics /></MainAdmin>} />
-          <Route path="messages" element={<MainAdmin><Messages /></MainAdmin>} />
-          <Route path="orders" element={<MainAdmin><Orders /></MainAdmin>} />
-          <Route path="products" element={<MainAdmin><Products /></MainAdmin>} />
-          <Route path="settings" element={<MainAdmin><Settings /></MainAdmin>} />
-          <Route path="addproduct" element={<MainAdmin><AddProduct /></MainAdmin>} />
-          <Route path="reports" element={<MainAdmin><Reports /></MainAdmin>} />
-          <Route
-            path="add_product_category"
-            element={(
-              <MainAdmin>
-                <AddCategory />
-                {' '}
-              </MainAdmin>
+          <Route path="/apparels" element={<MainLayout><ApparelsPage /></MainLayout>} />
+          <Route path="admin">
+            <Route path="dashboard" element={<MainAdmin><Main /></MainAdmin>} />
+            <Route path="" element={<MainAdmin><Main /></MainAdmin>} />
+            <Route path="customers" element={<MainAdmin><Customers /></MainAdmin>} />
+            <Route path="customers/:id" element={<MainAdmin><ViewCustomer /></MainAdmin>} />
+            <Route path="analytics" element={<MainAdmin><Analytics /></MainAdmin>} />
+            <Route path="messages" element={<MainAdmin><Messages /></MainAdmin>} />
+            <Route path="orders" element={<MainAdmin><Orders /></MainAdmin>} />
+            <Route path="orders/:id" element={<MainAdmin><OrderDetails /></MainAdmin>} />
+            <Route path="products" element={<MainAdmin><Products /></MainAdmin>} />
+
+            <Route path="settings" element={<MainAdmin><Settings /></MainAdmin>} />
+            <Route path="addproduct" element={<MainAdmin><AddProduct /></MainAdmin>} />
+            <Route path="reports" element={<MainAdmin><Reports /></MainAdmin>} />
+            <Route
+              path="add_product_category"
+              element={(
+                <MainAdmin>
+                  <AddCategory />
+                  {' '}
+                </MainAdmin>
 )}
-          />
-          <Route path="edit/:editId" element={<MainAdmin><EditProduct /></MainAdmin>} />
-        </Route>
-        <Route path="/auth">
-          <Route path="sign_up" element={<Signup />} />
-          <Route path="login" element={<Login />} />
-          <Route path="confirmation" element={<Confirmation />} />
-          <Route path="admin_sign_up" element={<AdminSignUp />} />
-          <Route path="admin_login" element={<AdminLogin />} />
+            />
+            <Route path="edit/:editId" element={<MainAdmin><EditProduct /></MainAdmin>} />
+          </Route>
+          <Route path="/auth">
+            <Route path="sign_up" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+            <Route path="confirmation" element={<Confirmation />} />
+            <Route path="admin_sign_up" element={<AdminSignUp />} />
+            <Route path="admin_login" element={<AdminLogin />} />
 
-        </Route>
-        <Route path="/preview" element={<MainLayout><ImagePreview /></MainLayout>} />
+          </Route>
+          <Route path="/preview" element={<MainLayout><ImagePreview /></MainLayout>} />
 
-        <Route path="*" element={<><NotFound /></>} />
-        <Route path="/return_policy" element={<MainLayout><ReturnPolicy /></MainLayout>} />
-        <Route path="/shipping_policy" element={<MainLayout><ShippingPolicy /></MainLayout>} />
-        <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />
-        <Route path="/privacy_policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
-        <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
+          <Route path="*" element={<><NotFound /></>} />
+          <Route path="/return_policy" element={<MainLayout><ReturnPolicy /></MainLayout>} />
+          <Route path="/shipping_policy" element={<MainLayout><ShippingPolicy /></MainLayout>} />
+          <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />
+          <Route path="/privacy_policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
+          <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
 
-      </Routes>
-    </Suspense>
+        </Routes>
+      </Suspense>
 
-  // </>
+    </>
   );
 }
 

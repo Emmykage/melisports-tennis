@@ -3,6 +3,7 @@ import OrderDetail from './OrderDetail';
 
 const OrderItem = ({ order_prop }) => {
   const [isActive, setIsActive] = useState(false);
+  console.log(order_prop);
 
   const toggleClass = () => {
     setIsActive((prevState) => !prevState);
@@ -10,8 +11,8 @@ const OrderItem = ({ order_prop }) => {
   return (
     <li className="order-item">
       <div className="order-header flex justify-between items-center">
-        <span>Menanya Morris</span>
-        <a onClick={toggleClass}>
+        <span>{order_prop?.billing_address?.name ?? 'Menanya Morris'}</span>
+        <a onClick={toggleClass} className="cursor-pointer">
           show details
         </a>
         <span>

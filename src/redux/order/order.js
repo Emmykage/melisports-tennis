@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createOrder, getOrder, getOrders } from '../actions/orders';
+import {
+  createOrder, deleteOrder, getOrder, getOrders, updateOrder,
+} from '../actions/orders';
 
 const initialState = {
   orders: [],
@@ -7,19 +9,34 @@ const initialState = {
   loading: false,
   error: false,
   order: {},
+  message: null,
 };
 const orderSlice = createSlice({
   name: 'orders',
   initialState,
   reducers: {
-    reset: (state) => ({
+    resetOrder: (state) => ({
       ...state,
       status: 'pending',
+      message: null,
+      error: null,
+      loading: false,
     }),
   },
   extraReducers: {
     [getOrders.fulfilled]: (state, action) => ({
-      orders: action.payload,
+      orders: action.payload.data,
+      loading: false,
+    }),
+    [getOrders.pending]: (state, action) => ({
+      ...state,
+      loading: true,
+    }),
+
+    [getOrders.rejected]: (state, action) => ({
+      ...state,
+      loading: false,
+      message: action.payload?.message,
     }),
 
     [createOrder.fulfilled]: (state, action) => ({
@@ -43,6 +60,27 @@ const orderSlice = createSlice({
       loading: true,
 
     }),
+    [updateOrder.fulfilled]: (state, action) => ({
+      ...state,
+      status: 'success',
+      loading: false,
+      error: false,
+      order: action.payload.data,
+
+    }),
+    [updateOrder.rejected]: (state, action) => ({
+      ...state,
+      status: 'failed',
+      loading: false,
+      error: false,
+
+    }),
+    [updateOrder.pending]: (state) => ({
+      ...state,
+      status: 'failed',
+      loading: true,
+
+    }),
     [getOrder.fulfilled]: (state, action) => ({
       ...state,
       loading: false,
@@ -60,8 +98,23 @@ const orderSlice = createSlice({
       ...state,
       loading: true,
     }),
+
+    [deleteOrder.fulfilled]: (state, action) => ({
+      ...state,
+      loading: false,
+    }),
+    [deleteOrder.rejected]: (state, action) => ({
+      ...state,
+      loading: false,
+
+    }),
+    [deleteOrder.pending]: (state, action) => ({
+      ...state,
+      loading: true,
+
+    }),
   },
 });
 
 export default orderSlice.reducer;
-export const { reset } = orderSlice.actions;
+export const { resetOrder } = orderSlice.actions;

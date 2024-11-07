@@ -49,7 +49,7 @@ const Cart = () => {
     dispatch(updater());
   };
 
-  console.log(cartItems)
+  console.log(cartItems);
   if (cartItems.length < 1) {
     return (
       <div className="warning-center product-container">

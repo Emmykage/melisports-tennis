@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import {FaCheck } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { nairaFormat } from '../utils/nairaFormat';
@@ -15,17 +15,16 @@ const ConfirmOrder = () => {
   const orderId = query.get('orderId');
   const dispatch = useDispatch();
   const { order, status, loading } = useSelector((state) => state.orders);
-  resetPageLoction()
+  resetPageLoction();
   useEffect(() => {
     dispatch(getOrder(orderId));
   }, []);
 
- if (loading){
-    return(<Loader/>)
+  if (loading) {
+    return (<Loader />);
+  }
 
- }else{
-
-      return (
+  return (
     <section className="py-10 px-4 sm:px-10 ">
 
       <div className="flex m-auto max-w-7xl gap-5 flex-col md:flex-row">
@@ -82,7 +81,7 @@ const ConfirmOrder = () => {
 
           <div className="my-4">
             <span className="text-lg uppercase">Items</span>
-             {Object.keys(order)?.length > 0 ? order?.order_items?.map((item) => (
+            {Object.keys(order)?.length > 0 ? order?.order_items?.map((item) => (
               <div className="flex justify-between border my-2 rounded-xl py-4 px-4 gap-3">
                 <div className="w-16 h-16 border rounded p-1">
                   <img src={item?.photo_url ? item?.photo_url : item?.product?.image} alt="" className="w-full h-full object-contain" />
@@ -126,7 +125,6 @@ const ConfirmOrder = () => {
     </section>
 
   );
-}
 };
 
 export default ConfirmOrder;
