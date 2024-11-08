@@ -46,6 +46,7 @@ const ViewCustomer = () => {
             <select name="role" id="" value={user?.role} onChange={(e) => dispatch(updateUserInput(e.target))}>
               <option value="client">Client</option>
               <option value="admin">Admin</option>
+              <option value="super-admin">Super Admin</option>
             </select>
           </div>
 
