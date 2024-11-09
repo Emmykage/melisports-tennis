@@ -25,6 +25,7 @@ const createOrder = createAsyncThunk('order/createOrder', async (data, { rejectW
 });
 
 const updateOrder = createAsyncThunk('order/updateOrder', async (data, { rejectWithValue }) => {
+
   try {
     const response = await fetch(`${baseURL}order_details/${data.id}`, {
       method: 'PATCH',
@@ -39,7 +40,7 @@ const updateOrder = createAsyncThunk('order/updateOrder', async (data, { rejectW
     if (!response.ok) {
       return rejectWithValue({ message: result.message });
     }
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -81,7 +82,7 @@ const getOrder = createAsyncThunk('order/get_order', async (id, { rejectWithValu
     if (!response.ok) {
       return rejectWithValue({ message: result.error });
     }
-    console.log(result);
+
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

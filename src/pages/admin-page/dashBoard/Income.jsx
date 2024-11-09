@@ -1,15 +1,16 @@
 import React from 'react';
-import { BsBarChartLineFill } from 'react-icons/bs';
+import { AiOutlineLineChart } from 'react-icons/ai';
 
-const Expenses = () => (
+const Income = () => (
 
-  <div className="expenses">
+  <div className="income border">
     <span className="icon">
-      <BsBarChartLineFill />
+      <AiOutlineLineChart className="icon-chart" />
+
     </span>
     <div className="middle">
       <div className="left">
-        <h3>Total Expenses</h3>
+        <h3>Total income</h3>
         <h1>$25,000</h1>
 
       </div>
@@ -30,4 +31,4 @@ const Expenses = () => (
 
 );
 
-export default Expenses;
+export default Income;

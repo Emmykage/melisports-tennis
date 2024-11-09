@@ -20,7 +20,7 @@ import genderSlice from './gender/gender';
 import orderSlice from './order/order';
 import catalogSlice from './catalog/catalog';
 import appSlice from './app/app';
-
+import statSlice from './statistics'
 const rootReducer = combineReducers({
   cart: cartReducer,
   modal: modalSlice,
@@ -40,6 +40,7 @@ const rootReducer = combineReducers({
   orders: orderSlice,
   app: appSlice,
   catalog: catalogSlice,
+  statistics: statSlice
 
 });
 

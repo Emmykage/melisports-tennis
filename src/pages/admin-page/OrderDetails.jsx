@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,10 +13,11 @@ import localDate from '../../utils/dateFormat.js';
 const OrderDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const contRef = useRef()
   const [openAccept, setOpenAccept] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const { order, loading } = useSelector((state) => state.orders);
-  console.log(order);
+
   const handleUpdate = (status) => {
     dispatch(updateOrder({ id, status }))
       .then((result) => {
@@ -29,12 +30,34 @@ const OrderDetails = () => {
   };
 
   useEffect(() => {
-    console.log('first');
-    dispatch(getOrder(id));
-  }, []);
 
+    dispatch(getOrder(id));
+  }, [id]);
+
+
+  useEffect(() => {
+
+    const observer = new IntersectionObserver(([entry])=> {
+
+        if(entry.isIntersecting && !order?.viewed){
+            dispatch(updateOrder({id, viewed: true}))
+            observer.unobserve(entry.target)
+        }
+
+    }, {threshold: 0.5})
+
+    if(contRef.current){
+        observer.observe(contRef.current)
+
+    }
+    return () => {
+        if (contRef.current) {
+          observer.unobserve(contRef.current);
+        }
+      };
+  }, [order?.viewed])
   return (
-    <div className="bg-white p-6">
+    <div className="bg-white p-6" ref={contRef}>
 
       <div className="flex">
         <span className="mr-4 border cursor-pointer border-gray-400 h-10 shadow w-12 rounded flex justify-center items-center"><MdOutlineKeyboardBackspace className="text-2xl" /></span>
@@ -169,8 +192,9 @@ const OrderDetails = () => {
               <table className="my-4">
                 <thead>
                   <tr>
-                    <th>Item Name</th>
-                    <th>SKU</th>
+                  <th></th>
+                  <th>Item Name</th>
+                  <th>SKU</th>
                     <th>Code</th>
                     <th>Quantity</th>
                     <th>price</th>
@@ -181,6 +205,7 @@ const OrderDetails = () => {
                 <tbody>
                   {order?.order_items?.map((item) => (
                     <tr key={item.id}>
+                        <td> <img src={item.photo_url} alt={item.product.name} className='w-20 h-20' /></td>
                       <td>{item.product.name}</td>
                       <td>{item.product.sku}</td>
                       {/* <td>{item.billing_address.city}</td> */}
@@ -198,6 +223,8 @@ const OrderDetails = () => {
                       <span>Shipping</span>
                     </td>
                     <td />
+
+                    <td />
                     <td />
                     {' '}
                     <td />
@@ -214,6 +241,8 @@ const OrderDetails = () => {
                       <span>Total</span>
                     </td>
                     <td />
+                    <td />
+
                     <td />
                     {' '}
                     <td />

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductCategory } from '../../../redux/actions/product_category';
-import strung from '../../mock/Strung';
+
 import { resetCategory } from '../../../redux/product_category/productCategory';
 
 const AddCategory = () => {

@@ -4,7 +4,7 @@ import Button from '../buttons/Button';
 const Confirmation = ({
   children, open, btnAction, cnlAction, loading,
 }) => {
-  console.log(open);
+
   return (
     <div className={`${open ? 'opacity-100 pointer-events-auto ' : 'opacity-0 pointer-events-none'} fixed transition-all ease-in-out duration-150 bg-black/20 h-full w-full top-0 left-0 flex justify-center items-center`}>
       <div className="px-5 py-3 pb-5 mx-10 rounded-lg shadow-2xl max-w-xl w-full bg-white">

@@ -139,7 +139,7 @@
   --color-main-bg: #135092;
   --color-contrast: rgb(256, 68, 4);
   --color-danger: #ff7782;
-  --color-success: #41f1b6;
+  --color-success: #0a8a5f;
   --color-warning: #fb5;
   --color-orange: #ff4500;
   --color-theme: rgba(255, 69, 0, 1);
@@ -747,10 +747,6 @@ table {
 
 table tbody tr:last-child {
   border-bottom: 1px solid #222629;
-}
-.recent-orders table tr:nth-child(even),
-.order-detail table tr:nth-child(even) {
-  background-color: rgb(209, 209, 209);
 }
 
 table th {

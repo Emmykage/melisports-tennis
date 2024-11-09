@@ -1,15 +1,15 @@
 import React from 'react';
-import { IoAnalyticsSharp } from 'react-icons/io5';
+import { BsBarChartLineFill } from 'react-icons/bs';
 
-const Sales = () => (
+const Expenses = () => (
 
-  <div className="sales">
+  <div className="expenses border">
     <span className="icon">
-      <IoAnalyticsSharp className="icon-chart" />
+      <BsBarChartLineFill className="icon-chart" />
     </span>
     <div className="middle">
       <div className="left">
-        <h3>Total sales</h3>
+        <h3>Total Expenses</h3>
         <h1>$25,000</h1>
 
       </div>
@@ -27,6 +27,7 @@ const Sales = () => (
       Last 24 hours
     </small>
   </div>
+
 );
 
-export default Sales;
+export default Expenses;

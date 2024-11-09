@@ -1,5 +1,5 @@
 import React from 'react';
-import './adminstyle.css';
+import '../../pages/admin-page/adminstyle.css';
 import { AiOutlineClose, AiOutlineUser } from 'react-icons/ai';
 import { BsFillGrid1X2Fill } from 'react-icons/bs';
 
@@ -16,8 +16,8 @@ import { useDispatch } from 'react-redux';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userProfile } from '../../redux/actions/auth';
 
-const SideNav = (props) => {
-  const { showMenu, handleMenu } = props;
+const SideNav = ({ showMenu, handleMenu, stats }) => {
+  console.log(stats)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const SideNav = (props) => {
   };
   return (
 
-    <aside className={`${showMenu ? 'display' : ''} no-scroll border-r shadow`}>
+    <aside className={`${showMenu ? 'display' : ''}  no-scroll shadow`}>
       <div className="top">
 
         <div className="logo  text-center">
@@ -84,6 +84,8 @@ const SideNav = (props) => {
             <GiReceiveMoney />
           </span>
           <h3>Orders</h3>
+          <span className="message-count text-white">{stats?.viewed_orders}</span>
+
         </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}
@@ -111,7 +113,7 @@ const SideNav = (props) => {
             <RiMessageLine />
           </span>
           <h3>Messages</h3>
-          <span className="message-count">25</span>
+          <span className="message-count">{stats?.messages}</span>
         </NavLink>
         {/* </div> */}
         {/* <div className='side-bar'> */}

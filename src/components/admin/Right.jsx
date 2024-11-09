@@ -5,12 +5,10 @@ import {
 import { HiLightBulb } from 'react-icons/hi';
 import { MdDarkMode } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import IMG from '../../assets/images/profile/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
-import { setModal } from '../../redux/modal/categoryModal';
 
-const Right = ({ handleMenu, user }) => (
-  <div className="right h-screen overflow-y-auto no-scroll">
+const Right = ({ handleMenu, user, stats }) => (
+  <div className="right bg-white px-2 py-4 h-screen overflow-y-auto no-scroll">
     <div className="top">
       <button id="menu-btn">
         <span onClick={handleMenu}>
@@ -83,7 +81,7 @@ const Right = ({ handleMenu, user }) => (
     </div>
     <div className="sales-analytics">
       <h2>Sales Analytics</h2>
-      <div className="item online border rounded">
+      <div className="item bg-white gap-3 online border rounded-lg flex mb-3 items-center p-3">
         <div className="icon">
           <span><AiOutlineShoppingCart /></span>
         </div>
@@ -95,10 +93,10 @@ const Right = ({ handleMenu, user }) => (
             </small>
           </div>
           <h5 className="success"> +39</h5>
-          <h3>3849</h3>
+          <h3>{stats?.online_orders}</h3>
         </div>
       </div>
-      <div className="item offline border rounded">
+      <div className="item bg-white online border rounded-lg flex mb-3 items-center p-3 gap-3">
         <div className="icon">
           <span><AiOutlineShop /></span>
         </div>
@@ -110,10 +108,10 @@ const Right = ({ handleMenu, user }) => (
             </small>
           </div>
           <h5 className="danger"> +17</h5>
-          <h3>1100</h3>
+          <h3>{stats?.offline_orders}</h3>
         </div>
       </div>
-      <div className="item customers border rounded">
+      <div className="item bg-white online border rounded-lg flex mb-3 items-center p-3 gap-3">
         <div className="icon">
           <span><AiOutlineUser /></span>
         </div>
@@ -129,7 +127,7 @@ const Right = ({ handleMenu, user }) => (
         </div>
 
       </div>
-      <div className="item add-product">
+      <div className="item add-product py-10 mb-5">
         <div>
           <span>
             <AiOutlinePlus />
@@ -141,7 +139,7 @@ const Right = ({ handleMenu, user }) => (
           </h3>
         </div>
       </div>
-      <div className="item add-product">
+      <div className="item add-product py-10">
         <div>
           <span>
             <AiOutlinePlus />

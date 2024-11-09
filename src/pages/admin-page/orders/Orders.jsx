@@ -10,12 +10,13 @@ import {
 } from '@tanstack/react-table';
 
 import { deleteOrder, getOrders } from '../../../redux/actions/orders';
-import OptionDropdown from '../../optionsDropdown/OptionDropdown';
-import Confirmation from '../../modal/Confirmation';
+import OptionDropdown from '../../../components/optionsDropdown/OptionDropdown';
+import Confirmation from '../../../components/modal/Confirmation';
 import { toggleAlert } from '../../../redux/app/app';
 import { resetOrder } from '../../../redux/order/order';
-import Loader from '../../../pages/Loader';
+import Loader from '../../Loader';
 import { nairaFormat } from '../../../utils/nairaFormat';
+import StatusButton from '../../../components/buttons/StatusButton';
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -25,20 +26,6 @@ const Orders = () => {
   const columnHelper = createColumnHelper();
 
 
-  const statusStyle = (status) =>{
-    switch (status) {
-      case "declined":
-        return "bg-red-200 text-red-800"
-        
-      case "confirmed":
-        return "bg-green-200 text-green-800"
-        
-      case "pending":
-        return "bg-orange-200 text-orange-800"       
-          
-      default:
-        return "bg-orange-200 text-orange-800"           }
-  }
 
   const handleDelete = (id) => {
     dispatch(deleteOrder(id)).then((result) => {
@@ -80,11 +67,12 @@ const Orders = () => {
   const columns = useMemo(() => [
     columnHelper.accessor('billing_address.name', {
       header: () => 'Name',
-      cell: (info) => info.getValue(),
+      cell: (info) => <span className='flex gap-3'>{info.getValue()} 
+      {!info.row.original.viewed && <span className='text-white rounded px-2 bg-orange-700'>new</span>}</span>,
       footer: (props) => props.column.id,
     }),
     columnHelper.accessor('status', {
-      cell: (info) => <span className={` px-4 py-0.5 rounded text-xs ${statusStyle(info.getValue())}`}>{info.getValue()}</span>,
+      cell: (info) => <StatusButton status={info.getValue()}/>,
       footer: (props) => props.column.id,
     }),
 
@@ -118,10 +106,12 @@ const Orders = () => {
   useEffect(() => {
     dispatch(getOrders());
   }, [message]);
-  return (
-    <div className="order-container bg-white p-4 rounded">
 
-      <div>
+  console.log(orders)
+  return (
+    <div className="order-container text-gray-800 bg-white p-4 rounded">
+
+      <div > 
         <table className="order">
           <thead>
             {getHeaderGroups().map((headerGroup) => (

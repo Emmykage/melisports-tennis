@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getProduct, getProducts } from '../../../redux/actions/product';
-import Search from '../../search/Search';
+import Search from '../../../components/search/Search';
 import { filterProducts } from '../../../redux/products/product';
-import AdminProductCard from '../../card/AdminProductCard';
+import AdminProductCard from '../../../components/card/AdminProductCard';
 import { resetProduct } from '../../../redux/product/product';
 
 const Products = () => {

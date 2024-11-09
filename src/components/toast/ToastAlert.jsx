@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 const ToastAlert = () => {
   const { isOpen, message, error } = useSelector((state) => state.app.alert);
-  console.log(isOpen);
 
   const handleCloseToast = () => {
     dispatch(toggleAlert({

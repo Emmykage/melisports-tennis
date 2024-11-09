@@ -11,7 +11,7 @@ import Categories from '../Categories';
 import {
   balanceTypes,
   clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, playType, recommendedGrip, shoeSizes, strung,
-} from '../../mock/variance';
+} from '../../../components/mock/variance';
 import { resetProduct } from '../../../redux/product/product';
 import 'trix';
 import 'trix/dist/trix.css';

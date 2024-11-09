@@ -11,9 +11,9 @@ import { getProductCategories, getSportCategories } from '../../../redux/actions
 import {
   balanceTypes,
   clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, playType, recommendedGrip, shoeSizes, strung,
-} from '../../mock/variance';
+} from '../../../components/mock/variance';
 import { resetProduct, writeProduct } from '../../../redux/product/product';
-import Loader from '../../../pages/Loader';
+import Loader from '../../Loader';
 import 'trix';
 import 'trix/dist/trix.css';
 
