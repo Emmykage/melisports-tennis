@@ -6,7 +6,7 @@ import { BsFillGrid1X2Fill } from 'react-icons/bs';
 import { GiReceiveMoney } from 'react-icons/gi';
 import { IoAnalyticsSharp, IoAddSharp } from 'react-icons/io5';
 import { RiMessageLine } from 'react-icons/ri';
-import { MdOutlineInventory, MdOutlineReport } from 'react-icons/md';
+import { MdOutlineInventory, MdOutlineReport, MdOutlineSell } from 'react-icons/md';
 
 import { FiSettings } from 'react-icons/fi';
 
@@ -81,7 +81,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
         >
           <span>
             {' '}
-            <GiReceiveMoney />
+            <MdOutlineSell  />
           </span>
           <h3>Orders</h3>
           <span className="message-count text-white">{stats?.viewed_orders}</span>
