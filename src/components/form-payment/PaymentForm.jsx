@@ -9,7 +9,7 @@ const PaymentForm = ({ amount = 10000 }) => {
   // const publicKey = process.env.REACT_APP_PUBLIC_KEY;
   const publicKey = 'pk_test_9ff293bee5b397191f0d59ea6bab4ff2bc6e2374';
 
-  console.log(publicKey, amount);
+  // console.log(publicKey, amount);
 
   const handleChange = (e) => {
     setBillingDetails({

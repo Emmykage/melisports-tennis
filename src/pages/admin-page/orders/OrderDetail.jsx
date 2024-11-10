@@ -7,7 +7,6 @@ const OrderDetail = ({ orderProp, isActive }) => {
     height: 'fit-content',
   };
 
-  console.log(orderProp);
 
   const activeLink = 'order-detail show';
   const normalLink = 'order-detail';

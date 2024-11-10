@@ -14,6 +14,7 @@ import Right from '../admin/Right';
 const MainAdmin = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { orders } = useSelector((state) => state.orders);
 
   const { isOpen, id } = useSelector((state) => state.delModal);
   const { catOpen, catId } = useSelector((state) => state.cat_del_modal);
@@ -21,11 +22,11 @@ const MainAdmin = ({ children }) => {
   const { message, user, loading } = useSelector((state) => state.user);
   const [token] = useState(fetchToken());
   const {stats} =  useSelector(state => state.statistics)
-  console.log(stats)
+
   useEffect(() => {
-    dispatch(userLog());
     dispatch(getStatistics())
   }, [dispatch]);
+
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
@@ -35,14 +36,14 @@ const MainAdmin = ({ children }) => {
   }
 
   if (user) {
-    if (user?.role === 'admin') {
+    if (user?.role === 'admin'|| user?.role === 'super-admin') {
       return (
         <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 h-screen bg-white overflow-y-auto p">
           <ToastAlert />
           {isOpen && <ProdDelModal id={id} />}
           {catOpen && <CatDelModal id={catId} />}
           <SideNav showMenu={showMenu} handleMenu={handleMenu} stats={stats}/>
-          <div className="px-4 pt-0 bg-white shadow md:pt-10 overflow-y-auto h-screen no-scroll">
+          <div className="px-2 lg:px-4  pt-10 bg-white shadow md:pt-0 overflow-y-auto h-screen no-scroll">
             {children}
           </div>
           <Right handleMenu={handleMenu} user={user} stats={stats} />

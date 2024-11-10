@@ -1,52 +1,156 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { delUsers, getUsers } from '../../../redux/actions/auth';
+import Loader from '../../Loader';
+import Confirmation from '../../../components/modal/Confirmation';
+import StatusButton from '../../../components/buttons/StatusButton';
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import OptionDropdown from '../../../components/optionsDropdown/OptionDropdown';
+import { toggleAlert } from '../../../redux/app/app';
 
 const Customers = () => {
   const { users, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [objectId, setObjectId] = useState(null);
+
+  const handleDelete = (id) => {
+    dispatch(delUsers(id)).then((result) => {
+      if (delUsers.fulfilled.match(result)) {
+        setOpen(false);
+        dispatch(getUsers())
+        dispatch(toggleAlert({
+          isOpen: true,
+          message: "user deleted",
+          error: true,
+        }));
+
+        setTimeout(() => {
+          resetOrder();
+          dispatch(toggleAlert({
+            isOpen: false,
+            message: null,
+            error: false,
+          }));
+        }, 5000);
+      } else {
+        dispatch(toggleAlert({
+          isOpen: true,
+          message: result.payload.message,
+          error: true,
+        }));
+        setTimeout(() => {
+          // resetOrder();
+          dispatch(toggleAlert({
+            isOpen: false,
+            message: null,
+            error: false,
+          }));
+        }, 5000);
+      }
+    });
+  };
+
+
+  const columnHelper = createColumnHelper();
+
   useEffect(() => {
     dispatch(getUsers());
   }, []);
 
-  return (
-    <div className="w-full">
-      <h1 className="bolder">     </h1>
+  const columns = useMemo(() => [
+    columnHelper.accessor('name', {
+      header: () => 'Name',
+      cell: (info) => <span className='flex gap-3 capitalize font-semibold text-gray-600'>{info.row.original.last_name} {info.row.original.first_name}</span>,
+      footer: (props) => props.column.id,
+    }),
+    columnHelper.accessor('email', {
+      cell: (info) => info.getValue(),
+      footer: (props) => props.column.id,
+    }),
 
-      <div className="">
-        <table className="w-full">
-          <thead>
-            <tr>
-              <th className="px-2">name</th>
-              <th className="px-2 ">Email</th>
-              <th className="px-2 ">Role</th>
-              <th className="px-2 " />
+    columnHelper.accessor('role', {
+      cell: (info) =>  <span className='font-semibold '> {info.getValue()} </span> ,
+      footer: (props) => props.column.id,
+    }),
+    columnHelper.accessor('id', {
+      header: () => 'Action',
+      cell: (info) => (
+        <OptionDropdown
+        link={"customers"}
+          handleDel={(id) => {
+            setOpen(true);
+            setObjectId(id);
+          }}
+          id={info.getValue()}
+          setOpen={setOpen}
+        />
+      ),
+      footer: (props) => props.column.id,
+    }),
+
+  ]);
+  const { getHeaderGroups, getRowModel } = useReactTable({
+    data: users,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <div className="order-container text-gray-800 bg-white p-4 rounded">
+
+    <div > 
+      <table className="order">
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+
+                </th>
+              ))}
 
             </tr>
+          ))}
 
-          </thead>
-          <tbody className="text-white">
-            {users.map((user) => (
-              <tr className="text-dark">
-                <td className="font-semibold">{user.full_name}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                <td>
-                  {' '}
-                  <a className="cursor-pointer" onClick={() => dispatch(delUsers(user.id))}>delete</a>
-                  {' '}
-                  <NavLink to={`/admin/customers/${user.id}`}>view</NavLink>
+        </thead>
+        <tbody>
+
+          {loading
+            ? (
+              <tr className="w-full bg-gray-50">
+                <td colSpan="5">
+                  <Loader />
+
                 </td>
-                {/* <td className={order.shipping === 'Declined' ? 'danger' : order.shipping === 'pending' ? 'warning' : 'primary'}>{order.shipping}</td> */}
+              </tr>
+            )
+            : getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
+        </tbody>
 
+      </table>
     </div>
+
+    <Confirmation open={open} btnAction={() => { handleDelete(objectId); }} cnlAction={() => { setOpen(false); }} loading={loading}>
+      Confirm Delete
+    </Confirmation>
+  </div>
   );
 };
 

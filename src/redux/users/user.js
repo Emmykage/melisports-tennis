@@ -21,7 +21,6 @@ const usersSlice = createSlice({
   extraReducers: {
     [delUsers.fulfilled]: (state) => ({
       ...state,
-      notice: '',
       loading: false,
 
     }),
@@ -29,6 +28,11 @@ const usersSlice = createSlice({
       ...state,
       notice: '',
       loading: true,
+
+    }), 
+    [delUsers.rejected]: (state) => ({
+      ...state,
+      loading: false,
 
     }),
     [updateUser.fulfilled]: (state) => ({

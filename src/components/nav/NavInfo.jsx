@@ -70,7 +70,7 @@ const NavInfo = () => {
                 <li className="nav-item"><NavLink to="/about" onClick={() => dispatch(closeNav())}>About Us</NavLink></li>
                 <li className="nav-item"><NavLink to="/products" onClick={() => dispatch(closeNav())}>Products</NavLink></li>
 
-                {user !== null && ((user.role == 'admin') && (
+                {user !== null && ((user.role == 'admin'|| user.role == 'super-admin') && (
                 <li className="nav-item">
                   <NavLink to="/admin">    go to admin </NavLink>
                   {' '}

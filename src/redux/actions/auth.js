@@ -106,15 +106,27 @@ const getUsers = createAsyncThunk('users/getusers', async () => {
   return response;
 });
 
-const delUsers = createAsyncThunk('users/del_users', async (id) => {
-  const response = await fetch(`${baseURL}users/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${fetchToken()}`,
-    },
-  }).then((res) => res.json());
-  return response;
+const delUsers = createAsyncThunk('users/del_users', async (id, {rejectWithValue}) => {
+
+  try{
+    const response = await fetch(`${baseURL}users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${fetchToken()}`,
+      },
+    })
+
+    const result = await response.json()
+    if(!response.ok){
+      return rejectWithValue({message: result.message})
+    }
+    return result;
+  }catch(error){
+    return rejectWithValue({message: "response.error"})
+
+  }
+
 });
 
 const updateUser = createAsyncThunk('users/update_user', async ({ id, user }, { rejectWithValue }) => {

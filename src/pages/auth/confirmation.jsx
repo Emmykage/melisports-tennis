@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './auth.css';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,11 +20,12 @@ const theme = createTheme();
 
 export default function Confirmation() {
   const [seePassword, setSeePassword] = useState(false);
+  const location = useLocation();
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, loading,
+    user, error, message, loading,logged
   } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -43,7 +44,13 @@ export default function Confirmation() {
     dispatch(loginUser(formInput));
   };
 
-  if ((user && !user.confirmed_at)) {
+  useEffect(()=> {
+    if(logged){
+      navigation(location.state?.from || '/');
+
+    }
+  },[logged])
+
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -113,6 +120,5 @@ export default function Confirmation() {
         </Container>
       </ThemeProvider>
     );
+
   }
-  navigation('/');
-}

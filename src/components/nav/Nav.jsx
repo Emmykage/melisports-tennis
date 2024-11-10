@@ -202,7 +202,7 @@ const Nav = () => {
                 </div> */}
                 </li>
 
-                {user !== null && ((user?.role == 'admin') && (
+                {user !== null && ((user?.role == 'admin' ||user?.role == "super-admin") && (
                 <li className="nav-item">
                   <NavLink to="/admin">    go to admin </NavLink>
                   {' '}

@@ -1,7 +1,6 @@
 import React, {
-  useState, useEffect, useMemo, useRef,
+  useState, useEffect, useMemo, 
 } from 'react';
-import OrderDetail from './OrderDetail';
 import './order.css';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -84,6 +83,8 @@ const Orders = () => {
       header: () => 'Action',
       cell: (info) => (
         <OptionDropdown
+        link={"orders"}
+
           handleDel={(id) => {
             setOpen(true);
             setObjectId(id);
@@ -105,9 +106,9 @@ const Orders = () => {
 
   useEffect(() => {
     dispatch(getOrders());
-  }, [message]);
+  }, []);
 
-  console.log(orders)
+
   return (
     <div className="order-container text-gray-800 bg-white p-4 rounded">
 

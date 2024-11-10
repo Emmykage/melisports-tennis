@@ -1,23 +1,24 @@
 import React from 'react';
 import { BsBarChartLineFill } from 'react-icons/bs';
+import { nairaFormat } from '../../../utils/nairaFormat';
 
 const Expenses = () => (
 
-  <div className="expenses border">
+  <div className="expenses border p-4">
     <span className="icon">
       <BsBarChartLineFill className="icon-chart" />
     </span>
-    <div className="middle">
+    <div className="middle flex justify-between items-center">
       <div className="left">
         <h3>Total Expenses</h3>
-        <h1>$25,000</h1>
+        <h1 className='font-semibold'> {nairaFormat(25000)}</h1>
 
       </div>
-      <div className="progresser ad">
+      <div className="progresser relative w-16 h-16">
         <svg>
-          <circle cx="38" cy="38" r="36" />
+          <circle  cx="28" cy="28" r="26" />
         </svg>
-        <div className="number">
+        <div className="number absolute top-0 left-0 w-full h-full flex justify-center items-center">
           <p>81%</p>
         </div>
       </div>

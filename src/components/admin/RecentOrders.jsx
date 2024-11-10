@@ -13,20 +13,18 @@ const RecentOrders = () => {
 
   }, []);
 
-  console.log(orders)
-
   
   return (
-  <div className="recent-orders overscroll-x-auto bg-gray-100">
+  <div className="recent-orders relative my-7 overscroll-x-auto overflow-x-auto bg-gray-100">
 
-    <h2 className='my-4'>Recent orders</h2>
+    <h2 className='my-4 font-medium'>Recent orders</h2>
     <table>
       <thead>
         <tr>
           <th className="px-2">Order Number</th>
-          <th className="px-2 text-center">Product Qty</th>
-          <th className="px-2 text-left">Amount</th>
-          <th className="px-2 text-center">Payment</th>
+          <th className="px-2 text-center w-10 lg:w-max">Qty</th>
+          <th className="px-2 text-left w-36 lg:w-max">Amount</th>
+          <th className="px-2 text-center w-40">Payment</th>
           <th className="px-2 text-center">Status</th>
 
         </tr>
@@ -45,7 +43,8 @@ const RecentOrders = () => {
         ))}
       </tbody>
     </table>
-    <NavLink to="/admin/orders">Show all</NavLink>
+    <NavLink to="/admin/orders" className={"block text-center my-4 border w-max m-auto rounded py-1 px-3"}>Show all</NavLink>
+
 
   </div>
 );

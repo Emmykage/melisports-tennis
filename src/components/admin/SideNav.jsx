@@ -17,7 +17,7 @@ import logo from '../../assets/images/logo/melisport_1.png';
 import { userProfile } from '../../redux/actions/auth';
 
 const SideNav = ({ showMenu, handleMenu, stats }) => {
-  console.log(stats)
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

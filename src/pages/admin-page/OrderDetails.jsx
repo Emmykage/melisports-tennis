@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ClickButton from '../../components/buttons/ClickButton';
 import { getOrder, updateOrder } from '../../redux/actions/orders';
@@ -9,10 +9,12 @@ import DiscoverBtn from '../../components/buttons/DiscoverBtn';
 import Loader from '../Loader';
 import Confirmation from '../../components/modal/Confirmation';
 import localDate from '../../utils/dateFormat.js';
+import { getStatistics } from '../../redux/actions/statistics.js';
 
 const OrderDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const contRef = useRef()
   const [openAccept, setOpenAccept] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
@@ -40,7 +42,13 @@ const OrderDetails = () => {
     const observer = new IntersectionObserver(([entry])=> {
 
         if(entry.isIntersecting && !order?.viewed){
-            dispatch(updateOrder({id, viewed: true}))
+            dispatch(updateOrder({id, viewed: true})).then(result => {
+                if(updateOrder.fulfilled.match(result)){
+                    dispatch(getStatistics())
+                }
+            }
+            
+            )
             observer.unobserve(entry.target)
         }
 
@@ -60,7 +68,7 @@ const OrderDetails = () => {
     <div className="bg-white p-6" ref={contRef}>
 
       <div className="flex">
-        <span className="mr-4 border cursor-pointer border-gray-400 h-10 shadow w-12 rounded flex justify-center items-center"><MdOutlineKeyboardBackspace className="text-2xl" /></span>
+        <span onClick={() => navigate(-1)} className="mr-4 border cursor-pointer border-gray-400 h-10 shadow w-12 rounded flex justify-center items-center"><MdOutlineKeyboardBackspace className="text-2xl" /></span>
         <div>
           <p className="text-green-700 text-xs">Order/Order details</p>
           <p className="text-xl font-semibold text-gray-800">

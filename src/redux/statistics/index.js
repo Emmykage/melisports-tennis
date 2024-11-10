@@ -10,7 +10,7 @@ const statSlice = createSlice({
     name: "statistics",
     extraReducers: {
         [getStatistics.fulfilled]: (state, action) => {
-            console.log(action.payload, "hhsdhdssffdfd")
+
             return{
                 ...state.action,
                 stats: action.payload

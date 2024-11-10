@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade';
 import { HorizontalRuleOutlined, MoreHorizRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
-export default function FadeMenu({ id, setOpen, handleDel }) {
+export default function OptionDropdown ({ id, link, setOpen, handleDel }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -38,8 +38,8 @@ export default function FadeMenu({ id, setOpen, handleDel }) {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={() => navigate(`/admin/orders/${id}`)}>Edit</MenuItem>
-        <MenuItem onClick={() => navigate(`/admin/orders/${id}`)}>View</MenuItem>
+        <MenuItem onClick={() => navigate(`/admin/${link ?? "orders"}/${id}`)}>Edit</MenuItem>
+        <MenuItem onClick={() => navigate(`/admin/${link ?? "orders"}/${id}`)}>View</MenuItem>
         <MenuItem onClick={() => handleDel(id)}>Delete</MenuItem>
       </Menu>
     </div>

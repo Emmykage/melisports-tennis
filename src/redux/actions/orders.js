@@ -17,7 +17,6 @@ const createOrder = createAsyncThunk('order/createOrder', async (data, { rejectW
     if (!response.ok) {
       return rejectWithValue({ message: result.message });
     }
-    console.log(result);
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -40,7 +39,7 @@ const updateOrder = createAsyncThunk('order/updateOrder', async (data, { rejectW
     if (!response.ok) {
       return rejectWithValue({ message: result.message });
     }
-    // console.log(result);
+
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

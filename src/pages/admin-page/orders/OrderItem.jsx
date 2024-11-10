@@ -3,7 +3,6 @@ import OrderDetail from './OrderDetail';
 
 const OrderItem = ({ order_prop }) => {
   const [isActive, setIsActive] = useState(false);
-  console.log(order_prop);
 
   const toggleClass = () => {
     setIsActive((prevState) => !prevState);

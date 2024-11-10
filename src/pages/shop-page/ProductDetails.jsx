@@ -25,13 +25,10 @@ const ProductDetails = () => {
   }, [id]);
   const handleCart = () => {
     if (product.quantity > 0) {
-      console.log(product, 'heyyyyyy');
+
       dispatch(addCart({
         product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,
       }));
-      console.log({
-        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,
-      });
 
       dispatch(updater());
     } else {

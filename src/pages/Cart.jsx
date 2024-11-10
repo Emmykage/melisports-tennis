@@ -48,8 +48,6 @@ const Cart = () => {
     dispatch(removeItem(id));
     dispatch(updater());
   };
-
-  console.log(cartItems);
   if (cartItems.length < 1) {
     return (
       <div className="warning-center product-container">
