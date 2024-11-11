@@ -66,7 +66,7 @@ const Orders = () => {
   const columns = useMemo(() => [
     columnHelper.accessor('billing_address.name', {
       header: () => 'Name',
-      cell: (info) => <span className='flex gap-3'>{info.getValue()} 
+      cell: (info) => <span className='flex gap-3'>{info.getValue() ?? (info.row.original.user.first_name + " " +info.row.original.user.last_name)} 
       {!info.row.original.viewed && <span className='text-white rounded px-2 bg-orange-700'>new</span>}</span>,
       footer: (props) => props.column.id,
     }),

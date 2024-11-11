@@ -15,6 +15,7 @@ import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
 import { userProfile } from '../../redux/actions/auth';
 import ToolTip from '../tool-tip/ToolTip';
+import { MdHome } from 'react-icons/md';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -68,138 +69,143 @@ const Nav = () => {
                   <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
                 </div>
 
-                <li className="nav-item"><NavLink to="/store">Home</NavLink></li>
+                <li className="nav-item"><NavLink to="/store" className="lg:text-dark lg:font-semibold lg:text-base">Home</NavLink></li>
                 <li className="nav-item">
-                  <NavLink to={`/racquets?brand=${'babolat'}`} className="">Rackets </NavLink>
+                  <NavLink to={`/racquets?brand=${'babolat'}`} className="lg:text-dark lg:font-semibold lg:text-base">Rackets </NavLink>
                   <div className="link-items flex">
                     <div className="">
-                      <h3 className="text-lg tracking-wider font-medium">
+                      <h3 className="text-lg tracking-wider font-medium text-black">
                         Rackets &
                         <br />
                         {' '}
                         Paddles
                       </h3>
                     </div>
-                    <ul>
+                    <ul className='border-b lg:border-none'>
 
-                      <h4 className="text-base font-medium"> Tennis Rackets</h4>
-                      <li><NavLink to="/racquets">Babolat</NavLink></li>
-
-                    </ul>
-                    <ul>
-                      <h4 className="text-base font-medium">Padel Rackets</h4>
-                      <li><NavLink to="/padels">Babolat</NavLink></li>
+                      <h4 className="text-base font-semibold lg:text-black">
+                        <NavLink to={'/racquets'}>  Tennis Rackets </NavLink>
+                        </h4>
+                      <li className='pl-3 p-0 text-sm lg:text-dark font-semibold'><NavLink to="/racquets">Babolat</NavLink></li>
 
                     </ul>
-                    <ul>
+                    <ul className='border-b lg:border-none'>
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'/padels'}>  Padel Rackets </NavLink>
+                      
+                     </h4>
+                      <li className='pl-3 p-0 text-sm lg:text-dark font-semibold'><NavLink to="/padels">Babolat</NavLink></li>
 
-                      <h4 className="text-base font-medium">Badminton Rackets</h4>
-                      <li><NavLink to="/badminton">Babolat</NavLink></li>
+                    </ul>
+                    <ul className='border-'>
+
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'/badminton'}>  Badminton Rackets </NavLink>
+                     </h4>
+                      <li className='pl-3 p-0 lg:text-dark font-semibold'><NavLink to="/badminton">Babolat</NavLink></li>
 
                     </ul>
                   </div>
                 </li>
                 <li className="nav-item">
 
-                  <NavLink to="/apparels">Apparels</NavLink>
+                  <NavLink to="/apparels" className={"lg:text-dark lg:font-semibold lg:text-base"}>Apparels</NavLink>
 
                   <div className="link-items flex">
                     <div>
-                      <h3 lassName="text-lg tracking-wider font-medium">Apparels</h3>
+                      <h3 className="text-lg tracking-wider font-medium text-black">Apparels</h3>
                     </div>
                     <ul>
 
-                      <h4 className="text-base font-medium">Tennis Men's Apparels</h4>
-                      <li><a href="#">Babolat</a></li>
-                      {/* <li><a href="#">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'}>  Tennis Men's Apparels </NavLink>
+                      </h4>
+                      <li className='pl-3 p-0 lg:text-dark font-semibold'><a href="#">Babolat</a></li>
                     </ul>
                     <ul>
 
-                      <h4 className="text-base font-medium">Tennis Women's Apparel</h4>
-                      <li><a href="#">Babolat</a></li>
-                      {/* <li><a href="#">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'}>   Tennis Women's Apparel </NavLink>
+                      
+                    </h4>
+                      <li><a href="#" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
+
                     </ul>
                   </div>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/shoes">Shoes</NavLink>
+                  <NavLink to="/shoes" className={"lg:text-dark lg:font-semibold lg:text-base"}>Shoes</NavLink>
                   <div className="link-items">
                     <div>
-                      <h3 lassName="text-lg tracking-wider font-medium">Shoes</h3>
+                      <h3 className="text-lg tracking-wider font-medium text-black">Shoes</h3>
                     </div>
                     <ul>
 
-                      <h4 className="text-base font-medium">Men's Shoes</h4>
-                      <li><a href="#">Babolat</a></li>
-                      {/* <li><a href="#">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'}>   Men's Shoes </NavLink>
+                      </h4>
+                      <li><a href="#" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
+
                     </ul>
                     <ul>
 
-                      <h4 className="text-base font-medium">Women's Shoes</h4>
-                      <li><a href="/">Babolat</a></li>
-                      {/* <li><a href="/">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'}>   Women's Shoes </NavLink>
+                     </h4>
+                      <li><a href="/" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
+
                     </ul>
                   </div>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/bags">Bags</NavLink>
+                  <NavLink to="/bags" className={"lg:text-dark lg:font-semibold lg:text-base"}>Bags</NavLink>
                   <div className="link-items flex">
                     <div>
-                      <h3 lassName="text-lg tracking-wider font-medium">Bags</h3>
+                      <h3 className="text-lg tracking-wider font-medium text-black">Bags</h3>
                     </div>
                     <ul>
 
-                      <h4 className="text-base font-medium">Men's Shoes</h4>
-                      <li><a href="#">Babolat</a></li>
-                      {/* <li><a href="#">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'} >   Men's Shoes </NavLink>
+                      </h4>
+                      <li><a href="#" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
+
                     </ul>
                     <ul>
 
-                      <h4 className="text-base font-medium">Women's Shoes</h4>
-                      <li><a href="/">Babolat</a></li>
-                      {/* <li><a href="/">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'}>  Women's Shoes</NavLink>
+                      </h4>
+                      <li><a href="/" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
+
                     </ul>
                   </div>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/accessories">Acccessories</NavLink>
+                  <NavLink to="/accessories" className={"lg:text-dark lg:font-semibold lg:text-base"}>Acccessories</NavLink>
                   <div className="link-items flex">
                     <div>
-                      <h3>Accessories</h3>
+                      <h3 className='text-lg tracking-wider font-medium text-black'>Accessories</h3>
                     </div>
                     <ul>
 
-                      <h4 className="text-base font-medium">Men's Shoes</h4>
-                      <li><a href="#">Babolat</a></li>
-                      {/* <li><a href="#">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'}>  Men's Accessories </NavLink>
+                      </h4>
+                      <li><a href="#" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
                     </ul>
                     <ul>
 
-                      <h4>Women's Shoes</h4>
-                      <li><a href="/">Babolat</a></li>
-                      {/* <li><a href="/">Wilson</a></li> */}
+                      <h4 className="text-base font-semibold lg:text-black">
+                      <NavLink to={'#'}>  Women's Accessories </NavLink>
+                      </h4>
+                      <li><a href="/" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
                     </ul>
                   </div>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/brands">Brands</NavLink>
-                  {/* <div className="link-items flex">
-                  <div>
-                    <h3>
-                      Sport Brands
-                    </h3>
-                  </div>
-                  <ul>
-
-                    <h4>Tennis Racquets</h4>
-                    <li><a href="/brands">Babolat</a></li>
-                  </ul>
-                  <ul>
-
-                    <h4>Badminton Racquets</h4>
-                    <li><a href="/brands">Babolat</a></li>
-                  </ul>
-                </div> */}
+                  <NavLink to="/brands" className={"lg:text-gray-800 lg:font-semibold lg:text-base"}>Brands</NavLink>
+                  
                 </li>
 
                 {user !== null && ((user?.role == 'admin' ||user?.role == "super-admin") && (
@@ -218,31 +224,36 @@ const Nav = () => {
 
               </ul>
             </div>
-            <div className="flex justify-between items-center py-2.5">
+            <div className="flex  gap-3 justify-between items-center py-2.5">
 
-              <a href="#survey" className="bg-gray-60 py-1 rounded px-3 text-base font-medium"> Survey</a>
-              <div className="flex items-center gap-3 mobile-display font-medium">
+
+              <div className=" items-center text-black mobile-display hidden lg:flex font-medium">
                 {!user ? (
                   <NavLink to="/auth/login">
-                    <><TbLogin2 className="text-2xl" /></>
+                    LOGIN
+                    {/* <><TbLogin2 className="text-2xl" /></> */}
                   </NavLink>
                 ) : (
                   <a onClick={handleLogOut}>
                     {' '}
                     <>
-                      <TbLogout2 className="text-2xl" />
+                    LOGOUT 
+                      {/* <TbLogout2 className="text-2xl" /> */}
                       {' '}
                     </>
                     {' '}
                   </a>
                 ) }
 
-                {/* <span><FiUser className="user-icon menu-icon text-dark text-xl" /></span> */}
 
               </div>
-              <ToolTip />
+              <NavLink to="/">
+                <MdHome  className="menu-icon cart-icon" />
+              </NavLink>
+
 
               <div className="menu-div cart">
+
                 <NavLink to="/carts">
 
                   <BsCartDash className="menu-icon cart-icon" />

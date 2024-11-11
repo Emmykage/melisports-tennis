@@ -7,9 +7,8 @@ import getLevels from '../../../redux/actions/misc';
 import getGenders from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
 import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
-import Categories from '../Categories';
 import {
-  balanceTypes,
+  
   clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, playType, recommendedGrip, shoeSizes, strung,
 } from '../../../components/mock/variance';
 import { resetProduct } from '../../../redux/product/product';

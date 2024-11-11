@@ -6,7 +6,7 @@ import RecentOrders from '../../../components/admin/RecentOrders';
 import Sales from './Sales';
 
 const Main = () => (
-  <main className='mt-12 md::mt-0'>
+  <main className='mt-12 md:mt-0'>
     <h1 className='text-3xl font-semibold'>Dashboard</h1>
     <div className="date">
       <input type="date" />

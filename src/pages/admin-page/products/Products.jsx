@@ -55,7 +55,7 @@ const Products = () => {
           : (
             <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
 
-              {!search === '' ? sortedProducts.map((product) => (
+              {search !== '' ? sortedProducts.map((product) => (
                 <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
 
               )) : products.map((product) => (

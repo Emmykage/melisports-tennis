@@ -64,15 +64,15 @@ const NavInfo = () => {
                   <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
                 </div>
 
-                <li className="nav-item"><NavLink to="/" onClick={() => dispatch(closeNav())}>Home</NavLink></li>
-                <li className="nav-item"><NavLink to="/store" onClick={() => dispatch(closeNav())}>Go to store</NavLink></li>
-                <li className="nav-item"><NavLink to="/contact" onClick={() => dispatch(closeNav())}>Contact Us</NavLink></li>
-                <li className="nav-item"><NavLink to="/about" onClick={() => dispatch(closeNav())}>About Us</NavLink></li>
-                <li className="nav-item"><NavLink to="/products" onClick={() => dispatch(closeNav())}>Products</NavLink></li>
+                <li className="nav-item "><NavLink className={"lg:text-dark lg:font-semibold lg:text-base"} to="/" onClick={() => dispatch(closeNav())}>Home</NavLink></li>
+                <li className="nav-item"><NavLink to="/store" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Go to store</NavLink></li>
+                <li className="nav-item"><NavLink to="/contact" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Contact Us</NavLink></li>
+                <li className="nav-item"><NavLink to="/about" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>About Us</NavLink></li>
+                <li className="nav-item"><NavLink to="/products" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Products</NavLink></li>
 
                 {user !== null && ((user.role == 'admin'|| user.role == 'super-admin') && (
                 <li className="nav-item">
-                  <NavLink to="/admin">    go to admin </NavLink>
+                  <NavLink to="/admin" className={"lg:text-dark lg:font-semibold lg:text-base"}>    go to admin </NavLink>
                   {' '}
                 </li>
                 ))}
@@ -80,18 +80,18 @@ const NavInfo = () => {
                 <li className="nav-item last">
                   <span><FiUser className="user-icon" /></span>
 
-                  {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
+                  {user == undefined ? <NavLink  className={"lg:text-dark lg:font-semibold lg:text-base"} to="/auth/login">Login</NavLink> : <a onClick={handleLogOut} className='lg:text-dark lg:font-semibold lg:text-base'>Log Out</a> }
 
                 </li>
 
               </ul>
             </div>
             <div className="flex justify-between items-center py-2.5">
-              <a href="#survey" className="bg-gray-60 py-1 rounded px-3  text-base font-medium hidden md:block"> Survey</a>
+              <a href="#survey" className="bg-gray-60 py-1 rounded px-3  lg:text-dark lg:font-semibold lg:text-base text-base font-medium hidden md:block"> Survey</a>
 
               {/* <div className="flex justify-between items-center"> */}
 
-              <div className="font-medium flex items-center gap-3 mobile-display">
+              <div className="font-medium flex items-center gap-3 mobile-display lg:text-dark lg:font-semibold lg:text-base">
                 {user ? <a onClick={handleLogOut}>Log Out</a> : <NavLink to="/auth/login">Login</NavLink> }
                 <span className="text-dark"><FiUser className="menu-icon user-icon text-xl" /></span>
 
