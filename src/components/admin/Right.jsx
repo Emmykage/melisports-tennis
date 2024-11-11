@@ -38,7 +38,6 @@ const Right = ({ handleMenu, user, stats }) => (
         </div>
       </div>
     </div>
-    {/* end of top */}
     <div className="recent-updates">
       <h2 className='mb-4 font-medium'>Recent updates</h2>
       <div className="updates px-3 py-3 shadow-xl hover:shadow-none transition-all duration-300 ease-linear">

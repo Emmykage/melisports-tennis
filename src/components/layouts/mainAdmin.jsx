@@ -38,7 +38,7 @@ const MainAdmin = ({ children }) => {
   if (user) {
     if (user?.role === 'admin'|| user?.role === 'super-admin') {
       return (
-        <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 h-screen bg-white overflow-y-auto p">
+        <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 h-screen bg-white overflow-y-hidden">
           <ToastAlert />
           {isOpen && <ProdDelModal id={id} />}
           {catOpen && <CatDelModal id={catId} />}
