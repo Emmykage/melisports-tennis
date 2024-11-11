@@ -11,7 +11,7 @@ const initialState = {
   users: [],
   error: false,
   message: '',
-  loading: false,
+  loading: true,
   logged: false,
 };
 const usersSlice = createSlice({
@@ -54,41 +54,63 @@ const usersSlice = createSlice({
 
     }),
     [getUser.fulfilled]: (state, action) => {
-      const response = action.payload;
+      const {data} = action.payload;
 
-      if (response) {
         return {
           ...state,
-          logged: true,
-          user: response,
+          loading: false,
+          user: data,
+          error: true
         };
-      }
 
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        message: action.payload.error,
-      };
+    },
+    [getUser.pending]: (state) => {
+
+        return {
+          ...state,
+          loading: true,
+        };
+    }, 
+    [getUser.rejected]: (state, action) => {
+      const response = action.payload;
+
+        return {
+          ...state,
+          loading: false,
+          user: response.message
+        };
     },
     [getUsers.fulfilled]: (state, action) => {
       const response = action.payload;
 
-      if (response) {
         return {
           ...state,
-          logged: true,
+          loading: false,
           users: response,
-        };
-      }
-
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        message: action.payload.error,
-      };
+          error: false
+        };     
+  
+ 
     },
+    [getUsers.pending]: (state) => {
+
+        return {
+          ...state,
+          loading: true,
+        };     
+      
+ 
+    },
+    [getUsers.rejected]: (state, action) => {
+ 
+        return {
+          ...state,
+          loading: false,
+          error: true,
+          message: action.payload.message,
+        }; 
+    },
+
 
   },
   reducers: {
