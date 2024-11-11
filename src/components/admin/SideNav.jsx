@@ -22,7 +22,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
   const navigate = useNavigate();
 
   const activeLink = 'active';
-  const normalLink = '';
+  const normalLink = 'ml-4';
 
   const signOut = () => {
     localStorage.removeItem('meli_auth');
@@ -31,7 +31,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
   };
   return (
 
-    <aside className={`${showMenu ? 'display' : ''}  no-scroll shadow`}>
+    <aside className={`${showMenu ? 'display' : ''}  pt-20 flex-col justify-center overflow-y-auto  no-scroll shadow`}>
       <div className="top">
 
         <div className="logo  text-center">
@@ -41,14 +41,14 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
           </NavLink>
         </div>
         <div className="close ml-3">
-          <span onClick={handleMenu}>
+          {/* <span onClick={handleMenu}>
             <AiOutlineClose className="iconStyle text-gray-500" />
-          </span>
+          </span> */}
 
         </div>
 
       </div>
-      <div className="side-bar">
+      <div className="side-bar justify-center  flex flex-col h-[84vh] relative">
         <NavLink
           to="/admin/dashboard"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
@@ -58,7 +58,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <BsFillGrid1X2Fill />
           </span>
-          <h3>Dashboard</h3>
+          <h3 className='font-medium'>Dashboard</h3>
         </NavLink>
 
         <NavLink
@@ -71,7 +71,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <AiOutlineUser />
           </span>
-          <h3>Customers</h3>
+          <h3 className='font-medium'>Customers</h3>
         </NavLink>
         <NavLink
           to="/admin/orders"
@@ -83,12 +83,11 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <MdOutlineSell  />
           </span>
-          <h3>Orders</h3>
+          <h3 className='font-medium'>Orders</h3>
           <span className="message-count text-white">{stats?.viewed_orders}</span>
 
         </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
+
         <NavLink
           to="/admin/analytics"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
@@ -112,11 +111,10 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <RiMessageLine />
           </span>
-          <h3>Messages</h3>
+          <h3 className='font-medium'>Messages</h3>
           <span className="message-count">{stats?.messages}</span>
         </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
+   
         <NavLink
           to="/admin/products"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
@@ -127,7 +125,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <MdOutlineInventory />
           </span>
-          <h3>Products</h3>
+          <h3 className='font-medium'>Products</h3>
         </NavLink>
 
         <NavLink
@@ -140,7 +138,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <FiSettings />
           </span>
-          <h3>Settings</h3>
+          <h3 className='font-medium'>Settings</h3>
         </NavLink>
         <NavLink
           to="/admin/addproduct"
@@ -152,36 +150,42 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <IoAddSharp />
           </span>
-          <h3>Add product</h3>
+          <h3 className='font-medium'>Add product</h3>
         </NavLink>
-        {/* </div> */}
-        {/* <div className='side-bar'> */}
-        <NavLink to="/admin/reports">
+
+        <NavLink 
+        to="/admin/reports"
+        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+
+>
           <span>
             {' '}
             <MdOutlineReport />
           </span>
-          <h3>Report</h3>
+          <h3 className='font-medium'>Report</h3>
         </NavLink>
 
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          className={({ isActive }) => (isActive ? activeLink : "md:ml-8 ml-4 flex items-center relative h-14 ")}
           onClick={handleMenu}
 
         >
 
           <h3>Go to store</h3>
         </NavLink>
-        <a
+        <NavLink
+
+        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+
           onClick={signOut}
         >
           <span>
             {' '}
             <BiLogOut />
           </span>
-          <h3>Log out</h3>
-        </a>
+          <h3 className='font-medium'>Log out</h3>
+        </NavLink>
       </div>
 
     </aside>
