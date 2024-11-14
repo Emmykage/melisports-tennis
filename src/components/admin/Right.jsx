@@ -10,7 +10,7 @@ import AnalyticsCard from '../analytics/AnalyticsCard';
 
 const Right = ({ handleMenu, user, stats }) => (
   <div className="right bg-white px-2 py-4 h-screen overflow-y-auto no-scroll">
-    <div className="fixed bg-white md:relative top-0 left-0 items-center px-3 h-20 w-full z-20 shadow-lg top flex justify-between md:justify-between gap-4">
+    <div className="fixed bg-white md:relative top-0 left-0 items-center lg:px-3 h-20 w-full z-20 shadow-lg top flex justify-between md:justify-between gap-4">
       <button id="menu-btn" className='block md:hidden '>
         <span onClick={handleMenu}>
           <AiOutlineMenu className="iconStyle" />

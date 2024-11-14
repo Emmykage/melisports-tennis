@@ -6,7 +6,7 @@ import { BsFillGrid1X2Fill } from 'react-icons/bs';
 import { GiReceiveMoney } from 'react-icons/gi';
 import { IoAnalyticsSharp, IoAddSharp } from 'react-icons/io5';
 import { RiMessageLine } from 'react-icons/ri';
-import { MdOutlineInventory, MdOutlineReport, MdOutlineSell } from 'react-icons/md';
+import { MdHome, MdOutlineInventory, MdOutlineReport, MdOutlineSell } from 'react-icons/md';
 
 import { FiSettings } from 'react-icons/fi';
 
@@ -21,8 +21,8 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const activeLink = 'active';
-  const normalLink = 'ml-4';
+  const activeLink = 'active flex';
+  const normalLink = 'ml-4 flex';
 
   const signOut = () => {
     localStorage.removeItem('meli_auth');
@@ -31,7 +31,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
   };
   return (
 
-    <aside className={`${showMenu ? 'display' : ''}  pt-20 flex-col justify-center overflow-y-auto  no-scroll shadow`}>
+    <aside className={`${showMenu ? 'display' : ''}  pt-20 lg:pt-5 flex-col justify-center overflow-y-auto  no-scroll shadow`}>
       <div className="top">
 
         <div className="logo  text-center">
@@ -49,6 +49,17 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
 
       </div>
       <div className="side-bar justify-center  flex flex-col h-[84vh] relative">
+      <NavLink
+          to="/"
+          className={"ml-4 border-b flex lg:hidden"}
+          onClick={handleMenu}
+        >
+          <span>
+            {' '}
+            <MdHome  />
+          </span>
+          <h3 className='font-medium'>Hoe</h3>
+        </NavLink>
         <NavLink
           to="/admin/dashboard"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
@@ -98,7 +109,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <IoAnalyticsSharp />
           </span>
-          <h3>Analytics</h3>
+          <h3 className='font-medium'>Analytics</h3>
         </NavLink>
 
         <NavLink

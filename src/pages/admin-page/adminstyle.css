@@ -106,9 +106,6 @@ aside {
   overflow-x: hidden;
 }
 
-aside .top {
-  margin-top: 1.4rem;
-}
 aside .top .logo a {
   
   margin-top: 1.4rem;
@@ -199,7 +196,7 @@ aside .log img {
 
 
 aside .side-bar a {
-  display: flex;
+  /* display: flex; */
   color: var(--color-info-dark);
   gap: 1rem;
   align-items: center;

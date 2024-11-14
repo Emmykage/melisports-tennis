@@ -1,6 +1,14 @@
 const clothSizes = [{ value: 'S', label: 'S' }, { value: 'M', label: 'M' }, { value: 'L', label: 'L' }, { value: 'XL', label: 'XL' }, { value: 'XXL', label: 'XXL' }];
 const colors = [{ value: 'white/red', label: 'white/red' },
   { value: 'blue/white', label: 'blue/White'},
+  { value: 'black/yellow', label: 'black/yellow'},
+  { value: 'black/white', label: 'black/white'},
+  { value: 'black/yellow', label: 'black/yellow'},
+  { value: 'black/blue', label: 'black/blue'},
+  { value: 'gray/yellow', label: 'gray/yellow'},
+  { value: 'pink/yellow', label: 'pink/yellow'},
+  { value: 'red/blue', label: 'red/blue'},
+  { value: 'red/black', label: 'red/black'},
   { value: 'dark-blue', label: 'dark blue' },
   { value: 'cyan-blue', label: 'cyan blue' },
   { value: 'angel blue', label: 'angel blue' },
@@ -12,12 +20,18 @@ const colors = [{ value: 'white/red', label: 'white/red' },
    { value: 'blue/yellow', label: 'blue/Yellow Red' },
    { value: 'navy-blue/white', label: 'Navy blue/white'},
     { value: 'blue', label: 'blue' },
-     { value: 'pink', label: 'pink' }, { value: 'gray', label: 'gray' }, 
-     { value: 'green', label: 'green' }, { value: 'white', label: 'white' }, 
-     { value: 'red', label: 'red' }, { value: 'black', label: 'black' }, 
-     { value: 'orange', label: 'orange' }, { value: 'neutral', label: 'neutral' }, 
-     { value: 'purple', label: 'purple' }, { value: 'yellow', label: 'yellow' }, 
-     { value: ' black/fiesta red', label: 'black/fiesta red' }];
+     { value: 'pink', label: 'pink' }, 
+     { value: 'gray', label: 'gray' }, 
+     { value: 'green', label: 'green' }, 
+     { value: 'white', label: 'white' }, 
+     { value: 'red', label: 'red' }, 
+     { value: 'black', label: 'black' }, 
+     { value: 'orange', label: 'orange' }, 
+     { value: 'neutral', label: 'neutral' }, 
+     { value: 'purple', label: 'purple' }, 
+     { value: 'yellow', label: 'yellow' }, 
+     { value: ' black/fiesta red', label: 'black/fiesta red' }
+    ];
 const shoeSizes = [{ value: '40', label: '40' }, { value: '40.5', label: '40.5' }, { value: '41', label: '41' }, { value: '42', label: '42' }, { value: '42.5', label: '42.5' }, { value: '43', label: '43' }, { value: '44', label: '44' }, { value: '44.5', label: '44.5' }, { value: '45', label: '45' }, { value: '46', label: '46' }, { value: '46.5', label: '46.5' }, { value: '11', label: '11' }];
 const composition = [{ value: 'graphite', label: 'Graphite' }, { value: 'aluminium', label: 'Aluminium' }, { label: 'Carbon', value: 'carbon' }];
 const gripSizes = [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }, { label: '5', value: '5' }, { value: '000', label: '000' }, { value: '5X0', label: '5X0' }, { value: '6X0', label: '6X0' }, { value: '7X0', label: '7X0' }, { value: '8X0', label: '8X0' }, { value: '125', label: '125' }, { value: '130', label: '130' }, { value: 'UNIQ', label: 'UNIQ' }, { value: 'X3', label: 'X3' }, { value: 'X6', label: 'X6' }, { value: 'X12', label: 'X12' }];

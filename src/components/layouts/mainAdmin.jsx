@@ -43,7 +43,7 @@ const MainAdmin = ({ children }) => {
           {isOpen && <ProdDelModal id={id} />}
           {catOpen && <CatDelModal id={catId} />}
           <SideNav showMenu={showMenu} handleMenu={handleMenu} stats={stats}/>
-          <div className="px-2 lg:px-4  pt-10 bg-white shadow md:pt-0 overflow-y-auto h-screen no-scroll mt-12">
+          <div className="px-2 lg:px-4  py-10 bg-white shadow md:pt-0 overflow-y-auto h-screen no-scroll mt-12">
             {children}
           </div>
           <Right handleMenu={handleMenu} user={user} stats={stats} />
