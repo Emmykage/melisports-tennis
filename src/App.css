@@ -724,8 +724,6 @@ button:active {
 }
 
 .banner-text {
-  padding: 9.5rem;
-  line-height: 2rem;
   background: linear-gradient(#13509218, white);
 }
 
@@ -1194,10 +1192,6 @@ td .btn.change {
       gap: 3px;
       order: 2;
    
-    }
-
-    .banner-text {
-      padding: 1.5rem;
     }
 
     .catalog .row {

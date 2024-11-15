@@ -3,7 +3,7 @@ import React from 'react';
 const ToolTip = ({
   children, hint, left, right,
 }) => {
-  console.log(hint, '');
+
   return (
     <span className="relative group inline-block bg-red-40 p-0 text-black cursor-pointer">
 

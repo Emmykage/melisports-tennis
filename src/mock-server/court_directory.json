@@ -1,0 +1,72 @@
+[{
+    "courtName":"chelsea Hotel Tennis Court",
+    "location": "123 Mohammadu Buhari Way,Central Business District, Abuja",
+    "state": "Abuja",
+    "phone_number": "+2348066460762",
+    "stars": 4
+
+},
+{
+    "courtName":"Nicon Luxury Hotel Tennis Court",
+    "location": "Plot 903, Tafawa Balewa Way,Garki Nigeria",
+    "state": "Abuja",
+    "phone_number": "+234-8064081915",
+    "stars": 5
+
+},
+{
+    "courtName":"Sheraton Hotel & Towers Abuja: Royale Tennis Club, City Sport Club",
+    "location": "1, Ladi Kwali Way, Wuse 1, Abuja ",
+    "state": "Abuja",
+    "phone_number": "+234-8064081915",
+    "stars": 3
+
+},
+{
+    "courtName":"Transcorp Hilton Tennis Court",
+    "location": "1, Aguiyi Ironsi Street,Maitama, Abuja ",
+    "state": "Abuja",
+    "phone_number": "+234-8064081915",
+    "stars": 5
+
+},
+{
+    "courtName":"Agura Hotels",
+    "location": "Moshood Abiola Way, Garki Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8080485420",
+    "stars": 5
+
+},
+{
+    "courtName":"Barcelona Hotels Intl. Tennis Court",
+    "location": "23 Blantyre Crescent, Wuse Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8064081915",
+    "stars": 5
+
+},
+{
+    "courtName":"Lungi Barracks Court",
+    "location": "Lungi Barracks, Maitama, Abuja, Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8067082886",
+    "stars": 4
+
+},
+{
+    "courtName":"Mogadishu Cantonement, Asokoro, Abuja",
+    "location": "Mogadishu Cantonement,Asokoro, Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8037012787",
+    "stars": 3
+
+},
+{
+    "courtName":"Nigerian Air Force Base Abuja: Presidential Air Fleet Quarters",
+    "location": "Nigerian Air Force Base, Bill Clinton Drive, Ring Road 4,Airport Road, Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8055264483",
+    "stars": 4
+
+}]

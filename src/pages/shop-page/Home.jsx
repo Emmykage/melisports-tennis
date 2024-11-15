@@ -22,6 +22,7 @@ import Badminton from '../../assets/images/banner/test_badminton.avif';
 import './home.scss';
 import videoAd from '../../assets/videos/master_of_Strings_1920x720.webm';
 import VideoComp from '../../components/video-comp/VideoComp';
+import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 
 const ShopHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -104,7 +105,7 @@ const ShopHome = () => {
           <NavLink className="hover:text-primary" to="/arrivals"> New Arrivals</NavLink>
         </h3>
         <div className="m-auto max-w-7xl my-6 bg-white p-4 md:p-10 border rounded shadow-sm">
-          <ProductSlider products={latestArrival} views={4} />
+         {latestArrival.length > 0 ?  <> </> : <ProductSlider products={latestArrival} views={4} /> } 
 
         </div>
       </section>
@@ -121,7 +122,7 @@ const ShopHome = () => {
 
       </div>
       <div className="my-6 bg-white py-10">
-        <h3 className=" text-center fs-3 my-3"> Shop Categories</h3>
+        <h3 className=" text-center font-medium  text-3xl my-3"> Shop Categories</h3>
 
         <div className="px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7 bg-white border-black">
           <ReactSlider categories={categories} />
@@ -129,17 +130,7 @@ const ShopHome = () => {
 
       </div>
 
-      <div className="banner-text full-screen my-3 text-center">
-        <h2>
-          Tennis Equipment & Supplies
-        </h2>
-        <h3>Love Racquets Sports?</h3>
-        <p className="text-pry">
-
-          We specialize in Babolat tennis, Badminton and Padel equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff are passionate about the sport and can guide you through our selections to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our retail store.
-
-        </p>
-      </div>
+      <HomeEquipmentInfo/>
       <SurveyButton />
 
       <div>

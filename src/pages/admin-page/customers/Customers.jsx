@@ -15,7 +15,7 @@ const Customers = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [objectId, setObjectId] = useState(null);
-console.log(loading)
+
   const handleDelete = (id) => {
     dispatch(delUsers(id)).then((result) => {
       if (delUsers.fulfilled.match(result)) {

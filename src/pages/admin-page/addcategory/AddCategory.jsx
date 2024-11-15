@@ -58,7 +58,7 @@ const AddCategory = () => {
 
         <form onSubmit={handleSubmit} ref={formRef}>
           <div className="form-row">
-            <div className="input-half">
+            <div className="flex-1">
               <label htmlFor="">
                 {' '}
                 Category Name
@@ -73,23 +73,7 @@ const AddCategory = () => {
             </div>
 
           </div>
-          {/* <div className="form-row">
-            <div className="input-half">
-              <label htmlFor="">
-                {' '}
-                Category type
-                <input
-                  name="level"
-                  value={formData.level}
-                  onChange={handleFormInput}
-                  type="text"
-                  placeholder="Product category"
-                />
-              </label>
-            </div>
-
-          </div> */}
-
+  
           <div className="form-row">
             <div>
               <label htmlFor="">

@@ -210,7 +210,7 @@ const EditProduct = () => {
             <div className="bg-white p-4 rounded shadow">
 
               <div className="form-row text-sm my-1">
-                <div className="input-half">
+                <div className="flex-1">
                   <label>
                     <span className="text-gray-500 font-semibold text-sm">Product Name *</span>
                     {' '}
@@ -227,7 +227,7 @@ const EditProduct = () => {
                   />
 
                 </div>
-                <div className="input-half">
+                <div className="flex-1">
                   <label>
                     <span className="text-gray-500 font-semibold text-sm">
                       Price: NGN
@@ -251,7 +251,7 @@ const EditProduct = () => {
               </div>
               <div className="form-row my-1">
 
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="sku" className="text-dark font-semibold text-sm">
                     {' '}
                     SKU
@@ -269,7 +269,7 @@ const EditProduct = () => {
                   />
 
                 </div>
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="colour" className="text-gray-500 font-semibold text-sm">
                     Colour
                   </label>
@@ -306,7 +306,7 @@ const EditProduct = () => {
                   />
 
                 </div>
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="" className="text-dark font-semibold text-sm">Gender </label>
                   <Select
                     defaultValue={{ value: product.gender?.id, label: product.gender?.name }}
@@ -325,7 +325,7 @@ const EditProduct = () => {
                   <legend className="font-bold">Racquets</legend>
 
                   <div className="flex gap-4 ">
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="level_id" className="text-dark font-semibold text-sm">Professionalism  </label>
                       <Select
                         placeholder="professionalism"
@@ -340,7 +340,7 @@ const EditProduct = () => {
 
                     </div>
 
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
                         strung/unstrung
                       </label>
@@ -357,7 +357,7 @@ const EditProduct = () => {
 
                   <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="head_size">
                         {' '}
                         <span className="text-dark font-semibold text-sm">
@@ -377,7 +377,7 @@ const EditProduct = () => {
 
                     </div>
 
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="grip_sizes " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
                       <Select
                         defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
@@ -395,7 +395,7 @@ const EditProduct = () => {
 
                   </div>
                   <div className="flex gap-4 flex-col md:flex-row my-1">
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
                       <Select
                         name="length"
@@ -425,7 +425,7 @@ const EditProduct = () => {
                   </div>
 
                   <div className="form-row my-1">
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="weight" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
                       <input
                         onChange={handleFormInput}
@@ -438,7 +438,7 @@ const EditProduct = () => {
 
                     </div>
 
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="" className="text-gray-500 font-semibold text-sm">tension (kg) </label>
                       <input
                         onChange={handleFormInput}
@@ -450,7 +450,7 @@ const EditProduct = () => {
                       />
 
                     </div>
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
                       <input
                         onChange={handleFormInput}
@@ -490,7 +490,7 @@ const EditProduct = () => {
 
                       <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                        <div className="input-half">
+                        <div className="flex-1">
                           <label htmlFor="head_shape">
                             {' '}
                             <span className="text-gray-500 font-semibold text-sm">
@@ -508,7 +508,7 @@ const EditProduct = () => {
                           />
 
                         </div>
-                        <div className="input-half">
+                        <div className="flex-1">
                           <label htmlFor="recommended_grip">
                             {' '}
                             <span className="text-gray-500 font-semibold text-sm">
@@ -528,7 +528,7 @@ const EditProduct = () => {
                       </div>
                       <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                        <div className="input-half">
+                        <div className="flex-1">
                           <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
                           <input
                             onChange={handleFormInput}
@@ -556,7 +556,7 @@ const EditProduct = () => {
                       </div>
 
                       <div className="form-row my-1">
-                        <div className="input-half">
+                        <div className="flex-1">
                           <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
                           <input
                             value={product.weight}
@@ -569,7 +569,7 @@ const EditProduct = () => {
 
                         </div>
 
-                        <div className="input-half">
+                        <div className="flex-1">
                           <label htmlFor="thickness" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
                           <input
                             value={product.thickness}
@@ -581,7 +581,7 @@ const EditProduct = () => {
                           />
 
                         </div>
-                        <div className="input-half">
+                        <div className="flex-1">
                           <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
                           <input
                             name="stiffness"
@@ -622,7 +622,7 @@ const EditProduct = () => {
 
                         <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                          <div className="input-half">
+                          <div className="flex-1">
                             <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
                             <Select
                               defaultValue={{ value: product?.length, label: product?.length }}
@@ -650,7 +650,7 @@ const EditProduct = () => {
                         </div>
 
                         <div className="form-row my-1">
-                          <div className="input-half">
+                          <div className="flex-1">
                             <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)</label>
                             <input
                               defaultValue={product.weight}
@@ -663,7 +663,7 @@ const EditProduct = () => {
 
                           </div>
 
-                          <div className="input-half">
+                          <div className="flex-1">
                             <label htmlFor="" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
                             <input
                               value={product.thickness}
@@ -675,7 +675,7 @@ const EditProduct = () => {
                             />
 
                           </div>
-                          <div className="input-half">
+                          <div className="flex-1">
                             <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
                             <input
                               value={product.stiffness}
@@ -704,7 +704,7 @@ const EditProduct = () => {
 
               <fieldset disabled="disabled" className="p-3 bg-gray-100 border-gray-light rounded my-5">
                 <legend className="font-bold">Shoes</legend>
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Shoe size  </label>
                   <Select
 
@@ -724,7 +724,7 @@ const EditProduct = () => {
               <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
                 <legend className="font-bold">Apparels</legend>
                 <div className="flex gap-3 md:flex-row flex-col my-1">
-                  <div className="input-half">
+                  <div className="flex-1">
                     <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Cloth size  </label>
                     <Select
                       defaultValue={product.cloth_sizes?.map((size) => ({ value: size, label: size }))}

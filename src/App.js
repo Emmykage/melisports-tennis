@@ -22,6 +22,7 @@ import NotFound from './pages/NotFound';
 import useInitializeData from './hooks/useInitializeData';
 import ConfirmOrder from './pages/ConfirmOrder';
 import OrderDetails from './pages/admin-page/OrderDetails';
+import Directory from './pages/landing-page/Directory';
 
 const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
 const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
@@ -78,6 +79,7 @@ function App() {
           <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
           <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
           <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
+          <Route path="/court-directory" element={<MainLayout><Directory /></MainLayout>} />
 
           <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
 

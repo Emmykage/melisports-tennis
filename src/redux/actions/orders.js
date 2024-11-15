@@ -60,7 +60,7 @@ const deleteOrder = createAsyncThunk('order/deleteOrder', async (ID, { rejectWit
     if (!response.ok) {
       return rejectWithValue({ message: 'failed to delete order' });
     }
-    console.log(result);
+
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

@@ -204,7 +204,7 @@ const AddProduct = () => {
 
         <div className=" bg-white p-4 rounded shadow">
           <div className="flex justify-between gap-3 text-sm my-1">
-            <div className="input-half">
+            <div className="flex-1">
               <label htmlFor="name">
                 <span className="text-gray-500 font-semibold text-sm">Product Name *</span>
                 {' '}
@@ -221,7 +221,7 @@ const AddProduct = () => {
               />
 
             </div>
-            <div className="input-half">
+            <div className="flex-1">
               <label>
                 <span className="text-gray-500 font-semibold text-sm">
                   Price: NGN
@@ -296,7 +296,7 @@ const AddProduct = () => {
               />
 
             </div>
-            <div className="input-half">
+            <div className="flex-1">
               <label htmlFor="" className="text-gray-500 font-semibold text-sm">Gender </label>
               <Select
                 placeholder="gender"
@@ -315,7 +315,7 @@ const AddProduct = () => {
               <legend className="font-bold">Racquets</legend>
 
               <div className="flex gap-4 ">
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm">Professionalism  </label>
                   <Select
                     placeholder="professionalism"
@@ -327,7 +327,7 @@ const AddProduct = () => {
                     }))}
                   />
                 </div>
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
                     strung/unstrung
                   </label>
@@ -343,7 +343,7 @@ const AddProduct = () => {
 
               <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="">
                     {' '}
                     <span className="text-gray-500 font-semibold text-sm">
@@ -361,7 +361,7 @@ const AddProduct = () => {
                   />
 
                 </div>
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor=" " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
                   <Select
                     name="grip_sizes"
@@ -379,7 +379,7 @@ const AddProduct = () => {
               </div>
               <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
                   <Select
                     name="length"
@@ -405,7 +405,7 @@ const AddProduct = () => {
               </div>
 
               <div className="form-row my-1">
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
                   <input
                     name="weight"
@@ -416,7 +416,7 @@ const AddProduct = () => {
 
                 </div>
 
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm">tension (kg) </label>
                   <input
                     name="tension"
@@ -426,7 +426,7 @@ const AddProduct = () => {
                   />
 
                 </div>
-                <div className="input-half">
+                <div className="flex-1">
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
                   <input
                     name="stiffness"
@@ -464,7 +464,7 @@ const AddProduct = () => {
 
                   <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="head_shape">
                         {' '}
                         <span className="text-gray-500 font-semibold text-sm">
@@ -481,7 +481,7 @@ const AddProduct = () => {
                       />
 
                     </div>
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="recommended_grip">
                         {' '}
                         <span className="text-gray-500 font-semibold text-sm">
@@ -502,7 +502,7 @@ const AddProduct = () => {
                   </div>
                   <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
                       <input
                         name="length"
@@ -528,7 +528,7 @@ const AddProduct = () => {
                   </div>
 
                   <div className="form-row my-1">
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
                       <input
                         name="weight"
@@ -539,7 +539,7 @@ const AddProduct = () => {
 
                     </div>
 
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="thickness" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
                       <input
                         name="thickness"
@@ -549,7 +549,7 @@ const AddProduct = () => {
                       />
 
                     </div>
-                    <div className="input-half">
+                    <div className="flex-1">
                       <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
                       <input
                         name="stiffness"
@@ -588,7 +588,7 @@ const AddProduct = () => {
 
                     <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                      <div className="input-half">
+                      <div className="flex-1">
                         <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
                         <Select
                           name="length"
@@ -614,7 +614,7 @@ const AddProduct = () => {
                     </div>
 
                     <div className="form-row my-1">
-                      <div className="input-half">
+                      <div className="flex-1">
                         <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)</label>
                         <input
                           name="weight"
@@ -625,7 +625,7 @@ const AddProduct = () => {
 
                       </div>
 
-                      <div className="input-half">
+                      <div className="flex-1">
                         <label htmlFor="" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
                         <input
                           name="thickness"
@@ -635,7 +635,7 @@ const AddProduct = () => {
                         />
 
                       </div>
-                      <div className="input-half">
+                      <div className="flex-1">
                         <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
                         <input
                           name="stiffness"
@@ -654,7 +654,7 @@ const AddProduct = () => {
 
           <fieldset disabled="disabled" className="p-3 bg-gray-100 border-gray-light rounded my-5">
             <legend className="font-bold">Shoes</legend>
-            <div className="input-half">
+            <div className="flex-1">
               <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Shoe size  </label>
               <Select
                 defaultValue=""
@@ -672,7 +672,7 @@ const AddProduct = () => {
           <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
             <legend className="font-bold">Apparels</legend>
             <div className="flex gap-3 md:flex-row flex-col my-1">
-              <div className="input-half">
+              <div className="flex-1">
                 <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Cloth size  </label>
                 <Select
                   name="cloth_sizes"

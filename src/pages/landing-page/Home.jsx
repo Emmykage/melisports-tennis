@@ -18,6 +18,8 @@ import CommunityBanner from '../../components/banner/CommunityBanner';
 import DiscoverBtn from '../../components/buttons/DiscoverBtn';
 import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-720_20231201.webm';
 import VideoComp from '../../components/video-comp/VideoComp';
+import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
+import SportDirectory from '../../components/sportDirectory/SportDirectory';
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -91,18 +93,10 @@ const Home = () => {
 
       </div>
 
-      <div className="banner-text full-screen my-3 text-center">
-        <h2 className="text-2xl">
-          Tennis Equipment & Supplies
-        </h2>
-        <h3 className="text-lg">Love Racquets Sports?</h3>
-        <p className="text-pry">
-
-          We specialize in Babolat tennis, Badminton and Padel equipment, offering a wide range of rackets, strings, bags, and accessories to help you perform at your best. Our expert staff are passionate about the sport and can guide you through our selections to find the perfect gear for your game. Come in and experience the power and precision of Babolat, exclusively at our retail store.
-
-        </p>
-      </div>
+     <HomeEquipmentInfo/>
+     <SportDirectory/>
       <SurveyButton />
+
 
       <div>
         <div className="product-grid fit-screen">

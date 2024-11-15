@@ -8,7 +8,6 @@ import { updateUserInput } from '../../../redux/users/user';
 
 const ViewCustomer = () => {
   const { user, loading } = useSelector((state) => state.users);
-  console.log(user)
 
   const { id } = useParams();
   const dispatch = useDispatch();

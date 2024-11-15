@@ -69,6 +69,7 @@ const NavInfo = () => {
                 <li className="nav-item"><NavLink to="/contact" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Contact Us</NavLink></li>
                 <li className="nav-item"><NavLink to="/about" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>About Us</NavLink></li>
                 <li className="nav-item"><NavLink to="/products" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Products</NavLink></li>
+                <li className="nav-item"><NavLink to="/court-directory" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Court Directory</NavLink></li>
 
                 {user !== null && ((user.role == 'admin'|| user.role == 'super-admin') && (
                 <li className="nav-item">
