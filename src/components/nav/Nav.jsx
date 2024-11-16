@@ -24,7 +24,7 @@ const Nav = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
-
+console.log(user)
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
       setStickyNav('sticky-nav');
@@ -209,8 +209,8 @@ const Nav = () => {
                   
                 </li>
 
-                {user !== null && ((user?.role == 'admin' ||user?.role == "super-admin") && (
-                <li className="nav-item">
+                {user !== null && ((user?.role == 'admin' || user?.role == "super-admin") && (
+                <li className="nav-item lg:text-gray-800 lg:font-semibold lg:text-base">
                   <NavLink to="/admin">    go to admin </NavLink>
                   {' '}
                 </li>

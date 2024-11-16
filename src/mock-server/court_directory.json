@@ -214,4 +214,52 @@
     "phone_number": "+234-000000",
     "stars": 4
 
+},
+{
+    "courtName":"Ikoyi Club Tennis Court",
+    "location": "6 Ikoyi Club Rd, Ikoyi, 35 Ahmadu Bello Way, Victoria Island",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"The Kingfisher Club",
+    "location": "4 Reeve Road, Ikoyi",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"1004 Estate Tennis Club",
+    "location": "1004, Victoria Island",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Estate Tennis Club",
+    "location": "1004, Victoria Island",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Tennis Court ",
+    "location": "Isheri Osun, Lagos",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"FHA Tennis Club",
+    "location": "22 Road, Festac",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
 }]

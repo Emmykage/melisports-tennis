@@ -65,7 +65,6 @@ nav .logo a {
 .nav-item {
   padding: 0.83rem 1.5rem;
   height: 100%;
-  color: white;
   display: flex;
   align-items: flex-start;
   text-wrap: nowrap;
