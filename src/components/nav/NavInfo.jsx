@@ -92,7 +92,7 @@ const NavInfo = () => {
 
               {/* <div className="flex justify-between items-center"> */}
 
-              <div className="font-medium flex items-center gap-3 mobile-display lg:text-dark lg:font-semibold lg:text-base">
+              <div className="font-medium flex items-center gap-3 mobile-display lg:text-dark text-dark lg:font-semibold lg:text-base">
                 {user ? <a onClick={handleLogOut}>Log Out</a> : <NavLink to="/auth/login">Login</NavLink> }
                 <span className="text-dark"><FiUser className="menu-icon user-icon text-xl" /></span>
 

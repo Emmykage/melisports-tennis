@@ -3,7 +3,8 @@
     "location": "123 Mohammadu Buhari Way,Central Business District, Abuja",
     "state": "Abuja",
     "phone_number": "+2348066460762",
-    "stars": 4
+    "stars": 4,
+    "email": "chelsea@gmail.com"
 
 },
 {
@@ -67,6 +68,150 @@
     "location": "Nigerian Air Force Base, Bill Clinton Drive, Ring Road 4,Airport Road, Abuja",
     "state": "Abuja",
     "phone_number": "+234-8055264483",
+    "stars": 4
+
+},
+{
+    "courtName":"PCI Lawn Tennis court",
+    "location": "GRA, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Lagos Country Club",
+    "location": "2,Joel Ogunnaike Street, Off Mobolaji Bank Anthony Way, G.R.A,",
+    "state": "Lagos",
+    "phone_number": "+234-708860 5062",
+    "stars": 4
+
+},
+{
+    "courtName":"FAAN Tennis Club",
+    "location": "Zone A, FAAN Staff Quarters, Airport Road, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"S4TC Estate Tennis Court",
+    "location": "LSDPC Medium Estate Phase 4 Ogba, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-9013592351",
+    "stars": 4
+
+},
+{
+    "courtName":"Lagos State Public Service Club",
+    "location": "14 Sobo Arobiodu St, Ikeja GRA, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Anthony Village Recreation Center",
+    "location": "Adebayo Mokuolu St",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Lagos Lawn Tennis Club",
+    "location": "12 Tafawa Balewa Rd",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Adejumo Tennis Club Sports Complex (Gym & Fitness Centre & SPA)",
+    "location": "11 Adejumo Tennis Club Rd, Isolo",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Railway Institute Tennis Court",
+    "location": "77 Old Yaba Rd",
+    "state": "Lagos",
+    "phone_number": "+234-0802 302 7554",
+    "stars": 4
+
+},
+{
+    "courtName":"Unilag Staff Club",
+    "location": "4b Ransome Kuti Rd, Yaba",
+    "state": "Lagos",
+    "phone_number": "+234-8023027554",
+    "stars": 4
+
+},
+{
+    "courtName":"ISL Lawn Tennis Court (San Siro)",
+    "location": "University Of Lagos, University Rd, Yaba",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Yaba Tech Tennis Court",
+    "location": "Yaba Tech",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"NPA Tennis Club/Sports ground",
+    "location": "Off Bode Thomas, Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"LUTH Lawn Tennis Court",
+    "location": "Ishaga Road, Idi Araba, Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Mainland Tennis Club",
+    "location": "National Stadium Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-0817 535 1687",
+    "stars": 4
+
+},
+{
+    "courtName":"Luik Tennis And Recreation",
+    "location": "The Rock Drive, Lekki Phase 1",
+    "state": "Lagos",
+    "phone_number": "+234-0817 480 3873",
+    "stars": 4
+
+},
+{
+    "courtName":"LUTH Lawn Tennis Court",
+    "location": "Ishaga Road, Idi Araba, Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Hitway Tennis Academy",
+    "location": "Leisure Sports Park, 39 Kusenla Rd, Eti-Osa, Lekki",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
     "stars": 4
 
 }]
