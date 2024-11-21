@@ -10,12 +10,21 @@
     border-radius: 100%;
     transition: background-color 0.2s ease;
   }
-  
+
+  input[type="checkbox"]{
+    border: 2px solid #d1d5db; /* Light gray border */
+    border-radius: 4px;
+    background-color: #fff;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  input[type="checkbox"]:checked,
   .custom-checkbox:checked {
     border-color: #dc2626; /* Border color when checked */
     @apply bg-primary
   }
-  
+  input[type="checkbox"]::after,
   .custom-checkbox:checked::after {
     content: '✔'; /* Checkmark */
     color: #fff;

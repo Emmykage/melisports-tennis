@@ -70,7 +70,7 @@ console.log(user)
                   <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
                 </div>
 
-                <li className="nav-item"><NavLink to="/store" className="lg:text-dark lg:font-semibold lg:text-base">Home</NavLink></li>
+                <li className="nav-item"><NavLink to="/store" className="lg:text-dark lg:font-semibold lg:text-base">Store</NavLink></li>
                 <li className="nav-item">
                   <NavLink to={`/racquets?brand=${'babolat'}`} className="lg:text-dark lg:font-semibold lg:text-base">Rackets </NavLink>
                   <div className="link-items flex">
