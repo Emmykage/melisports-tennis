@@ -165,7 +165,18 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
         </NavLink>
 
         <NavLink 
-        to="/admin/reports"
+        to="/admin/delivery-fee"
+        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+
+>
+          <span>
+            {' '}
+            <MdOutlineReport />
+          </span>
+          <h3 className='font-medium'>Delivery</h3>
+        </NavLink>
+        {/* <NavLink 
+        to="/admin/delivery"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
 
 >
@@ -174,7 +185,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             <MdOutlineReport />
           </span>
           <h3 className='font-medium'>Report</h3>
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           to="/"

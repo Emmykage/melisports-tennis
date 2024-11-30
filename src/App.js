@@ -23,6 +23,9 @@ import useInitializeData from './hooks/useInitializeData';
 import ConfirmOrder from './pages/ConfirmOrder';
 import OrderDetails from './pages/admin-page/OrderDetails';
 import Directory from './pages/landing-page/Directory';
+import Delivery from './pages/admin-page/delivery';
+import DeliveryFee from './pages/admin-page/delivery';
+import ViewDeliveryFee from './pages/admin-page/delivery/ViewDelivery';
 
 const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
 const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
@@ -112,6 +115,9 @@ function App() {
             <Route path="settings" element={<MainAdmin><Settings /></MainAdmin>} />
             <Route path="addproduct" element={<MainAdmin><AddProduct /></MainAdmin>} />
             <Route path="reports" element={<MainAdmin><Reports /></MainAdmin>} />
+            <Route path="delivery-fee" element={<MainAdmin><DeliveryFee /></MainAdmin>} />
+            <Route path="delivery-fee/:id" element={<MainAdmin><ViewDeliveryFee /></MainAdmin>} />
+
             <Route
               path="add_product_category"
               element={(
