@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { PaystackButton } from 'react-paystack';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import { clearCart } from '../../../redux/cart/cart';
 import Button from '../../buttons/Button';
 
 const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
+  const {deliveryFees} = useSelector(state => state.deliveryFees)
+
   const handleChange = (e) => {
     setBillingDetails({
       ...billingDetails,
@@ -14,12 +16,17 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
     });
   };
 
-  const handleSUbmit = (e) => {
+
+
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(billingDetails)
     setStep((prev) => prev + 1);
   };
+  
   return (
-    <form onSubmit={handleSUbmit} className="flex-1">
+    <form onSubmit={handleSubmit} className="flex-1">
       <div>
         <div className="mb-3">
           <label htmlFor="name" className="my-1 block">Name</label>
@@ -54,7 +61,18 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
         <div className="flex gap-4 mb-3">
           <div className="flex-1">
             <label htmlFor="state">State</label>
-            <input required type="text" className="p-3 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} />
+            <select
+            onChange={handleChange}            
+            name="state" 
+            className="p-3 border w-full rounded"
+            id="state"
+            defaultValue={"abuja"}>
+            {deliveryFees.map(item => (
+              <option value={item.state}>{item.state}</option>
+
+            ))}
+            </select>
+            {/* <input required type="text" className="p-3 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} /> */}
           </div>
           <div className="flex-1">
             <label htmlFor="postal_code">postal_code</label>

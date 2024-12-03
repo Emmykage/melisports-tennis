@@ -1,7 +1,7 @@
 import React from 'react';
 import { nairaFormat } from '../../utils/nairaFormat';
 
-const CheckoutSummary = ({ amount, counter }) =>
+const CheckoutSummary = ({ amount, counter, shippingFee=0 }) =>
 // const { total, counter } = useSelector((state) => state.cart);
 
   (
@@ -16,16 +16,23 @@ const CheckoutSummary = ({ amount, counter }) =>
             { counter > 1 ? 'items' : 'item' }
           </span>
         </li>
+     
+        <hr />
         <hr />
         <li className="flex justify-between items-center my-2">
           <span> SUBTOTAL</span>
           {' '}
           <span>{nairaFormat(amount)}</span>
         </li>
+        <li className="flex justify-between items-center my-2">
+          <span> Shipping Fee</span>
+          {' '}
+          <span>{nairaFormat(shippingFee)}</span>
+        </li>
         <hr />
         <li className="flex justify-between items-center my-2">
           <span> CART TOTAL</span>
-          <span>{nairaFormat(amount)}</span>
+          <span>{nairaFormat(amount + shippingFee)}</span>
         </li>
       </ul>
 

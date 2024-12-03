@@ -21,8 +21,7 @@ import orderSlice from './order/order';
 import catalogSlice from './catalog/catalog';
 import appSlice from './app/app';
 import statSlice from './statistics'
-import deliveryFeeSlice, { delverStateFee } from "./delivery_fee"
-import { deliveryFeeReducer } from '.';
+import deliveryFeeSlice from "./delivery_fee"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -44,7 +43,7 @@ const rootReducer = combineReducers({
   app: appSlice,
   catalog: catalogSlice,
   statistics: statSlice,
-  deliveryFees: deliveryFeeReducer
+  deliveryFees: deliveryFeeSlice
 
 });
 

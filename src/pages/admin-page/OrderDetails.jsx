@@ -42,7 +42,7 @@ const OrderDetails = () => {
     const observer = new IntersectionObserver(([entry])=> {
 
         if(entry.isIntersecting && !order?.viewed){
-            dispatch(updateOrder({id, viewed: true})).then(result => {
+            dispatch(updateOrder({id, data: {viewed: true}})).then(result => {
                 if(updateOrder.fulfilled.match(result)){
                     dispatch(getStatistics())
                 }
@@ -64,6 +64,9 @@ const OrderDetails = () => {
         }
       };
   }, [order?.viewed])
+
+
+  console.log(order)
   return (
     <div className="bg-white p-6" ref={contRef}>
 
@@ -239,7 +242,7 @@ const OrderDetails = () => {
                     <td />
                     <td>
                       {' '}
-                      <span>---</span>
+                      <span>{nairaFormat(order?.delivery_fee ?? 0)}</span>
                     </td>
 
                   </tr>
@@ -257,7 +260,7 @@ const OrderDetails = () => {
                     <td />
                     <td>
                       {' '}
-                      <span className="text-xl font-bold text-gray-800">{ nairaFormat(order?.total_amount)}</span>
+                      <span className="text-xl font-bold text-gray-800">{ nairaFormat(parseInt(order?.net_total))}</span>
                     </td>
 
                   </tr>

@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
 import { fetchToken } from '../../hooks/localStorage';
 
-export const addDeliveryFee = createAsyncThunk('delivery/addDeliveryFee', async (data, { rejectWithValue }) => {
+export const addDeliveryFee = createAsyncThunk('deliveries/addDeliveryFee', async (data, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseURL}delivery`, {
+    const response = await fetch(`${baseURL}deliveries`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -23,10 +23,10 @@ export const addDeliveryFee = createAsyncThunk('delivery/addDeliveryFee', async 
   }
 });
 
-export const updateDeliveryFee = createAsyncThunk('deliveryFee/updateDeliveryFee', async (data, { rejectWithValue }) => {
+export const updateDeliveryFee = createAsyncThunk('deliveryFee/update_delivery_fee', async (data, { rejectWithValue }) => {
 
   try {
-    const response = await fetch(`${baseURL}delivery/${data.id}`, {
+    const response = await fetch(`${baseURL}deliveries/${data.id}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -46,7 +46,7 @@ export const updateDeliveryFee = createAsyncThunk('deliveryFee/updateDeliveryFee
   }
 });
 
-export const deleteDeliveryFee = createAsyncThunk('deliveryFee/deleteDelivery', async (ID, { rejectWithValue }) => {
+export const deleteDeliveryFee = createAsyncThunk('delivery_fee/delete_delivery', async (ID, { rejectWithValue }) => {
   try {
     const response = await fetch(`${baseURL}delivery/${ID}`, {
       method: 'DELETE',
@@ -69,7 +69,7 @@ export const deleteDeliveryFee = createAsyncThunk('deliveryFee/deleteDelivery', 
 
 export const getDeliveryFee = createAsyncThunk('delivery_fee/get_delivery_fee', async (id, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseURL}delivery/${id}`, {
+    const response = await fetch(`${baseURL}deliveries/${id}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -82,15 +82,16 @@ export const getDeliveryFee = createAsyncThunk('delivery_fee/get_delivery_fee', 
       return rejectWithValue({ message: result.error });
     }
 
+    console.log(result)
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
   }
 });
 
-export const getDeliveryFees = createAsyncThunk('delivery_fee/get_delivery_fee', async (_, { rejectWithValue }) => {
+export const getDeliveryFees = createAsyncThunk('delivery_fee/get_delivery_fees', async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseURL}delivery`, {
+    const response = await fetch(`${baseURL}deliveries`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -105,6 +106,7 @@ export const getDeliveryFees = createAsyncThunk('delivery_fee/get_delivery_fee',
       return rejectWithValue({ message: result.error });
     }
 
+    console.log(result)
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

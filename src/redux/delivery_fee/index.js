@@ -3,11 +3,11 @@ import { addDeliveryFee, deleteDeliveryFee, getDeliveryFee, getDeliveryFees, upd
 
 
 const initialState = {
-  deliverFees: [],
+  deliveryFees: [],
   status: 'pending',
   loading: false,
   error: false,
-  deliverFee: {},
+  deliveryFee: {},
   message: null,
 };
 const deliveryFeeSlice = createSlice({
@@ -21,13 +21,20 @@ const deliveryFeeSlice = createSlice({
       error: null,
       loading: false,
     }),
+
+    updateFeeInput: (state, action) => ({
+      ...state,
+      deliveryFee: { ...state.deliveryFee, [action.payload.name]: action.payload.value },
+    }),
   },
   extraReducers: {
-    [getDeliveryFees.fulfilled]: (state, action) => ({
+    [getDeliveryFees.fulfilled]: (state, action) => {
+      console.log("first heeddd" , action.payload.data)
+      return {
       ...state,
-      DeliveryFees: action.payload.data,
+      deliveryFees: action.payload.data,
       loading: false,
-    }),
+    }},
     [getDeliveryFees.pending]: (state, action) => ({
       ...state,
       loading: true,
@@ -81,12 +88,14 @@ const deliveryFeeSlice = createSlice({
       loading: true,
 
     }),
-    [getDeliveryFee.fulfilled]: (state, action) => ({
+    [getDeliveryFee.fulfilled]: (state, action) => {
+      console.log(action.payload.data, "ehye")
+      return{
       ...state,
       loading: false,
       error: false,
       deliveryFee: action.payload.data,
-    }),
+    }},
     [getDeliveryFee.rejected]: (state, action) => ({
       ...state,
       loading: false,
@@ -120,4 +129,4 @@ const deliveryFeeSlice = createSlice({
 export const delverStateFee = "hey"
 
 export default deliveryFeeSlice.reducer;
-export const { resetDeliveryFee } = deliveryFeeSlice.actions;
+export const { resetDeliveryFee, updateFeeInput } = deliveryFeeSlice.actions;

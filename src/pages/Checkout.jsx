@@ -14,14 +14,17 @@ import PaymentMethod from '../components/payments/steps/PaymentMethod';
 import ConfirmPayment from '../components/payments/steps/ConfirmPayment';
 import { createOrder } from '../redux/actions/orders';
 import { clearCart } from '../redux/cart/cart';
+import { getDeliveryFees } from '../redux/actions/delivery_fee';
 
 const Checkout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {deliveryFees} = useSelector(state => state.deliveryFees)
   const [billingDetails, setBillingDetails] = useState({
-    name: '', email: '', city: '', street: '', phone_no: '', postal_code: '', payment_method: '',
+    name: '', email: '', state: deliveryFees[1]?.state, city: '', street: '', phone_no: '', postal_code: '', payment_method: '',
   });
 
+  const selectedState = deliveryFees.find(item => item.state == billingDetails.state )
   const { loading, status } = useSelector((state) => state.orders);
   const { total, counter, cartItems } = useSelector((state) => state.cart);
   const [step, setStep] = useState(0);
@@ -43,6 +46,10 @@ const Checkout = () => {
       payment_method: billingDetails.payment_method,
     },
   };
+
+
+
+  console.log(deliveryFees[1]?.state)
 
   const handleCheckout = () => {
     dispatch(createOrder(data))
@@ -78,6 +85,15 @@ const Checkout = () => {
     'Confirm Payment',
   ];
 
+  useEffect(()=> {
+    dispatch(getDeliveryFees())
+  },[]) 
+  useEffect(()=> {
+    setBillingDetails({
+      ...billingDetails,
+      state: deliveryFees[1]?.state
+    })
+  },[deliveryFees])
   useEffect(() => {
     dispatch(resetOrder());
   }, []);
@@ -108,7 +124,8 @@ const Checkout = () => {
             ))}
 
           </div>
-          <CheckoutSummary amount={total} counter={counter} />
+          {selectedState?.delivery_fee}fddf
+          <CheckoutSummary shippingFee={Number(selectedState?.delivery_fee)} amount={total} counter={counter} />
 
         </div>
 

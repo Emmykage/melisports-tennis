@@ -31,12 +31,18 @@ const ImagePreview = ({ images }) => {
 
   useEffect(() => {
     const closeModal = (e) => {
+      console.log(showImage)
       if (!imageBoxRef.current.contains(e.target)) {
         setShowImage(false);
       }
     };
 
-    document.addEventListener('mousedown', closeModal);
+    document.addEventListener('click', closeModal);
+
+    // return () => {
+    //   document.removeEventListener('mousedown', closeModal);
+
+    // }
   }, []);
   return (
 

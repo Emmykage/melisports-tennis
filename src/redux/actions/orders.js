@@ -23,10 +23,11 @@ const createOrder = createAsyncThunk('order/createOrder', async (data, { rejectW
   }
 });
 
-const updateOrder = createAsyncThunk('order/updateOrder', async (data, { rejectWithValue }) => {
+const updateOrder = createAsyncThunk('order/updateOrder', async ({id, data}, { rejectWithValue }) => {
 
+  console.log(id, data)
   try {
-    const response = await fetch(`${baseURL}order_details/${data.id}`, {
+    const response = await fetch(`${baseURL}order_details/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

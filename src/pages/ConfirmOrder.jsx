@@ -23,6 +23,8 @@ const ConfirmOrder = () => {
   if (loading) {
     return (<Loader />);
   }
+  console.log(order)
+  
 
   return (
     <section className="py-10 px-4 sm:px-10 ">
@@ -77,6 +79,10 @@ const ConfirmOrder = () => {
                 {order?.billing_address?.state}
               </p>
             </div>
+            <div className="my-4">
+              <p className="text-lg text-gray-500">Delivery Fee</p>
+              <p className="text-xl">{nairaFormat(order?.delivery_fee)}</p>
+            </div>
           </div>
 
           <div className="my-4">
@@ -119,7 +125,8 @@ const ConfirmOrder = () => {
           </div>
 
         </div>
-        <CheckoutSummary amount={order?.total_amount} counter={order?.order_items?.length} />
+        {/* {order?.delivery_fee} */}
+        <CheckoutSummary amount={Number(order?.total_amount)} shippingFee={Number(order?.delivery_fee)} counter={order?.order_items?.length} />
       </div>
 
     </section>
