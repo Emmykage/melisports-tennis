@@ -23,6 +23,7 @@ import './home.scss';
 import videoAd from '../../assets/videos/master_of_Strings_1920x720.webm';
 import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
+import Reviews from '../../components/reviews/Reviews';
 
 const ShopHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -132,6 +133,7 @@ const ShopHome = () => {
 
       <HomeEquipmentInfo/>
       <SurveyButton />
+      <Reviews/>
 
       <div>
         <div className="product-grid fit-screen">
@@ -144,6 +146,9 @@ const ShopHome = () => {
 
         </div>
       </div>
+
+      {/* <Reviews/> */}
+
     </>
   );
 };
