@@ -6,7 +6,6 @@ const LoaderModal = () => {
 
     const {isLoader} = useSelector(state => state.app)
 
-    console.log(isLoader)
     const show = "flex fixed top-0 left-0  bg-gray-800/60 justify-center items-center  z-50 h-screen w-screen"
     const hidden = "hidden"
   return (

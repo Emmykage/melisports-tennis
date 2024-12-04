@@ -24,7 +24,7 @@ const Nav = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { toggleNav } = useSelector((state) => state.navToggle);
-console.log(user)
+
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
       setStickyNav('sticky-nav');

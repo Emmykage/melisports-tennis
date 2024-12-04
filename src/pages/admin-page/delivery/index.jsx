@@ -25,7 +25,6 @@ const DeliveryFee = () => {
     delivery_fee: ""
 })
 
-console.log(deliveryFees, status)
 const handleFeeSubmit = ()=> {
   dispatch(addDeliveryFee({delivery: feeInput})).then((result) => {
     if (deleteDeliveryFee.fulfilled.match(result)) {

@@ -49,8 +49,6 @@ const Checkout = () => {
 
 
 
-  console.log(deliveryFees[1]?.state)
-
   const handleCheckout = () => {
     dispatch(createOrder(data))
       .then((result) => {

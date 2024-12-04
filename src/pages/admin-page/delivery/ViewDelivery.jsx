@@ -31,7 +31,7 @@ const ViewDeliveryFee = () => {
     
             if(updateDeliveryFee.fulfilled.match(result)){
               dispatch(getDeliveryFee(id))
-              console.log("updated")
+
               dispatch(toggleAlert({
                 isOpen: true,
                 message: "delivery location update",
@@ -49,7 +49,6 @@ const ViewDeliveryFee = () => {
       
       }else{
         dispatch(getDeliveryFee(id))
-        console.log("updated")
         dispatch(toggleAlert({
           isOpen: true,
           message: "failed to update location update",
@@ -70,7 +69,6 @@ const ViewDeliveryFee = () => {
     );
   };
 
-  // console.log(deliveryFee)
   useEffect(() => {
     dispatch(getDeliveryFee(id));
   }, []);

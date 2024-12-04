@@ -15,7 +15,6 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setLoader: (state) => {
-      console.log("triggereed")
       return{
       ...state,
       isLoader: true,

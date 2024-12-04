@@ -4,7 +4,6 @@ import CourtCard from '../courtCard/CourtCard';
 import { NavLink } from 'react-router-dom';
 
 const SportDirectory = () => {
-    console.log(courtDirectories)
   return (
     <div>
 <div className='grid md:grid-cols-3 gap-4 my-4 p-8' >

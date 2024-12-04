@@ -29,7 +29,7 @@ const deliveryFeeSlice = createSlice({
   },
   extraReducers: {
     [getDeliveryFees.fulfilled]: (state, action) => {
-      console.log("first heeddd" , action.payload.data)
+
       return {
       ...state,
       deliveryFees: action.payload.data,
@@ -89,7 +89,7 @@ const deliveryFeeSlice = createSlice({
 
     }),
     [getDeliveryFee.fulfilled]: (state, action) => {
-      console.log(action.payload.data, "ehye")
+
       return{
       ...state,
       loading: false,

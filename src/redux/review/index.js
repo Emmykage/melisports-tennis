@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import getGenders from '../actions/gender';
-import sendReview from '../actions/review';
+import {sendReview} from '../actions/review';
 
 const initialState = {
   reviews: [],

@@ -66,7 +66,6 @@ const OrderDetails = () => {
   }, [order?.viewed])
 
 
-  console.log(order)
   return (
     <div className="bg-white p-6" ref={contRef}>
 

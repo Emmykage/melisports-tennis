@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Button from '../buttons/Button'
 import { FaStar } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import sendReview from '../../redux/actions/review'
+import {sendReview} from '../../redux/actions/review'
 import LoaderModal from '../loader/Loader'
 import { closeLoader, setLoader } from '../../redux/app/app'
 import ErrorMessage from '../error-message/ErrorMessage'
@@ -16,11 +16,11 @@ const Reviews = () => {
 
     const {message, loading, error} = useSelector(state => state.reviews)
   return (
-    <section className='px-4 py-20 bg-white my-10'>
+    <section className='px-4 py-10 bg-white my-10'>
 
         <div className='max-w-7xl m-auto'>
 
-        <h3 className='py-10 text-3xl font-normal text-center'>Write us a review to help inprove the site</h3>
+        <h3 className='py-1 text-3xl font-normal text-center'>Write us a review to help inprove the site</h3>
 
 
         <div className='max-w-3xl py-10 m-auto gap-10 justify-center flex-col md:flex-row flex items-center'>
@@ -45,10 +45,11 @@ const Reviews = () => {
            
            <ErrorMessage error={error} loading={loading} message={message}/>
 
-        <Button loading={false} btnFunc={()=> {
+        <Button loading={false} disabled={!review.content.trim()} btnFunc={()=> {
+
+            if(review.content.trim()){
 
                 dispatch(setLoader())
-                // console.log("first")
                 dispatch(sendReview(review)).then(
                     result => {
                         if(sendReview.fulfilled.match(result)){
@@ -63,6 +64,8 @@ const Reviews = () => {
                         }
                     }
                 )
+
+            }
         }}> Send</Button>
         </div>
 

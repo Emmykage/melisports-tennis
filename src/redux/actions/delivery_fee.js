@@ -82,7 +82,6 @@ export const getDeliveryFee = createAsyncThunk('delivery_fee/get_delivery_fee', 
       return rejectWithValue({ message: result.error });
     }
 
-    console.log(result)
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -106,7 +105,6 @@ export const getDeliveryFees = createAsyncThunk('delivery_fee/get_delivery_fees'
       return rejectWithValue({ message: result.error });
     }
 
-    console.log(result)
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

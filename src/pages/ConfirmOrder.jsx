@@ -22,9 +22,7 @@ const ConfirmOrder = () => {
 
   if (loading) {
     return (<Loader />);
-  }
-  console.log(order)
-  
+  }  
 
   return (
     <section className="py-10 px-4 sm:px-10 ">

@@ -21,7 +21,6 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(billingDetails)
     setStep((prev) => prev + 1);
   };
   
