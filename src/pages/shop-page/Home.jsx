@@ -11,7 +11,6 @@ import { getSportCategories } from '../../redux/actions/product_category';
 import { closeNav } from '../../redux/modal/nav';
 import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
-import VideoView from '../../components/banner/Video';
 import CollectImage from '../../assets/images/banner/692x364_FW_Lebron_1.avif';
 import RangeImage from '../../assets/images/banner/Satelite_692x364__px.avif';
 import DiscoverBtn from '../../components/buttons/DiscoverBtn';
