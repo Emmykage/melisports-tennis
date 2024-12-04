@@ -20,6 +20,7 @@ import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-7
 import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import SportDirectory from '../../components/sportDirectory/SportDirectory';
+import Reviews from '../../components/reviews/Reviews';
 
 const Home = () => {
   const categories = useSelector((state) => state.categories);
@@ -108,6 +109,8 @@ const Home = () => {
           </div>
 
         </div>
+
+        <Reviews/>
 
         <CommunityBanner />
 

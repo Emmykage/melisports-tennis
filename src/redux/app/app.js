@@ -14,11 +14,13 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setLoader: (state) => ({
+    setLoader: (state) => {
+      console.log("triggereed")
+      return{
       ...state,
       isLoader: true,
 
-    }),
+    }},
     closeLoader: (state) => ({
       ...state,
       isLoader: false,
