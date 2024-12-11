@@ -18,6 +18,7 @@ const ProductDetails = () => {
   const [count, setCount] = useState(1);
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
+  console.log(product)
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());

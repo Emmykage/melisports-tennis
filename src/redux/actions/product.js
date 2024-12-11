@@ -60,19 +60,20 @@ const addProduct = createAsyncThunk('product/addproduct', async (data, { rejectW
       },
       body: data,
     });
+    const result = await response.json();
+
 
     if (!response.ok) {
-      const err = await response.json();
-      const errorMessages = err.message;
+      const errorMessages = result.message;
       const formattedError = Object.entries(errorMessages)
         .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
         .join('\n');
       return rejectWithValue({ message: formattedError });
     }
 
-    const result = await response.json();
     return result;
   } catch (error) {
+    console.error(error)
     return rejectWithValue({ message: 'Network error, please try again later.' });
   }
 });

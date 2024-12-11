@@ -25,7 +25,7 @@ const AddProduct = () => {
   const [productGripSize, setProductGripSize] = useState([]);
   const levels = useSelector((state) => state.level.levels);
   const genders = useSelector((state) => state.gender.genders);
-  const { loading, status, report } = useSelector((state) => state.product);
+  const { loading, status, report, message } = useSelector((state) => state.product);
   const formRef = useRef(null);
   const [selectSport, setSelectedSport] = useState(sport_categories[0]?.id);
   const [productStatus, setProductStatus] = useState('active');
@@ -145,6 +145,7 @@ const AddProduct = () => {
     const cat = sport_categories.find((item) => item.id == value);
     setSelectedSport(cat.name);
   };
+  console.log(message)
   return (
     <div className="product-form bg-white admin m-auto w-full">
 
@@ -737,21 +738,21 @@ const AddProduct = () => {
           {loading ? (
             <p className="normal">
               {' '}
-              {report}
+              {message}
             </p>
           ) : (status == 'success' ? (
             <p className="text-green bg-green-200 rounded my-3 p-5 flex gap-3 items-center">
               {' '}
 
               <FaCheckCircle className="text-green-700 text-3xl" />
-              {report}
+              {message}
             </p>
           ) : status == 'rejected' && (
           <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
             {' '}
 
             <MdReportGmailerrorred className="text-red-700 text-3xl" />
-            {report}
+            {message}
           </p>
           )) }
 

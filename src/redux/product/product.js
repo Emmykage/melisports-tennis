@@ -36,7 +36,7 @@ const productSlice = createSlice({
       loading: false,
       error: false,
       status: 'success',
-      message: 'product has been added',
+      message: action.payload.message,
     }),
     [addProduct.rejected]: (state, action) => ({
       ...state,
