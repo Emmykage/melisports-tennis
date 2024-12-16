@@ -58,8 +58,6 @@ const EditProduct = () => {
     setProductShoeSize(updateProductShoeSize)    
 }
 
-
-console.log(productShoeSize)
   useEffect(() => {
     dispatch(getProductCategories());
     dispatch(getSportCategories());
@@ -178,9 +176,6 @@ console.log(productShoeSize)
   useEffect(()=> {
     setProductShoeSize(product.shoe_sizes)
   },[product])
-
-
-  console.log(product)
 
   return (
 
