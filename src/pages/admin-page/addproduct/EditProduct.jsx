@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Select, { MultiValue } from 'react-select';
 import { MdReportGmailerrorred } from 'react-icons/md';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaMinus, FaPlus } from 'react-icons/fa';
 import getGenders from '../../../redux/actions/gender';
 import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
@@ -32,12 +32,34 @@ const EditProduct = () => {
 
   const levels = useSelector((state) => state.level.levels);
   const [productColour, setProductColour] = useState([]);
-  const [productShoeSize, setProductShoeSize] = useState([]);
   const [productClothSize, setProductClothSize] = useState([]);
   const [productGripSize, setProductGripSize] = useState([]);
+
+
+  const [selectTool, setSelectTool] = useState(product_categories[0]?.name)
+
   const genders = useSelector((state) => state.gender.genders);
   const formRef = useRef(null);
 
+
+  const [productShoeSize, setProductShoeSize] = useState(product?.shoe_sizes);
+
+  const addToProductShoeSize = ({key, value}, index) => {    
+    const updateProductShoeSize = productShoeSize.map((item, i) => 
+            i === index ?   {
+              ...item,
+              [key]: value           
+
+            }
+            : 
+            item
+          )
+
+    setProductShoeSize(updateProductShoeSize)    
+}
+
+
+console.log(productShoeSize)
   useEffect(() => {
     dispatch(getProductCategories());
     dispatch(getSportCategories());
@@ -92,10 +114,11 @@ const EditProduct = () => {
       formData.append('product[grip_sizes][]', item)
 
     ));
-    shoeValues.forEach((item) => (
-      formData.append('product[shoe_sizes][]', item)
+    productShoeSize.forEach((item, i) => {
+      formData.append(`product[shoe_sizes_attributes][${i}][quantity]`, item.quantity)
+      formData.append(`product[shoe_sizes_attributes][${i}][size]`, item.size)
 
-    ));
+});
     clothValues.forEach((item) => (
       formData.append('product[cloth_sizes][]', item)
 
@@ -146,6 +169,19 @@ const EditProduct = () => {
     const cat = sport_categories.find((item) => item.id == value);
     setSelectedSport(cat.name);
   };
+
+  useEffect(() => {
+    setSelectTool(product?.product_category?.name);
+  }, [product_categories]);
+
+
+  useEffect(()=> {
+    setProductShoeSize(product.shoe_sizes)
+  },[product])
+
+
+  console.log(product)
+
   return (
 
     <div className="product-form bg-white admin m-auto w-full">
@@ -159,8 +195,8 @@ const EditProduct = () => {
                 <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
 
                 <Select
-                  onChange={(selectedOption) => handleValue(selectedOption.value)}
-                  placeholder="product category"
+                  onChange={(selectedOption) =>{ handleValue(selectedOption.value)}}
+                  placeholder="sport category"
                   defaultValue={{ value: product.sport_category?.id, label: product.sport_category?.name }}
                   // isDisabled={true}
                   required
@@ -297,6 +333,11 @@ const EditProduct = () => {
 
                   <Select
                     placeholder="product category"
+                    onChange={({value}) => {
+                      const {name}  = product_categories.find(item => item.id === value)
+                      setSelectTool(name)
+
+                    }}
                     defaultValue={{ value: product.product_category?.id, label: product.product_category?.name }}
                     name="product_category_id"
                     id="product_category_id"
@@ -320,7 +361,12 @@ const EditProduct = () => {
                 </div>
               </div>
 
-              {selectSport == 'Tennis' ? (
+
+
+              {
+                selectTool === "racquet" ?
+              
+              selectSport == 'Tennis' ? (
                 <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
                   <legend className="font-bold">Racquets</legend>
 
@@ -529,7 +575,7 @@ const EditProduct = () => {
                       <div className="flex gap-4 flex-col md:flex-row my-1">
 
                         <div className="flex-1">
-                          <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
+                          <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)</label>
                           <input
                             onChange={handleFormInput}
                             name="length"
@@ -598,7 +644,7 @@ const EditProduct = () => {
                   </>
                 )
 
-                  : selectSport == 'Badminton' ? (
+                  :  (
                     <>
                       <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
                         <legend className="font-bold">Badminton</legend>
@@ -629,7 +675,7 @@ const EditProduct = () => {
                               name="length"
                               id="length"
                               options={length}
-                  // type="text"
+                            // type="text"
                               placeholder="lenght"
                             />
 
@@ -692,56 +738,93 @@ const EditProduct = () => {
                       </fieldset>
 
                     </>
-                  ) : (
-                    <>
-                      <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
-                        <legend className="font-bold">Unselected Category</legend>
-
-                      </fieldset>
-
-                    </>
-                  ) }
-
-              <fieldset disabled="disabled" className="p-3 bg-gray-100 border-gray-light rounded my-5">
-                <legend className="font-bold">Shoes</legend>
-                <div className="flex-1">
-                  <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Shoe size  </label>
-                  <Select
-
-                    defaultValue={product.shoe_sizes?.map((item) => ({ value: item, label: item }))}
-                    name="shoe_sizes"
-                    id="shoe_sizes"
-                    isMulti
-                    onChange={(selectedOption) => setProductShoeSize(selectedOption)}
-
-                    options={shoeSizes}
-                    size={1}
-                  />
-
+                  ) : 
+                  
+                  selectTool === "shoe" ? (
+                    <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
+                    <legend className="font-bold">Shoes</legend>
+                    <div className='justify-end flex my-0 '>
+                <span type='button' className='flex w-max' onClick={() => {              // console.log("first");
+    
+                  setProductShoeSize([...productShoeSize,  {quantity: "", size: ""}])
+                }}>
+                  <FaPlus />
+                </span>
+    
                 </div>
-              </fieldset>
-
-              <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
-                <legend className="font-bold">Apparels</legend>
-                <div className="flex gap-3 md:flex-row flex-col my-1">
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Cloth size  </label>
-                    <Select
-                      defaultValue={product.cloth_sizes?.map((size) => ({ value: size, label: size }))}
-
-                      name="cloth_sizes"
-                      id="cloth_sizes"
-                      options={clothSizes}
-                      isMulti
-                      onChange={(selectedOption) => setProductClothSize(selectedOption)}
-
-                    />
-
+                    <div className="flex-1">
+                    <div className='flex justify-between'>
+                    <label htmlFor="shoe_size" className="text-gray-500 font-semibold text-sm">
+                      Shoe Size
+                    </label>
+                    <label htmlFor="qty" className="text-gray-500 font-semibold text-sm">
+                    quantity
+                    </label>
+    
                   </div>
+                    {productShoeSize?.map((item, index) => (
+                    <div className='flex-1 my-2 flex gap-3 items-center' key={index}>
+                        <div className="flex-1">
+                        <Select
+                        defaultValue={{value: item?.size, label: item?.size }}
+                        name="shoe_sizes"
+                        id="shoe_sizes"
+                        onChange={(selectedOption) => addToProductShoeSize({key: "size", value: selectedOption.value}, index)}
+                        options={shoeSizes}
+                        size={1}
+                      />
+                    </div>
+    
+                      <div className="flex-1">
+                      <input
+                        value={item.quantity}
+                        name="quantity"
+                        id="qty"
+                        onChange={(e) => { addToProductShoeSize({key: "quantity",  value: e.target.value}, index)}}
+                      />
+    
+                    </div>
+                    <span className='' onClick={()=> {
+                      const newSizes = productShoeSize.filter((item, i) =>  i != index)  
+                      setProductShoeSize(newSizes)
+                    }}>
+                    <FaMinus />
+    
+                    </span>
+                    
+                    </div>
+                  ))}
+             
+                    </div>
+                  </fieldset>
+                  )  : 
+                  selectTool === "apparel" ?
+                  <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
+                  <legend className="font-bold">Apparels</legend>
+                  <div className="flex gap-3 md:flex-row flex-col my-1">
+                    <div className="flex-1">
+                      <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Cloth size  </label>
+                      <Select
+                        defaultValue={product.cloth_sizes?.map((size) => ({ value: size, label: size }))}
+  
+                        name="cloth_sizes"
+                        id="cloth_sizes"
+                        options={clothSizes}
+                        isMulti
+                        onChange={(selectedOption) => setProductClothSize(selectedOption)}
+  
+                      />
+  
+                    </div>
+  
+                  </div>
+  
+                </fieldset>
+                : "" }
 
-                </div>
+              
 
-              </fieldset>
+             
 
               <div className="form-row my-1" />
               <div className="form-row" />

@@ -8,6 +8,14 @@ const colors = {
   gray: 'bg-gray-500',
   white: 'bg-white',
   black: 'bg-black',
+  "fiester red": "bg-[#dd1923]",
+  purple: "bg-purple-500",
+  neutral: "bg-gray-500",
+  "autumn glory": "bg-[#ff8813]",
+  "navy-blue": "bg-[#000080]"
+
+
+
 };
 const selectColor = (color) => colors[color] || 'bg-purple-500';
 

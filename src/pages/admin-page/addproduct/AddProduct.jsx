@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select, { MultiValue } from 'react-select';
 import { MdReportGmailerrorred } from 'react-icons/md';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaMinus, FaPlus } from 'react-icons/fa';
 import getLevels from '../../../redux/actions/misc';
 import getGenders from '../../../redux/actions/gender';
 import { addProduct } from '../../../redux/actions/product';
@@ -20,7 +20,6 @@ const AddProduct = () => {
   const { product_categories, sport_categories, updater } = useSelector((state) => state.product_categories);
 
   const [productColour, setProductColour] = useState([]);
-  const [productShoeSize, setProductShoeSize] = useState([]);
   const [productClothSize, setProductClothSize] = useState([]);
   const [productGripSize, setProductGripSize] = useState([]);
   const levels = useSelector((state) => state.level.levels);
@@ -29,6 +28,29 @@ const AddProduct = () => {
   const formRef = useRef(null);
   const [selectSport, setSelectedSport] = useState(sport_categories[0]?.id);
   const [productStatus, setProductStatus] = useState('active');
+  const [selectTool, setSelectTool] = useState(product_categories[0]?.name)
+
+
+  const [productShoeSize, setProductShoeSize] = useState([{size: "", quantity: ""}]);
+
+
+  const addToProductShoeSize = ({key, value}, index) => {    
+    const updateProductShoeSize = productShoeSize.map((item, i) => 
+            i === index ?   {
+              ...item,
+              [key]: value           
+
+            }
+            : 
+            item
+          )
+
+    setProductShoeSize(updateProductShoeSize)    
+}
+
+
+
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -41,6 +63,11 @@ const AddProduct = () => {
   useEffect(() => {
     setSelectedSport(sport_categories[0]?.name);
   }, [sport_categories]);
+
+
+  useEffect(() => {
+    setSelectTool(product_categories[0]?.name);
+  }, [product_categories]);
 
   useEffect(() => {
     const element = formRef.current;
@@ -76,7 +103,7 @@ const AddProduct = () => {
     e.preventDefault();
 
     if (imagePreviews.length > 0 || e.target.image.value) {
-      const shoeValues = productShoeSize.map((option) => option.value);
+      // const shoeValues = productShoeSize.map((option) => option.value);
       const clothValues = productClothSize.map((option) => option.value);
       const colorsValues = productColour.map((option) => option.value);
       const gripSizes = productGripSize.map((option) => option.value);
@@ -87,16 +114,17 @@ const AddProduct = () => {
         formData.append('product[colours][]', item)
       ));
 
-      gripSizes && gripSizes.forEach((item) => (
-        formData.append('product[grip_sizes][]', item)
+      gripSizes && gripSizes.forEach((item, index) => (
+        formData.append(`product[grip_sizes][${index}]`, item)
 
       ));
-      shoeValues && shoeValues.forEach((item) => (
-        formData.append('product[shoe_sizes][]', item)
+        productShoeSize.forEach((item, i) => {
+          formData.append(`product[shoe_sizes_attributes][${i}][quantity]`, item.quantity)
+          formData.append(`product[shoe_sizes_attributes][${i}][size]`, item.size)
 
-      ));
-      clothValues && clothValues.forEach((item) => (
-        formData.append('product[cloth_sizes][]', item)
+    });
+      clothValues && clothValues.forEach((item, index) => (
+        formData.append(`product[cloth_sizes][${index}]`, item)
 
       ));
       formData.append('product[name]', e.target.name?.value ?? '');
@@ -124,8 +152,7 @@ const AddProduct = () => {
       formData.append('product[tension]', e.target.tension?.value ?? '');
       formData.append('product[strung]', e.target.strung?.value ?? '');
       formData.append('product[image]', e.target.image?.value ?? '');
-
-      // formData.append("product[photo]", e.target.photo.files[0])
+      
 
       formData.append('product[description_body]', e.target.description_body?.value ?? '');
 
@@ -134,6 +161,7 @@ const AddProduct = () => {
       });
 
       const data = Object.fromEntries(formData);
+      console.log(data)
 
       dispatch(addProduct(formData));
     } else {
@@ -158,7 +186,7 @@ const AddProduct = () => {
             {sport_categories && sport_categories.length > 0 && (
             <Select
               onChange={(selectedOption) => handleValue(selectedOption.value)}
-              placeholder="product category"
+              placeholder="sport category"
               defaultValue={{ value: sport_categories[0]?.id, label: sport_categories[0]?.name }}
               required
               name="sport_category_id"
@@ -288,6 +316,11 @@ const AddProduct = () => {
 
               <Select
                 placeholder="product category"
+                onChange={({value}) => {
+                  const {name} = product_categories.find(item => item.id == value)
+                  console.log(name)
+                  setSelectTool(name)
+                }}
                 required
                 name="product_category_id"
                 id="product_category_id"
@@ -311,7 +344,10 @@ const AddProduct = () => {
 
           </div>
 
-          {selectSport == 'Tennis' ? (
+
+          {selectTool == "racquet" ? 
+
+          selectSport == 'Tennis' ? (
             <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
               <legend className="font-bold">Racquets</legend>
 
@@ -651,24 +687,74 @@ const AddProduct = () => {
                   </fieldset>
 
                 </>
-              )}
+              ) : 
+              selectTool == "shoe" ? 
 
-          <fieldset disabled="disabled" className="p-3 bg-gray-100 border-gray-light rounded my-5">
+          
+
+          <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
             <legend className="font-bold">Shoes</legend>
-            <div className="flex-1">
-              <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Shoe size  </label>
-              <Select
-                defaultValue=""
-                name="shoe_sizes"
-                id="shoe_sizes"
-                onChange={(selectedOption) => setProductShoeSize(selectedOption)}
-                isMulti
-                options={shoeSizes}
-                size={1}
-              />
+            <div className='justify-end flex my-0 '>
+            <span type='button' className='flex w-max' onClick={() => {              // console.log("first");
+
+              setProductShoeSize([...productShoeSize,  {quantity: "", size: ""}])
+            }}>
+              <FaPlus />
+            </span>
 
             </div>
+            <div className='gap-3'>
+              <div className='flex justify-between px-5'>
+                <label htmlFor="shoe_size" className="text-gray-500 font-semibold text-sm">
+                  Shoe Size
+                </label>
+                <label htmlFor="qty" className="text-gray-500 font-semibold text-sm">
+                quantity
+                </label>
+
+              </div>
+
+           
+              {productShoeSize.map((_, index) => (
+                <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
+
+                    <div className="flex-1">
+                    <Select
+                    defaultValue=""
+                    name="shoe_sizes"
+                    id="shoe_sizes"
+                    onChange={(selectedOption) => addToProductShoeSize({key: "size", value: selectedOption.value}, index)}
+                    options={shoeSizes}
+                    size={1}
+                  />
+                </div>
+
+                  <div className="flex-1">
+                  <input
+                    value={productShoeSize[index].quantity}
+                    name="quantity"
+                    id="qty"
+                    onChange={(e) => { addToProductShoeSize({key: "quantity",  value: e.target.value}, index)}}
+                  />
+
+                </div>
+                <span className='' onClick={()=> {
+                  const newSizes = productShoeSize.filter((item, i) =>  i != index)  
+                  setProductShoeSize(newSizes)
+                }}>
+                <FaMinus />
+
+                </span>
+                
+                </div>
+              ))}
+           
+            </div>
+
           </fieldset>
+
+          : 
+          selectTool == "apparel" ? 
 
           <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
             <legend className="font-bold">Apparels</legend>
@@ -689,6 +775,9 @@ const AddProduct = () => {
             </div>
 
           </fieldset>
+          : 
+          ""
+            }
 
           <div>
             <label htmlFor="" className="text-gray-500 font-semibold text-sm">
@@ -756,7 +845,7 @@ const AddProduct = () => {
           </p>
           )) }
 
-          <button className="btn" type="submit">
+          <button className="btn w-full" type="submit">
             add product
           </button>
 

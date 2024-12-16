@@ -175,7 +175,7 @@ const ProductDetails = () => {
               <div>
                 <p className="text-base font-medium">
                   Av Qty:
-                  {product.quantity}
+                  {product.product_category.name === "shoe" ? product.total_qty : product.quantity}
                 </p>
               </div>
 

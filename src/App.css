@@ -626,10 +626,9 @@ button {
 }
 
 .btn {
-  width: fit-content;
   border-radius: 4px;
   font-size: 1rem;
-  background: var(--color-theme-variant);
+  @apply bg-theme-alt;
   cursor: pointer;
   color: var(--color-white);
 }
