@@ -710,13 +710,13 @@ const AddProduct = () => {
                   Shoe Size
                 </label>
                 <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
-                quantity
+                Quantity
                 </label>
                 <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
-                  sku
+                  SKU
                 </label>
                 <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
-                location
+                Location
                 </label>
 
               </div>
@@ -729,6 +729,7 @@ const AddProduct = () => {
                     <Select
                     defaultValue=""
                     name="sizes"
+                    placeholder="shoe size"
                     id="sizes"
                     onChange={({value}) => addToProductInventory({key: "size", value}, index)}
                     options={shoeSizes}
@@ -741,6 +742,8 @@ const AddProduct = () => {
                     value={productInventories[index].quantity}
                     name="quantity"
                     id="qty"
+                    placeholder="Quantity"
+
                     onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
                   />
 
@@ -750,14 +753,17 @@ const AddProduct = () => {
                     value={productInventories[index].sku}
                     name="sku"
                     id="sku"
+                    placeholder="SKU"
+
                     onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
                   />
 
               </div>
               <div className="flex-1">
                     <Select
-                    value={{value: productInventories[index].location, label: productInventories[index]?.location}}
+                    // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
                     name="location"
+                    placeholder="location"
                     id="location"
                     onChange={({value}) => addToProductInventory({key: "location", value}, index)}
                     options={locations}
@@ -800,13 +806,13 @@ const AddProduct = () => {
                   Apparel Size
                 </label>
                 <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
-                quantity
+                Quantity
                 </label>
                 <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
-                  sku
+                  SKU
                 </label>
                 <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
-                location
+                Location
                 </label>
 
               </div>
@@ -818,6 +824,7 @@ const AddProduct = () => {
                     <Select
                     defaultValue=""
                     name="sizes"
+                    placeholder="cloth size"
                     id="apparel_size"
                     onChange={({value}) => addToProductInventory({key: "size", value}, index)}
                     options={clothSizes}
@@ -829,6 +836,7 @@ const AddProduct = () => {
                   <input
                     value={productInventories[index].quantity}
                     name="quantity"
+                    placeholder="Quantity"
                     id="qty"
                     onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
                   />
@@ -846,12 +854,12 @@ const AddProduct = () => {
               </div>
               <div className="flex-1">
                     <Select
-                    value={{value: productInventories[index].location, label: productInventories[index]?.location}}
+                    // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
                     name="location"
                     id="location"
                     onChange={({value}) => addToProductInventory({key: "location", value}, index)}
                     options={locations}
-                    placeholder='SKU'
+                    placeholder='Location'
 
                     size={1}
                   />

@@ -9,7 +9,6 @@ import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
 import {
-  balanceTypes,
   clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, locations, playType, recommendedGrip, shoeSizes, strung,
 } from '../../../components/mock/variance';
 import { resetProduct, writeProduct } from '../../../redux/product/product';
@@ -33,17 +32,12 @@ const EditProduct = () => {
 
   const levels = useSelector((state) => state.level.levels);
   const [productColour, setProductColour] = useState([]);
-  const [productClothSize, setProductClothSize] = useState([]);
   const [productGripSize, setProductGripSize] = useState([]);
 
-console.log(product)
   const [selectTool, setSelectTool] = useState(product_categories[0]?.name)
 
   const genders = useSelector((state) => state.gender.genders);
   const formRef = useRef(null);
-
-
-  const [productShoeSize, setProductShoeSize] = useState(product?.shoe_sizes);
 
   const addToProductInventory = ({key, value}, index) => {    
     const updateProductInventories = productInventories.map((item, i) => 
@@ -58,11 +52,12 @@ console.log(product)
 
     setProductInventories(updateProductInventories)    
 }
+console.log(product)
 
 useEffect(()=> {
   setProductInventories(product?.product_inventories ?? productInventories)
-  console.log("clalling and setting array")
 },[product])
+
   useEffect(() => {
     dispatch(getProductCategories());
     dispatch(getSportCategories());
@@ -103,8 +98,7 @@ useEffect(()=> {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const shoeValues = productShoeSize.map((option) => option.value);
-    const clothValues = productClothSize.map((option) => option.value);
+
     const colorsValues = productColour.map((option) => option.value);
     const gripSizes = productGripSize.map((option) => option.value);
 
@@ -132,10 +126,10 @@ useEffect(()=> {
       formData.append(`product[shoe_sizes_attributes][${i}][size]`, item.size)
 
 });
-    clothValues.forEach((item) => (
-      formData.append('product[cloth_sizes][]', item)
+    // clothValues.forEach((item) => (
+    //   formData.append('product[cloth_sizes][]', item)
 
-    ));
+    // ))
     e.target.level_id?.value && formData.append('product[level_id]', e.target.level_id.value);
     e.target.gender_id && formData.append('product[gender_id]', e.target.gender_id.value);
 
@@ -188,10 +182,6 @@ useEffect(()=> {
   }, [product_categories]);
 
 
-  useEffect(()=> {
-    setProductShoeSize(product.shoe_sizes)
-  },[product])
-
   return (
 
     <div className="product-form bg-white admin m-auto w-full">
@@ -200,7 +190,7 @@ useEffect(()=> {
 
         : (
           <form onSubmit={handleSubmit} ref={formRef} className="w-full">
-            <div className="p-3 flex">
+            <div className="p-3 flex gap-3">
               <div className="ms_code mr-auto max-w-80 w-full">
                 <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
 
@@ -231,7 +221,7 @@ useEffect(()=> {
                 </div>
               </div>
             </div>
-            <div className="p-3 flex justify-between">
+            <div className="p-3 flex gap-4 justify-between">
               <div className="max-w-80 w-full">
                 <label htmlFor="font-medium text-gray-700">Status</label>
                 <Select
@@ -245,8 +235,8 @@ useEffect(()=> {
               </div>
 
               <div className=" w-48">
-                <label htmlFor="quantity text-gray-700 font-bold bg-red-400">Quantity *</label>
-                <input type="number" name="quantity" onChange={handleFormInput} value={product.quantity} id="quantity" required />
+                <label htmlFor="product_quantity" className='text-gray-700 font-bold'>Quantity *</label>
+                <input type="number" name="product_quantity" onChange={handleFormInput} value={product.quantity} id="product_quantity" required />
               </div>
 
               {/* </div> */}
@@ -306,7 +296,7 @@ useEffect(()=> {
                   <input
                     name="ms_item_code"
                     onChange={handleFormInput}
-                    value={product.sku}
+                    value={product.ms_item_code}
                     id="ms_item_code"
                     type="text"
                     placeholder="MS Item code"
@@ -754,10 +744,9 @@ useEffect(()=> {
                     <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
                     <legend className="font-bold">Shoes</legend>
                     <div className='justify-end flex my-0 '>
-                <span type='button' className='flex w-max' onClick={() => {              // console.log("first");
-    
-                  setProductShoeSize([...productShoeSize,  {quantity: "", size: ""}])
-                }}>
+                <span type='button' className='flex w-max' onClick={() => {    
+                   setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", location: "abuja"}])
+                  }}>
                   <FaPlus />
                 </span>
     
@@ -768,13 +757,13 @@ useEffect(()=> {
                   Shoe Size
                 </label>
                 <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
-                quantity
+                Quantity
                 </label>
                 <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
-                  sku
+                  SKU
                 </label>
                 <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
-                location
+                Location
                 </label>
 
               </div>
@@ -853,16 +842,16 @@ useEffect(()=> {
                   <div className="">
                   <div className='flex justify-between px-0'>
                       <label htmlFor="apparel_size" className="text-gray-500 flex-1 font-semibold text-sm">
-                        Apparel Size
+                      Apparel Size
                       </label>
                       <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
-                      quantity
+                      Quantity
                       </label>
                       <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
-                        sku
+                        SKU
                       </label>
                       <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
-                      location
+                      Location
                       </label>
       
                     </div>
