@@ -117,7 +117,7 @@ const AddProduct = () => {
 
       ));
         productInventories.forEach(({quantity, size, price, sku, location }, i) => {
-         (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity)
+         (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity.value)
          size && formData.append(`product[product_inventories_attributes][${i}][size]`, size)
          sku && formData.append(`product[product_inventories_attributes][${i}][sku]`, sku)
          location && formData.append(`product[product_inventories_attributes][${i}][location]`, location)
@@ -129,7 +129,7 @@ const AddProduct = () => {
 
       ));
       formData.append('product[name]', e.target.name?.value ?? '');
-      formData.append('product[quantity]', e.target.quantity?.value ?? '');
+      formData.append('product[quantity]', e.target.product_quantity?.value ?? "");
       formData.append('product[thickness]', e.target.thickness?.value ?? '');
 
       formData.append('product[status]', e.target.status?.value ?? '');
@@ -221,11 +221,11 @@ const AddProduct = () => {
           </div>
 
           <div className=" w-48">
-            <label htmlFor="quantity text-gray-700 font-bold bg-red-400">
+            <label htmlFor="product_quantity text-gray-700 font-bold bg-red-400">
               Quantity
               {productStatus == 'active' && '*'}
             </label>
-            <input type="number" name="quantity" id="quantity" required />
+            <input type="number" name="product_quantity" id="product_quantity" required />
           </div>
 
           {/* </div> */}

@@ -10,7 +10,7 @@ import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
 import {
   balanceTypes,
-  clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, playType, recommendedGrip, shoeSizes, strung,
+  clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, locations, playType, recommendedGrip, shoeSizes, strung,
 } from '../../../components/mock/variance';
 import { resetProduct, writeProduct } from '../../../redux/product/product';
 import Loader from '../../Loader';
@@ -45,8 +45,8 @@ console.log(product)
 
   const [productShoeSize, setProductShoeSize] = useState(product?.shoe_sizes);
 
-  const addToProductShoeSize = ({key, value}, index) => {    
-    const updateProductShoeSize = productShoeSize.map((item, i) => 
+  const addToProductInventory = ({key, value}, index) => {    
+    const updateProductInventories = productInventories.map((item, i) => 
             i === index ?   {
               ...item,
               [key]: value           
@@ -56,9 +56,13 @@ console.log(product)
             item
           )
 
-    setProductShoeSize(updateProductShoeSize)    
+    setProductInventories(updateProductInventories)    
 }
 
+useEffect(()=> {
+  setProductInventories(product?.product_inventories ?? productInventories)
+  console.log("clalling and setting array")
+},[product])
   useEffect(() => {
     dispatch(getProductCategories());
     dispatch(getSportCategories());
@@ -104,6 +108,16 @@ console.log(product)
     const colorsValues = productColour.map((option) => option.value);
     const gripSizes = productGripSize.map((option) => option.value);
 
+
+    productInventories.forEach(({quantity, size, price, sku, location }, i) => {
+      (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity)
+      size && formData.append(`product[product_inventories_attributes][${i}][size]`, size)
+      sku && formData.append(`product[product_inventories_attributes][${i}][sku]`, sku)
+      location && formData.append(`product[product_inventories_attributes][${i}][location]`, location)
+      formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
+
+ });
+
     const formData = new FormData();
     colorsValues.forEach((item) => (
       formData.append('product[colours][]', item)
@@ -137,7 +151,7 @@ console.log(product)
     formData.append('product[ms_code]', e.target.ms_code?.value ?? '');
 
     formData.append('product[price]', product.price);
-    formData.append('product[sku]', product.sku);
+    formData.append('product[ms_item_code]', product.sku);
     formData.append('product[product_category_id]', e.target.product_category_id?.value ?? '');
     formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? '');
     formData.append('product[head_size]', product.head_size);
@@ -286,16 +300,16 @@ console.log(product)
                 <div className="flex-1">
                   <label htmlFor="sku" className="text-dark font-semibold text-sm">
                     {' '}
-                    SKU
+                    MS Item code
                     {productStatus == 'active' && '*'}
                   </label>
                   <input
-                    name="sku"
+                    name="ms_item_code"
                     onChange={handleFormInput}
                     value={product.sku}
-                    id="sku"
+                    id="ms_item_code"
                     type="text"
-                    placeholder="sku"
+                    placeholder="MS Item code"
                     required={productStatus === 'active'}
 
                   />
@@ -748,73 +762,170 @@ console.log(product)
                 </span>
     
                 </div>
+                <div className='gap-3'>
+              <div className='flex justify-between px-0'>
+                <label htmlFor="shoe_size" className="text-gray-500 flex-1 font-semibold text-sm">
+                  Shoe Size
+                </label>
+                <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
+                quantity
+                </label>
+                <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
+                  sku
+                </label>
+                <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
+                location
+                </label>
+
+              </div>
+
+           
+              {productInventories.map((_, index) => (
+                <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
+
                     <div className="flex-1">
-                    <div className='flex justify-between'>
-                    <label htmlFor="shoe_size" className="text-gray-500 font-semibold text-sm">
-                      Shoe Size
-                    </label>
-                    <label htmlFor="qty" className="text-gray-500 font-semibold text-sm">
-                    quantity
-                    </label>
-    
-                  </div>
-                    {productShoeSize?.map((item, index) => (
-                    <div className='flex-1 my-2 flex gap-3 items-center' key={index}>
-                        <div className="flex-1">
-                        <Select
-                        defaultValue={{value: item?.size, label: item?.size }}
-                        name="shoe_sizes"
-                        id="shoe_sizes"
-                        onChange={(selectedOption) => addToProductShoeSize({key: "size", value: selectedOption.value}, index)}
-                        options={shoeSizes}
-                        size={1}
-                      />
-                    </div>
-    
-                      <div className="flex-1">
-                      <input
-                        value={item.quantity}
-                        name="quantity"
-                        id="qty"
-                        onChange={(e) => { addToProductShoeSize({key: "quantity",  value: e.target.value}, index)}}
-                      />
-    
-                    </div>
-                    <span className='' onClick={()=> {
-                      const newSizes = productShoeSize.filter((item, i) =>  i != index)  
-                      setProductShoeSize(newSizes)
-                    }}>
-                    <FaMinus />
-    
-                    </span>
-                    
-                    </div>
-                  ))}
-             
-                    </div>
+                    <Select
+                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    name="sizes"
+                    id="sizes"
+                    onChange={({value}) => addToProductInventory({key: "size", value}, index)}
+                    options={shoeSizes}
+                    size={1}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <input
+                    value={productInventories[index].quantity}
+                    name="quantity"
+                    id="qty"
+                    onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+                  <input
+                    value={productInventories[index].sku}
+                    name="sku"
+                    id="sku"
+                    onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+                {console.log(productInventories[index].size)}
+                    <Select
+                    value={{value: productInventories[index].location, label: productInventories[index]?.location}}
+                    name="location"
+                    id="location"
+                    onChange={({value}) => addToProductInventory({key: "location", value}, index)}
+                    options={locations}
+                    size={1}
+                  />
+                </div>
+
+                <span className='' onClick={()=> {
+                  const newSizes = productInventories.filter((item, i) =>  i != index)  
+                  setProductInventories(newSizes)
+                }}>
+                <FaMinus />
+
+                </span>
+                
+                </div>
+              ))}
+           
+            </div>
                   </fieldset>
                   )  : 
                   selectTool === "apparel" ?
                   <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
                   <legend className="font-bold">Apparels</legend>
-                  <div className="flex gap-3 md:flex-row flex-col my-1">
-                    <div className="flex-1">
-                      <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Cloth size  </label>
-                      <Select
-                        defaultValue={product.cloth_sizes?.map((size) => ({ value: size, label: size }))}
-  
-                        name="cloth_sizes"
-                        id="cloth_sizes"
-                        options={clothSizes}
-                        isMulti
-                        onChange={(selectedOption) => setProductClothSize(selectedOption)}
-  
-                      />
-  
-                    </div>
-  
+                  <div className='justify-end flex my-0 '>
+                  <span type='button' className='flex w-max' onClick={() => {             
+      
+                    setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", location: "Abuja"}])
+                  }}>
+                    <FaPlus />
+                  </span>
+      
                   </div>
-  
+                  <div className="">
+                  <div className='flex justify-between px-0'>
+                      <label htmlFor="apparel_size" className="text-gray-500 flex-1 font-semibold text-sm">
+                        Apparel Size
+                      </label>
+                      <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
+                      quantity
+                      </label>
+                      <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
+                        sku
+                      </label>
+                      <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
+                      location
+                      </label>
+      
+                    </div>
+      
+                  {productInventories.map((_, index) => (
+                      <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
+      
+                      <div className="flex-1">
+                          <Select
+                          defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                          name="sizes"
+                          id="apparel_size"
+                          onChange={({value}) => addToProductInventory({key: "size", value}, index)}
+                          options={clothSizes}
+                          size={1}
+                        />
+                      </div>
+      
+                      <div className="flex-1">
+                        <input
+                          value={productInventories[index].quantity}
+                          name="quantity"
+                          id="qty"
+                          onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
+                        />
+      
+                    </div>
+                    <div className="flex-1">
+                        <input
+                          value={productInventories[index].sku}
+                          name="sku"
+                          id="sku"
+                          onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
+                          placeholder='SKU'
+                        />
+      
+                    </div>
+                    <div className="flex-1">
+                          <Select
+                          value={{value: productInventories[index].location, label: productInventories[index]?.location}}
+                          name="location"
+                          id="location"
+                          onChange={({value}) => addToProductInventory({key: "location", value}, index)}
+                          options={locations}
+                          placeholder='SKU'
+      
+                          size={1}
+                        />
+                      </div>
+      
+                      <span className='' onClick={()=> {
+                        const newSizes = productInventories.filter((item, i) =>  i != index)  
+                        setProductInventories(newSizes)
+                      }}>
+                      <FaMinus />
+      
+                      </span>
+                      
+                      </div>
+                    ))}
+      
+                  </div>
+      
                 </fieldset>
                 : "" }
 
