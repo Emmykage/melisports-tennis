@@ -20,6 +20,7 @@ import 'trix/dist/trix.css';
 const EditProduct = () => {
   const { editId } = useParams();
   const dispatch = useDispatch();
+  const [productInventories, setProductInventories] = useState([{size: "", quantity: "", sku: "", location: "abuja"}]);
 
   const [imagePreviews, setImagePreviews] = useState([]);
   const { product_categories, sport_categories } = useSelector((state) => state.product_categories);
@@ -35,7 +36,7 @@ const EditProduct = () => {
   const [productClothSize, setProductClothSize] = useState([]);
   const [productGripSize, setProductGripSize] = useState([]);
 
-
+console.log(product)
   const [selectTool, setSelectTool] = useState(product_categories[0]?.name)
 
   const genders = useSelector((state) => state.gender.genders);
