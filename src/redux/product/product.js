@@ -52,7 +52,7 @@ const productSlice = createSlice({
     }),
     [updateProduct.fulfilled]: (state, action) => ({
       ...state,
-      product: action.payload,
+      product: action.payload.data,
       pending: false,
       status: 'success',
       message: 'product has been updated',

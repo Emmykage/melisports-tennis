@@ -52,7 +52,7 @@ const EditProduct = () => {
 
     setProductInventories(updateProductInventories)    
 }
-console.log(product)
+console.log(product, selectSport)
 
 useEffect(()=> {
   setProductInventories(product?.product_inventories ?? productInventories)
@@ -121,20 +121,12 @@ useEffect(()=> {
       formData.append('product[grip_sizes][]', item)
 
     ));
-    productShoeSize.forEach((item, i) => {
-      formData.append(`product[shoe_sizes_attributes][${i}][quantity]`, item.quantity)
-      formData.append(`product[shoe_sizes_attributes][${i}][size]`, item.size)
 
-});
-    // clothValues.forEach((item) => (
-    //   formData.append('product[cloth_sizes][]', item)
-
-    // ))
     e.target.level_id?.value && formData.append('product[level_id]', e.target.level_id.value);
     e.target.gender_id && formData.append('product[gender_id]', e.target.gender_id.value);
 
     formData.append('product[name]', product.name);
-    formData.append('product[quantity]', product.quantity);
+    formData.append('product[product_quantity]', e.target?.product_quantity?.value ?? '');
 
     formData.append('product[thickness]', e.target.thickness?.value ?? '');
 
@@ -144,17 +136,18 @@ useEffect(()=> {
     formData.append('product[recommended_grip]', e.target.recommended_grip?.value ?? '');
     formData.append('product[ms_code]', e.target.ms_code?.value ?? '');
 
-    formData.append('product[price]', product.price);
-    formData.append('product[ms_item_code]', product.sku);
+    formData.append('product[price]',  e.target.price?.value ?? '' );
+    formData.append('product[ms_item_code]', e.target.ms_item_code?.value ?? '');
     formData.append('product[product_category_id]', e.target.product_category_id?.value ?? '');
     formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? '');
-    formData.append('product[head_size]', product.head_size);
-    formData.append('product[weight]', product.weight);
-    formData.append('product[length]', product.length);
-    formData.append('product[stiffness]', product.stiffness);
+    formData.append('product[head_size]',  e.target.head_size?.value ?? "");
+    formData.append('product[weight]', e.target.weight?.value);
+
+    formData.append('product[length]', e.target.length?.value);
+    formData.append('product[stiffness]',  e.target.stiffness?.value ?? "");
     formData.append('product[composition]', e.target.composition?.value ?? '');
     formData.append('product[description]', product.description);
-    formData.append('product[tension]', product.tension);
+    formData.append('product[tension]', e.target.tension?.value ?? "");
     formData.append('product[strung]', e.target.strung?.value ?? '');
     formData.append('product[image]', product.image);
     formData.append('product[description_body]', e.target.description_body?.value ?? '');
@@ -164,13 +157,14 @@ useEffect(()=> {
     });
 
     const data = Object.fromEntries(formData);
+    console.log(data)
     dispatch(updateProduct({ editId, formData }));
   };
 
   useEffect(() => {
     setSelectedSport(product?.sport_category?.name);
     setProductStatus(product?.status);
-  }, [product]);
+  }, [product.sport_category]);
 
   const handleValue = (value) => {
     const cat = sport_categories.find((item) => item.id == value);
@@ -236,7 +230,7 @@ useEffect(()=> {
 
               <div className=" w-48">
                 <label htmlFor="product_quantity" className='text-gray-700 font-bold'>Quantity *</label>
-                <input type="number" name="product_quantity" onChange={handleFormInput} value={product.quantity} id="product_quantity" required />
+                <input type="number" name="product_quantity" onChange={handleFormInput} value={product.product_quantity} id="product_quantity" required />
               </div>
 
               {/* </div> */}

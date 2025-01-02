@@ -102,7 +102,6 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (imagePreviews.length > 0 || e.target.image.value) {
-      const clothValues = productClothSize.map((option) => option.value);
       const colorsValues = productColour.map((option) => option.value);
       const gripSizes = productGripSize.map((option) => option.value);
 
@@ -124,12 +123,9 @@ const AddProduct = () => {
          formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
 
     });
-      clothValues && clothValues.forEach((item, index) => (
-        formData.append(`product[cloth_sizes][${index}]`, item)
-
-      ));
+    
       formData.append('product[name]', e.target.name?.value ?? '');
-      formData.append('product[quantity]', e.target.product_quantity?.value ?? "");
+      formData.append('product[product_quantity]', e.target.product_quantity?.value ?? "");
       formData.append('product[thickness]', e.target.thickness?.value ?? '');
 
       formData.append('product[status]', e.target.status?.value ?? '');
@@ -174,7 +170,6 @@ const AddProduct = () => {
     const cat = sport_categories.find((item) => item.id == value);
     setSelectedSport(cat.name);
   };
-  console.log(message)
   return (
     <div className="product-form bg-white admin m-auto w-full">
 
