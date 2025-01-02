@@ -31,7 +31,6 @@ const ImagePreview = ({ images }) => {
 
   useEffect(() => {
     const closeModal = (e) => {
-      console.log(showImage)
       if (!imageBoxRef.current.contains(e.target)) {
         setShowImage(false);
       }

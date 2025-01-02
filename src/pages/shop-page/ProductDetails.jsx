@@ -18,7 +18,7 @@ const ProductDetails = () => {
   const [count, setCount] = useState(1);
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
-  console.log(product)
+
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
@@ -175,7 +175,7 @@ const ProductDetails = () => {
               <div>
                 <p className="text-base font-medium">
                   Av Qty:
-                  {product.product_category.name === "shoe" ? product.total_qty : product.quantity}
+                  {product.product_quantity}
                 </p>
               </div>
 

@@ -157,8 +157,7 @@ const AddProduct = () => {
         formData.append(`product[photos][${index}]`, file);
       });
 
-      const data = Object.fromEntries(formData);
-      console.log(data)
+      // const data = Object.fromEntries(formData);
 
       dispatch(addProduct(formData));
     } else {
@@ -314,7 +313,6 @@ const AddProduct = () => {
                 placeholder="product category"
                 onChange={({value}) => {
                   const {name} = product_categories.find(item => item.id == value)
-                  console.log(name)
                   setSelectTool(name)
                 }}
                 required
@@ -691,8 +689,7 @@ const AddProduct = () => {
           <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
             <legend className="font-bold">Shoes</legend>
             <div className='justify-end flex my-0 '>
-            <span type='button' className='flex w-max' onClick={() => {              // console.log("first");
-
+            <span type='button' className='flex w-max' onClick={() => {           
               setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", location: "abuja"}])
             }}>
               <FaPlus />

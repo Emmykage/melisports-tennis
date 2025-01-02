@@ -27,7 +27,6 @@ import Reviews from '../../components/reviews/Reviews';
 const ShopHome = () => {
   const categories = useSelector((state) => state.categories);
   const { products, latestArrival } = useSelector((state) => state.products);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeNav());
@@ -102,10 +101,10 @@ const ShopHome = () => {
       <section className="px-3  py-20">
         <h3 className="text-2xl text-center">
           {' '}
-          <NavLink className="hover:text-primary" to="/arrivals"> New Arrivals</NavLink>
+          <NavLink className="hover:text-primary" to="/arrivals"> New Arrivals s</NavLink>
         </h3>
         <div className="m-auto max-w-7xl my-6 bg-white p-4 md:p-10 border rounded shadow-sm">
-         {latestArrival.length > 0 ?  <> </> : <ProductSlider products={latestArrival} views={4} /> } 
+         {latestArrival.length > 0 ?   <ProductSlider products={latestArrival} views={4} /> : <> New Arrivals will be updated Soon</>  } 
 
         </div>
       </section>

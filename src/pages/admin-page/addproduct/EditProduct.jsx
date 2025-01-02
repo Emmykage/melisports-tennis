@@ -52,7 +52,6 @@ const EditProduct = () => {
 
     setProductInventories(updateProductInventories)    
 }
-console.log(product, selectSport)
 
 useEffect(()=> {
   setProductInventories(product?.product_inventories ?? productInventories)
@@ -156,8 +155,7 @@ useEffect(()=> {
       formData.append(`product[photos][${index}]`, file);
     });
 
-    const data = Object.fromEntries(formData);
-    console.log(data)
+    // const data = Object.fromEntries(formData);
     dispatch(updateProduct({ editId, formData }));
   };
 
@@ -796,7 +794,7 @@ useEffect(()=> {
 
               </div>
               <div className="flex-1">
-                {console.log(productInventories[index].size)}
+
                     <Select
                     value={{value: productInventories[index].location, label: productInventories[index]?.location}}
                     name="location"
