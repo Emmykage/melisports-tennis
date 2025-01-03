@@ -55,7 +55,7 @@ const EditProduct = () => {
 
 useEffect(()=> {
   setProductInventories(product?.product_inventories ?? productInventories)
-},[product])
+},[product?.product_inventories])
 
   useEffect(() => {
     dispatch(getProductCategories());
@@ -102,20 +102,23 @@ useEffect(()=> {
     const gripSizes = productGripSize.map((option) => option.value);
 
 
-    productInventories.forEach(({quantity, size, price, sku, location }, i) => {
-      (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity)
-      size && formData.append(`product[product_inventories_attributes][${i}][size]`, size)
-      sku && formData.append(`product[product_inventories_attributes][${i}][sku]`, sku)
-      location && formData.append(`product[product_inventories_attributes][${i}][location]`, location)
-      formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
-
- });
 
     const formData = new FormData();
     colorsValues.forEach((item) => (
       formData.append('product[colours][]', item)
     ));
 
+    productInventories.forEach(({quantity, size, price, sku, location, id , _destroy}, i) => {
+      (quantity || e.target.product_quantity?.value) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.product_quantity.value)
+      size && formData.append(`product[product_inventories_attributes][${i}][size]`, size)
+      sku && formData.append(`product[product_inventories_attributes][${i}][sku]`, sku)
+      location && formData.append(`product[product_inventories_attributes][${i}][location]`, location)
+      formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
+      id && formData.append(`product[product_inventories_attributes][${i}][id]`, id)
+      _destroy && formData.append(`product[product_inventories_attributes][${i}][_destroy]`, _destroy);
+      console.log(_destroy)
+
+ });
     gripSizes.forEach((item) => (
       formData.append('product[grip_sizes][]', item)
 
@@ -124,7 +127,7 @@ useEffect(()=> {
     e.target.level_id?.value && formData.append('product[level_id]', e.target.level_id.value);
     e.target.gender_id && formData.append('product[gender_id]', e.target.gender_id.value);
 
-    formData.append('product[name]', product.name);
+    formData.append('product[name]', e.target.name.value ?? "");
     formData.append('product[product_quantity]', e.target?.product_quantity?.value ?? '');
 
     formData.append('product[thickness]', e.target.thickness?.value ?? '');
@@ -145,10 +148,10 @@ useEffect(()=> {
     formData.append('product[length]', e.target.length?.value);
     formData.append('product[stiffness]',  e.target.stiffness?.value ?? "");
     formData.append('product[composition]', e.target.composition?.value ?? '');
-    formData.append('product[description]', product.description);
+    formData.append('product[description]', product?.description ?? "");
     formData.append('product[tension]', e.target.tension?.value ?? "");
     formData.append('product[strung]', e.target.strung?.value ?? '');
-    formData.append('product[image]', product.image);
+    formData.append('product[image]', product.image ?? "");
     formData.append('product[description_body]', e.target.description_body?.value ?? '');
 
     Array.from(e.target.photo.files).forEach((file, index) => {
@@ -156,6 +159,7 @@ useEffect(()=> {
     });
 
     // const data = Object.fromEntries(formData);
+
     dispatch(updateProduct({ editId, formData }));
   };
 
@@ -174,6 +178,35 @@ useEffect(()=> {
   }, [product_categories]);
 
 
+  console.log(product, productInventories,selectTool)
+
+  const handleInventoryRowDel = (index) => {
+    if(productInventories[index]?.id){
+    console.log("with id:", productInventories[index]?.id)
+    const newSizes = productInventories.map((item, i) => {
+        if(item?.id &&  i == index){
+          console.log("first")
+          return{
+            ...item,
+            _destroy: true
+          }
+        }
+        return  item
+      })
+      setProductInventories(newSizes)
+
+    }
+    else{
+      console.log("initaite else statement")
+    const newSize = productInventories.filter((_, i) => i !== index)
+    setProductInventories(newSize)
+
+    }
+  
+
+    
+    
+  }
   return (
 
     <div className="product-form bg-white admin m-auto w-full">
@@ -761,7 +794,11 @@ useEffect(()=> {
               </div>
 
            
-              {productInventories.map((_, index) => (
+              {productInventories.map(({_destroy}, index) => {
+
+                {if( !_destroy){
+                  return (
+                 
                 <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
 
                     <div className="flex-1">
@@ -806,15 +843,19 @@ useEffect(()=> {
                 </div>
 
                 <span className='' onClick={()=> {
-                  const newSizes = productInventories.filter((item, i) =>  i != index)  
-                  setProductInventories(newSizes)
+                  // const newSizes = productInventories.filter((item, i) =>  i != index)  
+                  // setProductInventories(newSizes)
+                  handleInventoryRowDel(index)
                 }}>
                 <FaMinus />
 
                 </span>
                 
                 </div>
-              ))}
+                   
+                  )
+                }}
+})}
            
             </div>
                   </fieldset>
@@ -858,6 +899,7 @@ useEffect(()=> {
                           id="apparel_size"
                           onChange={({value}) => addToProductInventory({key: "size", value}, index)}
                           options={clothSizes}
+                          placeholder="Apparel Size"
                           size={1}
                         />
                       </div>
@@ -866,6 +908,8 @@ useEffect(()=> {
                         <input
                           value={productInventories[index].quantity}
                           name="quantity"
+                          placeholder="Quantity"
+
                           id="qty"
                           onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
                         />
@@ -895,8 +939,10 @@ useEffect(()=> {
                       </div>
       
                       <span className='' onClick={()=> {
-                        const newSizes = productInventories.filter((item, i) =>  i != index)  
-                        setProductInventories(newSizes)
+                        // const newSizes = productInventories.filter((item, i) =>  i != index)  
+                        // setProductInventories(newSizes)
+                                 handleInventoryRowDel(index)
+
                       }}>
                       <FaMinus />
       
