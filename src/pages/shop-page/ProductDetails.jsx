@@ -95,7 +95,7 @@ const ProductDetails = () => {
                 <div className=" items-center">
 
                   <span className="text-gray-600 text-xl font-semibold ">
-                    colours:
+                    colours <span className='text-sm font- text-gray-600'> {product.colours}</span>
                   </span>
                   <div className="flex gap-3">
                     {' '}
