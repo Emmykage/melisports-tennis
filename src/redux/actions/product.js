@@ -44,6 +44,7 @@ const updateProduct = createAsyncThunk('updateProduct', async ({ editId, formDat
     }
 
     const result = await response.json();
+    console.log(result)
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

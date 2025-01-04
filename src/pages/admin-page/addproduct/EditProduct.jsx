@@ -889,7 +889,11 @@ useEffect(()=> {
       
                     </div>
       
-                  {productInventories.map((_, index) => (
+                  {productInventories.map(({_destroy}, index) =>  {
+
+                    {if( !_destroy){
+                      return (
+                     
                       <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
       
                       <div className="flex-1">
@@ -949,7 +953,8 @@ useEffect(()=> {
                       </span>
                       
                       </div>
-                    ))}
+                    )
+                    }}})}
       
                   </div>
       

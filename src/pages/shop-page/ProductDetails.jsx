@@ -18,7 +18,7 @@ const ProductDetails = () => {
   const [count, setCount] = useState(1);
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
-
+  console.log(product)
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
@@ -74,6 +74,21 @@ const ProductDetails = () => {
               </span>
 
             </div>
+            {product?.product_inventories.length > 0 && (
+            <div className="headsize my-3">
+              <span className="text-gray-600 text-xl font-semibold block">
+                size
+              </span>
+
+              <div className="text-base text-gray-dark font-medium">
+                {product?.product_inventories.map(item => (
+                  <span className='border-r px-4'> {item.size}</span>
+                ))}
+               
+              </div>
+            </div>
+            ) }
+
             {product.head_size && (
             <div className="headsize my-3">
               <span className="text-gray-600 text-xl font-semibold block">
