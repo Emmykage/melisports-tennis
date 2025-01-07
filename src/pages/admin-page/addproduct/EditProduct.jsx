@@ -9,7 +9,7 @@ import getLevels from '../../../redux/actions/misc';
 import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
 import {
-  clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, locations, playType, recommendedGrip, shoeSizes, strung,
+  clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, locations as productLocations , playType, recommendedGrip, shoeSizes, strung,
 } from '../../../components/mock/variance';
 import { resetProduct, writeProduct } from '../../../redux/product/product';
 import Loader from '../../Loader';
@@ -118,7 +118,6 @@ useEffect(()=> {
        formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
       id && formData.append(`product[product_inventories_attributes][${i}][id]`, id)
       _destroy && formData.append(`product[product_inventories_attributes][${i}][_destroy]`, _destroy);
-      console.log(_destroy)
 
  });
     gripSizes.forEach((item) => (
@@ -160,8 +159,7 @@ useEffect(()=> {
       formData.append(`product[photos][${index}]`, file);
     });
 
-    const data = Object.fromEntries(formData);
-    console.log(data)
+    // const data = Object.fromEntries(formData);
 
     dispatch(updateProduct({ editId, formData }));
   };
@@ -181,14 +179,12 @@ useEffect(()=> {
   }, [product_categories]);
 
 
-  console.log(product, productInventories,selectTool)
-
   const handleInventoryRowDel = (index) => {
     if(productInventories[index]?.id){
-    console.log("with id:", productInventories[index]?.id)
-    const newSizes = productInventories.map((item, i) => {
+
+      const newSizes = productInventories.map((item, i) => {
         if(item?.id &&  i == index){
-          console.log("first")
+
           return{
             ...item,
             _destroy: true
@@ -200,8 +196,8 @@ useEffect(()=> {
 
     }
     else{
-      console.log("initaite else statement")
-    const newSize = productInventories.filter((_, i) => i !== index)
+
+      const newSize = productInventories.filter((_, i) => i !== index)
     setProductInventories(newSize)
 
     }
@@ -450,22 +446,6 @@ useEffect(()=> {
                       />
 
                     </div>
-
-                    {/* <div className="flex-1">
-                      <label htmlFor="grip_sizes " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
-                      <Select
-                        defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
-                        name="grip_sizes"
-                        id="grip_sizes"
-                        type="text"
-                        options={gripSizes}
-                        placeholder="grip size"
-                        onChange={(selectedOption) => setProductGripSize(selectedOption)}
-
-                        isMulti
-                      />
-
-                    </div> */}
                       <div className="flex-1">
                       <label htmlFor="" className="text-gray-500 font-semibold text-sm">
                         Composition
@@ -538,12 +518,12 @@ useEffect(()=> {
                     </div>
 
                   </div>
-                  <div className='justify-end flex my-0 '>
-                <span type='button' className='flex w-max' onClick={() => {    
-                   setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
-                  }}>
-                  <FaPlus />
-                </span>
+                  <div className='justify-end flex mt-2 '>
+                   <button type='button' className='flex w-max p-1' onClick={() => {           
+                      setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+                    }}>
+                      <FaPlus />
+                    </button>
     
                 </div>
                 <div className='gap-3'>
@@ -564,7 +544,7 @@ useEffect(()=> {
               </div>
 
            
-              {productInventories.map(({locations, _destroy}, index) => {
+              {productInventories.map(({locations,size, quantity,sku, _destroy}, index) => {
 
                 {if( !_destroy){
                   return (
@@ -573,18 +553,18 @@ useEffect(()=> {
 
                     <div className="flex-1">
                     <Select
-                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    defaultValue={{value: size, label: size} }
                     name="sizes"
                     id="sizes"
                     onChange={({value}) => addToProductInventory({key: "size", value}, index)}
-                    options={shoeSizes}
+                    options={gripSizes}
                     size={1}
                   />
                 </div>
 
                 <div className="flex-1">
                   <input
-                    value={productInventories[index].quantity}
+                    value={quantity}
                     name="quantity"
                     id="qty"
                     onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
@@ -593,7 +573,7 @@ useEffect(()=> {
               </div>
               <div className="flex-1">
                   <input
-                    value={productInventories[index].sku}
+                    value={sku}
                     name="sku"
                     id="sku"
                     onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
@@ -610,15 +590,14 @@ useEffect(()=> {
                     onChange={(selectedOption) =>{
                       const value = selectedOption.map(option => option.value) 
                       addToProductInventory({key: "locations", value}, index)}}
-                    options={locations}
+                    options={productLocations}
                     isMulti
                     size={1}
                   />
                 </div>
 
                 <span className='' onClick={()=> {
-                  // const newSizes = productInventories.filter((item, i) =>  i != index)  
-                  // setProductInventories(newSizes)
+                
                   handleInventoryRowDel(index)
                 }}>
                 <FaMinus />
@@ -761,7 +740,7 @@ useEffect(()=> {
                         </div>
 
                       </div>
-                      <div className='justify-end flex my-0 '>
+                      <div className='justify-end flex mt-2 '>
                         <button type='button' className='flex w-max p-1' onClick={() => {           
                           setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
                         }}>
@@ -787,7 +766,7 @@ useEffect(()=> {
               </div>
 
            
-              {productInventories.map(({locations, _destroy}, index) => {
+              {productInventories.map(({locations,size, quantity,sku, _destroy}, index) => {
 
                 {if( !_destroy){
                   return (
@@ -796,7 +775,7 @@ useEffect(()=> {
 
                     <div className="flex-1">
                     <Select
-                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    defaultValue={{value: size, label: size} }
                     name="sizes"
                     id="sizes"
                     onChange={({value}) => addToProductInventory({key: "size", value}, index)}
@@ -807,7 +786,7 @@ useEffect(()=> {
 
                 <div className="flex-1">
                   <input
-                    value={productInventories[index].quantity}
+                    value={quantity}
                     name="quantity"
                     id="qty"
                     onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
@@ -816,7 +795,7 @@ useEffect(()=> {
               </div>
               <div className="flex-1">
                   <input
-                    value={productInventories[index].sku}
+                    value={sku}
                     name="sku"
                     id="sku"
                     onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
@@ -832,7 +811,7 @@ useEffect(()=> {
                     onChange={(selectedOption) =>{
                       const value = selectedOption.map(option => option.value) 
                       addToProductInventory({key: "locations", value}, index)}}
-                    options={locations}
+                    options={productLocations}
                     size={1}
                   />
                 </div>
@@ -949,7 +928,7 @@ useEffect(()=> {
                           </div>
 
                         </div>
-                        <div className='justify-end flex my-0 '>
+                        <div className='justify-end flex mt-2 '>
                          <button type='button' className='flex w-max p-1' onClick={() => {           
                            setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
                          }}>
@@ -975,7 +954,7 @@ useEffect(()=> {
               </div>
 
            
-              {productInventories.map(({locations, _destroy}, index) => {
+              {productInventories.map(({locations,size, quantity,sku, _destroy}, index) => {
 
                 {if( !_destroy){
                   return (
@@ -984,7 +963,7 @@ useEffect(()=> {
 
                     <div className="flex-1">
                     <Select
-                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    defaultValue={{value: size, label: size} }
                     name="sizes"
                     id="sizes"
                     onChange={({value}) => addToProductInventory({key: "size", value}, index)}
@@ -995,7 +974,7 @@ useEffect(()=> {
 
                 <div className="flex-1">
                   <input
-                    value={productInventories[index].quantity}
+                    value={quantity}
                     name="quantity"
                     id="qty"
                     onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
@@ -1004,7 +983,7 @@ useEffect(()=> {
               </div>
               <div className="flex-1">
                   <input
-                    value={productInventories[index].sku}
+                    value={sku}
                     name="sku"
                     id="sku"
                     onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
@@ -1020,7 +999,7 @@ useEffect(()=> {
                     onChange={(selectedOption) =>{
                       const value = selectedOption.map(option => option.value) 
                       addToProductInventory({key: "locations", value}, index)}}
-                    options={locations}
+                    options={productLocations}
                     size={1}
                   />
                 </div>
@@ -1049,7 +1028,7 @@ useEffect(()=> {
                   selectTool === "shoe" ? (
                     <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
                     <legend className="font-bold">Shoes</legend>
-                    <div className='justify-end flex my-0 '>
+                    <div className='justify-end flex mt-2 '>
             <button type='button' className='flex w-max p-1' onClick={() => {           
               setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
             }}>
@@ -1075,7 +1054,7 @@ useEffect(()=> {
               </div>
 
            
-              {productInventories.map(({locations, _destroy}, index) => {
+              {productInventories.map(({locations,size, quantity,sku, _destroy}, index) => {
 
                 {if( !_destroy){
                   return (
@@ -1084,7 +1063,7 @@ useEffect(()=> {
 
                     <div className="flex-1">
                     <Select
-                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    defaultValue={{value: size, label: size} }
                     name="sizes"
                     id="sizes"
                     onChange={({value}) => addToProductInventory({key: "size", value}, index)}
@@ -1095,7 +1074,7 @@ useEffect(()=> {
 
                 <div className="flex-1">
                   <input
-                    value={productInventories[index].quantity}
+                    value={quantity}
                     name="quantity"
                     id="qty"
                     onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
@@ -1104,7 +1083,7 @@ useEffect(()=> {
               </div>
               <div className="flex-1">
                   <input
-                    value={productInventories[index].sku}
+                    value={sku}
                     name="sku"
                     id="sku"
                     onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
@@ -1120,15 +1099,14 @@ useEffect(()=> {
                     onChange={(selectedOption) =>{
                       const value = selectedOption.map(option => option.value) 
                       addToProductInventory({key: "locations", value}, index)}}
-                    options={locations}
+                    options={productLocations}
                     isMulti
                     size={1}
                   />
                 </div>
 
                 <span className='' onClick={()=> {
-                  // const newSizes = productInventories.filter((item, i) =>  i != index)  
-                  // setProductInventories(newSizes)
+              
                   handleInventoryRowDel(index)
                 }}>
                 <FaMinus />
@@ -1147,7 +1125,7 @@ useEffect(()=> {
                   selectTool === "apparel" ?
                   <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
                   <legend className="font-bold">Apparels</legend>
-                  <div className='justify-end flex my-0 '>
+                  <div className='justify-end flex mt-2 '>
                        <button type='button' className='flex w-max p-1' onClick={() => {           
                          setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
                        }}>
@@ -1172,7 +1150,7 @@ useEffect(()=> {
       
                     </div>
       
-                  {productInventories.map(({_destroy}, index) =>  {
+                  {productInventories.map(({locations,size, quantity,sku, _destroy}, index) =>  {
 
                     {if( !_destroy){
                       return (
@@ -1181,7 +1159,7 @@ useEffect(()=> {
       
                       <div className="flex-1">
                           <Select
-                          defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                          defaultValue={{value: size, label: size} }
                           name="sizes"
                           id="apparel_size"
                           onChange={({value}) => addToProductInventory({key: "size", value}, index)}
@@ -1193,7 +1171,7 @@ useEffect(()=> {
       
                       <div className="flex-1">
                         <input
-                          value={productInventories[index].quantity}
+                          value={quantity}
                           name="quantity"
                           placeholder="Quantity"
 
@@ -1204,7 +1182,7 @@ useEffect(()=> {
                     </div>
                     <div className="flex-1">
                         <input
-                          value={productInventories[index].sku}
+                          value={sku}
                           name="sku"
                           id="sku"
                           onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
@@ -1214,14 +1192,13 @@ useEffect(()=> {
                     </div>
                     <div className="flex-1">
                           <Select
-                          defaultValue={product?.product_inventories[index]?.locations?.map(location => ({value: location, label: location}))}
+                          defaultValue={locations?.map(location => ({value: location, label: location}))}
                           name="location"
                           id="location"
                           onChange={(selectedOption) => {
                             const value = selectedOption.map(option => option.value)
-                            console.log(selectedOption, locations, value)
-                              addToProductInventory({key: "locations", value}, index)}}
-                          options={locations}
+                             addToProductInventory({key: "locations", value}, index)}}
+                          options={productLocations}
                           placeholder='Add product Location'
                             isMulti
                           size={1}
@@ -1229,9 +1206,7 @@ useEffect(()=> {
                       </div>
       
                       <span className='' onClick={()=> {
-                        // const newSizes = productInventories.filter((item, i) =>  i != index)  
-                        // setProductInventories(newSizes)
-                                 handleInventoryRowDel(index)
+                        handleInventoryRowDel(index)
 
                       }}>
                       <FaMinus />
