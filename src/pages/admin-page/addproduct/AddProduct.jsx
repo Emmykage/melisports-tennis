@@ -491,7 +491,7 @@ const AddProduct = () => {
 
               </div>
 
-            {productInventories.map((_, index) => (
+            {productInventories.map(({quantity, sku}, index) => (
                 <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
 
                 <div className="flex-1">
@@ -508,7 +508,7 @@ const AddProduct = () => {
 
                 <div className="flex-1">
                   <input
-                    value={productInventories[index].quantity}
+                    value={quantity}
                     name="quantity"
                     placeholder="Quantity"
                     id="qty"
@@ -518,7 +518,7 @@ const AddProduct = () => {
               </div>
               <div className="flex-1">
                   <input
-                    value={productInventories[index].sku}
+                    value={sku}
                     name="sku"
                     id="sku"
                     onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
@@ -528,7 +528,6 @@ const AddProduct = () => {
               </div>
               <div className="flex-1">
                     <Select
-                    // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
                     name="locations"
                     id="location"
                     onChange={(selectedOption) => {
