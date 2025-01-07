@@ -19,7 +19,7 @@ import 'trix/dist/trix.css';
 const EditProduct = () => {
   const { editId } = useParams();
   const dispatch = useDispatch();
-  const [productInventories, setProductInventories] = useState([{size: "", quantity: "", sku: "", location: "abuja"}]);
+  const [productInventories, setProductInventories] = useState([{size: "", quantity: "", sku: "", location: []}]);
 
   const [imagePreviews, setImagePreviews] = useState([]);
   const { product_categories, sport_categories } = useSelector((state) => state.product_categories);
@@ -108,12 +108,14 @@ useEffect(()=> {
       formData.append('product[colours][]', item)
     ));
 
-    productInventories.forEach(({quantity, size, price, sku, location, id , _destroy}, i) => {
+    productInventories.forEach(({quantity, size, price, sku, locations, id , _destroy}, i) => {
       (quantity || e.target.product_quantity?.value) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.product_quantity.value)
       size && formData.append(`product[product_inventories_attributes][${i}][size]`, size)
       sku && formData.append(`product[product_inventories_attributes][${i}][sku]`, sku)
-      location && formData.append(`product[product_inventories_attributes][${i}][location]`, location)
-      formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
+      locations && locations.map((item) => (
+        formData.append(`product[product_inventories_attributes][${i}][locations][]`, item)
+       )) 
+       formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
       id && formData.append(`product[product_inventories_attributes][${i}][id]`, id)
       _destroy && formData.append(`product[product_inventories_attributes][${i}][_destroy]`, _destroy);
       console.log(_destroy)
@@ -158,7 +160,8 @@ useEffect(()=> {
       formData.append(`product[photos][${index}]`, file);
     });
 
-    // const data = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData);
+    console.log(data)
 
     dispatch(updateProduct({ editId, formData }));
   };
@@ -448,7 +451,7 @@ useEffect(()=> {
 
                     </div>
 
-                    <div className="flex-1">
+                    {/* <div className="flex-1">
                       <label htmlFor="grip_sizes " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
                       <Select
                         defaultValue={product.grip_sizes?.map((size) => ({ value: size, label: size }))}
@@ -460,6 +463,18 @@ useEffect(()=> {
                         onChange={(selectedOption) => setProductGripSize(selectedOption)}
 
                         isMulti
+                      />
+
+                    </div> */}
+                      <div className="flex-1">
+                      <label htmlFor="" className="text-gray-500 font-semibold text-sm">
+                        Composition
+                      </label>
+                      <Select
+                        defaultValue={{ value: product.composition, label: product.composition }}
+                        name="composition"
+                        id="composition"
+                        options={composition}
                       />
 
                     </div>
@@ -481,22 +496,6 @@ useEffect(()=> {
                     </div>
 
                     <div className="flex-1">
-                      <label htmlFor="" className="text-gray-500 font-semibold text-sm">
-                        Composition
-                      </label>
-                      <Select
-                        defaultValue={{ value: product.composition, label: product.composition }}
-                        name="composition"
-                        id="composition"
-                        options={composition}
-                      />
-
-                    </div>
-
-                  </div>
-
-                  <div className="form-row my-1">
-                    <div className="flex-1">
                       <label htmlFor="weight" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
                       <input
                         onChange={handleFormInput}
@@ -508,6 +507,10 @@ useEffect(()=> {
                       />
 
                     </div>
+                  </div>
+
+                  <div className="form-row my-1">
+                 
 
                     <div className="flex-1">
                       <label htmlFor="" className="text-gray-500 font-semibold text-sm">tension (kg) </label>
@@ -535,6 +538,100 @@ useEffect(()=> {
                     </div>
 
                   </div>
+                  <div className='justify-end flex my-0 '>
+                <span type='button' className='flex w-max' onClick={() => {    
+                   setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+                  }}>
+                  <FaPlus />
+                </span>
+    
+                </div>
+                <div className='gap-3'>
+              <div className='flex justify-between px-0'>
+                <label htmlFor="shoe_size" className="text-gray-500 flex-1 font-semibold text-sm">
+                  Grip Size
+                </label>
+                <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
+                Quantity
+                </label>
+                <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
+                  SKU
+                </label>
+                <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
+                Location
+                </label>
+
+              </div>
+
+           
+              {productInventories.map(({locations, _destroy}, index) => {
+
+                {if( !_destroy){
+                  return (
+                 
+                <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
+
+                    <div className="flex-1">
+                    <Select
+                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    name="sizes"
+                    id="sizes"
+                    onChange={({value}) => addToProductInventory({key: "size", value}, index)}
+                    options={shoeSizes}
+                    size={1}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <input
+                    value={productInventories[index].quantity}
+                    name="quantity"
+                    id="qty"
+                    onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+                  <input
+                    value={productInventories[index].sku}
+                    name="sku"
+                    id="sku"
+                    onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+
+                    <Select
+                    value={locations.map(location => ({value: location, label: location}))}
+                    name="location"
+                    placeholder="Select Product LOcations"
+                    id="location"
+                    onChange={(selectedOption) =>{
+                      const value = selectedOption.map(option => option.value) 
+                      addToProductInventory({key: "locations", value}, index)}}
+                    options={locations}
+                    isMulti
+                    size={1}
+                  />
+                </div>
+
+                <span className='' onClick={()=> {
+                  // const newSizes = productInventories.filter((item, i) =>  i != index)  
+                  // setProductInventories(newSizes)
+                  handleInventoryRowDel(index)
+                }}>
+                <FaMinus />
+
+                </span>
+                
+                </div>
+                   
+                  )
+                }}
+})}
+           
+            </div>
                 </fieldset>
               )
                 : selectSport == 'Padel' ? (
@@ -664,6 +761,98 @@ useEffect(()=> {
                         </div>
 
                       </div>
+                      <div className='justify-end flex my-0 '>
+                        <button type='button' className='flex w-max p-1' onClick={() => {           
+                          setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+                        }}>
+                          <FaPlus />
+                        </button>
+    
+                </div>
+                <div className='gap-3'>
+              <div className='flex justify-between px-0'>
+                <label htmlFor="shoe_size" className="text-gray-500 flex-1 font-semibold text-sm">
+                  Grip Size
+                </label>
+                <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
+                Quantity
+                </label>
+                <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
+                  SKU
+                </label>
+                <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
+                Location
+                </label>
+
+              </div>
+
+           
+              {productInventories.map(({locations, _destroy}, index) => {
+
+                {if( !_destroy){
+                  return (
+                 
+                <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
+
+                    <div className="flex-1">
+                    <Select
+                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    name="sizes"
+                    id="sizes"
+                    onChange={({value}) => addToProductInventory({key: "size", value}, index)}
+                    options={gripSizes}
+                    size={1}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <input
+                    value={productInventories[index].quantity}
+                    name="quantity"
+                    id="qty"
+                    onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+                  <input
+                    value={productInventories[index].sku}
+                    name="sku"
+                    id="sku"
+                    onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+
+                    <Select
+                    value={locations.map(location => ({value: location, label: location}))}
+                    name="location"
+                    id="location"
+                    onChange={(selectedOption) =>{
+                      const value = selectedOption.map(option => option.value) 
+                      addToProductInventory({key: "locations", value}, index)}}
+                    options={locations}
+                    size={1}
+                  />
+                </div>
+
+                <span className='' onClick={()=> {
+                  // const newSizes = productInventories.filter((item, i) =>  i != index)  
+                  // setProductInventories(newSizes)
+                  handleInventoryRowDel(index)
+                }}>
+                <FaMinus />
+
+                </span>
+                
+                </div>
+                   
+                  )
+                }}
+})}
+           
+            </div>
                     </fieldset>
 
                   </>
@@ -760,6 +949,98 @@ useEffect(()=> {
                           </div>
 
                         </div>
+                        <div className='justify-end flex my-0 '>
+                         <button type='button' className='flex w-max p-1' onClick={() => {           
+                           setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+                         }}>
+                           <FaPlus />
+                         </button>
+    
+                </div>
+                <div className='gap-3'>
+              <div className='flex justify-between px-0'>
+                <label htmlFor="shoe_size" className="text-gray-500 flex-1 font-semibold text-sm">
+                  Grip Size
+                </label>
+                <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
+                Quantity
+                </label>
+                <label htmlFor="sku" className="text-gray-500 flex-1 font-semibold text-sm">
+                  SKU
+                </label>
+                <label htmlFor="location" className="text-gray-500 flex-1 font-semibold text-sm">
+                Location
+                </label>
+
+              </div>
+
+           
+              {productInventories.map(({locations, _destroy}, index) => {
+
+                {if( !_destroy){
+                  return (
+                 
+                <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
+
+                    <div className="flex-1">
+                    <Select
+                    defaultValue={{value: productInventories[index].size, label: productInventories[index].size} }
+                    name="sizes"
+                    id="sizes"
+                    onChange={({value}) => addToProductInventory({key: "size", value}, index)}
+                    options={gripSizes}
+                    size={1}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <input
+                    value={productInventories[index].quantity}
+                    name="quantity"
+                    id="qty"
+                    onChange={(e) => { addToProductInventory({key: "quantity",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+                  <input
+                    value={productInventories[index].sku}
+                    name="sku"
+                    id="sku"
+                    onChange={(e) => { addToProductInventory({key: "sku",  value: e.target.value}, index)}}
+                  />
+
+              </div>
+              <div className="flex-1">
+
+                    <Select
+                    value={locations.map(location => ({value: location, label: location}))}
+                    name="location"
+                    id="location"
+                    onChange={(selectedOption) =>{
+                      const value = selectedOption.map(option => option.value) 
+                      addToProductInventory({key: "locations", value}, index)}}
+                    options={locations}
+                    size={1}
+                  />
+                </div>
+
+                <span className='' onClick={()=> {
+                  // const newSizes = productInventories.filter((item, i) =>  i != index)  
+                  // setProductInventories(newSizes)
+                  handleInventoryRowDel(index)
+                }}>
+                <FaMinus />
+
+                </span>
+                
+                </div>
+                   
+                  )
+                }}
+})}
+           
+            </div>
                       </fieldset>
 
                     </>
@@ -769,11 +1050,11 @@ useEffect(()=> {
                     <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
                     <legend className="font-bold">Shoes</legend>
                     <div className='justify-end flex my-0 '>
-                <span type='button' className='flex w-max' onClick={() => {    
-                   setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", location: "abuja"}])
-                  }}>
-                  <FaPlus />
-                </span>
+            <button type='button' className='flex w-max p-1' onClick={() => {           
+              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+            }}>
+              <FaPlus />
+            </button>
     
                 </div>
                 <div className='gap-3'>
@@ -794,7 +1075,7 @@ useEffect(()=> {
               </div>
 
            
-              {productInventories.map(({_destroy}, index) => {
+              {productInventories.map(({locations, _destroy}, index) => {
 
                 {if( !_destroy){
                   return (
@@ -833,11 +1114,14 @@ useEffect(()=> {
               <div className="flex-1">
 
                     <Select
-                    value={{value: productInventories[index].location, label: productInventories[index]?.location}}
-                    name="location"
+                    value={locations.map(location => ({value: location, label: location}))}
+                    name="locations"
                     id="location"
-                    onChange={({value}) => addToProductInventory({key: "location", value}, index)}
+                    onChange={(selectedOption) =>{
+                      const value = selectedOption.map(option => option.value) 
+                      addToProductInventory({key: "locations", value}, index)}}
                     options={locations}
+                    isMulti
                     size={1}
                   />
                 </div>
@@ -864,12 +1148,11 @@ useEffect(()=> {
                   <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
                   <legend className="font-bold">Apparels</legend>
                   <div className='justify-end flex my-0 '>
-                  <span type='button' className='flex w-max' onClick={() => {             
-      
-                    setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", location: "Abuja"}])
-                  }}>
-                    <FaPlus />
-                  </span>
+                       <button type='button' className='flex w-max p-1' onClick={() => {           
+                         setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+                       }}>
+                         <FaPlus />
+                       </button>
       
                   </div>
                   <div className="">
@@ -931,13 +1214,16 @@ useEffect(()=> {
                     </div>
                     <div className="flex-1">
                           <Select
-                          value={{value: productInventories[index].location, label: productInventories[index]?.location}}
+                          defaultValue={product?.product_inventories[index]?.locations?.map(location => ({value: location, label: location}))}
                           name="location"
                           id="location"
-                          onChange={({value}) => addToProductInventory({key: "location", value}, index)}
+                          onChange={(selectedOption) => {
+                            const value = selectedOption.map(option => option.value)
+                            console.log(selectedOption, locations, value)
+                              addToProductInventory({key: "locations", value}, index)}}
                           options={locations}
-                          placeholder='SKU'
-      
+                          placeholder='Add product Location'
+                            isMulti
                           size={1}
                         />
                       </div>
@@ -1058,7 +1344,7 @@ useEffect(()=> {
                 </p>
               )) }
               <button className="btn" type="submit">
-                Update product
+                Update productcd
               </button>
             </div>
 

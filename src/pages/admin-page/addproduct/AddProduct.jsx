@@ -20,13 +20,11 @@ const AddProduct = () => {
   const { product_categories, sport_categories, updater } = useSelector((state) => state.product_categories);
 
   const [productColour, setProductColour] = useState([]);
-  const [productClothSize, setProductClothSize] = useState([]);
-  const [productGripSize, setProductGripSize] = useState([]);
   const levels = useSelector((state) => state.level.levels);
   const genders = useSelector((state) => state.gender.genders);
   const { loading, status, report, message } = useSelector((state) => state.product);
   const formRef = useRef(null);
-  const [selectSport, setSelectedSport] = useState(sport_categories[0]?.id);
+  const [selectSport, setSelectedSport] = useState(null);
   const [productStatus, setProductStatus] = useState('active');
   const [selectTool, setSelectTool] = useState(product_categories[0]?.name)
 
@@ -62,7 +60,8 @@ const AddProduct = () => {
   }, [updater]);
 
   useEffect(() => {
-    setSelectedSport(sport_categories[0]?.name);
+    setSelectedSport(sport_categories[1]);
+    console.log("selected spot call")
   }, [sport_categories]);
 
 
@@ -104,7 +103,6 @@ const AddProduct = () => {
     e.preventDefault();
     if (imagePreviews.length > 0 || e.target.image.value) {
       const colorsValues = productColour.map((option) => option.value);
-      const gripSizes = productGripSize.map((option) => option.value);
       console.log("view locations", e.target.locations)
 
      const Valuemap =  Array.from(e.target.locations.value).map(item => item.value)
@@ -123,7 +121,7 @@ const AddProduct = () => {
          (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity.value)
          size && formData.append(`product[product_inventories_attributes][${i}][size]`, size)
          sku && formData.append(`product[product_inventories_attributes][${i}][sku]`, sku)
-         locations && locations.map((item, index) => (
+         locations && locations.map((item) => (
           formData.append(`product[product_inventories_attributes][${i}][locations][]`, item)
          )) 
          formData.append(`product[product_inventories_attributes][${i}][price]`, price ? price : e.target.price.value ?? "")
@@ -174,8 +172,9 @@ const AddProduct = () => {
 
   const handleValue = (value) => {
     const cat = sport_categories.find((item) => item.id == value);
-    setSelectedSport(cat.name);
+    setSelectedSport(cat);
   };
+  console.log(selectSport)
   return (
     <div className="product-form bg-white admin m-auto w-full">
 
@@ -185,11 +184,13 @@ const AddProduct = () => {
           <div className="ms_code mr-auto max-w-80 w-full">
             <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
 
-            {sport_categories && sport_categories.length > 0 && (
+            {selectSport && (
             <Select
               onChange={(selectedOption) => handleValue(selectedOption.value)}
               placeholder="sport category"
-              defaultValue={{ value: sport_categories[0]?.id, label: sport_categories[0]?.name }}
+              defaultValue={{ value: selectSport?.id, label: selectSport?.name }}
+              // defaultValue={{ value: sport_categories[1]?.id, label: sport_categories[1]?.name }}
+
               required
               name="sport_category_id"
               id="sport_category_id"
@@ -348,7 +349,7 @@ const AddProduct = () => {
 
           {selectTool == "racquet" ? 
 
-          selectSport == 'Tennis' ? (
+          selectSport?.name == 'Tennis' ? (
             <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
               <legend className="font-bold">Racquets</legend>
 
@@ -399,20 +400,7 @@ const AddProduct = () => {
                   />
 
                 </div>
-                {/* <div className="flex-1">
-                  <label htmlFor=" " className="text-gray-500 font-semibold text-sm"> Grip size   </label>
-                  <Select
-                    name="grip_sizes"
-                    id="grip_sizes"
-                    type="text"
-                    options={gripSizes}
-                    placeholder="grip sizes"
-                    onChange={(selectedOption) => setProductGripSize(selectedOption)}
-
-                    isMulti
-                  />
-
-                </div> */}
+           
                     <div className="flex-1">
                   <label htmlFor="" className="text-gray-500 font-semibold text-sm">
                     Composition
@@ -477,11 +465,19 @@ const AddProduct = () => {
                 </div>
 
               </div>
+              <div className='justify-end flex my-1 bg-gray-200'>
+            <button type='button' className='flex w-max p-1' onClick={() => {           
+              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+            }}>
+              <FaPlus />
+            </button>
+
+            </div>
 
               <div className="">
             <div className='flex justify-between px-0'>
                 <label htmlFor="grip_size" className="text-gray-500 flex-1 font-semibold text-sm">
-                  Grip Size
+                 Racquet Grip Sizes
                 </label>
                 <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
                 Quantity
@@ -559,7 +555,7 @@ const AddProduct = () => {
             </div>
             </fieldset>
           )
-            : selectSport == 'Padel' ? (
+            : selectSport?.name == 'Padel' ? (
               <>
 
                 <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
@@ -680,6 +676,15 @@ const AddProduct = () => {
                     </div>
 
                   </div>
+                  <div className='justify-end flex my-0 '>
+                  <button type='button' className='flex w-max p-1' onClick={() => {           
+              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+            }}>
+              <FaPlus />
+            </button>
+
+
+            </div>
                   <div className="">
             <div className='flex justify-between px-0'>
                 <label htmlFor="apparel_size" className="text-gray-500 flex-1 font-semibold text-sm">
@@ -847,8 +852,8 @@ const AddProduct = () => {
                     </div>
                     <div className="">
             <div className='flex justify-between px-0'>
-                <label htmlFor="apparel_size" className="text-gray-500 flex-1 font-semibold text-sm">
-                  Grip Sizes
+                <label htmlFor="badminton_size" className="text-gray-500 flex-1 font-semibold text-sm">
+                Sizes
                 </label>
                 <label htmlFor="qty" className="text-gray-500 flex-1 font-semibold text-sm">
                 Quantity
@@ -861,6 +866,15 @@ const AddProduct = () => {
                 </label>
 
               </div>
+              <div className='justify-end flex my-0 '>
+              <button type='button' className='flex w-max p-1' onClick={() => {           
+              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
+            }}>
+              <FaPlus />
+            </button>
+
+
+            </div>
 
             {productInventories.map((_, index) => (
                 <div className='flex-1 flex gap-3 my-2 items-center' key={index}>
@@ -869,10 +883,10 @@ const AddProduct = () => {
                     <Select
                     defaultValue=""
                     name="sizes"
-                    placeholder="cloth size"
-                    id="padel_size"
+                    placeholder="Badminton Grip size"
+                    id="badminton_size"
                     onChange={({value}) => addToProductInventory({key: "size", value}, index)}
-                    options={clothSizes}
+                    options={gripSizes}
                     size={1}
                   />
                 </div>
@@ -937,11 +951,12 @@ const AddProduct = () => {
           <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
             <legend className="font-bold">Shoes</legend>
             <div className='justify-end flex my-0 '>
-            <span type='button' className='flex w-max' onClick={() => {           
-              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", location: "abuja"}])
+            <button type='button' className='flex w-max p-1' onClick={() => {           
+              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
             }}>
               <FaPlus />
-            </span>
+            </button>
+
 
             </div>
             <div className='gap-3'>
@@ -1036,12 +1051,12 @@ const AddProduct = () => {
           <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
             <legend className="font-bold">Apparels</legend>
             <div className='justify-end flex my-0 '>
-            <span type='button' className='flex w-max' onClick={() => {             
-
-              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", location: "Abuja"}])
+            <button type='button' className='flex w-max p-1' onClick={() => {           
+              setProductInventories([...productInventories,  {quantity: "", size: "", sku: "", locations: []}])
             }}>
               <FaPlus />
-            </span>
+            </button>
+
 
             </div>
             <div className="">
