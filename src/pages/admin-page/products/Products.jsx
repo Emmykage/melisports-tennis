@@ -17,6 +17,8 @@ const Products = () => {
 
   const dispatch = useDispatch();
 
+  console.log(products)
+
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     products.length === 0 && dispatch(getProducts());

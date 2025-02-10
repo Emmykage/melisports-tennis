@@ -63,7 +63,7 @@ const SearchPage = lazy(() => import('./pages/SearchPage'));
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
-  // const { setcategoryModal } = useSelector((state) => state.modal_categories);
+
   useInitializeData();
   const dispatch = useDispatch();
   useEffect(() => {
