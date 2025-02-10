@@ -10,7 +10,7 @@ import { resetProduct } from '../../../redux/product/product';
 const Products = () => {
   const navigate = useNavigate();
   const {
-    products, sortedProducts, message, error,
+    products, sortedProducts, message, error, loading
   } = useSelector((state) => state.products);
   const { updater } = useSelector((state) => state.product);
   const [search, setSearch] = useState('');
@@ -40,7 +40,9 @@ const Products = () => {
 
   if (!error) {
     return (
-      <>
+
+<div>
+
 
         <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
 
@@ -66,7 +68,7 @@ const Products = () => {
               ))}
             </div>
           )}
-      </>
+        </div>
 
     );
   }

@@ -947,11 +947,10 @@ td .btn.change {
   position: fixed;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
-
-  /* opacity: 0.6; */
   top: 0;
   left: 0;
   height: 100vh;
+  z-index: 1000;
 }
 
 .modal {
@@ -961,7 +960,7 @@ td .btn.change {
   text-align: center;
   background-color: white;
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 .modal .btn-container {
