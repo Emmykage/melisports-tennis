@@ -25,7 +25,7 @@ const ProductDetails = () => {
     dispatch(getProduct(id));
   }, [id]);
   const handleCart = () => {
-    if (product.quantity > 0) {
+    if (product.product_quantity > 0) {
 
       dispatch(addCart({
         product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,

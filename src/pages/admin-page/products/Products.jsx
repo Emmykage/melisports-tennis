@@ -40,8 +40,7 @@ const Products = () => {
 
   if (!error) {
     return (
-
-<div>
+      <div>
 
 
         <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />

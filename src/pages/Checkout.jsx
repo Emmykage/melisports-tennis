@@ -122,7 +122,7 @@ const Checkout = () => {
             ))}
 
           </div>
-          {selectedState?.delivery_fee}fddf
+          {selectedState?.delivery_fee}
           <CheckoutSummary shippingFee={Number(selectedState?.delivery_fee)} amount={total} counter={counter} />
 
         </div>

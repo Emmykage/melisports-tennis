@@ -101,7 +101,7 @@ const ShopHome = () => {
       <section className="px-3  py-20">
         <h3 className="text-2xl text-center">
           {' '}
-          <NavLink className="hover:text-primary" to="/arrivals"> New Arrivals s</NavLink>
+          <NavLink className="hover:text-primary" to="/arrivals"> New Arrival</NavLink>
         </h3>
         <div className="m-auto max-w-7xl my-6 bg-white p-4 md:p-10 border rounded shadow-sm">
          {latestArrival.length > 0 ?   <ProductSlider products={latestArrival} views={4} /> : <> New Arrivals will be updated Soon</>  } 
