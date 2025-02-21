@@ -7,6 +7,7 @@ const refCart = () => getCart().map((cart) => ({
   price: cart.price,
   product_name: cart.product_name,
   image: cart.image,
+  sizes: cart.sizes,
   quantity: cart.quantity,
   subTotal: cart.quantity * cart.price,
 }));

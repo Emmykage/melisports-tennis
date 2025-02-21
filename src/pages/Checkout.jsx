@@ -34,6 +34,7 @@ const Checkout = () => {
       product_id: item.product_id,
       quantity: item.quantity,
       amount: item.price,
+      sizes: item.sizes
     }
 
   ));
@@ -83,6 +84,8 @@ const Checkout = () => {
     'Confirm Payment',
   ];
 
+
+  console.log(deliveryFees)
   useEffect(()=> {
     dispatch(getDeliveryFees())
   },[]) 
@@ -122,7 +125,6 @@ const Checkout = () => {
             ))}
 
           </div>
-          {selectedState?.delivery_fee}
           <CheckoutSummary shippingFee={Number(selectedState?.delivery_fee)} amount={total} counter={counter} />
 
         </div>

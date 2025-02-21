@@ -59,6 +59,8 @@ const Cart = () => {
     );
   }
 
+  console.log(cartItems)
+
   return (
     <>
       <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto max-w-[1500px] min-h-[70%]">
@@ -86,8 +88,15 @@ const Cart = () => {
                     </div>
                   </td>
                   <td data-cell="name" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
+                    <p className='text-gray-700 font-semibold'>
+                    {cart.product_name}
+
+                    </p>
                     <p>
-                      {cart.product_name}
+                      <span className='mr-5 font-semibold text-gray-600'>Sizes: </span>
+                    {cart.sizes.map(item => (
+                      <span className='mr-5'>{item}</span>
+                    )) }
                     </p>
                   </td>
                   <td data-cell="price" className="whitespace-nowrap border-b font- border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">

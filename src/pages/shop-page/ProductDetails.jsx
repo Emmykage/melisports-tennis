@@ -16,6 +16,8 @@ import { pickColor } from '../../utils/get_colors';
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
+  const [sizes, setsizes] = useState([])
+  const [selectedSize, setSelectedSIze] = useState(null)
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
   console.log(product)
@@ -28,7 +30,7 @@ const ProductDetails = () => {
     if (product.product_quantity > 0) {
 
       dispatch(addCart({
-        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name,
+        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name, sizes: sizes
       }));
 
       dispatch(updater());
@@ -46,6 +48,8 @@ const ProductDetails = () => {
   if (loading) {
     return (<Loader />);
   }
+
+  console.log(selectedSize)
   return (
     <section className="px-1">
 
@@ -76,7 +80,7 @@ const ProductDetails = () => {
             </div>
             {product?.product_inventories.length > 0 && (
             <div className="headsize my-3">
-              <span className="text-gray-600 text-xl font-semibold block">
+              <span  className="text-gray-600 text-xl font-semibold block">
                 size
               </span>
 
@@ -156,10 +160,13 @@ const ProductDetails = () => {
               </p>
               <div className="flex gap-1 flex-wrap my-2">
                 {' '}
-                {product.grip_sizes.map((size) => (
-                  <span className="text-gray-dark px-6 py-0.5 bg-gray-200 text-base text-gray-dark rounded">
+                {product.grip_sizes.map((size, index) => (
+                  <button onClick={()=> {
+                    setSelectedSIze(size)
+                    setsizes([size])
+                  }} className={`${selectedSize == size ? "bg-gray-300 border border-theme-alt" : "bg-gray-200"} text-gray-dark px-6 py-0.5  text-base text-gray-dark rounded`}>
                     {size}
-                  </span>
+                  </button>
 
                 ))}
 
