@@ -1,5 +1,6 @@
 const colors = {
   blue: 'bg-blue-500',
+  "dark-blue": 'bg-[#364a91]',
   red: 'bg-red-500',
   green: 'bg-green-500',
   yellow: 'bg-yellow-500',
@@ -19,7 +20,10 @@ const colors = {
 };
 const selectColor = (color) => colors[color] || 'bg-purple-500';
 
+
 export const pickColor = (color) => {
+  console.log(color)
+
   const splitColor = (color) => {
     const colorArr = color.split('/');
     if (colorArr.length == 1) {

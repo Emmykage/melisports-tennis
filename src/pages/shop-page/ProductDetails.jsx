@@ -78,35 +78,9 @@ const ProductDetails = () => {
               </span>
 
             </div>
-            {product?.product_inventories.length > 0 && (
-            <div className="headsize my-3">
-              <span  className="text-gray-600 text-xl font-semibold block">
-                size
-              </span>
+ 
 
-              <div className="text-base text-gray-dark font-medium">
-                {product?.product_inventories.map(item => (
-                  <span className='border-r px-4'> {item.size}</span>
-                ))}
-               
-              </div>
-            </div>
-            ) }
-
-            {product.head_size && (
-            <div className="headsize my-3">
-              <span className="text-gray-600 text-xl font-semibold block">
-                Head size
-              </span>
-
-              <span className="text-base text-gray-dark font-medium">
-                {product.head_size}
-                {' '}
-                &#13216;
-              </span>
-            </div>
-            ) }
-            {/* {product?.head_size} */}
+           
 
             {product?.colours && (
               <div className="my-3">
@@ -152,28 +126,38 @@ const ProductDetails = () => {
 
             ) }
 
-            {product?.grip_sizes && product?.grip_sizes.length > 0 && (
             <div>
 
-              <p className="block text-gray-600 text-xl font-semibold">
-                Grip sizes:
-              </p>
               <div className="flex gap-1 flex-wrap my-2">
                 {' '}
-                {product.grip_sizes.map((size, index) => (
-                  <button onClick={()=> {
-                    setSelectedSIze(size)
-                    setsizes([size])
-                  }} className={`${selectedSize == size ? "bg-gray-300 border border-theme-alt" : "bg-gray-200"} text-gray-dark px-6 py-0.5  text-base text-gray-dark rounded`}>
-                    {size}
-                  </button>
+              
 
-                ))}
+                {product?.product_inventories.length > 0 && (
+                            <div className="headsize my-3">
+                              <span  className="text-gray-600 text-xl font-semibold block">
+                                {product?.product_category?.name == "racquet" ? "Grip Size" : "Size"}
+                              </span>
+
+                              <div className="text-base text-gray-dark font-medium">
+                                                           
+                              {product?.product_inventories.map((item, index) => (
+                                <button onClick={()=> {
+                                  setSelectedSIze(item.size)
+                                  setsizes([item.size])
+                                }} className={`${selectedSize == item.size ? "bg-gray-300 border border-theme-alt" : "bg-gray-200"} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}>
+                                  {item.size}
+                                </button>
+
+                              ))}
+                            </div>
+                            </div>
+
+                            ) }
 
               </div>
 
             </div>
-            ) }
+
 
             <div className="flex items-center gap-3">
               <div className="btn-div my-3">
