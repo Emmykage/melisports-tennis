@@ -49,7 +49,7 @@ const ProductDetails = () => {
     return (<Loader />);
   }
 
-  console.log(selectedSize)
+  console.log(product)
   return (
     <section className="px-1">
 
@@ -140,12 +140,12 @@ const ProductDetails = () => {
 
                               <div className="text-base text-gray-dark font-medium">
                                                            
-                              {product?.product_inventories.map((item, index) => (
+                              {product?.product_sizes.map((size) => (
                                 <button onClick={()=> {
-                                  setSelectedSIze(item.size)
-                                  setsizes([item.size])
-                                }} className={`${selectedSize == item.size ? "bg-gray-300 border border-theme-alt" : "bg-gray-200"} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}>
-                                  {item.size}
+                                  setSelectedSIze(size)
+                                  setsizes([size])
+                                }} className={`${selectedSize == size ? "bg-gray-300 border border-theme-alt" : "bg-gray-200"} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}>
+                                  {size}
                                 </button>
 
                               ))}

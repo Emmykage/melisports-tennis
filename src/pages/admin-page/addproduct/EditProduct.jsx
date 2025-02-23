@@ -583,7 +583,7 @@ useEffect(()=> {
               <div className="flex-1">
 
                     <Select
-                    value={locations.map(location => ({value: location, label: location}))}
+                    value={locations?.map(location => ({value: location, label: location}))}
                     name="location"
                     placeholder="Select Product LOcations"
                     id="location"
@@ -805,7 +805,7 @@ useEffect(()=> {
               <div className="flex-1">
 
                     <Select
-                    value={locations.map(location => ({value: location, label: location}))}
+                    value={locations?.map(location => ({value: location, label: location}))}
                     name="location"
                     id="location"
                     onChange={(selectedOption) =>{
@@ -993,7 +993,7 @@ useEffect(()=> {
               <div className="flex-1">
 
                     <Select
-                    value={locations.map(location => ({value: location, label: location}))}
+                    value={locations?.map(location => ({value: location, label: location}))}
                     name="location"
                     id="location"
                     onChange={(selectedOption) =>{
@@ -1093,7 +1093,7 @@ useEffect(()=> {
               <div className="flex-1">
 
                     <Select
-                    value={locations.map(location => ({value: location, label: location}))}
+                    value={locations?.map(location => ({value: location, label: location}))}
                     name="locations"
                     id="location"
                     onChange={(selectedOption) =>{
