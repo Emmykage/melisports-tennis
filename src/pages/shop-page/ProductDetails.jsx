@@ -20,7 +20,7 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSIze] = useState(null)
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
-  console.log(product)
+
   useEffect(() => {
     dispatch(closeNav());
     dispatch(closeList());
@@ -49,7 +49,6 @@ const ProductDetails = () => {
     return (<Loader />);
   }
 
-  console.log(product)
   return (
     <section className="px-1">
 

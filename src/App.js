@@ -26,6 +26,7 @@ import Directory from './pages/landing-page/Directory';
 import Delivery from './pages/admin-page/delivery';
 import DeliveryFee from './pages/admin-page/delivery';
 import ViewDeliveryFee from './pages/admin-page/delivery/ViewDelivery';
+import { ToastContainer } from 'react-toastify';
 
 const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
 const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
@@ -71,6 +72,9 @@ function App() {
   }, [cartItems]);
   return (
     <>
+        <ToastContainer />
+
+    
 
       <Suspense fallback={<LoadingPage />}>
 

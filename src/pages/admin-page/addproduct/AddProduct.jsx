@@ -33,7 +33,6 @@ const AddProduct = () => {
 
 
   const addToProductInventory = ({key, value}, index) => {    
-    console.log(key,value, index)
     const updateProductInventories = productInventories.map((item, i) => 
             i === index ?   {
               ...item,
@@ -61,7 +60,7 @@ const AddProduct = () => {
 
   useEffect(() => {
     setSelectedSport(sport_categories[1]);
-    console.log("selected spot call")
+
   }, [sport_categories]);
 
 
@@ -103,11 +102,10 @@ const AddProduct = () => {
     e.preventDefault();
     if (imagePreviews.length > 0 || e.target.image.value) {
       const colorsValues = productColour.map((option) => option.value);
-      console.log("view locations", e.target.locations)
 
      const Valuemap =  Array.from(e.target.locations.value).map(item => item.value)
-     console.log(Valuemap)
-      const formData = new FormData();
+
+     const formData = new FormData();
 
       colorsValues && colorsValues.forEach((item, index) => (
         formData.append('product[colours][]', item)
@@ -162,7 +160,6 @@ const AddProduct = () => {
       });
 
       const data = Object.fromEntries(formData);
-      console.log(data)
 
       dispatch(addProduct(formData));
     } else {
@@ -174,7 +171,7 @@ const AddProduct = () => {
     const cat = sport_categories.find((item) => item.id == value);
     setSelectedSport(cat);
   };
-  console.log(selectSport)
+
   return (
     <div className="product-form bg-white admin m-auto w-full">
 

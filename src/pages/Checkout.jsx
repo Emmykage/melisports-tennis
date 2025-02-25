@@ -84,8 +84,6 @@ const Checkout = () => {
     'Confirm Payment',
   ];
 
-
-  console.log(deliveryFees)
   useEffect(()=> {
     dispatch(getDeliveryFees())
   },[]) 

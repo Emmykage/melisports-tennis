@@ -10,7 +10,6 @@ const useInitializeData = () => {
     dispatch(userProfile());
   }, []);
 
-  // console.log(user, 'data initializer');
 };
 
 export default useInitializeData;

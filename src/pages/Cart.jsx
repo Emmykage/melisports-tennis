@@ -59,8 +59,6 @@ const Cart = () => {
     );
   }
 
-  console.log(cartItems)
-
   return (
     <>
       <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto max-w-[1500px] min-h-[70%]">
