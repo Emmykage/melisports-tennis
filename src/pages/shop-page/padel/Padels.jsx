@@ -5,7 +5,6 @@ import { getProducts } from '../../../redux/actions/product';
 import {
   filterActivities, filterFeatures, filterGender, filterProducts,
 } from '../../../redux/products/product';
-import { closeNav } from '../../../redux/modal/nav';
 import { closeList } from '../../../redux/products/searched';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
@@ -58,7 +57,6 @@ const Padels = () => {
   };
 
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProductCategories());
   }, []);

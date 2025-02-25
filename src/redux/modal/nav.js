@@ -19,5 +19,4 @@ const navSlice = createSlice({
   },
 });
 
-export const { openNav, closeNav } = navSlice.actions;
 export default navSlice.reducer;

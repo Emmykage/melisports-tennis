@@ -9,8 +9,7 @@ import { getProductCategories } from '../redux/actions/product_category';
 import { getProducts } from '../redux/actions/product';
 
 import { closeList } from '../redux/products/searched';
-import { closeNav } from '../redux/modal/nav';
-import Loader from './Loader';
+ import Loader from './Loader';
 import {
   filterActivities, filterFeatures, filterProducts, searchedPage, searchedProducts,
 } from '../redux/products/product';
@@ -65,8 +64,6 @@ const SearchPage = () => {
   useEffect(() => {
     const query = searchParams.get('query');
     dispatch(searchedPage(query));
-
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProductCategories());
   }, [searchParams, dispatch]);

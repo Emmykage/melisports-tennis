@@ -5,7 +5,6 @@ import { getProducts } from '../../../redux/actions/product';
 import {
   filterActivities, filterFeatures, filterGender, filterProducts,
 } from '../../../redux/products/product';
-import { closeNav } from '../../../redux/modal/nav';
 import { closeList } from '../../../redux/products/searched';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import bannerImage from '../../../assets/images/banner/best-badminton-background-gyixxvloqmf5t6of.webp';
@@ -58,7 +57,6 @@ const BadmintonsPage = () => {
   };
 
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProductCategories());
   }, []);

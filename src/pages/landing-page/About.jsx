@@ -3,16 +3,16 @@ import { useDispatch } from 'react-redux';
 // import Hero from '../components/banner/Hero';
 import nadal_art from '../../assets/images/nadal-art.png';
 import AboutBanner from '../../components/banner/AboutBanner';
-import { closeNav } from '../../redux/modal/nav';
-import CommunityBanner from '../../components/banner/CommunityBanner';
+ import CommunityBanner from '../../components/banner/CommunityBanner';
+import NavInfo from '../../components/nav/NavInfo';
 
 const About = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(closeNav());
-  }, []);
+
   return (
     <div className="about customer-bg-theme text-white">
+      
+      <NavInfo />
+
       <AboutBanner />
 
       <div className="px-4">

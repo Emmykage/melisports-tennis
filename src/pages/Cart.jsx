@@ -6,10 +6,10 @@ import {
 } from '../redux/cart/cart';
 
 import { openModal } from '../redux/modal/modal';
-import { closeNav } from '../redux/modal/nav';
-import { closeList } from '../redux/products/searched';
+ import { closeList } from '../redux/products/searched';
 import { nairaFormat } from '../utils/nairaFormat';
 import { fetchToken } from '../hooks/localStorage';
+import Nav from '../components/nav/Nav';
 
 const Cart = () => {
   const { user, loading } = useSelector((state) => state.user);
@@ -21,7 +21,6 @@ const Cart = () => {
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getLocalCart());
   }, [update]);
@@ -61,6 +60,7 @@ const Cart = () => {
 
   return (
     <>
+    <Nav/>
       <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto max-w-[1500px] min-h-[70%]">
         <div className="overflow-x-scroll flex-1 cart-inner-div">
 

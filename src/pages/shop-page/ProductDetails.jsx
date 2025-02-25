@@ -6,12 +6,12 @@ import { getProduct } from '../../redux/actions/product';
 // import { addCart } from '../redux/actions/cart';
 import { updater } from '../../redux/cart/cart';
 import { closeList } from '../../redux/products/searched';
-import { closeNav } from '../../redux/modal/nav';
-import { addCart } from '../../redux/cart/cart';
+ import { addCart } from '../../redux/cart/cart';
 import Loader from '../Loader';
 import ImagePreview from '../../components/products/ImagePreview';
 import { nairaFormat } from '../../utils/nairaFormat';
 import { pickColor } from '../../utils/get_colors';
+import Nav from '../../components/nav/Nav';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,6 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProduct(id));
   }, [id]);
@@ -50,7 +49,9 @@ const ProductDetails = () => {
   }
 
   return (
-    <section className="px-1">
+    <section className="">
+              <Nav />
+
 
       <div className="p-container shadow p-4 rounded-md bg-white">
         <div className=" max-w-[1600px]  grid gap-5 border-b mb-10 pb-6 md:gap-8 md:grid-cols-2">

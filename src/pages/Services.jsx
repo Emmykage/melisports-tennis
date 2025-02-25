@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCatalogAccessories, getCatalogRaquets } from '../redux/catalog/catalog';
 import Hero from '../components/banner/Hero';
-import { closeNav } from '../redux/modal/nav';
-import Rackets from '../components/catalogue/Rackets';
+ import Rackets from '../components/catalogue/Rackets';
 import Apparels from '../components/catalogue/Apparels';
 import BagsCatalogue from '../components/catalogue/Bags';
 import ShoesCatalogue from '../components/catalogue/Shoes';
 import Accessories from '../components/catalogue/Accessories';
 import bannerImage from '../assets/images/banner/Banner_racquets.webp';
+import NavInfo from '../components/nav/NavInfo';
 
 const Services = () => {
   const dispatch = useDispatch();
@@ -17,11 +17,12 @@ const Services = () => {
   } = useSelector((state) => state.catalog);
   useEffect(() => {
     dispatch(getCatalogRaquets());
-    dispatch(closeNav());
   }, []);
 
   return (
     <>
+          <NavInfo />
+
 
       <Hero image={bannerImage} title="Catalogue" />
 

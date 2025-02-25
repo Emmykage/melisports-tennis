@@ -9,8 +9,7 @@ import { TbLogin2, TbLogout2 } from 'react-icons/tb';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
-import { closeNav, openNav } from '../../redux/modal/nav';
-import logo from '../../assets/images/logo/melisport_1.png';
+ import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
 import { userProfile } from '../../redux/actions/auth';
@@ -23,7 +22,7 @@ const Nav = () => {
   const [stickyNav, setStickyNav] = useState('');
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { toggleNav } = useSelector((state) => state.navToggle);
+  const [toggleNav, setToggleNav ] = useState(false)
 
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
@@ -53,7 +52,7 @@ const Nav = () => {
         <div className={`${stickyNav} navbar`}>
           <div className="mobile-menu-div">
             <a className="menu">
-              <FiMenu className="menu-icon" onClick={() => dispatch(openNav())} />
+              <FiMenu className="menu-icon" onClick={() => setToggleNav(prev => !prev)} />
             </a>
           </div>
           <div className="logo ">
@@ -67,7 +66,7 @@ const Nav = () => {
 
               <ul className={toggleNav ? 'nav-links  show-menu ' : 'nav-links'}>
                 <div className="mobile-menu-div  my-4">
-                  <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
+                  <AiOutlineClose className="menu-icon close-icon" onClick={() => setToggleNav(prev => !prev)} />
                 </div>
 
                 <li className="nav-item"><NavLink to="/store" className="lg:text-dark lg:font-semibold lg:text-base">Store</NavLink></li>

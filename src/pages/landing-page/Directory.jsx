@@ -7,6 +7,7 @@ import Hero from '../../components/banner/Hero'
 import courtDirectories from "../../mock-server/court_directory.json"
 import CourtCard from '../../components/courtCard/CourtCard'
 import SelectInput from '../../components/selectInput/SelectInput'
+import NavInfo from '../../components/nav/NavInfo'
 
 const Directory = () => {
     const [location, setLocation] = useState("Abuja")
@@ -25,6 +26,8 @@ const Directory = () => {
   return (
 
     <div className=''>
+              <NavInfo />
+
         <Hero image={court} title="Court Directory" />
 
 

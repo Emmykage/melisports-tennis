@@ -9,6 +9,7 @@ import { getOrder } from '../redux/actions/orders';
 import DiscoverBtn from '../components/buttons/DiscoverBtn';
 import resetPageLoction from '../hooks/resetPageLoction';
 import Loader from './Loader';
+import Nav from '../components/nav/Nav';
 
 const ConfirmOrder = () => {
   const [query] = useSearchParams();
@@ -25,6 +26,9 @@ const ConfirmOrder = () => {
   }  
 
   return (
+    <>
+    <Nav/>
+    
     <section className="py-10 px-4 sm:px-10 ">
 
       <div className="flex m-auto max-w-7xl gap-5 flex-col md:flex-row">
@@ -128,6 +132,7 @@ const ConfirmOrder = () => {
       </div>
 
     </section>
+    </>
 
   );
 };

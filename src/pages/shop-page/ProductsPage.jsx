@@ -8,9 +8,9 @@ import { getProductCategories } from '../../redux/actions/product_category';
 import { getProducts } from '../../redux/actions/product';
 
 import { closeList } from '../../redux/products/searched';
-import { closeNav } from '../../redux/modal/nav';
-import Loader from '../Loader';
+ import Loader from '../Loader';
 import { filterActivities, filterFeatures, filterProducts } from '../../redux/products/product';
+import Nav from '../../components/nav/Nav';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
@@ -59,7 +59,6 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
     products.length == 0 && dispatch(getProducts());
 
@@ -69,6 +68,8 @@ const ProductsPage = () => {
   // const searched = new URLSearchParams(location.search)
   return (
     <div className="product-container">
+              <Nav />
+
       <Hero image={bannerImage} title="Racquet" />
 
       <div className="prod-page  max-w-[1600px] m-auto">

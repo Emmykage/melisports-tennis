@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterActivities, getLatest } from '../../redux/products/product';
 import { getLetestProducts, getProducts } from '../../redux/actions/product';
-import { closeNav } from '../../redux/modal/nav';
-import { closeList } from '../../redux/products/searched';
+ import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Hero from '../../components/banner/Hero';
 import bannerImage from '../../assets/images/banner/banner.jpg';
@@ -11,6 +10,7 @@ import Products from '../../components/products/ProductsGridDisplay';
 import Loader from '../Loader';
 import ProductFilter from '../../components/products/ProductFilter';
 import './home.scss';
+import Nav from '../../components/nav/Nav';
 
 const Arrivals = () => {
   const dispatch = useDispatch();
@@ -69,6 +69,8 @@ const Arrivals = () => {
 
   return (
     <div className="product-container">
+              <Nav />
+
       <Hero image={bannerImage} title="Racquet" />
 
       <div className="prod-page">

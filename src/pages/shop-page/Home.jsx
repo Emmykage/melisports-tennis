@@ -8,8 +8,7 @@ import badmington from '../../assets/images/banner/X-feel_692_x_364_px.avif';
 
 import ReactSlider from '../../components/slider/CategoriesSlider';
 import { getSportCategories } from '../../redux/actions/product_category';
-import { closeNav } from '../../redux/modal/nav';
-import { closeList } from '../../redux/products/searched';
+ import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
 import CollectImage from '../../assets/images/banner/692x364_FW_Lebron_1.avif';
 import RangeImage from '../../assets/images/banner/Satelite_692x364__px.avif';
@@ -23,18 +22,20 @@ import videoAd from '../../assets/videos/master_of_Strings_1920x720.webm';
 import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import Reviews from '../../components/reviews/Reviews';
+import Nav from '../../components/nav/Nav';
 
 const ShopHome = () => {
   const categories = useSelector((state) => state.categories);
   const { products, latestArrival } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getSportCategories);
   }, []);
   return (
     <>
+      <Nav />
+
 
       {/* <VideoView/> */}
       <VideoComp videoAd={videoAd} />

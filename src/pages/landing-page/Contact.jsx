@@ -5,18 +5,17 @@ import {
 } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import Hero from '../../components/banner/Hero';
-import { closeNav } from '../../redux/modal/nav';
-
+ 
 import bannerImage from '../../assets/images/banner/Babolat_NEWS-Banniere_1365x510_PureDrive21.webp';
 import CommunityBanner from '../../components/banner/CommunityBanner';
+import NavInfo from '../../components/nav/NavInfo';
 
 const Contact = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(closeNav());
-  }, []);
+  
   return (
     <div className="">
+            <NavInfo />
+
 
       <Hero image={bannerImage} title="Contact Us" />
 

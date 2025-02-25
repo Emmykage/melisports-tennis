@@ -8,8 +8,7 @@ import { AiOutlineClose, AiOutlineShopping } from 'react-icons/ai';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
-import { closeNav, openNav } from '../../redux/modal/nav';
-import logo from '../../assets/images/logo/melisport_1.png';
+ import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { userProfile } from '../../redux/actions/auth';
 import { fetchToken, removeToken } from '../../hooks/localStorage';
@@ -19,7 +18,7 @@ const NavInfo = () => {
   const { counter, update } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { toggleNav } = useSelector((state) => state.navToggle);
+  const [toggleNav, setToggleNav ] = useState(false)
   const [stickyNav, setStickyNav] = useState('');
 
   const toggleScrollNav = (e) => {
@@ -47,7 +46,7 @@ const NavInfo = () => {
         <div className={`${stickyNav} navbar nav-info`}>
           <div className="mobile-menu-div">
             <a className="menu">
-              <FiMenu className="menu-icon" onClick={() => dispatch(openNav())} />
+              <FiMenu className="menu-icon" onClick={() =>setToggleNav(prev => !prev)} />
             </a>
           </div>
           <div className="logo shrink-0">
@@ -61,15 +60,15 @@ const NavInfo = () => {
 
               <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links flex w-full'}>
                 <div className="mobile-menu-div  my-4">
-                  <AiOutlineClose className="menu-icon close-icon" onClick={() => dispatch(closeNav())} />
+                  <AiOutlineClose className="menu-icon close-icon" onClick={() => setToggleNav(prev => !prev)} />
                 </div>
 
-                <li className="nav-item "><NavLink className={"lg:text-dark lg:font-semibold lg:text-base"} to="/" onClick={() => dispatch(closeNav())}>Home</NavLink></li>
-                <li className="nav-item"><NavLink to="/store" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Go to store</NavLink></li>
-                <li className="nav-item"><NavLink to="/contact" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Contact Us</NavLink></li>
-                <li className="nav-item"><NavLink to="/about" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>About Us</NavLink></li>
-                <li className="nav-item"><NavLink to="/products" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Products</NavLink></li>
-                <li className="nav-item"><NavLink to="/court-directory" className={"lg:text-dark lg:font-semibold lg:text-base"} onClick={() => dispatch(closeNav())}>Court Directory</NavLink></li>
+                <li className="nav-item "><NavLink className={"lg:text-dark lg:font-semibold lg:text-base"} to="/"  >Home</NavLink></li>
+                <li className="nav-item"><NavLink to="/store" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Go to store</NavLink></li>
+                <li className="nav-item"><NavLink to="/contact" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Contact Us</NavLink></li>
+                <li className="nav-item"><NavLink to="/about" className={"lg:text-dark lg:font-semibold lg:text-base"}  >About Us</NavLink></li>
+                <li className="nav-item"><NavLink to="/products" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Products</NavLink></li>
+                <li className="nav-item"><NavLink to="/court-directory" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Court Directory</NavLink></li>
 
                 {user !== null && ((user.role == 'admin'|| user.role == 'super-admin') && (
                 <li className="nav-item">

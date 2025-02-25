@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
 import Hero from '../../components/banner/Hero';
 import { getProducts } from '../../redux/actions/product';
-import { closeNav } from '../../redux/modal/nav';
-import { filterProducts } from '../../redux/products/product';
+ import { filterProducts } from '../../redux/products/product';
 import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Loader from '../Loader';
 import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-Accessories.jpg';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
+import Nav from '../../components/nav/Nav';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,6 @@ const AccessoriesPage = () => {
   useEffect(() => {
     products.length == 0 && dispatch(getProducts());
 
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getProductCategories());
   }, []);
@@ -62,6 +61,8 @@ const AccessoriesPage = () => {
 
   return (
     <div className="product-container">
+              <Nav />
+
       <Hero image={bannerImage} title="Accessories" />
 
       <div className="prod-page">

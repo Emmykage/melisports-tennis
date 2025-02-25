@@ -11,8 +11,7 @@ import distributor from '../../assets/images/distributor.jpeg';
 import Slider from '../../components/feature/Slider';
 import ReactSlider from '../../components/slider/CategoriesSlider';
 import { getSportCategories } from '../../redux/actions/product_category';
-import { closeNav } from '../../redux/modal/nav';
-import { closeList } from '../../redux/products/searched';
+ import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
 import CommunityBanner from '../../components/banner/CommunityBanner';
 import DiscoverBtn from '../../components/buttons/DiscoverBtn';
@@ -21,18 +20,20 @@ import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import SportDirectory from '../../components/sportDirectory/SportDirectory';
 import Reviews from '../../components/reviews/Reviews';
+import NavInfo from '../../components/nav/NavInfo';
 
-const Home = () => {
+const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
     dispatch(getSportCategories);
   }, []);
   return (
     <>
+
+      <NavInfo />
 
       <Slider />
       <VideoComp videoAd={videoAdd} />
@@ -119,4 +120,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LandingHome;

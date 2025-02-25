@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { startTransition, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/actions/product';
 import imageBanner from '../../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif';
 import { closeList } from '../../redux/products/searched';
-import { closeNav } from '../../redux/modal/nav';
-import { filterProducts } from '../../redux/products/product';
+ import { filterProducts } from '../../redux/products/product';
 import Hero from '../../components/banner/Hero';
 import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
@@ -25,25 +24,25 @@ const ApparelsPage = () => {
     });
   };
 
-  const handleFilteredActivities = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterActivities(e.target.value));
-      });
-    } else {
-      dispatch(getProducts());
-    }
-  };
+  // const handleFilteredActivities = (e) => {
+  //   if (e.target.checked) {
+  //     dispatch(getProducts()).then(() => {
+  //       dispatch(filterActivities(e.target.value));
+  //     });
+  //   } else {
+  //     dispatch(getProducts());
+  //   }
+  // };
 
-  const handleFilteredFeatures = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(e.target.value));
-      });
-    } else {
-      dispatch(getProducts());
-    }
-  };
+  // const handleFilteredFeatures = (e) => {
+  //   if (e.target.checked) {
+  //     dispatch(getProducts()).then(() => {
+  //       dispatch(filterFeatures(e.target.value));
+  //     });
+  //   } else {
+  //     dispatch(getProducts());
+  //   }
+  // };
 
   const handleFilterGender = (e) => {
     if (e.target.checked) {
@@ -55,16 +54,24 @@ const ApparelsPage = () => {
     }
   };
 
+  console.log(products)
+
   useEffect(() => {
-    dispatch(closeNav());
     dispatch(closeList());
-    products.length == 0 && dispatch(getProducts());
+    // products?.length == 0 && dispatch(getProducts());
+
+    startTransition(() => {
+      dispatch(getProducts());
+
+    })
     dispatch(getProductCategories());
   }, []);
 
   return (
     <>
       <div className="product-container">
+      <Nav />
+
         <Hero image={imageBanner} title="Apparels" />
         <div className="prod-page">
           <div className="cat-group justify-between max-w-md my-6">

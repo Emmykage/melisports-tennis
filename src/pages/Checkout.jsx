@@ -15,6 +15,7 @@ import ConfirmPayment from '../components/payments/steps/ConfirmPayment';
 import { createOrder } from '../redux/actions/orders';
 import { clearCart } from '../redux/cart/cart';
 import { getDeliveryFees } from '../redux/actions/delivery_fee';
+import Nav from '../components/nav/Nav';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -98,6 +99,7 @@ const Checkout = () => {
   }, []);
   return (
     <>
+    <Nav/>
       <div className="max-w-5xl m-auto mt-10">
 
         <Box sx={{ width: '100%' }}>

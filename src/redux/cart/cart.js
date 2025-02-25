@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getCarts } from '../actions/cart';
 import { getCart, setCart } from '../../hooks/localStorage';
-import { toast } from 'react-toastify';
 
 const refCart = () => getCart().map((cart) => ({
   product_id: cart.product_id,
