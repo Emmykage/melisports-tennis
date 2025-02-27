@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
 import { fetchToken } from '../../hooks/localStorage';
 import { refreshToken } from '../../utils/refreshToken';
+import { toast } from 'react-toastify';
 
 const getProducts = createAsyncThunk('products/getProducts', async (_, { rejectWithValue }) => {
   try {
@@ -79,13 +80,33 @@ const addProduct = createAsyncThunk('product/addproduct', async (data, { rejectW
 });
 
 const deleteProduct = createAsyncThunk('product/deleteproduct', async (id) => {
-  await fetch(`${baseURL}products/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  // .then(res => res.text());
+
+  try {
+
+    const response = await fetch(`${baseURL}products/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${fetchToken()}`,
+  
+      },
+    });
+    const result = await response.json()
+    if(response.ok){
+      toast(response.message ?? "Item successfully deleted", {type: "success"})
+
+    }else{
+      throw result.error
+    }
+
+
+    
+  } catch (error) {
+    console.log(error)
+    toast(error ?? "Item failed to delete", {type: "error"})
+
+  }
+
 });
 
 const getLetestProducts = createAsyncThunk('products/getProductsLatest', async (_, { rejectWithValue }) => {

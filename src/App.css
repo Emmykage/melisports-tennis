@@ -950,7 +950,8 @@ td .btn.change {
   top: 0;
   left: 0;
   height: 100vh;
-  z-index: 1000;
+  @apply z-50;
+
 }
 
 .modal {

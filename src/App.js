@@ -27,6 +27,7 @@ import Delivery from './pages/admin-page/delivery';
 import DeliveryFee from './pages/admin-page/delivery';
 import ViewDeliveryFee from './pages/admin-page/delivery/ViewDelivery';
 import { ToastContainer } from 'react-toastify';
+import LoaderModal from './components/loader/Loader';
 
 const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
 const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
@@ -73,8 +74,8 @@ function App() {
   return (
     <>
         <ToastContainer />
+        <LoaderModal/>
 
-    
 
       <Suspense fallback={<LoadingPage />}>
 
