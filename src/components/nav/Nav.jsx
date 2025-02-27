@@ -32,7 +32,6 @@ const Nav = () => {
     }
   };
   useEffect(() => {
-    dispatch(getProducts());
     dispatch(getCarts());
     dispatch(calculateTotal());
 
@@ -74,7 +73,7 @@ const Nav = () => {
                   <NavLink to={`/racquets?brand=${'babolat'}`} className="lg:text-dark lg:font-semibold lg:text-base">Rackets </NavLink>
                   <div className="link-items flex">
                     <div className="">
-                      <h3 className="text-lg tracking-wider font-medium text-black">
+                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">
                         Rackets &
                         <br />
                         {' '}
@@ -113,11 +112,11 @@ const Nav = () => {
 
                   <div className="link-items flex">
                     <div>
-                      <h3 className="text-lg tracking-wider font-medium text-black">Apparels</h3>
+                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">Apparels</h3>
                     </div>
                     <ul>
 
-                      <h4 className="text-base font-semibold lg:text-black">
+                      <h4 className="text-base font-semibold lg:text-black ">
                       <NavLink to={'#'}>  Tennis Men's Apparels </NavLink>
                       </h4>
                       <li className='pl-3 p-0 lg:text-dark font-semibold'><a href="#">Babolat</a></li>
@@ -137,7 +136,7 @@ const Nav = () => {
                   <NavLink to="/shoes" className={"lg:text-dark lg:font-semibold lg:text-base"}>Shoes</NavLink>
                   <div className="link-items">
                     <div>
-                      <h3 className="text-lg tracking-wider font-medium text-black">Shoes</h3>
+                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">Shoes</h3>
                     </div>
                     <ul>
 
@@ -161,12 +160,12 @@ const Nav = () => {
                   <NavLink to="/bags" className={"lg:text-dark lg:font-semibold lg:text-base"}>Bags</NavLink>
                   <div className="link-items flex">
                     <div>
-                      <h3 className="text-lg tracking-wider font-medium text-black">Bags</h3>
+                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">Racket Holders & <br/> Backpacks </h3>
                     </div>
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                      <NavLink to={'#'} >   Men's Shoes </NavLink>
+                      <NavLink to={'#'} >   Men's Bags </NavLink>
                       </h4>
                       <li><a href="#" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
 
@@ -174,7 +173,7 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                      <NavLink to={'#'}>  Women's Shoes</NavLink>
+                      <NavLink to={'#'}>  Women's Bags</NavLink>
                       </h4>
                       <li><a href="/" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
 
@@ -185,7 +184,7 @@ const Nav = () => {
                   <NavLink to="/accessories" className={"lg:text-dark lg:font-semibold lg:text-base"}>Acccessories</NavLink>
                   <div className="link-items flex">
                     <div>
-                      <h3 className='text-lg tracking-wider font-medium text-black'>Accessories</h3>
+                      <h3 className='text-lg tracking-wider font-medium text-theme-alt'>Sports & <br/> Court Accessories</h3>
                     </div>
                     <ul>
 

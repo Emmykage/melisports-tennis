@@ -37,17 +37,24 @@ const ShoesPage = () => {
 
   const handleFilteredFeatures = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
+      dispatch(getProducts({
+        category: "racquet",
+        sport: "Tennis"
+      })).then(() => {
         dispatch(filterFeatures(e.target.value));
       });
     } else {
-      dispatch(getProducts());
+      dispatch(getProducts({
+        category: "shoe" }));
     }
   };
 
   useEffect(() => {
     dispatch(closeList());
-    products.length == 0 && dispatch(getProducts());
+   dispatch(getProducts(
+      {
+        category: "shoe"}  
+    ));
     dispatch(getProductCategories());
   }, []);
 
@@ -62,7 +69,7 @@ const ShoesPage = () => {
           <button className="btn" onClick={() => handleFilteredProducts('pure aero')}> Men</button>
           <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Women</button>
           <button className="btn" onClick={() => handleFilteredProducts('boost')}> Kids</button>
-          <button className="btn" onClick={() => dispatch(getProducts())}>All shoes</button>
+          {/* <button className="btn" onClick={() => dispatch(getProducts())}>All shoes</button> */}
 
         </div>
         <div className="flex md:gap-10">

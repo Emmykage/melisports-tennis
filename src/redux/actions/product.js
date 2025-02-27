@@ -4,9 +4,15 @@ import { fetchToken } from '../../hooks/localStorage';
 import { refreshToken } from '../../utils/refreshToken';
 import { toast } from 'react-toastify';
 
-const getProducts = createAsyncThunk('products/getProducts', async (_, { rejectWithValue }) => {
+const getProducts = createAsyncThunk('products/getProducts', async ({category=null, sport=null} = {}, { rejectWithValue }) => {
+  console.log("get product cat => ",category)
+  const params  = new URLSearchParams()
+  category && params.append("category", category)
+  sport && params.append("sport", sport)
+
+  const  stringParams = params.toString()
   try {
-    const response = await fetch(`${baseURL}products`);
+    const response = await fetch(`${baseURL}products?${stringParams}`);
 
     const result = await response.json();
     if (!response.ok) {

@@ -28,40 +28,40 @@ import DeliveryFee from './pages/admin-page/delivery';
 import ViewDeliveryFee from './pages/admin-page/delivery/ViewDelivery';
 import { ToastContainer } from 'react-toastify';
 import LoaderModal from './components/loader/Loader';
+import ApparelsPage from './pages/shop-page/Apparels';
+import BagsPage from './pages/shop-page/BagsPage';
+import Cart from './pages/Cart';
+import Home from './pages/landing-page/Home';
 
-const ApparelsPage = lazy(() => import('./pages/shop-page/Apparels'));
-const BagsPage = lazy(() => import('./pages/shop-page/BagsPage'));
-const Cart = lazy(() => import('./pages/Cart'));
-const Home = lazy(() => import('./pages/landing-page/Home'));
+import ProductDetails from './pages/shop-page/ProductDetails';
+import ProductsPage from './pages/shop-page/ProductsPage';
+import ShoesPage from './pages/shop-page/Shoe';
+import MainLayout from './components/layouts/main';
+import MainAdmin from './components/layouts/mainAdmin';
+import Messages from './pages/admin-page/messages/Messages';
+import Orders from './pages/admin-page/orders/Orders';
+import Settings from './pages/admin-page/settings/Settings';
+import Analytics from './pages/admin-page/analytics/Analytics';
+import Customers from './pages/admin-page/customers/Customers';
+import AddProduct from './pages/admin-page/addproduct/AddProduct';
+import Reports from './pages/admin-page/reports/Reports';
+import Products from './pages/admin-page/products/Products';
+import AddCategory from './pages/admin-page/addcategory/AddCategory';
+import AccessoriesPage from './pages/shop-page/AccessoriesPage';
+import EditProduct from './pages/admin-page/addproduct/EditProduct';
+import About from './pages/landing-page/About';
+import Services from './pages/Services';
+import MainInfoLayout from './components/layouts/mainInfo';
+import Contact from './pages/landing-page/Contact';
+import BecomeADistributor from './pages/BecomeADistributor';
+import Brands from './pages/Brands';
+import Confirmation from './pages/auth/confirmation';
+import ViewCustomer from './pages/admin-page/customers/ViewCustomer';
+import ImagePreview from './components/products/ImagePreview';
+import Padels from './pages/shop-page/padel/Padels';
+import BadmintonsPage from './pages/shop-page/Badminton/Badminton';
+import SearchPage from './pages/SearchPage';
 
-const ProductDetails = lazy(() => import('./pages/shop-page/ProductDetails'));
-const ProductsPage = lazy(() => import('./pages/shop-page/ProductsPage'));
-const ShoesPage = lazy(() => import('./pages/shop-page/Shoe'));
-const MainLayout = lazy(() => import('./components/layouts/main'));
-const MainAdmin = lazy(() => import('./components/layouts/mainAdmin'));
-const Messages = lazy(() => import('./pages/admin-page/messages/Messages'));
-const Orders = lazy(() => import('./pages/admin-page/orders/Orders'));
-const Settings = lazy(() => import('./pages/admin-page/settings/Settings'));
-const Analytics = lazy(() => import('./pages/admin-page/analytics/Analytics'));
-const Customers = lazy(() => import('./pages/admin-page/customers/Customers'));
-const AddProduct = lazy(() => import('./pages/admin-page/addproduct/AddProduct'));
-const Reports = lazy(() => import('./pages/admin-page/reports/Reports'));
-const Products = lazy(() => import('./pages/admin-page/products/Products'));
-const AddCategory = lazy(() => import('./pages/admin-page/addcategory/AddCategory'));
-const AccessoriesPage = lazy(() => import('./pages/shop-page/AccessoriesPage'));
-const EditProduct = lazy(() => import('./pages/admin-page/addproduct/EditProduct'));
-const About = lazy(() => import('./pages/landing-page/About'));
-const Services = lazy(() => import('./pages/Services'));
-const MainInfoLayout = lazy(() => import('./components/layouts/mainInfo'));
-const Contact = lazy(() => import('./pages/landing-page/Contact'));
-const BecomeADistributor = lazy(() => import('./pages/BecomeADistributor'));
-const Brands = lazy(() => import('./pages/Brands'));
-const Confirmation = lazy(() => import('./pages/auth/confirmation'));
-const ViewCustomer = lazy(() => import('./pages/admin-page/customers/ViewCustomer'));
-const ImagePreview = lazy(() => import('./components/products/ImagePreview'));
-const Padels = lazy(() => import('./pages/shop-page/padel/Padels'));
-const BadmintonsPage = lazy(() => import('./pages/shop-page/Badminton/Badminton'));
-const SearchPage = lazy(() => import('./pages/SearchPage'));
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -77,7 +77,6 @@ function App() {
         <LoaderModal/>
 
 
-      <Suspense fallback={<LoadingPage />}>
 
         <Routes>
           {/* landing page  */}
@@ -152,7 +151,6 @@ function App() {
           <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
 
         </Routes>
-      </Suspense>
 
     </>
   );

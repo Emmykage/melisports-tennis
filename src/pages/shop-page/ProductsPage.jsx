@@ -60,11 +60,13 @@ const ProductsPage = () => {
 
   useEffect(() => {
     dispatch(closeList());
-    products.length == 0 && dispatch(getProducts());
+    dispatch(getProducts({
+      category: "racquet"    }));
 
     dispatch(getProductCategories());
   }, []);
 
+  console.log(products)
   // const searched = new URLSearchParams(location.search)
   return (
     <div className="product-container">

@@ -58,7 +58,8 @@ const BagsPage = () => {
 
   useEffect(() => {
     dispatch(closeList());
-    products.length == 0 && dispatch(getProducts());
+     dispatch(getProducts({
+      category: "bag"}  ));
     dispatch(getProductCategories());
   }, []);
 

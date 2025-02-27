@@ -48,16 +48,12 @@ const AccessoriesPage = () => {
   };
 
   useEffect(() => {
-    products.length == 0 && dispatch(getProducts());
+   dispatch(getProducts({
+    category: "accessory"}  ));
 
     dispatch(closeList());
     dispatch(getProductCategories());
   }, []);
-  if (loading) {
-    return (
-      <Loader />
-    );
-  }
 
   return (
     <div className="product-container">

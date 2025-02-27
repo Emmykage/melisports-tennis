@@ -54,14 +54,14 @@ const ApparelsPage = () => {
     }
   };
 
-  console.log(products)
 
   useEffect(() => {
     dispatch(closeList());
     // products?.length == 0 && dispatch(getProducts());
 
     startTransition(() => {
-      dispatch(getProducts());
+      dispatch(getProducts({
+        category: "apparel"}  ));
 
     })
     dispatch(getProductCategories());
