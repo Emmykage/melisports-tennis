@@ -5,11 +5,11 @@ import { PaystackButton } from 'react-paystack';
 import { nairaFormat } from '../../../utils/nairaFormat';
 import Button from '../../buttons/Button';
 import Loader from '../../../pages/Loader';
+import { publicKey } from '../../../redux/baseURL';
 
 const ConfirmPayment = ({
   billingDetails, loading, handleCheckout, cartItems, total, setStep,
 }) => {
-  const publicKey = 'pk_test_9ff293bee5b397191f0d59ea6bab4ff2bc6e2374';
 
   const componentProps = {
     email: billingDetails.email,
@@ -21,10 +21,10 @@ const ConfirmPayment = ({
     publicKey,
     text: 'Pay Now',
     onSuccess: () => {
-      alert('Purchase successful');
-      dispatch(clearCart());
+      handleCheckout()
+      // dispatch(clearCart());
     },
-    onClose: () => alert('Are you sure'),
+    // onClose: () => alert('Are you sure'),
   };
 
   return (

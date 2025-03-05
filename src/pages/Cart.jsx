@@ -78,30 +78,30 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((cart) => (
+              {cartItems?.map((cart) => (
                 <tr>
                   <td data-cell="image" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
                     <div className="cart-img m-auto shrink-0 w-36  ">
-                      <img src={cart.image} className="w-full h-full" />
+                      <img src={cart?.image} className="w-full h-full" />
                     </div>
                   </td>
                   <td data-cell="name" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
                     <p className='text-gray-700 font-semibold'>
-                    {cart.product_name}
+                    {cart?.product_name}
 
                     </p>
                     <p>
                       <span className='mr-5 font-semibold text-gray-600'>Sizes: </span>
-                    {cart.sizes.map(item => (
+                    {cart?.sizes?.map(item => (
                       <span className='mr-5'>{item}</span>
                     )) }
                     </p>
                   </td>
                   <td data-cell="price" className="whitespace-nowrap border-b font- border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
-                    <p>{nairaFormat(cart.price)}</p>
+                    <p>{nairaFormat(cart?.price)}</p>
                   </td>
                   <td data-cell="total" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
-                    <p>{nairaFormat(cart.subTotal)}</p>
+                    <p>{nairaFormat(cart?.subTotal)}</p>
                   </td>
 
                   <td data-cell="quantity" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
@@ -112,21 +112,21 @@ const Cart = () => {
                           className="btn change px-2"
                           onClick={() => {
                             selectCart(cart.product_id, cart.quantity, '-');
-                            cart.quantity === 1 && dispatch(removeItem(cart.id));
+                            cart?.quantity === 1 && dispatch(removeItem(cart?.id));
                           }}
                         >
                           -
                         </button>
                         <span className="cart-count">
 
-                          {cart.quantity}
+                          {cart?.quantity}
                         </span>
 
                         <button
                           className="btn change"
                           type="button"
                           // onClick={() => selectCart(cart.id, cart.quantity, '+')}
-                          onClick={() => selectCart(cart.product_id, cart.quantity, '+')}
+                          onClick={() => selectCart(cart?.product_id, cart?.quantity, '+')}
 
                         >
                           +
@@ -135,7 +135,7 @@ const Cart = () => {
                     </div>
                   </td>
                   <td className="whitespace-nowrap block sm:table-cell border-b border-gray-200 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
-                    <button className="btn block" onClick={() => handleDelete(cart.product_id)}> remove</button>
+                    <button className="btn block" onClick={() => handleDelete(cart?.product_id)}> remove</button>
 
                   </td>
                 </tr>

@@ -165,7 +165,7 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                      <NavLink to={'#'} >   Men's Bags </NavLink>
+                      <NavLink to={'#'} >  Racket Holder</NavLink>
                       </h4>
                       <li><a href="#" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
 
@@ -173,7 +173,7 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                      <NavLink to={'#'}>  Women's Bags</NavLink>
+                      <NavLink to={'#'}>  Backpacks</NavLink>
                       </h4>
                       <li><a href="/" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
 
@@ -189,14 +189,14 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                      <NavLink to={'#'}>  Men's Accessories </NavLink>
+                      <NavLink to={'#'}> Sports Accessories </NavLink>
                       </h4>
                       <li><a href="#" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
                     </ul>
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                      <NavLink to={'#'}>  Women's Accessories </NavLink>
+                      <NavLink to={'#'}> Courts Accessories </NavLink>
                       </h4>
                       <li><a href="/" className='pl-3 p-0 lg:text-dark font-semibold'>Babolat</a></li>
                     </ul>
@@ -207,7 +207,7 @@ const Nav = () => {
                   
                 </li>
 
-                {user !== null && ((user?.role == 'admin' || user?.role == "super-admin") && (
+                {!user && ((user?.role == 'admin' || user?.role == "super-admin") && (
                 <li className="nav-item lg:text-gray-800 lg:font-semibold lg:text-base">
                   <NavLink to="/admin">    go to admin </NavLink>
                   {' '}
