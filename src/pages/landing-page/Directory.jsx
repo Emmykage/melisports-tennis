@@ -23,6 +23,8 @@ const Directory = () => {
     }
 
     const directories = courtDirectories.filter(item => item.state === location)
+    // const directories = courtDirectories.filter(item => item.state === location || item.region === region)
+
   return (
 
     <div className=''>

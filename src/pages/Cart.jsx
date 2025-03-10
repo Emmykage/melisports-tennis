@@ -47,20 +47,20 @@ const Cart = () => {
     dispatch(removeItem(id));
     dispatch(updater());
   };
-  if (cartItems.length < 1) {
-    return (
-      <div className="warning-center product-container">
-
-        <h2> Add to Cart</h2>
-        <h4> You cart is currently empty</h4>
-
-      </div>
-    );
-  }
+  
 
   return (
     <>
     <Nav/>
+
+    {cartItems.length < 1 ? 
+     <div className="warning-center product-container">
+
+     <h2> Add to Cart</h2>
+     <h4> You cart is currently empty</h4>
+
+   </div>
+   :
       <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto max-w-[1500px] min-h-[70%]">
         <div className="overflow-x-scroll flex-1 cart-inner-div">
 
@@ -176,6 +176,7 @@ const Cart = () => {
 
         </div>
       </div>
+      }
     </>
   );
 };
