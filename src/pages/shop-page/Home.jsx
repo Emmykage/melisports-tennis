@@ -35,6 +35,40 @@ const ShopHome = () => {
   return (
     <>
       <Nav />
+      <section className="px-4 bg-theme py-32">
+        <div className="grid gap-10 md:grid-cols-3 m-auto max-w-[1400px]">
+          <div className="relative zoom-effect overflow-hidden">
+
+            <img src={Tennis} alt="" className="w-full h-full hover:scale-105" />
+            <NavLink to="/racquets" className="absolute flex top-0 left-0 h-full w-full ">
+              <h3 className="mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-light ml-10">Tennis</h3>
+
+            </NavLink>
+          </div>
+          <div className="relative zoom-effect overflow-hidden">
+            <img src={Padel} alt="" className="w-full h-full hover:scale-105" />
+            <NavLink to="/padels" className="absolute flex top-0 left-0 h-full w-full ">
+              <h3 className="mt-auto mb-10 text-xl md:text-2xl tracking-widest bg-theme-darker/40 px-6 py-3  rounded text-light ml-10">Padel</h3>
+
+            </NavLink>
+          </div>
+          <div className="relative zoom-effect overflow-hidden">
+            <img src={Badminton} alt="" className="w-full h-full" />
+            <NavLink to="/badminton" className="absolute flex top-0 left-0 h-full w-full ">
+              <h3 className="mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-light ml-10">Badminton</h3>
+
+            </NavLink>
+          </div>
+        </div>
+
+      </section>
+      <section className="px-4 py-10 bg-white/90 my-10">
+        <div className="max-w-7xl m-auto feature">
+          <h3 className="text-3xl text-center my-4">Sports</h3>
+          <ProductSlider products={products} views={4} />
+
+        </div>
+      </section>
 
 
       {/* <VideoView/> */}
@@ -63,41 +97,9 @@ const ShopHome = () => {
 
       </section>
 
-      <section className="px-4 py-10 bg-white/90 my-10">
-        <div className="max-w-7xl m-auto feature">
-          <h3 className="text-3xl text-center my-4">Feature</h3>
-          <ProductSlider products={products} views={4} />
+     
 
-        </div>
-      </section>
-
-      <section className="px-4 bg-theme py-32">
-        <div className="grid gap-10 md:grid-cols-3 m-auto max-w-[1400px]">
-          <div className="relative zoom-effect overflow-hidden">
-
-            <img src={Tennis} alt="" className="w-full h-full hover:scale-105" />
-            <NavLink to="/racquets" className="absolute flex top-0 left-0 h-full w-full ">
-              <h3 className="mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-light ml-10">Tennis</h3>
-
-            </NavLink>
-          </div>
-          <div className="relative zoom-effect overflow-hidden">
-            <img src={Padel} alt="" className="w-full h-full hover:scale-105" />
-            <NavLink to="/padels" className="absolute flex top-0 left-0 h-full w-full ">
-              <h3 className="mt-auto mb-10 text-xl md:text-2xl tracking-widest bg-theme-darker/40 px-6 py-3  rounded text-light ml-10">Padel</h3>
-
-            </NavLink>
-          </div>
-          <div className="relative zoom-effect overflow-hidden">
-            <img src={Badminton} alt="" className="w-full h-full" />
-            <NavLink to="/badminton" className="absolute flex top-0 left-0 h-full w-full ">
-              <h3 className="mt-auto mb-10 text-2xl bg-theme-darker/40 px-6 py-3 tracking-widest rounded text-light ml-10">Badminton</h3>
-
-            </NavLink>
-          </div>
-        </div>
-
-      </section>
+     
 
       <section className="px-3  py-20">
         <h3 className="text-2xl text-center">

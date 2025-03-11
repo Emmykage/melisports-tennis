@@ -16,7 +16,8 @@ const Directory = () => {
         {value: "Abuja", label: "Abuja"},
         {value: "Lagos", label: "Lagos"},
         {value: "Port-Harcourt", label: "Port-Harcourt"},
-        {value: "Enugu", label: "Enugu"} 
+        {value: "Enugu", label: "Enugu"} ,
+        {value: "Anambra", label: "Anambra"} 
     ]
     const handleLocation = (e) => {
         setLocation(e.target.value)
@@ -28,7 +29,7 @@ const Directory = () => {
   return (
 
     <div className=''>
-              <NavInfo />
+         <NavInfo />
 
         <Hero image={court} title="Court Directory" />
 
