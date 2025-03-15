@@ -94,15 +94,38 @@ const productsSlice = createSlice({
       };
     },
 
-    filterActivities: (state, action) => {
-      const filts = state.products.filter((item) => item.level?.stage.toLowerCase().includes(action.payload));
-      return {
+    filterSports: (state, action) => {
+      const filterSports = state.products.filter(item => 
+        action.payload.some(sport => item.sport_category.name.toLowerCase() === sport))
+      return{
         ...state,
-        products: filts,
-      };
-    },
+        products: filterSports
+
+      }
+    }
+,
+filterActivities: (state, action) => {
+  console.log(action.payload)
+  const filts = state.products.filter((item) =>
+    action.payload.some(level => item.level?.stage.toLowerCase() === level))
+
+  return {
+    ...state,
+    products: filts,
+  };
+},filterLevels: (state, action) => {
+  console.log(action.payload)
+  const filts = state.products.filter((item) =>
+    action.payload.some(level => item.level?.stage.toLowerCase() === level))
+
+  return {
+    ...state,
+    products: filts,
+  };
+},
     filterFeatures: (state, action) => {
-      const filts = state.products.filter((item) => item?.description.toLowerCase().includes(action.payload));
+      const filts = state.products.filter((item) => 
+        action.payload.some(feature => item?.description.toLowerCase().includes(feature)) )
       return {
         ...state,
         products: filts,
@@ -134,5 +157,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, getLatest, searchedPage, filterActivities, filterFeatures, filterGender, resetProduct,
+  filterProducts, searchedProducts, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGender, resetProduct,
 } = productsSlice.actions;

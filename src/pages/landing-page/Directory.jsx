@@ -30,7 +30,6 @@ const Directory = () => {
 
     <div className=''>
          <NavInfo />
-
         <Hero image={court} title="Court Directory" />
 
 

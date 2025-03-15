@@ -24,8 +24,10 @@
     border-color: #dc2626; /* Border color when checked */
     @apply bg-primary
   }
-  input[type="checkbox"]::after,
-  .custom-checkbox:checked::after {
+  input[type="checkbox"]::after
+   ,
+  .custom-checkbox:checked::after
+   {
     content: '✔'; /* Checkmark */
     color: #fff;
     font-size: 1rem;
