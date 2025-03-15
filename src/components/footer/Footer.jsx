@@ -21,7 +21,7 @@ const Footer = () => (
 
       </div>
       <div>
-        <h4 className="text-xl text-light">RESOURCES</h4>
+        <h4 className="text-xl text-light font-normal">RESOURCES</h4>
         <ul>
           {/* <li>Membership</li> */}
           <li>
@@ -57,7 +57,7 @@ const Footer = () => (
         </ul>
       </div>
       <div>
-        <h4 className="text-xl text-light tracking-wide"> CONTACT US</h4>
+        <h4 className="text-xl text-light tracking-wide font-normal"> CONTACT US</h4>
         <p>
           Phone: +234-7064334160
           {' '}
@@ -75,7 +75,7 @@ const Footer = () => (
       </div>
       <div>
         <ul>
-          <h4 className="text-xl text-light tracking-wide">Connect With Us</h4>
+          <h4 className="text-xl text-light font-normal tracking-wide">Connect With Us</h4>
           <li>
             <a href="https://web.facebook.com/melisports">Facebook</a>
             {' '}

@@ -95,44 +95,40 @@ const productsSlice = createSlice({
     },
 
     filterSports: (state, action) => {
-      const filterSports = state.products.filter(item => 
-        action.payload.some(sport => item.sport_category.name.toLowerCase() === sport))
-      return{
+      const filterSports = state.products.filter((item) => action.payload.some((sport) => item.sport_category.name.toLowerCase() === sport));
+      return {
         ...state,
-        products: filterSports
+        products: filterSports,
 
-      }
-    }
-,
-filterActivities: (state, action) => {
-  console.log(action.payload)
-  const filts = state.products.filter((item) =>
-    action.payload.some(level => item.level?.stage.toLowerCase() === level))
+      };
+    },
+    filterActivities: (state, action) => {
+      console.log(action.payload);
+      const filts = state.products.filter((item) => action.payload.some((level) => item.level?.stage.toLowerCase() === level));
 
-  return {
-    ...state,
-    products: filts,
-  };
-},filterLevels: (state, action) => {
-  console.log(action.payload)
-  const filts = state.products.filter((item) =>
-    action.payload.some(level => item.level?.stage.toLowerCase() === level))
-
-  return {
-    ...state,
-    products: filts,
-  };
-},
-    filterFeatures: (state, action) => {
-      const filts = state.products.filter((item) => 
-        action.payload.some(feature => item?.description.toLowerCase().includes(feature)) )
       return {
         ...state,
         products: filts,
       };
     },
-    filterGender: (state, action) => {
-      const filts = state.products.filter((item) => item?.gender?.name.toLowerCase().includes(action.payload));
+    filterLevels: (state, action) => {
+      console.log(action.payload);
+      const filts = state.products.filter((item) => action.payload.some((level) => item.level?.stage.toLowerCase() === level));
+
+      return {
+        ...state,
+        products: filts,
+      };
+    },
+    filterFeatures: (state, action) => {
+      const filts = state.products.filter((item) => action.payload.some((feature) => item?.description.toLowerCase().includes(feature)));
+      return {
+        ...state,
+        products: filts,
+      };
+    },
+    filterGenders: (state, action) => {
+      const filts = state.products.filter((item) => action.payload.some((gender) => item?.gender?.name.toLowerCase() === gender));
       return {
         ...state,
         products: filts,
@@ -157,5 +153,5 @@ filterActivities: (state, action) => {
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGender, resetProduct,
+  filterProducts, searchedProducts, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
 } = productsSlice.actions;

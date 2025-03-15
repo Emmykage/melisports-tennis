@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useMemo, 
+  useState, useEffect, useMemo,
 } from 'react';
 import './order.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,13 +24,11 @@ const Orders = () => {
   const [objectId, setObjectId] = useState(null);
   const columnHelper = createColumnHelper();
 
-
-
   const handleDelete = (id) => {
     dispatch(deleteOrder(id)).then((result) => {
       if (deleteOrder.fulfilled.match(result)) {
         setOpen(false);
-        dispatch(getOrders())
+        dispatch(getOrders());
         dispatch(toggleAlert({
           isOpen: true,
           message: result.payload.message,
@@ -66,24 +64,34 @@ const Orders = () => {
   const columns = useMemo(() => [
     columnHelper.accessor('billing_address.name', {
       header: () => 'Name',
-      cell: (info) => <span className='flex gap-3'>{info.getValue() ?? (info.row.original.user.first_name + " " +info.row.original.user.last_name)} 
-      {!info.row.original.viewed && <span className='text-white rounded px-2 bg-orange-700'>new</span>}</span>,
+      cell: (info) => (
+        <span className="flex gap-3">
+          {info.getValue() ?? (`${info.row.original.user.first_name} ${info.row.original.user.last_name}`)}
+          {!info.row.original.viewed && <span className="text-white rounded px-2 bg-orange-700">new</span>}
+        </span>
+      ),
       footer: (props) => props.column.id,
     }),
     columnHelper.accessor('status', {
-      cell: (info) => <StatusButton status={info.getValue()}/>,
+      cell: (info) => <StatusButton status={info.getValue()} />,
       footer: (props) => props.column.id,
     }),
 
     columnHelper.accessor('total', {
-      cell: (info) =>  <span className='font-semibold '> {nairaFormat(info.getValue())} </span> ,
+      cell: (info) => (
+        <span className="font-semibold ">
+          {' '}
+          {nairaFormat(info.getValue())}
+          {' '}
+        </span>
+      ),
       footer: (props) => props.column.id,
     }),
     columnHelper.accessor('id', {
       header: () => 'Action',
       cell: (info) => (
         <OptionDropdown
-        link={"orders"}
+          link="orders"
 
           handleDel={(id) => {
             setOpen(true);
@@ -108,11 +116,10 @@ const Orders = () => {
     dispatch(getOrders());
   }, []);
 
-
   return (
     <div className="order-container text-gray-800 bg-white p-4 rounded">
 
-      <div > 
+      <div>
         <table className="order">
           <thead>
             {getHeaderGroups().map((headerGroup) => (

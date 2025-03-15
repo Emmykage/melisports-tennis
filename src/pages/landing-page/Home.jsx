@@ -11,7 +11,7 @@ import distributor from '../../assets/images/distributor.jpeg';
 import Slider from '../../components/feature/Slider';
 import ReactSlider from '../../components/slider/CategoriesSlider';
 import { getSportCategories } from '../../redux/actions/product_category';
- import { closeList } from '../../redux/products/searched';
+import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
 import CommunityBanner from '../../components/banner/CommunityBanner';
 import DiscoverBtn from '../../components/buttons/DiscoverBtn';
@@ -37,61 +37,66 @@ const LandingHome = () => {
 
       <Slider />
       <VideoComp videoAd={videoAdd} />
-      <section className='xl:mx-60 py-10'>
+      <section className="xl:mx-60 py-10">
 
+        <div className="py-2 service-prod flex gap-10 justify-between m-auto w-full max-w-[1800px] bg-gr">
+          <div className="max-w-7xl h-[800px] w-full">
 
-      <div className="py-2 service-prod flex gap-10 justify-between m-auto w-full max-w-[1800px] bg-gr">
-        <div className='max-w-7xl h-[800px] w-full'>
-          
-          <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
-            <div className="relative item top h-52 md:h-80">
-              <img src={string} className="w-full h-full" />
-              <div className="absolute overlay flex items-center justify-center bg-theme/20">
-                <h3 className="white font-normal">Stringing racquets</h3>
+            <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
+              <div className="relative item top h-52 md:h-80">
+                <img src={string} className="w-full h-full" />
+                <div className="absolute overlay flex items-center justify-center bg-theme/20">
+                  <h3 className="white font-normal">Stringing racquets</h3>
+
+                </div>
+              </div>
+              <div className="relative item top h-52 md:h-80">
+                <img src={demo_service} className="w-full h-full" />
+                <div className="absolute overlay flex items-center justify-center  bg-theme/20">
+                  <h3 className="white font-normal">Demo Program</h3>
+
+                </div>
 
               </div>
-            </div>
-            <div className="relative item top h-52 md:h-80">
-              <img src={demo_service} className="w-full h-full" />
-              <div className="absolute overlay flex items-center justify-center  bg-theme/20">
-                <h3 className="white font-normal">Demo Program</h3>
-
-              </div>
 
             </div>
+            <div className=" bg-gray- my-2">
+              <div className="relative item top h-52 md:h-80 xl:h-[500px]">
+                <img src={distributor} className="h-full w-full" />
+                <div className="absolute overlay flex items-center justify-center bg-theme/20">
+                  <div className="">
+                    <h3 className="white font-normal">Wholesale Distribution</h3>
+                    <div className="w-max m-auto ">
+                      <DiscoverBtn btnText="Become a Distributor" link="/distributor" />
 
-          </div>
-        <div className=" bg-gray- my-2">
-          <div className="relative item top h-52 md:h-80 xl:h-[500px]">
-            <img src={distributor} className="h-full w-full" />
-            <div className="absolute overlay flex items-center justify-center bg-theme/20">
-              <div className="">
-                <h3 className="white font-normal">Wholesale Distribution</h3>
-                <div className="w-max m-auto ">
-                  <DiscoverBtn btnText="Become a Distributor" link="/distributor" />
+                    </div>
+                  </div>
 
                 </div>
               </div>
 
             </div>
+
+          </div>
+          <div className="hidden lg:block max-w-80 w-full h-[600px] shadow px-3 py-">
+            <ul>
+              <li className="my-4">
+                <a href="#review" className="border rounded block p-3 shadow bg-gray-200/20">
+                  {' '}
+                  <h3 className="font-normal text-xl hover:text-primary">Write us a review</h3>
+                </a>
+              </li>
+              <li className="my-4">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScUbwSfyzAwo5o1QNjkmOJgc_ILcoIFzvglgLUmZg7n2r4xfA/viewform?pli=1" target="_blank" className="border rounded block p-3 shadow bg-gray-200/20" rel="noreferrer">
+                  {' '}
+                  <h3 className="font-normal text-xl  hover:text-primary">Fill our survey</h3>
+                </a>
+              </li>
+
+            </ul>
           </div>
 
         </div>
-        
-        </div>
-        <div className='hidden lg:block max-w-80 w-full h-[600px] shadow px-3 py-'>
-          <ul>
-            <li className='my-4'>
-              <a href='#review' className={"border rounded block p-3 shadow bg-gray-200/20"}> <h3 className='font-normal text-xl hover:text-primary'>Write us a review</h3></a>
-            </li>
-            <li className='my-4'>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLScUbwSfyzAwo5o1QNjkmOJgc_ILcoIFzvglgLUmZg7n2r4xfA/viewform?pli=1" target="_blank" className={"border rounded block p-3 shadow bg-gray-200/20"}> <h3 className='font-normal text-xl  hover:text-primary'>Fill our survey</h3></a>
-            </li>
-            
-          </ul>
-        </div>
-
-      </div>
       </section>
 
       <div>
@@ -114,10 +119,9 @@ const LandingHome = () => {
 
       </div>
 
-     <HomeEquipmentInfo/>
-     <SportDirectory/>
+      <HomeEquipmentInfo />
+      <SportDirectory />
       <SurveyButton />
-
 
       <div>
         <div className="product-grid fit-screen">
@@ -130,7 +134,7 @@ const LandingHome = () => {
 
         </div>
 
-        <Reviews id="review"/>
+        <Reviews id="review" />
 
         <CommunityBanner />
 

@@ -1,20 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../../components/banner/Hero';
 import { getProducts } from '../../../redux/actions/product';
 import {
-  filterActivities, filterFeatures, filterGender, filterProducts,
+  filterActivities, filterFeatures, filterProducts,
 } from '../../../redux/products/product';
 import { closeList } from '../../../redux/products/searched';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
 import Loader from '../../Loader';
 import Products from '../../../components/products/ProductsGridDisplay';
+import Nav from '../../../components/nav/Nav';
 
+const levels = [{
+  label: 'Beginner',
+  level: 'beginner',
+},
+{
+  label: 'Professional',
+
+  level: 'professional',
+},
+{
+  label: 'Intermediate',
+
+  level: 'intermediate',
+},
+{
+  label: 'Junior',
+
+  level: 'junior',
+}];
+
+const featureItems = [
+  { type: 'control', label: 'Control' },
+  { type: 'power', label: 'Power' },
+  { type: 'spin', label: 'Spin' },
+];
+
+const sportItems = [
+  { type: 'tennis', label: 'Tennis' },
+  { type: 'badminton', label: 'Badminton' },
+];
 const Padels = () => {
   const dispatch = useDispatch();
   const { padelRacquets, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
+
+  const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedSports, setSelectedSports] = useState([]);
+  const [selectedFeature, setSelectedFeatures] = useState([]);
 
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
@@ -26,35 +61,52 @@ const Padels = () => {
     });
   };
 
-  const handleFilteredActivities = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterActivities(e.target.value));
-      });
+  const handleFilteredLevels = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSelectedLevels((prev) => [...prev, value]);
     } else {
-      dispatch(getProducts());
+      setSelectedLevels((prev) => prev.filter((item) => item !== value));
     }
   };
 
   const handleFilteredFeatures = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(e.target.value));
-      });
+    const { checked, value } = e.target;
+    checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
+  };
+
+  const handleSportFilter = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setSelectedSports((prev) => [...prev, value]);
     } else {
-      dispatch(getProducts());
+      setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
 
-  const handleFilterGender = (e) => {
-    if (e.target.checked) {
+  useEffect(() => {
+    if (selectedSports.length > 0) { // Only filter if there's a selection
       dispatch(getProducts()).then(() => {
-        dispatch(filterGender(e.target.value));
+        dispatch(filterSports(selectedSports));
       });
-    } else {
-      dispatch(getProducts());
     }
-  };
+  }, [selectedSports, dispatch]);
+  useEffect(() => {
+    if (selectedLevels.length > 0) { // Only filter if there's a selection
+      dispatch(getProducts()).then(() => {
+        dispatch(filterLevels(selectedLevels));
+      });
+    }
+  }, [selectedLevels, dispatch]);
+
+  useEffect(() => {
+    if (selectedFeature.length > 0) { // Only filter if there's a selection
+      dispatch(getProducts()).then(() => {
+        dispatch(filterFeatures(selectedFeature));
+      });
+    }
+  }, [selectedFeature, dispatch]);
 
   useEffect(() => {
     dispatch(closeList());
@@ -63,6 +115,8 @@ const Padels = () => {
 
   return (
     <div className="product-container">
+      <Nav />
+
       <Hero image={bannerImage} title="Padel" />
 
       <div className="prod-page">
@@ -83,88 +137,46 @@ const Padels = () => {
             </div>
             <div />
             <div className="side-row">
-              <div className="flex  items-center mb-2">
-                <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
+              {sportItems.map((item) => (
+                <div className="flex  items-center mb-2">
+                  <input type="checkbox" checked={selectedSports.includes(item.type)} id={item.type} onChange={handleSportFilter} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
 
-                  <span>
-                    Tennis
-                  </span>
-                </label>
+                    <span>
+                      {item.label}
+                    </span>
+                  </label>
 
-              </div>
-              <div className="flex items-center mb-2">
-                <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
-                  Badminton
-                </label>
-              </div>
+                </div>
+              ))}
 
             </div>
             <div className="side-row">
               <h6>Racket Type</h6>
 
-              <div className="flex items-center mb-2">
-                <input type="checkbox" id="control" value="control" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
+              {featureItems.map((item) => (
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
 
-                <label htmlFor="control" style={{ fontSize: '1rem' }}>
-                  Control
-                </label>
+                  <label htmlFor="control" style={{ fontSize: '1rem' }}>
+                    {item.label}
+                  </label>
 
-              </div>
-              <div className="flex items-center mb-2">
-
-                <input onChange={handleFilteredFeatures} value="power" type="checkbox" id="power" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="power" style={{ fontSize: '1rem' }}>
-                  Power
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input onChange={handleFilteredFeatures} value="spin" type="checkbox" id="spin" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="spin" style={{ fontSize: '1rem' }}>
-                  Spin
-                </label>
-
-              </div>
+                </div>
+              ))}
 
             </div>
             <div className="side-row">
               <h6>Skill level</h6>
-              <span className="flex items-center mb-2">
-                <input type="checkbox" id="beginner" value="beginner" onChange={handleFilteredActivities} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
+              {levels.map((level) => (
+                <span className="flex items-center mb-2">
+                  <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
 
-                <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
-                  Beginner
-                </label>
-              </span>
-
-              <span className="flex items-center mb-2">
-                <input onChange={handleFilteredActivities} value="professional" type="checkbox" name="professional" id="professional" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="professional">
-                  Professional
-                </label>
-
-              </span>
-              <span className="flex items-center mb-2">
-                <input onChange={handleFilteredActivities} value="intermediate" type="checkbox" id="intermediate" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="intermediate" style={{ fontSize: '1rem' }}>
-                  Intermediate
-                </label>
-
-              </span>
-
-              <span className="items-center flex mb-2">
-                <input type="checkbox" id="junior" value="junior" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-100 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
-
-                <label htmlFor="junior" style={{ fontSize: '1rem' }}>
-                  Junior
-                </label>
-
-              </span>
+                  <label htmlFor={level.level} style={{ fontSize: '1rem' }}>
+                    {level.label}
+                  </label>
+                </span>
+              ))}
 
             </div>
             <div className="side-row">
@@ -172,7 +184,7 @@ const Padels = () => {
 
               <label htmlFor="activity" style={{ fontSize: '1rem' }}>
 
-                <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 babolat
               </label>
             </div>

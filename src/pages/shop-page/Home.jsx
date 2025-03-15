@@ -8,7 +8,7 @@ import badmington from '../../assets/images/banner/X-feel_692_x_364_px.avif';
 
 import ReactSlider from '../../components/slider/CategoriesSlider';
 import { getSportCategories } from '../../redux/actions/product_category';
- import { closeList } from '../../redux/products/searched';
+import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
 import CollectImage from '../../assets/images/banner/692x364_FW_Lebron_1.avif';
 import RangeImage from '../../assets/images/banner/Satelite_692x364__px.avif';
@@ -70,7 +70,6 @@ const ShopHome = () => {
         </div>
       </section>
 
-
       {/* <VideoView/> */}
       {/* <VideoComp videoAd={videoAd} /> */}
       <section className="px-3">
@@ -97,17 +96,13 @@ const ShopHome = () => {
 
       </section>
 
-     
-
-     
-
       <section className="px-3  py-20">
         <h3 className="text-2xl text-center">
           {' '}
           <NavLink className="hover:text-primary" to="/arrivals"> New Arrival</NavLink>
         </h3>
         <div className="m-auto max-w-7xl my-6 bg-white p-4 md:p-10 border rounded shadow-sm">
-         {latestArrival.length > 0 ?   <ProductSlider products={latestArrival} views={4} /> : <> New Arrivals will be updated Soon</>  } 
+          {latestArrival.length > 0 ? <ProductSlider products={latestArrival} views={4} /> : <> New Arrivals will be updated Soon</> }
 
         </div>
       </section>
@@ -132,9 +127,9 @@ const ShopHome = () => {
 
       </div>
 
-      <HomeEquipmentInfo/>
+      <HomeEquipmentInfo />
       <SurveyButton />
-      <Reviews/>
+      <Reviews />
 
       <div>
         <div className="product-grid fit-screen">

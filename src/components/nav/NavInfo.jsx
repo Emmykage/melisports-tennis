@@ -8,7 +8,7 @@ import { AiOutlineClose, AiOutlineShopping } from 'react-icons/ai';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
- import logo from '../../assets/images/logo/melisport_1.png';
+import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { userProfile } from '../../redux/actions/auth';
 import { fetchToken, removeToken } from '../../hooks/localStorage';
@@ -18,7 +18,7 @@ const NavInfo = () => {
   const { counter, update } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [toggleNav, setToggleNav ] = useState(false)
+  const [toggleNav, setToggleNav] = useState(false);
   const [stickyNav, setStickyNav] = useState('');
 
   const toggleScrollNav = (e) => {
@@ -46,7 +46,7 @@ const NavInfo = () => {
         <div className={`${stickyNav} navbar nav-info`}>
           <div className="mobile-menu-div">
             <a className="menu">
-              <FiMenu className="menu-icon" onClick={() =>setToggleNav(prev => !prev)} />
+              <FiMenu className="menu-icon" onClick={() => setToggleNav((prev) => !prev)} />
             </a>
           </div>
           <div className="logo shrink-0">
@@ -60,19 +60,19 @@ const NavInfo = () => {
 
               <ul className={toggleNav ? 'nav-links  show-menu' : 'nav-links flex w-full'}>
                 <div className="mobile-menu-div  my-4">
-                  <AiOutlineClose className="menu-icon close-icon" onClick={() => setToggleNav(prev => !prev)} />
+                  <AiOutlineClose className="menu-icon close-icon" onClick={() => setToggleNav((prev) => !prev)} />
                 </div>
 
-                <li className="nav-item "><NavLink className={"lg:text-dark lg:font-semibold lg:text-base"} to="/"  >Home</NavLink></li>
-                <li className="nav-item"><NavLink to="/store" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Go to store</NavLink></li>
-                <li className="nav-item"><NavLink to="/contact" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Contact Us</NavLink></li>
-                <li className="nav-item"><NavLink to="/about" className={"lg:text-dark lg:font-semibold lg:text-base"}  >About Us</NavLink></li>
-                <li className="nav-item"><NavLink to="/products" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Products</NavLink></li>
-                <li className="nav-item"><NavLink to="/court-directory" className={"lg:text-dark lg:font-semibold lg:text-base"}  >Court Directory</NavLink></li>
+                <li className="nav-item "><NavLink className="lg:text-dark lg:font-semibold lg:text-base" to="/">Home</NavLink></li>
+                <li className="nav-item"><NavLink to="/store" className="lg:text-dark lg:font-semibold lg:text-base">Go to store</NavLink></li>
+                <li className="nav-item"><NavLink to="/contact" className="lg:text-dark lg:font-semibold lg:text-base">Contact Us</NavLink></li>
+                <li className="nav-item"><NavLink to="/about" className="lg:text-dark lg:font-semibold lg:text-base">About Us</NavLink></li>
+                <li className="nav-item"><NavLink to="/products" className="lg:text-dark lg:font-semibold lg:text-base">Products</NavLink></li>
+                <li className="nav-item"><NavLink to="/court-directory" className="lg:text-dark lg:font-semibold lg:text-base">Court Directory</NavLink></li>
 
-                {user !== null && ((user.role == 'admin'|| user.role == 'super-admin') && (
+                {user !== null && ((user.role == 'admin' || user.role == 'super-admin') && (
                 <li className="nav-item">
-                  <NavLink to="/admin" className={"lg:text-dark lg:font-semibold lg:text-base"}>    go to admin </NavLink>
+                  <NavLink to="/admin" className="lg:text-dark lg:font-semibold lg:text-base">    go to admin </NavLink>
                   {' '}
                 </li>
                 ))}
@@ -80,7 +80,7 @@ const NavInfo = () => {
                 <li className="nav-item last">
                   <span><FiUser className="user-icon" /></span>
 
-                  {user == undefined ? <NavLink  className={"lg:text-dark lg:font-semibold lg:text-base"} to="/auth/login">Login</NavLink> : <a onClick={handleLogOut} className='lg:text-dark lg:font-semibold lg:text-base'>Log Out</a> }
+                  {user == undefined ? <NavLink className="lg:text-dark lg:font-semibold lg:text-base" to="/auth/login">Login</NavLink> : <a onClick={handleLogOut} className="lg:text-dark lg:font-semibold lg:text-base">Log Out</a> }
 
                 </li>
 

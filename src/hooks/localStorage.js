@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 export const setToken = (token) => {
   localStorage.setItem('meli_auth', JSON.stringify(token));
@@ -14,8 +14,7 @@ export const fetchToken = (refresh) => {
 
 export const setCart = (cartItems) => {
   localStorage.setItem('cartitem', JSON.stringify(cartItems));
-            toast("item added to cart", {type: "success"})
-  
+  toast('item added to cart', { type: 'success' });
 };
 
 export const removeToken = () => {

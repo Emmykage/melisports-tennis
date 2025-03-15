@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCatalogAccessories, getCatalogRaquets } from '../redux/catalog/catalog';
 import Hero from '../components/banner/Hero';
- import Rackets from '../components/catalogue/Rackets';
+import Rackets from '../components/catalogue/Rackets';
 import Apparels from '../components/catalogue/Apparels';
 import BagsCatalogue from '../components/catalogue/Bags';
 import ShoesCatalogue from '../components/catalogue/Shoes';
@@ -21,8 +21,7 @@ const Services = () => {
 
   return (
     <>
-          <NavInfo />
-
+      <NavInfo />
 
       <Hero image={bannerImage} title="Catalogue" />
 

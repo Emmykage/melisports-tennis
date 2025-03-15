@@ -21,12 +21,11 @@ const MainAdmin = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
   const { message, user, loading } = useSelector((state) => state.user);
   const [token] = useState(fetchToken());
-  const {stats} =  useSelector(state => state.statistics)
+  const { stats } = useSelector((state) => state.statistics);
 
   useEffect(() => {
-    dispatch(getStatistics())
+    dispatch(getStatistics());
   }, [dispatch]);
-
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
@@ -36,13 +35,13 @@ const MainAdmin = ({ children }) => {
   }
 
   if (user) {
-    if (user?.role === 'admin'|| user?.role === 'super-admin') {
+    if (user?.role === 'admin' || user?.role === 'super-admin') {
       return (
         <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 h-screen bg-white overflow-y-hidden">
           <ToastAlert />
           {isOpen && <ProdDelModal id={id} />}
           {catOpen && <CatDelModal id={catId} />}
-          <SideNav showMenu={showMenu} handleMenu={handleMenu} stats={stats}/>
+          <SideNav showMenu={showMenu} handleMenu={handleMenu} stats={stats} />
           <div className="px-2 lg:px-4  py-10 bg-white shadow md:pt-0 overflow-y-auto h-screen no-scroll mt-12">
             {children}
           </div>
@@ -53,7 +52,7 @@ const MainAdmin = ({ children }) => {
 
     return (
       <div>
-        <h1 className='my-5'>You are not an Admin</h1>
+        <h1 className="my-5">You are not an Admin</h1>
         <NavLink to="/store">Go to Store</NavLink>
       </div>
     );

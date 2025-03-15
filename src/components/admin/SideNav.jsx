@@ -6,7 +6,9 @@ import { BsFillGrid1X2Fill } from 'react-icons/bs';
 import { GiReceiveMoney } from 'react-icons/gi';
 import { IoAnalyticsSharp, IoAddSharp } from 'react-icons/io5';
 import { RiMessageLine } from 'react-icons/ri';
-import { MdHome, MdOutlineInventory, MdOutlineReport, MdOutlineSell } from 'react-icons/md';
+import {
+  MdHome, MdOutlineInventory, MdOutlineReport, MdOutlineSell,
+} from 'react-icons/md';
 
 import { FiSettings } from 'react-icons/fi';
 
@@ -17,7 +19,6 @@ import logo from '../../assets/images/logo/melisport_1.png';
 import { userProfile } from '../../redux/actions/auth';
 
 const SideNav = ({ showMenu, handleMenu, stats }) => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,16 +50,16 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
 
       </div>
       <div className="side-bar justify-center  flex flex-col h-[84vh] relative">
-      <NavLink
+        <NavLink
           to="/"
-          className={"ml-4 border-b flex lg:hidden"}
+          className="ml-4 border-b flex lg:hidden"
           onClick={handleMenu}
         >
           <span>
             {' '}
-            <MdHome  />
+            <MdHome />
           </span>
-          <h3 className='font-medium'>Hoe</h3>
+          <h3 className="font-medium">Hoe</h3>
         </NavLink>
         <NavLink
           to="/admin/dashboard"
@@ -69,7 +70,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <BsFillGrid1X2Fill />
           </span>
-          <h3 className='font-medium'>Dashboard</h3>
+          <h3 className="font-medium">Dashboard</h3>
         </NavLink>
 
         <NavLink
@@ -82,7 +83,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <AiOutlineUser />
           </span>
-          <h3 className='font-medium'>Customers</h3>
+          <h3 className="font-medium">Customers</h3>
         </NavLink>
         <NavLink
           to="/admin/orders"
@@ -92,9 +93,9 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
         >
           <span>
             {' '}
-            <MdOutlineSell  />
+            <MdOutlineSell />
           </span>
-          <h3 className='font-medium'>Orders</h3>
+          <h3 className="font-medium">Orders</h3>
           <span className="message-count text-white">{stats?.viewed_orders}</span>
 
         </NavLink>
@@ -109,7 +110,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <IoAnalyticsSharp />
           </span>
-          <h3 className='font-medium'>Analytics</h3>
+          <h3 className="font-medium">Analytics</h3>
         </NavLink>
 
         <NavLink
@@ -122,10 +123,10 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <RiMessageLine />
           </span>
-          <h3 className='font-medium'>Messages</h3>
+          <h3 className="font-medium">Messages</h3>
           <span className="message-count">{stats?.messages}</span>
         </NavLink>
-   
+
         <NavLink
           to="/admin/products"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
@@ -136,7 +137,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <MdOutlineInventory />
           </span>
-          <h3 className='font-medium'>Products</h3>
+          <h3 className="font-medium">Products</h3>
         </NavLink>
 
         <NavLink
@@ -149,7 +150,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <FiSettings />
           </span>
-          <h3 className='font-medium'>Settings</h3>
+          <h3 className="font-medium">Settings</h3>
         </NavLink>
         <NavLink
           to="/admin/addproduct"
@@ -161,21 +162,20 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <IoAddSharp />
           </span>
-          <h3 className='font-medium'>Add product</h3>
+          <h3 className="font-medium">Add product</h3>
         </NavLink>
 
-        <NavLink 
-        to="/admin/delivery-fee"
-        className={({ isActive }) => (isActive ? activeLink : normalLink)}
-
->
+        <NavLink
+          to="/admin/delivery-fee"
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
           <span>
             {' '}
             <MdOutlineReport />
           </span>
-          <h3 className='font-medium'>Delivery</h3>
+          <h3 className="font-medium">Delivery</h3>
         </NavLink>
-        {/* <NavLink 
+        {/* <NavLink
         to="/admin/delivery"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
 
@@ -189,7 +189,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
 
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? activeLink : "md:ml-8 ml-4 flex items-center relative h-14 ")}
+          className={({ isActive }) => (isActive ? activeLink : 'md:ml-8 ml-4 flex items-center relative h-14 ')}
           onClick={handleMenu}
 
         >
@@ -198,7 +198,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
         </NavLink>
         <NavLink
 
-        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
 
           onClick={signOut}
         >
@@ -206,7 +206,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <BiLogOut />
           </span>
-          <h3 className='font-medium'>Log out</h3>
+          <h3 className="font-medium">Log out</h3>
         </NavLink>
       </div>
 

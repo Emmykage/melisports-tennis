@@ -20,12 +20,12 @@ import Nav from '../components/nav/Nav';
 const Checkout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {deliveryFees} = useSelector(state => state.deliveryFees)
+  const { deliveryFees } = useSelector((state) => state.deliveryFees);
   const [billingDetails, setBillingDetails] = useState({
     name: '', email: '', state: deliveryFees[1]?.state, city: '', street: '', phone_no: '', postal_code: '', payment_method: '',
   });
 
-  const selectedState = deliveryFees.find(item => item.state == billingDetails.state )
+  const selectedState = deliveryFees.find((item) => item.state == billingDetails.state);
   const { loading, status } = useSelector((state) => state.orders);
   const { total, counter, cartItems } = useSelector((state) => state.cart);
   const [step, setStep] = useState(0);
@@ -35,7 +35,7 @@ const Checkout = () => {
       product_id: item.product_id,
       quantity: item.quantity,
       amount: item.price,
-      sizes: item.sizes
+      sizes: item.sizes,
     }
 
   ));
@@ -48,8 +48,6 @@ const Checkout = () => {
       payment_method: billingDetails.payment_method,
     },
   };
-
-
 
   const handleCheckout = () => {
     dispatch(createOrder(data))
@@ -85,21 +83,21 @@ const Checkout = () => {
     'Confirm Payment',
   ];
 
-  useEffect(()=> {
-    dispatch(getDeliveryFees())
-  },[]) 
-  useEffect(()=> {
+  useEffect(() => {
+    dispatch(getDeliveryFees());
+  }, []);
+  useEffect(() => {
     setBillingDetails({
       ...billingDetails,
-      state: deliveryFees[1]?.state
-    })
-  },[deliveryFees])
+      state: deliveryFees[1]?.state,
+    });
+  }, [deliveryFees]);
   useEffect(() => {
     dispatch(resetOrder());
   }, []);
   return (
     <>
-    <Nav/>
+      <Nav />
       <div className="max-w-5xl m-auto mt-10">
 
         <Box sx={{ width: '100%' }}>

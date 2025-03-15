@@ -9,8 +9,6 @@ const PaymentForm = ({ amount = 10000 }) => {
   // const publicKey = process.env.REACT_APP_PUBLIC_KEY;
   const publicKey = 'pk_test_9ff293bee5b397191f0d59ea6bab4ff2bc6e2374';
 
-
-  
   const handleChange = (e) => {
     setBillingDetails({
       ...billingDetails,
@@ -37,7 +35,6 @@ const PaymentForm = ({ amount = 10000 }) => {
 
   const handleSUbmit = (e) => {
     e.preventDefault();
-
   };
   return (
     <form onSubmit={handleSUbmit} className="flex-1">

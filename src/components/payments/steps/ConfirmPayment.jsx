@@ -10,7 +10,6 @@ import { publicKey } from '../../../redux/baseURL';
 const ConfirmPayment = ({
   billingDetails, loading, handleCheckout, cartItems, total, setStep,
 }) => {
-
   const componentProps = {
     email: billingDetails.email,
     amount: total * 100,
@@ -21,7 +20,7 @@ const ConfirmPayment = ({
     publicKey,
     text: 'Pay Now',
     onSuccess: () => {
-      handleCheckout()
+      handleCheckout();
       // dispatch(clearCart());
     },
     // onClose: () => alert('Are you sure'),
@@ -69,11 +68,11 @@ const ConfirmPayment = ({
             <div className="flex-1">
               <p className="text-sm font-medium">{item.product_name}</p>
               <p>
-                      <span className='mr-5 font-semibold text-gray-600'>Sizes: </span>
-                    {item.sizes.slice(0, 1).map(size => (
-                      <span className='mr-5'>{size}</span>
-                    )) }
-                    </p>
+                <span className="mr-5 font-semibold text-gray-600">Sizes: </span>
+                {item.sizes.slice(0, 1).map((size) => (
+                  <span className="mr-5">{size}</span>
+                )) }
+              </p>
               <p>
                 Quantity:
                 {item.quantity}

@@ -20,9 +20,9 @@ import genderSlice from './gender/gender';
 import orderSlice from './order/order';
 import catalogSlice from './catalog/catalog';
 import appSlice from './app/app';
-import statSlice from './statistics'
-import deliveryFeeSlice from "./delivery_fee"
-import reviewReducer from './review'
+import statSlice from './statistics';
+import deliveryFeeSlice from './delivery_fee';
+import reviewReducer from './review';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -45,7 +45,7 @@ const rootReducer = combineReducers({
   catalog: catalogSlice,
   statistics: statSlice,
   deliveryFees: deliveryFeeSlice,
-  reviews: reviewReducer
+  reviews: reviewReducer,
 
 });
 

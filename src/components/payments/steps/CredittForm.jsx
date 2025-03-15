@@ -6,7 +6,7 @@ import { clearCart } from '../../../redux/cart/cart';
 import Button from '../../buttons/Button';
 
 const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
-  const {deliveryFees} = useSelector(state => state.deliveryFees)
+  const { deliveryFees } = useSelector((state) => state.deliveryFees);
 
   const handleChange = (e) => {
     setBillingDetails({
@@ -16,14 +16,11 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
     });
   };
 
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setStep((prev) => prev + 1);
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className="flex-1">
       <div>
@@ -61,15 +58,16 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
           <div className="flex-1">
             <label htmlFor="state">State</label>
             <select
-            onChange={handleChange}            
-            name="state" 
-            className="p-3 border w-full rounded"
-            id="state"
-            defaultValue={"abuja"}>
-            {deliveryFees.map(item => (
-              <option value={item.state}>{item.state}</option>
+              onChange={handleChange}
+              name="state"
+              className="p-3 border w-full rounded"
+              id="state"
+              defaultValue="abuja"
+            >
+              {deliveryFees.map((item) => (
+                <option value={item.state}>{item.state}</option>
 
-            ))}
+              ))}
             </select>
             {/* <input required type="text" className="p-3 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} /> */}
           </div>

@@ -4,7 +4,7 @@ import Footer from '../footer/Footer';
 import Modal from '../modal/Modal';
 import ChatBox from '../sideNav/ChatBox';
 import NavInfo from '../nav/NavInfo';
- import MobileFooter from '../footer/mobile_footer';
+import MobileFooter from '../footer/mobile_footer';
 import FooterInfo from '../footer-info/FooterInfo';
 
 const MainInfoLayout = ({ children }) => {

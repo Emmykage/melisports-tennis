@@ -6,7 +6,7 @@ import { getProduct } from '../../redux/actions/product';
 // import { addCart } from '../redux/actions/cart';
 import { updater } from '../../redux/cart/cart';
 import { closeList } from '../../redux/products/searched';
- import { addCart } from '../../redux/cart/cart';
+import { addCart } from '../../redux/cart/cart';
 import Loader from '../Loader';
 import ImagePreview from '../../components/products/ImagePreview';
 import { nairaFormat } from '../../utils/nairaFormat';
@@ -16,8 +16,8 @@ import Nav from '../../components/nav/Nav';
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const [sizes, setsizes] = useState([])
-  const [selectedSize, setSelectedSIze] = useState(null)
+  const [sizes, setsizes] = useState([]);
+  const [selectedSize, setSelectedSIze] = useState(null);
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
 
@@ -27,9 +27,8 @@ const ProductDetails = () => {
   }, [id]);
   const handleCart = () => {
     if (product.product_quantity > 0) {
-
       dispatch(addCart({
-        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name, sizes: sizes
+        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name, sizes,
       }));
 
       dispatch(updater());
@@ -50,8 +49,7 @@ const ProductDetails = () => {
 
   return (
     <section className="">
-              <Nav />
-
+      <Nav />
 
       <div className="p-container shadow p-4 rounded-md bg-white">
         <div className=" max-w-[1600px]  grid gap-5 border-b mb-10 pb-6 md:gap-8 md:grid-cols-2">
@@ -78,9 +76,6 @@ const ProductDetails = () => {
               </span>
 
             </div>
- 
-
-           
 
             {product?.colours && (
               <div className="my-3">
@@ -88,7 +83,12 @@ const ProductDetails = () => {
                 <div className=" items-center">
 
                   <span className="text-gray-600 text-xl font-semibold ">
-                    colours <span className='text-sm font- text-gray-600'> {product.colours}</span>
+                    colours
+                    {' '}
+                    <span className="text-sm font- text-gray-600">
+                      {' '}
+                      {product.colours}
+                    </span>
                   </span>
                   <div className="flex gap-3">
                     {' '}
@@ -130,34 +130,35 @@ const ProductDetails = () => {
 
               <div className="flex gap-1 flex-wrap my-2">
                 {' '}
-              
 
                 {product?.product_inventories.length > 0 && (
-                            <div className="headsize my-3">
-                              <span  className="text-gray-600 text-xl font-semibold block">
-                                {product?.product_category?.name == "racquet" ? "Grip Size" : "Size"}
-                              </span>
+                <div className="headsize my-3">
+                  <span className="text-gray-600 text-xl font-semibold block">
+                    {product?.product_category?.name == 'racquet' ? 'Grip Size' : 'Size'}
+                  </span>
 
-                              <div className="text-base text-gray-dark font-medium">
-                                                           
-                              {product?.product_sizes.map((size) => (
-                                <button onClick={()=> {
-                                  setSelectedSIze(size)
-                                  setsizes([size])
-                                }} className={`${selectedSize == size ? "bg-gray-300 border border-theme-alt" : "bg-gray-200"} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}>
-                                  {size}
-                                </button>
+                  <div className="text-base text-gray-dark font-medium">
 
-                              ))}
-                            </div>
-                            </div>
+                    {product?.product_sizes.map((size) => (
+                      <button
+                        onClick={() => {
+                          setSelectedSIze(size);
+                          setsizes([size]);
+                        }}
+                        className={`${selectedSize == size ? 'bg-gray-300 border border-theme-alt' : 'bg-gray-200'} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}
+                      >
+                        {size}
+                      </button>
 
-                            ) }
+                    ))}
+                  </div>
+                </div>
+
+                ) }
 
               </div>
 
             </div>
-
 
             <div className="flex items-center gap-3">
               <div className="btn-div my-3">

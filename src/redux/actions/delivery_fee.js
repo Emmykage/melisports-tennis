@@ -24,7 +24,6 @@ export const addDeliveryFee = createAsyncThunk('deliveries/addDeliveryFee', asyn
 });
 
 export const updateDeliveryFee = createAsyncThunk('deliveryFee/update_delivery_fee', async (data, { rejectWithValue }) => {
-
   try {
     const response = await fetch(`${baseURL}deliveries/${data.id}`, {
       method: 'PATCH',
@@ -110,4 +109,3 @@ export const getDeliveryFees = createAsyncThunk('delivery_fee/get_delivery_fees'
     return rejectWithValue({ message: 'Something went wrong' });
   }
 });
-

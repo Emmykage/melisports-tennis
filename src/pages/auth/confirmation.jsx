@@ -25,7 +25,7 @@ export default function Confirmation() {
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, loading,logged
+    user, error, message, loading, logged,
   } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -44,81 +44,79 @@ export default function Confirmation() {
     dispatch(loginUser(formInput));
   };
 
-  useEffect(()=> {
-    if(logged){
+  useEffect(() => {
+    if (logged) {
       navigation(location.state?.from || '/');
-
     }
-  },[logged])
+  }, [logged]);
 
-    return (
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
 
-            <Typography component="h1" variant="h5">
-              Confirm Account
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
+          <Typography component="h1" variant="h5">
+            Confirm Account
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
 
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type={seePassword ? 'text' : 'password'}
-                    id="password"
-                    autoComplete="new-password"
-                  />
-                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !prev)}>
-
-                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
-                  </span>
-                </Grid>
-
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
               </Grid>
-              <p className="text-blue">
-                {' '}
-                {loading && 'loading...'}
-              </p>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type={seePassword ? 'text' : 'password'}
+                  id="password"
+                  autoComplete="new-password"
+                />
+                <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !prev)}>
 
-              <p className="text-red-600">
-                {' '}
-                {error && message }
-              </p>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Login
-              </Button>
+                  {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                </span>
+              </Grid>
 
-            </Box>
+            </Grid>
+            <p className="text-blue">
+              {' '}
+              {loading && 'loading...'}
+            </p>
+
+            <p className="text-red-600">
+              {' '}
+              {error && message }
+            </p>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
+
           </Box>
-        </Container>
-      </ThemeProvider>
-    );
-
-  }
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
+}

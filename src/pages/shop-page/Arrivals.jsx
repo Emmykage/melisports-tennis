@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterActivities, getLatest } from '../../redux/products/product';
 import { getLetestProducts, getProducts } from '../../redux/actions/product';
- import { closeList } from '../../redux/products/searched';
+import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Hero from '../../components/banner/Hero';
 import bannerImage from '../../assets/images/banner/banner.jpg';
@@ -69,7 +69,7 @@ const Arrivals = () => {
 
   return (
     <div className="product-container">
-              <Nav />
+      <Nav />
 
       <Hero image={bannerImage} title="Racquet" />
 

@@ -4,8 +4,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function SelectInput({label, options, className, handleChange, defaultValue}) {
-
+export default function SelectInput({
+  label, options, className, handleChange, defaultValue,
+}) {
   return (
     <div>
       <FormControl className={className} variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -17,13 +18,13 @@ export default function SelectInput({label, options, className, handleChange, de
           onChange={handleChange}
           label="Age"
         >
-          {options.map(item => (
-          <MenuItem value={item.value}>{item.label}</MenuItem>
+          {options.map((item) => (
+            <MenuItem value={item.value}>{item.label}</MenuItem>
 
           ))}
-         </Select>
+        </Select>
       </FormControl>
-     
+
     </div>
   );
 }

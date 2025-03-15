@@ -6,7 +6,9 @@ import Fade from '@mui/material/Fade';
 import { HorizontalRuleOutlined, MoreHorizRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
-export default function OptionDropdown ({ id, link="orders", setOpen, handleDel }) {
+export default function OptionDropdown({
+  id, link = 'orders', setOpen, handleDel,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);

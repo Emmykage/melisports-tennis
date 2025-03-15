@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const HomeEquipmentInfo = () => {
-  return (
-    <div className="banner-text full-screen my-3 text-center p-8 md:p-20 leading-9">
+const HomeEquipmentInfo = () => (
+  <div className="banner-text full-screen my-3 text-center p-8 md:p-20 leading-9">
     <h2 className="text-2xl tracking-wider font-medium">
       Tennis Equipment & Supplies
     </h2>
@@ -12,7 +11,6 @@ const HomeEquipmentInfo = () => {
 
     </p>
   </div>
-  )
-}
+);
 
-export default HomeEquipmentInfo
+export default HomeEquipmentInfo;

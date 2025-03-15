@@ -14,8 +14,8 @@ import { getStatistics } from '../../redux/actions/statistics.js';
 const OrderDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const contRef = useRef()
+  const navigate = useNavigate();
+  const contRef = useRef();
   const [openAccept, setOpenAccept] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const { order, loading } = useSelector((state) => state.orders);
@@ -32,39 +32,30 @@ const OrderDetails = () => {
   };
 
   useEffect(() => {
-
     dispatch(getOrder(id));
   }, [id]);
 
-
   useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !order?.viewed) {
+        dispatch(updateOrder({ id, data: { viewed: true } })).then((result) => {
+          if (updateOrder.fulfilled.match(result)) {
+            dispatch(getStatistics());
+          }
+        });
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.5 });
 
-    const observer = new IntersectionObserver(([entry])=> {
-
-        if(entry.isIntersecting && !order?.viewed){
-            dispatch(updateOrder({id, data: {viewed: true}})).then(result => {
-                if(updateOrder.fulfilled.match(result)){
-                    dispatch(getStatistics())
-                }
-            }
-            
-            )
-            observer.unobserve(entry.target)
-        }
-
-    }, {threshold: 0.5})
-
-    if(contRef.current){
-        observer.observe(contRef.current)
-
+    if (contRef.current) {
+      observer.observe(contRef.current);
     }
     return () => {
-        if (contRef.current) {
-          observer.unobserve(contRef.current);
-        }
-      };
-  }, [order?.viewed])
-
+      if (contRef.current) {
+        observer.unobserve(contRef.current);
+      }
+    };
+  }, [order?.viewed]);
 
   return (
     <div className="bg-white p-6" ref={contRef}>
@@ -93,7 +84,9 @@ const OrderDetails = () => {
             <div className="flex flex-col md:flex-row gap-7 my-5">
 
               <span className="bg-gray-300 px-2 py-1 rounded-lg text-xs">
-               ordered:  {localDate(order?.created_at)}
+                ordered:
+                {' '}
+                {localDate(order?.created_at)}
               </span>
               <span className="bg-gray-300 px-2 py-1 rounded-lg text-xs">
                 paid on: 2024-02-13
@@ -113,7 +106,7 @@ const OrderDetails = () => {
 
         <div className="flex justify-end">
 
-          <span className={` ${order?.status == "pending" ? "bg-orange-200 text-orange-800" : order?.status == "confirmed" ? "bg-green-200 text-green-800":  "bg-red-200  text-red-800"}  px-3 py-1 text-sm"`}>
+          <span className={` ${order?.status == 'pending' ? 'bg-orange-200 text-orange-800' : order?.status == 'confirmed' ? 'bg-green-200 text-green-800' : 'bg-red-200  text-red-800'}  px-3 py-1 text-sm"`}>
             {order?.status}
 
           </span>
@@ -202,9 +195,9 @@ const OrderDetails = () => {
               <table className="my-4">
                 <thead>
                   <tr>
-                  <th></th>
-                  <th>Item Name</th>
-                  <th>SKU</th>
+                    <th />
+                    <th>Item Name</th>
+                    <th>SKU</th>
                     <th>Code</th>
                     <th>Quantity</th>
                     <th>price</th>
@@ -215,7 +208,10 @@ const OrderDetails = () => {
                 <tbody>
                   {order?.order_items?.map((item) => (
                     <tr key={item.id}>
-                        <td> <img src={item.photo_url} alt={item.product.name} className='w-20 h-20' /></td>
+                      <td>
+                        {' '}
+                        <img src={item.photo_url} alt={item.product.name} className="w-20 h-20" />
+                      </td>
                       <td>{item.product.name}</td>
                       <td>{item.product.sku}</td>
                       {/* <td>{item.billing_address.city}</td> */}

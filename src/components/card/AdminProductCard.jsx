@@ -9,14 +9,13 @@ const AdminProductCard = ({ product, toEdit }) => {
   return (
     <div key={product.id} className="products-display pt-0 border relative">
 
-      {product?.last_updated && 
+      {product?.last_updated
+       && (
        <div className="py-2 my-1 last absolute bg-theme/90 text-sm rounded-xl  ml-2 px-2">
-        <span className='font-semibold text-gray-200'>Last updated: </span>
-        <span className="text-sm font-medium text-orange-600">{product?.last_updated}</span>
+         <span className="font-semibold text-gray-200">Last updated: </span>
+         <span className="text-sm font-medium text-orange-600">{product?.last_updated}</span>
        </div>
-      }
-     
-
+       )}
 
       <div className="prod-img">
         <a>

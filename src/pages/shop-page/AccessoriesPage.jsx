@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
 import Hero from '../../components/banner/Hero';
 import { getProducts } from '../../redux/actions/product';
- import { filterProducts } from '../../redux/products/product';
+import { filterProducts } from '../../redux/products/product';
 import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Loader from '../Loader';
@@ -48,8 +48,7 @@ const AccessoriesPage = () => {
   };
 
   useEffect(() => {
-   dispatch(getProducts({
-    category: "accessory"}  ));
+    dispatch(getProducts({ category: 'accessory' }));
 
     dispatch(closeList());
     dispatch(getProductCategories());
@@ -57,7 +56,7 @@ const AccessoriesPage = () => {
 
   return (
     <div className="product-container">
-              <Nav />
+      <Nav />
 
       <Hero image={bannerImage} title="Accessories" />
 

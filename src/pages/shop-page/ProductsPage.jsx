@@ -8,42 +8,43 @@ import { getProductCategories } from '../../redux/actions/product_category';
 import { getProducts } from '../../redux/actions/product';
 
 import { closeList } from '../../redux/products/searched';
- import Loader from '../Loader';
-import { filterActivities, filterFeatures, filterProducts, filterSports } from '../../redux/products/product';
+import Loader from '../Loader';
+import {
+  filterActivities, filterFeatures, filterLevels, filterProducts, filterSports,
+} from '../../redux/products/product';
 import Nav from '../../components/nav/Nav';
 
 const ProductsPage = () => {
-
   const levels = [{
-    label: "Beginner",
-    level: "beginner"
+    label: 'Beginner',
+    level: 'beginner',
   },
   {
-    label: "Professional",
+    label: 'Professional',
 
-    level: "professional"
+    level: 'professional',
   },
   {
-    label: "Intermediate",
+    label: 'Intermediate',
 
-    level: "intermediate"
+    level: 'intermediate',
   },
   {
-    label: "Junior",
+    label: 'Junior',
 
-    level: "junior"
-  }]
+    level: 'junior',
+  }];
 
   const featureItems = [
-    {type: "control", label: "Control"},
-    {type: "power", label: "Power"},
-    {type: "spin", label: "Spin"},
-  ]
+    { type: 'control', label: 'Control' },
+    { type: 'power', label: 'Power' },
+    { type: 'spin', label: 'Spin' },
+  ];
 
   const sportTypes = [
-    {type: "tennis", label: "Tennis"},
-    {type: "badminton", label: "Badminton"}
-  ]
+    { type: 'tennis', label: 'Tennis' },
+    { type: 'badminton', label: 'Badminton' },
+  ];
   const dispatch = useDispatch();
   const [queryParams] = useSearchParams();
   const location = useLocation();
@@ -63,79 +64,61 @@ const ProductsPage = () => {
     });
   };
 
-  const handleFilteredActivities = (e) => {
-    const {value, checked} = e.target
+  const handleFilteredLevels = (e) => {
+    const { value, checked } = e.target;
 
     if (checked) {
-      setSelectedLevels(prev => [...prev, value ])     
-    } else{
-      setSelectedLevels(prev => prev.filter(item => item !== value))
-
+      setSelectedLevels((prev) => [...prev, value]);
+    } else {
+      setSelectedLevels((prev) => prev.filter((item) => item !== value));
     }
   };
 
   useEffect(() => {
-    if (selectedSports.length > 0) {  // Only filter if there's a selection
+    if (selectedSports.length > 0) { // Only filter if there's a selection
       dispatch(getProducts()).then(() => {
         dispatch(filterSports(selectedSports));
       });
     }
-}, [selectedSports, dispatch])
- useEffect(() => {
-  if (selectedLevels.length > 0) {  // Only filter if there's a selection
-    dispatch(getProducts()).then(() => {
-      dispatch(filterActivities(selectedLevels));
-    });
-  }
-}, [selectedLevels, dispatch])
-
-useEffect(() => {
-  if (selectedFeature.length > 0) {  // Only filter if there's a selection
-    dispatch(getProducts()).then(() => {
-      dispatch(filterFeatures(selectedFeature));
-    });
-  }
-}, [selectedLevels, dispatch])
-  const handleFilteredFeatures = (e) => {
-    const {checked, value} = e.target
-    checked ? setSelectedFeatures(prev => [...prev, value]) : setSelectedFeatures(prev => prev.filter(item => item !== value))
-  };
-
-  const handleFilterGender = (e) => {
-    if (e.target.checked) {
+  }, [selectedSports, dispatch]);
+  useEffect(() => {
+    if (selectedLevels.length > 0) { // Only filter if there's a selection
       dispatch(getProducts()).then(() => {
-        dispatch(filterGender(e.target.value));
+        dispatch(filterLevels(selectedLevels));
       });
-    } else {
-      dispatch(getProducts());
     }
+  }, [selectedLevels, dispatch]);
+
+  useEffect(() => {
+    if (selectedFeature.length > 0) { // Only filter if there's a selection
+      dispatch(getProducts()).then(() => {
+        dispatch(filterFeatures(selectedFeature));
+      });
+    }
+  }, [selectedFeature, dispatch]);
+  const handleFilteredFeatures = (e) => {
+    const { checked, value } = e.target;
+    checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
 
   const handleSportFilter = (e) => {
-    const {checked, value} = e.target 
-    if(checked) {
-      setSelectedSports(prev => [...prev, value])
-    }else{
-      setSelectedSports(prev => prev.filter(item => item !== value))
-
+    const { checked, value } = e.target;
+    if (checked) {
+      setSelectedSports((prev) => [...prev, value]);
+    } else {
+      setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
-
-  }
+  };
 
   useEffect(() => {
     dispatch(closeList());
-    dispatch(getProducts({
-      category: "racquet"    }));
+    dispatch(getProducts({ category: 'racquet' }));
 
     dispatch(getProductCategories());
   }, []);
-
-
-  console.log(products)
-
   return (
     <div className="product-container">
-              <Nav />
+      <Nav />
 
       <Hero image={bannerImage} title="Racquet" />
 
@@ -157,52 +140,46 @@ useEffect(() => {
             </div>
             <div />
             <div className="side-row">
-              {sportTypes.map(item => (
+              {sportTypes.map((item) => (
                 <div className="flex  items-center mb-2">
                   <input type="checkbox" checked={selectedSports.includes(item.type)} id={item.type} onChange={handleSportFilter} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                   <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
 
-                  <span>
-                  {item.label}
-                  </span>
-                </label>
+                    <span>
+                      {item.label}
+                    </span>
+                  </label>
 
                 </div>
               ))}
-             
-           
 
             </div>
             <div className="side-row">
               <h6>Racket Type</h6>
 
-              {featureItems.map(item => (
-                  <div className="flex items-center mb-2">
-                  <input  type="checkbox" id={item.type} value={item.type}  className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
+              {featureItems.map((item) => (
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
 
                   <label htmlFor="control" style={{ fontSize: '1rem' }}>
-                  {item.label} 
+                    {item.label}
                   </label>
 
-                  </div>
+                </div>
               ))}
-
-             
-             
 
             </div>
             <div className="side-row">
               <h6>Skill level</h6>
-              {levels.map(level => (
-                   <span className="flex items-center mb-2">
-                   <input type="checkbox" checked={selectedLevels.includes(level.level)}  id={level.level} value={level.level} onChange={handleFilteredActivities} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
-   
-                   <label htmlFor={level.level} style={{ fontSize: '1rem' }}>
-                   {level.label}
-                   </label>
-                 </span>
+              {levels.map((level) => (
+                <span className="flex items-center mb-2">
+                  <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
+
+                  <label htmlFor={level.level} style={{ fontSize: '1rem' }}>
+                    {level.label}
+                  </label>
+                </span>
               ))}
-           
 
             </div>
             <div className="side-row">
@@ -210,7 +187,7 @@ useEffect(() => {
 
               <label htmlFor="activity" style={{ fontSize: '1rem' }}>
 
-                <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 babolat
               </label>
             </div>

@@ -1,23 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { getStatistics } from "../actions/statistics"
+import { createSlice } from '@reduxjs/toolkit';
+import { getStatistics } from '../actions/statistics';
 
 const initialState = {
-    stats: {}
-}
+  stats: {},
+};
 
 const statSlice = createSlice({
-    initialState,
-    name: "statistics",
-    extraReducers: {
-        [getStatistics.fulfilled]: (state, action) => {
+  initialState,
+  name: 'statistics',
+  extraReducers: {
+    [getStatistics.fulfilled]: (state, action) => ({
+      ...state.action,
+      stats: action.payload,
+    }),
+  },
+});
 
-            return{
-                ...state.action,
-                stats: action.payload
-            }
-        }
-    }
-})
-
-
-export default statSlice.reducer
+export default statSlice.reducer;

@@ -29,7 +29,7 @@ const usersSlice = createSlice({
       notice: '',
       loading: true,
 
-    }), 
+    }),
     [delUsers.rejected]: (state) => ({
       ...state,
       loading: false,
@@ -54,63 +54,48 @@ const usersSlice = createSlice({
 
     }),
     [getUser.fulfilled]: (state, action) => {
-      const {data} = action.payload;
+      const { data } = action.payload;
 
-        return {
-          ...state,
-          loading: false,
-          user: data,
-          error: true
-        };
-
+      return {
+        ...state,
+        loading: false,
+        user: data,
+        error: true,
+      };
     },
-    [getUser.pending]: (state) => {
-
-        return {
-          ...state,
-          loading: true,
-        };
-    }, 
+    [getUser.pending]: (state) => ({
+      ...state,
+      loading: true,
+    }),
     [getUser.rejected]: (state, action) => {
       const response = action.payload;
 
-        return {
-          ...state,
-          loading: false,
-          user: response.message
-        };
+      return {
+        ...state,
+        loading: false,
+        user: response.message,
+      };
     },
     [getUsers.fulfilled]: (state, action) => {
       const response = action.payload;
 
-        return {
-          ...state,
-          loading: false,
-          users: response,
-          error: false
-        };     
-  
- 
+      return {
+        ...state,
+        loading: false,
+        users: response,
+        error: false,
+      };
     },
-    [getUsers.pending]: (state) => {
-
-        return {
-          ...state,
-          loading: true,
-        };     
-      
- 
-    },
-    [getUsers.rejected]: (state, action) => {
- 
-        return {
-          ...state,
-          loading: false,
-          error: true,
-          message: action.payload.message,
-        }; 
-    },
-
+    [getUsers.pending]: (state) => ({
+      ...state,
+      loading: true,
+    }),
+    [getUsers.rejected]: (state, action) => ({
+      ...state,
+      loading: false,
+      error: true,
+      message: action.payload.message,
+    }),
 
   },
   reducers: {

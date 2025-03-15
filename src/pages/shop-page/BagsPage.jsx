@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
 import Hero from '../../components/banner/Hero';
 import { getProducts } from '../../redux/actions/product';
- import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-Bags.jpg';
+import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-Bags.jpg';
 import { closeList } from '../../redux/products/searched';
 import Loader from '../Loader';
 import { getProductCategories } from '../../redux/actions/product_category';
@@ -12,10 +12,45 @@ import { filterGender, filterProducts } from '../../redux/products/product';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
 
+const levels = [{
+  label: 'Beginner',
+  level: 'beginner',
+},
+{
+  label: 'Professional',
+
+  level: 'professional',
+},
+{
+  label: 'Intermediate',
+
+  level: 'intermediate',
+},
+{
+  label: 'Junior',
+
+  level: 'junior',
+}];
+
+const featureItems = [
+  { type: 'control', label: 'Control' },
+  { type: 'power', label: 'Power' },
+  { type: 'spin', label: 'Spin' },
+];
+
+const sportTypes = [
+  { type: 'tennis', label: 'Tennis' },
+  { type: 'badminton', label: 'Badminton' },
+];
+
 const BagsPage = () => {
   const dispatch = useDispatch();
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
+
+  const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedSports, setSelectedSports] = useState([]);
+  const [selectedFeature, setSelectedFeatures] = useState([]);
 
   const category = product_categories?.find((cat) => cat.name === 'bag');
 
@@ -26,46 +61,61 @@ const BagsPage = () => {
     });
   };
 
-  const handleFilteredActivities = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterActivities(e.target.value));
-      });
+  const handleFilteredLevels = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSelectedLevels((prev) => [...prev, value]);
     } else {
-      dispatch(getProducts());
+      setSelectedLevels((prev) => prev.filter((item) => item !== value));
     }
   };
-
   const handleFilteredFeatures = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(e.target.value));
-      });
-    } else {
-      dispatch(getProducts());
-    }
+    const { checked, value } = e.target;
+    checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
 
-  const handleFilterGender = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterGender(e.target.value));
-      });
+  const handleSportFilter = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setSelectedSports((prev) => [...prev, value]);
     } else {
-      dispatch(getProducts());
+      setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
 
   useEffect(() => {
+    if (selectedSports.length > 0) { // Only filter if there's a selection
+      dispatch(getProducts()).then(() => {
+        dispatch(filterSports(selectedSports));
+      });
+    }
+  }, [selectedSports, dispatch]);
+  useEffect(() => {
+    if (selectedLevels.length > 0) { // Only filter if there's a selection
+      dispatch(getProducts()).then(() => {
+        dispatch(filterLevels(selectedLevels));
+      });
+    }
+  }, [selectedLevels, dispatch]);
+
+  useEffect(() => {
+    if (selectedFeature.length > 0) { // Only filter if there's a selection
+      dispatch(getProducts()).then(() => {
+        dispatch(filterFeatures(selectedFeature));
+      });
+    }
+  }, [selectedFeature, dispatch]);
+
+  useEffect(() => {
     dispatch(closeList());
-     dispatch(getProducts({
-      category: "bag"}  ));
+    dispatch(getProducts({ category: 'bag' }));
     dispatch(getProductCategories());
   }, []);
 
   return (
     <div className="product-container">
-              <Nav />
+      <Nav />
 
       <Hero image={bannerImage} />
 
@@ -207,7 +257,7 @@ const BagsPage = () => {
 
               <label htmlFor="activity" style={{ fontSize: '1rem' }}>
 
-                <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 babolat
               </label>
             </div>

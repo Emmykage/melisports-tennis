@@ -9,7 +9,7 @@ import { getProductCategories } from '../redux/actions/product_category';
 import { getProducts } from '../redux/actions/product';
 
 import { closeList } from '../redux/products/searched';
- import Loader from './Loader';
+import Loader from './Loader';
 import {
   filterActivities, filterFeatures, filterProducts, searchedPage, searchedProducts,
 } from '../redux/products/product';

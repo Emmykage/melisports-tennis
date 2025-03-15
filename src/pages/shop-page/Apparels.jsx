@@ -1,9 +1,9 @@
-import React, { startTransition, useEffect } from 'react';
+import React, { startTransition, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/actions/product';
 import imageBanner from '../../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif';
 import { closeList } from '../../redux/products/searched';
- import { filterProducts } from '../../redux/products/product';
+import { filterGenders, filterProducts, filterSports } from '../../redux/products/product';
 import Hero from '../../components/banner/Hero';
 import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
@@ -14,6 +14,8 @@ const ApparelsPage = () => {
   const dispatch = useDispatch();
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
+  const [selectedGenders, setSelectedGenders] = useState([]);
+  const [selectedSports, setSelectedSports] = useState([]);
 
   const category = product_categories?.find((cat) => cat.name === 'apparel');
   const handleFilteredProducts = (seive) => {
@@ -24,53 +26,66 @@ const ApparelsPage = () => {
     });
   };
 
-  // const handleFilteredActivities = (e) => {
-  //   if (e.target.checked) {
-  //     dispatch(getProducts()).then(() => {
-  //       dispatch(filterActivities(e.target.value));
-  //     });
-  //   } else {
-  //     dispatch(getProducts());
-  //   }
-  // };
+  const genderItems = [{
+    type: 'men',
+    label: 'Men',
+  },
+  {
+    type: 'women',
+    label: 'Women',
+  }];
 
-  // const handleFilteredFeatures = (e) => {
-  //   if (e.target.checked) {
-  //     dispatch(getProducts()).then(() => {
-  //       dispatch(filterFeatures(e.target.value));
-  //     });
-  //   } else {
-  //     dispatch(getProducts());
-  //   }
-  // };
-
-  const handleFilterGender = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterGender(e.target.value));
-      });
+  const sportItems = [
+    { type: 'tennis', label: 'Tennis' },
+    { type: 'badminton', label: 'Badminton' },
+  ];
+  const handleGenderFilter = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setSelectedGenders((prev) => [...prev, value]);
     } else {
       dispatch(getProducts());
     }
   };
+  const handleSportsFilter = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setSelectedSports((prev) => [...prev, value]);
+    } else {
+      setSelectedSports((prev) => prev.filter((item) => item !== value));
+    }
+  };
 
+  useEffect(() => {
+    if (selectedGenders.length > 0) {
+      dispatch(getProducts()).then(() => {
+        dispatch(filterGender(selectedGenders));
+      });
+    }
+  }, [selectedGenders]);
+
+  useEffect(() => {
+    if (selectedSports.length > 0) {
+      dispatch(getProducts()).then(() => {
+        dispatch(filterSports(selectedSports));
+      });
+    }
+  }, [selectedSports]);
 
   useEffect(() => {
     dispatch(closeList());
     // products?.length == 0 && dispatch(getProducts());
 
     startTransition(() => {
-      dispatch(getProducts({
-        category: "apparel"}  ));
-
-    })
+      dispatch(getProducts({ category: 'apparel' }));
+    });
     dispatch(getProductCategories());
   }, []);
 
   return (
     <>
       <div className="product-container">
-      <Nav />
+        <Nav />
 
         <Hero image={imageBanner} title="Apparels" />
         <div className="prod-page">
@@ -91,45 +106,39 @@ const ApparelsPage = () => {
               <div />
               <div className="side-row">
 
-                <div className="mb-2 flex items-center">
-                  <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                {sportItems.map((item) => (
+                  <div className="mb-2 flex items-center">
+                    <input
+                      type="checkbox"
+                      onChange={handleSportsFilter}
+                      id={item.type}
+                      value={item.type}
+                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
 
-                  <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
-                    <span>
-                      Tennis
-                    </span>
-                  </label>
+                    <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
+                      <span>
+                        {item.label}
+                      </span>
+                    </label>
 
-                </div>
-                <div className="flex items-center">
-                  <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
-                    Badminton
-                  </label>
-
-                </div>
+                  </div>
+                ))}
 
               </div>
               <div className="side-row">
                 <h6>Category</h6>
 
-                <div className="flex items-center">
-                  <input type="checkbox" id="men" value="men" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilterGender} />
+                {genderItems.map((item) => (
+                  <div className="flex items-center">
+                    <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleGenderFilter} />
 
-                  <label htmlFor="men" style={{ fontSize: '1rem' }}>
-                    Men
-                  </label>
+                    <label htmlFor="men" style={{ fontSize: '1rem' }}>
+                      {item.label}
+                    </label>
 
-                </div>
-                <div className="flex items-center">
-
-                  <input onChange={handleFilterGender} value="women" type="checkbox" id="women" className="mr-3 w-4 h-4 text-blue-600 bg-gray-300 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="women" style={{ fontSize: '1rem' }}>
-                    Women
-                  </label>
-                </div>
+                  </div>
+                ))}
 
               </div>
 

@@ -73,7 +73,7 @@ const AddCategory = () => {
             </div>
 
           </div>
-  
+
           <div className="form-row">
             <div>
               <label htmlFor="">

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../components/banner/Hero';
 import SideNav from '../../components/sideNav/SideNav';
 import { getProducts } from '../../redux/actions/product';
- import bannerImage from '../../assets/images/banner/2023-01_BAB_Banner_70_pourcents_Propulse_Fury_1365x510px-2.avif';
+import bannerImage from '../../assets/images/banner/2023-01_BAB_Banner_70_pourcents_Propulse_Fury_1365x510px-2.avif';
 import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Loader from '../Loader';
@@ -38,29 +38,27 @@ const ShoesPage = () => {
   const handleFilteredFeatures = (e) => {
     if (e.target.checked) {
       dispatch(getProducts({
-        category: "racquet",
-        sport: "Tennis"
+        category: 'racquet',
+        sport: 'Tennis',
       })).then(() => {
         dispatch(filterFeatures(e.target.value));
       });
     } else {
-      dispatch(getProducts({
-        category: "shoe" }));
+      dispatch(getProducts({ category: 'shoe' }));
     }
   };
 
   useEffect(() => {
     dispatch(closeList());
-   dispatch(getProducts(
-      {
-        category: "shoe"}  
+    dispatch(getProducts(
+      { category: 'shoe' },
     ));
     dispatch(getProductCategories());
   }, []);
 
   return (
     <div className="product-container">
-        <Nav />
+      <Nav />
 
       <Hero image={bannerImage} title="Shoes" />
 

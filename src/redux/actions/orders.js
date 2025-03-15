@@ -23,8 +23,7 @@ const createOrder = createAsyncThunk('order/createOrder', async (data, { rejectW
   }
 });
 
-const updateOrder = createAsyncThunk('order/updateOrder', async ({id, data}, { rejectWithValue }) => {
-
+const updateOrder = createAsyncThunk('order/updateOrder', async ({ id, data }, { rejectWithValue }) => {
   try {
     const response = await fetch(`${baseURL}order_details/${id}`, {
       method: 'PATCH',

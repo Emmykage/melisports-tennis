@@ -39,25 +39,23 @@ const loginUser = createAsyncThunk('user/logUser', async (data, { rejectWithValu
     // throw new Error(error);
   }
 });
-const getUser = createAsyncThunk('user/getUser', async (id, {rejectWithValue}) => {
+const getUser = createAsyncThunk('user/getUser', async (id, { rejectWithValue }) => {
   try {
-    
-
-  const response = await fetch(`${baseURL}users/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${fetchToken()}`,
-    },
-  })
-    const result = await response.json()
-    if(!response.ok){
-      return rejectWithValue({messsage: result?.message})
+    const response = await fetch(`${baseURL}users/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${fetchToken()}`,
+      },
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      return rejectWithValue({ messsage: result?.message });
     }
-  return result;
-} catch (error) {
-    return rejectWithValue({message: "Something went wrong"})
-}
+    return result;
+  } catch (error) {
+    return rejectWithValue({ message: 'Something went wrong' });
+  }
 });
 
 const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithValue }) => {
@@ -104,50 +102,44 @@ const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithV
   }
 });
 
-const getUsers = createAsyncThunk('users/getusers', async (_, {rejectWithValue}) => {
+const getUsers = createAsyncThunk('users/getusers', async (_, { rejectWithValue }) => {
   try {
-    
+    const response = await fetch(`${baseURL}users`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${fetchToken()}`,
+      },
+    });
 
-  const response = await fetch(`${baseURL}users`, {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${fetchToken()}`,
-    },
-  })
-  
-  const result = await response.json()
-  if(!response.ok){
-    return rejectWithValue({message: result.message})
+    const result = await response.json();
+    if (!response.ok) {
+      return rejectWithValue({ message: result.message });
+    }
+    return result;
+  } catch (error) {
+    return rejectWithValue({ message: 'Something went wrong' });
   }
-  return result;
-} catch (error) {
-  return rejectWithValue({message: "Something went wrong"})
-
-}
 });
 
-const delUsers = createAsyncThunk('users/del_users', async (id, {rejectWithValue}) => {
-
-  try{
+const delUsers = createAsyncThunk('users/del_users', async (id, { rejectWithValue }) => {
+  try {
     const response = await fetch(`${baseURL}users/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${fetchToken()}`,
       },
-    })
+    });
 
-    const result = await response.json()
-    if(!response.ok){
-      return rejectWithValue({message: result.message})
+    const result = await response.json();
+    if (!response.ok) {
+      return rejectWithValue({ message: result.message });
     }
     return result;
-  }catch(error){
-    return rejectWithValue({message: "response.error"})
-
+  } catch (error) {
+    return rejectWithValue({ message: 'response.error' });
   }
-
 });
 
 const updateUser = createAsyncThunk('users/update_user', async ({ id, user }, { rejectWithValue }) => {
