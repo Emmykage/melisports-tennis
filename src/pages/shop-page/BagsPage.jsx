@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
@@ -61,7 +61,7 @@ const BagsPage = () => {
     });
   };
 
-  const handleFilteredLevels = (e) => {
+  const handleFilteredActivities = (e) => {
     const { value, checked } = e.target;
 
     if (checked) {

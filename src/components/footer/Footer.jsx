@@ -59,7 +59,8 @@ const Footer = () => (
       <div>
         <h4 className="text-xl text-light tracking-wide font-normal"> CONTACT US</h4>
         <p>
-          Phone: +234-7064334160
+          <a href="tel:+2347038723093">Phone: +234-703 872 3093
+          </a>
           {' '}
           <br />
           Mon-Friday 9am - 5pm WAT
@@ -68,8 +69,6 @@ const Footer = () => (
           <a href="mailto:info@melisports.com"> info@melisports.com </a>
 
           {' '}
-          <br />
-          Gift Cards
         </p>
 
       </div>

@@ -139,10 +139,6 @@ nav .logo a {
   position: relative;
 }
 
-.cart-icon {
-  font-size: 1.6rem !important;
-  color: var(--color-theme-variant);
-}
 
 .cart span {
   position: absolute;

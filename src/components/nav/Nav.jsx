@@ -45,7 +45,7 @@ const Nav = () => {
 
   return (
     <>
-      <nav>
+      <nav className='bg-gray-300'>
 
         <div className={`${stickyNav} navbar`}>
           <div className="mobile-menu-div">
@@ -233,7 +233,9 @@ const Nav = () => {
               </ul>
             </div>
             <div className="flex  gap-3 justify-between items-center py-2.5">
-
+            <NavLink to="/">
+                <MdHome className="menu-icon text-theme-alt text-4xl" />
+              </NavLink>
               <div className=" items-center text-black mobile-display hidden lg:flex font-medium">
                 {!user ? (
                   <NavLink to="/auth/login">
@@ -253,15 +255,13 @@ const Nav = () => {
                 ) }
 
               </div>
-              <NavLink to="/">
-                <MdHome className="menu-icon cart-icon" />
-              </NavLink>
+          
 
               <div className="menu-div cart">
 
                 <NavLink to="/carts">
 
-                  <BsCartDash className="menu-icon cart-icon" />
+                  <BsCartDash className="menu-icon text-3xl cart-icon text-theme-alt" />
                   <span className="total-amount text-white bold">{counter}</span>
 
                 </NavLink>

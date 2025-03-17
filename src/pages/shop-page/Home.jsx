@@ -64,7 +64,7 @@ const ShopHome = () => {
       </section>
       <section className="px-4 py-10 bg-white/90 my-10">
         <div className="max-w-7xl m-auto feature">
-          <h3 className="text-3xl text-center my-4">Sports</h3>
+          <h3 className="text-3xl text-center my-4">Products </h3>
           <ProductSlider products={products} views={4} />
 
         </div>

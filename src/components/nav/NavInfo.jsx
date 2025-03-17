@@ -93,18 +93,18 @@ const NavInfo = () => {
 
               <div className="font-medium flex items-center gap-3 mobile-display lg:text-dark text-dark lg:font-semibold lg:text-base">
                 {user ? <a onClick={handleLogOut}>Log Out</a> : <NavLink to="/auth/login">Login</NavLink> }
-                <span className="text-dark"><FiUser className="menu-icon user-icon text-xl" /></span>
+                {/* <span className="text-dark"><FiUser className="menu-icon user-icon text-xl" /></span> */}
 
               </div>
               <NavLink to="/store">
                 {/* <NavLink to="/"> */}
-                <AiOutlineShopping className="menu-icon cart-icon" />
+                <AiOutlineShopping className="menu-icon text-theme-alt text-3xl" />
               </NavLink>
 
               <div className="menu-div cart">
                 <NavLink to="/carts">
 
-                  <BsCartDash className="menu-icon cart-icon" />
+                  <BsCartDash className="menu-icon text-3xl text-theme-alt cart-icon" />
                   <span className="total-amount text-white bold">{counter}</span>
 
                 </NavLink>
