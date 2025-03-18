@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
-import { FiUser, FiMenu } from 'react-icons/fi';
+import { FiUser, FiMenu, FiPauseCircle } from 'react-icons/fi';
 import './nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -15,6 +15,9 @@ import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
 import { userProfile } from '../../redux/actions/auth';
 import ToolTip from '../tool-tip/ToolTip';
+import { Login, LoginOutlined } from '@mui/icons-material';
+
+import ButtonSession from './components/ButtonSession';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -23,6 +26,7 @@ const Nav = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [toggleNav, setToggleNav] = useState(false);
+
 
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
@@ -236,27 +240,6 @@ const Nav = () => {
             <NavLink to="/">
                 <MdHome className="menu-icon text-theme-alt text-4xl" />
               </NavLink>
-              <div className=" items-center text-black mobile-display hidden lg:flex font-medium">
-                {!user ? (
-                  <NavLink to="/auth/login">
-                    LOGIN
-                    {/* <><TbLogin2 className="text-2xl" /></> */}
-                  </NavLink>
-                ) : (
-                  <a onClick={handleLogOut}>
-                    {' '}
-                    <>
-                      LOGOUT
-                      {/* <TbLogout2 className="text-2xl" /> */}
-                      {' '}
-                    </>
-                    {' '}
-                  </a>
-                ) }
-
-              </div>
-          
-
               <div className="menu-div cart">
 
                 <NavLink to="/carts">
@@ -266,6 +249,24 @@ const Nav = () => {
 
                 </NavLink>
               </div>
+              <div className=" items-center text-black mobile-display hidden lg:flex font-medium">
+               
+                  <>
+                  <ButtonSession user={user} handleLogOut={handleLogOut}/>
+                 
+
+      
+                  
+                  </>
+                    
+                    
+                
+              
+
+              </div>
+          
+
+              
             </div>
           </div>
 

@@ -147,5 +147,5 @@ export default function Login() {
       </ThemeProvider>
     );
   }
-  navigation(location.state?.from || '/');
+  navigation(location.state?.from || '/store');
 }

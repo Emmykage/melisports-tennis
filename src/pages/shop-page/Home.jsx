@@ -23,6 +23,7 @@ import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import Reviews from '../../components/reviews/Reviews';
 import Nav from '../../components/nav/Nav';
+import { getProducts } from '../../redux/actions/product';
 
 const ShopHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -30,8 +31,12 @@ const ShopHome = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeList());
-    dispatch(getSportCategories);
+    dispatch(getSportCategories());
+    dispatch(getProducts())
   }, []);
+
+
+  console.log(products)
   return (
     <>
       <Nav />
@@ -102,7 +107,7 @@ const ShopHome = () => {
           <NavLink className="hover:text-primary" to="/arrivals"> New Arrival</NavLink>
         </h3>
         <div className="m-auto max-w-7xl my-6 bg-white p-4 md:p-10 border rounded shadow-sm">
-          {latestArrival.length > 0 ? <ProductSlider products={latestArrival} views={4} /> : <> New Arrivals will be updated Soon</> }
+          {latestArrival.length > 0 ? <ProductSlider products={latestArrival} views={4} /> : <span className='text-xl block font-medium text-center'> New Arrivals will be updated Soon</span> }
 
         </div>
       </section>

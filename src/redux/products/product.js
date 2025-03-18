@@ -95,7 +95,7 @@ const productsSlice = createSlice({
     },
 
     filterSports: (state, action) => {
-      const filterSports = state.products.filter((item) => action.payload.some((sport) => item.sport_category.name.toLowerCase() === sport));
+      const filterSports = state.products.filter((item) => action.payload.some((sport) => item.sport_category?.name.toLowerCase() === sport));
       return {
         ...state,
         products: filterSports,

@@ -12,6 +12,7 @@ import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { userProfile } from '../../redux/actions/auth';
 import { fetchToken, removeToken } from '../../hooks/localStorage';
+import ButtonSession from './components/ButtonSession';
 
 const NavInfo = () => {
   const navigate = useNavigate();
@@ -88,14 +89,7 @@ const NavInfo = () => {
             </div>
             <div className="flex justify-between items-center py-2.5">
               <a href="#survey" className="bg-gray-60 py-1 rounded px-3  lg:text-dark lg:font-semibold lg:text-base text-base font-medium hidden md:block"> Survey</a>
-
-              {/* <div className="flex justify-between items-center"> */}
-
-              <div className="font-medium flex items-center gap-3 mobile-display lg:text-dark text-dark lg:font-semibold lg:text-base">
-                {user ? <a onClick={handleLogOut}>Log Out</a> : <NavLink to="/auth/login">Login</NavLink> }
-                {/* <span className="text-dark"><FiUser className="menu-icon user-icon text-xl" /></span> */}
-
-              </div>
+             
               <NavLink to="/store">
                 {/* <NavLink to="/"> */}
                 <AiOutlineShopping className="menu-icon text-theme-alt text-3xl" />
@@ -109,6 +103,14 @@ const NavInfo = () => {
 
                 </NavLink>
               </div>
+              <>
+                  <ButtonSession user={user} handleLogOut={handleLogOut}/>
+                 
+
+      
+                  
+                  </>
+                    
             </div>
             {/* </div> */}
           </div>
