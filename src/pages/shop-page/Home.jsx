@@ -35,8 +35,6 @@ const ShopHome = () => {
     dispatch(getProducts())
   }, []);
 
-
-  console.log(products)
   return (
     <>
       <Nav />

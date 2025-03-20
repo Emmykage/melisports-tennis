@@ -7,7 +7,7 @@ import Apparels from '../components/catalogue/Apparels';
 import BagsCatalogue from '../components/catalogue/Bags';
 import ShoesCatalogue from '../components/catalogue/Shoes';
 import Accessories from '../components/catalogue/Accessories';
-import bannerImage from '../assets/images/banner/Banner_racquets.webp';
+import bannerImage from '../assets/images/banner/racquet-banner.jpg';
 import NavInfo from '../components/nav/NavInfo';
 
 const Services = () => {

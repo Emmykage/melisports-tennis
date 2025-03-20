@@ -22,4 +22,5 @@ export const classLevels = [{
  export const classSports = [
     { type: 'tennis', label: 'Tennis' },
     { type: 'badminton', label: 'Badminton' },
+    { type: 'padel', label: 'Padel' },
   ];

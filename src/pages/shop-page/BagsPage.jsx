@@ -121,10 +121,10 @@ const BagsPage = () => {
 
       <div className="prod-page">
         <div className="cat-group justify-between max-w-md my-6">
-          <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
+        <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
+        <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
           <button className="btn" onClick={() => handleFilteredProducts('duffle')}> Duffle</button>
           <button className="btn" onClick={() => handleFilteredProducts('racket holder')}> Racket holder</button>
-          <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
 
         </div>
 

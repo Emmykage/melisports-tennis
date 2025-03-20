@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import Hero from '../components/banner/Hero';
-import bannerImage from '../assets/images/banner/Banner_racquets.webp';
-import Products from '../components/products/ProductsGridDisplay';
-import SideNav from '../components/sideNav/SideNav';
+
 import { getProductCategories } from '../redux/actions/product_category';
 import { getProducts } from '../redux/actions/product';
 

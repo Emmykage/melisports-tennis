@@ -61,11 +61,11 @@ const AccessoriesPage = () => {
       <Hero image={bannerImage} title="Accessories" />
 
       <div className="prod-page">
-        <div className="cat-group justify-between max-w-md my-6">
-          <button className="btn" onClick={() => handleFilteredProducts('racquet')}> Racket Accessories</button>
+        <div className="cat-group gap-6 max-w-3xl my-6">
+        <button className="btn" onClick={() => dispatch(getProducts())}>All Accessories</button>
+        <button className="btn" onClick={() => handleFilteredProducts('racquet')}> Racket Accessories</button>
           <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Court Accessories</button>
           <button className="btn" onClick={() => handleFilteredProducts('boost')}> Fan Accessories</button>
-          <button className="btn" onClick={() => dispatch(getProducts())}>All Accessories</button>
 
         </div>
 

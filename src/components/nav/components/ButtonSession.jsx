@@ -62,6 +62,15 @@ const ButtonSession = ({
     <div>
         <Button
           ref={anchorRef}
+          variant='text'
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minWidth: "10px",
+            marginLeft: "0px",
+            padding: "0px"
+          }}
           id="composition-button"
           aria-controls={open ? 'composition-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}

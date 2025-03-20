@@ -9,6 +9,7 @@ import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Nav from '../../components/nav/Nav';
+import { classSports } from './categories';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -35,10 +36,7 @@ const ApparelsPage = () => {
     label: 'Women',
   }];
 
-  const sportItems = [
-    { type: 'tennis', label: 'Tennis' },
-    { type: 'badminton', label: 'Badminton' },
-  ];
+
   const handleGenderFilter = (e) => {
     const { checked, value } = e.target;
     if (checked) {
@@ -89,11 +87,12 @@ const ApparelsPage = () => {
 
         <Hero image={imageBanner} title="Apparels" />
         <div className="prod-page">
-          <div className="cat-group justify-between max-w-md my-6">
+          <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
+          <button className="btn" onClick={() => dispatch(getProducts())}>All Apparels</button>
+
             <button className="btn" onClick={() => handleFilteredProducts('men')}> Men</button>
             <button className="btn" onClick={() => handleFilteredProducts('women')}> Women</button>
             <button className="btn" onClick={() => handleFilteredProducts('kids')}> Kids</button>
-            <button className="btn" onClick={() => dispatch(getProducts())}>All Apparels</button>
 
           </div>
 
@@ -106,7 +105,7 @@ const ApparelsPage = () => {
               <div />
               <div className="side-row">
 
-                {sportItems.map((item) => (
+                {classSports.map((item) => (
                   <div className="mb-2 flex items-center">
                     <input
                       type="checkbox"
