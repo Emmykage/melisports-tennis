@@ -242,14 +242,7 @@ const BagsPage = () => {
 
               </div>
 
-              <span className="items-center flex">
-                <input type="checkbox" id="advanced" value="advanced" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
-
-                <label htmlFor="advanced" style={{ fontSize: '1rem' }}>
-                  Advanced
-                </label>
-
-              </span>
+              
 
             </div>
             <div className="side-row">

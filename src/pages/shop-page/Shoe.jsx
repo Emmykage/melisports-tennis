@@ -125,10 +125,11 @@ const ShoesPage = () => {
 
       <div className="prod-page">
         <div className="cat-group gap-6  max-w-md my-6">
+          <button className="btn" onClick={() => dispatch(getProducts({ category: 'shoe'}))}>All shoes</button>
+
           <button className="btn" onClick={() => handleFilteredProducts('pure aero')}> Men</button>
           <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Women</button>
           <button className="btn" onClick={() => handleFilteredProducts('boost')}> Kids</button>
-          {/* <button className="btn" onClick={() => dispatch(getProducts())}>All shoes</button> */}
 
         </div>
         <div className="flex md:gap-10">
@@ -174,22 +175,7 @@ const ShoesPage = () => {
              
 
             </div>
-            <div className="side-row">
-              <h6>Skill level</h6>
-
-              {classLevels.map(item => (
-                <span className="flex items-center">
-                <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
-                  <input type="checkbox" id={item.level} value={item.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
-                  {item.label}
-                </label>
-              </span>
-              ))}
-              
-
-             
-
-            </div>
+            
             <div className="side-row">
               <h6>Brand</h6>
               <div className="flex items-center">
