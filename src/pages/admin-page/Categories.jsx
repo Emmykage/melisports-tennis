@@ -72,7 +72,7 @@ const Categories = () => {
                   <tr key={category.id}>
                     <td className="whitespace-nowrap border-b border-gray-200 hidden px-3 py-4 text-sm text-gray-900 font-normal sm:table-cell">{category.name}</td>
                     <td className="whitespace-nowrap border-b border-gray-200 hidden px-3 py-4 text-sm text-gray-900 font-normal sm:table-cell capitalize">
-                      {category.description.substring(0, 103)}
+                      {category?.description?.substring(0, 103)}
                       ...
                     </td>
                     <td className="whitespace-nowrap border-b border-gray-200 hidden px-3 py-4 text-sm text-gray-900 font-normal sm:table-cell capitalize"><a className="btn py-1 px-4 text-sm" onClick={() => handleDelete(category.id)}>del</a></td>

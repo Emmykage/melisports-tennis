@@ -266,7 +266,7 @@ const BagsPage = () => {
               <div className="product-details">
                 <h3> BABOLAT TENNIS BAGS BRANDS</h3>
                 <p>
-                  {category.description}
+                  {category?.description}
                 </p>
 
               </div>

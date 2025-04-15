@@ -27,7 +27,7 @@ const Nav = () => {
   const dispatch = useDispatch();
   const [toggleNav, setToggleNav] = useState(false);
 
-
+console.log(user)
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
       setStickyNav('sticky-nav');
@@ -86,25 +86,29 @@ const Nav = () => {
                     <ul className="border-b lg:border-none">
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="/racquets">  Tennis Rackets </NavLink>
+                        <p>  Tennis Rackets </p>
                       </h4>
-                      <li className="pl-3 p-0 text-sm lg:text-dark font-semibold"><NavLink to="/racquets">Babolat</NavLink></li>
+                      <li className="pl-3 p-0 text-sm lg:text-dark font-semibold">
+                        <NavLink to="/racquets">Babolat</NavLink></li>
 
                     </ul>
                     <ul className="border-b lg:border-none">
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="/padels">  Padel Rackets </NavLink>
+                        <p>  Padel Rackets </p>
 
                       </h4>
-                      <li className="pl-3 p-0 text-sm lg:text-dark font-semibold"><NavLink to="/padels">Babolat</NavLink></li>
+                      <li className="pl-3 p-0 text-sm lg:text-dark font-semibold">
+                        <NavLink to="/padels">Babolat</NavLink>
+                        </li>
 
                     </ul>
                     <ul className="border-">
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="/badminton">  Badminton Rackets </NavLink>
+                        <p to="/badminton">  Badminton Rackets </p>
                       </h4>
-                      <li className="pl-3 p-0 lg:text-dark font-semibold"><NavLink to="/badminton">Babolat</NavLink></li>
+                      <li className="pl-3 p-0 lg:text-dark font-semibold">
+                        <NavLink to="/badminton">Babolat</NavLink></li>
 
                     </ul>
                   </div>
@@ -120,17 +124,19 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black ">
-                        <NavLink to="#">  Tennis Men's Apparels </NavLink>
+                        <p to="#">  Tennis Men's Apparels </p>
                       </h4>
-                      <li className="pl-3 p-0 lg:text-dark font-semibold"><a href="#">Babolat</a></li>
+                      <li className="pl-3 p-0 lg:text-dark font-semibold">
+                        <NavLink href="/apparels?type=men&brand=babolat">Babolat</NavLink></li>
                     </ul>
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="#">   Tennis Women's Apparel </NavLink>
+                        <p>   Tennis Women's Apparel </p>
 
                       </h4>
-                      <li><a href="#" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</a></li>
+                      <li>
+                        <NavLink to="/apparels?type=women&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
 
                     </ul>
                   </div>
@@ -144,17 +150,17 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="#">   Men's Shoes </NavLink>
+                        <p>   Men's Shoes </p>
                       </h4>
-                      <li><a href="#" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</a></li>
+                      <li><NavLink to="/shoes?type=men&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
 
                     </ul>
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="#">   Women's Shoes </NavLink>
+                        <p>   Women's Shoes </p>
                       </h4>
-                      <li><a href="/" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</a></li>
+                      <li><NavLink to="/shoes?type=women&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
 
                     </ul>
                   </div>
@@ -173,17 +179,17 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="#">  Racket Holder</NavLink>
+                        <p>  Racket Holder</p>
                       </h4>
-                      <li><a href="#" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</a></li>
+                      <li><NavLink to="/bags?type=babolat&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
 
                     </ul>
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="#">  Backpacks</NavLink>
+                        <p>  Backpacks</p>
                       </h4>
-                      <li><a href="/" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</a></li>
+                      <li><NavLink href="/bags?type=backpack" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
 
                     </ul>
                   </div>
@@ -202,16 +208,16 @@ const Nav = () => {
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="#"> Sports Accessories </NavLink>
+                        <p> Sports Accessories </p>
                       </h4>
-                      <li><a href="#" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</a></li>
+                      <li><NavLink to="/accessories?type=sports" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
                     </ul>
                     <ul>
 
                       <h4 className="text-base font-semibold lg:text-black">
-                        <NavLink to="#"> Courts Accessories </NavLink>
+                        <p> Courts Accessories </p>
                       </h4>
-                      <li><a href="/" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</a></li>
+                      <li><NavLink to="/accessories?type=court" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
                     </ul>
                   </div>
                 </li>
@@ -220,7 +226,7 @@ const Nav = () => {
 
                 </li>
 
-                {!user && ((user?.role == 'admin' || user?.role == 'super-admin') && (
+                {user && ((user?.role === 'admin' || user?.role === 'super-admin') && (
                 <li className="nav-item lg:text-gray-800 lg:font-semibold lg:text-base">
                   <NavLink to="/admin">    go to admin </NavLink>
                   {' '}

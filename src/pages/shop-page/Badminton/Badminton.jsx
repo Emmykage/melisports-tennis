@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../../components/banner/Hero';
 import { getProducts } from '../../../redux/actions/product';
@@ -11,6 +11,7 @@ import bannerImage from '../../../assets/images/banner/best-badminton-background
 import Loader from '../../Loader';
 import ProductFilter from '../../../components/products/ProductFilter';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
+import Nav from '../../../components/nav/Nav';
 
 const levels = [{
   label: 'Beginner',
@@ -111,6 +112,9 @@ const BadmintonsPage = () => {
   }, []);
   return (
     <div className="product-container">
+            <Nav
+             />
+
       <Hero image={bannerImage} title="Badminton" />
 
       <div className="prod-page">

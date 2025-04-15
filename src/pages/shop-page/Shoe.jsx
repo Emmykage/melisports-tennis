@@ -201,7 +201,7 @@ const ShoesPage = () => {
                 <h3> BABOLAT TENNIS SHOES</h3>
                 <p>
 
-                  { category.description}
+                  { category?.description}
                 </p>
 
               </div>

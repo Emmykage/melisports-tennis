@@ -131,7 +131,7 @@ const ProductDetails = () => {
               <div className="flex gap-1 flex-wrap my-2">
                 {' '}
 
-                {product?.product_inventories.length > 0 && (
+                {product?.product_inventories?.length > 0 && (
                 <div className="headsize my-3">
                   <span className="text-gray-600 text-xl font-semibold block">
                     {product?.product_category?.name == 'racquet' ? 'Grip Size' : 'Size'}

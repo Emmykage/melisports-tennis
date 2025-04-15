@@ -199,7 +199,7 @@ const ApparelsPage = () => {
                   <h3> BABOLAT TENNIS APPARELS BRANDS</h3>
                   <p>
 
-                    {category.description}
+                    {category?.description}
                   </p>
 
                 </div>
