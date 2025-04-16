@@ -13,30 +13,10 @@ import {
   filterActivities, filterFeatures, filterLevels, filterProducts, filterSports,
 } from '../../redux/products/product';
 import Nav from '../../components/nav/Nav';
-import { classSports } from './categories';
+import { classLevels, classSports } from './categories';
 import useFilter from '../../hooks/useFilter';
 
 const ProductsPage = () => {
-  const levels = [{
-    label: 'Beginner',
-    level: 'beginner',
-  },
-  {
-    label: 'Professional',
-
-    level: 'professional',
-  },
-  {
-    label: 'Intermediate',
-
-    level: 'intermediate',
-  },
-  {
-    label: 'Junior',
-
-    level: 'junior',
-  }];
-
   const featureItems = [
     { type: 'control', label: 'Control' },
     { type: 'power', label: 'Power' },
@@ -148,7 +128,7 @@ const ProductsPage = () => {
             </div>
             <div className="side-row">
               <h6>Skill level</h6>
-              {levels.map((level) => (
+              {classLevels.map((level) => (
                 <span className="flex items-center mb-2">
                   <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
 

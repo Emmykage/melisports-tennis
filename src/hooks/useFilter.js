@@ -99,7 +99,7 @@ const useFilter = ({
 
         
         useEffect(() => {
-            if (selectedCapacities.length > 0) { // Only filter if there's a selection
+            if (selectedCapacities?.length > 0) { // Only filter if there's a selection
             dispatch(getProducts({
                 
                 category: productCategory
