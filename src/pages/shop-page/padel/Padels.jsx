@@ -47,6 +47,8 @@ const Padels = () => {
   const { padelRacquets, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
+
+  console.log("padel rauets", padelRacquets)
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeature, setSelectedFeatures] = useState([]);
@@ -86,6 +88,10 @@ const Padels = () => {
   };
 
   useEffect(() => {
+    dispatch(getProducts())
+  },[])
+
+  useEffect(() => {
     if (selectedSports.length > 0) { // Only filter if there's a selection
       dispatch(getProducts()).then(() => {
         dispatch(filterSports(selectedSports));
@@ -116,7 +122,6 @@ const Padels = () => {
   return (
     <div className="product-container">
       <Nav />
-
       <Hero image={bannerImage} title="Padel" />
 
       <div className="prod-page">

@@ -105,6 +105,7 @@ const BadmintonsPage = () => {
     const { checked, value } = e.target;
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
+ 
 
   useEffect(() => {
     dispatch(closeList());
@@ -117,14 +118,14 @@ const BadmintonsPage = () => {
 
       <Hero image={bannerImage} title="Badminton" />
 
-      <div className="prod-page">
-        <div className="cat-group justify-between max-w-md my-6">
+      <div className="prod-page py-10 px-4">
+        {/* <div className="cat-group justify-between max-w-md my-6">
           <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
           <a className="btn" onClick={() => dispatch(getProducts())}>All Rackets</a>
 
-        </div>
+        </div> */}
 
         <div className="flex md:gap-10">
 
@@ -134,7 +135,7 @@ const BadmintonsPage = () => {
 
             </div>
             <div />
-            <div className="side-row">
+            {/* <div className="side-row">
               {sportItems.map((item) => (
                 <div className="flex  items-center mb-2">
                   <input type="checkbox" checked={selectedSports.includes(item.type)} id={item.type} onChange={handleSportFilter} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
@@ -148,7 +149,7 @@ const BadmintonsPage = () => {
                 </div>
               ))}
 
-            </div>
+            </div> */}
             <div className="side-row">
               <h6>Racket Type</h6>
 

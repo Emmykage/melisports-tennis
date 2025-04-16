@@ -10,6 +10,7 @@ import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Nav from '../../components/nav/Nav';
 import { classSports } from './categories';
+import useFilter from '../../hooks/useFilter';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,13 @@ const ApparelsPage = () => {
   const [selectedGenders, setSelectedGenders] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
 
+
+  useFilter({
+    productCategory: "racquet",
+    selectedSports,
+    selectedLevels,
+    selectedFeatures
+  })
   const category = product_categories?.find((cat) => cat.name === 'apparel');
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.loLowerCase();

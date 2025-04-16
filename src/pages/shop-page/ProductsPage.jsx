@@ -14,6 +14,7 @@ import {
 } from '../../redux/products/product';
 import Nav from '../../components/nav/Nav';
 import { classSports } from './categories';
+import useFilter from '../../hooks/useFilter';
 
 const ProductsPage = () => {
   const levels = [{
@@ -48,12 +49,17 @@ const ProductsPage = () => {
   const location = useLocation();
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
-  const [selectedFeature, setSelectedFeatures] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
-
+  useFilter({
+    productCategory: "racquet",
+    selectedSports,
+    selectedLevels,
+    selectedFeatures
+  })
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
 
@@ -72,28 +78,7 @@ const ProductsPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (selectedSports.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterSports(selectedSports));
-      });
-    }
-  }, [selectedSports, dispatch]);
-  useEffect(() => {
-    if (selectedLevels.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterLevels(selectedLevels));
-      });
-    }
-  }, [selectedLevels, dispatch]);
-
-  useEffect(() => {
-    if (selectedFeature.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(selectedFeature));
-      });
-    }
-  }, [selectedFeature, dispatch]);
+ 
   const handleFilteredFeatures = (e) => {
     const { checked, value } = e.target;
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
@@ -108,15 +93,7 @@ const ProductsPage = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(closeList());
-    dispatch(getProducts({ category: 'racquet' }));
-
-    dispatch(getProductCategories());
-  }, []);
-
-  console.log(products)
-  return (
+    return (
     <div className="product-container">
       <Nav />
 

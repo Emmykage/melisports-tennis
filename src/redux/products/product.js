@@ -112,7 +112,7 @@ const productsSlice = createSlice({
       };
     },
     filterLevels: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       const filts = state.products.filter((item) => action.payload.some((level) => item.level?.stage.toLowerCase() === level));
 
       return {
