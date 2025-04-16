@@ -9,7 +9,7 @@ import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Nav from '../../components/nav/Nav';
-import { classSports } from './categories';
+import { classSports, genderItems } from './categories';
 import useFilter from '../../hooks/useFilter';
 
 const ApparelsPage = () => {
@@ -21,28 +21,21 @@ const ApparelsPage = () => {
 
 
   useFilter({
-    productCategory: "racquet",
+    productCategory: "apparel",
     selectedSports,
-    selectedLevels,
-    selectedFeatures
+    selectedGenders
   })
   const category = product_categories?.find((cat) => cat.name === 'apparel');
   const handleFilteredProducts = (seive) => {
-    const lowerCaseSieve = seive.loLowerCase();
+    console.log(seive)
+    const lowerCaseSieve = seive.toLowerCase();
 
     dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
+      console.log([lowerCaseSieve])
+      dispatch(filterGenders([lowerCaseSieve]));
     });
   };
 
-  const genderItems = [{
-    type: 'men',
-    label: 'Men',
-  },
-  {
-    type: 'women',
-    label: 'Women',
-  }];
 
 
   const handleGenderFilter = (e) => {
@@ -62,21 +55,9 @@ const ApparelsPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (selectedGenders.length > 0) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterGender(selectedGenders));
-      });
-    }
-  }, [selectedGenders]);
+  
 
-  useEffect(() => {
-    if (selectedSports.length > 0) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterSports(selectedSports));
-      });
-    }
-  }, [selectedSports]);
+ 
 
   useEffect(() => {
     dispatch(closeList());

@@ -24,3 +24,14 @@ export const classLevels = [{
     { type: 'badminton', label: 'Badminton' },
     { type: 'padel', label: 'Padel' },
   ];
+
+
+  
+  export const genderItems = [{
+    type: 'men',
+    label: 'Men',
+  },
+  {
+    type: 'women',
+    label: 'Women',
+  }];

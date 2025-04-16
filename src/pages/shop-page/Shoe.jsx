@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../components/banner/Hero';
-import SideNav from '../../components/sideNav/SideNav';
 import { getProducts } from '../../redux/actions/product';
 import bannerImage from '../../assets/images/banner/2023-01_BAB_Banner_70_pourcents_Propulse_Fury_1365x510px-2.avif';
 import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Loader from '../Loader';
-import { filterFeatures, filterProducts, filterSports } from '../../redux/products/product';
+import { filterCapacity, filterFeatures, filterGenders, filterProducts, filterSports } from '../../redux/products/product';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
-import { classLevels, classSports } from './categories';
+import { classSports } from './categories';
+import useFilter from '../../hooks/useFilter';
 
 const itemsFeatures = [{
   type: "clay",
@@ -27,37 +27,42 @@ const itemsFeatures = [{
 const ShoesPage = () => {
   const dispatch = useDispatch();
 
-  const [selectedFeatures, setSelectedFeatures] = useState([])
+  const [selectedCapacities, setSelectedCapacities] = useState([])
   const [selectedLevels, setSelectedLevels] = useState([])
     const [selectedSports, setSelectedSports] = useState([]);
   
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'shoe');
-
+  useFilter({
+    productCategory: "shoe",
+    selectedSports,
+    selectedLevels,
+    selectedCapacities
+  })
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
     dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
+      dispatch(filterGenders([lowerCaseSieve]));
     });
   };
 
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
+      dispatch(getProducts({
+        category: "shoe"
+      })).then(() => {
         dispatch(filterActivities(e.target.value));
       });
-    } else {
-      dispatch(getProducts());
-    }
+    } 
   };
 
   
 
-  const handleFilteredFeatures = (e) => {
+  const handleFilteredCapacities = (e) => {
     const {checked, value} = e.target
     checked ? 
-     setSelectedFeatures(prev => [...prev, value])  : setSelectedFeatures(prev => prev.filter(item => item !== value))
+     setSelectedCapacities(prev => [...prev, value])  : setSelectedCapacities(prev => prev.filter(item => item !== value))
     
   };
 
@@ -71,51 +76,6 @@ const ShoesPage = () => {
   };
 
 
-    
-
-  const handleFilteredLevels = (e) => {
-    const { value, checked } = e.target;
-
-    if (checked) {
-      setSelectedLevels((prev) => [...prev, value]);
-    } else {
-      setSelectedLevels((prev) => prev.filter((item) => item !== value));
-    }
-  };
-
-  useEffect(()=> {
-    if(selectedFeatures.length > 0){
-
-  
-    dispatch(getProducts({
-      category: 'shoe',
-      sport: 'Tennis',
-    })).then(() => {
-      dispatch(filterFeatures(selectedFeatures));
-    });}
-  },[selectedFeatures])
-  useEffect(() => {
-    if (selectedLevels.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterLevels(selectedLevels));
-      });
-    }
-  }, [selectedLevels, dispatch]);
-  useEffect(() => {
-    if (selectedSports.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterSports(selectedSports));
-      });
-    }
-  }, [selectedSports, dispatch]);
-
-  useEffect(() => {
-    dispatch(closeList());
-    dispatch(getProducts(
-      { category: 'shoe' },
-    ));
-    dispatch(getProductCategories());
-  }, []);
 
   return (
     <div className="product-container">
@@ -127,9 +87,9 @@ const ShoesPage = () => {
         <div className="cat-group gap-6  max-w-md my-6">
           <button className="btn" onClick={() => dispatch(getProducts({ category: 'shoe'}))}>All shoes</button>
 
-          <button className="btn" onClick={() => handleFilteredProducts('pure aero')}> Men</button>
-          <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Women</button>
-          <button className="btn" onClick={() => handleFilteredProducts('boost')}> Kids</button>
+          <button className="btn" onClick={() => handleFilteredProducts('men')}> Men</button>
+          <button className="btn" onClick={() => handleFilteredProducts('women')}> Women</button>
+          <button className="btn" onClick={() => handleFilteredProducts('kids')}> Kids</button>
 
         </div>
         <div className="flex md:gap-10">
@@ -162,9 +122,9 @@ const ShoesPage = () => {
 
               {itemsFeatures.map(item => (
                 <div className="flex items-center">
-                <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
+                <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredCapacities} />
 
-                <label htmlFor="clay" style={{ fontSize: '1rem' }}>
+                <label htmlFor={item.type} style={{ fontSize: '1rem' }}>
                 {item.label}
                 </label>
 

@@ -1,58 +1,32 @@
 import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-// import Banner from '../components/banner/Banner';
 import Hero from '../../components/banner/Hero';
 import { getProducts } from '../../redux/actions/product';
 import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-Bags.jpg';
-import { closeList } from '../../redux/products/searched';
 import Loader from '../Loader';
-import { getProductCategories } from '../../redux/actions/product_category';
-import { filterGender, filterProducts } from '../../redux/products/product';
+import { filterCapacity, filterProducts } from '../../redux/products/product';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
-
-const levels = [{
-  label: 'Beginner',
-  level: 'beginner',
-},
-{
-  label: 'Professional',
-
-  level: 'professional',
-},
-{
-  label: 'Intermediate',
-
-  level: 'intermediate',
-},
-{
-  label: 'Junior',
-
-  level: 'junior',
-}];
-
-const featureItems = [
-  { type: 'control', label: 'Control' },
-  { type: 'power', label: 'Power' },
-  { type: 'spin', label: 'Spin' },
-];
-
-const sportTypes = [
-  { type: 'tennis', label: 'Tennis' },
-  { type: 'badminton', label: 'Badminton' },
-];
+import useFilter from '../../hooks/useFilter';
+import { classSports } from './categories';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
   const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
-  const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedCapacity, setSelectedCapacity] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
-  const [selectedFeature, setSelectedFeatures] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const category = product_categories?.find((cat) => cat.name === 'bag');
+
+  useFilter({
+    productCategory: "bag",
+    selectedSports,
+    selectedFeatures
+  })
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
@@ -65,9 +39,9 @@ const BagsPage = () => {
     const { value, checked } = e.target;
 
     if (checked) {
-      setSelectedLevels((prev) => [...prev, value]);
+      setSelectedCapacity((prev) => [...prev, value]);
     } else {
-      setSelectedLevels((prev) => prev.filter((item) => item !== value));
+      setSelectedCapacity((prev) => prev.filter((item) => item !== value));
     }
   };
   const handleFilteredFeatures = (e) => {
@@ -84,35 +58,18 @@ const BagsPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (selectedSports.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterSports(selectedSports));
-      });
-    }
-  }, [selectedSports, dispatch]);
-  useEffect(() => {
-    if (selectedLevels.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterLevels(selectedLevels));
-      });
-    }
-  }, [selectedLevels, dispatch]);
 
-  useEffect(() => {
-    if (selectedFeature.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(selectedFeature));
-      });
-    }
-  }, [selectedFeature, dispatch]);
+  useEffect(()=> {
+    if(selectedCapacity.length > 0){
 
-  useEffect(() => {
-    dispatch(closeList());
-    dispatch(getProducts({ category: 'bag' }));
-    dispatch(getProductCategories());
-  }, []);
-
+    dispatch(getProducts()).then(result => {
+      if(getProducts.fulfilled.match(result)){
+        dispatch(filterCapacity(selectedCapacity))
+      }
+    })
+  }
+  },[selectedCapacity, dispatch])
+  
   return (
     <div className="product-container">
       <Nav />
@@ -136,30 +93,21 @@ const BagsPage = () => {
             </div>
             <div />
             <div className="side-row">
-              <div className="flex items-center">
-                <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
 
-                  <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              {classSports.map(item => (
+                <div className="flex items-center mb-2">
+                <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
+
+                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  onChange={handleSportFilter} />
                   <span>
-                    Tennis
+                    {item.label}
                   </span>
                 </label>
               </div>
+              ))}
+          
 
-              <div className="flex items-center">
-                <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
-                  <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  Badminton
-                </label>
-              </div>
-
-              <div className="flex items-center">
-                <input type="checkbox" id="padel" value="padel" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="padel" style={{ fontSize: '1rem' }}>
-                  Padel
-                </label>
-              </div>
             </div>
             <div className="side-row">
               <h6>Capacity</h6>

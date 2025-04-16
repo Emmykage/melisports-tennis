@@ -93,6 +93,15 @@ const productsSlice = createSlice({
 
       };
     },
+    filterCapacity: (state, action) => {
+      const filterRaw = state.products.filter(item => action.payload.some(element => item.description?.includes(element) || item.description_body?.includes(element) ) ) 
+      console.log("payload filter processed: ",filterRaw)
+
+      return{
+        ...state,
+        products: filterRaw
+      }
+    },
 
     filterSports: (state, action) => {
       const filterSports = state.products.filter((item) => action.payload.some((sport) => item.sport_category?.name.toLowerCase() === sport));
@@ -103,7 +112,6 @@ const productsSlice = createSlice({
       };
     },
     filterActivities: (state, action) => {
-      console.log(action.payload);
       const filts = state.products.filter((item) => action.payload.some((level) => item.level?.stage.toLowerCase() === level));
 
       return {
@@ -128,6 +136,7 @@ const productsSlice = createSlice({
       };
     },
     filterGenders: (state, action) => {
+      console.log(action.payload)
       const filts = state.products.filter((item) => action.payload.some((gender) => item?.gender?.name.toLowerCase() === gender));
       return {
         ...state,
@@ -153,5 +162,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
+  filterProducts, searchedProducts, filterCapacity, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
 } = productsSlice.actions;
