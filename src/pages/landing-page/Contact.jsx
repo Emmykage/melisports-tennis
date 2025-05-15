@@ -18,7 +18,7 @@ const Contact = () => (
 
     <div className="contact-us ">
 
-      <div className="grid grid-cols-2 gap-1">
+      <div className="grid md:grid-cols-2 gap-1">
 
         <div className="p-3">
           <div className="">

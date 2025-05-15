@@ -130,6 +130,8 @@ const ShopHome = () => {
 
       </div>
 
+
+
       <HomeEquipmentInfo />
       <SurveyButton />
       <Reviews />

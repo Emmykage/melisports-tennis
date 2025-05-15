@@ -358,7 +358,7 @@ a {
 
 .chat-icon {
   position: fixed;
-  right: 0;
+  
   top: 70%;
   z-index: 8;
   padding: 1.5rem;

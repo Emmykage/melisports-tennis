@@ -16,7 +16,7 @@ import ShippingPolicy from './pages/resources/ShippingPolicy';
 import TermsOfServices from './pages/resources/TermsOfServices';
 import PrivacyPolicy from './pages/resources/PrivacyPolicy';
 import Accounts from './pages/resources/Accounts';
-import LoadingPage from './components/feature/LoadingPage';
+
 import ShopHome from './pages/shop-page/Home';
 import Arrivals from './pages/shop-page/Arrivals';
 import NotFound from './pages/NotFound';
@@ -61,6 +61,10 @@ import ImagePreview from './components/products/ImagePreview';
 import Padels from './pages/shop-page/padel/Padels';
 import BadmintonsPage from './pages/shop-page/Badminton/Badminton';
 import SearchPage from './pages/SearchPage';
+import ProfileAccountPage from './pages/ProfilePage';
+import SupportProgram from './pages/landing-page/TennisNGO';
+import EventDetails from './pages/landing-page/EventDetails';
+import EnrollChildForm from './pages/landing-page/SupportDetails';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -76,18 +80,22 @@ function App() {
       <LoaderModal />
 
       <Routes>
-        {/* landing page  */}
+
         <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
         <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
+        <Route path="profile" element={<MainInfoLayout><ProfileAccountPage /></MainInfoLayout>} />
         <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
         <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
         <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
         <Route path="/court-directory" element={<MainLayout><Directory /></MainLayout>} />
+        <Route path="/support-the-program" element={<MainLayout><SupportProgram /></MainLayout>} />
+        <Route path="/enroll-a-child" element={<MainLayout><EnrollChildForm /></MainLayout>} />
+        <Route path="/upcoming-event" element={<MainLayout><EventDetails /></MainLayout>} />
 
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
 
-        {/* store page  */}
+
         <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
         <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />

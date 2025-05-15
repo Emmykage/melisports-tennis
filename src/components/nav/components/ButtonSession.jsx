@@ -110,8 +110,8 @@ const ButtonSession = ({
                       handleLogOut()
                       handleClose(e, "/auth/sign_up")}}>Log Out</MenuItem>} 
                    
-                    {/* <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                   {user &&  <MenuItem onClick={() => navigate("/profile")}>My account</MenuItem>}
+                    {/*  <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

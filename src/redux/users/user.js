@@ -4,6 +4,7 @@ import {
   getUser,
   getUsers,
   updateUser,
+  userProfileUpdate,
 } from '../actions/auth';
 
 const initialState = {
@@ -50,6 +51,24 @@ const usersSlice = createSlice({
     [updateUser.rejected]: (state) => ({
       ...state,
       notice: '',
+      loading: false,
+
+    }),
+    
+    [userProfileUpdate.fulfilled]: (state, action) => ({
+      ...state,
+      user: action.payload,
+      loading: false,
+
+    }),
+    [userProfileUpdate.pending]: (state) => ({
+      ...state,
+       loading: true,
+
+    }),
+    [userProfileUpdate.rejected]: (state) => ({
+      ...state,
+      error: true,
       loading: false,
 
     }),

@@ -21,6 +21,7 @@ import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentI
 import SportDirectory from '../../components/sportDirectory/SportDirectory';
 import Reviews from '../../components/reviews/Reviews';
 import NavInfo from '../../components/nav/NavInfo';
+import SecondarySlider from '../../components/feature/secondary-slider';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -35,7 +36,7 @@ const LandingHome = () => {
 
       <NavInfo />
 
-      <Slider />
+      <SecondarySlider />
       <VideoComp videoAd={videoAdd} />
       <section className="xl:mx-60 py-10">
 
@@ -119,6 +120,8 @@ const LandingHome = () => {
 
       </div>
 
+
+
       <HomeEquipmentInfo />
       <SportDirectory />
       <SurveyButton />
@@ -138,7 +141,7 @@ const LandingHome = () => {
 
         <CommunityBanner />
 
-      </div>
+      </div> 
     </>
   );
 };
