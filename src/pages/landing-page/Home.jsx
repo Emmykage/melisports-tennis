@@ -22,6 +22,9 @@ import SportDirectory from '../../components/sportDirectory/SportDirectory';
 import Reviews from '../../components/reviews/Reviews';
 import NavInfo from '../../components/nav/NavInfo';
 import SecondarySlider from '../../components/feature/secondary-slider';
+import imgKids from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
+import { IoTennisballSharp } from 'react-icons/io5';
+import { FaHandshake, FaSeedling, FaTrophy } from 'react-icons/fa';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -31,6 +34,36 @@ const LandingHome = () => {
     dispatch(closeList());
     dispatch(getSportCategories);
   }, []);
+
+  const ngoText = [
+    {
+      id: 1,
+      icon: <IoTennisballSharp className='text-2xl'/>,
+      title: "Free Tennis Training for Kids",
+      text: "We offer completely free tennis coaching to children aged 6–16, providing access to quality sports development regardless of financial background. Our goal is to make tennis accessible and enjoyable for every child."
+    },
+      {
+      id: 2,
+      icon: <FaHandshake  className='text-2xl'/>,
+
+      title: "Equipment, Coaching & Mentorship",
+      text: "From rackets to professional guidance, we provide all the tools kids need to succeed. Beyond skills on the court, we offer mentorship to help them build confidence, discipline, and a sense of purpose."
+    },
+     {
+      id: 3,
+      icon: <FaTrophy className='text-2xl'/>,
+
+      title: "Exciting Camps & Tournaments",
+      text: "Our annual tennis camps and tournaments give children the chance to apply what they’ve learned in a fun, competitive, and supportive environment. It’s more than just play—it’s about growth, teamwork, and celebration."
+    },
+     {
+      id: 4,
+      icon: <FaSeedling  className='text-2xl'/>,
+
+      title: " Creating Opportunity Through Sport",
+      text: "We’re not just teaching a game—we’re opening doors. Our programme helps children build life skills, develop healthy habits, and connect with positive role models, laying the foundation for a brighter future."
+    }
+  ]
   return (
     <>
 
@@ -119,6 +152,37 @@ const LandingHome = () => {
         </div>
 
       </div>
+
+
+      <section className='px-4 py-20 bg-white'>
+        <div className='max-w-[1400px] md:gap-10 m-auto grid grid-cols-2'>
+
+        <div className='bg-light p-4 rounded-lg'>
+          <h2 className='text-3xl my-4 font-normal'>Serving Futures with Tennis</h2>
+          <p className='text-gray-500 text-lg'>
+            We believe every child deserves the chance to play, grow, and succeed—which is why our tennis programme creates a nurturing space for kids to learn the sport, build confidence, and connect with a supportive community
+          </p>
+          <div className='grid grid-cols-2 gap-4 mt-5'>
+            {ngoText.map((item) => (
+            <div>
+              <span className='bg-gray-900 flex justify-center items-center text-white w-14 h-14 rounded-full'>
+                {item.icon}
+              </span>
+              <h5 className='text-lg my-4 font-semibold text-gray-900'>{item.title}</h5>
+              <p className='text-gray-500 text-sm'>{item.text} </p>
+            </div>
+            ))}
+           
+          </div>
+
+          <DiscoverBtn className={"my-7"} link={"/support-the-program"} btnText='View Details'>Discover Our Programmes</DiscoverBtn>
+        </div>
+        <div className='rounded-2xl overflow-hidden'>
+          <img src={imgKids} alt="kids images" className='w-full h-full object-cover' />
+        </div>
+        </div>
+
+      </section>
 
 
 

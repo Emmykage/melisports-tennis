@@ -11,7 +11,7 @@ import SearchComponent from './SearchComponent';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userLog } from '../../redux/user/user';
 import { userProfile } from '../../redux/actions/auth';
-import { fetchToken, removeToken } from '../../hooks/localStorage';
+import { removeToken } from '../../hooks/localStorage';
 import ButtonSession from './components/ButtonSession';
 
 const NavInfo = () => {

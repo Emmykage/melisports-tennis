@@ -30,7 +30,7 @@ const ChatBox = () => {
     <>
       <div className="chat-icon rounded-3xl right-4 w-20 bg-green-900/90">
 
-        <a href="tel:+2347038723093">
+        <a target='_blank' href="https://wa.me/c/2347038723093">
 
           <img src={whatAppImage} className='w-full '/>
 
