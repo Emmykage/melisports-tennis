@@ -4,7 +4,7 @@ function EventDetails() {
     return (    
             <section className="bg-white pt-10 text-base">
                 <h2 className="text-3xl font-normal mb-4">Summer Tennis Camp & Tournament 2025</h2>
-                <p className="mb-2">📍 <strong>Location:</strong> Lagos</p>
+                <p className="mb-2">📍 <strong>Location:</strong> Enugu</p>
                 <p className="mb-2">📅 <strong>Date:</strong> August 5–10, 2025</p>
                 <p className="mb-4">⏰ <strong>Time:</strong> 9:00 AM – 4:00 PM daily</p>
                 <ul className="list-disc list-inside space-y-1 mb-4">

@@ -165,13 +165,13 @@ export const userProfiledelete = createAsyncThunk('users/USER_PROFILE_UPDATE', a
 
 export const userPasswordUpdate = createAsyncThunk('users/USER_PROFILE_UPDATE', async (userData, { rejectWithValue }) => {
   try {
-    let response = await fetch(`${baseURL}users/user_profile_update`, {
+    let response = await fetch(`${baseURL}users/user_password_update`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${fetchToken()}`,
       },
-      body: JSON.stringify(userData.data)
+      body: JSON.stringify(userData)
     });
 
     let {data, message} = await response.json();

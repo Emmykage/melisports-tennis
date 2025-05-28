@@ -17,7 +17,9 @@ const ProfileAccountPage = () => {
             first_name: "",
             phone_no: "",
             confirm_password: "",
-        password: ""
+            password: "",
+            old_password: "",
+            confirm_password: ""
         
         
     })
@@ -25,7 +27,7 @@ const ProfileAccountPage = () => {
     const navigate  =  useNavigate()
     const {user} = useSelector(state => state.user)
 
-console.log(user)
+
     const handleUserUpdate = () => {
         dispatch(setLoader())
 
@@ -59,20 +61,20 @@ console.log(user)
         dispatch(setLoader())
 
         dispatch(userPasswordUpdate({
-            id: user.id,
-            data: {user: {
-                password: userInfo.password
-            }
-
+        
+           user: {
+                old_password: userInfo.old_password,
+                confirm_password: userInfo.confirm_password,
+                password: userInfo.password,
             }
         })).then(result => {
             if(userPasswordUpdate.fulfilled.match(result)){
                 dispatch(closeLoader())
                 toast("password updated",{ type: "success"})
-
-
             }else{
                 dispatch(closeLoader())
+                toast(result.payload.message, { type: "error"})
+
 
             }
         })
@@ -80,10 +82,12 @@ console.log(user)
 
     useEffect(()=> {
 
-        setUserInfo(user)
+        setUserInfo({...userInfo, ...user})
 
 
     },[user])
+
+    console.log("user info",userInfo)
 
 
     const handleUserDelete = () => {
@@ -108,6 +112,8 @@ console.log(user)
         )
 
     }
+
+    console.log("hey===>", userInfo)
 
   return (
     
@@ -147,15 +153,15 @@ console.log(user)
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Current Password</label>
-            <input type="password" value={"serInfo?.password"} disabled className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
+            <input type="password" value={userInfo?.old_password} onChange={(e)=> setUserInfo({...userInfo, old_password: e.target.value})} className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">New Password</label>
-            <input type="password" onChange={(e)=> setUserInfo({...userInfo, password: e.target.value})} className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
+            <input type="password" value={userInfo?.password} onChange={(e)=> setUserInfo({...userInfo, password: e.target.value})} className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Confirm New Password</label>
-            <input type="password" onChange={(e)=> setUserInfo({...userInfo, confirm_password: e.target.value})} className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
+            <input type="password" value={userInfo?.confirm_password} onChange={(e)=> setUserInfo({...userInfo, confirm_password: e.target.value})} className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
           </div>
         </div>
         <button onClick={handlePasswordUpdate} className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Update Password</button>

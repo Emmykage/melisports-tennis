@@ -155,17 +155,17 @@ const LandingHome = () => {
 
 
       <section className='px-4 py-20 bg-white'>
-        <div className='max-w-[1400px] md:gap-10 m-auto grid grid-cols-2'>
+        <div className='max-w-[1400px] gap-4 md:gap-10 m-auto grid md:grid-cols-2'>
 
         <div className='bg-light p-4 rounded-lg'>
           <h2 className='text-3xl my-4 font-normal'>Serving Futures with Tennis</h2>
           <p className='text-gray-500 text-lg'>
             We believe every child deserves the chance to play, grow, and succeed—which is why our tennis programme creates a nurturing space for kids to learn the sport, build confidence, and connect with a supportive community
           </p>
-          <div className='grid grid-cols-2 gap-4 mt-5'>
+          <div className='grid md:grid-cols-2 gap-4 mt-5'>
             {ngoText.map((item) => (
             <div>
-              <span className='bg-gray-900 flex justify-center items-center text-white w-14 h-14 rounded-full'>
+              <span className='bg-gray-900 flex mx-auto md:mx-0 justify-center items-center text-white w-14 h-14 rounded-full'>
                 {item.icon}
               </span>
               <h5 className='text-lg my-4 font-semibold text-gray-900'>{item.title}</h5>
@@ -175,7 +175,7 @@ const LandingHome = () => {
            
           </div>
 
-          <DiscoverBtn className={"my-7"} link={"/support-the-program"} btnText='View Details'>Discover Our Programmes</DiscoverBtn>
+          <DiscoverBtn className={"my-7"} link={"/support-the-program"} btnText='Learn More'>Discover Our Programmes</DiscoverBtn>
         </div>
         <div className='rounded-2xl overflow-hidden'>
           <img src={imgKids} alt="kids images" className='w-full h-full object-cover' />

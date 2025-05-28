@@ -33,7 +33,7 @@ const SecondarySlider = () => {
         title: "Changing Lives, One Swing at a Time!",
         text: "Our NGO is dedicated to giving underprivileged kids a chance to learn, grow, and thrive through the game of tennis. Join us as we serve hope and opportunity!"
         ,
-        link: "/support-the-program"
+        link: "/support-the-program#support"
       },
        {
         id: 2,
@@ -41,7 +41,7 @@ const SecondarySlider = () => {
         title: "Tennis Enrollment Now Open!",
         text: "We are enrolling kids aged 6–16 into our free tennis training program. Equipment, coaching, and mentorship—all at no cost. Limited slots available!",
         cta: "Apply Now",
-        link: "/enroll-a-child",
+        link: "/support-the-program#enroll",
 
         position: "right"
       },
@@ -51,7 +51,7 @@ const SecondarySlider = () => {
         text: "Don’t miss our exciting youth tennis camp this summer! A week of training, games, and fun for kids enrolled in our program. Be a part of the action!",
         cta: "View Event Details",
         image: photoThree,
-        link: "/upcoming-event"
+        link: "/support-the-program#event"
       }
     ]
   return (

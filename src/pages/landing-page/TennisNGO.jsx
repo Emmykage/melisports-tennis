@@ -22,7 +22,7 @@ function SupportProgram() {
             <div>
               <EventDetails/>
             </div>
-            <div className="p-4">
+            <div className="">
               <img src={imgCamp} alt="" className="h-full rounded-lg" />
 
             </div>
@@ -33,12 +33,12 @@ function SupportProgram() {
 
 
 
-            <section className="md:py-20 px-4 bg- bg-[#fef9f5]">
+            <section id="support" className="md:py-10 px-4 bg- bg-[#fef9f5]">
 
 
             <div className="grid  gap-4 max-w-7xl m-auto md:grid-cols-2 items-center mt-10">
          
-            <div className="p-4">
+            <div className="p-4 h-96">
               <img src={imgCamp2} alt="" className="h-full rounded-lg" />
 
             </div>
@@ -51,7 +51,7 @@ function SupportProgram() {
             
             </section>
 
-            <section className="md:py-20 px-4 bg-gray-50">
+            <section id="enroll" className="md:py-20 px-4 bg-gray-50">
             
             <div className="grid gap-4 max-w-7xl m-auto md:grid-cols-2 items-center mt-10">
               <div>
