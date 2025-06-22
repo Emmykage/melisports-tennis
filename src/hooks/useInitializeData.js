@@ -6,6 +6,8 @@ const useInitializeData = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+
+  console.log("fetch user from hooks",  user)
   useEffect(() => {
     dispatch(userProfile());
   }, []);

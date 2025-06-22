@@ -29,19 +29,19 @@ const ViewCustomer = () => {
     <div className=" w-full">
       <div className="customer-v dash-container">
         <form onSubmit={handleUserUpdate} className="">
-          <div className="flex c-form-row justify-between mt-4">
+          <div className="mt-4">
             <label htmlFor="first_name">First Name</label>
             <input type="text" name="first_name" id="first_name" value={user?.first_name} onChange={(e) => dispatch(updateUserInput(e.target))} />
           </div>
-          <div className="flex c-form-row justify-between my-2">
+          <div className=" my-2">
             <label htmlFor="first_name">Last Name</label>
             <input type="text" name="last_name" id="last_name" value={user?.last_name} onChange={(e) => dispatch(updateUserInput(e.target))} />
           </div>
-          <div className="flex c-form-row justify-between my-2">
+          <div className=" my-2">
             <label htmlFor="email">email</label>
             <input type="text" name="email" id="email" value={user?.email} onChange={(e) => dispatch(updateUserInput(e.target))} />
           </div>
-          <div className="flex c-form-row justify-between">
+          <div className="my-2">
             <label htmlFor="role">Role</label>
             <select name="role" id="" value={user?.role} onChange={(e) => dispatch(updateUserInput(e.target))}>
               <option value="client">Client</option>

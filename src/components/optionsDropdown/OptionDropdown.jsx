@@ -7,6 +7,7 @@ import { HorizontalRuleOutlined, MoreHorizRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 export default function OptionDropdown({
+  item,
   id, link = 'orders', setOpen, handleDel,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,6 +19,7 @@ export default function OptionDropdown({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
 
   return (
     <div>
@@ -42,7 +44,7 @@ export default function OptionDropdown({
       >
         <MenuItem onClick={() => navigate(`/admin/${link}/${id}`)}>Edit</MenuItem>
         <MenuItem onClick={() => navigate(`/admin/${link}/${id}`)}>View</MenuItem>
-        <MenuItem onClick={() => handleDel(id)}>Delete</MenuItem>
+        <MenuItem onClick={() => handleDel(item)}>Delete</MenuItem>
       </Menu>
     </div>
   );

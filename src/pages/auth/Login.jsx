@@ -4,13 +4,11 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import './auth.css';
 import { BsEyeSlash, BsFacebook } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -18,7 +16,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { userLog } from '../../redux/user/user';
-import { updater } from '../../redux/cart/cart';
 import { loginUser } from '../../redux/actions/auth';
 
 function Copyright(props) {
@@ -58,9 +55,13 @@ export default function Login() {
         password: data.get('password'),
       },
     };
-    dispatch(loginUser(formInput));
+    dispatch(loginUser(formInput)).then(result => {
+      if(loginUser.fulfilled.match(result)){
+        navigation(location.state?.from || '/store');
+      }
+    });
   };
-  if (!logged) {
+  // if (!logged) {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -73,7 +74,12 @@ export default function Login() {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/" className="hover:text-blue-600 font-semibold ">Visit Site</NavLink>
+
+
+
+            <NavLink to="/" className="hover:text-blue-600 font-semibold ">
+               <img  className='h-40 text-red-950' src='/logo192.png'/>
+            </NavLink>
 
             <Typography component="h1" variant="h5">
               Login
@@ -147,5 +153,5 @@ export default function Login() {
       </ThemeProvider>
     );
   }
-  navigation(location.state?.from || '/store');
-}
+//   navigation(location.state?.from || '/store');
+// }

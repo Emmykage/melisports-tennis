@@ -96,6 +96,8 @@ const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithV
       }
     }
 
+    console.log("user ====>", result)
+
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

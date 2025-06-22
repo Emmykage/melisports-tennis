@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import { useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, getUsers, updateUser } from '../../../redux/actions/auth';
-import { updateUserInput } from '../../../redux/users/user';
+
 import { getDeliveryFee, updateDeliveryFee } from '../../../redux/actions/delivery_fee';
-import { resetDeliveryFee, updateFeeInput } from '../../../redux/delivery_fee';
 import { toggleAlert } from '../../../redux/app/app';
-// import { updateUserInput } from '../../../redux/user/user'
 
 const ViewDeliveryFee = () => {
   const { deliveryFee, loading } = useSelector((state) => state.deliveryFees);
 
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [feeInput, setFeeInput] = useState({
     state: '',
@@ -20,12 +18,22 @@ const ViewDeliveryFee = () => {
     delivery_fee: '',
   });
 
+
+  useEffect(() => {
+    setFeeInput({
+      state: deliveryFee?.state || '',
+      city: deliveryFee?.city || '',
+      delivery_fee: deliveryFee?.delivery_fee || '',
+
+    })
+  }, [deliveryFee]);
+
   const handleUpdate = (e) => {
     e.preventDefault();
     dispatch(updateDeliveryFee({
       id,
       delivery: {
-        state: deliveryFee.state, city: deliveryFee.city, delivery_fee: deliveryFee.delivery_fee,
+        ...feeInput, // spread the feeInput state
       },
     })).then((result) => {
       if (updateDeliveryFee.fulfilled.match(result)) {
@@ -45,6 +53,7 @@ const ViewDeliveryFee = () => {
             error: false,
           }));
         }, 5000);
+        navigate("/admin/delivery-fee?")
       } else {
         dispatch(getDeliveryFee(id));
         dispatch(toggleAlert({
@@ -54,7 +63,6 @@ const ViewDeliveryFee = () => {
         }));
 
         setTimeout(() => {
-          // resetDeliveryFee();
           dispatch(toggleAlert({
             isOpen: false,
             message: null,
@@ -73,30 +81,45 @@ const ViewDeliveryFee = () => {
     <div className=" w-full">
       <div className="customer-v dash-container">
         <form onSubmit={handleUpdate} className="">
-          <div className="flex c-form-row justify-between mt-4">
-            <label htmlFor="first_name">State</label>
+          <div className="mt-4">
+            <label htmlFor="state">State</label>
             <input
+                        className='block mt-2'
+
               type="text"
               name="state"
               id="state"
-              value={deliveryFee?.state}
-              onChange={(e) => dispatch(updateFeeInput(e.target))}
+              value={feeInput?.state}
+              onChange={(e) => setFeeInput({...feeInput, state: e.target.value})}
             />
           </div>
-          <div className="flex c-form-row justify-between my-2">
-            <label htmlFor="first_name">City</label>
+          <div className="my-2">
+            <label htmlFor="city">City</label>
             <input
+                        className='block mt-2'
+
               type="text"
-              name="last_name"
-              id="last_name"
-              value={deliveryFee?.city}
-              onChange={(e) => dispatch(updateFeeInput(e.target))}
+              name="city"
+              id="city"
+              value={feeInput?.city}
+              onChange={(e) => setFeeInput({...feeInput, city: e.target.value})}
             />
           </div>
-          <div className="flex c-form-row justify-between my-2">
-            <label htmlFor="fee">Fee</label>
-            <input type="number" name="fee" id="fee" value={deliveryFee?.delivery_fee} onChange={(e) => dispatch(updateFeeInput(e.target))} />
+
+          <div className=" my-2">
+            <label htmlFor="fee">Fee (NGN)</label>
+            <input
+            className='block mt-2'
+              type="number" name="fee" id="fee"    
+              value={feeInput?.delivery_fee}
+
+            onChange={(e) => setFeeInput({...feeInput, delivery_fee: e.target.value})}
+            />
           </div>
+
+           
+
+                    
 
           <button type="submit" className="px-3 py-1 rounded border my-2 block ml-auto"> Submit</button>
         </form>

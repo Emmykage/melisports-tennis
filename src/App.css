@@ -268,13 +268,6 @@ h2 {
   font-family: spantara, 'Courier New', Courier, monospace;
 }
 
-.c-form-row label{
-  width: 20%;
-}
-.c-form-row input, .c-form-row select{
-  width: 75%;
-}
-
 .headers {
   letter-spacing: 1rem;
 }
@@ -819,13 +812,6 @@ table td {
   background-color: rgba(256, 68, 4, 0.9);
 }
 
-.bg-gray {
-  background-color: gray;
-}
-
-.carter {
-  width: 50%;
-}
 
 .btn-div {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);

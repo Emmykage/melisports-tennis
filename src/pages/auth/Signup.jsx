@@ -66,9 +66,12 @@ export default function SignUp() {
       },
 
     };
-    dispatch(addUser(formInput));
+    dispatch(addUser(formInput)).then(result => {
+      if(addUser.fulfilled.match(result)){
+        navigation('/auth/confirmation');
+      }
+    });
   };
-  if (user == null || user == undefined) {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -81,11 +84,14 @@ export default function SignUp() {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/" className="hover:text-blue-600 font-semibold ">Visit Site</NavLink>
 
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <NavLink to="/" className="hover:text-blue-600 font-semibold ">
+               <img  className='h-40 text-red-950' src='/logo192.png'/>
+            </NavLink>
+
+            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
-            </Avatar>
+            </Avatar> */}
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
@@ -190,5 +196,3 @@ export default function SignUp() {
       </ThemeProvider>
     );
   }
-  navigation('/auth/confirmation');
-}

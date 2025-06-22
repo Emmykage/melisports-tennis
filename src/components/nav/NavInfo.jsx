@@ -36,10 +36,13 @@ const NavInfo = () => {
   }, [update]);
 
   const handleLogOut = () => {
-    removeToken();
-    dispatch(userProfile());
-    navigate('/auth/login');
+    console.log("first")
+    // removeToken();
+    // dispatch(userProfile());
+    // navigate('/auth/login');
   };
+
+  console.log(user)
   return (
     <>
       <nav>

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { FaPhone, FaRegStar } from 'react-icons/fa';
-import { IoBookmarkSharp } from 'react-icons/io5';
-import { MdEmail, MdLocationPin } from 'react-icons/md';
+
 import court from '../../assets/images/tennis-court.jpg';
 import Hero from '../../components/banner/Hero';
 import courtDirectories from '../../mock-server/court_directory.json';
@@ -17,7 +15,7 @@ const Directory = () => {
     { value: 'Lagos', label: 'Lagos' },
     { value: 'Port-Harcourt', label: 'Port-Harcourt' },
     { value: 'Enugu', label: 'Enugu' },
-    { value: 'Anambra', label: 'Anambra' },
+    { value: 'Anambra', label: 'Anambra' }, { value: 'Imo', label: 'Imo' },
   ];
   const handleLocation = (e) => {
     setLocation(e.target.value);

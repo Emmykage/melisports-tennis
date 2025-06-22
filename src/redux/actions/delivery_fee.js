@@ -17,6 +17,7 @@ export const addDeliveryFee = createAsyncThunk('deliveries/addDeliveryFee', asyn
     if (!response.ok) {
       return rejectWithValue({ message: result.message });
     }
+
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -32,13 +33,13 @@ export const updateDeliveryFee = createAsyncThunk('deliveryFee/update_delivery_f
         Authorization: `Bearer ${fetchToken()}`,
 
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({delivery: data.delivery}),
     });
     const result = await response.json();
     if (!response.ok) {
       return rejectWithValue({ message: result.message });
     }
-
+    console.log(result, 'result from update delivery fee');
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -47,7 +48,7 @@ export const updateDeliveryFee = createAsyncThunk('deliveryFee/update_delivery_f
 
 export const deleteDeliveryFee = createAsyncThunk('delivery_fee/delete_delivery', async (ID, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseURL}delivery/${ID}`, {
+    const response = await fetch(`${baseURL}deliveries/${ID}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',

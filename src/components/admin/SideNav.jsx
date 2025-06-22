@@ -17,6 +17,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userProfile } from '../../redux/actions/auth';
+import { TbTruckDelivery } from 'react-icons/tb';
 
 const SideNav = ({ showMenu, handleMenu, stats }) => {
   const dispatch = useDispatch();
@@ -171,7 +172,8 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
         >
           <span>
             {' '}
-            <MdOutlineReport />
+            {/* <MdOutlineReport /> */}
+            <TbTruckDelivery />
           </span>
           <h3 className="font-medium">Delivery</h3>
         </NavLink>

@@ -12,14 +12,15 @@ const ProfileAccountPage = () => {
     const [open, setOpen] = useState(false)
     const [userInfo, setUserInfo] = useState({
         email: "",
-
-            last_name: "",
-            first_name: "",
-            phone_no: "",
-            confirm_password: "",
-            password: "",
-            old_password: "",
-            confirm_password: ""
+        last_name: "",
+        first_name: "",
+        phone_no: "",
+        confirm_password: "",
+        password: "",
+        old_password: "",
+        confirm_password: "",
+        state: "", 
+        address: ""
         
         
     })
@@ -31,13 +32,16 @@ const ProfileAccountPage = () => {
     const handleUserUpdate = () => {
         dispatch(setLoader())
 
-        dispatch(userProfileUpdate({
-            id: user.id,
-           data:  {user:   {email: userInfo.email,
+        dispatch(userProfileUpdate(  {user:   {
+            email: userInfo.email,
             last_name:userInfo.last_name,
             first_name: userInfo.first_name,
             phone_no: userInfo.phone_number,
-           }}
+            profile_attributes: {
+              state: userInfo.state,
+              address: userInfo.address
+            }
+           }
         })).then(result => {
             if(userProfileUpdate.fulfilled.match(result)){
                dispatch( closeLoader())
@@ -82,7 +86,9 @@ const ProfileAccountPage = () => {
 
     useEffect(()=> {
 
-        setUserInfo({...userInfo, ...user})
+        setUserInfo({...userInfo,
+          state: user?.profile.state,
+          address: user?.profile.address})
 
 
     },[user])
@@ -113,8 +119,6 @@ const ProfileAccountPage = () => {
 
     }
 
-    console.log("hey===>", userInfo)
-
   return (
     
 
@@ -125,7 +129,7 @@ const ProfileAccountPage = () => {
       {/* Profile Info */}
 
       <div className="bg-white shadow-md rounded-2xl p-6 space-y-4">
-        <h2 className="text-xl font-semibold mb-2">Personal Info</h2>
+        <h2 className="text-2xl font-normal mb-2">Personal Info</h2>
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">First Name</label>
@@ -141,7 +145,15 @@ const ProfileAccountPage = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input value={userInfo?.email}  name='email' disabled type="email" onChange={(e)=> setUserInfo({user: e.target.value})} className="mt-1 block w-full rounded-md border bg-gray-200 border-gray-300 p-2" />
+            <input value={userInfo?.email}  name='email' disabled type="email" onChange={(e)=> setUserInfo({...userInfo, email: e.target.value})} className="mt-1 block w-full rounded-md border bg-gray-200 border-gray-300 p-2" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">State</label>
+            <input value={userInfo?.state}  name='state' type="email" onChange={(e)=> setUserInfo({...userInfo, state: e.target.value})} className="mt-1 block w-full rounded-md border  border-gray-300 p-2" />
+          </div>
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Address</label>
+            <input value={userInfo?.address}  name='address' type="email" onChange={(e)=> setUserInfo({...userInfo, address: e.target.value})} className="mt-1 block w-full rounded-md border  border-gray-300 p-2" />
           </div>
         </div>
         <button onClick={handleUserUpdate} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Update Info</button>
@@ -149,7 +161,7 @@ const ProfileAccountPage = () => {
 
       {/* Change Password */}
       <div className="bg-white shadow-md rounded-2xl p-6 space-y-4">
-        <h2 className="text-xl font-semibold mb-2">Change Password</h2>
+        <h2 className="text-xl font-normal mb-2">Change Password</h2>
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Current Password</label>
@@ -169,7 +181,7 @@ const ProfileAccountPage = () => {
 
       {/* Delete Account */}
       <div className="bg-white shadow-md rounded-2xl p-6">
-        <h2 className="text-xl font-semibold text-red-600 mb-4">Delete Account</h2>
+        <h2 className="text-xl font-normal text-red-600 mb-4">Delete Account</h2>
         <p className="text-sm text-gray-600 mb-4">
           Once you delete your account, there is no going back. Please be certain.
         </p>

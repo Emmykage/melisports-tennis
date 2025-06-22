@@ -24,18 +24,31 @@ const ButtonSession = ({
       const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
       };
-    
-      const handleClose = (event, link) => {
+
+        const handleClose = (event) => {
     
     
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
           return;
         }
-        navigate(link)
-    
-    
+   
         setOpen(false);
       };
+
+
+      const handleNavigate = (link) => {
+  
+              navigate(link);
+
+     
+      };
+    
+      const handleSessionLogOut = (event) => {
+
+        handleClose(event)      
+        handleLogOut()
+    
+        };
 
       
   function handleListKeyDown(event) {
@@ -104,11 +117,11 @@ const ButtonSession = ({
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    {!user && <MenuItem onClick={(e)=> handleClose(e, "/auth/login")}>Login</MenuItem>} 
-                    {!user &&  <MenuItem onClick={(e)=> handleClose(e, "/auth/sign_up")}>Sign Up</MenuItem>} 
+                    {!user && <MenuItem onClick={(e)=> handleNavigate("/auth/login")}>Login</MenuItem>} 
+                    {!user &&  <MenuItem onClick={(e)=> handleNavigate("/auth/sign_up")}>Sign Up</MenuItem>} 
                     {user &&  <MenuItem onClick={(e)=> {
-                      handleLogOut()
-                      handleClose(e, "/auth/sign_up")}}>Log Out</MenuItem>} 
+                      handleSessionLogOut(e)
+                     }}>Log Out</MenuItem>} 
                    
                    {user &&  <MenuItem onClick={() => navigate("/profile")}>My account</MenuItem>}
                     {/*  <MenuItem onClick={handleClose}>Logout</MenuItem> */}

@@ -349,9 +349,37 @@
     "state": "Anambra"
 
 },
+
+
+{
+    "courtName": "Roggeny Sports Club",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+{
+    "courtName": "Fegge recreation Court",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
 {
     "courtName": "Nnewi Sports Club",
     "location": "Nnewi Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Dolly Hills Hotel",
+    "location": "Onitsha",
     "phone_number": "+234-000000",
     "star": 4,
     "state": "Anambra"
@@ -365,6 +393,20 @@
     "state": "Anambra"
 
 },
+
+
+
+{
+    "courtName": "Beverly Hill club & hotel",
+    "location": "Nnewi Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+
 {
     "courtName": "House Of Innoson (Ceo Of Ivm Motors)",
     "location": "Nnewi Metropolice",
@@ -397,6 +439,117 @@
     "state": "Anambra"
 
 },
+
+
+{
+    "courtName": "Abatete Bar Center, Besides Town Hall",
+    "location": "Abatete ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+{
+    "courtName": "White Castle Hotel",
+    "location": "Nse ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+{
+    "courtName": "Oraukwu town tennis court",
+    "location": "Oraukwu ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+{
+    "courtName": "Recreation club Owerri",
+    "location": "Oraukwu ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+
+{
+    "courtName": "SRDC-Standard Tennis Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+{
+    "courtName": "Recreation Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+{
+    "courtName": "Owerri Sports Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+{
+    "courtName": "Safari Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+{
+    "courtName": "Orlu Recreation Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+{
+    "courtName": "Oraukwu town tennis court",
+    "location": "Oraukwu ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+{
+    "courtName": "Nwerre Country Club of St Stephen",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+
+{
+    "courtName": "Urualla Civic Center",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+
 {
     "courtName": "Enugu Sports Club",
     "location": "Enugu Metropolice",
