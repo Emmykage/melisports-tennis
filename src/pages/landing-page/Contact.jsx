@@ -54,7 +54,7 @@ const Contact = () => (
         </div>
         <div className="p-2">
 
-          <form action="https://formspree.io/f/xayvlole" method="post">
+          <form action="https://formspree.io/f/mgvylgrp" method="post">
             <div className="input"><input name="name" id="name" type="text" placeholder="Full name" required minLength="30" /></div>
             <div className="input"><input name="Email" type="email" placeholder="Email address" required /></div>
             <div className="input text-input">

@@ -30,10 +30,23 @@ const Directory = () => {
       <NavInfo />
       <Hero image={court} title="Court Directory" />
 
-      <div className="max-w-7xl py-6 px-4 m-auto shadow rounded">
-        <div className="max-w-md w-full">
+      <div className="max-w-7xl py-6 px-4 m-auto shadow rounded ">
+        <div className="w-full flex justify-between w-f">
 
-          <SelectInput defaultValue={location} className="w-full" handleChange={handleLocation} label="location" options={options} />
+          <div className='flex-1 max-w-md bg-red-'>
+             <SelectInput defaultValue={location} className="w-full" handleChange={handleLocation} label="location" options={options} />
+
+
+          </div>
+
+          <div className='flex-'>
+            <p>Help Us Improve Our Court</p>
+            <p>Add To This List Around You</p>
+
+
+
+          </div>
+
 
         </div>
 

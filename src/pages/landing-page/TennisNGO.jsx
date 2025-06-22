@@ -13,7 +13,7 @@ function SupportProgram() {
     return (
         <>
          <NavInfo />
-            <Hero image={img} title="Summer Tennis Camp" />
+            <Hero image={img} title="Tennis Clinic for Secondary Schools" />
 
             <section className="md:py-20 px-4 bg-white">
               

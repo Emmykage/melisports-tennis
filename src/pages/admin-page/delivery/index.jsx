@@ -246,7 +246,7 @@ const DeliveryFee = () => {
               </div>
       </InfoModal>
 
-      <InfoModal open={open} handleClose={() => dispatch(getDeliveryFees())}>
+      <InfoModal open={open} handleClose={() => setOpen(false)}>
         <DeliveryForm handleFeeSubmit={handleFeeSubmit} feeInput={feeInput} setFeeInput={setFeeInput} />
       </InfoModal>
     </div>

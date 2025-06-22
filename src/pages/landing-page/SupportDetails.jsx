@@ -8,7 +8,7 @@ function EnrollChildPage() {
         <>
         
         <NavInfo />
-            <Hero image={img} title="Summer Tennis Camp" />
+            <Hero image={img} title="Tennis Clinic for Secondary Schools" />
             <EnrollChildForm/>
       </>
     );

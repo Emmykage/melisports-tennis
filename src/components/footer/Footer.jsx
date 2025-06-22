@@ -88,6 +88,11 @@ const Footer = () => (
             <a href="https://twitter.com/MeliSports"> Twitter</a>
             {' '}
           </li>
+
+            <li>
+            <a href="https://youtube.com/@MeliSportss"> YouTube</a>
+            {' '}
+          </li>
           {/* <li>TP Blog</li> */}
 
         </ul>
