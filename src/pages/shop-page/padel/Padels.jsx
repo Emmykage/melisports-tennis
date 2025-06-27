@@ -11,33 +11,13 @@ import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_ban
 import Loader from '../../Loader';
 import Products from '../../../components/products/ProductsGridDisplay';
 import Nav from '../../../components/nav/Nav';
+import { featureItems } from '../../../constants/properties';
+import useFilter from '../../../hooks/useFilter';
+import { playerTypes } from '../../../constants/categories';
+import { playType } from '../../../constants/variance';
+import SideNav from '../../../components/sideNav/SideNav';
 
-const levels = [{
-  label: 'Beginner',
-  level: 'beginner',
-},
-{
-  label: 'Professional',
-
-  level: 'professional',
-},
-{
-  label: 'Intermediate',
-
-  level: 'intermediate',
-},
-{
-  label: 'Junior',
-
-  level: 'junior',
-}];
-
-const featureItems = [
-  { type: 'control', label: 'Control' },
-  { type: 'power', label: 'Power' },
-  { type: 'spin', label: 'Spin' },
-];
-
+ 
 const sportItems = [
   { type: 'tennis', label: 'Tennis' },
   { type: 'badminton', label: 'Badminton' },
@@ -48,11 +28,15 @@ const Padels = () => {
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
 
-  console.log("padel rauets", padelRacquets)
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeature, setSelectedFeatures] = useState([]);
-
+  
+  useFilter({
+    selectedFeature,
+    selectedSports,
+    selectedPlayType: selectedLevels
+  })
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {
@@ -64,6 +48,8 @@ const Padels = () => {
   };
 
   const handleFilteredLevels = (e) => {
+        console.log(e.target.value)
+
     const { value, checked } = e.target;
 
     if (checked) {
@@ -87,83 +73,43 @@ const Padels = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(getProducts())
-  },[])
-
-  useEffect(() => {
-    if (selectedSports.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterSports(selectedSports));
-      });
-    }
-  }, [selectedSports, dispatch]);
-  useEffect(() => {
-    if (selectedLevels.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterLevels(selectedLevels));
-      });
-    }
-  }, [selectedLevels, dispatch]);
-
-  useEffect(() => {
-    if (selectedFeature.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(selectedFeature));
-      });
-    }
-  }, [selectedFeature, dispatch]);
-
-  useEffect(() => {
-    dispatch(closeList());
-    dispatch(getProductCategories());
-  }, []);
 
   return (
     <div className="product-container">
       <Nav />
       <Hero image={bannerImage} title="Padel" />
 
-      <div className="prod-page">
-        <div className="cat-group justify-between max-w-md my-6">
+      <div className="prod-page py-10 px-4 md:px-10">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Padel Rackets</h2>
+        <p className="text-gray-600 mb-6">
+          Explore our collection of Babolat Padel Rackets, designed for players of all levels. Whether you're a beginner or a professional, find the perfect racket to enhance your game.
+        </p>
+        {/* <div className="cat-group justify-between max-w-md my-6">
           <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
           <a className="btn" onClick={() => dispatch(getProducts())}>All Rackets</a>
 
-        </div>
+        </div> */}
 
         <div className="flex md:gap-10">
 
-          <div className="side-nav bg-white shadow">
+          <SideNav>
             <div className="side-row">
               <h6>Activities</h6>
 
             </div>
             <div />
-            <div className="side-row">
-              {sportItems.map((item) => (
-                <div className="flex  items-center mb-2">
-                  <input type="checkbox" checked={selectedSports.includes(item.type)} id={item.type} onChange={handleSportFilter} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
-
-                    <span>
-                      {item.label}
-                    </span>
-                  </label>
-
-                </div>
-              ))}
-
-            </div>
+           
             <div className="side-row">
               <h6>Racket Type</h6>
 
               {featureItems.map((item) => (
                 <div className="flex items-center mb-2">
-                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
+                  <input type="checkbox" id={item.value} value={item.value} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                  onChange={handleFilteredFeatures} />
 
-                  <label htmlFor="control" style={{ fontSize: '1rem' }}>
+                  <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
                     {item.label}
                   </label>
 
@@ -173,11 +119,11 @@ const Padels = () => {
             </div>
             <div className="side-row">
               <h6>Skill level</h6>
-              {levels.map((level) => (
+              {playType.map((level) => (
                 <span className="flex items-center mb-2">
-                  <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
+                  <input type="checkbox" checked={selectedLevels.includes(level.value)} id={level.value} value={level.value} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
 
-                  <label htmlFor={level.level} style={{ fontSize: '1rem' }}>
+                  <label htmlFor={level.value} style={{ fontSize: '1rem' }}>
                     {level.label}
                   </label>
                 </span>
@@ -187,15 +133,18 @@ const Padels = () => {
             <div className="side-row">
               <h6>Brand</h6>
 
-              <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+              <div>
+
+            </div>
+           
+
+              <label className='flex items-center' htmlFor="babolat" style={{ fontSize: '1rem' }}>
 
                 <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 babolat
               </label>
-            </div>
-
-          </div>
-
+                 </div>
+          </SideNav>
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (
               <div className="product-align w-full">

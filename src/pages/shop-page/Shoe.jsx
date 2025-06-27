@@ -10,8 +10,10 @@ import Loader from '../Loader';
 import { filterCapacity, filterFeatures, filterGenders, filterProducts, filterSports } from '../../redux/products/product';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
-import { classSports } from './categories';
+
 import useFilter from '../../hooks/useFilter';
+import { classSports } from '../../constants/categories';
+import SideNav from '../../components/sideNav/SideNav';
 
 const itemsFeatures = [{
   type: "clay",
@@ -83,7 +85,7 @@ const ShoesPage = () => {
 
       <Hero image={bannerImage} title="Shoes" />
 
-      <div className="prod-page">
+      <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
         <div className="cat-group gap-6  max-w-md my-6">
           <button className="btn" onClick={() => dispatch(getProducts({ category: 'shoe'}))}>All shoes</button>
 
@@ -93,7 +95,7 @@ const ShoesPage = () => {
 
         </div>
         <div className="flex md:gap-10">
-          <div className="side-nav bg-white shadow">
+          <SideNav>
             <div className="side-row">
               <h6>Activities</h6>
 
@@ -147,9 +149,8 @@ const ShoesPage = () => {
 
               </div>
 
-            </div>
-
-          </div>
+            </div>          
+          </SideNav>
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
             <div className="product-align w-full">
               <div className="product-items">

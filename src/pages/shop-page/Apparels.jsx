@@ -9,8 +9,9 @@ import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Nav from '../../components/nav/Nav';
-import { classSports, genderItems } from './categories';
 import useFilter from '../../hooks/useFilter';
+import { classSports, genderItems } from '../../constants/categories';
+import SideNav from '../../components/sideNav/SideNav';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -75,7 +76,7 @@ const ApparelsPage = () => {
         <Nav />
 
         <Hero image={imageBanner} title="Apparels" />
-        <div className="prod-page">
+        <div className="prod-page prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
           <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
           <button className="btn" onClick={() => dispatch(getProducts())}>All Apparels</button>
 
@@ -86,97 +87,63 @@ const ApparelsPage = () => {
           </div>
 
           <div className="flex md:gap-10">
-            <div className="side-nav bg-white shadow">
-              <div className="side-row">
-                <h6>Activities</h6>
+            <SideNav>
+                <div className="side-row">
+                  <h6>Activities</h6>
 
-              </div>
-              <div />
-              <div className="side-row">
+                </div>
+                <div />
+                <div className="side-row">
 
-                {classSports.map((item) => (
-                  <div className="mb-2 flex items-center">
-                    <input
-                      type="checkbox"
-                      onChange={handleSportsFilter}
-                      id={item.type}
-                      value={item.type}
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
+                  {classSports.map((item) => (
+                    <div className="mb-2 flex items-center">
+                      <input
+                        type="checkbox"
+                        onChange={handleSportsFilter}
+                        id={item.type}
+                        value={item.type}
+                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
 
-                    <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
-                      <span>
+                      <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
+                        <span>
+                          {item.label}
+                        </span>
+                      </label>
+
+                    </div>
+                  ))}
+
+                </div>
+                <div className="side-row">
+                  <h6>Category</h6>
+
+                  {genderItems.map((item) => (
+                    <div className="flex items-center">
+                      <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleGenderFilter} />
+
+                      <label htmlFor="men" style={{ fontSize: '1rem' }}>
                         {item.label}
-                      </span>
-                    </label>
+                      </label>
 
-                  </div>
-                ))}
+                    </div>
+                  ))}
 
-              </div>
-              <div className="side-row">
-                <h6>Category</h6>
-
-                {genderItems.map((item) => (
-                  <div className="flex items-center">
-                    <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleGenderFilter} />
-
-                    <label htmlFor="men" style={{ fontSize: '1rem' }}>
-                      {item.label}
-                    </label>
-
-                  </div>
-                ))}
-
-              </div>
-
-              {/* <div className="side-row">
-              <h6>Skill level</h6>
-              <span className="flex items-center">
-                <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
-                  <input type="checkbox" id="beginner" value="beginner" onChange={handleFilteredActivities} className="w-4 h-4 text-blue-600 bg-gray-500 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
-                  Beginner
-                </label>
-              </span>
-
-              <span>
-                <label htmlFor="professional">
-                  <input onChange={handleFilteredActivities} value="professional" type="checkbox" name="professional" id="professional" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  Professional
-                </label>
-
-              </span>
-              <span className="flex items-center">
-                <input onChange={handleFilteredActivities} value="intermediate" type="checkbox" id="intermediate" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="intermediate" style={{ fontSize: '1rem' }}>
-                  Intermediate
-                </label>
-
-              </span>
-
-              <span className="items-center flex">
-                <input type="checkbox" id="advanced" value="advanced" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
-
-                <label htmlFor="advanced" style={{ fontSize: '1rem' }}>
-                  Advanced
-                </label>
-
-              </span>
-
-            </div> */}
-              <div className="side-row">
-                <h6>Brand</h6>
-                <div className="flex items-center">
-                  <input onChange={() => dispatch(getProducts())} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label htmlFor="activity" style={{ fontSize: '1rem' }}>
-                    babolat
-                  </label>
                 </div>
 
-              </div>
+            
+                <div className="side-row">
+                  <h6>Brand</h6>
+                  <div className="flex items-center">
+                    <input onChange={() => dispatch(getProducts())} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                    <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+                      babolat
+                    </label>
+                  </div>
 
-            </div>
+                </div>
+            </SideNav>
+
             {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
               <div className="product-align w-full">
                 <div className="product-items">

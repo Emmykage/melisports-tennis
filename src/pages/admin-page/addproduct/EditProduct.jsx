@@ -10,7 +10,7 @@ import { getProduct, updateProduct } from '../../../redux/actions/product';
 import { getProductCategories, getSportCategories } from '../../../redux/actions/product_category';
 import {
   clothSizes, colors, composition, gripSizes, headShapes, headSizes, length, locations as productLocations, playType, recommendedGrip, shoeSizes, strung,
-} from '../../../components/mock/variance';
+} from '../../../constants/variance';
 import { resetProduct, writeProduct } from '../../../redux/product/product';
 import Loader from '../../Loader';
 import 'trix';

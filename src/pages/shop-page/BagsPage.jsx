@@ -9,7 +9,9 @@ import { filterCapacity, filterProducts } from '../../redux/products/product';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
 import useFilter from '../../hooks/useFilter';
-import { classSports } from './categories';
+import { classSports } from '../../constants/categories';
+import SideNav from '../../components/sideNav/SideNav';
+// import { classSports } from './categories';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
@@ -76,7 +78,7 @@ const BagsPage = () => {
 
       <Hero image={bannerImage} />
 
-      <div className="prod-page">
+      <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
         <div className="cat-group justify-between max-w-md my-6">
         <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
         <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
@@ -86,7 +88,8 @@ const BagsPage = () => {
         </div>
 
         <div className="flex md:gap-10">
-          <div className="side-nav">
+          <SideNav>
+            
             <div className="side-row">
               <h6>Activities</h6>
 
@@ -202,8 +205,7 @@ const BagsPage = () => {
                 babolat
               </label>
             </div>
-
-          </div>
+          </SideNav>
           { status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
             <div className="product-align w-full">
               <div className="product-items">

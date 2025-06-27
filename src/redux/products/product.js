@@ -128,6 +128,17 @@ const productsSlice = createSlice({
         products: filts,
       };
     },
+    filterPlayerType: (state, action) => {
+      console.log(action.payload);
+      const filts = state.products.filter((item) => action.payload.some((level) => item.player_type?.toLowerCase() === level));
+      console.log(filts)
+
+      return {
+        ...state,
+        padelRacquets: filts,
+
+      };
+    },
     filterFeatures: (state, action) => {
       const filts = state.products.filter((item) => action.payload.some((feature) => item?.description.toLowerCase().includes(feature)));
       return {
@@ -162,5 +173,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 export const {
-  filterProducts, searchedProducts, filterCapacity, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
+  filterPlayerType, filterProducts, searchedProducts, filterCapacity, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
 } = productsSlice.actions;

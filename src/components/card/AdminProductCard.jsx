@@ -29,15 +29,20 @@ const AdminProductCard = ({ product, toEdit }) => {
           ...
         </h5>
         <p>{nairaFormat(product.price)}</p>
+
+        <div  className='flex justify-between px-4'>
+
         <a
-          className="btn btn-outline max-width my-1 py-1 text-center"
+          className="btn btn-outline max-width my-1 px-2 py-1 text-center"
           onClick={() => dispatch(openDelModal(product.id))}
         >
           Delete
         </a>
-        <a className="btn btn-outline max-width text-center py-1" onClick={() => toEdit(product.id)}>
+        <a className="btn btn-outline max-width my-1 px-2 py-1 text-center" onClick={() => toEdit(product.id)}>
           Edit
         </a>
+      </div>
+
 
       </div>
     </div>

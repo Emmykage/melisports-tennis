@@ -13,8 +13,9 @@ import {
   filterActivities, filterFeatures, filterLevels, filterProducts, filterSports,
 } from '../../redux/products/product';
 import Nav from '../../components/nav/Nav';
-import { classLevels, classSports } from './categories';
+import { classLevels, classSports } from '../../constants/categories';
 import useFilter from '../../hooks/useFilter';
+import SideNav from '../../components/sideNav/SideNav';
 
 const ProductsPage = () => {
   const featureItems = [
@@ -79,7 +80,7 @@ const ProductsPage = () => {
 
       <Hero image={bannerImage} title="Racquet" />
 
-      <div className="prod-page  max-w-[1600px] m-auto">
+      <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
         <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
         <a className="btn" onClick={() => dispatch(getProducts({ category: 'racquet' }))}>All Rackets</a>
         <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
@@ -90,7 +91,7 @@ const ProductsPage = () => {
 
         <div className="flex md:gap-10">
 
-          <div className="side-nav bg-white shadow">
+          <SideNav>
             <div className="side-row">
               <h6>Activities</h6>
 
@@ -147,9 +148,8 @@ const ProductsPage = () => {
                 <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 babolat
               </label>
-            </div>
-
-          </div>
+            </div>          
+          </SideNav>
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (

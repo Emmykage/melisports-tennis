@@ -12,6 +12,7 @@ import Loader from '../../Loader';
 import ProductFilter from '../../../components/products/ProductFilter';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import Nav from '../../../components/nav/Nav';
+import SideNav from '../../../components/sideNav/SideNav';
 
 const levels = [{
   label: 'Beginner',
@@ -128,8 +129,7 @@ const BadmintonsPage = () => {
         </div> */}
 
         <div className="flex md:gap-10">
-
-          <div className="side-nav bg-white shadow">
+          <SideNav>
             <div className="side-row">
               <h6>Activities</h6>
 
@@ -187,8 +187,8 @@ const BadmintonsPage = () => {
                 babolat
               </label>
             </div>
+         </SideNav>
 
-          </div>
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (

@@ -2,12 +2,13 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux";
 import { getProducts } from "../redux/actions/product";
 import { getProductCategories } from "../redux/actions/product_category";
-import { filterCapacity, filterGenders, filterLevels, filterSports } from "../redux/products/product";
+import { filterCapacity, filterGenders, filterLevels, filterPlayerType, filterSports } from "../redux/products/product";
 
 const useFilter = ({
     productCategory=null,
     selectedSports=null,
     selectedLevels=null,
+    selectedPlayType=null,
     selectedFeatures=null,
     selectedGenders=null,
     selectedCapacities=null
@@ -56,6 +57,20 @@ const useFilter = ({
                 }))
             }
           }, [selectedLevels, dispatch]);
+
+           useEffect(() => {
+            if (selectedPlayType?.length > 0) { // Only filter if there's a selection
+              dispatch(getProducts()).then(() => {
+                dispatch(filterPlayerType(selectedPlayType));
+              });
+            }else{
+                dispatch(getProducts({
+                
+                    category: productCategory
+                
+                }))
+            }
+          }, [selectedPlayType, dispatch]);
 
 
             // filter features based on description 

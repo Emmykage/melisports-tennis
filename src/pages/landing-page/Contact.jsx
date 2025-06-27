@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import {
   FaPhone, FaWhatsapp, FaFacebook, FaInstagram,
 } from 'react-icons/fa';

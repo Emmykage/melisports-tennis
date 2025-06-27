@@ -3,12 +3,7 @@
   color: #333;
 }
 
-.side-nav {
-  width: 340px;
-  flex-basis: 20%;
-  border: 1px solid gray;
-  border-radius: var(--border-radius-1);
-}
+
 
 .side-row {
   border-bottom: 1px solid var(--color-grey);
