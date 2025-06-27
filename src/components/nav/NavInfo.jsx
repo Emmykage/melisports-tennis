@@ -47,7 +47,7 @@ const NavInfo = () => {
     <>
       <nav>
 
-        <div className={`${stickyNav} navbar bg-gray-400 nav-info`}>
+        <div className={`${stickyNav} navbar bg-gray-200 nav-info`}>
           <div className="mobile-menu-div">
             <a className="menu">
               <FiMenu className="menu-icon" onClick={() => setToggleNav((prev) => !prev)} />
