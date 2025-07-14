@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { sendReview } from '../actions/review';
+import { addCourts, sendReview } from '../actions/review';
 
 const initialState = {
   reviews: [],
@@ -30,6 +30,14 @@ const reviewSlice = createSlice({
       loading: false,
       error: true,
       message: action.payload.message,
+
+    }),
+     [addCourts.fulfilled]: (state, action) => ({
+      ...state,
+      reviews: action.payload.data,
+      loading: false,
+      message: 'review has been recieved',
+      error: false,
 
     }),
   },

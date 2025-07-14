@@ -23,6 +23,28 @@ const createOrder = createAsyncThunk('order/createOrder', async (data, { rejectW
   }
 });
 
+export const createInvoice = createAsyncThunk('INVOICE/CREATE_INVOICE', async (data, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`${baseURL}invoices`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${fetchToken()}`,
+
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      return rejectWithValue({ message: result.message });
+    }
+    return result;
+  } catch (error) {
+    return rejectWithValue({ message: 'Something went wrong' });
+  }
+});
+
+
 const updateOrder = createAsyncThunk('order/updateOrder', async ({ id, data }, { rejectWithValue }) => {
   try {
     const response = await fetch(`${baseURL}order_details/${id}`, {
@@ -109,6 +131,29 @@ const getOrders = createAsyncThunk('orders/get_orders', async (_, { rejectWithVa
     return rejectWithValue({ message: 'Something went wrong' });
   }
 });
+
+
+export const getInvoice = createAsyncThunk('INVOICE/GET_INVOICE', async (id, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`${baseURL}invoices/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${fetchToken()}`,
+      },
+    });
+    const result = await response.json();
+
+    if (!response.ok) {
+      return rejectWithValue({ message: result.error });
+    }
+    console.log(result)
+    return result;
+  } catch (error) {
+    return rejectWithValue({ message: 'Something went wrong' });
+  }
+});
+
 export {
   createOrder, getOrders, getOrder, updateOrder, deleteOrder,
 };

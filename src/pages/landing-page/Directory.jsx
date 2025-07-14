@@ -6,10 +6,22 @@ import courtDirectories from '../../mock-server/court_directory.json';
 import CourtCard from '../../components/courtCard/CourtCard';
 import SelectInput from '../../components/selectInput/SelectInput';
 import NavInfo from '../../components/nav/NavInfo';
+import { Button } from '@mui/material';
+import AppModal from '../../components/modal/AppModal';
+import ClickButton from '../../components/buttons/ClickButton';
+import { useDispatch } from 'react-redux';
+import { addCourts } from '../../redux/actions/review';
+import { toast } from 'react-toastify';
 
 const Directory = () => {
+  const dispatch = useDispatch()
   const [location, setLocation] = useState('Abuja');
-
+  const [isOpen, setIsOpen] = useState(false)
+  const [formInput, setFormInput] = useState({
+    city: "", 
+    address: "",
+    state: ""
+  })
   const options = [
     { value: 'Abuja', label: 'Abuja' },
     { value: 'Lagos', label: 'Lagos' },
@@ -21,11 +33,22 @@ const Directory = () => {
     setLocation(e.target.value);
   };
 
+  const handleSubmit = () => {
+    addCourts({court: formInput}).unWrap().then(result => {
+      setIsOpen(false)
+      toast(result?.message ?? "Suggestion recieved", {type: "success"})
+    }).catch(error => {
+        toast(error?.message ?? "Suggestion recieved", {type: "error"})
+
+    })
+
+  }
+
   const directories = courtDirectories.filter((item) => item.state === location);
   // const directories = courtDirectories.filter(item => item.state === location || item.region === region)
 
   return (
-
+<>
     <div className="">
       <NavInfo />
       <Hero image={court} title="Court Directory" />
@@ -40,11 +63,9 @@ const Directory = () => {
           </div>
 
           <div className='flex-'>
-            <p>Help Us Improve Our Court</p>
-            <p>Add To This List Around You</p>
-
-
-
+            <p className='text-primary font-semibold text-base'>Help Us Improve Our Court</p>
+            <button onClick={() => setIsOpen(true)} className='bg-gray-300 py-2 px-4 rounded '>Add To This List Around You</button>
+            
           </div>
 
 
@@ -60,6 +81,34 @@ const Directory = () => {
 
       </div>
     </div>
+    <AppModal open={isOpen} onClose={() => setIsOpen(prev => !prev)}  onCancel={() => setIsOpen(prev => !prev)}>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="city"> City</label>
+          <input type="text" id='city' name='city' value={formInput.city}  onChange={(e) => setFormInput({city: e.target.value})} />
+        </div>
+         <div>
+          <label htmlFor="address"> Address</label>
+          <input type="text" id='address' name='address' value={formInput.address}  onChange={(e) => setFormInput({address: e.target.value})} />
+        </div>
+          <div>
+          <label htmlFor="state"> State</label>
+          <select
+          value={formInput.state}
+           onChange={(e) => setFormInput({state: e.target.value})} 
+           >
+            {options.map(option => (
+            <option value={option.value}>{option.label}</option>
+
+            ))}
+
+            </select>
+
+        </div>
+        <ClickButton className={"mt-4"} type={"submit"}>Submit</ClickButton>
+      </form>
+    </AppModal>
+    </>
 
   );
 };

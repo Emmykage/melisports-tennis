@@ -53,6 +53,15 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
           <input required type="text" className="p-3 border w-full rounded" name="city" value={billingDetails.city} onChange={handleChange} />
 
         </div>
+        
+        <div className="flex gap-4 mb-3">
+          <div className="flex-1">
+            <label htmlFor="referal">Referal Code</label>
+           
+            <input required type="text" className="p-3 border w-full rounded" name="referal" value={billingDetails.referal} onChange={handleChange} />
+          </div>
+          
+        </div>
 
         <div className="flex gap-4 mb-3">
           <div className="flex-1">
@@ -72,7 +81,7 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
             {/* <input required type="text" className="p-3 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} /> */}
           </div>
           <div className="flex-1">
-            <label htmlFor="postal_code">postal_code</label>
+            <label htmlFor="postal_code">Postal Code</label>
             <input className="p-3 border w-full rounded" type="text" name="postal_code" value={billingDetails.postal_code} onChange={handleChange} />
           </div>
         </div>

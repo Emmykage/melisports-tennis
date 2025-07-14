@@ -37,7 +37,7 @@ const PaymentField = ({ billingDetails, setBillingDetails }) => {
             <input type="text" name="state" value={billingDetails.state} onChange={handleChange} />
           </div>
           <div className="flex-2">
-            <label htmlFor="">postal_code</label>
+            <label htmlFor="postal_code">postal code</label>
             <input type="text" name="postal_code" value={billingDetails.postal_code} onChange={handleChange} />
           </div>
         </div>

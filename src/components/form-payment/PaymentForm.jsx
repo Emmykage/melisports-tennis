@@ -74,7 +74,7 @@ const PaymentForm = ({ amount = 10000 }) => {
             <input required type="text" className="py-2 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} />
           </div>
           <div className="flex-1">
-            <label htmlFor="">postal_code</label>
+            <label htmlFor="postal_code">postal code</label>
             <input className="py-2 border w-full rounded" type="text" name="postal_code" value={billingDetails.postal_code} onChange={handleChange} />
           </div>
         </div>

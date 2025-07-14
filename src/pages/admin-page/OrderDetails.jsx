@@ -3,13 +3,15 @@ import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ClickButton from '../../components/buttons/ClickButton';
-import { getOrder, updateOrder } from '../../redux/actions/orders';
+import { createInvoice, getOrder, updateOrder } from '../../redux/actions/orders';
 import { nairaFormat } from '../../utils/nairaFormat';
 import DiscoverBtn from '../../components/buttons/DiscoverBtn';
 import Loader from '../Loader';
 import Confirmation from '../../components/modal/Confirmation';
 import localDate from '../../utils/dateFormat.js';
 import { getStatistics } from '../../redux/actions/statistics.js';
+import Invoice from '../../components/invoice/Invoice.jsx';
+import AppModal from '../../components/modal/AppModal.jsx';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -19,7 +21,10 @@ const OrderDetails = () => {
   const [openAccept, setOpenAccept] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const { order, loading } = useSelector((state) => state.orders);
+  const { invoice, invoices } = useSelector((state) => state.invoices);
+  const [openInvoice, setOpenInvoice] = useState(false)
 
+  console.log(invoice, order)
   const handleUpdate = (status) => {
     dispatch(updateOrder({ id, status }))
       .then((result) => {
@@ -30,6 +35,21 @@ const OrderDetails = () => {
         }
       });
   };
+
+  const handleInvoiceGeneration = () => {
+    console.log("first")
+    dispatch(createInvoice({
+      invoice: {
+        order_detail_id: id
+      }
+    })).unwrap()
+    .then(result => {
+
+      console.log(result)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
 
   useEffect(() => {
     dispatch(getOrder(id));
@@ -56,8 +76,10 @@ const OrderDetails = () => {
       }
     };
   }, [order?.viewed]);
+  console.log(openInvoice)
 
   return (
+    <>
     <div className="bg-white p-6" ref={contRef}>
 
       <div className="flex">
@@ -186,7 +208,7 @@ const OrderDetails = () => {
       <div className="my-8">
         <div className="flex justify-between">
           <p className="font-semibold text-sm">Items Ordered</p>
-          <ClickButton>Edit</ClickButton>
+          {/* <ClickButton>Edit</ClickButton> */}
         </div>
         <div className=" overflow-x-auto no-scroll">
 
@@ -273,9 +295,17 @@ const OrderDetails = () => {
       <div className="my-8 overflow-x-auto no-scroll">
         <div className="flex justify-between">
           <p className="font-semibold text-sm">Invoices </p>
-          <ClickButton>Add New</ClickButton>
+          {order?.invoice ? <ClickButton
+          
+          
+          onClick={() => setOpenInvoice(true)}>View Invoice</ClickButton> :
+          <ClickButton
+          disabled={!!order?.invoice}
+          onClick={handleInvoiceGeneration}>Generate Invoice</ClickButton>
+           }
         </div>
-        <div className=" overflow-x-auto no-scroll">
+
+         <div className=" overflow-x-auto no-scroll">
           <table className="my-4">
             <thead>
               <tr>
@@ -311,7 +341,7 @@ const OrderDetails = () => {
               </div>
             </tbody>
           </table>
-        </div>
+        </div> 
 
       </div>
       <div className="flex justify-between">
@@ -324,6 +354,15 @@ const OrderDetails = () => {
       <Confirmation open={openDecline} cnlAction={() => { setOpenDecline(false); }} btnAction={() => { handleUpdate('confirmed'); }}>Confrim Reject Order</Confirmation>
 
     </div>
+    <AppModal open={openInvoice} onClose={() => setOpenInvoice(false)}>
+      <Invoice id={order?.invoice?.id}/>
+
+       <button
+       className='bg-gray-200 px-4 py-2 mt-10 rounded-lg' onClick={() => setOpenInvoice(false)} > Close </button>
+      <Confirmation open={openDecline} cnlAction={() => { setOpenDecline(false); }} btnAction={() => { handleUpdate('confirmed'); }}>Confrim Reject Order</Confirmation>
+
+    </AppModal>
+    </>
   );
 };
 

@@ -65,6 +65,7 @@ import ProfileAccountPage from './pages/ProfilePage';
 import SupportProgram from './pages/landing-page/TennisNGO';
 import EventDetails from './pages/landing-page/EventDetails';
 import EnrollChildForm from './pages/landing-page/SupportDetails';
+import Invoice from './components/invoice/Invoice';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -138,6 +139,7 @@ function App() {
           />
           <Route path="edit/:editId" element={<MainAdmin><EditProduct /></MainAdmin>} />
         </Route>
+        
         <Route path="/auth">
           <Route path="sign_up" element={<Signup />} />
           <Route path="login" element={<Login />} />
@@ -154,6 +156,7 @@ function App() {
         <Route path="/terms_of_service" element={<MainLayout><TermsOfServices /></MainLayout>} />
         <Route path="/privacy_policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
         <Route path="/my_account" element={<MainLayout><Accounts /></MainLayout>} />
+        <Route path="/invoice" element={<><Invoice /></>} />
 
       </Routes>
 

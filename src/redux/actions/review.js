@@ -42,3 +42,24 @@ export const getReviews = createAsyncThunk('reviews/get_reviews', async ({ rejec
     return rejectWithValue({ message: 'Something went wrong' });
   }
 });
+export const addCourts = createAsyncThunk('courts/add_courts', async (data, { rejectWithValue }) => {
+  try {
+    const response = await fetch(`${baseURL}courts`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      return rejectWithValue({ message: result?.error });
+    }
+
+    return result;
+  } catch (error) {
+    return rejectWithValue({ message: 'Something went wrong' });
+  }
+});

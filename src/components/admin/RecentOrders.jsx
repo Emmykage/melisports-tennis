@@ -19,11 +19,11 @@ const RecentOrders = () => {
       <table>
         <thead>
           <tr>
-            <th className="px-2">Order Number</th>
-            <th className="px-2 text-center w-10 lg:w-max">Qty</th>
-            <th className="px-2 text-left w-36 lg:w-max">Amount</th>
-            <th className="px-2 text-center w-40">Payment</th>
-            <th className="px-2 text-center">Status</th>
+            <th className="px-2 bg-theme-alt">Order Number</th>
+            <th className="px-2  bg-theme-alt text-center w-10 lg:w-max">Qty</th>
+            <th className="px-2  bg-theme-alt text-left w-36 lg:w-max">Amount</th>
+            <th className="px-2  bg-theme-alt text-center w-40">Payment</th>
+            <th className="px-2  bg-theme-alt text-center">Status</th>
 
           </tr>
 

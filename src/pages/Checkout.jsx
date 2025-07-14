@@ -46,6 +46,7 @@ const Checkout = () => {
       billing_address_attributes: billingDetails,
       status: 'pending',
       payment_method: billingDetails.payment_method,
+      ref_code: billingDetails.referal
     },
   };
 
