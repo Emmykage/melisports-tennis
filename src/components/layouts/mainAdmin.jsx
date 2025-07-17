@@ -1,67 +1,72 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Footer from '../footer/Footer';
 import SideNav from '../admin/SideNav';
-import Right from '../admin/Right';
 import ProdDelModal from '../modal/ProdDelModal';
 import CatDelModal from '../modal/CatDelModal';
 import { userLog } from '../../redux/user/user';
+import Loader from '../../pages/Loader';
+import { fetchToken } from '../../hooks/localStorage';
+import ToastAlert from '../toast/ToastAlert';
+import { getStatistics } from '../../redux/actions/statistics';
+import Right from '../admin/Right';
 
 const MainAdmin = ({ children }) => {
   const dispatch = useDispatch();
-  const meli_auth = localStorage.getItem('meli_auth');
-  // const auth = JSON.parse(meli_auth)
   const navigate = useNavigate();
+  const { orders } = useSelector((state) => state.orders);
+
   const { isOpen, id } = useSelector((state) => state.delModal);
   const { catOpen, catId } = useSelector((state) => state.cat_del_modal);
   const [showMenu, setShowMenu] = useState(false);
+  const { message, user, loading } = useSelector((state) => state.user);
+  const [token] = useState(fetchToken());
+  const { stats } = useSelector((state) => state.statistics);
+
   useEffect(() => {
-    dispatch(userLog());
-    !meli_auth && navigate('/auth/admin_sign_up');
-  }, []);
+    dispatch(getStatistics());
+  }, [dispatch]);
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
-  if (meli_auth) {
-    const auth = JSON.parse(meli_auth);
-
-    if (auth.user.role === 'admin') {
-      return (
-        <>
-          <div className="container">
-            <div className="admin-container">
-
-              {isOpen && <ProdDelModal id={id} />}
-              {catOpen && <CatDelModal id={catId} />}
-              <SideNav showMenu={showMenu} handleMenu={handleMenu} />
-              <div className="full-width flex-center">
-                {' '}
-                {children}
-              </div>
-
-              <Right handleMenu={handleMenu} auth={auth} />
-            </div>
-
-            <Footer />
-          </div>
-        </>
-      );
-    }
-    return (
-      <div>
-        <h1>You are not an Admin</h1>
-        <NavLink to="/">Go to Store</NavLink>
-      </div>
-    );
-    // navigate("/auth/admin_sign_up")
-
-  // }
-  // redir()
+  if (loading) {
+    return (<Loader />);
   }
 
+  if (user) {
+    if (user?.role === 'admin' || user?.role === 'super-admin') {
+      return (
+        <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 h-screen bg-white overflow-y-hidden">
+          <ToastAlert />
+          {isOpen && <ProdDelModal id={id} />}
+          {catOpen && <CatDelModal id={catId} />}
+          <SideNav showMenu={showMenu} handleMenu={handleMenu} stats={stats} />
+          <div className="px-2 lg:px-4  py-10 bg-white shadow md:pt-0 overflow-y-auto h-screen no-scroll mt-12">
+            {children}
+          </div>
+          <Right handleMenu={handleMenu} user={user} stats={stats} />
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <h1 className="my-5">You are not an Admin</h1>
+        <NavLink to="/store">Go to Store</NavLink>
+      </div>
+    );
+  } if (token) {
+    return (
+      <div className="text-center">
+        <h1 className="text-3xl my-10 ">{message}</h1>
+        <NavLink to="/store" className="text-xl">Go to Store</NavLink>
+      </div>
+
+    );
+  }
   navigate('/auth/admin_login');
+  return null; // Ensure no further rendering happens after navigation
 };
 
 export default MainAdmin;

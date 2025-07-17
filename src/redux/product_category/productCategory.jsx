@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  addProductCategory, deleteCategory, getProductCategories, updateCategory,
+  addProductCategory, deleteCategory, getProductCategories, getSportCategories, updateCategory,
 } from '../actions/product_category';
 
 const initialState = {
   product_categories: [],
+  sport_categories: [],
   loading: true,
-  status: 'failed',
-  report: 'nuller',
-  updater: true,
+  status: null,
+  report: null,
+  updater: false,
 };
 const productCategorySlice = createSlice({
   name: 'product_category',
@@ -19,6 +20,12 @@ const productCategorySlice = createSlice({
       loading: false,
       status: 'success',
       product_categories: action.payload,
+    }),
+    [getSportCategories.fulfilled]: (state, action) => ({
+      ...state,
+      loading: false,
+      status: 'success',
+      sport_categories: action.payload,
     }),
     [getProductCategories.pending]: (state) => ({
       ...state,
@@ -38,11 +45,11 @@ const productCategorySlice = createSlice({
       loading: false,
       report: 'categgory has been added',
     }),
-    [addProductCategory.rejected]: (state) => ({
+    [addProductCategory.rejected]: (state, action) => ({
       ...state,
       status: 'rejected',
       loading: false,
-      report: 'categgory has been added',
+      report: action.payload.message,
     }),
     [addProductCategory.pending]: (state) => ({
       ...state,
@@ -77,6 +84,17 @@ const productCategorySlice = createSlice({
     }),
 
   },
+  reducers: {
+
+    resetCategory: (state) => ({
+      ...state,
+      loading: false,
+      status: null,
+      error: false,
+      report: null,
+    }),
+  },
 });
 
 export default productCategorySlice.reducer;
+export const { resetCategory } = productCategorySlice.actions;

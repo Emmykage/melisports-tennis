@@ -1,57 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addUser,
-  getUser,
   loginUser,
+  userProfile,
 } from '../actions/auth';
 
 const initialState = {
   user: null,
+  users: [],
+  userEdit: {},
   error: false,
   message: '',
-  loading: false,
+  loading: true,
   logged: false,
 };
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    userLog: (state) => {
-      try {
-        const auth = localStorage.getItem('meli_auth');
-
-        return {
-          ...state,
-          user: JSON.parse(auth),
-          logged: true,
-
-        };
-      } catch {
-        return {
-          ...state,
-          user: null,
-        };
-      }
-    },
+    userLog: (state) => ({
+      ...state,
+      logged: false,
+    }),
   },
   extraReducers: {
-    [getUser.fulfilled]: (state, action) => {
-      const response = action.payload;
-      if (response.user) {
-        return {
-          ...state,
-          logged: true,
-          user: response,
-        };
-      }
 
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        message: action.payload.error,
-      };
-    },
     [addUser.fulfilled]: (state, action) => {
       const response = action.payload;
       if (response.user) {
@@ -60,8 +33,10 @@ const userSlice = createSlice({
         return {
           ...state,
           logged: true,
-          user: response,
-          message: 'sign up successfull',
+          loading: false,
+          user: response.user,
+          error: false,
+          message: response.message,
         };
       }
 
@@ -84,35 +59,38 @@ const userSlice = createSlice({
     }),
     [loginUser.fulfilled]: (state, action) => {
       const response = action.payload;
-
-      if (response.user) {
-        const collect = JSON.stringify(response);
-        localStorage.setItem('meli_auth', collect);
-
-        return {
-          ...state,
-          logged: true,
-          user: response,
-          error: false,
-          message: 'log in successful',
-        };
-      }
-
       return {
         ...state,
-        logged: false,
+        logged: true,
+        error: false,
         loading: false,
-        error: true,
-        message: action.payload.error,
+        message: response.message,
+        user: response.data,
       };
     },
-    [loginUser.rejected]: (state) => ({
+    [loginUser.rejected]: (state, action) => ({
       ...state,
       loading: false,
       error: true,
-      message: 'No Internet connection',
+      message: action.payload.message,
     }),
     [loginUser.pending]: (state) => ({
+      ...state,
+      loading: true,
+    }),
+
+    [userProfile.fulfilled]: (state, action) => ({
+      ...state,
+      user: action.payload.data,
+      loading: false,
+    }),
+    [userProfile.rejected]: (state, action) => ({
+      ...state,
+      message: action.payload.message,
+      user: null,
+      loading: false,
+    }),
+    [userProfile.pending]: (state) => ({
       ...state,
       loading: true,
     }),

@@ -1,36 +1,38 @@
 import React from 'react';
 import DistributorBanner from '../components/banner/Distributor';
+import NavInfo from '../components/nav/NavInfo';
 
 const BecomeADistributor = () => (
   <div>
+    <NavInfo/>
     <div className="">
 
       <DistributorBanner />
 
       <div className="contact-us ">
 
-        <div className="grid grid-2 gap-1">
+        <div className="grid grid-cols-2 gap-1">
 
           <div className="p-3">
             <div className="">
 
-              <h2 className="mb-2 font-normal">Become A distributor</h2>
-              <p>Need to get in touch with us? Either fill out the form with your inquiry or find or contact us through our emails </p>
+              <h2 className="mb-2 font-normal text-3xl">Become A distributor</h2>
+              <p className='text-base text-gray-800'>Need to get in touch with us? Either fill out the form with your inquiry or find or contact us through our emails </p>
             </div>
           </div>
           <div className="p-2">
 
             <form action="https://formspree.io/f/xayvlole" method="post">
-              <div className="input"><input name="company_name" id="name" type="text" placeholder="Company name" /></div>
-              <div className="input"><input name="Email" type="email" placeholder="Email address" required /></div>
-              <div className="input"><input name="State" type="text" placeholder="State of Business Location" /></div>
+              <div className="input"><input name="company_name" id="name" type="text" placeholder="Company name " className="border" /></div>
+              <div className="input"><input name="Email" type="email" placeholder="Email address" required className="border" /></div>
+              <div className="input"><input name="State" type="text" placeholder="State of Business Location" required className="border" /></div>
               <div className="input text-input">
-                <textarea placeholder="Enter business address" />
+                <textarea placeholder="Enter Message (opptional)" className="border" name='message' />
 
               </div>
               {/* <button name="message" type="submit">Get in touch</button>
            */}
-              <button type="submit" className="btn btn-primary py-2 w-full block">Send Message</button>
+              <button type="submit" className="btn btn-primary py-2 w-full px-3 block">Send Message</button>
             </form>
 
           </div>

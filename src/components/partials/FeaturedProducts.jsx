@@ -5,13 +5,13 @@ import './style.css';
 const FeaturedProducts = (props) => {
   const { name, image } = props;
   return (
-    <div className="feature-grid m-h2 box-shadow">
-      <NavLink to={`${'/'}`}>
+    <div className="feature-grid my-3 box-shadow">
+      <NavLink to={`/${name}`}>
 
         <div>
           <img src={image} alt="" />
         </div>
-        <div className="center">
+        <div className="text-center">
           <h4 className="text-primary">
             {' '}
             {name}

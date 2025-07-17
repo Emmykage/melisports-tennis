@@ -1,69 +1,15 @@
 import React from 'react';
 import './sidenav.css';
 
-const SideNav = () => (
+const SideNav = ({children}) => (
   <>
-    <div className="side-row">
-      <h6>Activities</h6>
+       <div className="side-nav shrink-0 relative">
+            <div className='sticky border rounded-lg border-gray-300 shadow bg-white  top-4 left-0'>
+              {children}
+              </div>
 
-    </div>
-    <div className="side-row">
-      <label htmlFor="tennis" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="tennis" />
-        Tennis
-      </label>
-      <label htmlFor="tennis" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="tennis" />
-        Badminton
-      </label>
-    </div>
-    <div className="side-row">
-      <h6>Racket Type</h6>
-      <label htmlFor="control" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="control" />
-        control
-      </label>
-      <label htmlFor="power-beginner" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="power-beginner" />
-        power Beginner
-      </label>
-      <label htmlFor="junior" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="junior" />
-        junior
-      </label>
-    </div>
-    <div className="side-row">
-      <h6>Skill level</h6>
-      <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="activity" />
-        Beginner
-      </label>
-      <label htmlFor="intermediate" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="intermediate" />
-        Intermediate
-      </label>
-      <label htmlFor="advanced" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="activity" />
-        Advanced
-      </label>
-    </div>
-    <div className="side-row">
-      <h6>Brand</h6>
-
-      <label htmlFor="activity" style={{ fontSize: '1rem' }}>
-
-        <input type="checkbox" id="babolat" />
-        babolat
-      </label>
-    </div>
+              </div>
+              
 
   </>
 );

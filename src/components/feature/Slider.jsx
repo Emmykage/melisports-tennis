@@ -30,6 +30,9 @@ export default function Slider() {
           modules={[EffectFade, Autoplay]}
           className="mySwiper"
         >
+          {/* <SwiperSlide>
+            <video src={videoAdd} controls autoplay muted loop></video>
+          </SwiperSlide> */}
           <SwiperSlide>
             {' '}
             <img src={Slide1} />
@@ -40,6 +43,7 @@ export default function Slider() {
 
         </Swiper>
       </div>
+
     </>
   );
 }

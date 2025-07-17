@@ -1,5 +1,5 @@
 .hero-mid {
-  background: url('../../../public/assets/banner.jpg');
+  /* background: linear-gradient(rgba(255, 0, 0, 0.363), rgba(0, 0, 255, 0.247)), url('../../../public/assets/banner.jpg'); */
   width: 100%;
   background-position: top;
   background-size: cover;
@@ -15,7 +15,15 @@
 .about-banner .hero-banner {
   background-color: var(--color-theme-light);
 }
+.banner.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(53, 53, 53, 0.534), rgba(0, 0, 0, 0.342));
 
+}
 .hero-full {
   height: 450px;
 }
@@ -26,6 +34,9 @@
 
 .hero-mid {
   height: 350px;
+}
+.bg-lucent{
+  background: rgba(10, 10, 10, 0.425);
 }
 
 .card-img {
@@ -38,11 +49,7 @@
 .hero-mid img {
   width: 100%;
   height: 100%;
-}
-
-h5 {
-  font-size: 1.8rem;
-  color: #fff;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 600px) {

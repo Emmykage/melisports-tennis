@@ -1,13 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import { BsFacebook } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
-import { userLog } from '../../redux/user/user';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+import {
+  Link, Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, TextField, ThemeProvider, Typography, createTheme,
+} from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { BsEyeSlash } from 'react-icons/bs';
+import { AiOutlineEye } from 'react-icons/ai';
 import { addUser } from '../../redux/actions/auth';
+import { userLog } from '../../redux/user/user';
+
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Vortech
+      </Link>
+      {' '}
+      {new Date().getFullYear()}
+      .
+    </Typography>
+  );
+}
+const theme = createTheme();
 
 const AdminSignUp = () => {
+  const [seePassword, setSeePassword] = useState(false);
   const [show, setShow] = useState(true);
 
   const navigation = useNavigate();
@@ -16,143 +36,168 @@ const AdminSignUp = () => {
     user, error, message, loading,
   } = useSelector((state) => state.user);
 
-  const [formInput, setFormInput] = useState({
-    user: {
-      first_name: '',
-      last_name: '',
-      username: '',
-      email: '',
-      phone_no: '',
-      password: '',
-      role: 'admin',
-    },
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const formInput = {
+      user: {
+        first_name: data.get('firstName'),
+        last_name: data.get('lastName'),
+        email: data.get('email'),
+        password: data.get('password'),
+        // phone_no: data.get('phone_no'),
+        username: data.get('username'),
+        role: 'admin',
 
-  });
+      },
+
+    };
+    dispatch(addUser(formInput));
+  };
   useEffect(() => {
     dispatch(userLog());
   }, []);
 
-  const handleInput = (e) => {
-    if (e.target.name == 'email') {
-      setFormInput({
-        user: {
-          ...formInput.user,
-          [e.target.name]: e.target.value.toLowerCase(),
-        },
-      });
-    } else {
-      setFormInput({
-
-        user: {
-          ...formInput.user,
-          [e.target.name]: e.target.value,
-        },
-      });
-    }
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addUser(formInput));
-    dispatch(userLog());
-  };
   const toggleReveal = () => {
     setShow((prev) => !prev);
   };
   if (user == null || user == undefined) {
     return (
-      <div className="wallpaper centralize">
-        <div className="auth-container">
-          <div className="form-content sign-up">
-            <h1>Sign Up as Admin</h1>
-            <form onSubmit={handleSubmit}>
-              <div className="field input-field">
-                <label htmlFor="first_name">First Name</label>
-                <input type="text" name="first_name" value={formInput.user.first_name} onChange={handleInput} id="first_name" required />
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <NavLink to="/" className="hover:text-blue-600 font-semibold ">Visit Site</NavLink>
 
-              </div>
-              <div className="field input-field">
-                <label htmlFor="username">Last Name</label>
-                <input type="text" name="last_name" value={formInput.user.last_name} onChange={handleInput} id="last_name" required />
-              </div>
-              <div className="field input-field">
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" value={formInput.user.username} onChange={handleInput} id="last_name" required />
-              </div>
-              <div className="field input-field">
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={formInput.user.email} onChange={handleInput} required />
-              </div>
-              <div className="field input-field">
-                <label htmlFor="mobile">Mobile</label>
-                <input type="text" name="phone_no" value={formInput.user.phone_no} onChange={handleInput} id="mobile" required />
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign up
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="given-name"
+                    name="firstName"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    autoFocus
+                  />
+                </Grid>
+                {/* <div className='relative'> */}
 
-              </div>
-              <div className="field input-field">
-                <label htmlFor="password">Password</label>
-                <input
-                  type={show ? 'password' : 'text'}
-                  onChange={handleInput}
-                  value={formInput.user.password}
-                  name="password"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                <Grid className="relative" item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Last Name"
+                    name="lastName"
+                    autoComplete="family-name"
+                  />
+
+                </Grid>
+                {/* </div> */}
+
+                <Grid item xs={12}>
+                  <TextField
+
+                    fullWidth
+                    id="username"
+                    label="username"
+                    name="username"
+                    autoComplete="username"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
+                {/* <Grid item xs={12}>
+                <TextField
                   required
+                  fullWidth
+                  id="phone_no"
+                  label="Mobile"
+                  name="phone_no"
+                  autoComplete="phone_no"
                 />
+              </Grid> */}
 
-                <span onClick={toggleReveal}>
-                  {' '}
-                  {show ? <AiOutlineEyeInvisible className="eye-icon" /> : <AiOutlineEye className="eye-icon" />}
-                </span>
-              </div>
+                <Grid className="relative" item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type={seePassword ? 'text' : 'password'}
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !seePassword)}>
 
-              <button className="btn" type="submit">Sign Up</button>
-              <div className="form-link">
-                <span>
-                  {' '}
-                  Already have an account?
-                  <NavLink to="/auth/admin_login">Login</NavLink>
-                </span>
-              </div>
-              <div className="line" />
-            </form>
-            <p className="blue">
-              {' '}
-              {loading && 'loading...' }
-            </p>
+                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                  </span>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  />
+                </Grid>
+              </Grid>
+              <p className="blue">
+                {' '}
+                {loading && 'loading...' }
+              </p>
 
-            <p className="red">
-              {' '}
-              {error && message }
-            </p>
-            <div className="media-option">
-              <a href="#" className="social-field facebook">
-                <BsFacebook className="facebook-icon" />
-                <span>Sign Up with Facebook</span>
-              </a>
-            </div>
-            <div className="media-option last-child">
-              <a href="#" className="social-field google">
-                <FcGoogle className="google-icon" />
-                <span>Sign Up with Google</span>
-              </a>
-            </div>
-            <p>
-              By clicking the sign up botton yo agree to our
-              <br />
-              <a href="#">Terms and condition</a>
-              {' '}
-              and
-              <a href="#">Policy</a>
-            </p>
-
-          </div>
-
-        </div>
-      </div>
+              <p className="red">
+                {' '}
+                {error && message }
+              </p>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <NavLink to="/auth/login">
+                    <Link variant="body2">
+                      Already have an account? Sign in
+                    </Link>
+                  </NavLink>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+          <Copyright sx={{ mt: 5 }} />
+        </Container>
+      </ThemeProvider>
     );
   }
 
-  navigation('/admin');
+  navigation('/auth/confirmation');
 };
 
 export default AdminSignUp;

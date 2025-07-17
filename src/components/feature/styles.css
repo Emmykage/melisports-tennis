@@ -1,10 +1,22 @@
 
-.swiper-slide,
 .swiper-slide {
-  background-color: var(--color-primary-variant);
+  /* background-color: var(--color-primary-variant); */
 }
 
 .swiper-slide,
 .swiper-slide img {
   width: 100%;
+}
+@media (max-width: 700px) {
+  
+.swiper-slide,
+.swiper-slide img{
+  height: 100%;
+
+}
+  
+}
+
+.swiper-category:hover  .overlay{
+  height: 100%;
 }

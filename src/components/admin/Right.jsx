@@ -5,30 +5,29 @@ import {
 import { HiLightBulb } from 'react-icons/hi';
 import { MdDarkMode } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import IMG from '../../assets/images/profile/878e146d-997e-4a24-8cff-16682ea47cd6.jpg';
-import { setModal } from '../../redux/modal/categoryModal';
+import IMG from '../../assets/images/profile/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
+import AnalyticsCard from '../analytics/AnalyticsCard';
 
-const Right = ({ handleMenu, auth }) => (
-  <div className="right">
-    <div className="top">
-      <button id="menu-btn">
+const Right = ({ handleMenu, user, stats }) => (
+  <div className="right bg-white px-2 py-4 h-screen overflow-y-auto no-scroll">
+    <div className="fixed bg-white md:relative top-0 left-0 items-center lg:px-3 h-20 w-full z-20 shadow-lg top flex justify-between md:justify-between gap-4">
+      <button id="menu-btn" className="block md:hidden ">
         <span onClick={handleMenu}>
           <AiOutlineMenu className="iconStyle" />
         </span>
       </button>
-      <div className="theme-toggler">
-        <span><HiLightBulb /></span>
-        <span><MdDarkMode /></span>
+      <div className="theme-toggler rounded-lg w-16 flex items-center bg-gray-300 justify-between">
+        <span className="text-lg w-1/2 flex items-center justify-center h-full"><HiLightBulb /></span>
+        <span className="text-lg w-1/2 flex items-center justify-center h-full"><MdDarkMode /></span>
 
       </div>
-      <div className="profile">
+      <div className="profile flex text-center gap-6">
         <div className="info">
           <p>
             Hey,
             <b>
               {' '}
-              {auth.user.email}
+              {user.first_name}
               {' '}
             </b>
           </p>
@@ -39,11 +38,10 @@ const Right = ({ handleMenu, auth }) => (
         </div>
       </div>
     </div>
-    {/* end of top */}
     <div className="recent-updates">
-      <h2>Recent updates</h2>
-      <div className="updates">
-        <div className="update">
+      <h2 className="mb-4 font-medium">Recent updates</h2>
+      <div className="updates px-3 py-3 shadow-xl hover:shadow-none transition-all duration-300 ease-linear">
+        <div className="update flex gap-3 my-3">
           <div className="profile-photo">
             <img src={IMG} alt="" />
           </div>
@@ -55,9 +53,9 @@ const Right = ({ handleMenu, auth }) => (
             <small className="text-muted">@ Minutes ago</small>
           </div>
         </div>
-        <div className="update">
-          <div className="profile-photo">
-            <img src={IMG} alt="" />
+        <div className="update gap-2 flex">
+          <div className="profile-photo w-10">
+            <img src={IMG} alt="prifile pic" />
           </div>
           <div className="message">
             <p>
@@ -66,70 +64,16 @@ const Right = ({ handleMenu, auth }) => (
             </p>
             <small className="text-muted">@ Minutes ago</small>
           </div>
-        </div>
-        <div className="update">
-          <div className="profile-photo">
-            <img src={IMG} alt="" />
-          </div>
-          <div className="message">
-            <p>
-              <b>Mike Tyson</b>
-              received his order
-            </p>
-            <small className="text-muted">@ Minutes ago</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="sales-analytics">
-      <h2>Sales Analytics</h2>
-      <div className="item online">
-        <div className="icon">
-          <span><AiOutlineShoppingCart /></span>
-        </div>
-        <div className="right">
-          <div className="info">
-            <h3>ONLINE ORDERS</h3>
-            <small className="text-muted">
-              last 24 hours
-            </small>
-          </div>
-          <h5 className="success"> +39</h5>
-          <h3>3849</h3>
-        </div>
-      </div>
-      <div className="item offline">
-        <div className="icon">
-          <span><AiOutlineShop /></span>
-        </div>
-        <div className="right">
-          <div className="info">
-            <h3>OFFLINE ORDERS</h3>
-            <small className="text-muted">
-              last 24 hours
-            </small>
-          </div>
-          <h5 className="danger"> +17</h5>
-          <h3>1100</h3>
-        </div>
-      </div>
-      <div className="item customers">
-        <div className="icon">
-          <span><AiOutlineUser /></span>
-        </div>
-        <div className="right">
-          <div className="info">
-            <h3>NEW CUSTOMERS</h3>
-            <small className="text-muted">
-              last 24 hours
-            </small>
-          </div>
-          <h5 className="success"> +25</h5>
-          <h3>849</h3>
         </div>
 
       </div>
-      <div className="item add-product">
+    </div>
+    <div className="sales-analytics">
+      <h2 className="font-medium mb-4">Sales Analytics</h2>
+      <AnalyticsCard count={stats?.offline_orders} source="online orders" />
+      <AnalyticsCard count={stats?.offline_orders} source="offline orders" />
+      <AnalyticsCard count={5} source="New Customers" />
+      <div className="item add-product py-5 sm:py-6 lg:py-7 mb-5">
         <div>
           <span>
             <AiOutlinePlus />
@@ -141,7 +85,7 @@ const Right = ({ handleMenu, auth }) => (
           </h3>
         </div>
       </div>
-      <div className="item add-product">
+      <div className="item add-product  py-5 sm:py-6 lg:py-7">
         <div>
           <span>
             <AiOutlinePlus />

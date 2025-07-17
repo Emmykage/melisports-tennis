@@ -1,30 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import searched from '../../redux/actions/search';
-import { displayList } from '../../redux/products/searched';
+import { useNavigate } from 'react-router-dom';
 import SearchList from './SearchList';
+import { filterProducts, searchedProducts } from '../../redux/products/product';
 
 const SearchComponent = () => {
+  const searchForm = useRef(null);
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const { searchedProducts, displayedList } = useSelector((state) => state.searched_products);
-  const [search, setSearch] = useState({ search: '' });
+  const { searched_products } = useSelector((state) => state.products);
+  const [showSearchList, setShowSearchList] = useState(false); // State variable to control visibility
+  const [search, setSearch] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search_page?query=${search}`);
+    triggerClose();
+  };
   const handleInput = (e) => {
-    dispatch(displayList());
-    setSearch({ search: e.target.value });
-    clearTimeout(0);
-    if (search.search.trim().length == 0) {
+    setSearch(e.target.value.trim());
+    if (search.length == 0) {
       return;
     }
 
-    dispatch(searched(search));
+    dispatch(searchedProducts(search));
   };
 
+  const triggerClose = () => {
+    setSearch('');
+    dispatch(searchedProducts(''));
+  };
+
+  useEffect(() => {
+    if (searched_products) setShowSearchList(true);
+  }, [searched_products]);
   return (
-    <div className="search-component">
-      <form className="search-form">
+    <div className="search-component  bg-theme">
+      <form className="search-form p-4" onSubmit={handleSearch} ref={searchForm}>
         <div className="search-div">
-          <input type="text" placeholder="Search item" value={search.search} onChange={handleInput} />
+          <input type="text" placeholder="Search item" value={search} name="search" id="search" onChange={handleInput} />
           <button type="submit">
             <BsSearch />
             {' '}
@@ -33,8 +49,9 @@ const SearchComponent = () => {
         </div>
 
       </form>
-      {displayedList && <SearchList items={searchedProducts} />}
-
+      {/* <div className='bg-red' onClick={triggerClose} > */}
+      {showSearchList && <SearchList items={searched_products} triggerClose={triggerClose} setSearch={setSearch} />}
+      {/* </div> */}
     </div>
   );
 };

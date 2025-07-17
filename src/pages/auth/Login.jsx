@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import './auth.css';
-import { BsFacebook } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
-import Avatar from '@mui/material/Avatar';
+import { BsEyeSlash, BsFacebook } from 'react-icons/bs';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -18,14 +16,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { userLog } from '../../redux/user/user';
-import { updater } from '../../redux/cart/cart';
 import { loginUser } from '../../redux/actions/auth';
-// import { NavLink, useNavigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useEffect } from 'react';
-// import { userLog } from '../../redux/auth/user_authentication';
-// import { userSession } from '../../redux/actions/auth';
-// import { Copyright } from './Copyright';
 
 function Copyright(props) {
   return (
@@ -43,15 +34,17 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+  const [seePassword, setSeePassword] = useState(false);
+  const location = useLocation();
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, loading,
+    user, error, message, loading, logged,
   } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(userLog());
-  }, []);
+  }, [user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,9 +55,13 @@ export default function Login() {
         password: data.get('password'),
       },
     };
-    dispatch(loginUser(formInput));
+    dispatch(loginUser(formInput)).then(result => {
+      if(loginUser.fulfilled.match(result)){
+        navigation(location.state?.from || '/store');
+      }
+    });
   };
-  if (user == null || user == undefined) {
+  // if (!logged) {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -77,7 +74,12 @@ export default function Login() {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/">Visit Site</NavLink>
+
+
+
+            <NavLink to="/" className="hover:text-blue-600 font-semibold ">
+               <img  className='h-40 text-red-950' src='/logo192.png'/>
+            </NavLink>
 
             <Typography component="h1" variant="h5">
               Login
@@ -86,32 +88,36 @@ export default function Login() {
               <Grid container spacing={2}>
 
                 <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-                <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-                <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
+                <Grid className="relative" item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type={seePassword ? 'text' : 'password'}
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !seePassword)}>
+
+                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                  </span>
+                </Grid>
+                {/* <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  />
+                </Grid> */}
               </Grid>
               <p className="blue">
                 {' '}
@@ -128,17 +134,17 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-              Login
+                Login
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                <NavLink to="/auth/sign_up">
+                  <NavLink to="/auth/sign_up">
 
-                  <Link variant="body2">
-                    Do not have an account? Sign Up
-                  </Link>
-                </NavLink>
-              </Grid>
+                    <Link variant="body2">
+                      Do not have an account? Sign Up
+                    </Link>
+                  </NavLink>
+                </Grid>
               </Grid>
             </Box>
           </Box>
@@ -147,5 +153,5 @@ export default function Login() {
       </ThemeProvider>
     );
   }
-  navigation('/');
-}
+//   navigation(location.state?.from || '/store');
+// }

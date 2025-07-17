@@ -12,12 +12,19 @@ import delProductSlice from './modal/delModal';
 import productCategory from './product_category/productCategory';
 import delCatSlice from './modal/catDelModal';
 import userSlice from './user/user';
+import usersSlice from './users/user';
 import searchSlice from './products/searched';
 import navSlice from './modal/nav';
 import levelSlice from './level/level';
 import genderSlice from './gender/gender';
 import orderSlice from './order/order';
 import catalogSlice from './catalog/catalog';
+import appSlice from './app/app';
+import statSlice from './statistics';
+import deliveryFeeSlice from './delivery_fee';
+import reviewReducer from './review';
+import invoiceReducer from "./order/invoice"
+import courtReducer from "./courts"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -29,13 +36,20 @@ const rootReducer = combineReducers({
   delModal: delProductSlice,
   product_categories: productCategory,
   user: userSlice,
+  users: usersSlice,
   cat_del_modal: delCatSlice,
   searched_products: searchSlice,
   navToggle: navSlice,
   level: levelSlice,
   gender: genderSlice,
   orders: orderSlice,
+  app: appSlice,
   catalog: catalogSlice,
+  statistics: statSlice,
+  deliveryFees: deliveryFeeSlice,
+  reviews: reviewReducer,
+  invoices: invoiceReducer,
+  courts: courtReducer
 
 });
 

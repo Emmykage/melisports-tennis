@@ -1,26 +1,11 @@
-.footer-container {
-  width: 80%;
-
-  /* margin: 0 0 1rem; */
-}
-
 .footer-container > div {
   flex: 1;
-  border-right: 1px solid black;
   padding: 0 1.2rem;
-  font-weight: 200;
   font-size: 0.7rem;
 }
 
 .footer-container > div:nth-last-child() {
   border-right: none;
-}
-
-footer {
-  padding-top: 1.5rem;
-  margin: 2rem 0;
-  background-color: var(--color-theme-variant);
-  line-height: 1.6rem;
 }
 
 footer p,
@@ -35,20 +20,11 @@ footer a {
   text-decoration: underline;
 }
 
-footer h3,
-footer h4 {
-  font-weight: 400;
-  color: aliceblue;
-}
 
 footer h3 {
   font-size: 1.5rem;
 }
 
-.footer-container > div h4 {
-  font-size: 1rem;
-  margin: 1rem 0;
-}
 
 @media screen and (max-width: 600px) {
   .footer-container > div {

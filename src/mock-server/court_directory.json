@@ -1,0 +1,662 @@
+[{
+    "courtName":"chelsea Hotel Tennis Court",
+    "location": "123 Mohammadu Buhari Way,Central Business District, Abuja",
+    "state": "Abuja",
+    "phone_number": "+2348066460762",
+    "stars": 4,
+    "email": "melisportsngn@gmail.com"
+
+},
+{
+    "courtName":"Nicon Luxury Hotel Tennis Court",
+    "location": "Plot 903, Tafawa Balewa Way,Garki Nigeria",
+    "state": "Abuja",
+    "phone_number": "+234-8065648794",
+    "stars": 5
+
+},
+{
+    "courtName":"Sheraton Hotel & Towers Abuja: Royale Tennis Club, City Sport Club",
+    "location": "1, Ladi Kwali Way, Wuse 1, Abuja ",
+    "state": "Abuja",
+    "phone_number": "+234-8064081915",
+    "stars": 3
+
+},
+{
+    "courtName":"Transcorp Hilton Tennis Court",
+    "location": "1, Aguiyi Ironsi Street,Maitama, Abuja ",
+    "state": "Abuja",
+    "phone_number": "+234-8035910456",
+    "stars": 5
+
+},
+{
+    "courtName":"Agura Hotels",
+    "location": "Moshood Abiola Way, Garki Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8080485420",
+    "stars": 5
+
+},
+{
+    "courtName":"Barcelona Hotels Intl. Tennis Court",
+    "location": "23 Blantyre Crescent, Wuse Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8067094922",
+    "stars": 5
+
+},
+{
+    "courtName":"Lungi Barracks Court",
+    "location": "Lungi Barracks, Maitama, Abuja, Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8067082886",
+    "stars": 4
+
+},
+{
+    "courtName":"Mogadishu Cantonement, Asokoro, Abuja",
+    "location": "Mogadishu Cantonement,Asokoro, Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8037012787",
+    "stars": 3
+
+},
+{
+    "courtName":"Nigerian Air Force Base Abuja: Presidential Air Fleet Quarters",
+    "location": "Nigerian Air Force Base, Bill Clinton Drive, Ring Road 4,Airport Road, Abuja",
+    "state": "Abuja",
+    "phone_number": "+234-8055264483",
+    "stars": 4
+
+},
+{
+    "courtName":"PCI Lawn Tennis court",
+    "location": "GRA, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Lagos Country Club",
+    "location": "2,Joel Ogunnaike Street, Off Mobolaji Bank Anthony Way, G.R.A,",
+    "state": "Lagos",
+    "phone_number": "+234-708860 5062",
+    "stars": 4
+
+},
+{
+    "courtName":"FAAN Tennis Club",
+    "location": "Zone A, FAAN Staff Quarters, Airport Road, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"S4TC Estate Tennis Court",
+    "location": "LSDPC Medium Estate Phase 4 Ogba, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-9013592351",
+    "stars": 4
+
+},
+{
+    "courtName":"Lagos State Public Service Club",
+    "location": "14 Sobo Arobiodu St, Ikeja GRA, Ikeja",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Anthony Village Recreation Center",
+    "location": "Adebayo Mokuolu St",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Lagos Lawn Tennis Club",
+    "location": "12 Tafawa Balewa Rd",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Adejumo Tennis Club Sports Complex (Gym & Fitness Centre & SPA)",
+    "location": "11 Adejumo Tennis Club Rd, Isolo",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Railway Institute Tennis Court",
+    "location": "77 Old Yaba Rd",
+    "state": "Lagos",
+    "phone_number": "+234-0802 302 7554",
+    "stars": 4
+
+},
+{
+    "courtName":"Unilag Staff Club",
+    "location": "4b Ransome Kuti Rd, Yaba",
+    "state": "Lagos",
+    "phone_number": "+234-8023027554",
+    "stars": 4
+
+},
+{
+    "courtName":"ISL Lawn Tennis Court (San Siro)",
+    "location": "University Of Lagos, University Rd, Yaba",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Yaba Tech Tennis Court",
+    "location": "Yaba Tech",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"NPA Tennis Club/Sports ground",
+    "location": "Off Bode Thomas, Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"LUTH Lawn Tennis Court",
+    "location": "Ishaga Road, Idi Araba, Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Mainland Tennis Club",
+    "location": "National Stadium Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-0817 535 1687",
+    "stars": 4
+
+},
+{
+    "courtName":"Luik Tennis And Recreation",
+    "location": "The Rock Drive, Lekki Phase 1",
+    "state": "Lagos",
+    "phone_number": "+234-0817 480 3873",
+    "stars": 4
+
+},
+{
+    "courtName":"LUTH Lawn Tennis Court",
+    "location": "Ishaga Road, Idi Araba, Surulere",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Hitway Tennis Academy",
+    "location": "Leisure Sports Park, 39 Kusenla Rd, Eti-Osa, Lekki",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Ikoyi Club Tennis Court",
+    "location": "6 Ikoyi Club Rd, Ikoyi, 35 Ahmadu Bello Way, Victoria Island",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"The Kingfisher Club",
+    "location": "4 Reeve Road, Ikoyi",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"1004 Estate Tennis Club",
+    "location": "1004, Victoria Island",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Estate Tennis Club",
+    "location": "1004, Victoria Island",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"Tennis Court ",
+    "location": "Isheri Osun, Lagos",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},
+{
+    "courtName":"FHA Tennis Club",
+    "location": "22 Road, Festac",
+    "state": "Lagos",
+    "phone_number": "+234-000000",
+    "stars": 4
+
+},{
+    "courtName": "Onitsha Sports Club",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Onitsha Country Club,Fegge",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Onitsha Recreation Club",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Fegge Sports Club",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},{
+    "courtName": "Elite Sports Club",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Hilton Gate Hotel Club, Nsugbe",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "People's Club Of Nigeria Sports Club, Owerri Road",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Senator Ubanaese House",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "All Saints Cathedral,",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Holy Trinity ,Onisha Archdiocese",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Dolly Hills Hotel",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+{
+    "courtName": "Roggeny Sports Club",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+{
+    "courtName": "Fegge recreation Court",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Nnewi Sports Club",
+    "location": "Nnewi Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Dolly Hills Hotel",
+    "location": "Onitsha",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Hotel Nnewi",
+    "location": "Nnewi Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+
+{
+    "courtName": "Beverly Hill club & hotel",
+    "location": "Nnewi Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+
+{
+    "courtName": "House Of Innoson (Ceo Of Ivm Motors)",
+    "location": "Nnewi Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Amawbia Sports Club",
+    "location": "Awka Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Geogold Hotel",
+    "location": "Awka Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+{
+    "courtName": "Beautiful Gate Hotel",
+    "location": "Awka Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+{
+    "courtName": "Abatete Bar Center, Besides Town Hall",
+    "location": "Abatete ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+{
+    "courtName": "White Castle Hotel",
+    "location": "Nse ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+{
+    "courtName": "Oraukwu town tennis court",
+    "location": "Oraukwu ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+{
+    "courtName": "Recreation club Owerri",
+    "location": "Oraukwu ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+
+{
+    "courtName": "SRDC-Standard Tennis Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+{
+    "courtName": "Recreation Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+{
+    "courtName": "Owerri Sports Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+{
+    "courtName": "Safari Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+{
+    "courtName": "Orlu Recreation Club",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+{
+    "courtName": "Oraukwu town tennis court",
+    "location": "Oraukwu ",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Anambra"
+
+},
+
+
+{
+    "courtName": "Nwerre Country Club of St Stephen",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+
+{
+    "courtName": "Urualla Civic Center",
+    "location": "Imo",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Imo"
+
+},
+
+
+{
+    "courtName": "Enugu Sports Club",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "A Guest House At Ngozika Estate.",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Premier Tennis Club At Presidential Hotel",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "82 Divison Nigerian Army",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Biggard Seminary School",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Nike Lake Resort",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Nsude Seminary School",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "University Of Nigeria Enugu Campus;1Tennis Court",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+},
+{
+    "courtName": "University Of Nigeria Nsukka Campus",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Ataku Seminary School",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Ascourt New Heaven",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+},
+{
+    "courtName": "Ogui Recreation Club, Opp Stadium",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Chatue De Eye Independent Layout By Government House",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+},
+{
+    "courtName": "Ama Breweries 9Th Mile Ngwo",
+    "location": "Enugu Metropolice",
+    "phone_number": "+234-000000",
+    "star": 4,
+    "state": "Enugu"
+
+}]

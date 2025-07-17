@@ -13,7 +13,7 @@ const CARD_OPTIONS = {
   style: {
     base: {
       iconColor: '#c4foff',
-      color: '#fff',
+      color: '#333',
       fontWeight: 500,
       fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
       fontSize: '16px',
@@ -23,7 +23,7 @@ const CARD_OPTIONS = {
     },
     invalid: {
       iconColor: '#ffc7ee',
-      color: '#ffc7ee',
+      color: '#110',
     },
   },
 };
@@ -88,7 +88,7 @@ const PaymentForm = ({ total_cost }) => {
       >
         <fieldset className="FormGroup">
           <PaymentField billingDetails={billingDetails} setBillingDetails={setBillingDetails} />
-          <div className="FormRow m-h2">
+          <div className="FormRow my-3">
             <CardElement options={CARD_OPTIONS} />
 
           </div>
@@ -104,7 +104,7 @@ const PaymentForm = ({ total_cost }) => {
       {' '}
       :
       <div>
-        <h2> You just bought something congrats</h2>
+        <h2> Experience the magic!!!</h2>
       </div>
       {/* } */}
 

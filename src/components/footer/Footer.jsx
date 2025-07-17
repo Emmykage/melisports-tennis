@@ -1,45 +1,52 @@
 import React from 'react';
 import './footer.css';
 import { NavLink } from 'react-router-dom';
+import logo from '../../assets/images/logo/melisport_3.png';
 
 const Footer = () => (
-  <footer>
-    <div className="m-auto footer-container flex-center">
+  <footer className="bg-theme pt-6 leading-7 px-5">
+    <div className="m-auto footer-container flex gap-3 my-10 ">
       <div>
-        <h4 className='text-4xl text-center'>MeliSport</h4>
-        <p className='text-center'>
+        <h4 className="text-2xl text-center">
+          <NavLink>
+            {' '}
+            <img src={logo} alt="logo" className="w-28 m-auto" />
+            {' '}
+          </NavLink>
+        </h4>
+        <p className="text-center">
           For over 10 years we have been dedicated to providing an incomparable
           collection of tennis and racqet sport collection
         </p>
 
       </div>
       <div>
-        <h4>RESOURCES</h4>
+        <h4 className="text-xl text-light font-normal">RESOURCES</h4>
         <ul>
           {/* <li>Membership</li> */}
           <li>
-            <NavLink to="/">
+            <NavLink to="/auth/login" className="no-underline text-sm">
               My Account
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink to="/return_policy" className="no-underline text-sm">
               Return Policy
             </NavLink>
             {' '}
 
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink to="/shipping_policy" className="no-underline text-sm">
               Shipping Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">Terms of Service</NavLink>
+            <NavLink to="/terms_of_service" className="no-underline text-sm">Terms of Service</NavLink>
           </li>
           <li>
             {' '}
-            <NavLink to="/">Privacy Policy</NavLink>
+            <NavLink to="/privacy_policy" className="no-underline text-sm">Privacy Policy</NavLink>
           </li>
           {/* <li>
             <NavLink to={"privacy_policy"}>
@@ -50,9 +57,10 @@ const Footer = () => (
         </ul>
       </div>
       <div>
-        <h4> CONTACT US</h4>
+        <h4 className="text-xl text-light tracking-wide font-normal"> CONTACT US</h4>
         <p>
-          Phone: +234-7064334160
+          <a href="tel:+2347038723093">Phone: +234-703 872 3093
+          </a>
           {' '}
           <br />
           Mon-Friday 9am - 5pm WAT
@@ -61,14 +69,12 @@ const Footer = () => (
           <a href="mailto:info@melisports.com"> info@melisports.com </a>
 
           {' '}
-          <br />
-          Gift Cards
         </p>
 
       </div>
       <div>
         <ul>
-          <h4>Connect With Us</h4>
+          <h4 className="text-xl text-light font-normal tracking-wide">Connect With Us</h4>
           <li>
             <a href="https://web.facebook.com/melisports">Facebook</a>
             {' '}
@@ -80,6 +86,11 @@ const Footer = () => (
           {/* <li>Youtube</li> */}
           <li>
             <a href="https://twitter.com/MeliSports"> Twitter</a>
+            {' '}
+          </li>
+
+            <li>
+            <a href="https://youtube.com/@MeliSportss"> YouTube</a>
             {' '}
           </li>
           {/* <li>TP Blog</li> */}

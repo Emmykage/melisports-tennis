@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -16,7 +16,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { BsEyeSlash } from 'react-icons/bs';
+import { AiOutlineEye } from 'react-icons/ai';
 import { userLog } from '../../redux/user/user';
+import { addUser } from '../../redux/actions/auth';
 
 function Copyright(props) {
   return (
@@ -34,11 +37,15 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [seePassword, setSeePassword] = useState(false);
+
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
     user, error, message, loading,
   } = useSelector((state) => state.user);
+
+  const [notification, setNotification] = useState({ color: '', text: null });
   useEffect(() => {
     dispatch(userLog());
   }, []);
@@ -59,8 +66,12 @@ export default function SignUp() {
       },
 
     };
+    dispatch(addUser(formInput)).then(result => {
+      if(addUser.fulfilled.match(result)){
+        navigation('/auth/confirmation');
+      }
+    });
   };
-  if (user == null || user == undefined) {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -73,11 +84,14 @@ export default function SignUp() {
               alignItems: 'center',
             }}
           >
-            <NavLink to="/">Visit Site</NavLink>
 
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <NavLink to="/" className="hover:text-blue-600 font-semibold ">
+               <img  className='h-40 text-red-950' src='/logo192.png'/>
+            </NavLink>
+
+            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
-            </Avatar>
+            </Avatar> */}
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
@@ -104,16 +118,7 @@ export default function SignUp() {
                     autoComplete="family-name"
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
 
-                    fullWidth
-                    id="username"
-                    label="username"
-                    name="username"
-                    autoComplete="username"
-                  />
-                </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -124,6 +129,7 @@ export default function SignUp() {
                     autoComplete="email"
                   />
                 </Grid>
+
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -135,16 +141,20 @@ export default function SignUp() {
                   />
                 </Grid>
 
-                <Grid item xs={12}>
+                <Grid className="relative" item xs={12}>
                   <TextField
                     required
                     fullWidth
                     name="password"
                     label="Password"
-                    type="password"
+                    type={seePassword ? 'text' : 'password'}
                     id="password"
                     autoComplete="new-password"
                   />
+                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !seePassword)}>
+
+                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                  </span>
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
@@ -153,6 +163,15 @@ export default function SignUp() {
                   />
                 </Grid>
               </Grid>
+              <p className="text-blue">
+                {' '}
+                {loading && 'loading...' }
+              </p>
+
+              <p className="text-red-500">
+                {' '}
+                {error && message }
+              </p>
               <Button
                 type="submit"
                 fullWidth
@@ -165,8 +184,8 @@ export default function SignUp() {
                 <Grid item>
                   <NavLink to="/auth/login">
                     <Link variant="body2">
-                    Already have an account? Sign in
-                  </Link>
+                      Already have an account? Sign in
+                    </Link>
                   </NavLink>
                 </Grid>
               </Grid>
@@ -177,5 +196,3 @@ export default function SignUp() {
       </ThemeProvider>
     );
   }
-  navigation('/auth/confirmation');
-}

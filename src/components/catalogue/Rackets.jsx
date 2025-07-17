@@ -2,79 +2,82 @@ import React, { useState } from 'react';
 import whatsap from '../../assets/images/logo/WhatsAppButtonGreenLarge.png';
 
 const Rackets = ({ racquet }) => {
+  const {
+    image, name, description, technical_characteristics,
+  } = racquet;
   const [toggle, setToggle] = useState('none');
 
   return (
-    <div className="flex flex-between seperator service-table ">
+    <div className="flex justify-between seperator service-table ">
       <div className=" p-img">
-        <img src={racquet.image} alt="" className="w-full h-full" />
+        <img src={image} alt="" className="w-full h-full" />
 
       </div>
       <div className="flex-2 bg- relative overflow-hidden pb-0">
         <div className="sm px-2 block">
-          <div className='py-1'>
+          <div className="py-1">
 
-            <h2 className="line-space px-1 ">{racquet.name}</h2>
-            <h2 className="color-white font-light description">DESCRIPTION:</h2>
-            <p className="px-1 text-sm text-white">{racquet.description}</p>
-            <div className="p-top-05">
-              <h2 className="color-white font-normal technical"> TECHNICAL CHARACTERISTICS </h2>
+            <h2 className="line-space px-1 ">{name}</h2>
+            <h2 className="text-white font-light description">DESCRIPTION: </h2>
+            <p className="px-1 text-sm text-white">{description}</p>
+            <div className="pt-5">
+              <h2 className="text-white font-normal technical"> TECHNICAL CHARACTERISTICS </h2>
               <ul className="characters px-1  gap-1 ">
 
-                <li className=" border-t p-05 m-02">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Head Size:</span>
-                    <span className="xter-info text-sm">{racquet.technical_characteristics.head_size}</span>
+                <li className=" border-t p-2 m-2 border-gray-900">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Head Size: </span>
+                    <span className="xter-info text-sm">{technical_characteristics.head_size}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Weight (unstrung):</span>
+                <li className=" border-t m-2 p-2">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Weight (unstrung): </span>
                     <span className="text-sm">{racquet.technical_characteristics.weight}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Swing Weight:</span>
+                <li className=" border-t m-2 p-2">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Swing Weight: </span>
                     <span className="text-sm">{racquet.technical_characteristics.swing_weight}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Stiffness (RA):</span>
+                <li className=" border-t m-2 p-2">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Stiffness (RA): </span>
                     <span className="text-sm">{racquet.technical_characteristics.stiffness}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Composition:</span>
+                <li className=" border-t m-2 p-2">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Composition: </span>
                     <span className="text-sm">{racquet.technical_characteristics.composition}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Tension Recommended:</span>
+                <li className=" border-t m-2 p-2">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Tension Recommended: </span>
                     <span className="text-sm">
                       {' '}
-                      {racquet.technical_characteristics.tension ? racquet.technical_characteristics.tension : "N/A"}
+                      {racquet.technical_characteristics.tension ? racquet.technical_characteristics.tension : 'N/A'}
                     </span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Length:</span>
+                <li className=" border-t m-2 p-2">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Length: </span>
                     <span className="text-sm">{racquet.technical_characteristics.length}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Recommended String:</span>
+                <li className=" border-t m-2 p-2">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Recommended String: </span>
                     <span className="text-sm">{racquet.technical_characteristics.recommended_string}</span>
                   </div>
                 </li>
-                <li className=" border-t m-02 p-05 block">
-                  <div className="flex flex-between">
-                    <span className="xter text-sm">Recommended Grip:</span>
+                <li className=" border-t m-2 p-2 block">
+                  <div className="flex justify-between">
+                    <span className="xter text-sm">Recommended Grip: </span>
                     <span className="text-sm">{racquet.technical_characteristics.recommended_grip}</span>
                   </div>
                 </li>
