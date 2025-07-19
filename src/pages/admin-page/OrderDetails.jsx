@@ -12,6 +12,7 @@ import localDate from '../../utils/dateFormat.js';
 import { getStatistics } from '../../redux/actions/statistics.js';
 import Invoice from '../../components/invoice/Invoice.jsx';
 import AppModal from '../../components/modal/AppModal.jsx';
+import { closeLoader, setLoader } from '../../redux/app/app.js';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -37,15 +38,15 @@ const OrderDetails = () => {
   };
 
   const handleInvoiceGeneration = () => {
-    console.log("first")
+    dispatch(setLoader(true));
     dispatch(createInvoice({
       invoice: {
         order_detail_id: id
       }
     })).unwrap()
     .then(result => {
-
-      console.log(result)
+        dispatch( closeLoader())
+        dispatch(getOrder(id));
     }).catch(error => {
       console.log(error)
     })
