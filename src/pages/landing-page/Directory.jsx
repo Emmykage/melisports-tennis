@@ -33,7 +33,12 @@ const Directory = () => {
     setLocation(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formInput.city || !formInput.address || !formInput.state) {
+      toast("Please fill all fields", {type: "error"})
+      return
+    }
     addCourts({court: formInput}).unWrap().then(result => {
       setIsOpen(false)
       toast(result?.message ?? "Suggestion recieved", {type: "success"})
@@ -41,7 +46,6 @@ const Directory = () => {
         toast(error?.message ?? "Suggestion recieved", {type: "error"})
 
     })
-
   }
 
   const directories = courtDirectories.filter((item) => item.state === location);
@@ -109,6 +113,7 @@ const Directory = () => {
       </form>
     </AppModal>
     </>
+    // fgf 
 
   );
 };
