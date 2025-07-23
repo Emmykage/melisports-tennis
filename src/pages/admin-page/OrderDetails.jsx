@@ -44,7 +44,7 @@ const OrderDetails = () => {
         order_detail_id: id
       }
     })).unwrap()
-    .then(result => {
+    .then(res => {
         dispatch( closeLoader())
         dispatch(getOrder(id));
     }).catch(error => {
