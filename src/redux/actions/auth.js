@@ -96,8 +96,6 @@ const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithV
       }
     }
 
-    console.log("user ====>", result)
-
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -114,7 +112,7 @@ export const userProfileUpdate = createAsyncThunk('users/USER_PROFILE_UPDATE', a
         'Content-type': 'application/json',
         Authorization: `Bearer ${fetchToken()}`,
       },
-      body: JSON.stringify(userData.data)
+      body: JSON.stringify(userData)
     });
 
     let {data, message} = await response.json();

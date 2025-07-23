@@ -28,7 +28,6 @@ const ProfileAccountPage = () => {
     const navigate  =  useNavigate()
     const {user} = useSelector(state => state.user)
 
-
     const handleUserUpdate = () => {
         dispatch(setLoader())
 
@@ -86,9 +85,9 @@ const ProfileAccountPage = () => {
 
     useEffect(()=> {
 
-        setUserInfo({...userInfo,
-          state: user?.profile.state,
-          address: user?.profile.address})
+        setUserInfo({...user,
+          state: user?.profile?.state,
+          address: user?.profile?.address})
 
 
     },[user])
@@ -141,7 +140,7 @@ const ProfileAccountPage = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-            <input value={userInfo?.phone_no} name='phone_number' type="text" onChange={(e)=> setUserInfo({...userInfo,  phone_number: e.target.value})} className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
+            <input value={userInfo?.phone_no} name='phone_number' type="text" onChange={(e)=> setUserInfo({...userInfo,  phone_no: e.target.value})} className="mt-1 block w-full rounded-md border border-gray-300 p-2" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Email</label>
@@ -149,11 +148,11 @@ const ProfileAccountPage = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">State</label>
-            <input value={userInfo?.state}  name='state' type="email" onChange={(e)=> setUserInfo({...userInfo, state: e.target.value})} className="mt-1 block w-full rounded-md border  border-gray-300 p-2" />
+            <input value={userInfo?.state}  name='state' type="text" onChange={(e)=> setUserInfo({...userInfo, state: e.target.value})} className="mt-1 block w-full rounded-md border  border-gray-300 p-2" />
           </div>
             <div>
             <label className="block text-sm font-medium text-gray-700">Address</label>
-            <input value={userInfo?.address}  name='address' type="email" onChange={(e)=> setUserInfo({...userInfo, address: e.target.value})} className="mt-1 block w-full rounded-md border  border-gray-300 p-2" />
+            <input value={userInfo?.address}  name='address' type="text" onChange={(e)=> setUserInfo({...userInfo, address: e.target.value})} className="mt-1 block w-full rounded-md border  border-gray-300 p-2" />
           </div>
         </div>
         <button onClick={handleUserUpdate} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Update Info</button>
