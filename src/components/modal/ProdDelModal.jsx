@@ -11,7 +11,7 @@ const ProdDelModal = (props) => {
   return (
     <div className="modal-container">
       <div className="modal">
-        <h3 className="font-normal text-lg md:text-3xl">Delete Items</h3>
+        <h3 className="font-normal text-lg md:text-3xl">Achive Items</h3>
         <div className="py-5 btn-container">
           <button
             type="button"

@@ -37,10 +37,10 @@ const ProductDetails = () => {
     }
   };
   const increase = () => {
-    count !== product.quantity && setCount((setPrev) => setPrev + 1);
+     setCount((setPrev) => Math.min(setPrev + 1, product.product_quantity ));
   };
   const decrease = () => {
-    count !== 1 && setCount((setPrev) => setPrev - 1);
+     setCount((setPrev) => Math.max(setPrev - 1, 0 ));
   };
 
   if (loading) {

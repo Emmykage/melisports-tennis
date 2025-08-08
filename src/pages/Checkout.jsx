@@ -29,6 +29,7 @@ const Checkout = () => {
   const { loading, status } = useSelector((state) => state.orders);
   const { total, counter, cartItems } = useSelector((state) => state.cart);
   const [step, setStep] = useState(0);
+  const [referal, setReferal] = useState("");
 
   const orderItems = cartItems.map((item) => (
     {
@@ -46,7 +47,7 @@ const Checkout = () => {
       billing_address_attributes: billingDetails,
       status: 'pending',
       payment_method: billingDetails.payment_method,
-      ref_code: billingDetails.referal
+      ref_code: referal
     },
   };
 
@@ -113,7 +114,7 @@ const Checkout = () => {
       </div>
 
       <section className="px-4 lg:px-20 py-10">
-        <div className="max-w-[1500px] bg-white py-5 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-5">
+        <div className="max-w-7xl rounded-3xl shadow bg-white py-5 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-5">
           <div className="checkout flex-1 bg-ligh  flex-col justify-between md:flex-row gap-10 max-w-[1500px] ">
 
             {paymentSteps.map(((item) => {
@@ -124,7 +125,7 @@ const Checkout = () => {
             ))}
 
           </div>
-          <CheckoutSummary shippingFee={Number(selectedState?.delivery_fee)} amount={total} counter={counter} />
+          <CheckoutSummary referal={referal} setReferal={setReferal} shippingFee={Number(selectedState?.delivery_fee)} amount={total} counter={counter} />
 
         </div>
 

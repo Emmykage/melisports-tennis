@@ -44,24 +44,17 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="country" className="font-medium my-1 block">Street</label>
+          <label htmlFor="address" className="font-medium my-1 block">Address</label>
           <input required type="text" className="p-3 border w-full rounded" name="street" value={billingDetails.street} onChange={handleChange} />
         </div>
 
         <div className="mb-3 gap-5">
-          <label htmlFor="country" className=" font-medium my-1 block">city</label>
+          <label htmlFor="city" className=" font-medium my-1 block">city</label>
           <input required type="text" className="p-3 border w-full rounded" name="city" value={billingDetails.city} onChange={handleChange} />
 
         </div>
         
-        <div className="flex gap-4 mb-3">
-          <div className="flex-1">
-            <label htmlFor="referal">Referal Code</label>
-           
-            <input required type="text" className="p-3 border w-full rounded" name="referal" value={billingDetails.referal} onChange={handleChange} />
-          </div>
-          
-        </div>
+        
 
         <div className="flex gap-4 mb-3">
           <div className="flex-1">

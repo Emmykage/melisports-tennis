@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   AiOutlineMenu, AiOutlineShoppingCart, AiOutlineShop, AiOutlineUser, AiOutlinePlus,
 } from 'react-icons/ai';

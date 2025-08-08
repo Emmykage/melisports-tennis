@@ -156,7 +156,7 @@ const Cart = () => {
               </div>
             </div>
             <div className="cart-side md:w-72 shrink-0  py-4 px-2 border rounded-lg">
-              <div className="flex justify-between items-center"><h2 className="mb-4">Order Summary</h2></div>
+              <div className="flex justify-between items-center"><h2 className="mb-4 font-light">Order Summary</h2></div>
               <div className="flex justify-between items-center my-1">
                 <span className="text-lg">Subtotal</span>
                 <span className="text-gray font-semibold">{nairaFormat(total)}</span>

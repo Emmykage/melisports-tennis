@@ -27,12 +27,14 @@ const ConfirmPayment = ({
   };
 
   return (
-    <div className="rounded-lg  bg-white">
-      <div className="border p-4 my-4">
-        <p className="text-base font-medium text-gray-500">Mode</p>
+    <div className="rounded-lg">
+      <div className="my-4 max-w- mx-auto p-6 bg-white rounded-2xl shadow-md border border-gray-200">
+        <h4 className=" font-medium text-lg text-gray-700">Mode</h4>
         <p className="text-lg capitalize">{billingDetails.payment_method}</p>
       </div>
-      <div className="border rounded-lg p-4">
+      {/* <div className="border rounded-lg p-4">
+
+
         <div>
           <p className="text-lg text-gray-500">Name</p>
           <p className="text-xl">{billingDetails.name}</p>
@@ -55,10 +57,37 @@ const ConfirmPayment = ({
             {billingDetails.state}
           </p>
         </div>
-      </div>
+      </div> */}
 
-      <div className="my-4">
-        <span className="text-lg uppercase">Items</span>
+      <div className="max-w- mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md border border-gray-200">
+  <h4 className="text-xl font-normal text-gray-800 mb-4">Delivery Information</h4>
+  <div className="space-y-3 text-sm text-gray-700 ">
+    <div className="flex justify-between">
+      <span className="font-medium">Mode:</span>
+      <span className="text-gray-600">Paystack</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="font-medium">Name:</span>
+      <span className="text-gray-600">Morris Menanya</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="font-medium">Email:</span>
+      <span className="text-gray-600">emmiemenz@gmail.com</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="font-medium">Phone Number:</span>
+      <span className="text-gray-600">07064334160</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="font-medium">Address:</span>
+      <span className="text-gray-600 text-right">EMOTAN KUBWA ab Lagos</span>
+    </div>
+  </div>
+</div>
+
+
+      <div className="my-4 max-w- mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md border border-gray-200">
+        <h4 className="text-base uppercase font-normal">Items</h4>
         {cartItems.map((item) => (
           <div className="flex justify-between border my-2 rounded-xl py-4 px-4 gap-3">
             <div className="w-16 h-16 border rounded p-1">

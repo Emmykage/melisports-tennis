@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { PaystackButton } from 'react-paystack';
 
 const PaymentField = ({ billingDetails, setBillingDetails }) => {
