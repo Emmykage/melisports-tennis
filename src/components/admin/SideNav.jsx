@@ -9,6 +9,7 @@ import { RiMessageLine } from 'react-icons/ri';
 import {
   MdHome, MdOutlineInventory, MdOutlineReport, MdOutlineSell,
 } from 'react-icons/md';
+import { GrUserManager } from "react-icons/gr";
 
 import { FiSettings } from 'react-icons/fi';
 
@@ -102,16 +103,16 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
         </NavLink>
 
         <NavLink
-          to="/admin/analytics"
+          to="/admin/agents"
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
           onClick={handleMenu}
 
         >
           <span>
             {' '}
-            <IoAnalyticsSharp />
+            <GrUserManager />
           </span>
-          <h3 className="font-medium">Analytics</h3>
+          <h3 className="font-medium">Agents</h3>
         </NavLink>
 
         <NavLink

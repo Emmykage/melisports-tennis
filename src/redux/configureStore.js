@@ -25,6 +25,7 @@ import deliveryFeeSlice from './delivery_fee';
 import reviewReducer from './review';
 import invoiceReducer from "./order/invoice"
 import courtReducer from "./courts"
+import agentsReducer from './agents/agentsReducer';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -49,7 +50,8 @@ const rootReducer = combineReducers({
   deliveryFees: deliveryFeeSlice,
   reviews: reviewReducer,
   invoices: invoiceReducer,
-  courts: courtReducer
+  courts: courtReducer,
+  agent: agentsReducer,
 
 });
 

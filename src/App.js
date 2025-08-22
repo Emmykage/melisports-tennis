@@ -66,6 +66,7 @@ import SupportProgram from './pages/landing-page/TennisNGO';
 import EventDetails from './pages/landing-page/EventDetails';
 import EnrollChildForm from './pages/landing-page/SupportDetails';
 import Invoice from './components/invoice/Invoice';
+import CreateAgentForm from './pages/admin-page/agents/agents';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -122,6 +123,7 @@ function App() {
           <Route path="orders/:id" element={<MainAdmin><OrderDetails /></MainAdmin>} />
           <Route path="products" element={<MainAdmin><Products /></MainAdmin>} />
 
+          <Route path="agents" element={<MainAdmin><CreateAgentForm /></MainAdmin>} />
           <Route path="settings" element={<MainAdmin><Settings /></MainAdmin>} />
           <Route path="addproduct" element={<MainAdmin><AddProduct /></MainAdmin>} />
           <Route path="reports" element={<MainAdmin><Reports /></MainAdmin>} />

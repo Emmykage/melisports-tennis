@@ -19,8 +19,8 @@ const AdminProductCard = ({ product, toEdit }) => {
 
      
 
-       <span className='absolute top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white'>
-        5
+       <span className='absolute top-20 sm:top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white'>
+        {product?.product_quantity}
 
        </span>
 

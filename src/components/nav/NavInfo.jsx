@@ -36,13 +36,11 @@ const NavInfo = () => {
   }, [update]);
 
   const handleLogOut = () => {
-    console.log("first")
-    // removeToken();
-    // dispatch(userProfile());
-    // navigate('/auth/login');
+    localStorage.removeItem('meli_auth');
+    dispatch(userProfile());
+     navigate('/auth/login');
   };
 
-  console.log(user)
   return (
     <>
       <nav>

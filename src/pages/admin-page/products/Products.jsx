@@ -34,7 +34,7 @@ const Products = () => {
       dispatch(filterProducts(e.target.value.trim()));
     }
   };
-
+console.log(products)
   if (!error) {
     return (
       <div>
@@ -52,7 +52,7 @@ const Products = () => {
           )
 
           : (
-            <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
+            <div className="w-full grid py-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
 
               {search !== '' ? sortedProducts.map((product) => (
                 <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
