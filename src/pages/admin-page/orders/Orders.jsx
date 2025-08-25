@@ -23,7 +23,7 @@ const Orders = () => {
   const [open, setOpen] = useState(false);
   const [objectId, setObjectId] = useState(null);
   const columnHelper = createColumnHelper();
-
+  console.log(orders)
   const handleDelete = (id) => {
     dispatch(deleteOrder(id)).then((result) => {
       if (deleteOrder.fulfilled.match(result)) {
@@ -73,11 +73,13 @@ const Orders = () => {
       footer: (props) => props.column.id,
     }),
     columnHelper.accessor('status', {
+      header: () => "Status",
       cell: (info) => <StatusButton status={info.getValue()} />,
       footer: (props) => props.column.id,
     }),
 
     columnHelper.accessor('total', {
+      header: () => "Total",
       cell: (info) => (
         <span className="font-semibold ">
           {' '}
@@ -125,7 +127,7 @@ const Orders = () => {
             {getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
+                  <th key={header.id} className='text-gray-700 bg-gray-200'>
                     {header.isPlaceholder
                       ? null
                       : flexRender(

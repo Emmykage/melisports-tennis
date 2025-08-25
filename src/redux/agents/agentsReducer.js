@@ -1,5 +1,5 @@
 import { createReducer, createSelector } from "@reduxjs/toolkit"
-import { addAgents, getAgents } from "../actions/agents"
+import { createAgents, getAgents, updateAgent } from "../actions/agents"
 
 const initialState = {
   agents: [],  
@@ -36,19 +36,23 @@ const initialState = {
 
 const agentsReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(addAgents.fulfilled, (state, action) => {
+    .addCase(createAgents.fulfilled, (state, action) => {
       state.loading = true
       state.agent = action.payload.data ?? action.payload
     })
-    .addCase(addAgents.rejected, (state, action) => {
+    .addCase(createAgents.rejected, (state, action) => {
       state.loading = false
-      state.agents = action.payload
+      state.message = action.payload.message
     })
     .addCase(getAgents.fulfilled, (state, action) => {
       state.loading = false
       state.agents = action.payload
     })
     .addCase(getAgents.rejected, (state, action) => {
+      state.loading = false
+      
+    })
+    .addCase(updateAgent.fulfilled, (state, action) => {
       state.loading = false
       
     })

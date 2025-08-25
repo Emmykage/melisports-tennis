@@ -39,8 +39,11 @@ export default function Login() {
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const {
-    user, error, message, loading, logged,
+    user, error, message, logged,
   } = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false)
+
+  console.log(loading)
 
   useEffect(() => {
     dispatch(userLog());
@@ -48,6 +51,7 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true)
     const data = new FormData(event.currentTarget);
     const formInput = {
       user: {
@@ -58,7 +62,11 @@ export default function Login() {
     dispatch(loginUser(formInput)).then(result => {
       if(loginUser.fulfilled.match(result)){
         navigation(location.state?.from || '/store');
+            setLoading(false)
+return 
       }
+                  setLoading(false)
+
     });
   };
   // if (!logged) {

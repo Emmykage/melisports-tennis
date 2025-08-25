@@ -1,17 +1,11 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { createAgents, delAgent, getAgent, getAgents, updateAgent } from "../../../redux/actions/agents"
+import { closeLoader, setLoader } from "../../../redux/app/app"
 
-function CreateAgentForm({ onSubmit }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    discount: "",
-    referralCode: "",
-    commissionRate: "",
-    role: "Agent",
-    active: true,
-  })
+function CreateAgentForm({ onSubmit, formData, setFormData }) {
+  const dispatch = useDispatch()
+
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -19,19 +13,18 @@ function CreateAgentForm({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit(formData)
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      discount: "",
-      referralCode: "",
-      commissionRate: "",
-      role: "Agent",
-      active: true,
-    })
+    onSubmit({agent: formData})
+    // setFormData({
+    //   name: "",
+    //   email: "",
+    //   phone: "",
+    //   discount: "",
+    //   referral_code: "",
+    //   commission: "",
+    //   role: "coach",
+    //   active: true,
+    // })
   }
-  console.log(formData)
 
   return (
     <form
@@ -72,24 +65,23 @@ function CreateAgentForm({ onSubmit }) {
         <input
           className="p-2 border rounded"
           placeholder="Referral Code"
-          value={formData.referralCode}
-          onChange={(e) => handleChange("referralCode", e.target.value)}
+          value={formData.referral_code}
+          onChange={(e) => handleChange("referral_code", e.target.value)}
         />
         <input
           className="p-2 border rounded"
           type="number"
           placeholder="Commission Rate (%)"
-          value={formData.commissionRate}
-          onChange={(e) => handleChange("commissionRate", e.target.value)}
+          value={formData.commission}
+          onChange={(e) => handleChange("commission", e.target.value)}
         />
         <select
           className="p-2 border rounded"
           value={formData.role}
           onChange={(e) => handleChange("role", e.target.value)}
         >
-          <option>Agent</option>
-          <option>Sub-Agent</option>
-          <option>Manager</option>
+          <option value={"trainner"} >Trainner</option>
+          <option value={"coach"}>Coach</option>
         </select>
         <label className="flex items-center space-x-2">
           <input
@@ -111,28 +103,71 @@ function CreateAgentForm({ onSubmit }) {
 }
 
 export default function AgentsPage() {
-  const {agents, agent} = useSelector(state => state.agent)
+  const dispatch = useDispatch()
+  const {agents, agent, loading} = useSelector(state => state.agent)
   const [showForm, setShowForm] = useState(false)
-
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    discount: "",
+    referral_code: "",
+    commission: "",
+    role: "trainner",
+    active: true,
+  })
   const addAgent = (agent) => {
-    setAgents((prev) => [
-      ...prev,
-      { ...agent, id: Date.now() }, // quick id
-    ])
-    setShowForm(false)
-  }
+    dispatch(setLoader(true))
+    dispatch(createAgents(agent)).then(res => {
+      if(createAgents.fulfilled.match(res)) {
+        dispatch(getAgents())
+        setShowForm(false)
+        dispatch(closeLoader())
+        setFormData({name: "",
+        email: "",
+        phone: "",
+        discount: "",
+        referral_code: "",
+        commission: "",
+        role: "trainner",
+        active: true,}) 
+        return
+      }
+      dispatch(closeLoader())
+      console.error("Failed to create agent:", res.payload || res.error)
 
-  const toggleActive = (id) => {
-    setAgents((prev) =>
-      prev.map((agent) =>
-        agent.id === id ? { ...agent, active: !agent.active } : agent
-      )
-    )
-  }
+
+    })}
+
+  const toggleActive = (agent) => {
+    dispatch(setLoader())
+
+    dispatch(updateAgent({
+      id: agent.id,
+      data:{
+         agent: {active: !agent.active}
+      }
+     })).unwrap().then(() => {
+        dispatch(getAgents())
+        dispatch(closeLoader())
+
+      }).catch(err => {
+        dispatch(closeLoader())
+        console.error("Failed to update agent:", err)
+      })
+    }
+  
 
   const deleteAgent = (id) => {
-    setAgents((prev) => prev.filter((agent) => agent.id !== id))
+    dispatch(delAgent(id)).unwrap().then(() => {
+      dispatch(getAgents())
+    }).catch(err => {
+      console.error("Failed to delete agent:", err)
+    })
   }
+
+  useEffect(() => {
+    dispatch(getAgents()) }, [dispatch])
 
   return (
     <div className="max-w-6xl mx-auto mt-6 p-4 bg-white shadow rounded-2xl">
@@ -146,7 +181,7 @@ export default function AgentsPage() {
         </button>
       </div>
 
-      {showForm && <CreateAgentForm onSubmit={addAgent} />}
+      {showForm && <CreateAgentForm onSubmit={addAgent} formData={formData} setFormData={setFormData}/>}
 
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border border-gray-200">
@@ -177,8 +212,8 @@ export default function AgentsPage() {
                   <td className="p-2 border">{agent.email}</td>
                   <td className="p-2 border">{agent.phone}</td>
                   <td className="p-2 border">{agent.discount}%</td>
-                  <td className="p-2 border">{agent.referralCode}</td>
-                  <td className="p-2 border">{agent.commissionRate}%</td>
+                  <td className="p-2 border">{agent.referral_code}</td>
+                  <td className="p-2 border">{agent.commission}%</td>
                   <td className="p-2 border">{agent.role}</td>
                   <td className="p-2 border">
                     <span
@@ -193,7 +228,7 @@ export default function AgentsPage() {
                   </td>
                   <td className="p-2 border space-x-2">
                     <button
-                      onClick={() => toggleActive(agent.id)}
+                      onClick={() => toggleActive(agent)}
                       className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
                     >
                       Toggle

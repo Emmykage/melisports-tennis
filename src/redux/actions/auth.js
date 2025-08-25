@@ -34,7 +34,7 @@ const loginUser = createAsyncThunk('user/logUser', async (data, { rejectWithValu
     return result;
   } catch (error) {
     console.error('error thrown', error);
-    return rejectWithValue({ message: 'Spmething went wrong, check your internet Connection!!' });
+    return rejectWithValue({ message: 'Something went wrong, check your internet Connection!!' });
 
     // throw new Error(error);
   }
