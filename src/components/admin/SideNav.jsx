@@ -61,7 +61,7 @@ const SideNav = ({ showMenu, handleMenu, stats }) => {
             {' '}
             <MdHome />
           </span>
-          <h3 className="font-medium">Hoe</h3>
+          <h3 className="font-medium">Home</h3>
         </NavLink>
         <NavLink
           to="/admin/dashboard"

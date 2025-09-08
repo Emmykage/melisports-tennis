@@ -182,7 +182,7 @@ const DeliveryFee = () => {
             {getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
+                  <th key={header.id} className='text-gray-700 bg-gray-200'>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
