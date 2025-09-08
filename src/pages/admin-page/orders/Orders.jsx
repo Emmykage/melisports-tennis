@@ -62,6 +62,14 @@ const Orders = () => {
   };
 
   const columns = useMemo(() => [
+      columnHelper.display( {
+        id: "serial",
+      header: () => 'S/N',
+      cell: (info) => (
+        <span className="flex gap-3">{info.row.index + 1}
+          </span>
+      ),
+    }),
     columnHelper.accessor('billing_address.name', {
       header: () => 'Name',
       cell: (info) => (
@@ -72,6 +80,18 @@ const Orders = () => {
       ),
       footer: (props) => props.column.id,
     }),
+
+       columnHelper.accessor('order_number', {
+      header: () => 'Order ID',
+      cell: (info) => (
+        <span className="flex gap-3">
+          {info.getValue() ?? (`${info.getValue()}`)}
+        </span>
+      ),
+      footer: (props) => props.column.id,
+    }),
+
+    
     columnHelper.accessor('status', {
       header: () => "Status",
       cell: (info) => <StatusButton status={info.getValue()} />,

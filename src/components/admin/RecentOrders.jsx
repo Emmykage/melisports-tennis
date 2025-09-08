@@ -29,7 +29,7 @@ const RecentOrders = () => {
 
         </thead>
         <tbody className="text-white">
-          {orders.slice(0, 10).map((order) => (
+          {orders.slice(0, 5).map((order) => (
             <tr>
               <td className="font-semibold">{order?.order_number}</td>
               <td className="text-center font-semibold">{order?.orders_count}</td>

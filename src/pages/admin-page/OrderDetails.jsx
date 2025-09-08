@@ -89,7 +89,7 @@ const OrderDetails = () => {
           <p className="text-green-700 text-xs">Order/Order details</p>
           <p className="text-xl font-semibold text-gray-800">
             Order#
-            {order?.invoice_number}
+            {order?.order_number}
           </p>
 
         </div>
@@ -101,7 +101,7 @@ const OrderDetails = () => {
 
             <p className="text-2xl my-3 text-gray-800 font-semibold">
               Order #
-              {order?.invoice_number}
+              {order?.order_number}
             </p>
             {order?.status == 'pending' ? <span className="bg-orange-200 px-4 py-1 text-orange-800 font-medium rounded"> awaiting confirmation</span> : order?.status == 'declined' ? <span className="bg-red-200 px-4 py-1 text-red-800 font-medium rounded">Order Rejected </span> : <span className="bg-blue-200 px-4 py-1 text-blue-800 font-medium rounded"> Ready to ship</span>}
             <div className="flex flex-col md:flex-row gap-7 my-5">
