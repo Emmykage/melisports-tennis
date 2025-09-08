@@ -169,6 +169,7 @@ const DeliveryFee = () => {
 
   return (
     <div className="order-container text-gray-800 bg-white p-4 rounded">
+    <h2 className='font-normal mb-4'>Delivery</h2>
 
       <div className="flex justify-end my-5">
         <Button classes="ml-auto my-10 block" onClick={() => { setOpen(true); }} variant="contained">Add Delivery Fee</Button>

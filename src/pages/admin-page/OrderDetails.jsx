@@ -77,7 +77,6 @@ const OrderDetails = () => {
       }
     };
   }, [order?.viewed]);
-  console.log(openInvoice)
 
   return (
     <>

@@ -65,7 +65,7 @@ const Customers = () => {
     columnHelper.accessor('name', {
       header: () => 'Name',
       cell: (info) => (
-        <span className="flex gap-3 capitalize font-semibold text-gray-600">
+        <span className="flex gap-3 capitalize font-semibold  !text-gray-600">
           {info.row.original.last_name}
           {' '}
           {info.row.original.first_name}
@@ -115,12 +115,13 @@ const Customers = () => {
     <div className="order-container text-gray-800 bg-white p-4 rounded">
 
       <div>
+        <h2 className='font-normal mb-4'>Customers</h2>
         <table className="order">
           <thead>
             {getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
+                  <th className='bg-gray-300 text-gray-900' key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(

@@ -172,7 +172,8 @@ export default function AgentsPage() {
   return (
     <div className="max-w-6xl mx-auto mt-6 p-4 bg-white shadow rounded-2xl">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Agents</h2>
+                 <h2 className='font-normal mb-4'>Agents</h2>
+
         <button
           onClick={() => setShowForm((prev) => !prev)}
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"

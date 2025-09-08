@@ -142,6 +142,8 @@ const Orders = () => {
     <div className="order-container text-gray-800 bg-white p-4 rounded">
 
       <div>
+         <h2 className='font-normal mb-4'>Orders</h2>
+
         <table className="order"> 
           <thead>
             {getHeaderGroups().map((headerGroup) => (
