@@ -4,7 +4,7 @@ import NavInfo from '../components/nav/NavInfo';
 
 const BecomeADistributor = () => (
   <div>
-    <NavInfo/>
+    <NavInfo />
     <div className="">
 
       <DistributorBanner />
@@ -17,7 +17,7 @@ const BecomeADistributor = () => (
             <div className="">
 
               <h2 className="mb-2 font-normal text-3xl">Become A distributor</h2>
-              <p className='text-base text-gray-800'>Need to get in touch with us? Either fill out the form with your inquiry or find or contact us through our emails </p>
+              <p className="text-base text-gray-800">Need to get in touch with us? Either fill out the form with your inquiry or find or contact us through our emails </p>
             </div>
           </div>
           <div className="p-2">
@@ -27,7 +27,7 @@ const BecomeADistributor = () => (
               <div className="input"><input name="Email" type="email" placeholder="Email address" required className="border" /></div>
               <div className="input"><input name="State" type="text" placeholder="State of Business Location" required className="border" /></div>
               <div className="input text-input">
-                <textarea placeholder="Enter Message (opptional)" className="border" name='message' />
+                <textarea placeholder="Enter Message (opptional)" className="border" name="message" />
 
               </div>
               {/* <button name="message" type="submit">Get in touch</button>

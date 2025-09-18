@@ -6,9 +6,10 @@ const DeliveryForm = ({
 }) => (
   <div className="w-full p-4 border rounded-lg -red-500">
     <form onSubmit={(e) => {
-      e.preventDefault()
-      handleFeeSubmit()}
-      }>
+      e.preventDefault();
+      handleFeeSubmit();
+    }}
+    >
       <div className="my-3">
         <label htmlFor="State">State</label>
 

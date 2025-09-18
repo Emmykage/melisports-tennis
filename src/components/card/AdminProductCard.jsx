@@ -13,18 +13,17 @@ const AdminProductCard = ({ product, toEdit }) => {
        && (
        <div className="py-2 my-1 top-4  absolute bg-theme/90 text-sm rounded-xl  ml-2 px-2">
          <span className="font-semibold text-gray-200">Last updated: </span>
-         <span className="text-sm font-medium text-orange-600">{product?.last_updated} </span>
+         <span className="text-sm font-medium text-orange-600">
+           {product?.last_updated}
+           {' '}
+         </span>
        </div>
        )}
 
-     
-
-       <span className='absolute top-20 sm:top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white'>
+      <span className="absolute top-20 sm:top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white">
         {product?.product_quantity}
 
-       </span>
-
-
+      </span>
 
       <div className="prod-img bg-red-200 ">
         <a>
@@ -39,19 +38,18 @@ const AdminProductCard = ({ product, toEdit }) => {
         </h5>
         <p>{nairaFormat(product.price)}</p>
 
-        <div  className='flex justify-between px-4'>
+        <div className="flex justify-between px-4">
 
-        <a
-          className="btn btn-outline max-width my-1 px-2 py-1 text-center"
-          onClick={() => dispatch(openDelModal(product.id))}
-        >
-          Achive
-        </a>
-        <a className="btn btn-outline max-width my-1 px-2 py-1 text-center" onClick={() => toEdit(product.id)}>
-          Edit
-        </a>
-      </div>
-
+          <a
+            className="btn btn-outline max-width my-1 px-2 py-1 text-center"
+            onClick={() => dispatch(openDelModal(product.id))}
+          >
+            Achive
+          </a>
+          <a className="btn btn-outline max-width my-1 px-2 py-1 text-center" onClick={() => toEdit(product.id)}>
+            Edit
+          </a>
+        </div>
 
       </div>
     </div>

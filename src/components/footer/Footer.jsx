@@ -59,7 +59,8 @@ const Footer = () => (
       <div>
         <h4 className="text-xl text-light tracking-wide font-normal"> CONTACT US</h4>
         <p>
-          <a href="tel:+2347038723093">Phone: +234-703 872 3093
+          <a href="tel:+2347038723093">
+            Phone: +234-703 872 3093
           </a>
           {' '}
           <br />
@@ -89,7 +90,7 @@ const Footer = () => (
             {' '}
           </li>
 
-            <li>
+          <li>
             <a href="https://youtube.com/@MeliSportss"> YouTube</a>
             {' '}
           </li>

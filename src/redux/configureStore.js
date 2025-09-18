@@ -23,8 +23,8 @@ import appSlice from './app/app';
 import statSlice from './statistics';
 import deliveryFeeSlice from './delivery_fee';
 import reviewReducer from './review';
-import invoiceReducer from "./order/invoice"
-import courtReducer from "./courts"
+import invoiceReducer from './order/invoice';
+import courtReducer from './courts';
 import agentsReducer from './agents/agentsReducer';
 
 const rootReducer = combineReducers({

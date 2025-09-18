@@ -34,7 +34,6 @@ const ConfirmPayment = ({
       </div>
       {/* <div className="border rounded-lg p-4">
 
-
         <div>
           <p className="text-lg text-gray-500">Name</p>
           <p className="text-xl">{billingDetails.name}</p>
@@ -60,31 +59,30 @@ const ConfirmPayment = ({
       </div> */}
 
       <div className="max-w- mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md border border-gray-200">
-  <h4 className="text-xl font-normal text-gray-800 mb-4">Delivery Information</h4>
-  <div className="space-y-3 text-sm text-gray-700 ">
-    <div className="flex justify-between">
-      <span className="font-medium">Mode:</span>
-      <span className="text-gray-600">Paystack</span>
-    </div>
-    <div className="flex justify-between">
-      <span className="font-medium">Name:</span>
-      <span className="text-gray-600">Morris Menanya</span>
-    </div>
-    <div className="flex justify-between">
-      <span className="font-medium">Email:</span>
-      <span className="text-gray-600">emmiemenz@gmail.com</span>
-    </div>
-    <div className="flex justify-between">
-      <span className="font-medium">Phone Number:</span>
-      <span className="text-gray-600">07064334160</span>
-    </div>
-    <div className="flex justify-between">
-      <span className="font-medium">Address:</span>
-      <span className="text-gray-600 text-right">EMOTAN KUBWA ab Lagos</span>
-    </div>
-  </div>
-</div>
-
+        <h4 className="text-xl font-normal text-gray-800 mb-4">Delivery Information</h4>
+        <div className="space-y-3 text-sm text-gray-700 ">
+          <div className="flex justify-between">
+            <span className="font-medium">Mode:</span>
+            <span className="text-gray-600">Paystack</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Name:</span>
+            <span className="text-gray-600">Morris Menanya</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Email:</span>
+            <span className="text-gray-600">emmiemenz@gmail.com</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Phone Number:</span>
+            <span className="text-gray-600">07064334160</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Address:</span>
+            <span className="text-gray-600 text-right">EMOTAN KUBWA ab Lagos</span>
+          </div>
+        </div>
+      </div>
 
       <div className="my-4 max-w- mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md border border-gray-200">
         <h4 className="text-base uppercase font-normal">Items</h4>

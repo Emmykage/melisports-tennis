@@ -17,7 +17,6 @@ import { playerTypes } from '../../../constants/categories';
 import { playType } from '../../../constants/variance';
 import SideNav from '../../../components/sideNav/SideNav';
 
- 
 const sportItems = [
   { type: 'tennis', label: 'Tennis' },
   { type: 'badminton', label: 'Badminton' },
@@ -27,16 +26,15 @@ const Padels = () => {
   const { padelRacquets, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
-
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeature, setSelectedFeatures] = useState([]);
-  
+
   useFilter({
     selectedFeature,
     selectedSports,
-    selectedPlayType: selectedLevels
-  })
+    selectedPlayType: selectedLevels,
+  });
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {
@@ -48,7 +46,7 @@ const Padels = () => {
   };
 
   const handleFilteredLevels = (e) => {
-        console.log(e.target.value)
+    console.log(e.target.value);
 
     const { value, checked } = e.target;
 
@@ -72,7 +70,6 @@ const Padels = () => {
       setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
-
 
   return (
     <div className="product-container">
@@ -100,14 +97,19 @@ const Padels = () => {
 
             </div>
             <div />
-           
+
             <div className="side-row">
               <h6>Racket Type</h6>
 
               {featureItems.map((item) => (
                 <div className="flex items-center mb-2">
-                  <input type="checkbox" id={item.value} value={item.value} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
-                  onChange={handleFilteredFeatures} />
+                  <input
+                    type="checkbox"
+                    id={item.value}
+                    value={item.value}
+                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    onChange={handleFilteredFeatures}
+                  />
 
                   <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
                     {item.label}
@@ -133,17 +135,14 @@ const Padels = () => {
             <div className="side-row">
               <h6>Brand</h6>
 
-              <div>
+              <div />
 
-            </div>
-           
-
-              <label className='flex items-center' htmlFor="babolat" style={{ fontSize: '1rem' }}>
+              <label className="flex items-center" htmlFor="babolat" style={{ fontSize: '1rem' }}>
 
                 <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 babolat
               </label>
-                 </div>
+            </div>
           </SideNav>
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (

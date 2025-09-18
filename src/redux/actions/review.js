@@ -49,7 +49,7 @@ export const addCourts = createAsyncThunk('courts/add_courts', async (data, { re
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     const result = await response.json();

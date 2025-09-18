@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-    createInvoice,
+  createInvoice,
   createOrder, deleteOrder, getInvoice, getOrder, getOrders, updateOrder,
 } from '../actions/orders';
 
@@ -26,7 +26,7 @@ const invoiceSlice = createSlice({
   },
   extraReducers: {
     [createInvoice.fulfilled]: (state, action) => ({
-        ...state,
+      ...state,
       invoice: action.payload.data,
       loading: false,
     }),
@@ -48,16 +48,14 @@ const invoiceSlice = createSlice({
     [getInvoice.rejected]: (state, action) => ({
       ...state,
       loading: false,
-      message: action.payload?.message || "faild to fetch invoice",
+      message: action.payload?.message || 'faild to fetch invoice',
     }),
     [getInvoice.fulfilled]: (state, action) => ({
-        ...state,
+      ...state,
       invoice: action.payload.data,
       loading: false,
     }),
-    
 
-   
   },
 });
 

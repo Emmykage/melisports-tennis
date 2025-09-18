@@ -44,7 +44,6 @@ export const createInvoice = createAsyncThunk('INVOICE/CREATE_INVOICE', async (d
   }
 });
 
-
 const updateOrder = createAsyncThunk('order/updateOrder', async ({ id, data }, { rejectWithValue }) => {
   try {
     const response = await fetch(`${baseURL}order_details/${id}`, {
@@ -132,7 +131,6 @@ const getOrders = createAsyncThunk('orders/get_orders', async (_, { rejectWithVa
   }
 });
 
-
 export const getInvoice = createAsyncThunk('INVOICE/GET_INVOICE', async (id, { rejectWithValue }) => {
   try {
     const response = await fetch(`${baseURL}invoices/${id}`, {
@@ -147,7 +145,7 @@ export const getInvoice = createAsyncThunk('INVOICE/GET_INVOICE', async (id, { r
     if (!response.ok) {
       return rejectWithValue({ message: result.error });
     }
-    console.log(result)
+    console.log(result);
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

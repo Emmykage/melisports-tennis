@@ -12,8 +12,7 @@ const About = () => (
     <NavInfo />
 
     <AboutBanner />
-    <section className='px-4'>
-
+    <section className="px-4">
 
       <div className="about-us text-pry px-4">
         <div className="segment segment-one grid grid-cols-2 gap-2 my-3 py-6">
@@ -125,7 +124,7 @@ const About = () => (
 
       </div>
 
-          </section>
+    </section>
 
     <CommunityBanner />
 

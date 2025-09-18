@@ -1,42 +1,38 @@
-import { useState } from "react"
+import { useState } from 'react';
 
 export default function AgentsTable() {
   const [agents, setAgents] = useState([
     {
       id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      phone: "+2348000000000",
+      name: 'John Doe',
+      email: 'john@example.com',
+      phone: '+2348000000000',
       discount: 10,
-      referralCode: "REF123",
+      referralCode: 'REF123',
       commissionRate: 5,
-      role: "Agent",
+      role: 'Agent',
       active: true,
     },
     {
       id: 2,
-      name: "Jane Smith",
-      email: "jane@example.com",
-      phone: "+2348111111111",
+      name: 'Jane Smith',
+      email: 'jane@example.com',
+      phone: '+2348111111111',
       discount: 15,
-      referralCode: "REF456",
+      referralCode: 'REF456',
       commissionRate: 7,
-      role: "Manager",
+      role: 'Manager',
       active: false,
     },
-  ])
+  ]);
 
   const toggleActive = (id) => {
-    setAgents((prev) =>
-      prev.map((agent) =>
-        agent.id === id ? { ...agent, active: !agent.active } : agent
-      )
-    )
-  }
+    setAgents((prev) => prev.map((agent) => (agent.id === id ? { ...agent, active: !agent.active } : agent)));
+  };
 
   const deleteAgent = (id) => {
-    setAgents((prev) => prev.filter((agent) => agent.id !== id))
-  }
+    setAgents((prev) => prev.filter((agent) => agent.id !== id));
+  };
 
   return (
     <div className="max-w-6xl mx-auto mt-6 p-4 bg-white shadow rounded-2xl">
@@ -62,19 +58,25 @@ export default function AgentsTable() {
                 <td className="p-2 border">{agent.name}</td>
                 <td className="p-2 border">{agent.email}</td>
                 <td className="p-2 border">{agent.phone}</td>
-                <td className="p-2 border">{agent.discount}%</td>
+                <td className="p-2 border">
+                  {agent.discount}
+                  %
+                </td>
                 <td className="p-2 border">{agent.referralCode}</td>
-                <td className="p-2 border">{agent.commissionRate}%</td>
+                <td className="p-2 border">
+                  {agent.commissionRate}
+                  %
+                </td>
                 <td className="p-2 border">{agent.role}</td>
                 <td className="p-2 border">
                   <span
                     className={`px-2 py-1 rounded text-xs font-semibold ${
                       agent.active
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-700"
+                        ? 'bg-green-100 text-green-700'
+                        : 'bg-red-100 text-red-700'
                     }`}
                   >
-                    {agent.active ? "Active" : "Inactive"}
+                    {agent.active ? 'Active' : 'Inactive'}
                   </span>
                 </td>
                 <td className="p-2 border space-x-2">
@@ -97,5 +99,5 @@ export default function AgentsTable() {
         </table>
       </div>
     </div>
-  )
+  );
 }

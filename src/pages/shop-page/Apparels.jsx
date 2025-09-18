@@ -20,24 +20,21 @@ const ApparelsPage = () => {
   const [selectedGenders, setSelectedGenders] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
 
-
   useFilter({
-    productCategory: "apparel",
+    productCategory: 'apparel',
     selectedSports,
-    selectedGenders
-  })
+    selectedGenders,
+  });
   const category = product_categories?.find((cat) => cat.name === 'apparel');
   const handleFilteredProducts = (seive) => {
-    console.log(seive)
+    console.log(seive);
     const lowerCaseSieve = seive.toLowerCase();
 
     dispatch(getProducts()).then(() => {
-      console.log([lowerCaseSieve])
+      console.log([lowerCaseSieve]);
       dispatch(filterGenders([lowerCaseSieve]));
     });
   };
-
-
 
   const handleGenderFilter = (e) => {
     const { checked, value } = e.target;
@@ -55,10 +52,6 @@ const ApparelsPage = () => {
       setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
-
-  
-
- 
 
   useEffect(() => {
     dispatch(closeList());
@@ -78,7 +71,7 @@ const ApparelsPage = () => {
         <Hero image={imageBanner} title="Apparels" />
         <div className="prod-page prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
           <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
-          <button className="btn" onClick={() => dispatch(getProducts())}>All Apparels</button>
+            <button className="btn" onClick={() => dispatch(getProducts())}>All Apparels</button>
 
             <button className="btn" onClick={() => handleFilteredProducts('men')}> Men</button>
             <button className="btn" onClick={() => handleFilteredProducts('women')}> Women</button>
@@ -88,60 +81,59 @@ const ApparelsPage = () => {
 
           <div className="flex md:gap-10">
             <SideNav>
-                <div className="side-row">
-                  <h6>Activities</h6>
+              <div className="side-row">
+                <h6>Activities</h6>
 
-                </div>
-                <div />
-                <div className="side-row">
+              </div>
+              <div />
+              <div className="side-row">
 
-                  {classSports.map((item) => (
-                    <div className="mb-2 flex items-center">
-                      <input
-                        type="checkbox"
-                        onChange={handleSportsFilter}
-                        id={item.type}
-                        value={item.type}
-                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      />
+                {classSports.map((item) => (
+                  <div className="mb-2 flex items-center">
+                    <input
+                      type="checkbox"
+                      onChange={handleSportsFilter}
+                      id={item.type}
+                      value={item.type}
+                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
 
-                      <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
-                        <span>
-                          {item.label}
-                        </span>
-                      </label>
-
-                    </div>
-                  ))}
-
-                </div>
-                <div className="side-row">
-                  <h6>Category</h6>
-
-                  {genderItems.map((item) => (
-                    <div className="flex items-center">
-                      <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleGenderFilter} />
-
-                      <label htmlFor="men" style={{ fontSize: '1rem' }}>
+                    <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
+                      <span>
                         {item.label}
-                      </label>
-
-                    </div>
-                  ))}
-
-                </div>
-
-            
-                <div className="side-row">
-                  <h6>Brand</h6>
-                  <div className="flex items-center">
-                    <input onChange={() => dispatch(getProducts())} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                    <label htmlFor="activity" style={{ fontSize: '1rem' }}>
-                      babolat
+                      </span>
                     </label>
-                  </div>
 
+                  </div>
+                ))}
+
+              </div>
+              <div className="side-row">
+                <h6>Category</h6>
+
+                {genderItems.map((item) => (
+                  <div className="flex items-center">
+                    <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleGenderFilter} />
+
+                    <label htmlFor="men" style={{ fontSize: '1rem' }}>
+                      {item.label}
+                    </label>
+
+                  </div>
+                ))}
+
+              </div>
+
+              <div className="side-row">
+                <h6>Brand</h6>
+                <div className="flex items-center">
+                  <input onChange={() => dispatch(getProducts())} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+                    babolat
+                  </label>
                 </div>
+
+              </div>
             </SideNav>
 
             {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (

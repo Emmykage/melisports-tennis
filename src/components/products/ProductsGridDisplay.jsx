@@ -24,7 +24,7 @@ const ProductsGrid = ({
         </div>
       );
     }
-    console.log(sortProduct)
+    console.log(sortProduct);
 
     return (
 

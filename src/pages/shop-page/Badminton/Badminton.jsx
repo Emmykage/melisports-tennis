@@ -106,7 +106,6 @@ const BadmintonsPage = () => {
     const { checked, value } = e.target;
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
- 
 
   useEffect(() => {
     dispatch(closeList());
@@ -114,8 +113,7 @@ const BadmintonsPage = () => {
   }, []);
   return (
     <div className="product-container">
-            <Nav
-             />
+      <Nav />
 
       <Hero image={bannerImage} title="Badminton" />
 
@@ -187,8 +185,7 @@ const BadmintonsPage = () => {
                 babolat
               </label>
             </div>
-         </SideNav>
-
+          </SideNav>
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
             ? (

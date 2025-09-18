@@ -25,10 +25,10 @@ const BagsPage = () => {
   const category = product_categories?.find((cat) => cat.name === 'bag');
 
   useFilter({
-    productCategory: "bag",
+    productCategory: 'bag',
     selectedSports,
-    selectedFeatures
-  })
+    selectedFeatures,
+  });
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
@@ -60,18 +60,16 @@ const BagsPage = () => {
     }
   };
 
+  useEffect(() => {
+    if (selectedCapacity.length > 0) {
+      dispatch(getProducts()).then((result) => {
+        if (getProducts.fulfilled.match(result)) {
+          dispatch(filterCapacity(selectedCapacity));
+        }
+      });
+    }
+  }, [selectedCapacity, dispatch]);
 
-  useEffect(()=> {
-    if(selectedCapacity.length > 0){
-
-    dispatch(getProducts()).then(result => {
-      if(getProducts.fulfilled.match(result)){
-        dispatch(filterCapacity(selectedCapacity))
-      }
-    })
-  }
-  },[selectedCapacity, dispatch])
-  
   return (
     <div className="product-container">
       <Nav />
@@ -80,8 +78,8 @@ const BagsPage = () => {
 
       <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
         <div className="cat-group justify-between max-w-md my-6">
-        <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
-        <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
+          <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
+          <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
           <button className="btn" onClick={() => handleFilteredProducts('duffle')}> Duffle</button>
           <button className="btn" onClick={() => handleFilteredProducts('racket holder')}> Racket holder</button>
 
@@ -89,7 +87,7 @@ const BagsPage = () => {
 
         <div className="flex md:gap-10">
           <SideNav>
-            
+
             <div className="side-row">
               <h6>Activities</h6>
 
@@ -97,19 +95,23 @@ const BagsPage = () => {
             <div />
             <div className="side-row">
 
-              {classSports.map(item => (
+              {classSports.map((item) => (
                 <div className="flex items-center mb-2">
-                <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
+                  <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
 
-                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  onChange={handleSportFilter} />
-                  <span>
-                    {item.label}
-                  </span>
-                </label>
-              </div>
+                    <input
+                      type="checkbox"
+                      id={item.type}
+                      value={item.type}
+                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      onChange={handleSportFilter}
+                    />
+                    <span>
+                      {item.label}
+                    </span>
+                  </label>
+                </div>
               ))}
-          
 
             </div>
             <div className="side-row">
@@ -192,8 +194,6 @@ const BagsPage = () => {
                 </label>
 
               </div>
-
-              
 
             </div>
             <div className="side-row">

@@ -1,11 +1,11 @@
-import { createReducer, createSelector } from "@reduxjs/toolkit"
-import { createAgents, getAgents, updateAgent } from "../actions/agents"
+import { createReducer, createSelector } from '@reduxjs/toolkit';
+import { createAgents, getAgents, updateAgent } from '../actions/agents';
 
 const initialState = {
-  agents: [],  
+  agents: [],
   agent: null,
   loading: false,
-}
+};
 
 // const agentsReducer = (state = initialState, action) => {
 //   switch (action.type) {
@@ -37,29 +37,26 @@ const initialState = {
 const agentsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(createAgents.fulfilled, (state, action) => {
-      state.loading = true
-      state.agent = action.payload.data ?? action.payload
+      state.loading = true;
+      state.agent = action.payload.data ?? action.payload;
     })
     .addCase(createAgents.rejected, (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
+      state.loading = false;
+      state.message = action.payload.message;
     })
     .addCase(getAgents.fulfilled, (state, action) => {
-      state.loading = false
-      state.agents = action.payload
+      state.loading = false;
+      state.agents = action.payload;
     })
     .addCase(getAgents.rejected, (state, action) => {
-      state.loading = false
-      
+      state.loading = false;
     })
     .addCase(updateAgent.fulfilled, (state, action) => {
-      state.loading = false
-      
-    })
+      state.loading = false;
+    });
+});
 
-})
+export default agentsReducer;
+export const agentState = (state) => state.agent;
 
-export default agentsReducer
-export const agentState = (state) => state.agent
-
-const selectLoading = createSelector( agentState,  ({loading} ) => loading)
+const selectLoading = createSelector(agentState, ({ loading }) => loading);

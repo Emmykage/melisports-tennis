@@ -34,7 +34,7 @@ const Products = () => {
       dispatch(filterProducts(e.target.value.trim()));
     }
   };
-console.log(products)
+  console.log(products);
   if (!error) {
     return (
       <div>

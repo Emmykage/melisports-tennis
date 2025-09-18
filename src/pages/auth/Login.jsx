@@ -41,9 +41,9 @@ export default function Login() {
   const {
     user, error, message, logged,
   } = useSelector((state) => state.user);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  console.log(loading)
+  console.log(loading);
 
   useEffect(() => {
     dispatch(userLog());
@@ -51,7 +51,7 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const data = new FormData(event.currentTarget);
     const formInput = {
       user: {
@@ -59,107 +59,104 @@ export default function Login() {
         password: data.get('password'),
       },
     };
-    dispatch(loginUser(formInput)).then(result => {
-      if(loginUser.fulfilled.match(result)){
+    dispatch(loginUser(formInput)).then((result) => {
+      if (loginUser.fulfilled.match(result)) {
         navigation(location.state?.from || '/store');
-            setLoading(false)
-return 
+        setLoading(false);
+        return;
       }
-                  setLoading(false)
-
+      setLoading(false);
     });
   };
   // if (!logged) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
 
+          <NavLink to="/" className="hover:text-blue-600 font-semibold ">
+            <img className="h-40 text-red-950" src="/logo192.png" />
+          </NavLink>
 
+          <Typography component="h1" variant="h5">
+            Login
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
 
-            <NavLink to="/" className="hover:text-blue-600 font-semibold ">
-               <img  className='h-40 text-red-950' src='/logo192.png'/>
-            </NavLink>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid className="relative" item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type={seePassword ? 'text' : 'password'}
+                  id="password"
+                  autoComplete="new-password"
+                />
+                <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !seePassword)}>
 
-            <Typography component="h1" variant="h5">
-              Login
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
-
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                  />
-                </Grid>
-                <Grid className="relative" item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type={seePassword ? 'text' : 'password'}
-                    id="password"
-                    autoComplete="new-password"
-                  />
-                  <span className="cursor-pointer absolute right-mid" onClick={() => setSeePassword((prev) => !seePassword)}>
-
-                    {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
-                  </span>
-                </Grid>
-                {/* <Grid item xs={12}>
+                  {seePassword ? <BsEyeSlash /> : <AiOutlineEye />}
+                </span>
+              </Grid>
+              {/* <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox value="allowExtraEmails" color="primary" />}
                     label="I want to receive inspiration, marketing promotions and updates via email."
                   />
                 </Grid> */}
-              </Grid>
-              <p className="blue">
-                {' '}
-                {loading && 'loading...' }
-              </p>
+            </Grid>
+            <p className="blue">
+              {' '}
+              {loading && 'loading...' }
+            </p>
 
-              <p className="red">
-                {' '}
-                {error && message }
-              </p>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Login
-              </Button>
-              <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <NavLink to="/auth/sign_up">
+            <p className="red">
+              {' '}
+              {error && message }
+            </p>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <NavLink to="/auth/sign_up">
 
-                    <Link variant="body2">
+                  <Link variant="body2">
                       Do not have an account? Sign Up
                     </Link>
-                  </NavLink>
-                </Grid>
+                </NavLink>
               </Grid>
-            </Box>
+            </Grid>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
-        </Container>
-      </ThemeProvider>
-    );
-  }
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}
 //   navigation(location.state?.from || '/store');
 // }

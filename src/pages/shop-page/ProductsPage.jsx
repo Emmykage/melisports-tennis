@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Hero from '../../components/banner/Hero';
 import bannerImage from '../../assets/images/banner/racquet-banner.jpg';
 import Products from '../../components/products/ProductsGridDisplay';
@@ -16,6 +16,7 @@ import Nav from '../../components/nav/Nav';
 import { classLevels, classSports } from '../../constants/categories';
 import useFilter from '../../hooks/useFilter';
 import SideNav from '../../components/sideNav/SideNav';
+import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
 
 const ProductsPage = () => {
   const featureItems = [
@@ -24,10 +25,10 @@ const ProductsPage = () => {
     { type: 'spin', label: 'Spin' },
   ];
 
-  
   const dispatch = useDispatch();
   const [queryParams] = useSearchParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
@@ -36,11 +37,11 @@ const ProductsPage = () => {
   const { product_categories, loading } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
   useFilter({
-    productCategory: "racquet",
+    productCategory: 'racquet',
     selectedSports,
     selectedLevels,
-    selectedFeatures
-  })
+    selectedFeatures,
+  });
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
 
@@ -59,7 +60,6 @@ const ProductsPage = () => {
     }
   };
 
- 
   const handleFilteredFeatures = (e) => {
     const { checked, value } = e.target;
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
@@ -74,7 +74,7 @@ const ProductsPage = () => {
     }
   };
 
-    return (
+  return (
     <div className="product-container">
       <Nav />
 
@@ -82,8 +82,8 @@ const ProductsPage = () => {
 
       <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
         <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
-        <a className="btn" onClick={() => dispatch(getProducts({ category: 'racquet' }))}>All Rackets</a>
-        <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
+          <a className="btn" onClick={() => dispatch(getProducts({ category: 'racquet' }))}>All Rackets</a>
+          <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
 
@@ -148,7 +148,7 @@ const ProductsPage = () => {
                 <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 babolat
               </label>
-            </div>          
+            </div>
           </SideNav>
 
           {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
@@ -180,6 +180,12 @@ const ProductsPage = () => {
         </div>
 
       </div>
+
+      <div className="max-w- prod-page prod-page m-auto px-4">
+
+        <SimilarItemsSection items={products} onSelect={(item) => navigate(`/productdetails/${item.id}`)} />
+      </div>
+
     </div>
   );
 };

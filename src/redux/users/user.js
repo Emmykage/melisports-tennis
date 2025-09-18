@@ -54,7 +54,7 @@ const usersSlice = createSlice({
       loading: false,
 
     }),
-    
+
     [userProfileUpdate.fulfilled]: (state, action) => ({
       ...state,
       user: action.payload,
@@ -63,7 +63,7 @@ const usersSlice = createSlice({
     }),
     [userProfileUpdate.pending]: (state) => ({
       ...state,
-       loading: true,
+      loading: true,
 
     }),
     [userProfileUpdate.rejected]: (state) => ({

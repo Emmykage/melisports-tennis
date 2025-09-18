@@ -53,8 +53,6 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
           <input required type="text" className="p-3 border w-full rounded" name="city" value={billingDetails.city} onChange={handleChange} />
 
         </div>
-        
-        
 
         <div className="flex gap-4 mb-3">
           <div className="flex-1">

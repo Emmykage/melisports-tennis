@@ -38,7 +38,7 @@ const NavInfo = () => {
   const handleLogOut = () => {
     localStorage.removeItem('meli_auth');
     dispatch(userProfile());
-     navigate('/auth/login');
+    navigate('/auth/login');
   };
 
   return (
@@ -90,7 +90,7 @@ const NavInfo = () => {
             </div>
             <div className="flex justify-between items-center py-2.5">
               <a href="#survey" className="bg-gray-60 py-1 rounded px-3  lg:text-dark lg:font-semibold lg:text-base text-base font-medium hidden md:block"> Survey</a>
-             
+
               <NavLink to="/store">
                 {/* <NavLink to="/"> */}
                 <AiOutlineShopping className="menu-icon text-theme-alt text-3xl" />
@@ -105,13 +105,10 @@ const NavInfo = () => {
                 </NavLink>
               </div>
               <>
-                  <ButtonSession user={user} handleLogOut={handleLogOut}/>
-                 
+                <ButtonSession user={user} handleLogOut={handleLogOut} />
 
-      
-                  
-                  </>
-                    
+              </>
+
             </div>
             {/* </div> */}
           </div>

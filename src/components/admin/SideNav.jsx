@@ -9,16 +9,16 @@ import { RiMessageLine } from 'react-icons/ri';
 import {
   MdHome, MdOutlineInventory, MdOutlineReport, MdOutlineSell,
 } from 'react-icons/md';
-import { GrUserManager } from "react-icons/gr";
+import { GrUserManager } from 'react-icons/gr';
 
 import { FiSettings } from 'react-icons/fi';
 
 import { BiLogOut } from 'react-icons/bi';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { TbTruckDelivery } from 'react-icons/tb';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userProfile } from '../../redux/actions/auth';
-import { TbTruckDelivery } from 'react-icons/tb';
 
 const SideNav = ({ showMenu, handleMenu, stats }) => {
   const dispatch = useDispatch();

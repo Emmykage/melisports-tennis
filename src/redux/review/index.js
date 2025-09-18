@@ -32,7 +32,7 @@ const reviewSlice = createSlice({
       message: action.payload.message,
 
     }),
-     [addCourts.fulfilled]: (state, action) => ({
+    [addCourts.fulfilled]: (state, action) => ({
       ...state,
       reviews: action.payload.data,
       loading: false,

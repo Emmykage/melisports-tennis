@@ -102,40 +102,35 @@ const userProfile = createAsyncThunk('user/userProfile', async (_, { rejectWithV
   }
 });
 
-
-
 export const userProfileUpdate = createAsyncThunk('users/USER_PROFILE_UPDATE', async (userData, { rejectWithValue }) => {
   try {
-    let response = await fetch(`${baseURL}users/user_profile_update`, {
+    const response = await fetch(`${baseURL}users/user_profile_update`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${fetchToken()}`,
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(userData),
     });
 
-    let {data, message} = await response.json();
+    const { data, message } = await response.json();
 
-    if(!response.ok){
-      throw new Error (message || "failed to update")
-    }    
+    if (!response.ok) {
+      throw new Error(message || 'failed to update');
+    }
 
     return data;
-
   } catch (error) {
-    if(error?.message){
+    if (error?.message) {
       return rejectWithValue({ message: error.message || 'Something went wrong' });
-
     }
     return rejectWithValue({ message: 'Something went wrong' });
-
   }
 });
 
 export const userProfiledelete = createAsyncThunk('users/USER_PROFILE_UPDATE', async (_, { rejectWithValue }) => {
   try {
-    let response = await fetch(`${baseURL}users/user_profile_delete`, {
+    const response = await fetch(`${baseURL}users/user_profile_delete`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
@@ -143,52 +138,44 @@ export const userProfiledelete = createAsyncThunk('users/USER_PROFILE_UPDATE', a
       },
     });
 
-    let {data, message} = await response.json();
+    const { data, message } = await response.json();
 
-    if(!response.ok){
-      throw new Error (message || "failed to update")
-    }    
+    if (!response.ok) {
+      throw new Error(message || 'failed to update');
+    }
 
     return data;
-
   } catch (error) {
-    if(error?.message){
+    if (error?.message) {
       return rejectWithValue({ message: error.message || 'Something went wrong' });
-
     }
     return rejectWithValue({ message: 'Something went wrong' });
-
   }
 });
 
-
-
 export const userPasswordUpdate = createAsyncThunk('users/USER_PROFILE_UPDATE', async (userData, { rejectWithValue }) => {
   try {
-    let response = await fetch(`${baseURL}users/user_password_update`, {
+    const response = await fetch(`${baseURL}users/user_password_update`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${fetchToken()}`,
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(userData),
     });
 
-    let {data, message} = await response.json();
+    const { data, message } = await response.json();
 
-    if(!response.ok){
-      throw new Error (message || "failed to update")
-    }    
+    if (!response.ok) {
+      throw new Error(message || 'failed to update');
+    }
 
     return data;
-
   } catch (error) {
-    if(error?.message){
+    if (error?.message) {
       return rejectWithValue({ message: error.message || 'Something went wrong' });
-
     }
     return rejectWithValue({ message: 'Something went wrong' });
-
   }
 });
 

@@ -33,7 +33,7 @@ export const updateDeliveryFee = createAsyncThunk('deliveryFee/update_delivery_f
         Authorization: `Bearer ${fetchToken()}`,
 
       },
-      body: JSON.stringify({delivery: data.delivery}),
+      body: JSON.stringify({ delivery: data.delivery }),
     });
     const result = await response.json();
     if (!response.ok) {

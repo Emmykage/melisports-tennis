@@ -7,23 +7,22 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: "100%",
+  width: '100%',
   maxWidth: 800,
   bgcolor: 'background.paper',
   // border: '2px solid #000',
-  borderRadius: "10px",
+  borderRadius: '10px',
   boxShadow: 24,
   padding: 2,
 };
 
- const  AppModal = ({
-    open,
-    children,
-    onCancel,
-    onClose
+const AppModal = ({
+  open,
+  children,
+  onCancel,
+  onClose,
 }) => {
-
-    const handleOpen = () => setOpen(true);
+  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
@@ -38,12 +37,12 @@ const style = {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-         
-         {children}
+
+          {children}
         </Box>
       </Modal>
     </div>
   );
-}
+};
 
-export default AppModal
+export default AppModal;

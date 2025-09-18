@@ -13,8 +13,8 @@ const courtSlice = createSlice({
   name: 'review',
   initialState,
   extraReducers: {
-   
-     [addCourts.fulfilled]: (state, action) => ({
+
+    [addCourts.fulfilled]: (state, action) => ({
       ...state,
       reviews: action.payload.data,
       loading: false,

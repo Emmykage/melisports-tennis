@@ -29,7 +29,7 @@ const Checkout = () => {
   const { loading, status } = useSelector((state) => state.orders);
   const { total, counter, cartItems } = useSelector((state) => state.cart);
   const [step, setStep] = useState(0);
-  const [referal, setReferal] = useState("");
+  const [referal, setReferal] = useState('');
 
   const orderItems = cartItems.map((item) => (
     {
@@ -47,7 +47,7 @@ const Checkout = () => {
       billing_address_attributes: billingDetails,
       status: 'pending',
       payment_method: billingDetails.payment_method,
-      ref_code: referal
+      ref_code: referal,
     },
   };
 

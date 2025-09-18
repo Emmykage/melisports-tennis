@@ -115,13 +115,13 @@ const Customers = () => {
     <div className="order-container text-gray-800 bg-white p-4 rounded">
 
       <div>
-        <h2 className='font-normal mb-4'>Customers</h2>
+        <h2 className="font-normal mb-4">Customers</h2>
         <table className="order">
           <thead>
             {getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th className='bg-gray-300 text-gray-900' key={header.id}>
+                  <th className="bg-gray-300 text-gray-900" key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(

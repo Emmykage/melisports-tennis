@@ -94,13 +94,13 @@ const productsSlice = createSlice({
       };
     },
     filterCapacity: (state, action) => {
-      const filterRaw = state.products.filter(item => action.payload.some(element => item.description?.includes(element) || item.description_body?.includes(element) ) ) 
-      console.log("payload filter processed: ",filterRaw)
+      const filterRaw = state.products.filter((item) => action.payload.some((element) => item.description?.includes(element) || item.description_body?.includes(element)));
+      console.log('payload filter processed: ', filterRaw);
 
-      return{
+      return {
         ...state,
-        products: filterRaw
-      }
+        products: filterRaw,
+      };
     },
 
     filterSports: (state, action) => {
@@ -131,7 +131,7 @@ const productsSlice = createSlice({
     filterPlayerType: (state, action) => {
       console.log(action.payload);
       const filts = state.products.filter((item) => action.payload.some((level) => item.player_type?.toLowerCase() === level));
-      console.log(filts)
+      console.log(filts);
 
       return {
         ...state,
@@ -147,7 +147,7 @@ const productsSlice = createSlice({
       };
     },
     filterGenders: (state, action) => {
-      console.log(action.payload)
+      console.log(action.payload);
       const filts = state.products.filter((item) => action.payload.some((gender) => item?.gender?.name.toLowerCase() === gender));
       return {
         ...state,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineCloseCircle, AiOutlineWechat } from 'react-icons/ai';
 import baseURL from '../../redux/baseURL';
-import whatAppImage from "../../assets/svgs/whatsapp-svgrepo-com.svg"
+import whatAppImage from '../../assets/svgs/whatsapp-svgrepo-com.svg';
 
 const ChatBox = () => {
   const [toggle, setToggle] = useState(false);
@@ -30,9 +30,9 @@ const ChatBox = () => {
     <>
       <div className="chat-icon rounded-3xl right-4 w-20 bg-green-900/90">
 
-        <a target='_blank' href="https://wa.me/c/2347038723093">
+        <a target="_blank" href="https://wa.me/c/2347038723093" rel="noreferrer">
 
-          <img src={whatAppImage} className='w-full '/>
+          <img src={whatAppImage} className="w-full " />
 
         </a>
       </div>

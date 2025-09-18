@@ -23,7 +23,7 @@ const Orders = () => {
   const [open, setOpen] = useState(false);
   const [objectId, setObjectId] = useState(null);
   const columnHelper = createColumnHelper();
-  console.log(orders)
+  console.log(orders);
   const handleDelete = (id) => {
     dispatch(deleteOrder(id)).then((result) => {
       if (deleteOrder.fulfilled.match(result)) {
@@ -62,12 +62,13 @@ const Orders = () => {
   };
 
   const columns = useMemo(() => [
-      columnHelper.display( {
-        id: "serial",
+    columnHelper.display({
+      id: 'serial',
       header: () => 'S/N',
       cell: (info) => (
-        <span className="flex gap-3">{info.row.index + 1}
-          </span>
+        <span className="flex gap-3">
+          {info.row.index + 1}
+        </span>
       ),
     }),
     columnHelper.accessor('billing_address.name', {
@@ -81,7 +82,7 @@ const Orders = () => {
       footer: (props) => props.column.id,
     }),
 
-       columnHelper.accessor('order_number', {
+    columnHelper.accessor('order_number', {
       header: () => 'Order ID',
       cell: (info) => (
         <span className="flex gap-3">
@@ -91,15 +92,14 @@ const Orders = () => {
       footer: (props) => props.column.id,
     }),
 
-    
     columnHelper.accessor('status', {
-      header: () => "Status",
+      header: () => 'Status',
       cell: (info) => <StatusButton status={info.getValue()} />,
       footer: (props) => props.column.id,
     }),
 
     columnHelper.accessor('total', {
-      header: () => "Total",
+      header: () => 'Total',
       cell: (info) => (
         <span className="font-semibold ">
           {' '}
@@ -142,14 +142,14 @@ const Orders = () => {
     <div className="order-container text-gray-800 bg-white p-4 rounded">
 
       <div>
-         <h2 className='font-normal mb-4'>Orders</h2>
+        <h2 className="font-normal mb-4">Orders</h2>
 
-        <table className="order"> 
+        <table className="order">
           <thead>
             {getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className='text-gray-700 bg-gray-200'>
+                  <th key={header.id} className="text-gray-700 bg-gray-200">
                     {header.isPlaceholder
                       ? null
                       : flexRender(

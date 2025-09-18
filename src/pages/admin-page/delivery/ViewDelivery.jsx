@@ -18,14 +18,13 @@ const ViewDeliveryFee = () => {
     delivery_fee: '',
   });
 
-
   useEffect(() => {
     setFeeInput({
       state: deliveryFee?.state || '',
       city: deliveryFee?.city || '',
       delivery_fee: deliveryFee?.delivery_fee || '',
 
-    })
+    });
   }, [deliveryFee]);
 
   const handleUpdate = (e) => {
@@ -53,7 +52,7 @@ const ViewDeliveryFee = () => {
             error: false,
           }));
         }, 5000);
-        navigate("/admin/delivery-fee?")
+        navigate('/admin/delivery-fee?');
       } else {
         dispatch(getDeliveryFee(id));
         dispatch(toggleAlert({
@@ -84,42 +83,40 @@ const ViewDeliveryFee = () => {
           <div className="mt-4">
             <label htmlFor="state">State</label>
             <input
-                        className='block mt-2'
+              className="block mt-2"
 
               type="text"
               name="state"
               id="state"
               value={feeInput?.state}
-              onChange={(e) => setFeeInput({...feeInput, state: e.target.value})}
+              onChange={(e) => setFeeInput({ ...feeInput, state: e.target.value })}
             />
           </div>
           <div className="my-2">
             <label htmlFor="city">City</label>
             <input
-                        className='block mt-2'
+              className="block mt-2"
 
               type="text"
               name="city"
               id="city"
               value={feeInput?.city}
-              onChange={(e) => setFeeInput({...feeInput, city: e.target.value})}
+              onChange={(e) => setFeeInput({ ...feeInput, city: e.target.value })}
             />
           </div>
 
           <div className=" my-2">
             <label htmlFor="fee">Fee (NGN)</label>
             <input
-            className='block mt-2'
-              type="number" name="fee" id="fee"    
+              className="block mt-2"
+              type="number"
+              name="fee"
+              id="fee"
               value={feeInput?.delivery_fee}
 
-            onChange={(e) => setFeeInput({...feeInput, delivery_fee: e.target.value})}
+              onChange={(e) => setFeeInput({ ...feeInput, delivery_fee: e.target.value })}
             />
           </div>
-
-           
-
-                    
 
           <button type="submit" className="px-3 py-1 rounded border my-2 block ml-auto"> Submit</button>
         </form>

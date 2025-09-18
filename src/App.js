@@ -97,7 +97,6 @@ function App() {
 
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
 
-
         <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
         <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
@@ -141,7 +140,7 @@ function App() {
           />
           <Route path="edit/:editId" element={<MainAdmin><EditProduct /></MainAdmin>} />
         </Route>
-        
+
         <Route path="/auth">
           <Route path="sign_up" element={<Signup />} />
           <Route path="login" element={<Login />} />

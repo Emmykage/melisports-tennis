@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 import { TbLogin2, TbLogout2 } from 'react-icons/tb';
 import { MdHome } from 'react-icons/md';
+import { Login, LoginOutlined } from '@mui/icons-material';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
@@ -15,7 +16,6 @@ import { userLog } from '../../redux/user/user';
 import { getProducts } from '../../redux/actions/product';
 import { userProfile } from '../../redux/actions/auth';
 import ToolTip from '../tool-tip/ToolTip';
-import { Login, LoginOutlined } from '@mui/icons-material';
 
 import ButtonSession from './components/ButtonSession';
 
@@ -27,7 +27,7 @@ const Nav = () => {
   const dispatch = useDispatch();
   const [toggleNav, setToggleNav] = useState(false);
 
-console.log(user)
+  console.log(user);
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
       setStickyNav('sticky-nav');
@@ -49,7 +49,7 @@ console.log(user)
 
   return (
     <>
-      <nav className='bg-gray-300'>
+      <nav className="bg-gray-300">
 
         <div className={`${stickyNav} navbar`}>
           <div className="mobile-menu-div">
@@ -89,7 +89,8 @@ console.log(user)
                         <p>  Tennis Rackets </p>
                       </h4>
                       <li className="pl-3 p-0 text-sm lg:text-dark font-semibold">
-                        <NavLink to="/racquets">Babolat</NavLink></li>
+                        <NavLink to="/racquets">Babolat</NavLink>
+                      </li>
 
                     </ul>
                     <ul className="border-b lg:border-none">
@@ -99,7 +100,7 @@ console.log(user)
                       </h4>
                       <li className="pl-3 p-0 text-sm lg:text-dark font-semibold">
                         <NavLink to="/padels">Babolat</NavLink>
-                        </li>
+                      </li>
 
                     </ul>
                     <ul className="border-">
@@ -108,7 +109,8 @@ console.log(user)
                         <p to="/badminton">  Badminton Rackets </p>
                       </h4>
                       <li className="pl-3 p-0 lg:text-dark font-semibold">
-                        <NavLink to="/badminton">Babolat</NavLink></li>
+                        <NavLink to="/badminton">Babolat</NavLink>
+                      </li>
 
                     </ul>
                   </div>
@@ -127,7 +129,8 @@ console.log(user)
                         <p to="#">  Tennis Men's Apparels </p>
                       </h4>
                       <li className="pl-3 p-0 lg:text-dark font-semibold">
-                        <NavLink href="/apparels?type=men&brand=babolat">Babolat</NavLink></li>
+                        <NavLink href="/apparels?type=men&brand=babolat">Babolat</NavLink>
+                      </li>
                     </ul>
                     <ul>
 
@@ -136,7 +139,8 @@ console.log(user)
 
                       </h4>
                       <li>
-                        <NavLink to="/apparels?type=women&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
+                        <NavLink to="/apparels?type=women&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink>
+                      </li>
 
                     </ul>
                   </div>
@@ -243,7 +247,7 @@ console.log(user)
               </ul>
             </div>
             <div className="flex  gap-3 justify-between items-center py-2.5">
-            <NavLink to="/">
+              <NavLink to="/">
                 <MdHome className="menu-icon text-theme-alt text-4xl" />
               </NavLink>
               <div className="menu-div cart">
@@ -256,23 +260,14 @@ console.log(user)
                 </NavLink>
               </div>
               <div className=" items-center text-black mobile-display hidden lg:flex font-medium">
-               
-                  <>
-                  <ButtonSession user={user} handleLogOut={handleLogOut}/>
-                 
 
-      
-                  
-                  </>
-                    
-                    
-                
-              
+                <>
+                  <ButtonSession user={user} handleLogOut={handleLogOut} />
+
+                </>
 
               </div>
-          
 
-              
             </div>
           </div>
 

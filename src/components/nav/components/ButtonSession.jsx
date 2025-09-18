@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -9,48 +9,38 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
-import { FaUser } from "react-icons/fa";
+import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+
 const ButtonSession = ({
-    handleLogOut,
-    user
+  handleLogOut,
+  user,
 }) => {
-    
-      const [open, setOpen] = React.useState(false);
-      const anchorRef = React.useRef(null);
-        const navigate = useNavigate();
-      
-    
-      const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-      };
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+  const navigate = useNavigate();
 
-        const handleClose = (event) => {
-    
-    
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
-          return;
-        }
-   
-        setOpen(false);
-      };
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
 
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
 
-      const handleNavigate = (link) => {
-  
-              navigate(link);
+    setOpen(false);
+  };
 
-     
-      };
-    
-      const handleSessionLogOut = (event) => {
+  const handleNavigate = (link) => {
+    navigate(link);
+  };
 
-        handleClose(event)      
-        handleLogOut()
-    
-        };
+  const handleSessionLogOut = (event) => {
+    handleClose(event);
+    handleLogOut();
+  };
 
-      
   function handleListKeyDown(event) {
     if (event.key === 'Tab') {
       event.preventDefault();
@@ -69,70 +59,73 @@ const ButtonSession = ({
 
     prevOpen.current = open;
   }, [open]);
-  
-    
+
   return (
     <div>
-        <Button
-          ref={anchorRef}
-          variant='text'
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minWidth: "10px",
-            marginLeft: "0px",
-            padding: "0px"
-          }}
-          id="composition-button"
-          aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-          endIcon={<FaUser className='text-theme-alt'/>}
-        >
-        </Button>
+      <Button
+        ref={anchorRef}
+        variant="text"
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minWidth: '10px',
+          marginLeft: '0px',
+          padding: '0px',
+        }}
+        id="composition-button"
+        aria-controls={open ? 'composition-menu' : undefined}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
+        onClick={handleToggle}
+        endIcon={<FaUser className="text-theme-alt" />}
+      />
 
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          placement="bottom-start"
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        placement="bottom-start"
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
                   placement === 'bottom-start' ? 'left top' : 'left bottom',
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id="composition-menu"
-                    aria-labelledby="composition-button"
-                    onKeyDown={handleListKeyDown}
-                  >
-                    {!user && <MenuItem onClick={(e)=> handleNavigate("/auth/login")}>Login</MenuItem>} 
-                    {!user &&  <MenuItem onClick={(e)=> handleNavigate("/auth/sign_up")}>Sign Up</MenuItem>} 
-                    {user &&  <MenuItem onClick={(e)=> {
-                      handleSessionLogOut(e)
-                     }}>Log Out</MenuItem>} 
-                   
-                   {user &&  <MenuItem onClick={() => navigate("/profile")}>My account</MenuItem>}
-                    {/*  <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-  )
-}
+            }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  id="composition-menu"
+                  aria-labelledby="composition-button"
+                  onKeyDown={handleListKeyDown}
+                >
+                  {!user && <MenuItem onClick={(e) => handleNavigate('/auth/login')}>Login</MenuItem>}
+                  {!user && <MenuItem onClick={(e) => handleNavigate('/auth/sign_up')}>Sign Up</MenuItem>}
+                  {user && (
+                    <MenuItem onClick={(e) => {
+                      handleSessionLogOut(e);
+                    }}
+                    >
+                      Log Out
+                    </MenuItem>
+                  )}
 
-export default ButtonSession
+                  {user && <MenuItem onClick={() => navigate('/profile')}>My account</MenuItem>}
+                  {/*  <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </div>
+  );
+};
+
+export default ButtonSession;
