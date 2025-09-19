@@ -230,26 +230,26 @@ const OrderDetails = () => {
                   <tbody>
                     {order?.order_items?.map((item) => (
                       <tr key={item.id}>
-                      <td>
-                        {' '}
-                        <img src={item.photo_url} alt={item.product.name} className="w-20 h-20" />
-                      </td>
-                      <td>{item.product.name}</td>
-                      <td>{item.product.sku}</td>
-                      {/* <td>{item.billing_address.city}</td> */}
-                      <td>{item.product.ms_code}</td>
-                      <td>{item.quantity}</td>
-                      <td className="font-semibold text-gray-500">{nairaFormat(item.amount)}</td>
-                      <td className="text-gray-600 font-semibold">{nairaFormat(item.amount * item.quantity)}</td>
+                        <td>
+                          {' '}
+                          <img src={item.photo_url} alt={item.product.name} className="w-20 h-20" />
+                        </td>
+                        <td>{item.product.name}</td>
+                        <td>{item.product.sku}</td>
+                        {/* <td>{item.billing_address.city}</td> */}
+                        <td>{item.product.ms_code}</td>
+                        <td>{item.quantity}</td>
+                        <td className="font-semibold text-gray-500">{nairaFormat(item.amount)}</td>
+                        <td className="text-gray-600 font-semibold">{nairaFormat(item.amount * item.quantity)}</td>
 
-                    </tr>
+                      </tr>
 
                     ))}
                     <tr>
                       <td>
-                      {' '}
-                      <span>Shipping</span>
-                    </td>
+                        {' '}
+                        <span>Shipping</span>
+                      </td>
                       <td />
 
                       <td />
@@ -258,16 +258,16 @@ const OrderDetails = () => {
                       <td />
                       <td />
                       <td>
-                      {' '}
-                      <span>{nairaFormat(order?.delivery_fee ?? 0)}</span>
-                    </td>
+                        {' '}
+                        <span>{nairaFormat(order?.delivery_fee ?? 0)}</span>
+                      </td>
 
                     </tr>
                     <tr>
                       <td>
-                      {' '}
-                      <span>Total</span>
-                    </td>
+                        {' '}
+                        <span>Total</span>
+                      </td>
                       <td />
                       <td />
 
@@ -276,9 +276,9 @@ const OrderDetails = () => {
                       <td />
                       <td />
                       <td>
-                      {' '}
-                      <span className="text-xl font-bold text-gray-800">{ nairaFormat(parseInt(order?.net_total))}</span>
-                    </td>
+                        {' '}
+                        <span className="text-xl font-bold text-gray-800">{ nairaFormat(parseInt(order?.net_total))}</span>
+                      </td>
 
                     </tr>
                   </tbody>

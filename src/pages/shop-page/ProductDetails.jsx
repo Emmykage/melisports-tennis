@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getProduct } from '../../redux/actions/product';
+import { getProduct, getSimilarProducts } from '../../redux/actions/product';
 // import { addCart } from '../redux/actions/cart';
 import { updater } from '../../redux/cart/cart';
 import { closeList } from '../../redux/products/searched';
@@ -21,8 +21,10 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSIze] = useState(null);
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
-  const { products, status, loading: isLoading } = useSelector((state) => state.products);
+  const { relatedProducts, status, loading: isLoading } = useSelector((state) => state.products);
   const navigate = useNavigate();
+
+  console.log(relatedProducts, 'related products');
 
   useEffect(() => {
     dispatch(closeList());
@@ -39,6 +41,10 @@ const ProductDetails = () => {
       alert('Out of Stock');
     }
   };
+
+  useEffect(() => {
+    dispatch(getSimilarProducts({ product_id: id }));
+  }, []);
   const increase = () => {
     setCount((setPrev) => Math.min(setPrev + 1, product.product_quantity));
   };
@@ -139,24 +145,24 @@ const ProductDetails = () => {
                   {product?.product_inventories?.length > 0 && (
                   <div className="headsize my-3">
                     <span className="text-gray-600 text-xl font-semibold block">
-                    {product?.product_category?.name == 'racquet' ? 'Grip Size' : 'Size'}
-                  </span>
+                      {product?.product_category?.name == 'racquet' ? 'Grip Size' : 'Size'}
+                    </span>
 
                     <div className="text-base text-gray-dark font-medium">
 
-                    {product?.product_sizes.map((size) => (
-                      <button
-                        onClick={() => {
-                          setSelectedSIze(size);
-                          setsizes([size]);
-                        }}
-                        className={`${selectedSize == size ? 'bg-gray-300 border border-theme-alt' : 'bg-gray-200'} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}
-                      >
-                        {size}
-                      </button>
+                      {product?.product_sizes.map((size) => (
+                        <button
+                          onClick={() => {
+                            setSelectedSIze(size);
+                            setsizes([size]);
+                          }}
+                          className={`${selectedSize == size ? 'bg-gray-300 border border-theme-alt' : 'bg-gray-200'} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}
+                        >
+                          {size}
+                        </button>
 
-                    ))}
-                  </div>
+                      ))}
+                    </div>
                   </div>
 
                   ) }
@@ -329,7 +335,7 @@ const ProductDetails = () => {
 
       <div className="max-w- prod-page prod-page m-auto px-4">
 
-        <SimilarItemsSection items={products} loading={isLoading} onSelect={() => navigate(`/productdetails/${item.id}`)} />
+        <SimilarItemsSection items={relatedProducts} loading={isLoading} onSelect={({ id }) => navigate(`/productdetails/${id}`)} />
       </div>
     </>
 

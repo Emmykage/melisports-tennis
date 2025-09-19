@@ -273,11 +273,6 @@ h2 {
 }
 
 
-
-a {
-  text-decoration: none;
-}
-
 .container {
   position: relative;
   width: 100%;
@@ -290,10 +285,6 @@ a {
   /* transform: translateY(0%); */
 }
 
-
-.white {
-  color: white;
-}
 
 .overlay h3 {
   font-size: 29px;
@@ -319,9 +310,7 @@ a {
   height: 0px;
   
 }
-.feature .card{
-  
-}
+
 .overlay {
   height: 0%;
   overflow: hidden;
@@ -376,6 +365,11 @@ a {
 
 .chat-box.show {
   right: -100%;
+}
+
+.no-scroll-bar{
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 
 .chat-box form {
@@ -515,34 +509,6 @@ a {
 }
 
 
-.fc-white {
-  color: #fff;
-}
-
-.fs-3 {
-  font-size: 1.5rem;
-}
-
-
-.w-350{
-  width: 350px;
-}
-.h-350{
-  height: 350px;
-}
-.w-080{
-  width: 80%;
-}
-.h-350{
-  height: 350px;
-}
-.w-100{
-  width: 100px;
-}
-.w-50{
-  width: 50px;
-}
-
 .contact-us form {
   display: flex;
   flex-direction: column;
@@ -559,23 +525,6 @@ a {
 }
 
 /* ==========================flex-box======================== */
-
-.w-max-400 {
-  max-width: 400%;
-}
-
-.w-max-890 {
-  max-width: 890px;
-  background-color: red;
-}
-
-
-
-
-.bg-green {
-  background-color: green;
-}
-
 
 .feature-div {
   width: 85%;

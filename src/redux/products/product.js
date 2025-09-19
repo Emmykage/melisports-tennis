@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getLetestProducts, getProducts } from '../actions/product';
+import { act } from 'react';
+import { getLetestProducts, getProducts, getSimilarProducts } from '../actions/product';
 
 const initialState = {
   products: [],
@@ -16,6 +17,8 @@ const initialState = {
   report: null,
   message: null,
   sortedProducts: [],
+  relatedProducts: [],
+  relatedError: false,
 };
 
 const productsSlice = createSlice({
@@ -64,6 +67,27 @@ const productsSlice = createSlice({
     [getLetestProducts.pending]: (state, action) => ({
       ...state,
       loading: true,
+
+    }),
+    [getSimilarProducts.fulfilled]: (state, action) => ({
+      ...state,
+      relatedProducts: action.payload.data,
+      loading: false,
+      relatedError: false,
+
+    }),
+    [getSimilarProducts.pending]: (state) => ({
+      ...state,
+      loading: true,
+      relatedError: false,
+
+    }),
+    [getSimilarProducts.rejected]: (state, action) => ({
+      ...state,
+      relatedError: true,
+      loading: false,
+      message: action.payload.message,
+      relatedProducts: [],
 
     }),
 

@@ -146,8 +146,8 @@ export default function Login() {
                 <NavLink to="/auth/sign_up">
 
                   <Link variant="body2">
-                      Do not have an account? Sign Up
-                    </Link>
+                    Do not have an account? Sign Up
+                  </Link>
                 </NavLink>
               </Grid>
             </Grid>

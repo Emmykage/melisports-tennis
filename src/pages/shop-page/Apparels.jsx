@@ -12,6 +12,7 @@ import Nav from '../../components/nav/Nav';
 import useFilter from '../../hooks/useFilter';
 import { classSports, genderItems } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
+import ProductsPageContainer from '../../components/productItems/ProductItems';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -65,10 +66,11 @@ const ApparelsPage = () => {
 
   return (
     <>
-      <div className="product-container">
-        <Nav />
+      <Nav />
 
-        <Hero image={imageBanner} title="Apparels" />
+      <Hero image={imageBanner} title="Apparels" />
+      <ProductsPageContainer>
+
         <div className="prod-page prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
           <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
             <button className="btn" onClick={() => dispatch(getProducts())}>All Apparels</button>
@@ -162,7 +164,7 @@ const ApparelsPage = () => {
 
         </div>
 
-      </div>
+      </ProductsPageContainer>
     </>
 
   );

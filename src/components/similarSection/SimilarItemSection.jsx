@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { nairaFormat } from '../../utils/nairaFormat';
+import Button from '../buttons/Button';
 
 // SimilarItemsSection.jsx
 // Props:
@@ -10,6 +11,7 @@ import { nairaFormat } from '../../utils/nairaFormat';
 
 export default function SimilarItemsSection({
   items = [],
+  error = false,
   title = 'Similar items',
   onSelect = () => {},
   loading = false,
@@ -23,6 +25,8 @@ export default function SimilarItemsSection({
     el.scrollTo({ left: dir === 'right' ? el.scrollLeft + amount : el.scrollLeft - amount, behavior: 'smooth' });
   };
 
+  console.log(error);
+
   return (
     <section aria-labelledby="similar-items-heading" className="my-6">
       <div className="flex items-center justify-between mb-4">
@@ -30,34 +34,34 @@ export default function SimilarItemsSection({
           {title}
         </h3>
         <div className="hidden sm:flex gap-2">
-          <button
+          <Button
             type="button"
             onClick={() => scroll('left')}
             aria-label="Scroll left"
             className="p-2 rounded-md hover:bg-gray-100 disabled:opacity-50"
           >
             ‹
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={() => scroll('right')}
-            aria-label="Scroll right"
+            ariaLabel="Scroll right"
             className="p-2 rounded-md hover:bg-gray-100"
           >
             ›
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Horizontal scroller for small+ screens; grid for larger screens */}
       <div
         ref={scrollerRef}
-        className="relative overflow-x-auto scroll-smooth bg-gray-300 no-scrollbar py-2"
+        className="relative overflow-x-auto scroll-smooth no-scroll-bar bg-gray no-scrollbar  rounded shadow rounded-sm py-2"
         role="list"
         aria-label="Similar product items"
       >
-        <div className="flex gap-4 px-1 min-w-max sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-4">
-          {loading
+        <div className="flex gap-4 px-1 min-w-max  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-4">
+          { loading
             ? // simple skeleton placeholders
             Array.from({ length: 5 }).map((_, i) => (
               <article
@@ -70,13 +74,14 @@ export default function SimilarItemsSection({
                 <div className="h-4 bg-gray-200 rounded w-1/2" />
               </article>
             ))
-            : items.length === 0
-              ? (
-                <div className="px-3 py-6 text-sm text-gray-500">No similar items found.</div>
-              )
-              : items.map((item) => (
-                <SimilarItemCard key={item.id} item={item} onSelect={onSelect} />
-              ))}
+            : error ? <h3> Something  went wrong</h3>
+              : items?.length === 0
+                ? (
+                  <div className="px-3 py-6 text-sm text-gray-500">No similar items found.</div>
+                )
+                : items?.map((item) => (
+                  <SimilarItemCard key={item.id} item={item} onSelect={onSelect} />
+                ))}
         </div>
       </div>
     </section>

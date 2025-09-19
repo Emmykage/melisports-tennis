@@ -17,6 +17,7 @@ import { classLevels, classSports } from '../../constants/categories';
 import useFilter from '../../hooks/useFilter';
 import SideNav from '../../components/sideNav/SideNav';
 import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
+import ProductsPageContainer from '../../components/productItems/ProductItems';
 
 const ProductsPage = () => {
   const featureItems = [
@@ -75,118 +76,114 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="product-container">
+    <>
       <Nav />
-
       <Hero image={bannerImage} title="Racquet" />
+      <ProductsPageContainer>
 
-      <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
-        <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
-          <a className="btn" onClick={() => dispatch(getProducts({ category: 'racquet' }))}>All Rackets</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
+        <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
+          <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
+            <a className="btn" onClick={() => dispatch(getProducts({ category: 'racquet' }))}>All Rackets</a>
+            <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
+            <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
+            <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
 
-        </div>
+          </div>
 
-        <div className="flex md:gap-10">
+          <div className="flex md:gap-10">
 
-          <SideNav>
-            <div className="side-row">
-              <h6>Activities</h6>
+            <SideNav>
+              <div className="side-row">
+                <h6>Activities</h6>
 
-            </div>
-            <div />
-            <div className="side-row">
-              {classSports.map((item) => (
-                <div className="flex  items-center mb-2">
-                  <input type="checkbox" checked={selectedSports.includes(item.type)} id={item.type} onChange={handleSportFilter} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
+              </div>
+              <div />
+              <div className="side-row">
+                {classSports.map((item) => (
+                  <div className="flex  items-center mb-2">
+                    <input type="checkbox" checked={selectedSports.includes(item.type)} id={item.type} onChange={handleSportFilter} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                    <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
 
-                    <span>
+                      <span>
+                        {item.label}
+                      </span>
+                    </label>
+
+                  </div>
+                ))}
+
+              </div>
+              <div className="side-row">
+                <h6>Racket Type</h6>
+
+                {featureItems.map((item) => (
+                  <div className="flex items-center mb-2">
+                    <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
+
+                    <label htmlFor="control" style={{ fontSize: '1rem' }}>
                       {item.label}
-                    </span>
-                  </label>
+                    </label>
 
-                </div>
-              ))}
+                  </div>
+                ))}
 
-            </div>
-            <div className="side-row">
-              <h6>Racket Type</h6>
-
-              {featureItems.map((item) => (
-                <div className="flex items-center mb-2">
-                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
-
-                  <label htmlFor="control" style={{ fontSize: '1rem' }}>
-                    {item.label}
-                  </label>
-
-                </div>
-              ))}
-
-            </div>
-            <div className="side-row">
-              <h6>Skill level</h6>
-              {classLevels.map((level) => (
-                <span className="flex items-center mb-2">
-                  <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
-
-                  <label htmlFor={level.level} style={{ fontSize: '1rem' }}>
-                    {level.label}
-                  </label>
-                </span>
-              ))}
-
-            </div>
-            <div className="side-row">
-              <h6>Brand</h6>
-
-              <label htmlFor="activity" style={{ fontSize: '1rem' }}>
-
-                <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                babolat
-              </label>
-            </div>
-          </SideNav>
-
-          {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
-            ? (
-              <div className="product-align w-full">
-                <div className="product-items">
-                  <Products products={products} status={status} error={error} filter="racquet" />
-                </div>
-
-                <div className="product-details color-grey">
-                  <h3> BABOLAT TENNIS RACKET BRANDS</h3>
-                  <p>
-                    { category?.description}
-
-                  </p>
-                  <p className="font-semibold text-gray">
-                    From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
-                  </p>
-
-                </div>
               </div>
-            ) : (
-              <div className="text-center full-length">
-                <h2>{error}</h2>
+              <div className="side-row">
+                <h6>Skill level</h6>
+                {classLevels.map((level) => (
+                  <span className="flex items-center mb-2">
+                    <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
+
+                    <label htmlFor={level.level} style={{ fontSize: '1rem' }}>
+                      {level.label}
+                    </label>
+                  </span>
+                ))}
+
               </div>
-            ))}
-          <div />
+              <div className="side-row">
+                <h6>Brand</h6>
+
+                <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+
+                  <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                  babolat
+                </label>
+              </div>
+            </SideNav>
+
+            {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
+              ? (
+                <div className="product-align w-full">
+                  <div className="product-items">
+                    <Products products={products} status={status} error={error} filter="racquet" />
+                  </div>
+
+                  <div className="product-details color-grey">
+                    <h3> BABOLAT TENNIS RACKET BRANDS</h3>
+                    <p>
+                      { category?.description}
+
+                    </p>
+                    <p className="font-semibold text-gray">
+                      From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
+                    </p>
+
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center full-length">
+                  <h2>{error}</h2>
+                </div>
+              ))}
+            <div />
+
+          </div>
 
         </div>
 
-      </div>
-
-      <div className="max-w- prod-page prod-page m-auto px-4">
-
-        <SimilarItemsSection items={products} onSelect={(item) => navigate(`/productdetails/${item.id}`)} />
-      </div>
-
-    </div>
+      </ProductsPageContainer>
+    </>
   );
 };
 

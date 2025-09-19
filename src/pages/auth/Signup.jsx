@@ -184,8 +184,8 @@ export default function SignUp() {
               <Grid item>
                 <NavLink to="/auth/login">
                   <Link variant="body2">
-                      Already have an account? Sign in
-                    </Link>
+                    Already have an account? Sign in
+                  </Link>
                 </NavLink>
               </Grid>
             </Grid>

@@ -16,7 +16,24 @@ const getProducts = createAsyncThunk('products/getProducts', async ({ category =
 
     const result = await response.json();
     if (!response.ok) {
+      return rejectWithValue({ message: result?.error ?? 'Something went wrong' });
+    }
+    return result;
+  } catch (error) {
+    return rejectWithValue({ message: 'Something went wrong' });
+  }
+});
+export const getSimilarProducts = createAsyncThunk('products/GET_SIMILAR_PRODUCTS', async ({ product_id = null } = {}, { rejectWithValue }) => {
+  const params = new URLSearchParams();
+  product_id && params.append('product_id', product_id);
 
+  const stringParams = params.toString();
+  try {
+    const response = await fetch(`${baseURL}products/related_products?${stringParams}`);
+
+    const result = await response.json();
+    if (!response.ok) {
+      return rejectWithValue({ message: result?.error ?? 'Something went wrong' });
     }
     return result;
   } catch (error) {

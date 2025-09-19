@@ -25,7 +25,7 @@ const Arrivals = () => {
     const lowerCaseSieve = seive.toLowerCase();
 
     dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
+      // dispatch(filterProducts(lowerCaseSieve));
     });
   };
 
@@ -42,7 +42,7 @@ const Arrivals = () => {
   const handleFilteredFeatures = (e) => {
     if (e.target.checked) {
       dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(e.target.value));
+        // dispatch(filterFeatures(e.target.value));
       });
     } else {
       dispatch(getProducts());
@@ -52,7 +52,7 @@ const Arrivals = () => {
   const handleFilterGender = (e) => {
     if (e.target.checked) {
       dispatch(getProducts()).then(() => {
-        dispatch(filterGender(e.target.value));
+        // dispatch(filterGender(e.target.value));
       });
     } else {
       dispatch(getProducts());
