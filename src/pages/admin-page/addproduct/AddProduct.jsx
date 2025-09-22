@@ -95,9 +95,6 @@ const AddProduct = () => {
     e.preventDefault();
     if (imagePreviews.length > 0 || e.target.image.value) {
       const colorsValues = productColour.map((option) => option.value);
-
-      const Valuemap = Array.from(e.target.locations.value).map((item) => item.value);
-
       const formData = new FormData();
 
       colorsValues && colorsValues.forEach((item, index) => (
@@ -107,7 +104,7 @@ const AddProduct = () => {
       gripSizes && gripSizes.forEach((item, index) => (
         formData.append(`product[grip_sizes][${index}]`, item)
 
-      ));
+      )) 
       productInventories.forEach(({
         quantity, size, price, sku, locations,
       }, i) => {

@@ -1349,7 +1349,7 @@ const EditProduct = () => {
                 </p>
               )) }
               <button className="btn" type="submit">
-                Update productcd
+                Update product
               </button>
             </div>
 
