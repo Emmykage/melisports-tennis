@@ -4,19 +4,14 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Hero from '../../components/banner/Hero';
 import bannerImage from '../../assets/images/banner/racquet-banner.jpg';
 import Products from '../../components/products/ProductsGridDisplay';
-import { getProductCategories } from '../../redux/actions/product_category';
 import { getProducts } from '../../redux/actions/product';
 
-import { closeList } from '../../redux/products/searched';
 import Loader from '../Loader';
-import {
-  filterActivities, filterFeatures, filterLevels, filterProducts, filterSports,
-} from '../../redux/products/product';
+
 import Nav from '../../components/nav/Nav';
 import { classLevels, classSports } from '../../constants/categories';
 import useFilter from '../../hooks/useFilter';
 import SideNav from '../../components/sideNav/SideNav';
-import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
 
 const ProductsPage = () => {
@@ -44,11 +39,12 @@ const ProductsPage = () => {
     selectedFeatures,
   });
   const handleFilteredProducts = (seive) => {
+    console.log('[Initiate filter]: Filter initatiang with seive:', seive);
     const lowerCaseSieve = seive.toLowerCase();
 
-    dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
-    });
+    dispatch(getProducts({
+      name: lowerCaseSieve,
+    }));
   };
 
   const handleFilteredLevels = (e) => {

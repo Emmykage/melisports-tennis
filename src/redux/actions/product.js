@@ -4,11 +4,9 @@ import baseURL from '../baseURL';
 import { fetchToken } from '../../hooks/localStorage';
 import { refreshToken } from '../../utils/refreshToken';
 
-const getProducts = createAsyncThunk('products/getProducts', async ({ category = null, sport = null } = {}, { rejectWithValue }) => {
-  console.log('get product cat => ', category);
-  const params = new URLSearchParams();
-  category && params.append('category', category);
-  sport && params.append('sport', sport);
+const getProducts = createAsyncThunk('products/getProducts', async (filterParams = {}, { rejectWithValue }) => {
+  console.log('get product cat => ', filterParams);
+  const params = new URLSearchParams(filterParams);
 
   const stringParams = params.toString();
   try {
@@ -39,12 +37,6 @@ export const getSimilarProducts = createAsyncThunk('products/GET_SIMILAR_PRODUCT
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
   }
-});
-
-const filterProducts = createAsyncThunk('products/getProducts', async (sieve) => {
-  const response = await fetch(`${baseURL}products`).then((res) => res.json());
-  const filtered = response.filter((item) => item.name.toLowerCase().includes(sieve));
-  return filtered;
 });
 
 const getProduct = createAsyncThunk('product/getproduct', async (id) => {

@@ -24,9 +24,7 @@ const Arrivals = () => {
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
 
-    dispatch(getProducts()).then(() => {
-      // dispatch(filterProducts(lowerCaseSieve));
-    });
+    dispatch(getProducts({ name: lowerCaseSieve }));
   };
 
   const handleFilteredActivities = (e) => {

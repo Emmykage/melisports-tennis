@@ -19,6 +19,7 @@ const initialState = {
   sortedProducts: [],
   relatedProducts: [],
   relatedError: false,
+  name: 'morris',
 };
 
 const productsSlice = createSlice({
@@ -107,16 +108,6 @@ const productsSlice = createSlice({
         search_product_page: f_product,
       };
     },
-    filterProducts: (state, action) => {
-      const char = action.payload.toLowerCase();
-      const sortedProduct = state.products.filter((item) => item.name.toLowerCase().includes(char));
-      return {
-        ...state,
-        filteredProducts: sortedProduct,
-        sortedProducts: sortedProduct,
-
-      };
-    },
     filterCapacity: (state, action) => {
       const filterRaw = state.products.filter((item) => action.payload.some((element) => item.description?.includes(element) || item.description_body?.includes(element)));
       console.log('payload filter processed: ', filterRaw);
@@ -170,14 +161,7 @@ const productsSlice = createSlice({
         products: filts,
       };
     },
-    filterGenders: (state, action) => {
-      console.log(action.payload);
-      const filts = state.products.filter((item) => action.payload.some((gender) => item?.gender?.name.toLowerCase() === gender));
-      return {
-        ...state,
-        products: filts,
-      };
-    },
+
     getLatest: (state) => {
       const sortedProducts = [...state.products].filter((item) => item.new_product);
       return {

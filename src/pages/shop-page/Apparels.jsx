@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/actions/product';
 import imageBanner from '../../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif';
 import { closeList } from '../../redux/products/searched';
-import { filterGenders, filterProducts, filterSports } from '../../redux/products/product';
 import Hero from '../../components/banner/Hero';
 import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
@@ -31,10 +30,9 @@ const ApparelsPage = () => {
     console.log(seive);
     const lowerCaseSieve = seive.toLowerCase();
 
-    dispatch(getProducts()).then(() => {
-      console.log([lowerCaseSieve]);
-      dispatch(filterGenders([lowerCaseSieve]));
-    });
+    dispatch(getProducts({
+      gender: lowerCaseSieve,
+    }));
   };
 
   const handleGenderFilter = (e) => {

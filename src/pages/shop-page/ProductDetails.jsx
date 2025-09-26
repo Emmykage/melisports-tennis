@@ -228,7 +228,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 ) }
-              {product.weight
+              {product?.weight
                       && (
                       <div>
                         <div className="col-6">
@@ -237,7 +237,7 @@ const ProductDetails = () => {
                         </div>
                         <div className="col-6">
                           <span>
-                            {product.weight}
+                            {product?.weight}
                             {' '}
                             g +/-7 g
                           </span>

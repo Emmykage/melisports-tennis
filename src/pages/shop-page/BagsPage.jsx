@@ -33,9 +33,7 @@ const BagsPage = () => {
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
-    dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
-    });
+    dispatch(getProducts({ name: lowerCaseSieve }));
   };
 
   const handleFilteredActivities = (e) => {

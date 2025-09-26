@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../../components/banner/Hero';
-import { getProducts } from '../../../redux/actions/product';
-import {
-  filterActivities, filterFeatures, filterProducts,
-} from '../../../redux/products/product';
-import { closeList } from '../../../redux/products/searched';
-import { getProductCategories } from '../../../redux/actions/product_category';
-import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
+import { getProducts } from '../../../redux/actions/product'; import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
 import Loader from '../../Loader';
 import Products from '../../../components/products/ProductsGridDisplay';
 import Nav from '../../../components/nav/Nav';
 import { featureItems } from '../../../constants/properties';
 import useFilter from '../../../hooks/useFilter';
-import { playerTypes } from '../../../constants/categories';
 import { playType } from '../../../constants/variance';
 import SideNav from '../../../components/sideNav/SideNav';
 
@@ -40,14 +33,10 @@ const Padels = () => {
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
 
-    dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
-    });
+    dispatch(getProducts({ name: lowerCaseSieve }));
   };
 
   const handleFilteredLevels = (e) => {
-    console.log(e.target.value);
-
     const { value, checked } = e.target;
 
     if (checked) {

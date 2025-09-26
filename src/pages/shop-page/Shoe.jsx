@@ -7,9 +7,7 @@ import bannerImage from '../../assets/images/banner/2023-01_BAB_Banner_70_pource
 import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Loader from '../Loader';
-import {
-  filterCapacity, filterFeatures, filterGenders, filterProducts, filterSports,
-} from '../../redux/products/product';
+
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
 
@@ -45,9 +43,7 @@ const ShoesPage = () => {
   });
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
-    dispatch(getProducts()).then(() => {
-      dispatch(filterGenders([lowerCaseSieve]));
-    });
+    dispatch(getProducts({ gender: lowerCaseSieve }));
   };
 
   const handleFilteredActivities = (e) => {

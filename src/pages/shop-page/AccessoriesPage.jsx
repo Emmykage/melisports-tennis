@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
 import Hero from '../../components/banner/Hero';
 import { getProducts } from '../../redux/actions/product';
-import { filterProducts } from '../../redux/products/product';
 import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
 import Loader from '../Loader';
 import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-Accessories.jpg';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
+import ProductsPageContainer from '../../components/productItems/ProductItems';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
@@ -20,11 +20,11 @@ const AccessoriesPage = () => {
   const category = product_categories?.find((cat) => cat.name === 'accessory');
 
   const handleFilteredProducts = (seive) => {
-    const lowerCaseSieve = seive.loLowerCase();
+    console.log(seive);
+    const lowerCaseSieve = seive.toLowerCase();
+    console.log(lowerCaseSieve);
 
-    dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
-    });
+    dispatch(getProducts({ name: lowerCaseSieve }));
   };
 
   const handleFilteredActivities = (e) => {
@@ -59,14 +59,14 @@ const AccessoriesPage = () => {
       <Nav />
 
       <Hero image={bannerImage} title="Accessories" />
-      <div className="product-container">
+      <ProductsPageContainer>
 
         <div className="prod-page">
           <div className="cat-group gap-6 max-w-3xl my-6">
             <button className="btn" onClick={() => dispatch(getProducts())}>All Accessories</button>
             <button className="btn" onClick={() => handleFilteredProducts('racquet')}> Racket Accessories</button>
-            <button className="btn" onClick={() => handleFilteredProducts('pure strike')}> Court Accessories</button>
-            <button className="btn" onClick={() => handleFilteredProducts('boost')}> Fan Accessories</button>
+            <button className="btn" onClick={() => handleFilteredProducts('court')}> Court Accessories</button>
+            <button className="btn" onClick={() => handleFilteredProducts('fan')}> Fan Accessories</button>
 
           </div>
 
@@ -163,7 +163,7 @@ const AccessoriesPage = () => {
 
           </div>
         </div>
-      </div>
+      </ProductsPageContainer>
     </>
 
   );

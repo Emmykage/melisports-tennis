@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SearchList from './SearchList';
-import { filterProducts, searchedProducts } from '../../redux/products/product';
+import { searchedProducts } from '../../redux/products/product';
 
 const SearchComponent = () => {
   const searchForm = useRef(null);

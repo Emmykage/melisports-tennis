@@ -8,7 +8,7 @@ import { getProducts } from '../redux/actions/product';
 import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
 import {
-  filterActivities, filterFeatures, filterProducts, searchedPage, searchedProducts,
+  filterActivities, filterFeatures, searchedPage,
 } from '../redux/products/product';
 import AllProducts from '../components/products/AllProducts';
 
@@ -23,9 +23,7 @@ const SearchPage = () => {
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
 
-    dispatch(getProducts()).then(() => {
-      dispatch(filterProducts(lowerCaseSieve));
-    });
+    dispatch(getProducts({ name: lowerCaseSieve }));
   };
 
   const handleFilteredActivities = (e) => {
