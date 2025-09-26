@@ -5,7 +5,7 @@ import Hero from '../../components/banner/Hero';
 import { getProducts } from '../../redux/actions/product';
 import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-Bags.jpg';
 import Loader from '../Loader';
-import { filterCapacity, filterProducts } from '../../redux/products/product';
+import { filterCapacity } from '../../redux/products/product';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
 import useFilter from '../../hooks/useFilter';

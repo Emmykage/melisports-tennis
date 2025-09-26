@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { act } from 'react';
-import { getLetestProducts, getProducts, getSimilarProducts } from '../actions/product';
+import { getLetestProducts, getProducts, getSimilarProducts, searchedProducts } from '../actions/product';
 
 const initialState = {
   products: [],
@@ -19,7 +19,6 @@ const initialState = {
   sortedProducts: [],
   relatedProducts: [],
   relatedError: false,
-  name: 'morris',
 };
 
 const productsSlice = createSlice({
@@ -92,15 +91,41 @@ const productsSlice = createSlice({
 
     }),
 
-  },
-  reducers: {
-    searchedProducts: (state, action) => {
-      const f_product = action.payload.length < 1 ? [] : state.products.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()));
+    [searchedProducts.fulfilled]: (state, action) => {
+     
       return {
         ...state,
-        searched_products: f_product,
+        status: 'success',
+        loading: false,
+        searched_products: action.payload.data,
+      
       };
     },
+     [searchedProducts.rejected]: (state, action) => {
+     
+      return {
+        ...state,
+        status: 'failed',
+        loading: false,
+        searched_products: action.payload.message ?? "Failed to search produtc",
+      
+      };
+    },
+
+     [searchedProducts.pending]: (state, action) => {
+     
+      return {
+        ...state,
+        status: 'success',
+        loading: true,
+      
+      };
+    },
+
+
+  },
+  reducers: {
+   
     searchedPage: (state, action) => {
       const f_product = action.payload.length < 1 ? [] : state.products.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()));
       return {
@@ -108,6 +133,7 @@ const productsSlice = createSlice({
         search_product_page: f_product,
       };
     },
+  
     filterCapacity: (state, action) => {
       const filterRaw = state.products.filter((item) => action.payload.some((element) => item.description?.includes(element) || item.description_body?.includes(element)));
       console.log('payload filter processed: ', filterRaw);
@@ -161,7 +187,7 @@ const productsSlice = createSlice({
         products: filts,
       };
     },
-
+  
     getLatest: (state) => {
       const sortedProducts = [...state.products].filter((item) => item.new_product);
       return {
@@ -181,5 +207,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 export const {
-  filterPlayerType, filterProducts, searchedProducts, filterCapacity, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
+  filterPlayerType, filterCapacity, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
 } = productsSlice.actions;

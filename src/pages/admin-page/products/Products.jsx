@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getProduct, getProducts } from '../../../redux/actions/product';
 import Search from '../../../components/search/Search';
-import { filterProducts } from '../../../redux/products/product';
 import AdminProductCard from '../../../components/card/AdminProductCard';
-import { resetProduct } from '../../../redux/product/product';
 
 const Products = () => {
   const navigate = useNavigate();
@@ -28,11 +26,7 @@ const Products = () => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    if (e.target.value.trim() === '') {
-      dispatch(resetProduct());
-    } else {
-      dispatch(filterProducts(e.target.value.trim()));
-    }
+   
   };
   console.log(products);
   if (!error) {

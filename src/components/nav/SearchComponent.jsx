@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SearchList from './SearchList';
-import { searchedProducts } from '../../redux/products/product';
+import { searchedProducts } from '../../redux/actions/product';
 
 const SearchComponent = () => {
   const searchForm = useRef(null);
@@ -19,18 +19,22 @@ const SearchComponent = () => {
     navigate(`/search_page?query=${search}`);
     triggerClose();
   };
-  const handleInput = (e) => {
-    setSearch(e.target.value.trim());
+  const handleInput = (e) => {SearchComponent
+    console.log(e.target.value)
+      setSearch(e.target.value);
+
+    setTimeout(()=> {
+      setSearch(e.target.value);
+       dispatch(searchedProducts({search: search}))
     if (search.length == 0) {
       return;
     }
-
-    dispatch(searchedProducts(search));
-  };
+    }, 2000)
+     };
 
   const triggerClose = () => {
     setSearch('');
-    dispatch(searchedProducts(''));
+    setShowSearchList(false);
   };
 
   useEffect(() => {
