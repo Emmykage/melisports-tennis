@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getProduct, getProducts, searchedProducts } from '../../../redux/actions/product';
 import Search from '../../../components/search/Search';
 import AdminProductCard from '../../../components/card/AdminProductCard';
+import AppLoader from '../../../components/loader/AppLoader';
 
 const Products = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Products = () => {
 
         <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
 
-        {products.length < 1
+        {loading ? <AppLoader /> : products.length < 1
           ? (
             <div>
               <header>
@@ -52,15 +53,28 @@ const Products = () => {
           )
 
           : (
-            <div className="w-full grid py-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
+            <div className="w-full ">
 
-              {searched_products.length > 0 ? searched_products.map((product) => (
-                <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
+              {searched_products.length > 0
+                ? (
+                  <div className="w-full grid py-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
+                    {searched_products.map((product) => (
+                      <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
 
-              )) : products.map((product) => (
-                <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
+                    ))}
 
-              ))}
+                  </div>
+                ) : search !== '' && searched_products.length === 0
+                  ? <h1 className="warning-center w-full"> No Item found</h1>
+                  : (
+                    <div className="w-full grid py-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
+                      {' '}
+                      { products.map((product) => (
+                        <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
+
+                      ))}
+                    </div>
+                  )}
             </div>
           )}
       </div>

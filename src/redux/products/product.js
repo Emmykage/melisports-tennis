@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 import { act } from 'react';
 import {
   getLetestProducts, getProducts, getSimilarProducts, searchedProducts,
@@ -200,6 +200,7 @@ const productsSlice = createSlice({
   },
 });
 
+// const clearSearchField = createAction()
 export default productsSlice.reducer;
 export const {
   filterPlayerType, filterCapacity, clearSearch, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
