@@ -12,10 +12,8 @@ import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import logo from '../../assets/images/logo/melisport_1.png';
-import { userLog } from '../../redux/user/user';
-import { getProducts } from '../../redux/actions/product';
+
 import { userProfile } from '../../redux/actions/auth';
-import ToolTip from '../tool-tip/ToolTip';
 
 import ButtonSession from './components/ButtonSession';
 

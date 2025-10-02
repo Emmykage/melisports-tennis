@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { act } from 'react';
-import { getLetestProducts, getProducts, getSimilarProducts, searchedProducts } from '../actions/product';
+import {
+  getLetestProducts, getProducts, getSimilarProducts, searchedProducts,
+} from '../actions/product';
 
 const initialState = {
   products: [],
   searched_products: [],
-  search_product_page: [],
   padelRacquets: [],
   badmintonRacquets: [],
   filteredProducts: [],
@@ -91,41 +92,35 @@ const productsSlice = createSlice({
 
     }),
 
-    [searchedProducts.fulfilled]: (state, action) => {
-     
-      return {
-        ...state,
-        status: 'success',
-        loading: false,
-        searched_products: action.payload.data,
-      
-      };
-    },
-     [searchedProducts.rejected]: (state, action) => {
-     
-      return {
-        ...state,
-        status: 'failed',
-        loading: false,
-        searched_products: action.payload.message ?? "Failed to search produtc",
-      
-      };
-    },
+    [searchedProducts.fulfilled]: (state, action) => ({
+      ...state,
+      status: 'success',
+      loading: false,
+      searched_products: action.payload.data,
 
-     [searchedProducts.pending]: (state, action) => {
-     
-      return {
-        ...state,
-        status: 'success',
-        loading: true,
-      
-      };
-    },
+    }),
+    [searchedProducts.rejected]: (state, action) => ({
+      ...state,
+      status: 'failed',
+      loading: false,
+      searched_products: action.payload.message ?? 'Failed to search produtc',
 
+    }),
+
+    [searchedProducts.pending]: (state, action) => ({
+      ...state,
+      status: 'success',
+      loading: true,
+
+    }),
 
   },
   reducers: {
-   
+
+    clearSearch: (state) => ({
+      ...state,
+      searched_products: [],
+    }),
     searchedPage: (state, action) => {
       const f_product = action.payload.length < 1 ? [] : state.products.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()));
       return {
@@ -133,7 +128,7 @@ const productsSlice = createSlice({
         search_product_page: f_product,
       };
     },
-  
+
     filterCapacity: (state, action) => {
       const filterRaw = state.products.filter((item) => action.payload.some((element) => item.description?.includes(element) || item.description_body?.includes(element)));
       console.log('payload filter processed: ', filterRaw);
@@ -187,7 +182,7 @@ const productsSlice = createSlice({
         products: filts,
       };
     },
-  
+
     getLatest: (state) => {
       const sortedProducts = [...state.products].filter((item) => item.new_product);
       return {
@@ -207,5 +202,5 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 export const {
-  filterPlayerType, filterCapacity, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
+  filterPlayerType, filterCapacity, clearSearch, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
 } = productsSlice.actions;

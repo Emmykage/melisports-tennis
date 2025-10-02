@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getProduct, getProducts } from '../../../redux/actions/product';
+import { getProduct, getProducts, searchedProducts } from '../../../redux/actions/product';
 import Search from '../../../components/search/Search';
 import AdminProductCard from '../../../components/card/AdminProductCard';
 
 const Products = () => {
   const navigate = useNavigate();
   const {
-    products, sortedProducts, message, error, loading,
+    products,searched_products, message, error, loading,
   } = useSelector((state) => state.products);
   const { updater } = useSelector((state) => state.product);
   const [search, setSearch] = useState('');
@@ -25,10 +25,23 @@ const Products = () => {
   };
 
   const handleSearch = (e) => {
+    const {value} = e.target 
+    setSearch(value)
+    const cleanedValue = value.trim().replace(/\s+/g, " ")
+
+  
+
+    setTimeout(()=> {
+    dispatch(searchedProducts({ search: cleanedValue }));
+
+
+    },100)
+
+
+    
     setSearch(e.target.value);
-   
   };
-  console.log(products);
+  console.log(searched_products);
   if (!error) {
     return (
       <div>
@@ -48,7 +61,7 @@ const Products = () => {
           : (
             <div className="w-full grid py-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
 
-              {search !== '' ? sortedProducts.map((product) => (
+              {searched_products.length > 0 ? searched_products.map((product) => (
                 <AdminProductCard product={product} key={product.id} toEdit={toEdit} />
 
               )) : products.map((product) => (

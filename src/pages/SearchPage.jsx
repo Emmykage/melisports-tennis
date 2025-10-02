@@ -11,11 +11,13 @@ import {
   filterActivities, filterFeatures, searchedPage,
 } from '../redux/products/product';
 import AllProducts from '../components/products/AllProducts';
+import ProductsGrid from '../components/products/ProductsGridDisplay';
+import Nav from '../components/nav/Nav';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const { search_product_page, status, error } = useSelector((state) => state.products);
+  const { searched_products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
   const category = product_categories?.find((cat) => cat.name === 'racquet');
@@ -65,9 +67,11 @@ const SearchPage = () => {
 
   return (
     <div className="product-container">
+      <Nav />
+
       {/* <Hero image={bannerImage} title="Racquet" /> */}
 
-      <div className="prod-page">
+      <div className="prod-page px-4">
         <div className="cat-group justify-between max-w-md my-6">
           <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
           <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
@@ -186,7 +190,9 @@ const SearchPage = () => {
             ? (
               <div className="product-align w-full ">
                 <div className="product-items">
-                  <AllProducts products={search_product_page} status={status} error={error} />
+                  <div className="product-items">
+                    <ProductsGrid products={searched_products} status={status} error={error} />
+                  </div>
                 </div>
 
                 <div className="product-details color-grey">

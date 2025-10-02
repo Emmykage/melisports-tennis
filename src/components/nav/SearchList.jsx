@@ -1,24 +1,30 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { forwardRef } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-const SearchList = ({ items, triggerClose }) => (
-  <>
-    <ul className="search-list">
-      {items.map((item) => (
-        <li key={item.id} tr>
-          <NavLink
-            className="px-2 w-full"
-            to={`/productdetails/${item.id}`}
-            onClick={triggerClose}
-          >
-            {item.name}
-          </NavLink>
-        </li>
+const SearchList = forwardRef(({ items, triggerClose }, ref) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <ul ref={ref} className="search-list">
+        {items?.map((item) => (
+          <li key={item.id} tr>
+            <a
+              className="px-2 w-full"
 
-      ))}
-    </ul>
+              onClick={() => {
+                navigate(`/productdetails/${item.id}`);
+                triggerClose();
+              }}
+            >
+              {item.name}
+            </a>
+          </li>
 
-  </>
-);
+        ))}
+      </ul>
+
+    </>
+  );
+});
 
 export default SearchList;

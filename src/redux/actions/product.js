@@ -22,8 +22,6 @@ const getProducts = createAsyncThunk('products/getProducts', async (filterParams
   }
 });
 
-
-
 export const searchedProducts = createAsyncThunk('products/search_product', async (filterParams = {}, { rejectWithValue }) => {
   const params = new URLSearchParams(filterParams);
 
