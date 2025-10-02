@@ -52,11 +52,11 @@ const SearchComponent = () => {
     }
   }, [searched_products]);
 
-  console.log(searched_products)
+  console.log(searched_products);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      console.log("[CLICKED NAV]")
+      console.log('[CLICKED NAV]');
       if (searchlistRef.current && !searchlistRef.current.contains(e.target)) {
         triggerClose(false);
       }

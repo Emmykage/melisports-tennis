@@ -8,7 +8,7 @@ import AdminProductCard from '../../../components/card/AdminProductCard';
 const Products = () => {
   const navigate = useNavigate();
   const {
-    products,searched_products, message, error, loading,
+    products, searched_products, message, error, loading,
   } = useSelector((state) => state.products);
   const { updater } = useSelector((state) => state.product);
   const [search, setSearch] = useState('');
@@ -25,23 +25,16 @@ const Products = () => {
   };
 
   const handleSearch = (e) => {
-    const {value} = e.target 
-    setSearch(value)
-    const cleanedValue = value.trim().replace(/\s+/g, " ")
+    const { value } = e.target;
+    setSearch(value);
+    const cleanedValue = value.trim().replace(/\s+/g, ' ');
+    setTimeout(() => {
+      dispatch(searchedProducts({ search: cleanedValue }));
+    }, 100);
 
-  
-
-    setTimeout(()=> {
-    dispatch(searchedProducts({ search: cleanedValue }));
-
-
-    },100)
-
-
-    
     setSearch(e.target.value);
   };
-  console.log(searched_products);
+
   if (!error) {
     return (
       <div>
