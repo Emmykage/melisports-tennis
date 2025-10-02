@@ -151,7 +151,7 @@ const ProductsPage = () => {
             {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
               ? (
                 <div className="product-align w-full">
-                  <div className="grid gap-[2%] gap-y-2 grid-cols-4">
+                  <div className="grid gap-[2%] gap-y-2 grid-cols-2 sm:grid-cols-3 xl:grid-cols-4">
                     <Products products={products} status={status} error={error} filter="racquet" />
                   </div>
 
