@@ -11,6 +11,7 @@ import Loader from '../Loader';
 import ProductFilter from '../../components/products/ProductFilter';
 import './home.scss';
 import Nav from '../../components/nav/Nav';
+import ProductCard from '../../components/card/ProductCard';
 
 const Arrivals = () => {
   const dispatch = useDispatch();
@@ -65,8 +66,9 @@ const Arrivals = () => {
     dispatch(getLetestProducts());
   }, []);
 
+
   return (
-    <div className="product-container">
+    <div className="product-container px-4">
       <Nav />
 
       <Hero image={bannerImage} title="Racquet" />
@@ -186,12 +188,13 @@ const Arrivals = () => {
 
           </div>
 
-          {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
-            ? (
+          { loading ? <Loader /> : 
               <div className="product-align w-full ">
                 <div className="product-items">
-                  <ProductFilter products={latestArrival} status={status} error={error} />
-                </div>
+     {latestArrival.map((product) => (
+          <ProductCard product={product} />
+
+        ))}                </div>
 
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>
@@ -205,11 +208,9 @@ const Arrivals = () => {
 
                 </div>
               </div>
-            ) : (
-              <div className="text-center full-length">
-                <h2>{error}</h2>
-              </div>
-            ))}
+            
+        
+            }
           <div />
 
         </div>

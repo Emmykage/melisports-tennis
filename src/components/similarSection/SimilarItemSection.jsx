@@ -93,34 +93,56 @@ function SimilarItemCard({ item, onSelect }) {
     name: title, subtitle, price, photo_urls,
   } = item;
   return (
-    <article
-      role="listitem"
-      tabIndex={0}
-      onClick={() => onSelect(item)}
-      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(item)}
-      className="w-60 flex-shrink-0 bg-white rounded-lg shadow-sm p-3 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer"
-    >
-      <div className="relative h-36 mb-3 bg-gray-50 rounded-md overflow-hidden">
-        {/* Use loading="lazy" for non-critical images */}
-        <img
-          src={photo_urls?.[0]}
-          alt={title}
-          loading="lazy"
-          className="object-cover w-full h-full"
-          onError={(e) => {
-            e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="100%" height="100%" fill="%23f3f4f6"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Arial,Helvetica,sans-serif" font-size="14"%3EImage%20unavailable%3C/text%3E%3C/svg%3E';
-          }}
-        />
-      </div>
+  <article
+  role="listitem"
+  tabIndex={0}
+  onClick={() => onSelect(item)}
+  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(item)}
+  className="w-64 flex-shrink-0 bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 cursor-pointer 
+             focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 group"
+>
+  {/* Image container */}
+  <div className="relative h-40 mb-4 bg-white rounded-lg overflow-hidden">
+    <img
+      src={photo_urls?.[0]}
+      alt={title}
+      loading="lazy"
+      className="object-contain w-full h-full transform transition-transform duration-300 group-hover:scale-105"
+      onError={(e) => {
+        e.currentTarget.src =
+          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="100%" height="100%" fill="%23f3f4f6"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Arial,Helvetica,sans-serif" font-size="14"%3EImage%20unavailable%3C/text%3E%3C/svg%3E';
+      }}
+    />
 
-      <h4 className="text-sm font-medium text-gray-900 truncate" title={title}>
-        {title}
-      </h4>
-      {subtitle && <p className="text-xs text-gray-500 truncate">{subtitle}</p>}
-      {price !== undefined && (
-        <div className="mt-2 text-sm font-semibold">{nairaFormat(price)}</div>
-      )}
-    </article>
+    {/* Badge (optional for "New" or "Sale") */}
+    {item?.new_product && (
+      <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded">
+        New
+      </span>
+    )}
+  </div>
+
+  {/* Text content */}
+  <div className="p-2">
+    <h4
+      className="text-sm font-normal text-gray-900 truncate group-hover:text-primary transition-colors"
+      title={title}
+    >
+      {title}
+    </h4>
+
+    {subtitle && (
+      <p className="text-xs text-gray-500 truncate mt-0.5">{subtitle}</p>
+    )}
+
+    {price !== undefined && (
+      <div className="mt-3 text-sm font-bold text-gray-800">
+        {nairaFormat(price)}
+      </div>
+    )}
+  </div>
+</article>
+
   );
 }
 

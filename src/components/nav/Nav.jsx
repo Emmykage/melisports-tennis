@@ -47,231 +47,224 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="bg-gray-300">
+   <nav className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
+        {/* Left: Mobile Menu */}
+        <div className="flex items-center gap-4">
+          <button
+            className="lg:hidden text-2xl text-gray-700"
+            onClick={() => setToggleNav(true)}
+          >
+            <FiMenu />
+          </button>
+          <NavLink to="/store" className="flex items-center">
+            <img src={logo} alt="Logo" className="h-10 w-auto" />
+          </NavLink>
+        </div>
 
-        <div className={`${stickyNav} navbar`}>
-          <div className="mobile-menu-div">
-            <a className="menu">
-              <FiMenu className="menu-icon" onClick={() => setToggleNav((prev) => !prev)} />
-            </a>
-          </div>
-          <div className="logo ">
-            <NavLink className="img-div" to="/store">
-              <img src={logo} alt="" />
+        {/* Middle: Nav Links (Desktop) */}
+        <ul className="hidden lg:flex gap-6 text-sm font-medium text-gray-700">
+          <li>
+            <NavLink
+              to="/store"
+              className="hover:text-primary transition-colors"
+            >
+              Store
             </NavLink>
-          </div>
-
-          <div className="nav-div flex flex-wrap">
-            <div className="flex-1 flex">
-
-              <ul className={toggleNav ? 'nav-links  show-menu ' : 'nav-links'}>
-                <div className="mobile-menu-div  my-4">
-                  <AiOutlineClose className="menu-icon close-icon" onClick={() => setToggleNav((prev) => !prev)} />
-                </div>
-
-                <li className="nav-item"><NavLink to="/store" className="lg:text-dark lg:font-semibold lg:text-base">Store</NavLink></li>
-                <li className="nav-item">
-                  <NavLink to={`/racquets?brand=${'babolat'}`} className="lg:text-dark lg:font-semibold lg:text-base">Rackets </NavLink>
-                  <div className="link-items flex">
-                    <div className="">
-                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">
-                        Rackets &
-                        <br />
-                        {' '}
-                        Paddles
-                      </h3>
-                    </div>
-                    <ul className="border-b lg:border-none">
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p>  Tennis Rackets </p>
-                      </h4>
-                      <li className="pl-3 p-0 text-sm lg:text-dark font-semibold">
-                        <NavLink to="/racquets">Babolat</NavLink>
-                      </li>
-
-                    </ul>
-                    <ul className="border-b lg:border-none">
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p>  Padel Rackets </p>
-
-                      </h4>
-                      <li className="pl-3 p-0 text-sm lg:text-dark font-semibold">
-                        <NavLink to="/padels">Babolat</NavLink>
-                      </li>
-
-                    </ul>
-                    <ul className="border-">
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p to="/badminton">  Badminton Rackets </p>
-                      </h4>
-                      <li className="pl-3 p-0 lg:text-dark font-semibold">
-                        <NavLink to="/badminton">Babolat</NavLink>
-                      </li>
-
-                    </ul>
-                  </div>
-                </li>
-                <li className="nav-item">
-
-                  <NavLink to="/apparels" className="lg:text-dark lg:font-semibold lg:text-base">Apparels</NavLink>
-
-                  <div className="link-items flex">
-                    <div>
-                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">Apparels</h3>
-                    </div>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black ">
-                        <p to="#">  Tennis Men's Apparels </p>
-                      </h4>
-                      <li className="pl-3 p-0 lg:text-dark font-semibold">
-                        <NavLink href="/apparels?type=men&brand=babolat">Babolat</NavLink>
-                      </li>
-                    </ul>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p>   Tennis Women's Apparel </p>
-
-                      </h4>
-                      <li>
-                        <NavLink to="/apparels?type=women&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink>
-                      </li>
-
-                    </ul>
-                  </div>
-                </li>
-                <li className="nav-item">
-                  <NavLink to="/shoes" className="lg:text-dark lg:font-semibold lg:text-base">Shoes</NavLink>
-                  <div className="link-items">
-                    <div>
-                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">Shoes</h3>
-                    </div>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p>   Men's Shoes </p>
-                      </h4>
-                      <li><NavLink to="/shoes?type=men&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
-
-                    </ul>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p>   Women's Shoes </p>
-                      </h4>
-                      <li><NavLink to="/shoes?type=women&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
-
-                    </ul>
-                  </div>
-                </li>
-                <li className="nav-item">
-                  <NavLink to="/bags" className="lg:text-dark lg:font-semibold lg:text-base">Bags</NavLink>
-                  <div className="link-items flex">
-                    <div>
-                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">
-                        Racket Holders &
-                        <br />
-                        {' '}
-                        Backpacks
-                      </h3>
-                    </div>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p>  Racket Holder</p>
-                      </h4>
-                      <li><NavLink to="/bags?type=babolat&brand=babolat" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
-
-                    </ul>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p>  Backpacks</p>
-                      </h4>
-                      <li><NavLink href="/bags?type=backpack" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
-
-                    </ul>
-                  </div>
-                </li>
-                <li className="nav-item">
-                  <NavLink to="/accessories" className="lg:text-dark lg:font-semibold lg:text-base">Acccessories</NavLink>
-                  <div className="link-items flex">
-                    <div>
-                      <h3 className="text-lg tracking-wider font-medium text-theme-alt">
-                        Sports &
-                        <br />
-                        {' '}
-                        Court Accessories
-                      </h3>
-                    </div>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p> Sports Accessories </p>
-                      </h4>
-                      <li><NavLink to="/accessories?type=sports" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
-                    </ul>
-                    <ul>
-
-                      <h4 className="text-base font-semibold lg:text-black">
-                        <p> Courts Accessories </p>
-                      </h4>
-                      <li><NavLink to="/accessories?type=court" className="pl-3 p-0 lg:text-dark font-semibold">Babolat</NavLink></li>
-                    </ul>
-                  </div>
-                </li>
-                <li className="nav-item">
-                  <NavLink to="/brands" className="lg:text-gray-800 lg:font-semibold lg:text-base">Brands</NavLink>
-
-                </li>
-
-                {user && ((user?.role === 'admin' || user?.role === 'super-admin') && (
-                <li className="nav-item lg:text-gray-800 lg:font-semibold lg:text-base">
-                  <NavLink to="/admin">    go to admin </NavLink>
-                  {' '}
-                </li>
-                ))}
-
-                <li className="nav-item last">
-                  <span><FiUser className="user-icon" /></span>
-
-                  {user == undefined ? <NavLink to="/auth/login">Login</NavLink> : <a onClick={handleLogOut}>Log Out</a> }
-
-                </li>
-
-              </ul>
-            </div>
-            <div className="flex  gap-3 justify-between items-center py-2.5">
-              <NavLink to="/">
-                <MdHome className="menu-icon text-theme-alt text-4xl" />
-              </NavLink>
-              <div className="menu-div cart">
-
-                <NavLink to="/carts">
-
-                  <BsCartDash className="menu-icon text-3xl cart-icon text-theme-alt" />
-                  <span className="total-amount text-white bold">{counter}</span>
-
+          </li>
+          <li className="group relative">
+            <NavLink
+              to="/racquets?brand=babolat"
+              className="hover:text-primary transition-colors"
+            >
+              Rackets
+            </NavLink>
+            {/* Dropdown */}
+            <div className="absolute left-0 mt-3 hidden group-hover:flex gap-8 p-6 bg-white shadow-xl rounded-xl">
+              <div>
+                <h4 className="text-gray-900 font-semibold mb-2">Tennis</h4>
+                <NavLink
+                  to="/racquets"
+                  className="block text-gray-600 hover:text-primary"
+                >
+                  Babolat
                 </NavLink>
               </div>
-              <div className=" items-center text-black mobile-display hidden lg:flex font-medium">
-
-                <>
-                  <ButtonSession user={user} handleLogOut={handleLogOut} />
-
-                </>
-
+              <div>
+                <h4 className="text-gray-900 font-semibold mb-2">Padel</h4>
+                <NavLink
+                  to="/padels"
+                  className="block text-gray-600 hover:text-primary"
+                >
+                  Babolat
+                </NavLink>
               </div>
-
+              <div>
+                <h4 className="text-gray-900 font-semibold mb-2">Badminton</h4>
+                <NavLink
+                  to="/badminton"
+                  className="block text-gray-600 hover:text-primary"
+                >
+                  Babolat
+                </NavLink>
+              </div>
             </div>
-          </div>
+          </li>
+          <li>
+            <NavLink
+              to="/apparels"
+              className="hover:text-primary transition-colors"
+            >
+              Apparels
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/shoes"
+              className="hover:text-primary transition-colors"
+            >
+              Shoes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/bags"
+              className="hover:text-primary transition-colors"
+            >
+              Bags
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/accessories"
+              className="hover:text-primary transition-colors"
+            >
+              Accessories
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/brands"
+              className="hover:text-primary transition-colors"
+            >
+              Brands
+            </NavLink>
+          </li>
+          {user?.role === "admin" && (
+            <li>
+              <NavLink
+                to="/admin"
+                className="hover:text-primary transition-colors"
+              >
+                Admin
+              </NavLink>
+            </li>
+          )}
+        </ul>
 
+        {/* Right: User + Cart */}
+        <div className="flex items-center gap-5">
+          <NavLink to="/" className="text-2xl text-gray-700 hover:text-primary">
+            <MdHome />
+          </NavLink>
+          <NavLink to="/carts" className="relative text-2xl text-gray-700 hover:text-primary">
+            <BsCartDash />
+            {counter > 0 && (
+              <span className="absolute -top-2 -right-3 bg-primary text-white text-xs font-semibold rounded-full px-2 py-0.5">
+                {counter}
+              </span>
+            )}
+          </NavLink>
+          <div>
+            {user ? (
+              <button
+                onClick={handleLogOut}
+                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+              >
+                <FiUser />
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/auth/login"
+                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+              >
+                <FiUser />
+                Login
+              </NavLink>
+            )}
+          </div>
         </div>
-        <SearchComponent />
-      </nav>
+      </div>
+
+      {/* Mobile Sidebar */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/40 transition-opacity ${
+          toggleNav ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={() => setToggleNav(false)}
+      />
+      <div
+        className={`fixed top-0 left-0 z-50 h-full w-72 bg-white shadow-lg transform transition-transform ${
+          toggleNav ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center p-4 border-b">
+          <img src={logo} alt="Logo" className="h-8" />
+          <AiOutlineClose
+            className="text-2xl cursor-pointer"
+            onClick={() => setToggleNav(false)}
+          />
+        </div>
+        <ul className="flex flex-col gap-4 p-6 text-gray-700 font-medium">
+          <NavLink to="/store" onClick={() => setToggleNav(false)}>
+            Store
+          </NavLink>
+          <NavLink to="/racquets" onClick={() => setToggleNav(false)}>
+            Rackets
+          </NavLink>
+          <NavLink to="/apparels" onClick={() => setToggleNav(false)}>
+            Apparels
+          </NavLink>
+          <NavLink to="/shoes" onClick={() => setToggleNav(false)}>
+            Shoes
+          </NavLink>
+          <NavLink to="/bags" onClick={() => setToggleNav(false)}>
+            Bags
+          </NavLink>
+          <NavLink to="/accessories" onClick={() => setToggleNav(false)}>
+            Accessories
+          </NavLink>
+          <NavLink to="/brands" onClick={() => setToggleNav(false)}>
+            Brands
+          </NavLink>
+          {user && user?.role === "admin" && (
+            <NavLink to="/admin" onClick={() => setToggleNav(false)}>
+              Admin
+            </NavLink>
+          )}
+          <div className="border-t pt-4">
+            {user ? (
+              <button
+                onClick={handleLogOut}
+                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+              >
+                <FiUser />
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/auth/login"
+                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+              >
+                <FiUser />
+                Login
+              </NavLink>
+            )}
+          </div>
+        </ul>
+      </div>
+    </nav>
     </>
   );
 };

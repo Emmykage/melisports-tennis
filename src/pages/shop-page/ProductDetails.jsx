@@ -59,284 +59,208 @@ const ProductDetails = () => {
   return (
     <>
 
-      <section className="">
-        <Nav />
+<section className="bg-gray-50">
+  <Nav />
 
-        <div className="p-container shadow p-4 rounded-md bg-white">
-          <div className=" max-w-[1600px]  grid gap-5 border-b mb-10 pb-6 md:gap-8 md:grid-cols-2">
-            <div className="centralize">
-              {product.photo_urls ? <ImagePreview images={product.photo_urls} />
-                : (
-                  <div className=" w-full relative  ">
-                    <img src={product.image} alt="yeo" className="w-full h-full" />
-                  </div>
-                )}
-            </div>
-            <div className="col-md-6 right-detail-container prev-details md:px-4">
-              <h2 className="my-0 text-3xl font-medium">{product?.name}</h2>
-              <p className="my-2 text-base text-gray-500">
-                Tennis
-                {' '}
-                {' '}
-                {product?.product_category?.name}
-              </p>
-              <div className="price ">
-
-                <span className="text-2xl font-semibold">
-                  {nairaFormat(product.price)}
-                </span>
-
-              </div>
-
-              {product?.colours && (
-              <div className="my-3">
-
-                <div className=" items-center">
-
-                  <span className="text-gray-600 text-xl font-semibold ">
-                    colours
-                    {' '}
-                    <span className="text-sm font- text-gray-600">
-                      {' '}
-                      {product.colours}
-                    </span>
-                  </span>
-                  <div className="flex gap-3">
-                    {' '}
-                    {product.colours.length > 0 ? (
-                      product.colours.map((color) => (
-
-                        pickColor(color).length == 1
-                          ? (
-                            <span
-                              key={color}
-                              className={`block w-8 h-8 rounded-full border border-gray-300 ${pickColor(color)[0]}`}
-                            />
-                          ) : (
-                            <span
-                              key={color}
-                              className={`w-8 h-8 rounded-full border  border-gray-300 flex justify-center items-center ${pickColor(color)[0]}`}
-                            >
-                              <span
-                                className={`block w-4 h-4 rounded-full border ${pickColor(color)[1]}`}
-                              />
-
-                            </span>
-                          )
-                      ))
-                    ) : (
-                      <span className="flex h-full">
-                        N/A
-
-                      </span>
-                    )}
-                  </div>
-
-                </div>
-              </div>
-
-              ) }
-
-              <div>
-
-                <div className="flex gap-1 flex-wrap my-2">
-                  {' '}
-
-                  {product?.product_inventories?.length > 0 && (
-                  <div className="headsize my-3">
-                    <span className="text-gray-600 text-xl font-semibold block">
-                      {product?.product_category?.name == 'racquet' ? 'Grip Size' : 'Size'}
-                    </span>
-
-                    <div className="text-base text-gray-dark font-medium">
-
-                      {product?.product_sizes.map((size) => (
-                        <button
-                          onClick={() => {
-                            setSelectedSIze(size);
-                            setsizes([size]);
-                          }}
-                          className={`${selectedSize == size ? 'bg-gray-300 border border-theme-alt' : 'bg-gray-200'} text-gray-dark px-6 py-0.5 mr-3  text-base text-gray-dark rounded`}
-                        >
-                          {size}
-                        </button>
-
-                      ))}
-                    </div>
-                  </div>
-
-                  ) }
-
-                </div>
-
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="btn-div my-3">
-                  <button
-                    type="button"
-                    className="py-1 px-2.5"
-                    onClick={decrease}
-                  >
-                    -
-                  </button>
-                  <span>{count}</span>
-                  <button
-                    type="button"
-                    className="py-1 px-2.5"
-                    onClick={increase}
-                  >
-                    +
-                  </button>
-
-                </div>
-                <div>
-                  <p className="text-base font-medium">
-                    Av Qty:
-                    {product.product_quantity}
-                  </p>
-                </div>
-
-              </div>
-              <div>
-                <a
-                  className={`text-center block max-w-xl py-2 px-3 ${product.quantity == 0 ? 'bg-light text-dark cursor-not-allowed' : 'bg-theme-light text-light cursor-pointer'}`}
-                  onClick={handleCart}
-                >
-                  {' '}
-                  Add to Cart
-                </a>
-              </div>
-            </div>
-
-          </div>
-          <div className="technical-details my-5 pb-6">
-            <h3 className="text-2xl tracking-wider font-medium">Technical Characteristics</h3>
-            <div className="Xteristic">
-              {product?.head_size
-                && (
-                <div className="">
-                  <div className="title flex-1">
-                    <span className="font-semibold text-base">Head Size</span>
-                  </div>
-                  <div className="value flex-1">
-                    <span className="text-gray-dark font-medium">
-                      {product.head_size}
-                      {' '}
-                      &#13216;
-                    </span>
-                  </div>
-                </div>
-                ) }
-              {product?.weight
-                      && (
-                      <div>
-                        <div className="col-6">
-                          <span className="font-semibold text-base">weight</span>
-
-                        </div>
-                        <div className="col-6">
-                          <span>
-                            {product?.weight}
-                            {' '}
-                            g +/-7 g
-                          </span>
-
-                        </div>
-                      </div>
-                      )}
-              {product.size
-                && (
-                <div>
-                  <div className="col-6">
-                    <span className="font-semibold text-base">Size</span>
-
-                  </div>
-                  <div className="col-6">
-                    <span>{product.size}</span>
-
-                  </div>
-                </div>
-                )}
-              {product.length
-                && (
-                <div>
-                  <div className="col-6">
-                    <span className="font-semibold  text-base">Length </span>
-
-                  </div>
-                  <div className="col-6">
-                    <span>
-                      {product.length}
-                      {' '}
-                      mm
-                    </span>
-
-                  </div>
-                </div>
-                )}
-              {product.composition
-                && (
-                <div>
-                  <div className="col-6">
-                    <span className="font-semibold  text-base">Composition </span>
-
-                  </div>
-                  <div className="col-6">
-                    <span>{product.composition}</span>
-
-                  </div>
-                </div>
-                )}
-              {product.strung
-                && (
-                <div>
-                  <div>
-                    <span className="font-semibold  text-base">Strung/Unstrung</span>
-
-                  </div>
-                  <div className="col-6">
-                    <span>{product.strung}</span>
-
-                  </div>
-                </div>
-                )}
-              {product.tension
-                && (
-                <div>
-
-                  <div className="col-6">
-                    <span className="font-semibold  text-base">Recommended Tension</span>
-
-                  </div>
-                  <div className="col-6">
-                    <span>
-                      {product.tension}
-                      {' '}
-                      kg
-                    </span>
-
-                  </div>
-                </div>
-                )}
-            </div>
-          </div>
-
-          <div className="description-details my-6">
-            <h2 className="text-2xl font-medium">Description</h2>
-
-            {product.description_body ? <p className="md:text-base" dangerouslySetInnerHTML={{ __html: product?.description_body }} /> : <p className="text-lg">{ product.description }</p> }
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <div className="max-w- prod-page prod-page m-auto px-4">
-
-        <SimilarItemsSection items={relatedProducts} loading={isLoading} onSelect={({ id }) => navigate(`/productdetails/${id}`)} />
+  {/* Product Container */}
+  <div className="p-container shadow-lg p-6 rounded-xl bg-white max-w-[1600px] m-auto">
+    {/* Top Section */}
+    <div className="grid gap-10 md:grid-cols-2 border-b pb-10 mb-10">
+      
+      {/* Product Images */}
+      <div className="flex justify-center items-center">
+        {product.photo_urls ? (
+          <ImagePreview images={product.photo_urls} />
+        ) : (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full max-h-[500px] object-contain rounded-lg"
+          />
+        )}
       </div>
+
+      {/* Product Info */}
+      <div className="flex flex-col justify-between">
+        <div>
+          <h2 className="text-3xl font-normal text-gray-800">{product?.name}</h2>
+          <p className="mt-2 text-gray-500 text-sm uppercase tracking-wide">
+            Tennis • {product?.product_category?.name}
+          </p>
+
+          <div className="mt-4 text-2xl font-bold text-primary">
+            {nairaFormat(product.price)}
+          </div>
+
+          {/* Colors */}
+          {product?.colours?.length > 0 && (
+            <div className="mt-6">
+              <span className="block text-lg font-semibold text-gray-700 mb-2">Colours</span>
+              <div className="flex gap-3">
+                {product.colours.map((color) =>
+                  pickColor(color).length === 1 ? (
+                    <span
+                      key={color}
+                      className={`w-8 h-8 rounded-full border border-gray-300 ${pickColor(color)[0]}`}
+                    />
+                  ) : (
+                    <span
+                      key={color}
+                      className={`w-8 h-8 rounded-full border flex justify-center items-center ${pickColor(color)[0]}`}
+                    >
+                      <span
+                        className={`w-4 h-4 rounded-full border ${pickColor(color)[1]}`}
+                      />
+                    </span>
+                  )
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Sizes */}
+          {product?.product_inventories?.length > 0 && (
+            <div className="mt-6">
+              <span className="block text-lg font-semibold text-gray-700 mb-2">
+                {product?.product_category?.name === 'racquet' ? 'Grip Size' : 'Size'}
+              </span>
+              <div className="flex gap-3 flex-wrap">
+                {product?.product_sizes.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => {
+                      setSelectedSIze(size);
+                      setsizes([size]);
+                    }}
+                    className={`px-5 py-2 rounded-lg border text-sm font-medium transition-all ${
+                      selectedSize === size
+                        ? 'bg-primary text-white border-primary'
+                        : 'bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Quantity */}
+          <div className="flex items-center gap-4 mt-6">
+            <div className="flex items-center border rounded-lg">
+              <button
+                type="button"
+                className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                onClick={decrease}
+              >
+                -
+              </button>
+              <span className="px-4 py-2 text-gray-900 font-medium">{count}</span>
+              <button
+                type="button"
+                className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                onClick={increase}
+              >
+                +
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Av Qty: {product.product_quantity}
+            </p>
+          </div>
+
+          {/* Add to Cart */}
+          <div className="mt-6">
+            <button
+              className={`w-full py-3 rounded-lg font-medium transition-all ${
+                product.quantity === 0
+                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                  : 'bg-primary text-white hover:bg-primary/90'
+              }`}
+              onClick={handleCart}
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Technical Details */}
+    <div className="technical-details mb-10">
+      <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+        Technical Characteristics
+      </h3>
+      <div className="grid gap-4 md:grid-cols-2">
+        {product?.head_size && (
+          <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="font-medium text-gray-700">Head Size</span>
+            <span className="text-gray-600">{product.head_size} ㎠</span>
+          </div>
+        )}
+        {product?.weight && (
+          <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="font-medium text-gray-700">Weight</span>
+            <span className="text-gray-600">{product.weight} g ± 7 g</span>
+          </div>
+        )}
+        {product?.size && (
+          <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="font-medium text-gray-700">Size</span>
+            <span className="text-gray-600">{product.size}</span>
+          </div>
+        )}
+        {product?.length && (
+          <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="font-medium text-gray-700">Length</span>
+            <span className="text-gray-600">{product.length} mm</span>
+          </div>
+        )}
+        {product?.composition && (
+          <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="font-medium text-gray-700">Composition</span>
+            <span className="text-gray-600">{product.composition}</span>
+          </div>
+        )}
+        {product?.strung && (
+          <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="font-medium text-gray-700">Strung/Unstrung</span>
+            <span className="text-gray-600">{product.strung}</span>
+          </div>
+        )}
+        {product?.tension && (
+          <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="font-medium text-gray-700">Recommended Tension</span>
+            <span className="text-gray-600">{product.tension} kg</span>
+          </div>
+        )}
+      </div>
+    </div>
+
+    {/* Description */}
+    <div className="description-details">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Description</h2>
+      {product.description_body ? (
+        <div
+          className="prose prose-gray max-w-none"
+          dangerouslySetInnerHTML={{ __html: product.description_body }}
+        />
+      ) : (
+        <p className="text-gray-700 leading-relaxed">{product.description}</p>
+      )}
+    </div>
+  </div>
+</section>
+
+{/* Related Items */}
+<div className="max-w-[1400px] m-auto px-4 my-12">
+  <SimilarItemsSection
+    items={relatedProducts}
+    loading={isLoading}
+    onSelect={({ id }) => navigate(`/productdetails/${id}`)}
+  />
+</div>
+
     </>
 
   );

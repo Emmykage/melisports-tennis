@@ -56,7 +56,7 @@ const productsSlice = createSlice({
     [getLetestProducts.fulfilled]: (state, action) => ({
       ...state,
       loading: false,
-      latestArrival: action.payload,
+      latestArrival: action.payload.data,
       error: false,
     }),
     [getLetestProducts.rejected]: (state, action) => ({

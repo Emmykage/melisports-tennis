@@ -3,42 +3,47 @@ import { NavLink } from 'react-router-dom';
 import { nairaFormat } from '../../utils/nairaFormat';
 
 const ProductCard = ({ product }) => (
-  <div key={product.id} className="relative text-center md:basis-[24%] basis-[48%] border border-theme-dark p-3 mb-6 rounded-xl h-max bg-white overflow-hidden sm:min-w-48 w-full ">
-    <div className="m-0">
-      <NavLink to={`/productdetails/${product.id}`}>
-        <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name} className="w-full md:h-60 h-52" />
-      </NavLink>
+ <div
+  key={product.id}
+  className="relative text-center md:basis-[24%] basis-[48%] border border-gray-200 p-4 mb-6 rounded-xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+>
+  {/* Product Image */}
+  <div className="relative group">
+    <NavLink to={`/productdetails/${product.id}`}>
+      <img
+        src={product.photo_urls ? product.photo_urls[0] : product.image}
+        alt={product.name}
+        className="w-full md:h-60 h-52 object-contain transform group-hover:scale-105 transition duration-300"
+      />
+    </NavLink>
 
-    </div>
-    {product.new_product
-                  && (
-                  <div className="absolute top-6 left-0 p-2 bg-red-600/70 rounded">
-                    <p className="text-white font-semibold">New</p>
-
-                  </div>
-                  )}
-    <div className="">
-      <h5 className="text-gray-900 block text-base md:hidden">
-
-        {product.name.substring(0, 12)}
-        ...
-      </h5>
-
-      <h5 className="text-gray-900 hidden md:block text-base my-3">
-
-        {product.name.substring(0, 15)}
-        ...
-      </h5>
-      <p className="text-base my-3">
-        {' '}
-        {nairaFormat(product.price)}
-      </p>
-      <NavLink className="w-full bg-theme-darker text-white block py-2 rounded" to={`/productdetails/${product.id}`}>
-        Buy
-      </NavLink>
-
-    </div>
+    {/* New Badge */}
+    {product.new_product && (
+      <span className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        New
+      </span>
+    )}
   </div>
+
+  {/* Product Info */}
+  <div className="mt-4">
+    <h5 className="text-gray-900 text-base font-medium line-clamp-1 mb-2">
+      {product.name}
+    </h5>
+    <p className="text-lg font-semibold text-primary mb-4">
+      {nairaFormat(product.price)}
+    </p>
+
+    {/* CTA */}
+    <NavLink
+      className="w-full inline-block bg-primary hover:bg-primary/90 text-white py-2.5 rounded-lg font-medium transition-colors duration-200"
+      to={`/productdetails/${product.id}`}
+    >
+      Buy Now
+    </NavLink>
+  </div>
+</div>
+
 );
 
 export default ProductCard;

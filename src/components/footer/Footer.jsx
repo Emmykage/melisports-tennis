@@ -4,106 +4,103 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo/melisport_3.png';
 
 const Footer = () => (
-  <footer className="bg-theme pt-6 leading-7 px-5">
-    <div className="m-auto footer-container flex gap-3 my-10 ">
-      <div>
-        <h4 className="text-2xl text-center">
-          <NavLink>
-            {' '}
-            <img src={logo} alt="logo" className="w-28 m-auto" />
-            {' '}
+  <footer className="bg-theme text-light px-6 pt-10">
+  <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4 sm:grid-cols-2">
+    
+    {/* Logo & About */}
+    <div className="text-center md:text-left">
+      <NavLink to="/" className="inline-block">
+        <img src={logo} alt="Meli Sports logo" className="w-28 mx-auto md:mx-0" />
+      </NavLink>
+      <p className="mt-4 text-sm text-gray-200 leading-relaxed">
+        For over 10 years we’ve been dedicated to providing an unmatched
+        collection of tennis and racquet sport equipment.
+      </p>
+    </div>
+
+    {/* Resources */}
+    <div>
+      <h4 className="text-lg font-semibold mb-3">Resources</h4>
+      <ul className="space-y-2 text-sm">
+        <li>
+          <NavLink to="/auth/login" className="hover:text-primary-light transition">
+            My Account
           </NavLink>
-        </h4>
-        <p className="text-center">
-          For over 10 years we have been dedicated to providing an incomparable
-          collection of tennis and racqet sport collection
-        </p>
+        </li>
+        <li>
+          <NavLink to="/return_policy" className="hover:text-primary-light transition">
+            Return Policy
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/shipping_policy" className="hover:text-primary-light transition">
+            Shipping Policy
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/terms_of_service" className="hover:text-primary-light transition">
+            Terms of Service
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/privacy_policy" className="hover:text-primary-light transition">
+            Privacy Policy
+          </NavLink>
+        </li>
+      </ul>
+    </div>
 
-      </div>
-      <div>
-        <h4 className="text-xl text-light font-normal">RESOURCES</h4>
-        <ul>
-          {/* <li>Membership</li> */}
-          <li>
-            <NavLink to="/auth/login" className="no-underline text-sm">
-              My Account
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/return_policy" className="no-underline text-sm">
-              Return Policy
-            </NavLink>
-            {' '}
+    {/* Contact */}
+    <div>
+      <h4 className="text-lg font-semibold mb-3">Contact Us</h4>
+      <p className="text-sm space-y-2">
+        <a href="tel:+2347038723093" className="block hover:text-primary-light transition">
+          Phone: +234-703 872 3093
+        </a>
+        <span className="block">Mon–Fri, 9am – 5pm WAT</span>
+        <a href="mailto:info@melisports.com" className="block hover:text-primary-light transition">
+          info@melisports.com
+        </a>
+      </p>
+    </div>
 
-          </li>
-          <li>
-            <NavLink to="/shipping_policy" className="no-underline text-sm">
-              Shipping Policy
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/terms_of_service" className="no-underline text-sm">Terms of Service</NavLink>
-          </li>
-          <li>
-            {' '}
-            <NavLink to="/privacy_policy" className="no-underline text-sm">Privacy Policy</NavLink>
-          </li>
-          {/* <li>
-            <NavLink to={"privacy_policy"}>
-            Promos & Coupons
-            </NavLink>
-           </li> */}
-          {/* <li>Racquet Trade-In</li> */}
-        </ul>
-      </div>
-      <div>
-        <h4 className="text-xl text-light tracking-wide font-normal"> CONTACT US</h4>
-        <p>
-          <a href="tel:+2347038723093">
-            Phone: +234-703 872 3093
+    {/* Social */}
+    <div>
+      <h4 className="text-lg font-semibold mb-3">Connect With Us</h4>
+      <ul className="space-y-2 text-sm">
+        <li>
+          <a href="https://web.facebook.com/melisports" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
+            Facebook
           </a>
-          {' '}
-          <br />
-          Mon-Friday 9am - 5pm WAT
-          {' '}
-          <br />
-          <a href="mailto:info@melisports.com"> info@melisports.com </a>
-
-          {' '}
-        </p>
-
-      </div>
-      <div>
-        <ul>
-          <h4 className="text-xl text-light font-normal tracking-wide">Connect With Us</h4>
-          <li>
-            <a href="https://web.facebook.com/melisports">Facebook</a>
-            {' '}
-          </li>
-          <li>
-            {' '}
-            <a href="https://www.instagram.com/melisports/">Instagram</a>
-          </li>
-          {/* <li>Youtube</li> */}
-          <li>
-            <a href="https://twitter.com/MeliSports"> Twitter</a>
-            {' '}
-          </li>
-
-          <li>
-            <a href="https://youtube.com/@MeliSportss"> YouTube</a>
-            {' '}
-          </li>
-          {/* <li>TP Blog</li> */}
-
-        </ul>
-      </div>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/melisports/" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/MeliSports" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
+            Twitter
+          </a>
+        </li>
+        <li>
+          <a href="https://youtube.com/@MeliSportss" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
+            YouTube
+          </a>
+        </li>
+      </ul>
     </div>
-    <div className="bg-white text-center text-gray">
-      Vortech
-      <a href="" />
-    </div>
-  </footer>
+  </div>
+
+  {/* Bottom bar */}
+  <div className="mt-10 border-t border-white/20 py-4 text-center text-sm text-gray-300">
+    <p>
+      © {new Date().getFullYear()} MeliSports. Built by 
+      <span className="font-medium text-white hover:text-primary-light ml-1">Vortech</span>
+    </p>
+  </div>
+</footer>
+
 );
 
 export default Footer;
