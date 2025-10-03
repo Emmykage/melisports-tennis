@@ -17,7 +17,7 @@ import { userProfile } from '../../redux/actions/auth';
 
 import ButtonSession from './components/ButtonSession';
 
-const Nav = () => {
+const Nav = ({ store = true }) => {
   const navigate = useNavigate();
   const { counter, update } = useSelector((state) => state.cart);
   const [stickyNav, setStickyNav] = useState('');
@@ -63,107 +63,135 @@ const Nav = () => {
           </div>
 
           {/* Middle: Nav Links (Desktop) */}
-          <ul className="hidden lg:flex gap-6 text-sm font-medium text-gray-700">
-            <li>
-              <NavLink
-                to="/store"
-                className="hover:text-primary transition-colors"
-              >
-                Store
-              </NavLink>
-            </li>
-            <li className="group relative">
-              <NavLink
-                to="/racquets?brand=babolat"
-                className="hover:text-primary transition-colors"
-              >
-                Rackets
-              </NavLink>
-              {/* Dropdown */}
-              <div className="absolute left-0 mt-3 hidden group-hover:flex gap-8 p-6 bg-white shadow-xl rounded-xl">
-                <div>
-                  <h4 className="text-gray-900 font-semibold mb-2">Tennis</h4>
+
+          {store
+            ? (
+              <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
+                <li>
                   <NavLink
-                    to="/racquets"
-                    className="block text-gray-600 hover:text-primary"
+                    to="/store"
+                    className="hover:text-primary transition-colors"
                   >
-                    Babolat
+                    Store
                   </NavLink>
-                </div>
-                <div>
-                  <h4 className="text-gray-900 font-semibold mb-2">Padel</h4>
+                </li>
+                <li className="group relative">
                   <NavLink
-                    to="/padels"
-                    className="block text-gray-600 hover:text-primary"
+                    to="/racquets?brand=babolat"
+                    className="hover:text-primary transition-colors"
                   >
-                    Babolat
+                    Rackets
                   </NavLink>
-                </div>
-                <div>
-                  <h4 className="text-gray-900 font-semibold mb-2">Badminton</h4>
+                  {/* Dropdown */}
+                  <div className="absolute left-0 group-hover:flex hidden">
+                    <div className="mt-8 flex bg-white gap-8 p-6 bg- shadow-xl rounded-xl">
+                      <div>
+                        <h4 className="text-gray-900 font-normal mb-2">Tennis</h4>
+                        <NavLink
+                          to="/racquets"
+                          className="block text-gray-600 hover:text-primary"
+                        >
+                          Babolat
+                        </NavLink>
+                      </div>
+                      <div>
+                        <h4 className="text-gray-900 font-normal mb-2">Padel</h4>
+                        <NavLink
+                          to="/padels"
+                          className="block text-gray-600 hover:text-primary"
+                        >
+                          Babolat
+                        </NavLink>
+                      </div>
+                      <div>
+                        <h4 className="text-gray-900 font-normal mb-2">Badminton</h4>
+                        <NavLink
+                          to="/badminton"
+                          className="block text-gray-600 hover:text-primary"
+                        >
+                          Babolat
+                        </NavLink>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
                   <NavLink
-                    to="/badminton"
-                    className="block text-gray-600 hover:text-primary"
+                    to="/apparels"
+                    className="hover:text-primary transition-colors"
                   >
-                    Babolat
+                    Apparels
                   </NavLink>
-                </div>
-              </div>
-            </li>
-            <li>
-              <NavLink
-                to="/apparels"
-                className="hover:text-primary transition-colors"
-              >
-                Apparels
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/shoes"
-                className="hover:text-primary transition-colors"
-              >
-                Shoes
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/bags"
-                className="hover:text-primary transition-colors"
-              >
-                Bags
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/accessories"
-                className="hover:text-primary transition-colors"
-              >
-                Accessories
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/brands"
-                className="hover:text-primary transition-colors"
-              >
-                Brands
-              </NavLink>
-            </li>
-            {user?.role === 'admin' && (
-            <li>
-              <NavLink
-                to="/admin"
-                className="hover:text-primary transition-colors"
-              >
-                Admin
-              </NavLink>
-            </li>
+                </li>
+                <li>
+                  <NavLink
+                    to="/shoes"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Shoes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/bags"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Bags
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/accessories"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Accessories
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/brands"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Brands
+                  </NavLink>
+                </li>
+                {user?.role === 'admin' && (
+                <li>
+                  <NavLink
+                    to="/admin"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Admin
+                  </NavLink>
+                </li>
+                )}
+              </ul>
+            )
+
+            : (
+              <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
+                <li>
+                  <NavLink
+                    to="/"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Home
+                  </NavLink>
+                </li>
+
+                <li className="m"><NavLink to="/store" className="hover:text-primary transition-colors">Go to store</NavLink></li>
+                <li className=""><NavLink to="/contact" className="hover:text-primary transition-colors">Contact Us</NavLink></li>
+                <li className=""><NavLink to="/about" className="hover:text-primary transition-colors">About Us</NavLink></li>
+                <li className=""><NavLink to="/products" className="hover:text-primary transition-colors">Products</NavLink></li>
+                <li className=""><NavLink to="/court-directory" className="hover:text-primary transition-colors">Court Directory</NavLink></li>
+
+              </ul>
             )}
-          </ul>
 
           {/* Right: User + Cart */}
           <div className="flex items-center gap-5">
+            <a href="#survey" className="bg-gray-60 py-1 rounded px-3  lg:text-dark  hidden md:block"> Survey</a>
+
             <NavLink to="/" className="text-2xl text-gray-700 hover:text-primary">
               <MdHome />
             </NavLink>

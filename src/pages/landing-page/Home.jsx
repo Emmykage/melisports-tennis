@@ -25,6 +25,7 @@ import Reviews from '../../components/reviews/Reviews';
 import NavInfo from '../../components/nav/NavInfo';
 import SecondarySlider from '../../components/feature/secondary-slider';
 import imgKids from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
+import Nav from '../../components/nav/Nav';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -67,7 +68,7 @@ const LandingHome = () => {
   return (
     <>
 
-      <NavInfo />
+      <Nav store={false} />
 
       <SecondarySlider />
       <VideoComp videoAd={videoAdd} />
