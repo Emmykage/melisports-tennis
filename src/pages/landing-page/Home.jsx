@@ -71,87 +71,133 @@ const LandingHome = () => {
 
       <SecondarySlider />
       <VideoComp videoAd={videoAdd} />
-      <section className="xl:mx-60 py-10">
 
-        <div className="py-2 service-prod flex gap-10 justify-between m-auto w-full max-w-[1800px] bg-gr">
-          <div className="max-w-7xl h-[800px] w-full">
+      <section className="py-12 px-4">
+        <div className="max-w-[1400px] w-full flex flex-col lg:flex-row gap-10 justify-between m-auto">
 
-            <div className="grid md:grid-cols-2 overflow-hidden  gap-1">
-              <div className="relative item top h-52 md:h-80">
-                <img src={string} className="w-full h-full" />
-                <div className="absolute overlay flex items-center justify-center bg-theme/20">
-                  <h3 className="white font-normal">Stringing racquets</h3>
-
-                </div>
-              </div>
-              <div className="relative item top h-52 md:h-80">
-                <img src={demo_service} className="w-full h-full" />
-                <div className="absolute overlay flex items-center justify-center  bg-theme/20">
-                  <h3 className="white font-normal">Demo Program</h3>
-
-                </div>
-
-              </div>
-
-            </div>
-            <div className=" bg-gray- my-2">
-              <div className="relative item top h-52 md:h-80 xl:h-[500px]">
-                <img src={distributor} className="h-full w-full" />
-                <div className="absolute overlay flex items-center justify-center bg-theme/20">
-                  <div className="">
-                    <h3 className="white font-normal">Wholesale Distribution</h3>
-                    <div className="w-max m-auto ">
-                      <DiscoverBtn btnText="Become a Distributor" link="/distributor" />
-
-                    </div>
-                  </div>
-
+          {/* Left: Services */}
+          <div className="max-w-7xl w-full mx-auto px-4 lg:px-0">
+            {/* Top 2 Services */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Card 1 */}
+              <div className="relative h-52 md:h-60 rounded-2xl overflow-hidden shadow-md group">
+                <img
+                  src={string}
+                  alt="Stringing racquets"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
+                  <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide">
+                    Stringing Racquets
+                  </h3>
                 </div>
               </div>
 
+              {/* Card 2 */}
+              <div className="relative h-52 md:h-60 rounded-2xl overflow-hidden shadow-md group">
+                <img
+                  src={demo_service}
+                  alt="Demo Program"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
+                  <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide">
+                    Demo Program
+                  </h3>
+                </div>
+              </div>
             </div>
 
+            {/* Distributor Card */}
+            <div className="mt-4 h-52 md:h-60 relative rounded-2xl overflow-hidden shadow-md group">
+              <img
+                src={distributor}
+                alt="Wholesale Distribution"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
+                <div className="text-center space-y-3">
+                  <h3 className="text-white text-lg md:text-xl font-semibold">
+                    Wholesale Distribution
+                  </h3>
+                  <DiscoverBtn btnText="Become a Distributor" link="/distributor" />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="hidden lg:block max-w-80 w-full h-[600px] shadow px-3 py-">
+
+          {/* Right: Sidebar (hidden on mobile) */}
+          <div className="hidden lg:block max-w-xs w-full shadow-md rounded-xl bg-white/70 backdrop-blur p-4">
             <ul>
               <li className="my-4">
-                <a href="#review" className="border rounded block p-3 shadow bg-gray-200/20">
-                  {' '}
-                  <h3 className="font-normal text-xl hover:text-primary">Write us a review</h3>
+                <a href="#review" className="border rounded-lg block p-4 shadow-sm bg-gray-100/60 hover:bg-gray-200/60 transition">
+                  <h3 className="font-normal text-lg hover:text-primary">Write us a review</h3>
                 </a>
               </li>
               <li className="my-4">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScUbwSfyzAwo5o1QNjkmOJgc_ILcoIFzvglgLUmZg7n2r4xfA/viewform?pli=1" target="_blank" className="border rounded block p-3 shadow bg-gray-200/20" rel="noreferrer">
-                  {' '}
-                  <h3 className="font-normal text-xl  hover:text-primary">Fill our survey</h3>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScUbwSfyzAwo5o1QNjkmOJgc_ILcoIFzvglgLUmZg7n2r4xfA/viewform?pli=1"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border rounded-lg block p-4 shadow-sm bg-gray-100/60 hover:bg-gray-200/60 transition"
+                >
+                  <h3 className="font-normal text-lg hover:text-primary">Fill our survey</h3>
                 </a>
               </li>
-
             </ul>
           </div>
-
         </div>
       </section>
 
-      <div>
-        <div className="flex m-auto section-container gap-2">
-          <NavLink to="/" className="flex-1 zoom-hover h-52 md:h-80">
-            <img src={shoeImage} alt="" className=" w-full h-full" />
-          </NavLink>
-          <NavLink to="/" className="flex-1 zoom-hover h-52 md:h-80">
-            <img src={badmington} alt="" className="w-full h-full" />
-          </NavLink>
-        </div>
-
+<div className="my-10 px-4 max-w-[1400px] mx-auto">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <NavLink
+      to="/"
+      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+    >
+      <img
+        src={shoeImage}
+        alt="Shoes"
+        className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-xl font-semibold tracking-wide">
+          Tennis Shoes
+        </span>
       </div>
-      <div className="my-6">
-        <h3 className=" text-center fs-3 my-3"> Shop Categories</h3>
+    </NavLink>
 
-        <div className="px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7  border-black">
-          <ReactSlider categories={categories} />
-        </div>
-
+    <NavLink
+      to="/"
+      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+    >
+      <img
+        src={badmington}
+        alt="Badminton"
+        className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white text-xl font-semibold tracking-wide">
+          Badminton Gear
+        </span>
       </div>
+    </NavLink>
+  </div>
+</div>
+
+    <div className="my-12">
+  {/* Section Header */}
+  <h3 className="text-center text-2xl md:text-3xl font-normal text-gray-800 mb-6">
+    Shop Categories
+  </h3>
+
+  {/* Slider Container */}
+  <div className="max-w-[1500px] mx-auto px-4">
+    <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border border-gray-100">
+      <ReactSlider categories={categories} />
+    </div>
+  </div>
+</div>
 
       <section className="px-4 py-20 bg-white">
         <div className="max-w-[1400px] gap-4 md:gap-10 m-auto grid md:grid-cols-2">

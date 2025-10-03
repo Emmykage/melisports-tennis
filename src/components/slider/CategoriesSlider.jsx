@@ -21,6 +21,7 @@ const CatSlider = ({ categories, views = 3 }) => {
   return (
     <div className="h-96">
       <Swiper
+      spaceBetween={20}
         loop // Equivalent to infinite scrolling
         speed={700} // Equivalent to the speed setting in slick
         slidesPerView={mobileView ? 1 : views} // Equivalent to slidesToShow
@@ -30,21 +31,29 @@ const CatSlider = ({ categories, views = 3 }) => {
         className="mySwiper"
       >
         {categories?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div key={item.id} className="h-96  block mx-1 shrink-0 relative  border swiper-category">
-              <div className="h-full">
-                <img src={item.image} className="w-full h-full" alt={`Slide ${index}`} />
-              </div>
-              <h3 className="overlay flex justify-center items-center absolute bottom-0  text-center w-full bg-black h-full bg-theme/20 text-white  text-3xl">
+         <SwiperSlide key={index}>
+    <div
+      key={item.id}
+      className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-md group"
+    >
+      {/* Image */}
+      <img
+        src={item.image}
+        alt={item.name}
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
 
-                <NavLink to={`/${item.name}`} className="hover:text-primary">
-                  {item.name}
-
-                </NavLink>
-
-              </h3>
-            </div>
-          </SwiperSlide>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+        <NavLink
+          to={`/${item.name}`}
+          className="text-white text-xl md:text-2xl font-semibold tracking-wide drop-shadow-lg hover:text-primary transition-colors"
+        >
+          {item.name}
+        </NavLink>
+      </div>
+    </div>
+  </SwiperSlide>
         ))}
 
       </Swiper>
