@@ -4,41 +4,52 @@ import { FaFacebookF } from 'react-icons/fa';
 import { BsInstagram, BsTwitterX } from 'react-icons/bs';
 
 const CommunityBanner = () => (
-  <section className="px-5 my-8 bg-theme py-16">
+  
+  <section className="px-6 my-12 bg-theme py-16">
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    {/* Left Text */}
+    <h3 className="flex-1 text-white text-3xl md:text-4xl font-medium tracking-wide text-center md:text-left">
+      Join the <span className="text-primary" > <h3 className='text-3xl font-medium inline-block'>Melisport</h3></span> Community
+    </h3>
 
-    <div className=" py-1 md:flex-row gap-6 flex-col m-auto max-w-7xl flex">
-      <h3 className="flex-1 text-primary text-center md:text-left text-2xl tracking-widest">
-        Join the Melisport Comunity
+    {/* Social Links */}
+    <div className="flex flex-wrap justify-center md:justify-end gap-6 flex-1">
+      {/* Facebook */}
+      <a
+        href="https://www.facebook.com/melisports"
+        target="_blank"
+        rel="noreferrer"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white hover:bg-primary transition text-theme-dark font-semibold shadow-md"
+      >
+        <FaFacebookF className="text-blue-600 text-xl" />
+        <span>@Melisports</span>
+      </a>
 
-      </h3>
-      <div className="flex-1 bg-red- flex items-center sm:justify-center lg:justify-start flex-wrap gap-5">
-        <a href="https://www.facebook.com/melisports" target="_blank" className="flex items-center text-light font-medium" rel="noreferrer">
-          {' '}
-          <FaFacebookF className="md:text-2xl text-xl text-white" />
-          {' '}
-          @Melisports
-          {' '}
-        </a>
-        <a href="https://x.com/melisports" target="_blank" className="flex items-center text-light font-medium" rel="noreferrer">
-          {' '}
-          <BsTwitterX className="md:text-2xl text-xl text-white" />
-          {' '}
-          @Melisports
-          {' '}
-        </a>
-        <a href="https://www.instagram.com/melisports/" target="_blank" className="flex items-center text-light font-medium gap-1" rel="noreferrer">
-          {' '}
-          <BsInstagram className="md:text-2xl text-xl text-white" />
-          {' '}
-          @Melisports
-          {' '}
-        </a>
+      {/* Twitter / X */}
+      <a
+        href="https://x.com/melisports"
+        target="_blank"
+        rel="noreferrer"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white hover:bg-primary transition text-theme-dark font-semibold shadow-md"
+      >
+        <BsTwitterX className="text-black text-xl" />
+        <span>@Melisports</span>
+      </a>
 
-      </div>
-
+      {/* Instagram */}
+      <a
+        href="https://www.instagram.com/melisports/"
+        target="_blank"
+        rel="noreferrer"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white hover:bg-primary transition text-theme-dark font-semibold shadow-md"
+      >
+        <BsInstagram className="text-pink-500 text-xl" />
+        <span>@Melisports</span>
+      </a>
     </div>
+  </div>
+</section>
 
-  </section>
 
 );
 

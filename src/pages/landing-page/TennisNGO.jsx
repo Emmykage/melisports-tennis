@@ -8,12 +8,13 @@ import EventDetails from './components/EventDetails';
 import imgCamp from '../../assets/images/ngo/camp-img.jpg';
 import imgCamp1 from '../../assets/images/ngo/camp-img-1.jpg';
 import imgCamp2 from '../../assets/images/ngo/6381334.jpg';
+import Nav from '../../components/nav/Nav';
 
 function SupportProgram() {
   const navigate = useNavigate();
   return (
     <>
-      <NavInfo />
+    <Nav store={false} />
       <Hero image={img} title="Tennis Clinic for Secondary Schools" />
 
       <section className="md:py-20 px-4 bg-white">

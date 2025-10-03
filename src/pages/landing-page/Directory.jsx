@@ -12,6 +12,7 @@ import NavInfo from '../../components/nav/NavInfo';
 import AppModal from '../../components/modal/AppModal';
 import ClickButton from '../../components/buttons/ClickButton';
 import { addCourts } from '../../redux/actions/review';
+import Nav from '../../components/nav/Nav';
 
 const Directory = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const Directory = () => {
   return (
     <>
       <div className="bg-white">
-        <NavInfo />
+    <Nav store={false} />
         <Hero image={court} title="Court Directory" />
 
         <div className="max-w-7xl py-6 px-4 m-auto shadow rounded ">

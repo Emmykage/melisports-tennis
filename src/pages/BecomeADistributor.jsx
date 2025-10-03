@@ -1,10 +1,10 @@
 import React from 'react';
 import DistributorBanner from '../components/banner/Distributor';
-import NavInfo from '../components/nav/NavInfo';
+import Nav from '../components/nav/Nav';
 
 const BecomeADistributor = () => (
   <div>
-    <NavInfo />
+    <Nav store={false} />
     <div className="">
 
       <DistributorBanner />

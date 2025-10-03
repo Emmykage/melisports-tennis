@@ -1,12 +1,13 @@
 import Hero from '../../components/banner/Hero';
 import NavInfo from '../../components/nav/NavInfo';
 import img from '../../assets/images/ngo/IMG-20250513-WA0021.jpg';
+import Nav from '../../components/nav/Nav';
 
 function EventDetails() {
   return (
 
     <>
-      <NavInfo />
+    <Nav store={false} />
       <Hero image={img} title="Tennis Clinic for Secondary Schools" />
 
       <section className="bg-white p-6 rounded-2xl shadow">
