@@ -149,55 +149,55 @@ const LandingHome = () => {
         </div>
       </section>
 
-<div className="my-10 px-4 max-w-[1400px] mx-auto">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <NavLink
-      to="/"
-      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-    >
-      <img
-        src={shoeImage}
-        alt="Shoes"
-        className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
-      />
-      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-        <span className="text-white text-xl font-semibold tracking-wide">
-          Tennis Shoes
-        </span>
+      <div className="my-10 px-4 max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <NavLink
+            to="/"
+            className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+          >
+            <img
+              src={shoeImage}
+              alt="Shoes"
+              className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="text-white text-xl font-semibold tracking-wide">
+                Tennis Shoes
+              </span>
+            </div>
+          </NavLink>
+
+          <NavLink
+            to="/"
+            className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+          >
+            <img
+              src={badmington}
+              alt="Badminton"
+              className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="text-white text-xl font-semibold tracking-wide">
+                Badminton Gear
+              </span>
+            </div>
+          </NavLink>
+        </div>
       </div>
-    </NavLink>
 
-    <NavLink
-      to="/"
-      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-    >
-      <img
-        src={badmington}
-        alt="Badminton"
-        className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
-      />
-      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-        <span className="text-white text-xl font-semibold tracking-wide">
-          Badminton Gear
-        </span>
+      <div className="my-12">
+        {/* Section Header */}
+        <h3 className="text-center text-2xl md:text-3xl font-normal text-gray-800 mb-6">
+          Shop Categories
+        </h3>
+
+        {/* Slider Container */}
+        <div className="max-w-[1500px] mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border border-gray-100">
+            <ReactSlider categories={categories} />
+          </div>
+        </div>
       </div>
-    </NavLink>
-  </div>
-</div>
-
-    <div className="my-12">
-  {/* Section Header */}
-  <h3 className="text-center text-2xl md:text-3xl font-normal text-gray-800 mb-6">
-    Shop Categories
-  </h3>
-
-  {/* Slider Container */}
-  <div className="max-w-[1500px] mx-auto px-4">
-    <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border border-gray-100">
-      <ReactSlider categories={categories} />
-    </div>
-  </div>
-</div>
 
       <section className="px-4 py-20 bg-white">
         <div className="max-w-[1400px] gap-4 md:gap-10 m-auto grid md:grid-cols-2">

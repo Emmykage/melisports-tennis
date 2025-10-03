@@ -19,6 +19,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "flowbite-react": "^0.10.2",
+    "framer-motion": "^12.23.22",
     "react": "^18.2.0",
     "react-card-slider-component": "^1.0.9",
     "react-dom": "^18.2.0",

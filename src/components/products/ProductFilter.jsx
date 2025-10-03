@@ -6,7 +6,7 @@ import './products.css';
 import ProductCard from '../card/ProductCard';
 
 const ProductFilter = ({ products, status, error }) => {
-  console.log("first", products)
+  console.log('first', products);
   if (status === 'waiting') {
     return (
       <Loader />

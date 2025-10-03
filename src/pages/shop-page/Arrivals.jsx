@@ -66,7 +66,6 @@ const Arrivals = () => {
     dispatch(getLetestProducts());
   }, []);
 
-
   return (
     <div className="product-container px-4">
       <Nav />
@@ -188,13 +187,15 @@ const Arrivals = () => {
 
           </div>
 
-          { loading ? <Loader /> : 
+          { loading ? <Loader />
+            : (
               <div className="product-align w-full ">
                 <div className="product-items">
-     {latestArrival.map((product) => (
-          <ProductCard product={product} />
+                  {latestArrival.map((product) => (
+                    <ProductCard product={product} />
 
-        ))}                </div>
+                  ))}
+                </div>
 
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>
@@ -208,9 +209,7 @@ const Arrivals = () => {
 
                 </div>
               </div>
-            
-        
-            }
+            )}
           <div />
 
         </div>

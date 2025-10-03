@@ -5,45 +5,42 @@ import './products.css';
 import ProductCard from '../card/ProductCard';
 
 const ProductsGrid = ({
-  products, status, error, filter,
+  products, status, error, filter, loading,
 }) => {
   const sortProduct = filter ? products.filter((item) => item.product_category.name === filter) : products;
 
-  if (status === 'waiting') {
+  if (error) {
     return (
-      <Loader />
-    );
-  } if (status === 'success') {
-    if (products.length < 1) {
-      return (
-        <div>
-          <header>
-
-            <h1 className="font-sans text-center text-3xl font-semibold"> No Item in this Collection</h1>
-          </header>
-        </div>
-      );
-    }
-
-    return (
-
-      <>
-
-        {sortProduct.map((product) => (
-          <ProductCard key={product.id} product={product} />
-
-        ))}
-
-      </>
+      <div className="text-center">
+        <h2>
+          {' '}
+          {error}
+        </h2>
+      </div>
     );
   }
+
+  if (products.length < 1) {
+    return (
+      <div>
+        <header>
+
+          <h1 className="font-sans text-center text-3xl font-normal"> No Item in this Collection</h1>
+        </header>
+      </div>
+    );
+  }
+
   return (
-    <div className="text-center">
-      <h2>
-        {' '}
-        {error}
-      </h2>
-    </div>
+
+    <>
+
+      {sortProduct.map((product) => (
+        <ProductCard key={product.id} product={product} />
+
+      ))}
+
+    </>
   );
 };
 

@@ -57,32 +57,31 @@ const Directory = () => {
         <Hero image={court} title="Court Directory" />
 
         <div className="max-w-7xl py-6 px-4 m-auto shadow rounded ">
-       <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm">
-  {/* Location Select */}
-  <div className="flex-1 max-w-md w-full">
-    <SelectInput
-      defaultValue={location}
-      className="w-full"
-      handleChange={handleLocation}
-      label="Location"
-      options={options}
-    />
-  </div>
+          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm">
+            {/* Location Select */}
+            <div className="flex-1 max-w-md w-full">
+              <SelectInput
+                defaultValue={location}
+                className="w-full"
+                handleChange={handleLocation}
+                label="Location"
+                options={options}
+              />
+            </div>
 
-  {/* Call-to-action */}
-  <div className="flex flex-col md:flex-row items-center gap-3">
-    <p className="text-primary font-medium text-base text-center md:text-left">
-      Help Us Improve Our Court
-    </p>
-    <button
-      onClick={() => setIsOpen(true)}
-      className="bg-primary text-white font-medium py-2 px-5 rounded-lg shadow hover:bg-primary/90 transition-all"
-    >
-      Add To This List
-    </button>
-  </div>
-</div>
-
+            {/* Call-to-action */}
+            <div className="flex flex-col md:flex-row items-center gap-3">
+              <p className="text-primary font-medium text-base text-center md:text-left">
+                Help Us Improve Our Court
+              </p>
+              <button
+                onClick={() => setIsOpen(true)}
+                className="bg-primary text-white font-medium py-2 px-5 rounded-lg shadow hover:bg-primary/90 transition-all"
+              >
+                Add To This List
+              </button>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-4 my-4 p-8">
 

@@ -47,110 +47,110 @@ const Nav = () => {
 
   return (
     <>
-   <nav className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
-        {/* Left: Mobile Menu */}
-        <div className="flex items-center gap-4">
-          <button
-            className="lg:hidden text-2xl text-gray-700"
-            onClick={() => setToggleNav(true)}
-          >
-            <FiMenu />
-          </button>
-          <NavLink to="/store" className="flex items-center">
-            <img src={logo} alt="Logo" className="h-10 w-auto" />
-          </NavLink>
-        </div>
+      <nav className="sticky top-0 z-50 bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
+          {/* Left: Mobile Menu */}
+          <div className="flex items-center gap-4">
+            <button
+              className="lg:hidden text-2xl text-gray-700"
+              onClick={() => setToggleNav(true)}
+            >
+              <FiMenu />
+            </button>
+            <NavLink to="/store" className="flex items-center">
+              <img src={logo} alt="Logo" className="h-10 w-auto" />
+            </NavLink>
+          </div>
 
-        {/* Middle: Nav Links (Desktop) */}
-        <ul className="hidden lg:flex gap-6 text-sm font-medium text-gray-700">
-          <li>
-            <NavLink
-              to="/store"
-              className="hover:text-primary transition-colors"
-            >
-              Store
-            </NavLink>
-          </li>
-          <li className="group relative">
-            <NavLink
-              to="/racquets?brand=babolat"
-              className="hover:text-primary transition-colors"
-            >
-              Rackets
-            </NavLink>
-            {/* Dropdown */}
-            <div className="absolute left-0 mt-3 hidden group-hover:flex gap-8 p-6 bg-white shadow-xl rounded-xl">
-              <div>
-                <h4 className="text-gray-900 font-semibold mb-2">Tennis</h4>
-                <NavLink
-                  to="/racquets"
-                  className="block text-gray-600 hover:text-primary"
-                >
-                  Babolat
-                </NavLink>
+          {/* Middle: Nav Links (Desktop) */}
+          <ul className="hidden lg:flex gap-6 text-sm font-medium text-gray-700">
+            <li>
+              <NavLink
+                to="/store"
+                className="hover:text-primary transition-colors"
+              >
+                Store
+              </NavLink>
+            </li>
+            <li className="group relative">
+              <NavLink
+                to="/racquets?brand=babolat"
+                className="hover:text-primary transition-colors"
+              >
+                Rackets
+              </NavLink>
+              {/* Dropdown */}
+              <div className="absolute left-0 mt-3 hidden group-hover:flex gap-8 p-6 bg-white shadow-xl rounded-xl">
+                <div>
+                  <h4 className="text-gray-900 font-semibold mb-2">Tennis</h4>
+                  <NavLink
+                    to="/racquets"
+                    className="block text-gray-600 hover:text-primary"
+                  >
+                    Babolat
+                  </NavLink>
+                </div>
+                <div>
+                  <h4 className="text-gray-900 font-semibold mb-2">Padel</h4>
+                  <NavLink
+                    to="/padels"
+                    className="block text-gray-600 hover:text-primary"
+                  >
+                    Babolat
+                  </NavLink>
+                </div>
+                <div>
+                  <h4 className="text-gray-900 font-semibold mb-2">Badminton</h4>
+                  <NavLink
+                    to="/badminton"
+                    className="block text-gray-600 hover:text-primary"
+                  >
+                    Babolat
+                  </NavLink>
+                </div>
               </div>
-              <div>
-                <h4 className="text-gray-900 font-semibold mb-2">Padel</h4>
-                <NavLink
-                  to="/padels"
-                  className="block text-gray-600 hover:text-primary"
-                >
-                  Babolat
-                </NavLink>
-              </div>
-              <div>
-                <h4 className="text-gray-900 font-semibold mb-2">Badminton</h4>
-                <NavLink
-                  to="/badminton"
-                  className="block text-gray-600 hover:text-primary"
-                >
-                  Babolat
-                </NavLink>
-              </div>
-            </div>
-          </li>
-          <li>
-            <NavLink
-              to="/apparels"
-              className="hover:text-primary transition-colors"
-            >
-              Apparels
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/shoes"
-              className="hover:text-primary transition-colors"
-            >
-              Shoes
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/bags"
-              className="hover:text-primary transition-colors"
-            >
-              Bags
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/accessories"
-              className="hover:text-primary transition-colors"
-            >
-              Accessories
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/brands"
-              className="hover:text-primary transition-colors"
-            >
-              Brands
-            </NavLink>
-          </li>
-          {user?.role === "admin" && (
+            </li>
+            <li>
+              <NavLink
+                to="/apparels"
+                className="hover:text-primary transition-colors"
+              >
+                Apparels
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/shoes"
+                className="hover:text-primary transition-colors"
+              >
+                Shoes
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/bags"
+                className="hover:text-primary transition-colors"
+              >
+                Bags
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/accessories"
+                className="hover:text-primary transition-colors"
+              >
+                Accessories
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/brands"
+                className="hover:text-primary transition-colors"
+              >
+                Brands
+              </NavLink>
+            </li>
+            {user?.role === 'admin' && (
             <li>
               <NavLink
                 to="/admin"
@@ -159,112 +159,112 @@ const Nav = () => {
                 Admin
               </NavLink>
             </li>
-          )}
-        </ul>
+            )}
+          </ul>
 
-        {/* Right: User + Cart */}
-        <div className="flex items-center gap-5">
-          <NavLink to="/" className="text-2xl text-gray-700 hover:text-primary">
-            <MdHome />
-          </NavLink>
-          <NavLink to="/carts" className="relative text-2xl text-gray-700 hover:text-primary">
-            <BsCartDash />
-            {counter > 0 && (
+          {/* Right: User + Cart */}
+          <div className="flex items-center gap-5">
+            <NavLink to="/" className="text-2xl text-gray-700 hover:text-primary">
+              <MdHome />
+            </NavLink>
+            <NavLink to="/carts" className="relative text-2xl text-gray-700 hover:text-primary">
+              <BsCartDash />
+              {counter > 0 && (
               <span className="absolute -top-2 -right-3 bg-primary text-white text-xs font-semibold rounded-full px-2 py-0.5">
                 {counter}
               </span>
-            )}
-          </NavLink>
-          <div>
-            {user ? (
-              <button
-                onClick={handleLogOut}
-                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
-              >
-                <FiUser />
-                Logout
-              </button>
-            ) : (
-              <NavLink
-                to="/auth/login"
-                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
-              >
-                <FiUser />
-                Login
-              </NavLink>
-            )}
+              )}
+            </NavLink>
+            <div>
+              {user ? (
+                <button
+                  onClick={handleLogOut}
+                  className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+                >
+                  <FiUser />
+                  Logout
+                </button>
+              ) : (
+                <NavLink
+                  to="/auth/login"
+                  className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+                >
+                  <FiUser />
+                  Login
+                </NavLink>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Sidebar */}
-      <div
-        className={`fixed inset-0 z-40 bg-black/40 transition-opacity ${
-          toggleNav ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-        onClick={() => setToggleNav(false)}
-      />
-      <div
-        className={`fixed top-0 left-0 z-50 h-full w-72 bg-white shadow-lg transform transition-transform ${
-          toggleNav ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="flex justify-between items-center p-4 border-b">
-          <img src={logo} alt="Logo" className="h-8" />
-          <AiOutlineClose
-            className="text-2xl cursor-pointer"
-            onClick={() => setToggleNav(false)}
-          />
-        </div>
-        <ul className="flex flex-col gap-4 p-6 text-gray-700 font-medium">
-          <NavLink to="/store" onClick={() => setToggleNav(false)}>
-            Store
-          </NavLink>
-          <NavLink to="/racquets" onClick={() => setToggleNav(false)}>
-            Rackets
-          </NavLink>
-          <NavLink to="/apparels" onClick={() => setToggleNav(false)}>
-            Apparels
-          </NavLink>
-          <NavLink to="/shoes" onClick={() => setToggleNav(false)}>
-            Shoes
-          </NavLink>
-          <NavLink to="/bags" onClick={() => setToggleNav(false)}>
-            Bags
-          </NavLink>
-          <NavLink to="/accessories" onClick={() => setToggleNav(false)}>
-            Accessories
-          </NavLink>
-          <NavLink to="/brands" onClick={() => setToggleNav(false)}>
-            Brands
-          </NavLink>
-          {user && user?.role === "admin" && (
+        {/* Mobile Sidebar */}
+        <div
+          className={`fixed inset-0 z-40 bg-black/40 transition-opacity ${
+            toggleNav ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+          onClick={() => setToggleNav(false)}
+        />
+        <div
+          className={`fixed top-0 left-0 z-50 h-full w-72 bg-white shadow-lg transform transition-transform ${
+            toggleNav ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <div className="flex justify-between items-center p-4 border-b">
+            <img src={logo} alt="Logo" className="h-8" />
+            <AiOutlineClose
+              className="text-2xl cursor-pointer"
+              onClick={() => setToggleNav(false)}
+            />
+          </div>
+          <ul className="flex flex-col gap-4 p-6 text-gray-700 font-medium">
+            <NavLink to="/store" onClick={() => setToggleNav(false)}>
+              Store
+            </NavLink>
+            <NavLink to="/racquets" onClick={() => setToggleNav(false)}>
+              Rackets
+            </NavLink>
+            <NavLink to="/apparels" onClick={() => setToggleNav(false)}>
+              Apparels
+            </NavLink>
+            <NavLink to="/shoes" onClick={() => setToggleNav(false)}>
+              Shoes
+            </NavLink>
+            <NavLink to="/bags" onClick={() => setToggleNav(false)}>
+              Bags
+            </NavLink>
+            <NavLink to="/accessories" onClick={() => setToggleNav(false)}>
+              Accessories
+            </NavLink>
+            <NavLink to="/brands" onClick={() => setToggleNav(false)}>
+              Brands
+            </NavLink>
+            {user && user?.role === 'admin' && (
             <NavLink to="/admin" onClick={() => setToggleNav(false)}>
               Admin
             </NavLink>
-          )}
-          <div className="border-t pt-4">
-            {user ? (
-              <button
-                onClick={handleLogOut}
-                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
-              >
-                <FiUser />
-                Logout
-              </button>
-            ) : (
-              <NavLink
-                to="/auth/login"
-                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
-              >
-                <FiUser />
-                Login
-              </NavLink>
             )}
-          </div>
-        </ul>
-      </div>
-    </nav>
+            <div className="border-t pt-4">
+              {user ? (
+                <button
+                  onClick={handleLogOut}
+                  className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+                >
+                  <FiUser />
+                  Logout
+                </button>
+              ) : (
+                <NavLink
+                  to="/auth/login"
+                  className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
+                >
+                  <FiUser />
+                  Login
+                </NavLink>
+              )}
+            </div>
+          </ul>
+        </div>
+      </nav>
     </>
   );
 };

@@ -38,39 +38,38 @@ const ShopHome = () => {
   return (
     <>
       <Nav />
-    
 
       <section className="px-6 py-24 bg-theme">
-  <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">
-    
-    {[
-      { title: "Tennis", img: Tennis, link: "/racquets" },
-      { title: "Padel", img: Padel, link: "/padels" },
-      { title: "Badminton", img: Badminton, link: "/badminton" },
-    ].map((item, i) => (
-      <NavLink
-        key={i}
-        to={item.link}
-        className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-      >
-        {/* Background image */}
-        <img
-          src={item.img}
-          alt={item.title}
-          className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-        />
+        <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex items-end">
-          <h3 className="text-xl md:text-2xl text-white font-semibold tracking-wide p-6 bg-black/40 rounded-md backdrop-blur-sm mb-6 ml-6">
-            {item.title}
-          </h3>
+          {[
+            { title: 'Tennis', img: Tennis, link: '/racquets' },
+            { title: 'Padel', img: Padel, link: '/padels' },
+            { title: 'Badminton', img: Badminton, link: '/badminton' },
+          ].map((item, i) => (
+            <NavLink
+              key={i}
+              to={item.link}
+              className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              {/* Background image */}
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex items-end">
+                <h3 className="text-xl md:text-2xl text-white font-semibold tracking-wide p-6 bg-black/40 rounded-md backdrop-blur-sm mb-6 ml-6">
+                  {item.title}
+                </h3>
+              </div>
+            </NavLink>
+          ))}
+
         </div>
-      </NavLink>
-    ))}
-
-  </div>
-</section>
+      </section>
 
       <section className="px-4 py-10 bg-white/90 my-10">
         <div className="max-w-7xl m-auto feature">
@@ -140,35 +139,35 @@ const ShopHome = () => {
       <HomeEquipmentInfo />
       <SurveyButton />
       <Reviews />
-<section className="py-12 bg-gray-50">
-  <div className="max-w-7xl mx-auto px-6 text-center">
-    <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-8">
-      Our Sponsors
-    </h2>
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-8">
+            Our Sponsors
+          </h2>
 
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-center">
-      {/* Sponsor 1 */}
-      <div className="flex justify-center items-center">
-        <img
-          src={Babolat}
-          alt="Babolat"
-          className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300"
-        />
-      </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-center">
+            {/* Sponsor 1 */}
+            <div className="flex justify-center items-center">
+              <img
+                src={Babolat}
+                alt="Babolat"
+                className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300"
+              />
+            </div>
 
-      {/* Sponsor 2 */}
-      <div className="flex justify-center items-center">
-        <img
-          src={melisport}
-          alt="MeliSports"
-          className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300"
-        />
-      </div>
+            {/* Sponsor 2 */}
+            <div className="flex justify-center items-center">
+              <img
+                src={melisport}
+                alt="MeliSports"
+                className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300"
+              />
+            </div>
 
-      {/* Add more sponsors here if needed */}
-    </div>
-  </div>
-</section>
+            {/* Add more sponsors here if needed */}
+          </div>
+        </div>
+      </section>
 
     </>
   );
