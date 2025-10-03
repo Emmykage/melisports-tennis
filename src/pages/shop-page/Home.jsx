@@ -79,31 +79,52 @@ const ShopHome = () => {
         </div>
       </section>
 
-      {/* <VideoView/> */}
-      {/* <VideoComp videoAd={videoAd} /> */}
-      <section className="px-3">
-        <div className="grid gap-6 md:grid-cols-2 max-w-7xl m-auto my-6">
-          <div className="">
-            <div className="h-60 md:h-96">
-              <img src={CollectImage} alt="collection Image" className="object-cover h-full" />
-            </div>
-            <div className="flex py-4 justify-between">
-              <h3 className="text-xs md:text-base">NEW JUAN LEBRON COLLECTION</h3>
-              <DiscoverBtn btnText="Discover" />
-            </div>
-          </div>
-          <div className="">
-            <div className="h-60 md:h-96">
-              <img src={RangeImage} alt="collection Image" className="h-full" />
-            </div>
-            <div className="flex py-4 justify-between">
-              <h3 className="text-xs md:text-base">NEW JUAN LEBRON COLLECTION</h3>
-              <DiscoverBtn btnText="Discover" />
-            </div>
-          </div>
-        </div>
+      <section className="px-4 md:px-8 my-12">
+  <div className="grid gap-8 md:grid-cols-2 max-w-7xl m-auto">
+    
+    {/* Collection Card */}
+    <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+      <div className="h-60 md:h-96 overflow-hidden">
+        <img 
+          src={CollectImage} 
+          alt="Juan Lebron Collection" 
+          className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+        />
+      </div>
+      <div className="flex items-center justify-between px-4 py-5">
+        <h3 className="text-sm md:text-lg font-semibold text-gray-800 tracking-wide">
+          NEW JUAN LEBRON COLLECTION
+        </h3>
+        <DiscoverBtn 
+          btnText="Discover" 
+          className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
+        />
+      </div>
+    </div>
 
-      </section>
+    {/* Another Collection Card */}
+    <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+      <div className="h-60 md:h-96 overflow-hidden">
+        <img 
+          src={RangeImage} 
+          alt="New Range Collection" 
+          className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+        />
+      </div>
+      <div className="flex items-center justify-between px-4 py-5">
+        <h3 className="text-sm md:text-lg font-semibold text-gray-800 tracking-wide">
+          NEW RANGE COLLECTION
+        </h3>
+        <DiscoverBtn 
+          btnText="Discover" 
+          className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       <section className="px-3  py-20">
         <h3 className="text-2xl text-center">

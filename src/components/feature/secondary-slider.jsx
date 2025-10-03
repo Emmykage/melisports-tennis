@@ -56,51 +56,57 @@ const SecondarySlider = () => {
   ];
   return (
     <>
-      <div className="slide py-0 bg h-full">
+   <div className="relative w-full h-full">
+  <Swiper
+    loop
+    effect="fade"
+    autoplay={{ delay: 4000, disableOnInteraction: false }}
+    pagination={{ clickable: true }}
+    modules={[Pagination, Autoplay, EffectFade]}
+    slidesPerView={1}
+    className="hero-swiper"
+  >
+    {images.map((item) => (
+      <SwiperSlide key={item.id}>
+        <div className="relative h-[500px] md:h-screen w-full">
+          {/* Background Image */}
+          <img
+            src={item.image}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
 
-        <Swiper
-          loop
-          effect="fade"
-            // speed={700} // Equivalent to the speed setting in slick
-            // autoplay={{ delay: 3000, disableOnInteraction: false }} // Autoplay configuration
-          pagination={{ clickable: true }} // Equivalent to dots
-            // modules={[Navigation, Pagination, Autoplay]} // Include Pagination for dots, Navigation if you want next/prev arrows
-          slidesPerView={1}
-          spaceBetween={30}
-          className="mySwiper"
-        >
-          {images.map((item) => (
-            <SwiperSlide key={item.id}>
-              <div className="md:h-screen h-[500px] relative">
-                <div className=" w-full  bg-gray-800/60 absolute flex justify-center items-center  h-full top-0 left-0 ">
+          {/* Content */}
+          <div className={`relative z-10 flex h-full items-center max-w-7xl mx-auto px-6 ${
+            item?.position === "left" ? "justify-start text-left" : "justify-end text-right"
+          }`}>
+            <div className="max-w-lg space-y-6 animate-fadeIn">
+              {item?.title && (
+                <>
+                  <h2 className="text-3xl md:text-6xl font-medium text-white drop-shadow-lg">
+                    {item.title}
+                  </h2>
+                  <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+                    {item.text}
+                  </p>
+                  <DiscoverBtn
+                    link={item.link}
+                    btnText={item.cta}
+                    className="mt-6 px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary/90 transition"
+                  />
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
 
-                  {item?.title && (
-                  <div className={`max-w-7xl m-auto flex h-3/4  items-center ${item?.position === 'left' ? 'justify-start' : 'justify-end'} w-full`}>
-                    <div className="max-w-md mx-4 bg-gray-900/60 p-4 rounded-lg w-full">
-                      <p className="text-3xl text-gray-200 text-center">{item.title}</p>
-                      <p className="text-gray-200 leading-8 my-3 text-xl text-center">{item.text}</p>
-                      <DiscoverBtn
-                        link={item.link}
-
-                        className="block m-auto mt-10"
-                        btnText={item.cta}
-                      />
-                    </div>
-
-                  </div>
-                  )}
-
-                </div>
-
-                <img src={item.image} className="h-full object-cover" />
-              </div>
-
-            </SwiperSlide>
-
-          ))}
-
-        </Swiper>
-      </div>
 
     </>
   );

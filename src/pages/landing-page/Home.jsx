@@ -22,7 +22,6 @@ import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import SportDirectory from '../../components/sportDirectory/SportDirectory';
 import Reviews from '../../components/reviews/Reviews';
-import NavInfo from '../../components/nav/NavInfo';
 import SecondarySlider from '../../components/feature/secondary-slider';
 import imgKids from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
 import Nav from '../../components/nav/Nav';
