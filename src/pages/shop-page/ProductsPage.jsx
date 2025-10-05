@@ -22,15 +22,12 @@ const ProductsPage = () => {
   ];
 
   const dispatch = useDispatch();
-  const [queryParams] = useSearchParams();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [selectedLevels, setSelectedLevels] = useState([]);
+   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const { products, error, loading } = useSelector((state) => state.products);
-  const { product_categories, loading: isLoading } = useSelector((state) => state.product_categories);
+  const { product_categories } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
   useFilter({
     productCategory: 'racquet',
@@ -113,7 +110,6 @@ const ProductsPage = () => {
         <div className="flex md:gap-10">
 
           <SideNav>
-            <aside className="w-64 bg-white rounded-2xl shadow-md p-6 space-y-6">
               {/* Section: Activities */}
               <div>
                 <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
@@ -212,7 +208,6 @@ const ProductsPage = () => {
                   </label>
                 </div>
               </div>
-            </aside>
           </SideNav>
 
           {loading ? <Loader />

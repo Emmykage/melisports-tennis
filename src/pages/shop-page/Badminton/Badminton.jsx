@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../../components/banner/Hero';
 import { getProducts } from '../../../redux/actions/product';
-import {
-  filterFeatures, filterLevels,
-} from '../../../redux/products/product';
+
 import { closeList } from '../../../redux/products/searched';
 import { getProductCategories } from '../../../redux/actions/product_category';
 import bannerImage from '../../../assets/images/banner/best-badminton-background-gyixxvloqmf5t6of.webp';
@@ -70,9 +68,7 @@ const BadmintonsPage = () => {
 
   useEffect(() => {
     if (selectedFeature.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(selectedFeature));
-      });
+      dispatch(getProducts());
     }
   }, [selectedFeature, dispatch]);
 

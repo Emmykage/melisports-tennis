@@ -27,15 +27,10 @@ const productsSlice = createSlice({
   initialState,
   extraReducers: {
     [getProducts.fulfilled]: (state, action) => {
-      const products_badminton = action.payload.data.filter((badminton) => badminton.sport_category?.name === 'Badminton');
-      const products_padel = action.payload.data.filter((padel) => padel.sport_category?.name === 'Padel');
-      const sortedLatest = action.payload.data.filter((item) => item.new_product);
-
       return {
         ...state,
         loading: false,
         products: action.payload.data,
-        latestArrival: sortedLatest,
         error: false,
       };
     },
@@ -126,69 +121,6 @@ const productsSlice = createSlice({
       };
     },
 
-    filterCapacity: (state, action) => {
-      const filterRaw = state.products.filter((item) => action.payload.some((element) => item.description?.includes(element) || item.description_body?.includes(element)));
-      console.log('payload filter processed: ', filterRaw);
-
-      return {
-        ...state,
-        products: filterRaw,
-      };
-    },
-
-    filterSports: (state, action) => {
-      const filterSports = state.products.filter((item) => action.payload.some((sport) => item.sport_category?.name.toLowerCase() === sport));
-      return {
-        ...state,
-        products: filterSports,
-
-      };
-    },
-    filterActivities: (state, action) => {
-      const filts = state.products.filter((item) => action.payload.some((level) => item.level?.stage.toLowerCase() === level));
-
-      return {
-        ...state,
-        products: filts,
-      };
-    },
-    filterLevels: (state, action) => {
-      // console.log(action.payload);
-      const filts = state.products.filter((item) => action.payload.some((level) => item.level?.stage.toLowerCase() === level));
-
-      return {
-        ...state,
-        products: filts,
-      };
-    },
-    filterPlayerType: (state, action) => {
-      console.log(action.payload);
-      const filts = state.products.filter((item) => action.payload.some((level) => item.player_type?.toLowerCase() === level));
-      console.log(filts);
-
-      return {
-        ...state,
-        padelRacquets: filts,
-
-      };
-    },
-    filterFeatures: (state, action) => {
-      const filts = state.products.filter((item) => action.payload.some((feature) => item?.description.toLowerCase().includes(feature)));
-      return {
-        ...state,
-        products: filts,
-      };
-    },
-
-    getLatest: (state) => {
-      const sortedProducts = [...state.products].filter((item) => item.new_product);
-      return {
-        ...state,
-        latestArrival: sortedProducts,
-        loading: false,
-
-      };
-    },
     resetProduct: (state) => ({
       ...state,
       sortedProducts: state.products,
@@ -200,5 +132,5 @@ const productsSlice = createSlice({
 // const clearSearchField = createAction()
 export default productsSlice.reducer;
 export const {
-  filterPlayerType, filterCapacity, clearSearch, filterLevels, getLatest, filterSports, searchedPage, filterActivities, filterFeatures, filterGenders, resetProduct,
+  filterPlayerType,  clearSearch, searchedPage, resetProduct,
 } = productsSlice.actions;

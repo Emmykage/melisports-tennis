@@ -11,6 +11,7 @@ import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
+import SideNav from '../../components/sideNav/SideNav';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
@@ -31,9 +32,7 @@ const AccessoriesPage = () => {
 
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterActivities(e.target.value));
-      });
+      dispatch(getProducts())
     } else {
       dispatch(getProducts());
     }
@@ -41,9 +40,8 @@ const AccessoriesPage = () => {
 
   const handleFilteredFeatures = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterFeatures(e.target.value));
-      });
+      dispatch(getProducts())
+        
     } else {
       dispatch(getProducts());
     }
@@ -96,7 +94,7 @@ const AccessoriesPage = () => {
           </div>
 
           <div className="flex md:gap-10">
-            <div className="side-nav">
+            <SideNav>
               <div className="side-row">
                 <h6>Activities</h6>
 
@@ -162,7 +160,7 @@ const AccessoriesPage = () => {
                 </label>
               </div>
 
-            </div>
+            </SideNav>
 
             {loading ? <Loader />
               : (

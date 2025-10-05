@@ -32,8 +32,8 @@ const ShoesPage = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
 
-  const { products, status, error } = useSelector((state) => state.products);
-  const { product_categories, loading } = useSelector((state) => state.product_categories);
+  const { products, status, error, loading } = useSelector((state) => state.products);
+  const { product_categories,  } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'shoe');
   useFilter({
     productCategory: 'shoe',
@@ -50,9 +50,7 @@ const ShoesPage = () => {
     if (e.target.checked) {
       dispatch(getProducts({
         category: 'shoe',
-      })).then(() => {
-        dispatch(filterActivities(e.target.value));
-      });
+      }))
     }
   };
 

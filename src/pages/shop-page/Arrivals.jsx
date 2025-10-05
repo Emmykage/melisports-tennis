@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterActivities, getLatest } from '../../redux/products/product';
 import { getLetestProducts, getProducts } from '../../redux/actions/product';
 import { closeList } from '../../redux/products/searched';
 import { getProductCategories } from '../../redux/actions/product_category';
@@ -30,9 +29,7 @@ const Arrivals = () => {
 
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        dispatch(filterActivities(e.target.value));
-      });
+      dispatch(getProducts())
     } else {
       dispatch(getProducts());
     }
@@ -40,9 +37,7 @@ const Arrivals = () => {
 
   const handleFilteredFeatures = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts()).then(() => {
-        // dispatch(filterFeatures(e.target.value));
-      });
+      dispatch(getProducts())
     } else {
       dispatch(getProducts());
     }

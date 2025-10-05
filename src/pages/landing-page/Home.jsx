@@ -25,6 +25,7 @@ import Reviews from '../../components/reviews/Reviews';
 import SecondarySlider from '../../components/feature/secondary-slider';
 import imgKids from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
 import Nav from '../../components/nav/Nav';
+import BrandsSponsorComponents from '../../components/brandSponsors/BrandsSponsorComponents';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -261,22 +262,13 @@ const LandingHome = () => {
       <SportDirectory />
       <SurveyButton />
 
-      <div>
-        <div className="product-grid fit-screen">
-          <div className="product-grid-items flex justify-center items-align text-center">
-            <img src={Babolat} className="w-full" alt="" />
-          </div>
-          <div className="product-grid-items flex justify-center items-align text-center">
-            <img src={melisport} className="w-full" alt="" />
-          </div>
+              <BrandsSponsorComponents/>
 
-        </div>
 
         <Reviews id="review" />
 
         <CommunityBanner />
 
-      </div>
     </>
   );
 };

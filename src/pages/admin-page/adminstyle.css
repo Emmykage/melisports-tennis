@@ -100,7 +100,7 @@ b {
   margin-top: 180px;
 }
 
-aside {
+.admin aside {
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
