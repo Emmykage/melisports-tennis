@@ -54,7 +54,7 @@ const Directory = () => {
   return (
     <>
       <div className="bg-white">
-    <Nav store={false} />
+        <Nav store={false} />
         <Hero image={court} title="Court Directory" />
 
         <div className="max-w-7xl py-6 px-4 m-auto shadow rounded ">

@@ -8,7 +8,7 @@ function EnrollChildPage() {
   return (
     <>
 
-    <Nav store={false} />
+      <Nav store={false} />
       <Hero image={img} title="Tennis Clinic for Secondary Schools" />
       <EnrollChildForm />
     </>

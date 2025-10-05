@@ -78,77 +78,97 @@ const ShoesPage = () => {
       <Hero image={bannerImage} title="Shoes" />
       <ProductsPageContainer>
 
-        <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
-          <div className="cat-group gap-6  max-w-md my-6">
-            <button className="btn" onClick={() => dispatch(getProducts({ category: 'shoe' }))}>All shoes</button>
+        <div className="cat-group gap-6  max-w-md my-6">
+          <button
+            className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            onClick={() => dispatch(getProducts({ category: 'shoe' }))}
+          >
+            All shoes
+          </button>
 
-            <button className="btn" onClick={() => handleFilteredProducts('men')}> Men</button>
-            <button className="btn" onClick={() => handleFilteredProducts('women')}> Women</button>
-            <button className="btn" onClick={() => handleFilteredProducts('kids')}> Kids</button>
+          <button
+            className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            onClick={() => handleFilteredProducts('men')}
+          >
+            {' '}
+            Men
+          </button>
+          <button
+            className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            onClick={() => handleFilteredProducts('women')}
+          >
+            {' '}
+            Women
+          </button>
+          <button
+            className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            onClick={() => handleFilteredProducts('kids')}
+          >
+            {' '}
+            Kids
+          </button>
 
-          </div>
-          <div className="flex md:gap-10">
-            <SideNav>
-              <div className="side-row">
-                <h6>Activities</h6>
+        </div>
+        <div className="flex md:gap-10">
+          <SideNav>
+            <div className="side-row">
+              <h6>Activities</h6>
 
-              </div>
-              <div />
-              <div className="side-row">
-                {classSports.map((item) => (
-                  <div className="flex items-center">
-
-                    <input
-                      onChange={handleSportFilter}
-                      type="checkbox"
-                      id={item.type}
-                      value={item.type}
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
-                      <span>
-                        {item.label}
-                      </span>
-                    </label>
-                  </div>
-                ))}
-
-              </div>
-              <div className="side-row">
-                <h6>Court Type</h6>
-
-                {itemsFeatures.map((item) => (
-                  <div className="flex items-center">
-                    <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredCapacities} />
-
-                    <label htmlFor={item.type} style={{ fontSize: '1rem' }}>
-                      {item.label}
-                    </label>
-
-                  </div>
-                ))}
-
-              </div>
-
-              <div className="side-row">
-                <h6>Brand</h6>
+            </div>
+            <div />
+            <div className="side-row">
+              {classSports.map((item) => (
                 <div className="flex items-center">
-                  <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label htmlFor="activity" style={{ fontSize: '1rem' }}>
 
-                    babolat
+                  <input
+                    onChange={handleSportFilter}
+                    type="checkbox"
+                    id={item.type}
+                    value={item.type}
+                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
+                    <span>
+                      {item.label}
+                    </span>
+                  </label>
+                </div>
+              ))}
+
+            </div>
+            <div className="side-row">
+              <h6>Court Type</h6>
+
+              {itemsFeatures.map((item) => (
+                <div className="flex items-center">
+                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredCapacities} />
+
+                  <label htmlFor={item.type} style={{ fontSize: '1rem' }}>
+                    {item.label}
                   </label>
 
                 </div>
+              ))}
+
+            </div>
+
+            <div className="side-row">
+              <h6>Brand</h6>
+              <div className="flex items-center">
+                <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+
+                  babolat
+                </label>
 
               </div>
-            </SideNav>
-            {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
-              <div className="product-align w-full">
-                <div className="product-items">
-                  <ProductsGrid filter="shoe" products={products} status={status} error={error} />
 
-                </div>
+            </div>
+          </SideNav>
+          {loading ? <Loader />
+            : (
+              <div className="product-align w-full">
+                <ProductsGrid filter="shoe" products={products} status={status} error={error} />
 
                 <div className="product-details">
                   <h3> BABOLAT TENNIS SHOES</h3>
@@ -159,15 +179,10 @@ const ShoesPage = () => {
 
                 </div>
               </div>
-            ) : (
-              <div className="text-center full-length">
-                <h2>{error}</h2>
-              </div>
-            ))}
+            )}
 
-            <div />
+          <div />
 
-          </div>
         </div>
       </ProductsPageContainer>
     </>

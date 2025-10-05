@@ -9,6 +9,7 @@ import { featureItems } from '../../../constants/properties';
 import useFilter from '../../../hooks/useFilter';
 import { playType } from '../../../constants/variance';
 import SideNav from '../../../components/sideNav/SideNav';
+import ProductsPageContainer from '../../../components/productItems/ProductItems';
 
 const sportItems = [
   { type: 'tennis', label: 'Tennis' },
@@ -16,7 +17,7 @@ const sportItems = [
 ];
 const Padels = () => {
   const dispatch = useDispatch();
-  const { padelRacquets, status, error } = useSelector((state) => state.products);
+  const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
   const [selectedLevels, setSelectedLevels] = useState([]);
@@ -24,18 +25,13 @@ const Padels = () => {
   const [selectedFeature, setSelectedFeatures] = useState([]);
 
   useFilter({
-    selectedFeature,
-    selectedSports,
+    productCategory: 'racquet',
+    selectedSports: 'Padel',
     selectedPlayType: selectedLevels,
   });
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
-  const handleFilteredProducts = (seive) => {
-    const lowerCaseSieve = seive.toLowerCase();
-
-    dispatch(getProducts({ name: lowerCaseSieve }));
-  };
-
+  console.log(products);
   const handleFilteredLevels = (e) => {
     const { value, checked } = e.target;
 
@@ -51,21 +47,12 @@ const Padels = () => {
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
 
-  const handleSportFilter = (e) => {
-    const { checked, value } = e.target;
-    if (checked) {
-      setSelectedSports((prev) => [...prev, value]);
-    } else {
-      setSelectedSports((prev) => prev.filter((item) => item !== value));
-    }
-  };
-
   return (
     <div className="product-container">
       <Nav />
       <Hero image={bannerImage} title="Padel" />
 
-      <div className="prod-page py-10 px-4 md:px-10">
+      <ProductsPageContainer>
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">Padel Rackets</h2>
         <p className="text-gray-600 mb-6">
           Explore our collection of Babolat Padel Rackets, designed for players of all levels. Whether you're a beginner or a professional, find the perfect racket to enhance your game.
@@ -133,12 +120,10 @@ const Padels = () => {
               </label>
             </div>
           </SideNav>
-          {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
-            ? (
+          {loading ? <Loader />
+            : (
               <div className="product-align w-full">
-                <div className="product-items">
-                  <Products products={padelRacquets} status={status} error={error} />
-                </div>
+                <Products products={products} error={error} />
 
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>
@@ -152,16 +137,12 @@ const Padels = () => {
 
                 </div>
               </div>
-            ) : (
-              <div className="text-center full-length">
-                <h2>{error}</h2>
-              </div>
-            ))}
+            ) }
           <div />
 
         </div>
+      </ProductsPageContainer>
 
-      </div>
     </div>
   );
 };

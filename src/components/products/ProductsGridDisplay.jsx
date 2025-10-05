@@ -5,7 +5,7 @@ import './products.css';
 import ProductCard from '../card/ProductCard';
 
 const ProductsGrid = ({
-  products, status, error, filter, loading,
+  products, error, filter,
 }) => {
   const sortProduct = filter ? products.filter((item) => item.product_category.name === filter) : products;
 
@@ -33,14 +33,14 @@ const ProductsGrid = ({
 
   return (
 
-    <>
+    <div className="grid gap-[2%] gap-y-2 grid-cols-2 sm:grid-cols-3 xl:grid-cols-4">
 
       {sortProduct.map((product) => (
         <ProductCard key={product.id} product={product} />
 
       ))}
 
-    </>
+    </div>
   );
 };
 

@@ -14,7 +14,7 @@ function SupportProgram() {
   const navigate = useNavigate();
   return (
     <>
-    <Nav store={false} />
+      <Nav store={false} />
       <Hero image={img} title="Tennis Clinic for Secondary Schools" />
 
       <section className="md:py-20 px-4 bg-white">

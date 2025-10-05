@@ -201,54 +201,59 @@ const LandingHome = () => {
 
       <section className="px-4 py-10 bg-white">
         <div className="max-w-[1400px] m-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center px-4">
-  {/* Left Content */}
-  <div className="bg-white shadow-lg p-8 rounded-2xl">
-    <h2 className="text-4xl font-medium text-gray-900 leading-snug">
-      Serving Futures <br /> with <h3 className="text-primary inline text-3xl font-medium">Tennis</h3>
-    </h2>
-    <p className="text-gray-600 text-base mt-4 leading-relaxed">
-      Every child deserves the chance to play, grow, and succeed. 
-      Our tennis programme nurtures kids to learn the sport, 
-      build confidence, and connect with a supportive community.
-    </p>
+          {/* Left Content */}
+          <div className="bg-white shadow-lg p-8 rounded-2xl">
+            <h2 className="text-4xl font-medium text-gray-900 leading-snug">
+              Serving Futures
+              {' '}
+              <br />
+              {' '}
+              with
+              {' '}
+              <h3 className="text-primary inline text-3xl font-medium">Tennis</h3>
+            </h2>
+            <p className="text-gray-600 text-base mt-4 leading-relaxed">
+              Every child deserves the chance to play, grow, and succeed.
+              Our tennis programme nurtures kids to learn the sport,
+              build confidence, and connect with a supportive community.
+            </p>
 
-    {/* Features Grid */}
-    <div className="grid md:grid-cols-2 gap-8 mt-8">
-      {ngoText.map((item, index) => (
-        <div key={index} className="text-center md:text-left">
-          <span className="bg-primary flex mx-auto md:mx-0 justify-center items-center text-white w-16 h-16 rounded-full shadow-md transition transform hover:scale-105">
-            {item.icon}
-          </span>
-          <h5 className="text-lg mt-4 font-semibold text-gray-900">
-            {item.title}
-          </h5>
-          <p className="text-gray-500 text-sm mt-2 leading-relaxed">
-            {item.text}
-          </p>
+            {/* Features Grid */}
+            <div className="grid md:grid-cols-2 gap-8 mt-8">
+              {ngoText.map((item, index) => (
+                <div key={index} className="text-center md:text-left">
+                  <span className="bg-primary flex mx-auto md:mx-0 justify-center items-center text-white w-16 h-16 rounded-full shadow-md transition transform hover:scale-105">
+                    {item.icon}
+                  </span>
+                  <h5 className="text-lg mt-4 font-semibold text-gray-900">
+                    {item.title}
+                  </h5>
+                  <p className="text-gray-500 text-sm mt-2 leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <DiscoverBtn
+              className="mt-10 px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1"
+              link="/support-the-program"
+              btnText="Learn More"
+            >
+              Discover Our Programmes
+            </DiscoverBtn>
+          </div>
+
+          {/* Right Image */}
+          <div className="rounded-2xl overflow-hidden bg-red-300 h-full shadow-lg">
+            <img
+              src={imgKids}
+              alt="Kids learning tennis"
+              className="w-full h-full object-cover hover:scale-105 transition duration-500"
+            />
+          </div>
         </div>
-      ))}
-    </div>
-
-    {/* CTA Button */}
-    <DiscoverBtn
-      className="mt-10 px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1"
-      link="/support-the-program"
-      btnText="Learn More"
-    >
-      Discover Our Programmes
-    </DiscoverBtn>
-  </div>
-
-  {/* Right Image */}
-  <div className="rounded-2xl overflow-hidden bg-red-300 h-full shadow-lg">
-    <img
-      src={imgKids}
-      alt="Kids learning tennis"
-      className="w-full h-full object-cover hover:scale-105 transition duration-500"
-    />
-  </div>
-</div>
-
 
       </section>
 

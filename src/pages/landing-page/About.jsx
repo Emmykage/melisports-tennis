@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // import Hero from '../components/banner/Hero';
+import {
+  FaCheckCircle, FaDollarSign, FaShippingFast, FaUsers,
+} from 'react-icons/fa';
 import nadal_art from '../../assets/images/nadal-art.png';
 import AboutBanner from '../../components/banner/AboutBanner';
 import CommunityBanner from '../../components/banner/CommunityBanner';
 import NavInfo from '../../components/nav/NavInfo';
 import Nav from '../../components/nav/Nav';
-import { FaCheckCircle, FaDollarSign, FaShippingFast, FaUsers } from 'react-icons/fa';
 
 const About = () => (
   <div className="about customer-bg-theme text-white">
 
-        <Nav store={false} />
-    
+    <Nav store={false} />
 
     <AboutBanner />
-<section className="about-us bg-white text-gray-800 xl:mx-auto max-w-7xl mx-4  px-6 md:px-12 py-12 space-y-16">
+    <section className="about-us bg-white text-gray-800 xl:mx-auto max-w-7xl mx-4  px-6 md:px-12 py-12 space-y-16">
       {/* Intro */}
       <div className="grid md:grid-cols-2 gap-10 items-center">
         <div>
@@ -24,7 +25,8 @@ const About = () => (
             Founded with a passion for sports and a commitment to serving the
             vibrant community of Nigerian sports enthusiasts, Melisports brings
             a fresh perspective to the world of sporting goods.
-            <br /><br />
+            <br />
+            <br />
             Our mission is simple: to provide access to high-quality
             sports equipment and services that empower every individual to pursue
             their athletic goals.
@@ -44,22 +46,24 @@ const About = () => (
         <div>
           <h3 className="text-2xl font-semibold mb-4">About Us</h3>
           <p className="text-gray-600 leading-relaxed">
-            MeliSports is Nigeria’s specialist tennis wholesaler and retailer. 
-            We also stock racquet sports equipment and accessories, 
-            including badminton. Our world-class selection includes top brands 
+            MeliSports is Nigeria’s specialist tennis wholesaler and retailer.
+            We also stock racquet sports equipment and accessories,
+            including badminton. Our world-class selection includes top brands
             for players of all ages and skill levels.
-            <br /><br />
-            Since 2014, we’ve been sourcing the best quality products and making 
-            them readily available locally and worldwide. Whether you’re a 
+            <br />
+            <br />
+            Since 2014, we’ve been sourcing the best quality products and making
+            them readily available locally and worldwide. Whether you’re a
             professional or just playing for fun, we’ve got you covered.
           </p>
         </div>
         <div className="bg-gray-50 rounded-xl shadow-md p-6">
           <p className="text-gray-700 leading-relaxed">
             At MeliSports, we work to deliver the best prices without compromising
-            on quality or swift delivery. We collaborate with players, coaches, 
-            and clubs to build Nigeria’s tennis scene.  
-            <br /><br />
+            on quality or swift delivery. We collaborate with players, coaches,
+            and clubs to build Nigeria’s tennis scene.
+            <br />
+            <br />
             Put us to the test today — we’re just a call away!
           </p>
         </div>
@@ -105,25 +109,25 @@ const About = () => (
         <div>
           <h2 className="text-3xl font-bold mb-4">Join the Melisports Community</h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            Beyond being a retailer, Melisports is a community of 
-            like-minded individuals passionate about sports and an active lifestyle.  
-            Connect with us on social media, join our events, and be part of 
+            Beyond being a retailer, Melisports is a community of
+            like-minded individuals passionate about sports and an active lifestyle.
+            Connect with us on social media, join our events, and be part of
             a growing network across Nigeria.
-            <br /><br />
-            Whether you’re a professional athlete, weekend warrior, or beginner — 
-            we’re here to support you every step of the way. 
+            <br />
+            <br />
+            Whether you’re a professional athlete, weekend warrior, or beginner —
+            we’re here to support you every step of the way.
           </p>
         </div>
         <div className="bg-gray-50 rounded-xl shadow-md p-6 text-center">
           <h3 className="text-2xl font-semibold mb-2">Your Partner in Sports Excellence</h3>
           <p className="text-gray-700 leading-relaxed">
-            Experience sports like never before with Melisports — 
+            Experience sports like never before with Melisports —
             your trusted partner in Nigerian sports excellence!
           </p>
         </div>
       </div>
     </section>
-
 
     <CommunityBanner />
 

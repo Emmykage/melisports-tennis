@@ -3,7 +3,7 @@ import React from 'react';
 const HomeEquipmentInfo = () => (
   <section className="my-10 px-4">
     <div className="max-w-5xl mx-auto text-center p-8 md:p-16 rounded-2xl shadow-md bg-gradient-to-b from-white to-gray-50">
-      <h2 className="text-3xl md:text-4xl tracking-wide font-semibold text-gray-800">
+      <h2 className="text-3xl md:text-4xl tracking-wide font-medium text-gray-800">
         Tennis Equipment & Supplies
       </h2>
       <h3 className="mt-2 text-xl md:text-2xl font-medium text-gray-700">

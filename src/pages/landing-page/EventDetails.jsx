@@ -7,7 +7,7 @@ function EventDetails() {
   return (
 
     <>
-    <Nav store={false} />
+      <Nav store={false} />
       <Hero image={img} title="Tennis Clinic for Secondary Schools" />
 
       <section className="bg-white p-6 rounded-2xl shadow">

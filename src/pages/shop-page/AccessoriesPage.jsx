@@ -14,8 +14,10 @@ import ProductsPageContainer from '../../components/productItems/ProductItems';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
-  const { products, status, error } = useSelector((state) => state.products);
-  const { product_categories, loading } = useSelector((state) => state.product_categories);
+  const {
+    products, status, error, loading,
+  } = useSelector((state) => state.products);
+  const { product_categories } = useSelector((state) => state.product_categories);
 
   const category = product_categories?.find((cat) => cat.name === 'accessory');
 
@@ -63,10 +65,33 @@ const AccessoriesPage = () => {
 
         <div className="prod-page">
           <div className="cat-group gap-6 max-w-3xl my-6">
-            <button className="btn" onClick={() => dispatch(getProducts())}>All Accessories</button>
-            <button className="btn" onClick={() => handleFilteredProducts('racquet')}> Racket Accessories</button>
-            <button className="btn" onClick={() => handleFilteredProducts('court')}> Court Accessories</button>
-            <button className="btn" onClick={() => handleFilteredProducts('fan')}> Fan Accessories</button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => dispatch(getProducts())}
+            >
+              All Accessories
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => handleFilteredProducts('racquet')}
+            >
+              {' '}
+              Racket Accessories
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => handleFilteredProducts('court')}
+            >
+              {' '}
+              Court Accessories
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => handleFilteredProducts('fan')}
+            >
+              {' '}
+              Fan Accessories
+            </button>
 
           </div>
 
@@ -139,25 +164,20 @@ const AccessoriesPage = () => {
 
             </div>
 
-            {status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
-              <div className="product-align w-full">
-                <div className="product-items">
+            {loading ? <Loader />
+              : (
+                <div className="product-align w-full">
 
                   <ProductsGrid filter="accessory" products={products} status={status} error={error} />
-                </div>
-                <div className="product-details ">
-                  <h3> BABOLAT TENNIS ACCESSORIES BRANDS</h3>
-                  <p>
-                    {category?.description}
-                  </p>
+                  <div className="product-details ">
+                    <h3> BABOLAT TENNIS ACCESSORIES BRANDS</h3>
+                    <p>
+                      {category?.description}
+                    </p>
 
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="text-center full-length">
-                <h2>{error}</h2>
-              </div>
-            )) }
+              )}
 
             <div />
 

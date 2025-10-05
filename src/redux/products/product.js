@@ -11,7 +11,7 @@ const initialState = {
   badmintonRacquets: [],
   filteredProducts: [],
   latestArrival: [],
-  loading: false,
+  loading: true,
   status: null,
   error: false,
   counter: 0,
@@ -33,13 +33,10 @@ const productsSlice = createSlice({
 
       return {
         ...state,
-        status: 'success',
         loading: false,
         products: action.payload.data,
-        padelRacquets: products_padel,
         latestArrival: sortedLatest,
         error: false,
-        badmintonRacquets: products_badminton,
       };
     },
 

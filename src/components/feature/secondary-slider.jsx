@@ -56,57 +56,57 @@ const SecondarySlider = () => {
   ];
   return (
     <>
-   <div className="relative w-full h-full">
-  <Swiper
-    loop
-    effect="fade"
-    autoplay={{ delay: 4000, disableOnInteraction: false }}
-    pagination={{ clickable: true }}
-    modules={[Pagination, Autoplay, EffectFade]}
-    slidesPerView={1}
-    className="hero-swiper"
-  >
-    {images.map((item) => (
-      <SwiperSlide key={item.id}>
-        <div className="relative h-[500px] md:h-screen w-full">
-          {/* Background Image */}
-          <img
-            src={item.image}
-            alt={item.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+      <div className="relative w-full h-full">
+        <Swiper
+          loop
+          effect="fade"
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          modules={[Pagination, Autoplay, EffectFade]}
+          slidesPerView={1}
+          className="hero-swiper"
+        >
+          {images.map((item) => (
+            <SwiperSlide key={item.id}>
+              <div className="relative h-[500px] md:h-screen w-full">
+                {/* Background Image */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
 
-          {/* Content */}
-          <div className={`relative z-10 flex h-full items-center max-w-7xl mx-auto px-6 ${
-            item?.position === "left" ? "justify-start text-left" : "justify-end text-right"
-          }`}>
-            <div className="max-w-lg space-y-6 animate-fadeIn">
-              {item?.title && (
-                <>
-                  <h2 className="text-3xl md:text-6xl font-medium text-white drop-shadow-lg">
-                    {item.title}
-                  </h2>
-                  <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-                    {item.text}
-                  </p>
-                  <DiscoverBtn
-                    link={item.link}
-                    btnText={item.cta}
-                    className="mt-6 px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary/90 transition"
-                  />
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
-</div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
+                {/* Content */}
+                <div className={`relative z-10 flex h-full items-center max-w-7xl mx-auto px-6 ${
+                  item?.position === 'left' ? 'justify-start text-left' : 'justify-end text-right'
+                }`}
+                >
+                  <div className="max-w-lg space-y-6 animate-fadeIn">
+                    {item?.title && (
+                    <>
+                      <h2 className="text-3xl md:text-6xl font-medium text-white drop-shadow-lg">
+                        {item.title}
+                      </h2>
+                      <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+                        {item.text}
+                      </p>
+                      <DiscoverBtn
+                        link={item.link}
+                        btnText={item.cta}
+                        className="mt-6 px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary/90 transition"
+                      />
+                    </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
     </>
   );

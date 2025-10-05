@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Hero from '../../components/banner/Hero';
 import bannerImage from '../../assets/images/banner/racquet-banner.jpg';
-import Products from '../../components/products/ProductsGridDisplay';
 import { getProducts } from '../../redux/actions/product';
 
 import Loader from '../Loader';
@@ -30,12 +29,12 @@ const ProductsPage = () => {
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
-  const { products, status, error } = useSelector((state) => state.products);
-  const { product_categories, loading } = useSelector((state) => state.product_categories);
+  const { products, error, loading } = useSelector((state) => state.products);
+  const { product_categories, loading: isLoading } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
   useFilter({
     productCategory: 'racquet',
-    selectedSports,
+    selectedSports: 'Tennis',
     selectedLevels,
     selectedFeatures,
   });
@@ -71,6 +70,8 @@ const ProductsPage = () => {
       setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
+
+  console.log(products, loading, '[LOading] Statis');
 
   return (
     <>
@@ -217,9 +218,7 @@ const ProductsPage = () => {
           {loading ? <Loader />
             : (
               <div className="product-align w-full">
-                <div className="grid gap-[2%] gap-y-2 grid-cols-2 sm:grid-cols-3 xl:grid-cols-4">
-                  <ProductsGrid products={products} status={status} error={error} filter="racquet" />
-                </div>
+                <ProductsGrid products={products} error={error} filter="racquet" />
 
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>
@@ -227,9 +226,9 @@ const ProductsPage = () => {
                     { category?.description}
 
                   </p>
-                  <p className="font-semibold text-gray">
+                  {/* <p className="font-semibold text-gray">
                     From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
-                  </p>
+                  </p> */}
 
                 </div>
               </div>

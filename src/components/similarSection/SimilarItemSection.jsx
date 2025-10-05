@@ -25,8 +25,6 @@ export default function SimilarItemsSection({
     el.scrollTo({ left: dir === 'right' ? el.scrollLeft + amount : el.scrollLeft - amount, behavior: 'smooth' });
   };
 
-  console.log(error);
-
   return (
     <section aria-labelledby="similar-items-heading" className="my-6">
       <div className="flex items-center justify-between mb-4">

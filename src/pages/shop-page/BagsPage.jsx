@@ -16,8 +16,8 @@ import ProductsPageContainer from '../../components/productItems/ProductItems';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
-  const { products, status, error } = useSelector((state) => state.products);
-  const { product_categories, loading } = useSelector((state) => state.product_categories);
+  const { products, error, loading } = useSelector((state) => state.products);
+  const { product_categories } = useSelector((state) => state.product_categories);
 
   const [selectedCapacity, setSelectedCapacity] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
@@ -77,10 +77,33 @@ const BagsPage = () => {
 
         <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
           <div className="cat-group justify-between max-w-md my-6">
-            <button className="btn" onClick={() => dispatch(getProducts())}>All bags</button>
-            <button className="btn" onClick={() => handleFilteredProducts('backpack')}> Backpack</button>
-            <button className="btn" onClick={() => handleFilteredProducts('duffle')}> Duffle</button>
-            <button className="btn" onClick={() => handleFilteredProducts('racket holder')}> Racket holder</button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => dispatch(getProducts())}
+            >
+              All bags
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => handleFilteredProducts('backpack')}
+            >
+              {' '}
+              Backpack
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => handleFilteredProducts('duffle')}
+            >
+              {' '}
+              Duffle
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              onClick={() => handleFilteredProducts('racket holder')}
+            >
+              {' '}
+              Racket holder
+            </button>
 
           </div>
 
@@ -205,27 +228,20 @@ const BagsPage = () => {
                 </label>
               </div>
             </SideNav>
-            { status == 'waiting' || loading ? <Loader /> : ((status == 'success') ? (
-              <div className="product-align w-full">
-                <div className="product-items">
-                  <ProductsGrid products={products} status={status} error={error} filter="bag" />
+            {loading ? <Loader />
+              : (
+                <div className="product-align w-full">
+                  <ProductsGrid products={products} error={error} filter="bag" />
 
+                  <div className="product-details">
+                    <h3> BABOLAT TENNIS BAGS BRANDS</h3>
+                    <p>
+                      {category?.description}
+                    </p>
+
+                  </div>
                 </div>
-
-                <div className="product-details">
-                  <h3> BABOLAT TENNIS BAGS BRANDS</h3>
-                  <p>
-                    {category?.description}
-                  </p>
-
-                </div>
-              </div>
-
-            ) : (
-              <div className="text-center full-length">
-                <h2>{error}</h2>
-              </div>
-            ))}
+              )}
 
             <div />
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import { FiUser, FiMenu, FiPauseCircle } from 'react-icons/fi';
@@ -45,6 +45,118 @@ const Nav = ({ store = true }) => {
     navigate('/auth/login');
   };
 
+  const storeItems = [
+    {
+      link: '/store', label: 'Home',
+    },
+    {
+      link: '/racquets',
+      label: 'Rackets',
+      sub: [{ link: '/racquets', label: 'Raquets' }, { link: '/padels', label: 'Padel' }, { link: '/badminton', label: 'Badminton' }],
+
+    },
+    {
+      link: '/apparels',
+      label: 'Apparels',
+    },
+    {
+      link: '/shoes', label: 'Shoe',
+    },
+    {
+      link: '/bags', label: 'Bags',
+    },
+    {
+      link: '/accessories', label: 'Accessories',
+    },
+
+    {
+      link: '/brands', label: 'Brands',
+    },
+    ...(user?.role === 'admin' ? [{ link: '/admin', label: Admin }] : []),
+  ];
+
+  const landingNavItem = [
+    {
+      link: '/', label: 'Home',
+    }, {
+      link: '/store', label: 'Go to store',
+    },
+    {
+      link: '/contact', label: 'Contact Us',
+    },
+    {
+      link: '/about', label: 'About Us',
+    },
+    {
+      link: '/products', label: 'Product',
+    },
+    {
+      link: '/court-directory', label: 'Court Directory',
+
+    },
+    ...(user?.role === 'admin' ? [{ link: '/admin', label: Admin }] : []),
+  ];
+  const storeMenu = useMemo(() => (
+    <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
+      {storeItems.map(({ link, label, sub }) => (
+        <li className="group relative">
+          <NavLink
+            to={`${link}`}
+            className="hover:text-primary transition-colors"
+          >
+            {label}
+          </NavLink>
+          {/* Dropdown */}
+          {sub
+                      && (
+                      <div className="absolute left-0 group-hover:flex hidden">
+                        <div className="mt-8 flex bg-white gap-8 p-6 bg- shadow-xl rounded-xl">
+
+                          {sub && sub.map((subItem) => (
+
+                            <div>
+                              <h4 className="text-gray-900 font-normal mb-2">
+                                {' '}
+                                {subItem.label}
+                              </h4>
+                              <NavLink
+                                to={`${subItem.link}`}
+                                className="block text-gray-600 hover:text-primary"
+                              >
+                                Babolat
+                              </NavLink>
+                            </div>
+
+                          )) }
+                        </div>
+
+                      </div>
+                      )}
+
+        </li>
+
+      ))}
+
+    </ul>
+  ), store);
+
+  const landingMenu = useMemo(() => (
+    <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
+      {landingNavItem.map((item) => (
+        <li>
+          <NavLink
+            to={item.link}
+
+            className="hover:text-primary transition-colors"
+          >
+            {item.label}
+          </NavLink>
+        </li>
+      ))}
+
+    </ul>
+  ), store);
+
   return (
     <>
       <nav className="sticky top-0 z-50 bg-white shadow-md">
@@ -64,129 +176,7 @@ const Nav = ({ store = true }) => {
 
           {/* Middle: Nav Links (Desktop) */}
 
-          {store
-            ? (
-              <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
-                <li>
-                  <NavLink
-                    to="/store"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Store
-                  </NavLink>
-                </li>
-                <li className="group relative">
-                  <NavLink
-                    to="/racquets?brand=babolat"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Rackets
-                  </NavLink>
-                  {/* Dropdown */}
-                  <div className="absolute left-0 group-hover:flex hidden">
-                    <div className="mt-8 flex bg-white gap-8 p-6 bg- shadow-xl rounded-xl">
-                      <div>
-                        <h4 className="text-gray-900 font-normal mb-2">Tennis</h4>
-                        <NavLink
-                          to="/racquets"
-                          className="block text-gray-600 hover:text-primary"
-                        >
-                          Babolat
-                        </NavLink>
-                      </div>
-                      <div>
-                        <h4 className="text-gray-900 font-normal mb-2">Padel</h4>
-                        <NavLink
-                          to="/padels"
-                          className="block text-gray-600 hover:text-primary"
-                        >
-                          Babolat
-                        </NavLink>
-                      </div>
-                      <div>
-                        <h4 className="text-gray-900 font-normal mb-2">Badminton</h4>
-                        <NavLink
-                          to="/badminton"
-                          className="block text-gray-600 hover:text-primary"
-                        >
-                          Babolat
-                        </NavLink>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <NavLink
-                    to="/apparels"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Apparels
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/shoes"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Shoes
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/bags"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Bags
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/accessories"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Accessories
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/brands"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Brands
-                  </NavLink>
-                </li>
-                {user?.role === 'admin' && (
-                <li>
-                  <NavLink
-                    to="/admin"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Admin
-                  </NavLink>
-                </li>
-                )}
-              </ul>
-            )
-
-            : (
-              <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
-                <li>
-                  <NavLink
-                    to="/"
-                    className="hover:text-primary transition-colors"
-                  >
-                    Home
-                  </NavLink>
-                </li>
-
-                <li className="m"><NavLink to="/store" className="hover:text-primary transition-colors">Go to store</NavLink></li>
-                <li className=""><NavLink to="/contact" className="hover:text-primary transition-colors">Contact Us</NavLink></li>
-                <li className=""><NavLink to="/about" className="hover:text-primary transition-colors">About Us</NavLink></li>
-                <li className=""><NavLink to="/products" className="hover:text-primary transition-colors">Products</NavLink></li>
-                <li className=""><NavLink to="/court-directory" className="hover:text-primary transition-colors">Court Directory</NavLink></li>
-
-              </ul>
-            )}
+          {store ? storeMenu : landingMenu }
 
           {/* Right: User + Cart */}
           <div className="flex items-center gap-5">
@@ -245,33 +235,27 @@ const Nav = ({ store = true }) => {
             />
           </div>
           <ul className="flex flex-col gap-4 p-6 text-gray-700 font-medium">
-            <NavLink to="/store" onClick={() => setToggleNav(false)}>
-              Store
-            </NavLink>
-            <NavLink to="/racquets" onClick={() => setToggleNav(false)}>
-              Rackets
-            </NavLink>
-            <NavLink to="/apparels" onClick={() => setToggleNav(false)}>
-              Apparels
-            </NavLink>
-            <NavLink to="/shoes" onClick={() => setToggleNav(false)}>
-              Shoes
-            </NavLink>
-            <NavLink to="/bags" onClick={() => setToggleNav(false)}>
-              Bags
-            </NavLink>
-            <NavLink to="/accessories" onClick={() => setToggleNav(false)}>
-              Accessories
-            </NavLink>
-            <NavLink to="/brands" onClick={() => setToggleNav(false)}>
-              Brands
-            </NavLink>
+
+            {store ? storeItems.map((item) => (
+              <NavLink to={item.link} onClick={() => setToggleNav(false)}>
+                {item.label}
+              </NavLink>
+
+            ))
+            : 
+             landingNavItem.map((item) => (
+              <NavLink to={item.link} onClick={() => setToggleNav(false)}>
+                {item.label}
+              </NavLink>
+
+            ))}
+
             {user && user?.role === 'admin' && (
             <NavLink to="/admin" onClick={() => setToggleNav(false)}>
               Admin
             </NavLink>
             )}
-            <div className="border-t pt-4">
+              <div className="border-t pt-4">
               {user ? (
                 <button
                   onClick={handleLogOut}
@@ -290,6 +274,7 @@ const Nav = ({ store = true }) => {
                 </NavLink>
               )}
             </div>
+
           </ul>
         </div>
       </nav>

@@ -3,7 +3,7 @@ import survey from '../../assets/images/icons/survey.png';
 
 const SurveyButton = () => (
 
-  <section id="survey" className="px-6 my-12">
+  <section id="survey" className="px-6 my-12 max-w-7xl mx-auto">
     <div className="py-16 mx-auto  text-center bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg">
       {/* Icon */}
       <div className="flex justify-center">
@@ -15,7 +15,7 @@ const SurveyButton = () => (
       </div>
 
       {/* Heading */}
-      <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 tracking-wide mb-6">
+      <h3 className="text-2xl md:text-3xl font-medium text-gray-800 tracking-wide mb-6">
         Take a Minute to Fill Out Our Survey
       </h3>
       <p className="text-gray-600 mb-10 max-w-lg mx-auto">

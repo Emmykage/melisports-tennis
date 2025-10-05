@@ -13,6 +13,8 @@ import ProductFilter from '../../../components/products/ProductFilter';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import Nav from '../../../components/nav/Nav';
 import SideNav from '../../../components/sideNav/SideNav';
+import useFilter from '../../../hooks/useFilter';
+import ProductsPageContainer from '../../../components/productItems/ProductItems';
 
 const levels = [{
   label: 'Beginner',
@@ -40,17 +42,13 @@ const featureItems = [
   { type: 'spin', label: 'Spin' },
 ];
 
-const sportItems = [
-  { type: 'tennis', label: 'Tennis' },
-  { type: 'badminton', label: 'Badminton' },
-];
 const BadmintonsPage = () => {
   const dispatch = useDispatch();
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedFeature, setSelectedFeatures] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
 
-  const { badmintonRacquets, status, error } = useSelector((state) => state.products);
+  const { products, status, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
@@ -63,20 +61,12 @@ const BadmintonsPage = () => {
       setSelectedLevels((prev) => prev.filter((item) => item !== value));
     }
   };
-  const handleSportFilter = (e) => {
-    const { checked, value } = e.target;
-    checked
-      ? setSelectedSports((prev) => [...prev, value])
-      : setSelectedSports((prev) => prev.filter((item) => item !== value));
-  };
 
-  useEffect(() => {
-    if (selectedSports.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterSports(selectedSports));
-      });
-    }
-  }, [selectedSports, dispatch]);
+  useFilter({
+    productCategory: 'racquet',
+    selectedSports: 'Badminton',
+    selectedPlayType: selectedLevels,
+  });
 
   useEffect(() => {
     if (selectedFeature.length > 0) { // Only filter if there's a selection
@@ -109,14 +99,7 @@ const BadmintonsPage = () => {
 
       <Hero image={bannerImage} title="Badminton" />
 
-      <div className="prod-page py-10 px-4">
-        {/* <div className="cat-group justify-between max-w-md my-6">
-          <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
-          <a className="btn" onClick={() => dispatch(getProducts())}>All Rackets</a>
-
-        </div> */}
+      <ProductsPageContainer>
 
         <div className="flex md:gap-10">
           <SideNav>
@@ -125,21 +108,7 @@ const BadmintonsPage = () => {
 
             </div>
             <div />
-            {/* <div className="side-row">
-              {sportItems.map((item) => (
-                <div className="flex  items-center mb-2">
-                  <input type="checkbox" checked={selectedSports.includes(item.type)} id={item.type} onChange={handleSportFilter} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
 
-                    <span>
-                      {item.label}
-                    </span>
-                  </label>
-
-                </div>
-              ))}
-
-            </div> */}
             <div className="side-row">
               <h6>Racket Type</h6>
 
@@ -179,12 +148,10 @@ const BadmintonsPage = () => {
             </div>
           </SideNav>
 
-          {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
-            ? (
+          {loading ? <Loader />
+            : (
               <div className="product-align w-full">
-                <div className="product-items">
-                  <ProductsGrid products={badmintonRacquets} status={status} error={error} />
-                </div>
+                <ProductsGrid products={products} status={status} error={error} />
 
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>
@@ -192,22 +159,15 @@ const BadmintonsPage = () => {
                     { category?.description}
 
                   </p>
-                  <p className="font-semibold text-gray">
-                    From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
-                  </p>
 
                 </div>
               </div>
-            ) : (
-              <div className="text-center full-length">
-                <h2>{error}</h2>
-              </div>
-            ))}
+            )}
           <div />
 
         </div>
 
-      </div>
+      </ProductsPageContainer>
     </div>
   );
 };
