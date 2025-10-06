@@ -3,14 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { IoTennisballSharp } from 'react-icons/io5';
 import { FaHandshake, FaSeedling, FaTrophy } from 'react-icons/fa';
-import Babolat from '../../assets/images/logo/ba4886b10b-babolat-logo-babolat-logo-png-transparent-images-free-png-images-vector-psd.png';
-import melisport from '../../assets/images/logo/melisport_one.png';
 import demo_service from '../../assets/images/demo.webp';
 import shoeImage from '../../assets/images/banner/Jet_Tere_692x364_1.avif';
 import badmington from '../../assets/images/banner/X-feel_692_x_364_px.avif';
 import string from '../../assets/images/babolat_stringing.webp';
 import distributor from '../../assets/images/distributor.jpeg';
-import Slider from '../../components/feature/Slider';
 import ReactSlider from '../../components/slider/CategoriesSlider';
 import { getSportCategories } from '../../redux/actions/product_category';
 import { closeList } from '../../redux/products/searched';
@@ -262,7 +259,7 @@ const LandingHome = () => {
       <SportDirectory />
       <SurveyButton />
 
-              <BrandsSponsorComponents/>
+      <BrandsSponsorComponents/>
 
 
         <Reviews id="review" />

@@ -8,7 +8,7 @@ const initialState = [{
 {
   id: 3,
   name: 'Bags',
-  image: 'https://www.e-tennis.com/pub/media/catalog/product/cache/f5f3da80ad7b670245aea7e970662954/7/5/753101-bp_aero-370-1-3_4_face_folded.webp',
+  image: 'https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1707983842/Product_Media/2025/Tennis/Bags/753110-BP_PURE_DRIVE%25E2%2580%258B-136-1-3_4_Face.png',
 },
 {
   id: 2,

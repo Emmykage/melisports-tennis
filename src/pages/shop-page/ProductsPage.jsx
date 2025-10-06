@@ -111,7 +111,7 @@ const ProductsPage = () => {
 
           <SideNav>
               {/* Section: Activities */}
-              <div>
+              <div className=''>
                 <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
                   Activities
                 </h6>

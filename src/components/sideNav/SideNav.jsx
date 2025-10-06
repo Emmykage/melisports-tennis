@@ -7,7 +7,6 @@ const SideNav = ({ children }) => (
       <div className="sticky rounded-lg border-gray-300 shadow-md bg-white p-4 py-6 top-20 left-0">
         {children}
       </div>
-
     </div>
 
   </>

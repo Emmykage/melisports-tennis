@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Babolat from '../../assets/images/logo/ba4886b10b-babolat-logo-babolat-logo-png-transparent-images-free-png-images-vector-psd.png';
-import melisport from '../../assets/images/logo/melisport_one.png';
+
 import shoeImage from '../../assets/images/banner/Jet_Tere_692x364_1.avif';
 import badmington from '../../assets/images/banner/X-feel_692_x_364_px.avif';
 
@@ -18,12 +17,10 @@ import Tennis from '../../assets/images/banner/Cat_product_tennis.avif';
 import Padel from '../../assets/images/banner/Cat_product_padel.avif';
 import Badminton from '../../assets/images/banner/test_badminton.avif';
 import './home.scss';
-import videoAd from '../../assets/videos/master_of_Strings_1920x720.webm';
-import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import Reviews from '../../components/reviews/Reviews';
 import Nav from '../../components/nav/Nav';
-import { getProducts } from '../../redux/actions/product';
+import { getLetestProducts, getProducts } from '../../redux/actions/product';
 import BrandsSponsorComponents from '../../components/brandSponsors/BrandsSponsorComponents';
 
 const ShopHome = () => {
@@ -34,6 +31,8 @@ const ShopHome = () => {
     dispatch(closeList());
     dispatch(getSportCategories());
     dispatch(getProducts());
+
+    dispatch(getLetestProducts())
   }, []);
 
   return (
