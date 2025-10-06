@@ -53,7 +53,7 @@ const ProductSlider = ({ products, views = 4 }) => {
               </NavLink>
 
               {/* Info Overlay */}
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-5 transition-all duration-300 group-hover:from-black/90 group-hover:via-black/60">
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-5 transition-all duration-300 group-hover:from-black/90 group-hover:via-black/60">
                 <p className="text-sm text-gray-200 italic">{item?.sport_category?.name}</p>
                 <h3 className="text-lg font-semibold text-white truncate">{item?.name}</h3>
                 <p className="text-xl font-bold text-primary mt-2">{nairaFormat(item?.price)}</p>

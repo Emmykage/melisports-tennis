@@ -190,7 +190,7 @@ const ProductDetails = () => {
 
           {/* Technical Details */}
           <div className="technical-details mb-10">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+            <h3 className="text-2xl font-normal text-gray-800 mb-6">
               Technical Characteristics
             </h3>
             <div className="grid gap-4 md:grid-cols-2">

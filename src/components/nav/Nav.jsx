@@ -47,7 +47,7 @@ const Nav = ({ store = true }) => {
 
   const storeItems = [
     {
-      link: '/store', label: 'Home',
+      link: '/store', label: 'Store',
     },
     {
       link: '/racquets',
