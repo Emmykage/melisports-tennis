@@ -243,6 +243,5 @@ const BagsPage = () => {
 
   );
 };
-// };
 
 export default BagsPage;

@@ -120,6 +120,9 @@ const AddProduct = () => {
       });
 
       formData.append('product[name]', e.target.name?.value ?? '');
+      
+      formData.append('product[discount]', isDiscountActive ? "active_discount" : "inactive_discount" );
+      e.target.discount_amount?.value && formData.append('product[discount_percentage]', e.target.discount_percentage?.value ?? '' );
       formData.append('product[product_quantity]', e.target.product_quantity?.value ?? '');
       formData.append('product[thickness]', e.target.thickness?.value ?? '');
 
@@ -152,6 +155,7 @@ const AddProduct = () => {
       });
 
       const data = Object.fromEntries(formData);
+      console.log(data);
 
       dispatch(addProduct(formData));
     } else {
@@ -165,6 +169,9 @@ const AddProduct = () => {
   };
 
   console.log(productName);
+
+    const [isDiscountActive, setIsDiscountActive] = useState(false);
+  const [discountAmount, setDiscountAmount] = useState("");
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -224,6 +231,40 @@ const AddProduct = () => {
           {/* </div> */}
 
         </div>
+        <div className=" bg-white p-4 rounded shadow">
+
+
+         <div className="flex items-center justify-between">
+        <label className="font-medium">Discount Active</label>
+        <button
+          type="button"
+          onClick={() => setIsDiscountActive(!isDiscountActive)}
+          className={`px-4 py-2 rounded font-medium transition-all ${
+            isDiscountActive
+              ? "bg-green-600 hover:bg-green-700"
+              : "bg-gray-600 hover:bg-gray-700"
+          }`}
+        >
+          {isDiscountActive ? "Active" : "Inactive"}
+        </button>
+      </div>
+
+      {/* Discount amount (only shows if active) */}
+      {isDiscountActive && (
+        <div>
+          <label className="block text-sm mb-1">Discount (%)</label>
+          <input
+            type="number"
+            name='discount_percentage'
+            // value={discountAmount}
+            // onChange={(e) => setDiscountAmount(e.target.value)}
+            placeholder="e.g. 20"
+            className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+      )}
+
+      </div>
 
         <div className=" bg-white p-4 rounded shadow">
           <div className="flex justify-between gap-3 text-sm my-1">

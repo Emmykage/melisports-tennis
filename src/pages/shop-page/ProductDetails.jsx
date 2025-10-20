@@ -24,7 +24,7 @@ const ProductDetails = () => {
   const { relatedProducts, status, loading: isLoading } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
-  console.log(relatedProducts, 'related products');
+  console.log(product, 'related products');
 
   useEffect(() => {
     dispatch(closeList());
@@ -33,7 +33,7 @@ const ProductDetails = () => {
   const handleCart = () => {
     if (product.product_quantity > 0) {
       dispatch(addCart({
-        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.price, quantity: count, product_name: product.name, sizes,
+        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.discount  === "active_discount" ? product.discount_amount : product.price   , quantity: count, product_name: product.name, sizes,
       }));
 
       dispatch(updater());
@@ -90,9 +90,37 @@ const ProductDetails = () => {
                   {product?.product_category?.name}
                 </p>
 
-                <div className="mt-4 text-2xl font-bold text-primary">
+                {/* <div className="mt-4 text-2xl font-bold text-primary">
                   {nairaFormat(product.price)}
-                </div>
+                </div> */}
+
+                <div className="mt-4 flex items-center gap-3">
+  {product.discount === "active_discount" ? (
+    <>
+      {/* Original Price (crossed out) */}
+      <span className="text-xl text-gray-400 line-through">
+        {nairaFormat(product.price)}
+      </span>
+
+      {/* Discounted Price */}
+      <span className="text-2xl font-bold text-green-600">
+        {nairaFormat(product.discount_amount)}
+      </span>
+
+      {/* Optional discount badge */}
+      {product.discount === "active_discount" && (
+        <span className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+          -{product.discount_percentage}%
+        </span>
+      )}
+    </>
+  ) : (
+    <span className="text-2xl font-bold text-primary">
+      {nairaFormat(product.price)}
+    </span>
+  )}
+</div>
+
 
                 {/* Colors */}
                 {product?.colours?.length > 0 && (
