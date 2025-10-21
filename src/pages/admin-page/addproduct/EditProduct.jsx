@@ -283,7 +283,7 @@ const EditProduct = () => {
                   : 'bg-gray-600 hover:bg-gray-700'
               }`}
             >
-              {isDiscountActive ? 'Active' : 'Apply Discount'}
+              {isDiscountActive ? 'Cancel Discount' : 'Apply Discount'}
             </Button>
           </div>
 
