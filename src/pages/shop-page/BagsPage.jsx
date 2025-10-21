@@ -58,8 +58,6 @@ const BagsPage = () => {
     }
   };
 
-
-
   return (
     <>
       <Nav />

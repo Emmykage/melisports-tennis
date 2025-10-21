@@ -72,7 +72,7 @@ const Nav = ({ store = true }) => {
     {
       link: '/brands', label: 'Brands',
     },
-    ...(user?.role === 'admin' ? [{ link: '/admin', label: "Admin" }] : []),
+    ...(user?.role === 'admin' ? [{ link: '/admin', label: 'Admin' }] : []),
   ];
 
   const landingNavItem = [
@@ -94,7 +94,7 @@ const Nav = ({ store = true }) => {
       link: '/court-directory', label: 'Court Directory',
 
     },
-    ...(user?.role === 'admin' ? [{ link: '/admin', label: "Admin" }] : []),
+    ...(user?.role === 'admin' ? [{ link: '/admin', label: 'Admin' }] : []),
   ];
   const storeMenu = useMemo(() => (
     <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
@@ -136,16 +136,16 @@ const Nav = ({ store = true }) => {
         </li>
 
       ))}
-         {user && (user?.role === 'admin' || user?.role ==="super-admin") && (
-            <NavLink to="/admin" onClick={() => setToggleNav(false)}>
-              Admin
-            </NavLink>
-            )}
+      {user && (user?.role === 'admin' || user?.role === 'super-admin') && (
+      <NavLink to="/admin" onClick={() => setToggleNav(false)}>
+        Admin
+      </NavLink>
+      )}
 
     </ul>
   ), [store, user]);
 
-  console.log(user?.role)
+  console.log(user?.role);
 
   const landingMenu = useMemo(() => (
     <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
@@ -249,20 +249,19 @@ const Nav = ({ store = true }) => {
               </NavLink>
 
             ))
-            : 
-             landingNavItem.map((item) => (
-              <NavLink to={item.link} onClick={() => setToggleNav(false)}>
-                {item.label}
-              </NavLink>
+              : landingNavItem.map((item) => (
+                <NavLink to={item.link} onClick={() => setToggleNav(false)}>
+                  {item.label}
+                </NavLink>
 
-            ))}
+              ))}
 
             {user && user?.role === 'admin' && (
             <NavLink to="/admin" onClick={() => setToggleNav(false)}>
               Admin
             </NavLink>
             )}
-              <div className="border-t pt-4">
+            <div className="border-t pt-4">
               {user ? (
                 <button
                   onClick={handleLogOut}

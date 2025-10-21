@@ -259,12 +259,11 @@ const LandingHome = () => {
       <SportDirectory />
       <SurveyButton />
 
-      <BrandsSponsorComponents/>
+      <BrandsSponsorComponents />
 
+      <Reviews id="review" />
 
-        <Reviews id="review" />
-
-        <CommunityBanner />
+      <CommunityBanner />
 
     </>
   );

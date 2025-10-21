@@ -8,7 +8,7 @@ import { getProducts } from '../redux/actions/product';
 import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
 import {
-   searchedPage,
+  searchedPage,
 } from '../redux/products/product';
 import ProductsGrid from '../components/products/ProductsGridDisplay';
 import Nav from '../components/nav/Nav';
@@ -29,7 +29,7 @@ const SearchPage = () => {
 
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts())
+      dispatch(getProducts());
     } else {
       dispatch(getProducts());
     }

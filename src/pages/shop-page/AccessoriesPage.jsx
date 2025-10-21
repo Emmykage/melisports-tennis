@@ -32,7 +32,7 @@ const AccessoriesPage = () => {
 
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts())
+      dispatch(getProducts());
     } else {
       dispatch(getProducts());
     }
@@ -40,8 +40,7 @@ const AccessoriesPage = () => {
 
   const handleFilteredFeatures = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts())
-        
+      dispatch(getProducts());
     } else {
       dispatch(getProducts());
     }

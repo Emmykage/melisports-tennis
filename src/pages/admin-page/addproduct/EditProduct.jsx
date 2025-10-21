@@ -15,6 +15,7 @@ import { resetProduct, writeProduct } from '../../../redux/product/product';
 import Loader from '../../Loader';
 import 'trix';
 import 'trix/dist/trix.css';
+import Button from '../../../components/buttons/Button';
 
 const EditProduct = () => {
   const { editId } = useParams();
@@ -81,6 +82,12 @@ const EditProduct = () => {
     }
   }, [status]);
 
+
+  useEffect(()=> {
+    setIsDiscountActive(product?.discount === "active_discount")
+
+  }, [product])
+
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     const previews = files.map((file) => {
@@ -97,6 +104,9 @@ const EditProduct = () => {
       setImagePreviews(images);
     });
   };
+
+    const [isDiscountActive, setIsDiscountActive] = useState(false);
+    const [discountAmount, setDiscountAmount] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -130,6 +140,9 @@ const EditProduct = () => {
     e.target.level_id?.value && formData.append('product[level_id]', e.target.level_id.value);
     e.target.gender_id && formData.append('product[gender_id]', e.target.gender_id.value);
 
+      formData.append('product[discount]', isDiscountActive ? 'active_discount' : 'inactive_discount');
+     e.target.discount_percentage?.value && formData.append('product[discount_percentage]', e.target.discount_percentage?.value ?? '');
+    
     formData.append('product[name]', e.target.name.value ?? '');
     formData.append('product[product_quantity]', e.target?.product_quantity?.value ?? '');
 
@@ -257,6 +270,39 @@ const EditProduct = () => {
               {/* </div> */}
 
             </div>
+
+             <div className=" bg-white p-4 rounded shadow">
+
+          <div className="flex items-center justify-between">rtrtrt
+            <Button
+              type="button"
+              onClick={() => setIsDiscountActive(!isDiscountActive)}
+              className={`px-4 py-2 rounded font-medium transition-all ${
+                isDiscountActive
+                  ? 'bg-green-600 hover:bg-green-700'
+                  : 'bg-gray-600 hover:bg-gray-700'
+              }`}
+            >
+              {isDiscountActive ? 'Active' : 'Apply Discount'}
+            </Button>
+          </div>
+
+          {/* Discount amount (only shows if active) */}
+          {isDiscountActive && (
+          <div>
+            <label className="block text-sm mb-1">Discount (%)</label>
+            <input
+              type="number"
+              name="discount_percentage"
+            // value={discountAmount}
+            // onChange={(e) => setDiscountAmount(e.target.value)}
+              placeholder="e.g. 20"
+              className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+          </div>
+          )}
+
+        </div>
 
             <div className="bg-white p-4 rounded shadow">
 

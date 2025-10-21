@@ -22,7 +22,7 @@ const ProductsPage = () => {
   ];
 
   const dispatch = useDispatch();
-   const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
@@ -110,104 +110,104 @@ const ProductsPage = () => {
         <div className="flex md:gap-10">
 
           <SideNav>
-              {/* Section: Activities */}
-              <div className=''>
-                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                  Activities
-                </h6>
-                <div className="space-y-2">
-                  {classSports.map((item) => (
-                    <label
-                      key={item.type}
-                      htmlFor={item.type}
-                      className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
-                    >
-                      <input
-                        type="checkbox"
-                        id={item.type}
-                        value={item.type}
-                        checked={selectedSports.includes(item.type)}
-                        onChange={handleSportFilter}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <span className="text-base">{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Section: Racket Type */}
-              <div>
-                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                  Racket Type
-                </h6>
-                <div className="space-y-2">
-                  {featureItems.map((item) => (
-                    <label
-                      key={item.type}
-                      htmlFor={item.type}
-                      className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
-                    >
-                      <input
-                        type="checkbox"
-                        id={item.type}
-                        value={item.type}
-                        onChange={handleFilteredFeatures}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <span className="text-base">{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Section: Skill Level */}
-              <div>
-                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                  Skill Level
-                </h6>
-                <div className="space-y-2">
-                  {classLevels.map((level) => (
-                    <label
-                      key={level.level}
-                      htmlFor={level.level}
-                      className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
-                    >
-                      <input
-                        type="checkbox"
-                        id={level.level}
-                        value={level.level}
-                        checked={selectedLevels.includes(level.level)}
-                        onChange={handleFilteredLevels}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <span className="text-base">{level.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Section: Brand */}
-              <div>
-                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                  Brand
-                </h6>
-                <div className="space-y-2">
+            {/* Section: Activities */}
+            <div className="">
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+                Activities
+              </h6>
+              <div className="space-y-2">
+                {classSports.map((item) => (
                   <label
-                    htmlFor="babolat"
+                    key={item.type}
+                    htmlFor={item.type}
                     className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
                   >
                     <input
                       type="checkbox"
-                      id="babolat"
-                      value="babolat"
-                      onChange={() => {}}
+                      id={item.type}
+                      value={item.type}
+                      checked={selectedSports.includes(item.type)}
+                      onChange={handleSportFilter}
                       className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
-                    <span className="text-base">Babolat</span>
+                    <span className="text-base">{item.label}</span>
                   </label>
-                </div>
+                ))}
               </div>
+            </div>
+
+            {/* Section: Racket Type */}
+            <div>
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+                Racket Type
+              </h6>
+              <div className="space-y-2">
+                {featureItems.map((item) => (
+                  <label
+                    key={item.type}
+                    htmlFor={item.type}
+                    className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      id={item.type}
+                      value={item.type}
+                      onChange={handleFilteredFeatures}
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <span className="text-base">{item.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Section: Skill Level */}
+            <div>
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+                Skill Level
+              </h6>
+              <div className="space-y-2">
+                {classLevels.map((level) => (
+                  <label
+                    key={level.level}
+                    htmlFor={level.level}
+                    className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      id={level.level}
+                      value={level.level}
+                      checked={selectedLevels.includes(level.level)}
+                      onChange={handleFilteredLevels}
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                    <span className="text-base">{level.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Section: Brand */}
+            <div>
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+                Brand
+              </h6>
+              <div className="space-y-2">
+                <label
+                  htmlFor="babolat"
+                  className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
+                >
+                  <input
+                    type="checkbox"
+                    id="babolat"
+                    value="babolat"
+                    onChange={() => {}}
+                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  />
+                  <span className="text-base">Babolat</span>
+                </label>
+              </div>
+            </div>
           </SideNav>
 
           {loading ? <Loader />

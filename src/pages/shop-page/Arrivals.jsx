@@ -31,7 +31,7 @@ const Arrivals = () => {
 
   const handleFilteredActivities = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts())
+      dispatch(getProducts());
     } else {
       dispatch(getProducts());
     }
@@ -39,7 +39,7 @@ const Arrivals = () => {
 
   const handleFilteredFeatures = (e) => {
     if (e.target.checked) {
-      dispatch(getProducts())
+      dispatch(getProducts());
     } else {
       dispatch(getProducts());
     }
@@ -186,17 +186,17 @@ const Arrivals = () => {
 
           { loading ? <Loader />
             : (
-                     <div className="product-align w-full">
-                  <ProductsGrid products={latestArrival} error={error} filter="bag" />
+              <div className="product-align w-full">
+                <ProductsGrid products={latestArrival} error={error} filter="bag" />
 
-                  <div className="product-details">
-                    <h3> BABOLAT TENNIS BAGS BRANDS</h3>
-                    <p>
-                      {category?.description}
-                    </p>
+                <div className="product-details">
+                  <h3> BABOLAT TENNIS BAGS BRANDS</h3>
+                  <p>
+                    {category?.description}
+                  </p>
 
-                  </div>
                 </div>
+              </div>
             )}
           <div />
 

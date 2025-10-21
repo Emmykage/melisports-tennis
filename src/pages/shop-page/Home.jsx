@@ -32,7 +32,7 @@ const ShopHome = () => {
     dispatch(getSportCategories());
     dispatch(getProducts());
 
-    dispatch(getLetestProducts())
+    dispatch(getLetestProducts());
   }, []);
 
   return (
@@ -159,7 +159,7 @@ const ShopHome = () => {
       <HomeEquipmentInfo />
       <SurveyButton />
       <Reviews />
-      <BrandsSponsorComponents/>
+      <BrandsSponsorComponents />
 
     </>
   );

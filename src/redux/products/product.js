@@ -26,14 +26,12 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   extraReducers: {
-    [getProducts.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        loading: false,
-        products: action.payload.data,
-        error: false,
-      };
-    },
+    [getProducts.fulfilled]: (state, action) => ({
+      ...state,
+      loading: false,
+      products: action.payload.data,
+      error: false,
+    }),
 
     [getProducts.pending]: (state) => ({
       ...state,
@@ -132,5 +130,5 @@ const productsSlice = createSlice({
 // const clearSearchField = createAction()
 export default productsSlice.reducer;
 export const {
-  filterPlayerType,  clearSearch, searchedPage, resetProduct,
+  filterPlayerType, clearSearch, searchedPage, resetProduct,
 } = productsSlice.actions;
