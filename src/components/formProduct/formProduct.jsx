@@ -131,7 +131,7 @@ const ProductForm = ({ onSubmit }) => {
       formData.append('product[name]', e.target.name?.value ?? '');
 
       formData.append('product[discount]', isDiscountActive ? 'active_discount' : 'inactive_discount');
-      e.target.discount_amount?.value && formData.append('product[discount_percentage]', e.target.discount_percentage?.value ?? '');
+      e.target.discount_percentage?.value && formData.append('product[discount_percentage]', e.target.discount_percentage?.value ?? '');
       formData.append('product[product_quantity]', e.target.product_quantity?.value ?? '');
       formData.append('product[thickness]', e.target.thickness?.value ?? '');
 
