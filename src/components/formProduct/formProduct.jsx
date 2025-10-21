@@ -14,9 +14,11 @@ import {
 } from '../../constants/variance';
 import { addProduct } from '../../redux/actions/product';
 import Button from '../buttons/Button';
+import FormInput from '../formInput/FormInput';
 
-const ProductForm = ({ onSubmit }) => {
+const ProductForm = ({ onSubmit, product }) => {
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [formdata, setFormdata] = useState({});
   const { product_categories, sport_categories, updater } = useSelector((state) => state.product_categories);
 
   const [productColour, setProductColour] = useState([]);
@@ -93,29 +95,31 @@ const ProductForm = ({ onSubmit }) => {
     });
   };
 
-  const handleValue = (value) => {
-    const cat = sport_categories.find((item) => item.id == value);
-    setSelectedSport(cat);
-  };
-
-  console.log(productName);
-
   const [isDiscountActive, setIsDiscountActive] = useState(false);
-  const [discountAmount, setDiscountAmount] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     if (imagePreviews.length > 0 || e.target.image.value) {
-      const colorsValues = productColour.map((option) => option.value);
       const formData = new FormData();
 
-      colorsValues && colorsValues.forEach((item, index) => (
-        formData.append('product[colours][]', item)
-      ));
+      Object.entries(formdata).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach((item, index) => {
+            formData.append(`product[${key}][${index}]`, item);
+          });
+        } else {
+          formData.append(key, value);
+        }
+        // value && formData.append(key, value);
+      });
 
-      gripSizes && gripSizes.forEach((item, index) => (
-        formData.append(`product[grip_sizes][${index}]`, item)
+      // colorsValues && colorsValues.forEach((item, index) => (
+      //   formData.append('product[colours][]', item)
+      // ));
 
-      ));
+      // gripSizes && gripSizes.forEach((item, index) => (
+      //   formData.append(`product[grip_sizes][${index}]`, item)
+
+      // ));
       productInventories.forEach(({
         quantity, size, price, sku, locations,
       }, i) => {
@@ -128,11 +132,6 @@ const ProductForm = ({ onSubmit }) => {
         formData.append(`product[product_inventories_attributes][${i}][price]`, price || (e.target.price.value ?? ''));
       });
 
-      formData.append('product[name]', e.target.name?.value ?? '');
-
-      formData.append('product[discount]', isDiscountActive ? 'active_discount' : 'inactive_discount');
-      e.target.discount_percentage?.value && formData.append('product[discount_percentage]', e.target.discount_percentage?.value ?? '');
-      formData.append('product[product_quantity]', e.target.product_quantity?.value ?? '');
       formData.append('product[thickness]', e.target.thickness?.value ?? '');
 
       formData.append('product[status]', e.target.status?.value ?? '');
@@ -140,22 +139,12 @@ const ProductForm = ({ onSubmit }) => {
       formData.append('product[head_shape]', e.target.head_shape?.value ?? '');
       formData.append('product[recommended_grip]', e.target.recommended_grip?.value ?? '');
 
-      formData.append('product[ms_code]', e.target.ms_code?.value ?? '');
-      formData.append('product[price]', e.target.price?.value ?? '');
-      formData.append('product[ms_item_code]', e.target.ms_item_code?.value ?? '');
       formData.append('product[product_category_id]', e.target.product_category_id?.value ?? '');
       formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? '');
       formData.append('product[level_id]', e.target.level_id?.value ?? '');
       formData.append('product[gender_id]', e.target.gender_id?.value ?? '');
       formData.append('product[head_size]', e.target.head_size?.value ?? '');
       formData.append('product[weight]', e.target.weight?.value ?? '');
-      formData.append('product[length]', e.target.length?.value ?? '');
-      formData.append('product[stiffness]', e.target.stiffness?.value ?? '');
-      formData.append('product[composition]', e.target.composition?.value ?? '');
-      formData.append('product[description]', e.target.description?.value ?? '');
-      formData.append('product[tension]', e.target.tension?.value ?? '');
-      formData.append('product[strung]', e.target.strung?.value ?? '');
-      formData.append('product[image]', e.target.image?.value ?? '');
 
       formData.append('product[description_body]', e.target.description_body?.value ?? '');
 
@@ -171,65 +160,72 @@ const ProductForm = ({ onSubmit }) => {
       alert('No image: Add a product image');
     }
   };
+
+  console.log(sport_categories, formdata?.length);
+
   return (
     <div className="product-form bg-white admin m-auto w-full">
 
       <form onSubmit={handleSubmit} ref={formRef}>
 
         <div className="p-3 flex">
-          <div className="ms_code mr-auto max-w-80 w-full">
-            <label htmlFor="quantity font-medium text-gray-700">Sport Category</label>
+          {selectSport && (
+            <FormInput
+              className="ms_code mr-auto max-w-80 w-full"
+              label="Sport Category"
+              type="select"
 
-            {selectSport && (
-            <Select
-              onChange={(selectedOption) => handleValue(selectedOption.value)}
+              onChange={({ value }) => {
+                const cat = sport_categories.find((item) => item.id == value);
+                setSelectedSport(cat);
+              }}
               placeholder="sport category"
-              defaultValue={{ value: selectSport?.id, label: selectSport?.name }}
-              // defaultValue={{ value: sport_categories[1]?.id, label: sport_categories[1]?.name }}
-
+              value={{ value: selectSport?.id, label: selectSport?.name }}
               required
               name="sport_category_id"
               id="sport_category_id"
               options={sport_categories.map((cat) => ({ value: cat.id, label: cat.name }))}
             />
-            )}
-          </div>
+          )}
 
-          <div className="ms_code ml-auto w-48 bg-green-500">
-            <label htmlFor="quantity font-medium text-gray-700">
-              ms product code
-              {productStatus == 'active' && '*'}
-            </label>
-            <input type="text" name="ms_code" id="ms_code" className="bg-green-200" required={productStatus === 'active'} />
-          </div>
+          <FormInput
+            className="ml-auto w-48 bg-green-500"
+            label="ms product code"
+            productStatus="active"
+            type="text"
+            name="ms_code"
+            id="ms_code"
+            required={productStatus === 'active'}
+          />
 
         </div>
 
         <div className="p-3 flex justify-between">
-          <div className="max-w-80 w-full">
-            <label htmlFor="font-medium text-gray-700">Status</label>
-            <Select
-              onChange={(selectedOption) => setProductStatus(selectedOption.value)}
-              defaultValue={{ value: 'active', label: 'active' }}
-              required
-              name="status"
-              id="status"
-              options={[{ value: 'inactive', label: 'inactive' }, { value: 'active', label: 'active' }]}
-            />
-          </div>
+          <FormInput
+            className="max-w-80 w-full"
+            label="Status"
+            type="select"
+            onChange={(selectedOption) => setFormdata({ ...formdata, status: selectedOption.value })}
+            defaultValue={{ value: 'active', label: 'active' }}
+            required
+            name="status"
+            id="status"
+            options={[{ value: 'inactive', label: 'inactive' }, { value: 'active', label: 'active' }]}
+          />
 
-          <div className=" w-48">
-            <label htmlFor="product_quantity text-gray-700 font-bold bg-red-400">
-              Quantity
-              {productStatus == 'active' && '*'}
-            </label>
-            <input type="number" name="product_quantity" id="product_quantity" required />
-          </div>
+          <FormInput
+            className=" w-48"
+            label="Quantity"
+            name="product_quantity"
+            onChange={(e) => setFormdata({ ...formdata, product_quantity: e.target.value })}
 
-          {/* </div> */}
+            productStatus="active"
+            type="number"
+            required
+          />
 
         </div>
-        <div className=" bg-white p-4 rounded shadow">
+        <div className="bg-white p-4 rounded shadow">
 
           <div className="flex items-center justify-between">
             <Button
@@ -247,120 +243,98 @@ const ProductForm = ({ onSubmit }) => {
 
           {/* Discount amount (only shows if active) */}
           {isDiscountActive && (
-          <div>
-            <label className="block text-sm mb-1">Discount (%)</label>
-            <input
-              type="number"
-              name="discount_percentage"
-            // value={discountAmount}
-            // onChange={(e) => setDiscountAmount(e.target.value)}
-              placeholder="e.g. 20"
-              className="w-full px-3 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
+          <FormInput
+            label="Discount (%)"
+            value={product?.discount_percentage}
+
+            type="number"
+            name="discount_percentage"
+
+            onChange={(e) => setFormdata({ discount_percentage: e.target.value })}
+            placeholder="e.g. 20"
+            className="w-full px-3 mt-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
           )}
 
         </div>
 
         <div className=" bg-white p-4 rounded shadow">
           <div className="flex justify-between gap-3 text-sm my-1">
-            <div className="flex-1">
-              <label htmlFor="name">
-                <span className="text-gray-500 font-semibold text-sm">Product Name *</span>
-                {' '}
-                <span />
-                {' '}
-              </label>
-              <input
+            <FormInput
+              className="flex-1"
+              name="name"
+              label="Name"
+              type="text"
+              id="name"
+              value={formdata.name || ''}
+              onChange={(e) => setFormdata({ ...formdata, name: e.target.value.toLowerCase() })}
+              placeholder="product name"
+              required
+            />
 
-                name="name"
-                type="text"
-                id="name"
-                onChange={(e) => setProductName(e.target.value.toLowerCase())}
-                placeholder="product name"
-                required
-              />
+            <FormInput
+              className="flex-1"
+              label="Price: NGN"
+              productStatus="active"
+              name="price"
+              id="price"
+              type="number"
+              placeholder="price"
+              value={formdata.price || ''}
+              onChange={(e) => setFormdata({ ...formdata, price: e.target.value.toLowerCase() })}
+              required={productStatus === 'active'}
+            />
 
-            </div>
-            <div className="flex-1">
-              <label>
-                <span className="text-gray-500 font-semibold text-sm">
-                  Price: NGN
-                  {productStatus == 'active' && '*'}
-                </span>
-                {' '}
-                <span />
-              </label>
-              <input
-                name="price"
-                id="price"
-                type="number"
-                placeholder="price"
-                required={productStatus === 'active'}
-              />
-
-            </div>
           </div>
 
           <div className="flex justify-between gap-3 text-sm my-1">
 
-            <div className="flex-1">
-              <label htmlFor="sku" className="text-gray-500 font-semibold text-sm">
-                {' '}
-                MS Item Code
-                {productStatus == 'active' && '*'}
-              </label>
-              <input
-                name="ms_item_code"
-                id="ms_item_code"
-                type="text"
-                placeholder="Item code"
-                required={productStatus === 'active'}
-              />
+            <FormInput
+              className="flex-1"
+              label="MS Item Code"
+              productStatus="active"
+              name="ms_item_code"
+              placeholder="Item code"
+              required={productStatus === 'active'}
+            />
 
-            </div>
-            <div className="flex-1">
-              <label htmlFor="colour" className="text-gray-500 font-semibold text-sm">
-                Colour
-              </label>
-              <Select
-                name="product_colour"
-                placeholder="colour"
-                id="colour"
-                options={colors}
-                onChange={(selectedOption) => setProductColour(selectedOption)}
+            <FormInput
+              className="flex-1"
+              label="Colour"
+              value={product?.colours?.map((color) => ({ value: color, label: color }))}
 
-                isMulti
-              />
+              type="select"
+              name="product_colour"
+              placeholder="colour"
+              id="colour"
+              options={colors}
+              onChange={(selectedOption) => setFormdata({ ...formdata, colours: selectedOption })}
 
-            </div>
+              isMulti
+            />
           </div>
 
           <div className="flex justify-between gap-3 text-sm my-1 ">
 
-            <div className="flex-1">
-              <label htmlFor="" className="text-gray-500 font-semibold text-sm">
-                <span> Select product category *</span>
-                {' '}
-                <span />
-                {' '}
-              </label>
+            <FormInput
+              className="flex-1"
+              label="Select product category"
+              value={{ value: product?.product_category?.id, label: product?.product_category?.name }}
 
-              <Select
-                placeholder="product category"
-                onChange={({ value }) => {
-                  const { name } = product_categories.find((item) => item.id == value);
-                  setSelectTool(name);
-                }}
-                required
-                name="product_category_id"
-                id="product_category_id"
-                options={product_categories.map((cat) => (
-                  { value: cat.id, label: cat.name }
-                ))}
-              />
+              type="select"
+              placeholder="product category"
+              onChange={({ value }) => {
+                const { name } = product_categories.find((item) => item.id == value);
+                setSelectTool(name);
+              }}
+              required
+              name="product_category_id"
+              id="product_category_id"
+              options={product_categories.map((cat) => (
+                { value: cat.id, label: cat.name }
+              ))}
+            />
 
-            </div>
             <div className="flex-1">
               <label htmlFor="" className="text-gray-500 font-semibold text-sm">Gender </label>
               <Select
@@ -382,114 +356,106 @@ const ProductForm = ({ onSubmit }) => {
                 <legend className="font-bold">Racquets</legend>
 
                 <div className="flex gap-4 ">
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">Professionalism  </label>
-                    <Select
-                      placeholder="professionalism"
-                      id="level_id"
-                      name="level_id"
-                      options={levels.map((level) => ({
-                        value: level.id,
-                        label: level.stage,
-                      }))}
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label htmlFor="strung" className="text-gray-500 font-semibold text-sm">
-                      strung/unstrung
-                    </label>
-                    <Select
-                      name="strung"
-                      id="strung"
-                      options={strung}
-                    />
+                  <FormInput
+                    className="flex-1"
+                    label="Professionalism"
+                    type="select"
+                    placeholder="professionalism"
+                    id="level_id"
+                    name="level_id"
+                    value={{ value: product?.level?.id, label: product?.level?.stage }}
+                    onChange={({ value }) => setFormdata({ ...formdata, level_id: value })}
+                    options={levels.map((level) => ({
+                      value: level.id,
+                      label: level.stage,
 
-                  </div>
+                    }))}
+                  />
+                  <FormInput
+                    className="flex-1"
+                    label="strung/unstrung"
+                    value={{ value: product?.strung, label: product?.strung }}
+
+                    type="select"
+                    onChange={({ value }) => setFormdata({ ...formdata, strung: value })}
+                    name="strung"
+                    id="strung"
+                    options={strung}
+                  />
 
                 </div>
 
                 <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                  <div className="flex-1">
-                    <label htmlFor="">
-                      {' '}
-                      <span className="text-gray-500 font-semibold text-sm">
-                        Head size: cm
-                        <sup>2</sup>
-                      </span>
-                      {' '}
-                    </label>
-                    <Select
-                      name="head_size"
-                      id="head_size"
-                      type="text"
-                      options={headSizes}
-                      placeholder="headsize"
-                    />
+                  <FormInput
+                    label="Head size: cm"
+                    name="head_size"
+                    id="head_size"
+                    type="select"
+                    value={{ label: product?.head_size, value: product?.head_size }}
 
-                  </div>
+                    options={headSizes}
+                    placeholder="headsize"
+                  />
 
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">
-                      Composition
-                    </label>
-                    <Select
-                      name="composition"
-                      id="composition"
-                      options={composition}
-                    />
-
-                  </div>
+                  <FormInput
+                    className="flex-1"
+                    label="Composition"
+                    name="composition"
+                    type="select"
+                    id="composition"
+                    options={composition}
+                    onChange={(selectedOption) => formdata({ ...formdata, composition: selectedOption })}
+                  />
 
                 </div>
                 <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
-                    <Select
-                      name="length"
-                      id="length"
-                      options={length}
-                      type="text"
-                      placeholder="lenght"
-                    />
+                  <FormInput
+                    className="flex-1"
+                    label="Length (mm)"
+                    type="select"
+                    name="length"
+                    options={length}
+                    placeholder="length"
+                    onChange={({ value }) => setFormdata({ ...formdata, length: value })}
+                  />
 
-                  </div>
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
-                    <input
-                      name="weight"
-                      id="weight"
-                      type="text"
-                      placeholder="weight"
-                    />
-
-                  </div>
+                  <FormInput
+                    className="flex-1"
+                    label="Weight (g)"
+                    name="weight"
+                    id="weight"
+                    type="text"
+                      // value={product?.weight}
+                    onChange={(e) => setFormdata({ ...formdata, weight: e.target.value })}
+                    placeholder="weight"
+                  />
 
                 </div>
 
                 <div className="form-row my-1">
 
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">tension (kg) </label>
-                    <input
-                      name="tension"
-                      id="tension"
-                      type="text"
-                      placeholder="tension"
-                    />
+                  <FormInput
+                    className="flex-1"
+                    label="tension (kg)"
+                    name="tension"
+                    id="tension"
+                    type="text"
+                    placeholder="tension"
+                    onChange={(e) => setFormdata({ ...formdata, tension: e.targt.value })}
+                  />
 
-                  </div>
-                  <div className="flex-1">
-                    <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
-                    <input
-                      name="stiffness"
-                      id="stiffness"
-                      type="text"
-                      placeholder="tension"
-                    />
+                  <FormInput
+                    className="flex-1"
+                    label="Stiffness (kg)"
+                    name="stiffness"
+                    id="stiffness"
+                    type="text"
+                    placeholder="stiffness"
+                    onChange={(e) => setFormdata({ ...formdata, stiffness: e.targt.value })}
 
-                  </div>
+                  />
 
                 </div>
                 <div className="justify-end flex my-1 bg-gray-200">
@@ -524,55 +490,55 @@ const ProductForm = ({ onSubmit }) => {
 
                   </div>
 
-                  {productInventories.map(({ quantity, sku }, index) => (
+                  {productInventories.map(({size, quantity, sku }, index) => (
                     <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
-                      <div className="flex-1">
-                        <Select
-                          defaultValue=""
-                          name="sizes"
-                          placeholder="Grip Sizes"
-                          id="grip_size"
-                          onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
-                          options={gripSizes}
-                          size={1}
-                        />
-                      </div>
+                      <FormInput
+                      type='select'
+                        className="flex-1"
+                        value={{ value: size, label: size }}
+                        name="sizes"
+                        placeholder="Grip Sizes"
+                        id="grip_size"
+                        onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
+                        options={gripSizes}
+                        size={1}
+                      />
 
-                      <div className="flex-1">
-                        <input
-                          value={quantity}
-                          name="quantity"
-                          placeholder="Quantity"
-                          id="qty"
-                          onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
-                        />
+                      <FormInput
+                        className="flex-1"
+                        value={quantity}
+                        name="quantity"
+                        placeholder="Quantity"
 
-                      </div>
-                      <div className="flex-1">
-                        <input
-                          value={sku}
-                          name="sku"
-                          id="sku"
-                          onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
-                          placeholder="SKU"
-                        />
+                        id="qty"
+                        onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
+                      />
 
-                      </div>
-                      <div className="flex-1">
-                        <Select
-                          name="locations"
-                          id="location"
-                          onChange={(selectedOption) => {
-                            const value = selectedOption.map((option) => option.value);
-                            addToProductInventory({ key: 'locations', value }, index);
-                          }}
-                          options={locations}
-                          placeholder="Add Product Location"
-                          isMulti
-                          size={1}
-                        />
-                      </div>
+                      <FormInput
+                        className="flex-1"
+                        label="SKU"
+                        value={sku}
+                        name="sku"
+                        id="sku"
+                        onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
+                        placeholder="SKU"
+                      />
+
+                      <FormInput
+                        className="flex-1"
+                        type="select"
+                        name="locations"
+                        id="location"
+                        onChange={(selectedOption) => {
+                          const value = selectedOption.map((option) => option.value);
+                          addToProductInventory({ key: 'locations', value }, index);
+                        }}
+                        options={locations}
+                        placeholder="Add Product Location"
+                        isMulti
+                        size={1}
+                      />
 
                       <span
                         className=""
@@ -598,118 +564,108 @@ const ProductForm = ({ onSubmit }) => {
                     <legend className="font-bold">Padel</legend>
 
                     <div className="flex gap-4 ">
-                      <div className="bg-r w-full">
-                        <label htmlFor="player_type" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
-                        <Select
-                          placeholder="Player Typology"
-                          id="player_type"
-                          name="player_type"
-                          options={playType.map((type) => ({
-                            value: type.value,
-                            label: type.label,
-                          }))}
-                        />
-                      </div>
+                      <FormInput
+                        className="bg-r w-full"
+                        label="Type of Player"
+                        type="select"
+                        placeholder="Player Typology"
+                        id="player_type"
+                        name="player_type"
+                        value={{ value: product?.player_type, label: product?.player_type }}
+                        options={playType.map((type) => ({
+                          value: type.value,
+                          label: type.label,
+                        }))}
+                      />
 
                     </div>
 
                     <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                      <div className="flex-1">
-                        <label htmlFor="head_shape">
-                          {' '}
-                          <span className="text-gray-500 font-semibold text-sm">
-                            Head shape
-                          </span>
-                          {' '}
-                        </label>
-                        <Select
-                          name="head_shape"
-                          id="head_shape"
-                          type="text"
-                          options={headShapes}
-                          placeholder="head Shape"
-                        />
+                      <FormInput
+                        className="flex-1"
+                        label="Head shape"
+                        name="head_shape"
+                        type="select"
+                        id="head_shape"
+                        onChange={(selectedOption) => setFormdata({ ...formdata, head_shape: selectedOption })}
+                        options={headShapes}
+                        placeholder="head Shape"
+                      />
 
-                      </div>
-                      <div className="flex-1">
-                        <label htmlFor="recommended_grip">
-                          {' '}
-                          <span className="text-gray-500 font-semibold text-sm">
-                            Recommended Grip
-                          </span>
-                          {' '}
-                        </label>
-                        <Select
-                          defaultValue={{ value: recommendedGrip[0]?.value, label: recommendedGrip[0]?.label }}
-                          name="recommended_grip"
-                          id="recommended_grip"
-                          type="text"
-                          options={recommendedGrip}
-                        />
-
-                      </div>
+                      <FormInput
+                        className="flex-1"
+                        label="Recommended Grip"
+                        type="select"
+                        value={{ value: product?.recommended_grip, label: product?.recommended_grip }}
+                        onChange={({ value }) => {
+                          console.log(value);
+                          setFormdata({ ...formdata, recommended_grip: value });
+                        }}
+                        name="recommended_grip"
+                        id="recommended_grip"
+                        options={recommendedGrip}
+                      />
 
                     </div>
                     <div className="flex gap-4 flex-col md:flex-row my-1">
 
-                      <div className="flex-1">
-                        <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
-                        <input
-                          name="length"
-                          id="length"
-                  // options={balanceTypes}
-                          type="text"
-                          placeholder="Length in MM"
-                        />
+                      <FormInput
+                        className="flex-1"
+                        label="Length (mm)"
+                        name="length"
+                        id="length"
+                        value={formdata.length || ''}
+                        onChange={({ value }) => setFormdata({ ...formdata, length: value })}
+                        type="text"
+                        placeholder="Length in MM"
+                      />
 
-                      </div>
-                      <div className="flex-1">
-                        <label htmlFor="" className="text-gray-500 font-semibold text-sm">
-                          Composition
-                        </label>
-                        <Select
-                          name="composition"
-                          id="composition"
-                          options={composition}
-                        />
-
-                      </div>
+                      <FormInput
+                        className="flex-1"
+                        label="Composition"
+                        name="composition"
+                        onChange={(e) => setFormdata({ ...formdata, length: e.target.value })}
+                        value={formdata?.composition}
+                        id="composition"
+                        options={composition}
+                        type="select"
+                      />
 
                     </div>
 
                     <div className="form-row my-1">
-                      <div className="flex-1">
-                        <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)    </label>
-                        <input
-                          name="weight"
-                          id="weight"
-                          type="text"
-                          placeholder="weight"
-                        />
+                      <FormInput
+                        className="flex-1"
+                        label="Weight (g)"
+                        name="weight"
+                        id="weight"
+                        type="text"
+                        placeholder="weight"
+                        onChange={(e) => setFormdata({ ...formdata, weight: e.target.value })}
+                      />
 
-                      </div>
+                      <FormInput
+                        className="flex-1"
+                        label="Thickness (g)"
+                        name="thickness"
+                        id="thickness"
+                        type="text"
+                        placeholder="thickness"
+                        onChange={(e) => setFormdata({ ...formdata, thickness: e.target.value })}
+                      />
 
-                      <div className="flex-1">
-                        <label htmlFor="thickness" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
-                        <input
-                          name="thickness"
-                          id="thickness"
-                          type="text"
-                          placeholder="thickness"
-                        />
+                      <FormInput
+                        className="flex-1"
+                        label="Stiffness (kg) "
 
-                      </div>
-                      <div className="flex-1">
-                        <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
-                        <input
-                          name="stiffness"
-                          id="stiffness"
-                          type="text"
-                          placeholder="tension"
-                        />
+                        name="stiffness"
+                        id="stiffness"
+                        onChange={(e) => setFormdata({ ...formdata, stiffness: e.target.value })}
 
-                      </div>
+                        type="text"
+                        placeholder="stiffness"
+                      />
 
                     </div>
                     <div className="justify-end flex my-0 ">
@@ -746,54 +702,49 @@ const ProductForm = ({ onSubmit }) => {
                       {productInventories.map((_, index) => (
                         <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
-                          <div className="flex-1">
-                            <Select
-                              defaultValue=""
-                              name="sizes"
-                              placeholder="cloth size"
-                              id="padel_size"
-                              onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
-                              options={clothSizes}
-                              size={1}
-                            />
-                          </div>
+                          <FormInput
+                            className="flex-1"
+                            defaultValue=""
+                            name="sizes"
+                            placeholder="cloth size"
+                            id="padel_size"
+                            onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
+                            options={clothSizes}
+                            size={1}
+                          />
 
-                          <div className="flex-1">
-                            <input
-                              value={productInventories[index].quantity}
-                              name="quantity"
-                              placeholder="Quantity"
-                              id="qty"
-                              onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
-                            />
+                          <FormInput
+                            className="flex-1"
+                            value={productInventories[index].quantity}
+                            name="quantity"
+                            placeholder="Quantity"
+                            id="qty"
+                            onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
+                          />
 
-                          </div>
-                          <div className="flex-1">
-                            <input
-                              value={productInventories[index].sku}
-                              name="sku"
-                              id="sku"
+                          <FormInput
+                            value={productInventories[index].sku}
+                            name="sku"
+                            id="sku"
+                            onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
+                            placeholder="SKU"
+                          />
 
-                              onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
-                              placeholder="SKU"
-                            />
-
-                          </div>
-                          <div className="flex-1">
-                            <Select
+                          <FormInput
+                            type="select"
+                            value={locations?.map((location) => ({ value: location, label: location }))}
                     // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
-                              name="locations"
-                              id="location"
-                              onChange={(selectedOption) => {
-                                const value = selectedOption.map((option) => option.value);
-                                addToProductInventory({ key: 'locations', value }, index);
-                              }}
-                              options={locations}
-                              placeholder="Add Product Location"
-
-                              size={1}
-                            />
-                          </div>
+                            name="locations"
+                            id="location"
+                            onChange={(selectedOption) => {
+                              const value = selectedOption.map((option) => option.value);
+                              addToProductInventory({ key: 'locations', value }, index);
+                            }}
+                            options={locations}
+                            placeholder="Add Product Location"
+                            isMulti
+                            size={1}
+                          />
 
                           <span
                             className=""
@@ -820,42 +771,42 @@ const ProductForm = ({ onSubmit }) => {
                       <legend className="font-bold">Badminton</legend>
 
                       <div className="flex gap-4 ">
-                        <div className="bg-r w-full">
-                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">Type of Player  </label>
-                          <Select
-                            placeholder="Player Typology"
-                            id="player_type"
-                            name="head_shape"
-                            options={playType.map((type) => ({
-                              value: type.value,
-                              label: type.label,
-                            }))}
-                          />
-                        </div>
+                        <FormInput
+                          className="bg-r w-full"
+                          label="Type of Player"
+                          type="select"
+                          placeholder="Player Typology"
+                          id="player_type"
+                          name="head_shape"
+                          options={playType.map((type) => ({
+                            value: type.value,
+                            label: type.label,
+                          }))}
+                        />
 
                       </div>
 
                       <div className="flex gap-4 flex-col md:flex-row my-1">
+                        <FormInput
+                          className="bg-r w-full"
+                          label=" Length (mm) "
+                          type="select"
+                          name="length"
+                          id="length"
+                          options={length}
+                          placeholder="lenght"
+                          onChange={({ value }) => setFormdata({ ...formdata, length: value })}
+                        />
 
                         <div className="flex-1">
-                          <label htmlFor="balance_type" className="text-gray-500 font-semibold text-sm"> Length (mm)          </label>
-                          <Select
-                            name="length"
-                            id="length"
-                            options={length}
-                            type="text"
-                            placeholder="lenght"
-                          />
-
-                        </div>
-                        <div className="flex-1">
-                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">
-                            Composition
-                          </label>
-                          <Select
+                          <FormInput
+                            className="text-gray-500 font-semibold text-sm"
+                            label="Composition"
+                            type="select"
                             name="composition"
                             id="composition"
                             options={composition}
+                            onChange={({ value }) => setFormdata({ ...formdata, composition: value })}
                           />
 
                         </div>
@@ -863,37 +814,37 @@ const ProductForm = ({ onSubmit }) => {
                       </div>
 
                       <div className="form-row my-1">
-                        <div className="flex-1">
-                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">Weight (g)</label>
-                          <input
-                            name="weight"
-                            id="weight"
-                            type="text"
-                            placeholder="weight"
-                          />
+                        <FormInput
+                          className="flex-1"
+                          label="Weight (g)"
+                          name="weight"
+                          id="weight"
+                          type="text"
+                          placeholder="Weight"
+                          onChange={(e) => setFormdata({ ...formdata, weight: e.target.value })}
 
-                        </div>
+                        />
 
-                        <div className="flex-1">
-                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">thickness (mm) </label>
-                          <input
-                            name="thickness"
-                            id="thickness"
-                            type="text"
-                            placeholder="thickness"
-                          />
+                        <FormInput
+                          className="flex-1"
+                          label="thickness (mm)"
+                          name="thickness"
+                          id="thickness"
+                          type="text"
+                          placeholder="thickness"
+                          onChange={(e) => setFormdata({ ...formdata, thickness: e.target.value })}
+                        />
 
-                        </div>
-                        <div className="flex-1">
-                          <label htmlFor="" className="text-gray-500 font-semibold text-sm">Stiffness (kg) </label>
-                          <input
-                            name="stiffness"
-                            id="stiffness"
-                            type="text"
-                            placeholder="tension"
-                          />
-
-                        </div>
+                        <FormInput
+                          className="flex-1"
+                          label="Stiffness (kg)"
+                          value={product?.stiffness}
+                          onChange={(e) => formdata({ ...formdata, stiffness: e.target.value })}
+                          name="stiffness"
+                          id="stiffness"
+                          type="text"
+                          placeholder="tension"
+                        />
 
                       </div>
                       <div className="">
@@ -930,17 +881,17 @@ const ProductForm = ({ onSubmit }) => {
                         {productInventories.map((_, index) => (
                           <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
-                            <div className="flex-1">
-                              <Select
-                                defaultValue=""
-                                name="sizes"
-                                placeholder="Badminton Grip size"
-                                id="badminton_size"
-                                onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
-                                options={gripSizes}
-                                size={1}
-                              />
-                            </div>
+                            <FormInput
+                              className="flex-1"
+                              type="select"
+                              defaultValue=""
+                              name="sizes"
+                              placeholder="Badminton Grip size"
+                              id="badminton_size"
+                              onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
+                              options={gripSizes}
+                              size={1}
+                            />
 
                             <div className="flex-1">
                               <input
@@ -952,32 +903,31 @@ const ProductForm = ({ onSubmit }) => {
                               />
 
                             </div>
-                            <div className="flex-1">
-                              <input
-                                value={productInventories[index].sku}
-                                name="sku"
-                                id="sku"
+                            <FormInput
+                              className="flex-1"
+                              value={productInventories[index].sku}
+                              name="sku"
+                              id="sku"
 
-                                onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
-                                placeholder="SKU"
-                              />
+                              onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
+                              placeholder="SKU"
+                            />
 
-                            </div>
-                            <div className="flex-1">
-                              <Select
+                            <FormInput
+                              type="select"
+                              className="flex-1"
                     // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
-                                name="locations"
-                                id="location"
-                                onChange={(selectedOption) => {
-                                  const value = selectedOption.map((option) => option.value);
-                                  addToProductInventory({ key: 'locations', value }, index);
-                                }}
-                                options={locations}
-                                placeholder="Add Product Location"
+                              name="locations"
+                              id="location"
+                              onChange={(selectedOption) => {
+                                const value = selectedOption.map((option) => option.value);
+                                addToProductInventory({ key: 'locations', value }, index);
+                              }}
+                              options={locations}
+                              placeholder="Add Product Location"
 
-                                size={1}
-                              />
-                            </div>
+                              size={1}
+                            />
 
                             <span
                               className=""
@@ -1036,56 +986,56 @@ const ProductForm = ({ onSubmit }) => {
                   {productInventories.map((_, index) => (
                     <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
-                      <div className="flex-1">
-                        <Select
-                          defaultValue=""
-                          name="sizes"
-                          placeholder="shoe size"
-                          id="sizes"
-                          onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
-                          options={shoeSizes}
-                          size={1}
-                        />
-                      </div>
+                      <FormInput
+                        className="flex-1"
+                        type="select"
+                        name="sizes"
+                        placeholder="shoe size"
+                        value={{ value: size, label: size }}
 
-                      <div className="flex-1">
-                        <input
-                          value={productInventories[index].quantity}
-                          name="quantity"
-                          id="qty"
-                          placeholder="Quantity"
+                        id="sizes"
+                        onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
+                        options={shoeSizes}
+                        size={1}
+                      />
 
-                          onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
-                        />
+                      <FormInput
+                        className="flex-1"
 
-                      </div>
-                      <div className="flex-1">
-                        <input
-                          value={productInventories[index].sku}
-                          name="sku"
-                          id="sku"
-                          placeholder="SKU"
+                        value={productInventories[index].quantity}
+                        name="quantity"
+                        id="qty"
+                        placeholder="Quantity"
 
-                          onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
-                        />
+                        onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
+                      />
 
-                      </div>
-                      <div className="flex-1">
-                        <Select
+                      <FormInput
+                        className="flex-1"
+                        value={productInventories[index].sku}
+                        name="sku"
+                        id="sku"
+                        placeholder="SKU"
+                        onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
+                      />
+
+                      <FormInput
+                        className="flex-1"
+                        type="select"
+                        value={locations?.map((location) => ({ value: location, label: location }))}
+
                     // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
-                          name="locations"
-                          placeholder="Add Product Location"
-                          id="location"
-                          onChange={(selectedOption) => {
-                            const value = selectedOption.map((option) => option.value);
-                            addToProductInventory({ key: 'locations', value }, index);
-                          }}
-                          options={locations}
+                        name="locations"
+                        placeholder="Add Product Location"
+                        onChange={(selectedOption) => {
+                          const value = selectedOption.map((option) => option.value);
+                          addToProductInventory({ key: 'locations', value }, index);
+                        }}
+                        options={locations}
 
-                          size={1}
-                          isMulti
-                        />
-                      </div>
+                        size={1}
+                        isMulti
+                      />
 
                       <span
                         className=""
@@ -1140,57 +1090,57 @@ const ProductForm = ({ onSubmit }) => {
 
                     </div>
 
-                    {productInventories.map((_, index) => (
+                    {productInventories.map(({
+                      locations, size, quantity, sku, _destroy,
+                    }, index) => (
                       <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
-                        <div className="flex-1">
-                          <Select
-                            defaultValue=""
-                            name="sizes"
-                            placeholder="cloth size"
-                            id="apparel_size"
-                            onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
-                            options={clothSizes}
-                            size={1}
-                          />
-                        </div>
+                        <FormInput
+                          value={{ value: size, label: size }}
 
-                        <div className="flex-1">
-                          <input
-                            value={productInventories[index].quantity}
-                            name="quantity"
-                            placeholder="Quantity"
-                            id="qty"
-                            onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
-                          />
+                          type="select"
+                          defaultValue=""
+                          name="sizes"
+                          placeholder="cloth size"
+                          id="apparel_size"
+                          onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
+                          options={clothSizes}
+                          size={1}
+                        />
 
-                        </div>
-                        <div className="flex-1">
-                          <input
-                            value={productInventories[index].sku}
-                            name="sku"
-                            id="sku"
-                            onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
-                            placeholder="SKU"
-                          />
+                        <FormInput
+                          value={productInventories[index].quantity}
+                          name="quantity"
+                          placeholder="Quantity"
+                          id="qty"
+                          onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
+                        />
 
-                        </div>
-                        <div className="flex-1">
-                          <Select
-                    // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
-                            name="locations"
-                            id="location"
-                            onChange={(selectedOption) => {
-                              const value = selectedOption.map((option) => option.value);
-                              addToProductInventory({ key: 'locations', value }, index);
-                            }}
-                            options={locations}
-                            placeholder="Add Product Location"
-                            isMulti
+                        <FormInput
+                          value={productInventories[index].sku}
+                          name="sku"
+                          id="sku"
+                          onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
+                          placeholder="SKU"
+                        />
 
-                            size={1}
-                          />
-                        </div>
+                        <FormInput
+                          className="flex-1"
+                          type="select"
+                          value={locations?.map((location) => ({ value: location, label: location }))}
+
+                          name="locations"
+                          id="location"
+                          onChange={(selectedOption) => {
+                            const value = selectedOption.map((option) => option.value);
+                            addToProductInventory({ key: 'locations', value }, index);
+                          }}
+                          options={locations}
+                          placeholder="Add Product Location"
+                          isMulti
+
+                          size={1}
+                        />
 
                         <span
                           className=""
@@ -1251,55 +1201,48 @@ const ProductForm = ({ onSubmit }) => {
                         <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
                           {productName.includes('socks') && (
-                          <div className="flex-1">
-                            <Select
-                              defaultValue=""
-                              name="sizes"
-                              placeholder="cloth size"
-                              id="apparel_size"
-                              onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
-                              options={clothSizes}
-                              size={1}
-                            />
-                          </div>
+                          <FormInput
+                            className="flex-1"
+                            type="select"
+                            name="sizes"
+                            placeholder="cloth size"
+                            id="apparel_size"
+                            onChange={({ value }) => addToProductInventory({ key: 'size', value }, index)}
+                            options={clothSizes}
+                            size={1}
+                          />
                           )}
 
-                          <div className="flex-1">
-                            <input
-                              value={productInventories[index].quantity}
-                              name="quantity"
-                              placeholder="Quantity"
-                              id="qty"
-                              onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
-                            />
+                          <FormInput
+                            value={productInventories[index].quantity}
+                            name="quantity"
+                            placeholder="Quantity"
+                            id="qty"
+                            onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
+                          />
 
-                          </div>
-                          <div className="flex-1">
-                            <input
-                              value={productInventories[index].sku}
-                              name="sku"
-                              id="sku"
-                              onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
-                              placeholder="SKU"
-                            />
+                          <FormInput
+                            value={productInventories[index].sku}
+                            name="sku"
+                            id="sku"
+                            onChange={(e) => { addToProductInventory({ key: 'sku', value: e.target.value }, index); }}
+                            placeholder="SKU"
+                          />
 
-                          </div>
-                          <div className="flex-1">
-                            <Select
-                    // value={{value: productInventories[index].location, label: productInventories[index]?.location}}
-                              name="locations"
-                              id="location"
-                              onChange={(selectedOption) => {
-                                const value = selectedOption.map((option) => option.value);
-                                addToProductInventory({ key: 'locations', value }, index);
-                              }}
-                              options={locations}
-                              placeholder="Add Product Location"
-                              isMulti
+                          <FormInput
+                            type="select"
+                            name="locations"
+                            id="location"
+                            onChange={(selectedOption) => {
+                              const value = selectedOption.map((option) => option.value);
+                              addToProductInventory({ key: 'locations', value }, index);
+                            }}
+                            options={locations}
+                            placeholder="Add Product Location"
+                            isMulti
 
-                              size={1}
-                            />
-                          </div>
+                            size={1}
+                          />
 
                           <span
                             className=""
