@@ -20,7 +20,7 @@ const FormInput = ({
         isMulti={isMulti}
         options={options}
         onChange={onChange}
-        defaultValue={value}
+        value={value ?? { value: options[0]?.value, label: options[0]?.label }}
         size={size}
       />
 

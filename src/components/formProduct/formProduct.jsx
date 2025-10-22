@@ -107,7 +107,7 @@ const ProductForm = ({ onSubmit, product }) => {
             formData.append(`product[${key}][${index}]`, item);
           });
         } else {
-          formData.append(key, value);
+          formData.append(`product[${key}]`, value);
         }
         // value && formData.append(key, value);
       });
@@ -132,22 +132,6 @@ const ProductForm = ({ onSubmit, product }) => {
         formData.append(`product[product_inventories_attributes][${i}][price]`, price || (e.target.price.value ?? ''));
       });
 
-      formData.append('product[thickness]', e.target.thickness?.value ?? '');
-
-      formData.append('product[status]', e.target.status?.value ?? '');
-      formData.append('product[player_type]', e.target.player_type?.value ?? '');
-      formData.append('product[head_shape]', e.target.head_shape?.value ?? '');
-      formData.append('product[recommended_grip]', e.target.recommended_grip?.value ?? '');
-
-      formData.append('product[product_category_id]', e.target.product_category_id?.value ?? '');
-      formData.append('product[sport_category_id]', e.target.sport_category_id?.value ?? '');
-      formData.append('product[level_id]', e.target.level_id?.value ?? '');
-      formData.append('product[gender_id]', e.target.gender_id?.value ?? '');
-      formData.append('product[head_size]', e.target.head_size?.value ?? '');
-      formData.append('product[weight]', e.target.weight?.value ?? '');
-
-      formData.append('product[description_body]', e.target.description_body?.value ?? '');
-
       Array.from(e.target.photo.files).forEach((file, index) => {
         formData.append(`product[photos][${index}]`, file);
       });
@@ -161,7 +145,7 @@ const ProductForm = ({ onSubmit, product }) => {
     }
   };
 
-  console.log(sport_categories, formdata?.length);
+  console.log(formdata);
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -319,13 +303,23 @@ const ProductForm = ({ onSubmit, product }) => {
             <FormInput
               className="flex-1"
               label="Select product category"
-              value={{ value: product?.product_category?.id, label: product?.product_category?.name }}
+              value={formdata?.product_category_id
+                ? {
+                  value: formdata.product_category_id,
+                  label:
+            product_categories.find(
+              (item) => item.id === formdata.product_category_id,
+            )?.name || 'Select category',
+                }
+                : null}
 
               type="select"
               placeholder="product category"
               onChange={({ value }) => {
-                const { name } = product_categories.find((item) => item.id == value);
+                const { name, id } = product_categories.find((item) => item.id == value);
+                console.log(name, id, value);
                 setSelectTool(name);
+                setFormdata({ ...formdata, product_category_id: value });
               }}
               required
               name="product_category_id"
@@ -335,17 +329,17 @@ const ProductForm = ({ onSubmit, product }) => {
               ))}
             />
 
-            <div className="flex-1">
-              <label htmlFor="" className="text-gray-500 font-semibold text-sm">Gender </label>
-              <Select
-                placeholder="gender"
-                name="gender_id"
-                options={genders.map((gender) => ({
-                  value: gender.id, label: gender.name,
-                }))}
-              />
-
-            </div>
+            <FormInput
+              className="flex-1"
+              label="Gender"
+              type="select"
+              placeholder="gender"
+              name="gender_id"
+              onChange={({ value }) => setFormdata({ ...formdata, gender_id: value })}
+              options={genders.map((gender) => ({
+                value: gender.id, label: gender.name,
+              }))}
+            />
 
           </div>
 
@@ -404,8 +398,10 @@ const ProductForm = ({ onSubmit, product }) => {
                     name="composition"
                     type="select"
                     id="composition"
+                    value={{ value: product?.composition, label: product?.composition }}
+
                     options={composition}
-                    onChange={(selectedOption) => formdata({ ...formdata, composition: selectedOption })}
+                    onChange={({ value }) => setFormdata({ ...formdata, composition: value })}
                   />
 
                 </div>
@@ -443,7 +439,7 @@ const ProductForm = ({ onSubmit, product }) => {
                     id="tension"
                     type="text"
                     placeholder="tension"
-                    onChange={(e) => setFormdata({ ...formdata, tension: e.targt.value })}
+                    onChange={(e) => setFormdata({ ...formdata, tension: e.target.value })}
                   />
 
                   <FormInput
@@ -453,7 +449,7 @@ const ProductForm = ({ onSubmit, product }) => {
                     id="stiffness"
                     type="text"
                     placeholder="stiffness"
-                    onChange={(e) => setFormdata({ ...formdata, stiffness: e.targt.value })}
+                    onChange={(e) => setFormdata({ ...formdata, stiffness: e.target.value })}
 
                   />
 
@@ -490,11 +486,11 @@ const ProductForm = ({ onSubmit, product }) => {
 
                   </div>
 
-                  {productInventories.map(({size, quantity, sku }, index) => (
+                  {productInventories.map(({ size, quantity, sku }, index) => (
                     <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
                       <FormInput
-                      type='select'
+                        type="select"
                         className="flex-1"
                         value={{ value: size, label: size }}
                         name="sizes"
@@ -599,7 +595,6 @@ const ProductForm = ({ onSubmit, product }) => {
                         type="select"
                         value={{ value: product?.recommended_grip, label: product?.recommended_grip }}
                         onChange={({ value }) => {
-                          console.log(value);
                           setFormdata({ ...formdata, recommended_grip: value });
                         }}
                         name="recommended_grip"
@@ -983,7 +978,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                   </div>
 
-                  {productInventories.map((_, index) => (
+                  {productInventories.map(({ size, location }, index) => (
                     <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
                       <FormInput
@@ -1297,7 +1292,7 @@ const ProductForm = ({ onSubmit, product }) => {
           </div>
 
           <div>
-            <input id="trix" type="hidden" name="description_body" />
+            <input id="trix" type="hidden" name="description_body" onChange={(e) => setFormdata({ ...formdata, description_body: e.target.value })} />
             <trix-editor input="trix" />
 
           </div>
