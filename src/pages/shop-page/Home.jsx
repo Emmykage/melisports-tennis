@@ -43,7 +43,7 @@ const ShopHome = () => {
         <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">
 
           {[
-            { title: 'Tennis', img: Tennis, link: '/racquets' },
+            { title: 'Tennis', img: Tennis, link: '/tennis' },
             { title: 'Padel', img: Padel, link: '/padels' },
             { title: 'Badminton', img: Badminton, link: '/badminton' },
           ].map((item, i) => (

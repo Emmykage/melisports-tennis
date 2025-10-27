@@ -12,6 +12,7 @@ function EventDetails() {
     <>
 
       <section className="bg-white pt-10 text-base">
+       
         <h2 className="text-3xl font-normal mb-4">A Child Can Serves 2025</h2>
         <p className="mb-2">
           📍

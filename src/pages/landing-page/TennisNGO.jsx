@@ -16,7 +16,15 @@ function SupportProgram() {
     <>
       <Nav store={false} />
       <Hero image={img} title="Tennis Clinic for Secondary Schools" />
-
+<section className='py-20 px-4 mt-20 text-center'>
+  <div className='max-w-7xl m-auto font-semibold '>
+     <p>
+          SCSF believe in the power of sport to transform lives, we are on a mission to use sport as a tool for positive change among young children in Africa, through providing opportunities that is inclusive, provide mentorship, and create safe spaces where children and young people can build personal growth, confidence, skills, and lasting connections.
+Support a Child in Sport Charity is a founded to support school children and  teenagers enjoy sport like tennis in their schools.
+Our vision is to become the leading sport charity in Nigeria, empowering thousands of young people through racquet sports and education while inspiring the young generation of leaders and champions.
+        </p>
+  </div>
+</section>
       <section className="md:py-20 px-4 bg-white">
 
         <div className="grid gap-4 max-w-7xl m-auto md:grid-cols-2 items-center mt-10">

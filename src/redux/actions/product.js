@@ -6,7 +6,12 @@ import { refreshToken } from '../../utils/refreshToken';
 
 const getProducts = createAsyncThunk('products/getProducts', async (filterParams = {}, { rejectWithValue }) => {
   console.log('get product cat => ', filterParams);
-  const params = new URLSearchParams(filterParams);
+
+  const cleanedParams = Object.fromEntries(
+    Object.entries(filterParams).filter(([_, value]) => value != null),
+  );
+
+  const params = new URLSearchParams(cleanedParams);
 
   const stringParams = params.toString();
   try {

@@ -23,6 +23,7 @@ import SecondarySlider from '../../components/feature/secondary-slider';
 import imgKids from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
 import Nav from '../../components/nav/Nav';
 import BrandsSponsorComponents from '../../components/brandSponsors/BrandsSponsorComponents';
+import bannerImg from '../../assets/images/banner/banner-1.jpg';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -68,8 +69,14 @@ const LandingHome = () => {
       <Nav store={false} />
 
       <SecondarySlider />
-      <VideoComp videoAd={videoAdd} />
 
+
+<section>
+  {/* <div className='max-w-7xl m-auto'> */}
+  <img src={bannerImg} alt="add banner" className='w-full object-contain h-full' />
+
+  {/* </div> */}
+</section>
       <section className="py-12 px-4">
         <div className="max-w-[1400px] w-full flex flex-col lg:flex-row gap-10 justify-between m-auto">
 
@@ -202,14 +209,13 @@ const LandingHome = () => {
           {/* Left Content */}
           <div className="bg-white shadow-lg p-8 rounded-2xl">
             <h2 className="text-4xl font-medium text-gray-900 leading-snug">
-              Serving Futures
-              {' '}
-              <br />
-              {' '}
-              with
-              {' '}
-              <h3 className="text-primary inline text-3xl font-medium">Tennis</h3>
-            </h2>
+              Support a Child in Sport 
+              <h3 className="text-primary inline text-4xl font-medium"> Tennis </h3>
+                      (SCSF)
+  </h2>
+            <p className="text-xl font-medium text-gray-900 leading-snug">
+              ...Serving Futures with Tennis
+            </p>
             <p className="text-gray-600 text-base mt-4 leading-relaxed">
               Every child deserves the chance to play, grow, and succeed.
               Our tennis programme nurtures kids to learn the sport,

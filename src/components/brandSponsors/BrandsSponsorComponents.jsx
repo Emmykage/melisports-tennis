@@ -6,7 +6,7 @@ const BrandsSponsorComponents = () => (
   <section className="py-12 bg-gray-50">
     <div className="max-w-7xl mx-auto px-6 text-center">
       <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-8">
-        Our Sponsors
+        Our Partners
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-center">

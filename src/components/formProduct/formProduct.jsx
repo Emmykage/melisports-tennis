@@ -36,6 +36,12 @@ const ProductForm = ({ onSubmit, product }) => {
     size: '', quantity: '', sku: '', locations: [],
   }]);
 
+  useEffect(() => {
+    if (product) {
+      setProductInventories(product?.product_inventories ?? productInventories);
+    }
+  }, [product?.product_inventories]);
+
   const [productName, setProductName] = useState('');
 
   const addToProductInventory = ({ key, value }, index) => {
@@ -145,7 +151,7 @@ const ProductForm = ({ onSubmit, product }) => {
     }
   };
 
-  console.log(formdata);
+  console.log(formdata, levels);
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -335,6 +341,7 @@ const ProductForm = ({ onSubmit, product }) => {
               type="select"
               placeholder="gender"
               name="gender_id"
+              value={{ value: formdata?.gender_id, label: genders?.find((gender) => gender.id === formdata?.gender_id)?.name || 'Select Gender' }}
               onChange={({ value }) => setFormdata({ ...formdata, gender_id: value })}
               options={genders.map((gender) => ({
                 value: gender.id, label: gender.name,
@@ -357,8 +364,11 @@ const ProductForm = ({ onSubmit, product }) => {
                     placeholder="professionalism"
                     id="level_id"
                     name="level_id"
-                    value={{ value: product?.level?.id, label: product?.level?.stage }}
-                    onChange={({ value }) => setFormdata({ ...formdata, level_id: value })}
+                    value={formdata.level_id ? { value: formdata?.level_id, label: levels.find((level) => level.id === formdata.level_id)?.stage || 'Select Level' } : null}
+                    onChange={({ value }) => {
+                      console.log('first', value);
+                      setFormdata({ ...formdata, level_id: value });
+                    }}
                     options={levels.map((level) => ({
                       value: level.id,
                       label: level.stage,
@@ -368,10 +378,13 @@ const ProductForm = ({ onSubmit, product }) => {
                   <FormInput
                     className="flex-1"
                     label="strung/unstrung"
-                    value={{ value: product?.strung, label: product?.strung }}
+                    value={{ value: formdata?.strung, label: strung.find((s) => s.value === formdata.strung)?.value ?? 'Select String Type' }}
 
                     type="select"
-                    onChange={({ value }) => setFormdata({ ...formdata, strung: value })}
+                    onChange={({ value }) => {
+                      console.log(value);
+                      setFormdata({ ...formdata, strung: value });
+                    }}
                     name="strung"
                     id="strung"
                     options={strung}
@@ -386,7 +399,7 @@ const ProductForm = ({ onSubmit, product }) => {
                     name="head_size"
                     id="head_size"
                     type="select"
-                    value={{ label: product?.head_size, value: product?.head_size }}
+                    value={{ value: formdata?.head_size, label: headSizes.find((size) => size.value === formdata.head_size)?.value ?? 'Select Head Size' }}
 
                     options={headSizes}
                     placeholder="headsize"
@@ -398,7 +411,7 @@ const ProductForm = ({ onSubmit, product }) => {
                     name="composition"
                     type="select"
                     id="composition"
-                    value={{ value: product?.composition, label: product?.composition }}
+                    value={{ value: formdata?.composition, label: composition.find((com) => com.value === formdata.composition)?.label ?? 'Select Composition' }}
 
                     options={composition}
                     onChange={({ value }) => setFormdata({ ...formdata, composition: value })}
@@ -449,6 +462,7 @@ const ProductForm = ({ onSubmit, product }) => {
                     id="stiffness"
                     type="text"
                     placeholder="stiffness"
+
                     onChange={(e) => setFormdata({ ...formdata, stiffness: e.target.value })}
 
                   />
@@ -492,7 +506,7 @@ const ProductForm = ({ onSubmit, product }) => {
                       <FormInput
                         type="select"
                         className="flex-1"
-                        value={{ value: size, label: size }}
+                        value={{ value: size, label: gripSizes.find((g) => g.value === size)?.value ?? 'Select Size' }}
                         name="sizes"
                         placeholder="Grip Sizes"
                         id="grip_size"

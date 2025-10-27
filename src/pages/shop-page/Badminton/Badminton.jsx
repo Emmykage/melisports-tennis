@@ -61,7 +61,7 @@ const BadmintonsPage = () => {
   };
 
   useFilter({
-    productCategory: 'racquet',
+    // productCategory: 'racquet',
     selectedSports: 'Badminton',
     selectedPlayType: selectedLevels,
   });

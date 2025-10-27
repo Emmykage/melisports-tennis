@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../../components/banner/Hero';
-import { getProducts } from '../../../redux/actions/product'; import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
+import { getProducts } from '../../../redux/actions/product'; import bannerImage from '../../../assets/images/banner/babolat-wimby-desktop-banner1.jpg';
 import Loader from '../../Loader';
 import Products from '../../../components/products/ProductsGridDisplay';
 import Nav from '../../../components/nav/Nav';
@@ -15,9 +15,9 @@ const sportItems = [
   { type: 'tennis', label: 'Tennis' },
   { type: 'badminton', label: 'Badminton' },
 ];
-const Padels = () => {
+const TennisPage = () => {
   const dispatch = useDispatch();
-  const { products, status, error } = useSelector((state) => state.products);
+  const { products, error } = useSelector((state) => state.products);
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
   const [selectedLevels, setSelectedLevels] = useState([]);
@@ -25,9 +25,7 @@ const Padels = () => {
   const [selectedFeature, setSelectedFeatures] = useState([]);
 
   useFilter({
-    // productCategory: 'racquet',
-    selectedSports: 'Padel',
-    selectedPlayType: selectedLevels,
+    selectedSports: 'Tennis',
   });
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
@@ -50,20 +48,13 @@ const Padels = () => {
   return (
     <div className="product-container">
       <Nav />
-      <Hero image={bannerImage} title="Padel" />
+      <Hero image={bannerImage} title="Tennis" />
 
       <ProductsPageContainer>
-        <h2 className="text-2xl font-normal text-gray-900 mb-4">Padel Rackets</h2>
+        <h2 className="text-2xl font-normal text-gray-900 mb-4">Tennis</h2>
         <p className="text-gray-600 mb-6">
-          Explore our collection of Babolat Padel Rackets, designed for players of all levels. Whether you're a beginner or a professional, find the perfect racket to enhance your game.
+          Explore our collection of Babolat Tennis Categories Rackets, find the perfect Tennis gears to enhance your game.
         </p>
-        {/* <div className="cat-group justify-between max-w-md my-6">
-          <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
-          <a className="btn" onClick={() => dispatch(getProducts())}>All Rackets</a>
-
-        </div> */}
 
         <div className="flex md:gap-10">
 
@@ -147,4 +138,4 @@ const Padels = () => {
   );
 };
 
-export default Padels;
+export default TennisPage;

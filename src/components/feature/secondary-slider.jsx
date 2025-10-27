@@ -10,6 +10,8 @@ import Slide1 from '../../assets/images/banner/slide_one.jpg';
 import photoOne from '../../assets/images/ngo/IMG-20250513-WA0021.jpg';
 import photoTwo from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
 import photoThree from '../../assets/images/ngo/IMG-20250513-WA0028.jpg';
+import bannerImg from '../../assets/images/banner/banner-1.jpg';
+import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-720_20231201.webm';
 
 import './styles.css';
 
@@ -21,38 +23,45 @@ import 'swiper/css/pagination';
 import DiscoverBtn from '../buttons/DiscoverBtn';
 
 const SecondarySlider = () => {
+    const [mute, setMute] = useState(true);
+  
   const images = [
     {
       id: 0,
       image: Slide1,
 
-    }, {
-      id: 1,
-      image: photoOne,
-      cta: 'Support the Program',
-      position: 'left',
-      title: 'Changing Lives, One Swing at a Time!',
-      text: 'Our NGO is dedicated to giving underprivileged kids a chance to learn, grow, and thrive through the game of tennis. Join us as we serve hope and opportunity!',
-      link: '/support-the-program#support',
     },
     {
       id: 2,
-      image: photoTwo,
-      title: 'Tennis Enrollment Now Open!',
-      text: 'We are enrolling kids aged 6–16 into our free tennis training program. Equipment, coaching, and mentorship—all at no cost. Limited slots available!',
-      cta: 'Apply Now',
-      link: '/support-the-program#enroll',
+      video: videoAdd
+    }
+    //  {
+    //   id: 1,
+    //   image: bannerImg,
+    //   cta: 'Support the Program',
+    //   position: 'left',
+    //   title: 'Changing Lives, One Swing at a Time!',
+    //   text: 'Our NGO is dedicated to giving underprivileged kids a chance to learn, grow, and thrive through the game of tennis. Join us as we serve hope and opportunity!',
+    //   link: '/support-the-program#support',
+    // },
+    // {
+    //   id: 2,
+    //   image: photoTwo,
+    //   title: 'Tennis Enrollment Now Open!',
+    //   text: 'We are enrolling kids aged 6–16 into our free tennis training program. Equipment, coaching, and mentorship—all at no cost. Limited slots available!',
+    //   cta: 'Apply Now',
+    //   link: '/support-the-program#enroll',
 
-      position: 'right',
-    },
-    {
-      id: 3,
-      title: '🎉 Upcoming Tennis Camp & Tournament!',
-      text: 'Don’t miss our exciting youth tennis camp this summer! A week of training, games, and fun for kids enrolled in our program. Be a part of the action!',
-      cta: 'View Event Details',
-      image: photoThree,
-      link: '/support-the-program#event',
-    },
+    //   position: 'right',
+    // },
+    // {
+    //   id: 3,
+    //   title: '🎉 Upcoming Tennis Camp & Tournament!',
+    //   text: 'Don’t miss our exciting youth tennis camp this summer! A week of training, games, and fun for kids enrolled in our program. Be a part of the action!',
+    //   cta: 'View Event Details',
+    //   image: photoThree,
+    //   link: '/support-the-program#event',
+    // },
   ];
   return (
     <>
@@ -70,11 +79,21 @@ const SecondarySlider = () => {
             <SwiperSlide key={item.id}>
               <div className="relative h-[500px] md:h-screen w-full">
                 {/* Background Image */}
-                <img
+                {item?.image ?  <img
                   src={item.image}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                  className="absolute inset-0 w-full h-full object-fill"
+                /> 
+              : 
+               <video
+        src={item.video}
+        autoPlay
+        loop
+        muted={mute}
+        playsInline
+        className="w-full h-full object-cover rounded-xl shadow-lg"
+      />}
+               
 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
