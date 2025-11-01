@@ -16,7 +16,6 @@ const EditProduct = () => {
     size: '', quantity: '', sku: '', location: [],
   }]);
 
-
   const {
     product, status,
   } = useSelector((state) => state.product);
@@ -37,15 +36,12 @@ const EditProduct = () => {
   }, [product?.product_inventories]);
 
   useEffect(() => {
-
     dispatch(getProduct(editId));
-
   }, []);
 
   const handleSubmit = async (formData) => {
-
     try {
-      const res = await dispatch(updateProduct({editId, formData})).unwrap();
+      const res = await dispatch(updateProduct({ editId, formData })).unwrap();
       return res;
     } catch (error) {
       console.log(error);

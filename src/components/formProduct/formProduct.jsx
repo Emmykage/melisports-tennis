@@ -50,7 +50,7 @@ const ProductForm = ({ onSubmit, product }) => {
   useEffect(() => {
     if (product) {
       setFormdata({
-        ...product,product_category_id: product?.product_category?.id, level_id: product.level?.id, gender_id: product?.gender?.id, sport_category_id: product?.sport_category?.id,
+        ...product, product_category_id: product?.product_category?.id, level_id: product.level?.id, gender_id: product?.gender?.id, sport_category_id: product?.sport_category?.id,
       });
       setProductInventories(product?.product_inventories ?? productInventories);
       editorRef.current.editor.loadHTML(product.description_body);
@@ -85,38 +85,35 @@ const ProductForm = ({ onSubmit, product }) => {
     setSelectTool(product_categories[0]?.name);
   }, [product_categories]);
 
-  const handleImageChange = ({target: {files}}) => {
+  const handleImageChange = ({ target: { files } }) => {
     const extractedfiles = Array.from(files);
 
-    const urls  = extractedfiles.map(file => URL.createObjectURL(file))
-    setImagePreviews(urls)
+    const urls = extractedfiles.map((file) => URL.createObjectURL(file));
+    setImagePreviews(urls);
   };
 
-  const handleCalcTotal = () =>  {
+  const handleCalcTotal = () => {
+    console.log('GEnerating');
+    let total_quantity = 0;
 
-    console.log("GEnerating")
-      let total_quantity = 0
-
-    productInventories.forEach(item => {
-       total_quantity = item.quantity + total_quantity
-    })
-    setFormdata({...formdata,product_quantity: total_quantity})
-  }
+    productInventories.forEach((item) => {
+      total_quantity = item.quantity + total_quantity;
+    });
+    setFormdata({ ...formdata, product_quantity: total_quantity });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if ((product && formdata.photo_urls) ||  (imagePreviews.length > 0 || e.target.image.value)) {
+    if ((product && formdata.photo_urls) || (imagePreviews.length > 0 || e.target.image.value)) {
       const formData = new FormData();
 
       Object.entries(formdata).forEach(([key, value]) => {
         if (Array.isArray(value)) {
           value.forEach((item, index) => {
-            if(key === "colours"){
-                formData.append(`product[${key}][]`, item);
-
-            }else{
-            formData.append(`product[${key}][${index}]`, item);
-
+            if (key === 'colours') {
+              formData.append(`product[${key}][]`, item);
+            } else {
+              formData.append(`product[${key}][${index}]`, item);
             }
           });
         } else {
@@ -125,7 +122,7 @@ const ProductForm = ({ onSubmit, product }) => {
       });
 
       productInventories.forEach(({
-        quantity, size, price, sku, locations, id
+        quantity, size, price, sku, locations, id,
       }, i) => {
         (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity.value);
         size && formData.append(`product[product_inventories_attributes][${i}][size]`, size);
@@ -148,9 +145,8 @@ const ProductForm = ({ onSubmit, product }) => {
         console.log(res, '[Form Submitted]: Product form submitted');
 
         const timeOutOp = setTimeout(() => {
-          if (!product){
-          setFormdata(null)
-
+          if (!product) {
+            setFormdata(null);
           }
           dispatch(resetProduct());
         }, 5000);
@@ -177,7 +173,6 @@ const ProductForm = ({ onSubmit, product }) => {
       setProductInventories(newSize);
     }
   };
-
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -252,19 +247,19 @@ const ProductForm = ({ onSubmit, product }) => {
           <div className="flex items-center justify-between">
             <Button
               type="button"
-              onClick={() => setFormdata({...formdata, discount: formdata.discount  === "active_discount" ? "inactive_discount" :  "active_discount" })}
+              onClick={() => setFormdata({ ...formdata, discount: formdata.discount === 'active_discount' ? 'inactive_discount' : 'active_discount' })}
               className={`px-4 py-2 rounded font-medium transition-all ${
-                formdata.discount === "active_discount" 
+                formdata.discount === 'active_discount'
                   ? 'bg-green-600 hover:bg-green-700'
                   : 'bg-gray-600 hover:bg-gray-700'
               }`}
             >
-              {formdata.discount === "active_discount" ? 'Cancel Discount' : 'Apply Discount'}
+              {formdata.discount === 'active_discount' ? 'Cancel Discount' : 'Apply Discount'}
             </Button>
           </div>
 
           {/* Discount amount (only shows if active) */}
-          {formdata.discount === "active_discount"  && (
+          {formdata.discount === 'active_discount' && (
           <FormInput
             label="Discount (%)"
             value={formdata?.discount_percentage}
@@ -272,7 +267,7 @@ const ProductForm = ({ onSubmit, product }) => {
             type="number"
             name="discount_percentage"
 
-            onChange={({target: {value}}) => setFormdata({ ...formdata, discount_percentage:value })}
+            onChange={({ target: { value } }) => setFormdata({ ...formdata, discount_percentage: value })}
             placeholder="e.g. 20"
             className="w-full px-3 mt-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
@@ -562,7 +557,7 @@ const ProductForm = ({ onSubmit, product }) => {
                         placeholder="Quantity"
 
                         id="qty"
-                        onBlur= {handleCalcTotal}
+                        onBlur={handleCalcTotal}
                         onChange={(e) => { addToProductInventory({ key: 'quantity', value: e.target.value }, index); }}
                       />
 
@@ -597,7 +592,7 @@ const ProductForm = ({ onSubmit, product }) => {
                       <span
                         className=""
                         onClick={() => {
-                          handleInventoryRowDel(index)
+                          handleInventoryRowDel(index);
                         }}
                       >
                         <FaMinus />
@@ -617,21 +612,21 @@ const ProductForm = ({ onSubmit, product }) => {
                     <legend className="font-bold">Padel</legend>
 
                     <div className="flex gap-4 ">
-                     <FormInput
-                          className="bg-r w-full"
-                          label="Type of Player"
-                          type="select"
-                          placeholder="Player Typology"
-                          id="player_type"
-                          name="player_type"
+                      <FormInput
+                        className="bg-r w-full"
+                        label="Type of Player"
+                        type="select"
+                        placeholder="Player Typology"
+                        id="player_type"
+                        name="player_type"
 
-                          onChange={({ value }) => setFormdata({ ...formdata, player_type: value })}
-                          value={{value: formdata.player_type, label: playType.find(p => p.value === formdata.player_type)?.label ?? "Select PlayType" }}
-                          options={playType.map((type) => ({
-                            value: type.value,
-                            label: type.label,
-                          }))}
-                        />
+                        onChange={({ value }) => setFormdata({ ...formdata, player_type: value })}
+                        value={{ value: formdata.player_type, label: playType.find((p) => p.value === formdata.player_type)?.label ?? 'Select PlayType' }}
+                        options={playType.map((type) => ({
+                          value: type.value,
+                          label: type.label,
+                        }))}
+                      />
 
                     </div>
 
@@ -645,7 +640,7 @@ const ProductForm = ({ onSubmit, product }) => {
                         id="head_shape"
                         value={{ value: formdata.head_shape, label: headShapes.find((h) => h.value === formdata.head_shape)?.label ?? 'Select Head shape' }}
 
-                        onChange={({value}) => setFormdata({ ...formdata, head_shape: value })}
+                        onChange={({ value }) => setFormdata({ ...formdata, head_shape: value })}
                         options={headShapes}
                         placeholder="head Shape"
                       />
@@ -672,7 +667,7 @@ const ProductForm = ({ onSubmit, product }) => {
                         name="length"
                         id="length"
                         value={formdata.length || ''}
-                        onChange={({ target:  {value} }) => setFormdata({ ...formdata, length: value })}
+                        onChange={({ target: { value } }) => setFormdata({ ...formdata, length: value })}
                         type="text"
                         placeholder="Length in MM"
                       />
@@ -814,8 +809,8 @@ const ProductForm = ({ onSubmit, product }) => {
                           <span
                             className=""
                             onClick={() => {
-                           handleInventoryRowDel(index);
-    }}
+                              handleInventoryRowDel(index);
+                            }}
                           >
                             <FaMinus />
 
@@ -845,7 +840,7 @@ const ProductForm = ({ onSubmit, product }) => {
                           name="player_type"
 
                           onChange={({ value }) => setFormdata({ ...formdata, player_type: value })}
-                          value={{value: formdata.player_type, label: playType.find(p => p.value === formdata.player_type)?.label ?? "Select PlayType" }}
+                          value={{ value: formdata.player_type, label: playType.find((p) => p.value === formdata.player_type)?.label ?? 'Select PlayType' }}
                           options={playType.map((type) => ({
                             value: type.value,
                             label: type.label,
@@ -874,7 +869,7 @@ const ProductForm = ({ onSubmit, product }) => {
                             name="composition"
                             id="composition"
                             options={composition}
-                            value={ {value: formdata.composition, label: composition.find(c => c.value === formdata.composition)?.label ?? "Select composition"}}
+                            value={{ value: formdata.composition, label: composition.find((c) => c.value === formdata.composition)?.label ?? 'Select composition' }}
                             onChange={({ value }) => setFormdata({ ...formdata, composition: value })}
                           />
 
@@ -1006,8 +1001,7 @@ const ProductForm = ({ onSubmit, product }) => {
                             <span
                               className=""
                               onClick={() => {
-                            handleInventoryRowDel(index);
-
+                                handleInventoryRowDel(index);
                               }}
                             >
                               <FaMinus />
@@ -1116,7 +1110,7 @@ const ProductForm = ({ onSubmit, product }) => {
                       <span
                         className=""
                         onClick={() => {
-                        handleInventoryRowDel(index);
+                          handleInventoryRowDel(index);
                         }}
                       >
                         <FaMinus />
@@ -1272,7 +1266,9 @@ const ProductForm = ({ onSubmit, product }) => {
 
                       </div>
 
-                      {productInventories.map(({size, locations, sku, quantity}, index) => (
+                      {productInventories.map(({
+                        size, locations, sku, quantity,
+                      }, index) => (
 
                         <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
 
@@ -1329,7 +1325,7 @@ const ProductForm = ({ onSubmit, product }) => {
                           <span
                             className=""
                             onClick={() => {
-                               handleInventoryRowDel(index);
+                              handleInventoryRowDel(index);
                             }}
                           >
                             <FaMinus />
