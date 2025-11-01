@@ -7,8 +7,14 @@ import { useDispatch } from 'react-redux';
 const AddProduct = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (formData) => {
-    dispatch(addProduct(formData));
+  const handleSubmit = async (formData) => {
+    try {
+      const res = await dispatch(addProduct(formData)).unwrap();
+      return res;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   };
 
   return (

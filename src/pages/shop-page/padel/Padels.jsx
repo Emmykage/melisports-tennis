@@ -21,8 +21,6 @@ const Padels = () => {
   const { product_categories, loading } = useSelector((state) => state.product_categories);
 
   const [selectedLevels, setSelectedLevels] = useState([]);
-  const [selectedSports, setSelectedSports] = useState([]);
-  const [selectedFeature, setSelectedFeatures] = useState([]);
 
   useFilter({
     // productCategory: 'racquet',

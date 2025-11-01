@@ -70,13 +70,12 @@ const LandingHome = () => {
 
       <SecondarySlider />
 
+      <section>
+        {/* <div className='max-w-7xl m-auto'> */}
+        <img src={bannerImg} alt="add banner" className="w-full object-contain h-full" />
 
-<section>
-  {/* <div className='max-w-7xl m-auto'> */}
-  <img src={bannerImg} alt="add banner" className='w-full object-contain h-full' />
-
-  {/* </div> */}
-</section>
+        {/* </div> */}
+      </section>
       <section className="py-12 px-4">
         <div className="max-w-[1400px] w-full flex flex-col lg:flex-row gap-10 justify-between m-auto">
 
@@ -209,10 +208,10 @@ const LandingHome = () => {
           {/* Left Content */}
           <div className="bg-white shadow-lg p-8 rounded-2xl">
             <h2 className="text-4xl font-medium text-gray-900 leading-snug">
-              Support a Child in Sport 
+              Support a Child in Sport
               <h3 className="text-primary inline text-4xl font-medium"> Tennis </h3>
-                      (SCSF)
-  </h2>
+              (SCSF)
+            </h2>
             <p className="text-xl font-medium text-gray-900 leading-snug">
               ...Serving Futures with Tennis
             </p>

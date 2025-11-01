@@ -23,8 +23,8 @@ import 'swiper/css/pagination';
 import DiscoverBtn from '../buttons/DiscoverBtn';
 
 const SecondarySlider = () => {
-    const [mute, setMute] = useState(true);
-  
+  const [mute, setMute] = useState(true);
+
   const images = [
     {
       id: 0,
@@ -33,8 +33,8 @@ const SecondarySlider = () => {
     },
     {
       id: 2,
-      video: videoAdd
-    }
+      video: videoAdd,
+    },
     //  {
     //   id: 1,
     //   image: bannerImg,
@@ -79,21 +79,23 @@ const SecondarySlider = () => {
             <SwiperSlide key={item.id}>
               <div className="relative h-[500px] md:h-screen w-full">
                 {/* Background Image */}
-                {item?.image ?  <img
-                  src={item.image}
-                  alt={item.title}
-                  className="absolute inset-0 w-full h-full object-fill"
-                /> 
-              : 
-               <video
-        src={item.video}
-        autoPlay
-        loop
-        muted={mute}
-        playsInline
-        className="w-full h-full object-cover rounded-xl shadow-lg"
-      />}
-               
+                {item?.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="absolute inset-0 w-full h-full object-fill"
+                  />
+                )
+                  : (
+                    <video
+                      src={item.video}
+                      autoPlay
+                      loop
+                      muted={mute}
+                      playsInline
+                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                    />
+                  )}
 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />

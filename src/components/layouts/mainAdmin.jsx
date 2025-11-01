@@ -22,7 +22,7 @@ const MainAdmin = ({ children }) => {
   const { message, user, loading } = useSelector((state) => state.user);
   const [token] = useState(fetchToken());
   const { stats } = useSelector((state) => state.statistics);
-
+  console.log(loading);
   useEffect(() => {
     dispatch(getStatistics());
   }, [dispatch]);
