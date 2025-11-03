@@ -26,15 +26,14 @@ const ProductsPage = () => {
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
-  const { products, error, loading } = useSelector((state) => state.products);
-  const { product_categories } = useSelector((state) => state.product_categories);
-  const category = product_categories?.find((cat) => cat.name === 'racquet');
-  useFilter({
+ const { products, error, loading, product_categories} = useFilter({
     productCategory: 'racquet',
     selectedSports: 'Tennis',
     selectedLevels,
     selectedFeatures,
   });
+    const category = product_categories?.find((cat) => cat.name === 'racquet');
+
   const handleFilteredProducts = (seive) => {
     console.log('[Initiate filter]: Filter initatiang with seive:', seive);
     const lowerCaseSieve = seive.toLowerCase();
@@ -111,7 +110,7 @@ const ProductsPage = () => {
 
           <SideNav>
             {/* Section: Activities */}
-            <div className="">
+            {/* <div className="">
               <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
                 Activities
               </h6>
@@ -134,7 +133,7 @@ const ProductsPage = () => {
                   </label>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Section: Racket Type */}
             <div>

@@ -11,6 +11,9 @@ const getProducts = createAsyncThunk('products/getProducts', async (filterParams
     Object.entries(filterParams).filter(([_, value]) => value != null),
   );
 
+  // const cleanedParams = Object.fromEntries(Object.entries(filterParams).filter(([_, value])=> value !==  null))
+
+  console.log("Cleaned params:",cleanedParams,"Object from entries",   "[FETCH FILTER]" )
   const params = new URLSearchParams(cleanedParams);
 
   const stringParams = params.toString();
