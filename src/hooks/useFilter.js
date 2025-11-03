@@ -20,7 +20,8 @@ const useFilter = ({
     dispatch(getProducts({
       category: productCategory,
       sport: selectedSports,
-      features: selectedFeatures
+      features: selectedFeatures,
+      level: selectedlevels, selectedlevels
 
     }));
   }, [productCategory, selectedSports, selectedFeatures]);
