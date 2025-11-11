@@ -26,13 +26,15 @@ const ProductsPage = () => {
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
- const { products, error, loading, product_categories} = useFilter({
+  const {
+    products, error, loading, product_categories,
+  } = useFilter({
     productCategory: 'racquet',
     selectedSports: 'Tennis',
     selectedLevels,
     selectedFeatures,
   });
-    const category = product_categories?.find((cat) => cat.name === 'racquet');
+  const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {
     console.log('[Initiate filter]: Filter initatiang with seive:', seive);

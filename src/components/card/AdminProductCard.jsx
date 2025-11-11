@@ -1,10 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { nairaFormat } from '../../utils/nairaFormat';
-import { openDelModal } from '../../redux/modal/delModal';
-import localDateString from '../../utils/dateString';
 
-const AdminProductCard = ({ product, toEdit }) => {
+const AdminProductCard = ({ product, toEdit, setSelectedProduct }) => {
   const dispatch = useDispatch();
   return (
     <div key={product.id} className="products-display pt-0 border relative">
@@ -25,9 +23,11 @@ const AdminProductCard = ({ product, toEdit }) => {
 
       </span>
 
-      <div className="prod-img bg-red-200 ">
+      <div className="prod-img bg-gray-100 group">
         <a>
-          <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name} />
+          <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name}
+                    className="w-full md:h-full h-52 object-contain  transform group-hover:scale-105 transition duration-300"
+ />
         </a>
 
       </div>
@@ -42,7 +42,7 @@ const AdminProductCard = ({ product, toEdit }) => {
 
           <a
             className="btn btn-outline max-width my-1 px-2 py-1 text-center"
-            onClick={() => dispatch(openDelModal(product.id))}
+            onClick={() => setSelectedProduct(product)}
           >
             Achive
           </a>

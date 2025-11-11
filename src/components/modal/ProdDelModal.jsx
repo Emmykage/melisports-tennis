@@ -5,44 +5,61 @@ import { closeDelModal } from '../../redux/modal/delModal';
 import { closeLoader, setLoader } from '../../redux/app/app';
 
 const ProdDelModal = (props) => {
-  const { id } = props;
+  const {
+    id, onCancel, selectedProduct, open, setSelectedProduct,
+  } = props;
   const dispatch = useDispatch();
   // const {isOpen, id} = useSelector((state) => state.delModal)
-  return (
-    <div className="modal-container">
-      <div className="modal">
-        <h3 className="font-normal text-lg md:text-3xl">Achive Items</h3>
-        <div className="py-5 btn-container">
-          <button
-            type="button"
-            className="btn confirm-btn px-2 py-1"
-            onClick={() => {
-              dispatch(setLoader());
-              dispatch(deleteProduct(id)).then((result) => {
-                if (deleteProduct.fulfilled.match(result)) {
-                  dispatch(getProducts());
-                  dispatch(closeDelModal());
-                  dispatch(closeLoader());
-                } else {
-                  dispatch(closeLoader());
-                }
-              });
-            }}
-          >
-            confirm
-          </button>
 
-          <button
-            type="button"
-            className="btn confirm-btn px-2 py-1"
-            onClick={() => dispatch(closeDelModal())}
-          >
-            cancel
-          </button>
+  if (!open) {
+    return null;
+  }
+  return (
+    <>
+
+      <div
+        onClick={() => setSelectedProduct(null)}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      >
+        <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-lg shadow-lg w-96 p-6 z-10">
+          <h2 className="text-lg font-semibold text-gray-800 mb-4">
+            Confirm Delete
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Are you sure you want to delete
+            {' '}
+            <span className="font-bold">{selectedProduct?.name}</span>
+            ? This action cannot be undone.
+          </p>
+          <div className="flex justify-end space-x-3">
+            <button
+              className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
+            <button
+              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+              onClick={() => {
+                dispatch(setLoader());
+                dispatch(deleteProduct(selectedProduct?.id)).then((result) => {
+                  if (deleteProduct.fulfilled.match(result)) {
+                    dispatch(getProducts());
+                    setSelectedProduct(null);
+                    dispatch(closeLoader());
+                  } else {
+                    dispatch(closeLoader());
+                  }
+                });
+              }}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
 
-    </div>
+    </>
 
   );
 };
