@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => (
 
       {/* Discount Badge */}
       {product?.discount == 'active_discount' && (
-      <span className="absolute top-4 right-4 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+      <span className="absolute top-4 right-4 bg-theme -600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
         {product?.discount
           ? `-${product?.discount_percentage}%`
           : 'Discount'}
@@ -44,7 +44,7 @@ const ProductCard = ({ product }) => (
       <div className="mb-4">
         {product.discount === 'active_discount' ? (
           <div className="flex flex-col items-center space-y-1">
-            <p className="text-sm text-gray-400 line-through">
+            <p className="text-sm text-theme line-through">
               {nairaFormat(product.price)}
             </p>
             {/* <p className="text-lg font-semibold text-green-600">
@@ -54,7 +54,7 @@ const ProductCard = ({ product }) => (
             )}
           </p> */}
 
-            <p className="text-lg font-semibold text-green-600">
+            <p className="text-lg font-semibold text-primary">
               {nairaFormat(
                 ((product.discount_amount || 0)),
               )}
