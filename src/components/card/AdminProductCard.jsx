@@ -9,7 +9,7 @@ const AdminProductCard = ({ product, toEdit, setSelectedProduct }) => {
 
       {product?.last_updated
        && (
-       <div className="py-2 my-1 top-4  absolute bg-theme/90 text-sm rounded-xl  ml-2 px-2">
+       <div className="py-2 my-1 top-4 z-40 absolute bg-theme/90 text-sm rounded-xl  ml-2 px-2">
          <span className="font-semibold text-gray-200">Last updated: </span>
          <span className="text-sm font-medium text-orange-600">
            {product?.last_updated}
@@ -18,15 +18,15 @@ const AdminProductCard = ({ product, toEdit, setSelectedProduct }) => {
        </div>
        )}
 
-      <span className="absolute top-20 sm:top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white">
+      <span className="absolute z-40 top-20 sm:top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white">
         {product?.product_quantity}
 
       </span>
 
-      <div className="prod-img bg-gray-100 group">
+      <div className="prod-img bg-white group">
         <a>
           <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name}
-                    className="w-full md:h-full h-52 object-contain  transform group-hover:scale-105 transition duration-300"
+                    className="w-full md:h-full h-52 object-contain  transfor group-hover:scale-105 transition duration-300"
  />
         </a>
 
