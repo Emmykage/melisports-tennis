@@ -138,7 +138,7 @@ export default function AgentsPage() {
         role: 'trainner',
         active: true,
       });
-      toast('Agent has been create', { type: 'success' });
+      toast(res.message ?? 'Agent has been created', { type: 'success' });
     }).catch((err) => {
       toast(err?.message ?? 'Agent failed to create been create', { type: 'error' });
     })
