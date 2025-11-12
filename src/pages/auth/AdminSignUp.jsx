@@ -61,7 +61,7 @@ const AdminSignUp = () => {
   const toggleReveal = () => {
     setShow((prev) => !prev);
   };
-  if (user == null || user == undefined) {
+  if (user === null || user === undefined) {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">

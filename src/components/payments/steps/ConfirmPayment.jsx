@@ -128,7 +128,7 @@ const ConfirmPayment = ({
           Previous
         </Button>
 
-        {billingDetails.payment_method == 'pay later' ? (
+        {billingDetails.payment_method === 'pay later' ? (
           <Button
             className="flex gap-2 w-full text-center flex-1 justify-center"
             btnFunc={handleCheckout}

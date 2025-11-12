@@ -21,7 +21,7 @@ const selectColor = (color) => colors[color] || 'bg-purple-500';
 export const pickColor = (color) => {
   const splitColor = (color) => {
     const colorArr = color.split('/');
-    if (colorArr.length == 1) {
+    if (colorArr.length === 1) {
       return [selectColor(colorArr[0])];
     }
 

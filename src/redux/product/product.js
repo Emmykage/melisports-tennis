@@ -83,7 +83,7 @@ const productSlice = createSlice({
   reducers: {
 
     writeProduct: (state, action) => {
-      if (action.payload.name == 'cloth_sizes_attributes' || action.payload.name == 'shoe_sizes_attributes') {
+      if (action.payload.name === 'cloth_sizes_attributes' || action.payload.name === 'shoe_sizes_attributes') {
         const { options } = action.payload;
         const value = [];
         for (let i = 0, l = options.length; i < l; i++) {

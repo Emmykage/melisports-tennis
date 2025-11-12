@@ -24,7 +24,7 @@ export const removeToken = () => {
 export const getCart = () => {
   const carts = JSON.parse(localStorage.getItem('cartitem'));
 
-  if (carts == null) {
+  if (carts === null) {
     return [];
   }
 

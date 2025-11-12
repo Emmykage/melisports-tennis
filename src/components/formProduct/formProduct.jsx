@@ -159,7 +159,7 @@ const ProductForm = ({ onSubmit, product }) => {
   const handleInventoryRowDel = (index) => {
     if (productInventories[index]?.id) {
       const newSizes = productInventories.map((item, i) => {
-        if (item?.id && i == index) {
+        if (item?.id && i === index) {
           return {
             ...item,
             _destroy: true,
@@ -189,7 +189,7 @@ const ProductForm = ({ onSubmit, product }) => {
               onChange={({ value }) => {
                 console.log(value, sport_categories);
                 setFormdata({ ...formdata, sport_category_id: value });
-                const cat = sport_categories.find((item) => item.id == value);
+                const cat = sport_categories.find((item) => item.id === value);
                 setSelectedSport(cat);
               }}
               placeholder="sport category"
@@ -350,7 +350,7 @@ const ProductForm = ({ onSubmit, product }) => {
               type="select"
               placeholder="product category"
               onChange={({ value }) => {
-                const { name, id } = product_categories.find((item) => item.id == value);
+                const { name, id } = product_categories.find((item) => item.id === value);
                 console.log(name, id, value);
                 setSelectTool(name);
                 setFormdata({ ...formdata, product_category_id: value });
@@ -378,9 +378,9 @@ const ProductForm = ({ onSubmit, product }) => {
 
           </div>
 
-          {selectTool == 'racquet'
+          {selectTool === 'racquet'
 
-            ? selectSport?.name == 'Tennis' ? (
+            ? selectSport?.name === 'Tennis' ? (
               <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
                 <legend className="font-bold">Racquets</legend>
 
@@ -605,7 +605,7 @@ const ProductForm = ({ onSubmit, product }) => {
                 </div>
               </fieldset>
             )
-              : selectSport?.name == 'Padel' ? (
+              : selectSport?.name === 'Padel' ? (
                 <>
 
                   <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
@@ -1126,7 +1126,7 @@ const ProductForm = ({ onSubmit, product }) => {
               </fieldset>
             )
 
-              : selectTool == 'apparel' ? (
+              : selectTool === 'apparel' ? (
                 <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
                   <legend className="font-bold">Apparels</legend>
                   <div className="justify-end flex my-0 ">
@@ -1397,14 +1397,14 @@ const ProductForm = ({ onSubmit, product }) => {
               {' '}
               {message}
             </p>
-          ) : (status == 'success' ? (
+          ) : (status === 'success' ? (
             <p className="text-green bg-green-200 rounded my-3 p-5 flex gap-3 items-center">
               {' '}
 
               <FaCheckCircle className="text-green-700 text-3xl" />
               {message}
             </p>
-          ) : status == 'rejected' && (
+          ) : status === 'rejected' && (
           <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
             {' '}
 

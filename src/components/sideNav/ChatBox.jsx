@@ -24,7 +24,7 @@ const ChatBox = () => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(formInput),
-    }).then((res) => (res.status == 'ok' ? setToggle(true) : setToggle(false)));
+    }).then((res) => (res.status === 'ok' ? setToggle(true) : setToggle(false)));
   };
   return (
     <>

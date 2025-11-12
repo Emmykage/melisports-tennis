@@ -72,7 +72,7 @@ const NavInfo = () => {
                 <li className="nav-item"><NavLink to="/products" className="lg:text-dark lg:font-semibold lg:text-base">Products</NavLink></li>
                 <li className="nav-item"><NavLink to="/court-directory" className="lg:text-dark lg:font-semibold lg:text-base">Court Directory</NavLink></li>
 
-                {user !== null && ((user.role === 'admin' || user.role == 'super-admin') && (
+                {user !== null && ((user.role === 'admin' || user.role === 'super-admin') && (
                 <li className="nav-item">
                   <NavLink to="/admin" className="lg:text-dark lg:font-semibold lg:text-base">    go to admin </NavLink>
                   {' '}

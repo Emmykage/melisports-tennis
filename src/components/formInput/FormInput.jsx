@@ -9,7 +9,7 @@ const FormInput = ({
     <label htmlFor={label}>
       <span className="text-gray-500 font-semibold text-sm">
         {label}
-        {/* {productStatus == 'active' && '*'} */}
+        {/* {productStatus === 'active' && '*'} */}
       </span>
       {' '}
       <span />

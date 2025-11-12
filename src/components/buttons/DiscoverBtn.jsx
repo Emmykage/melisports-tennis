@@ -12,7 +12,7 @@ const DiscoverBtn = ({
   <NavLink
     to={link}
     onClick={onclick}
-    className={`${disabled && 'cursor-not-allowed'} ${type == 'cancel' ? 'text-red-500' : ''} ${className} font-semibold border-4 items-center block  w-max  py-2 px-5 border-theme bg-light hover:bg-theme-dark hover:text-light`}
+    className={`${disabled && 'cursor-not-allowed'} ${type === 'cancel' ? 'text-red-500' : ''} ${className} font-semibold border-4 items-center block  w-max  py-2 px-5 border-theme bg-light hover:bg-theme-dark hover:text-light`}
   >
     {btnText}
   </NavLink>

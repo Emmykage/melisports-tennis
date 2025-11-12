@@ -96,7 +96,7 @@ const AddCategory = () => {
               {' '}
               {report}
             </p>
-          ) : (status == 'success' ? (
+          ) : (status === 'success' ? (
             <p className="green">
               {' '}
               {report}

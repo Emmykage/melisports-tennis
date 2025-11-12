@@ -34,13 +34,13 @@ const cartSlice = createSlice({
         setCart(newCartArray);
       }
 
-      const cartExist = getCart().find((cart) => cart?.product_id == action.payload.product_id);
+      const cartExist = getCart().find((cart) => cart?.product_id === action.payload.product_id);
       if (!cartExist) {
         const newCartArray = [...getCart(), action.payload];
         setCart(newCartArray);
       } else {
         const updateCart = getCart().map((item) => {
-          if (item.product_id == action.payload.product_id) {
+          if (item.product_id === action.payload.product_id) {
             item.quantity = action.payload.quantity;
           }
           return item;
@@ -59,7 +59,7 @@ const cartSlice = createSlice({
     }),
     updateQty: (state, action) => {
       const updateCart = getCart().map((item) => {
-        if (item.product_id == action.payload.product_id) {
+        if (item.product_id === action.payload.product_id) {
           item.quantity = action.payload.quantity;
         }
         return item;

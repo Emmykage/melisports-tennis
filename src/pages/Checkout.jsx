@@ -25,7 +25,7 @@ const Checkout = () => {
     name: '', email: '', state: deliveryFees[1]?.state, city: '', street: '', phone_no: '', postal_code: '', payment_method: '',
   });
 
-  const selectedState = deliveryFees.find((item) => item.state == billingDetails.state);
+  const selectedState = deliveryFees.find((item) => item.state === billingDetails.state);
   const { loading, status } = useSelector((state) => state.orders);
   const { total, counter, cartItems } = useSelector((state) => state.cart);
   const [step, setStep] = useState(0);
@@ -118,7 +118,7 @@ const Checkout = () => {
           <div className="checkout flex-1 bg-ligh  flex-col justify-between md:flex-row gap-10 max-w-[1500px] ">
 
             {paymentSteps.map(((item) => {
-              if (item.step == step) {
+              if (item.step === step) {
                 return item.render;
               }
             }

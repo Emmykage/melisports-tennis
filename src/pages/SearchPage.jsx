@@ -181,7 +181,7 @@ const SearchPage = () => {
 
           </div>
 
-          {status == 'waiting' || loading ? <Loader /> : ((status == 'success')
+          {status === 'waiting' || loading ? <Loader /> : ((status === 'success')
             ? (
               <div className="product-align w-full ">
                 <div className="product-items">

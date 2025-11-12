@@ -637,7 +637,7 @@ const catalogSlice = createSlice({
     getCatalogRaquets: (state) => ({
       ...state,
       racquets: state.racquets.map((product) => {
-        if (product.type == 'racquet') {
+        if (product.type === 'racquet') {
           return {
             product,
 
@@ -652,7 +652,7 @@ const catalogSlice = createSlice({
     getCatalogApparels: (state) => ({
       ...state,
       apparels: state.racquets.map((product) => {
-        if (product.type == 'apparel') {
+        if (product.type === 'apparel') {
           return {
             product,
 
@@ -663,7 +663,7 @@ const catalogSlice = createSlice({
     getCatalogAccessories: (state) => ({
       ...state,
       accessories: state.racquets.filter((product) => {
-        if (product.type == 'accessory') {
+        if (product.type === 'accessory') {
           return {
             product,
 

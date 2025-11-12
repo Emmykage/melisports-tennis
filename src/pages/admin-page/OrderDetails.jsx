@@ -107,7 +107,7 @@ const OrderDetails = () => {
                 Order #
                 {order?.order_number}
               </p>
-              {order?.status == 'pending' ? <span className="bg-orange-200 px-4 py-1 text-orange-800 font-medium rounded"> awaiting confirmation</span> : order?.status == 'declined' ? <span className="bg-red-200 px-4 py-1 text-red-800 font-medium rounded">Order Rejected </span> : <span className="bg-blue-200 px-4 py-1 text-blue-800 font-medium rounded"> Ready to ship</span>}
+              {order?.status === 'pending' ? <span className="bg-orange-200 px-4 py-1 text-orange-800 font-medium rounded"> awaiting confirmation</span> : order?.status === 'declined' ? <span className="bg-red-200 px-4 py-1 text-red-800 font-medium rounded">Order Rejected </span> : <span className="bg-blue-200 px-4 py-1 text-blue-800 font-medium rounded"> Ready to ship</span>}
               <div className="flex flex-col md:flex-row gap-7 my-5">
 
                 <span className="bg-gray-300 px-2 py-1 rounded-lg text-xs">
@@ -133,7 +133,7 @@ const OrderDetails = () => {
 
           <div className="flex justify-end">
 
-            <span className={` ${order?.status == 'pending' ? 'bg-orange-200 text-orange-800' : order?.status == 'confirmed' ? 'bg-green-200 text-green-800' : 'bg-red-200  text-red-800'}  px-3 py-1 text-sm"`}>
+            <span className={` ${order?.status === 'pending' ? 'bg-orange-200 text-orange-800' : order?.status === 'confirmed' ? 'bg-green-200 text-green-800' : 'bg-red-200  text-red-800'}  px-3 py-1 text-sm"`}>
               {order?.status}
 
             </span>

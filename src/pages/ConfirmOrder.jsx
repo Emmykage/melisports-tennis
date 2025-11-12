@@ -44,7 +44,7 @@ const ConfirmOrder = () => {
             </div>
 
             {
-            status == 'success' && (
+            status === 'success' && (
             <div className="border border-green-600 flex px-4 py-6 items-center gap-4 rounded bg-green-100/60">
               <span className="w-6 h-6 rounded-full flex justify-center items-center bg-green-300/70 border border-green-600"><FaCheck className="text-green-700" /></span>
               {' '}

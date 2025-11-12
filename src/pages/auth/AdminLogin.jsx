@@ -62,7 +62,7 @@ const AdminLogin = () => {
     dispatch(loginUser(formInput));
   };
   if (!logged) {
-    if (user?.role == 'client') {
+    if (user?.role === 'client') {
       return (
         <div>
           <h1 className="text-center">
