@@ -4,9 +4,9 @@ import { AiOutlineShop, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons
 const AnalyticsCard = ({ count, source }) => (
   <div className="item bg-white px-2 md:px-3 py-5 gap-3 online border rounded-lg flex flex-row sm:flex-co lg:flex-row mb-3 items-center">
     <div className="icon">
-      {source == 'online orders'
+      {source === 'online orders'
         ? <span><AiOutlineShoppingCart /></span>
-        : source == 'offline orders'
+        : source === 'offline orders'
           ? <span><AiOutlineShop /></span>
           : <span><AiOutlineUser /></span>}
 

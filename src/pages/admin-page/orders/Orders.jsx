@@ -81,7 +81,7 @@ const Orders = () => {
         </span>
       ),
       footer: (props) => props.column.id,
-    }),  columnHelper.accessor('billing_address.name', {
+    }), columnHelper.accessor('billing_address.name', {
       header: () => 'Name',
       cell: (info) => (
         <span className="flex gap-3">

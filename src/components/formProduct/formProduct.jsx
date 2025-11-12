@@ -1017,7 +1017,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                   </>
                 )
-            : selectTool == 'shoe' ? (
+            : selectTool === 'shoe' ? (
               <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
                 <legend className="font-bold">Shoes</legend>
                 <div className="justify-end flex my-0 ">

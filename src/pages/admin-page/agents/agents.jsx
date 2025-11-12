@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   createAgents, delAgent, getAgent, getAgents, updateAgent,
 } from '../../../redux/actions/agents';
 import { closeLoader, setLoader } from '../../../redux/app/app';
 import DelModal from '../../../components/modal/deleteModal';
-import { toast } from 'react-toastify';
 
 function CreateAgentForm({ onSubmit, formData, setFormData }) {
   const dispatch = useDispatch();
@@ -87,7 +87,6 @@ function CreateAgentForm({ onSubmit, formData, setFormData }) {
           <option value="coach">Coach</option>
           <option value="promoter">Brand promoter</option>
 
-          
         </select>
         <label className="flex items-center space-x-2">
           <input
@@ -126,30 +125,24 @@ export default function AgentsPage() {
   const addAgent = (agent) => {
     dispatch(setLoader(true));
     dispatch(createAgents(agent)).unwrap().then((res) => {
-        dispatch(getAgents());
-        setShowForm(false);
-        dispatch(closeLoader());
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          discount: '',
-          referral_code: '',
-          commission: '',
-          role: 'trainner',
-          active: true,
-        });
-        toast("Agent has been create", {type: "success"})
-
-
-        return;
-  
-    }).catch((err)=> {
-   
-                toast(err?.message ?? "Agent failed to create been create", {type: "error"})
-
-    }).finally(()=>       dispatch(closeLoader())
-);
+      dispatch(getAgents());
+      setShowForm(false);
+      dispatch(closeLoader());
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        discount: '',
+        referral_code: '',
+        commission: '',
+        role: 'trainner',
+        active: true,
+      });
+      toast('Agent has been create', { type: 'success' });
+    }).catch((err) => {
+      toast(err?.message ?? 'Agent failed to create been create', { type: 'error' });
+    })
+      .finally(() => dispatch(closeLoader()));
   };
 
   const toggleActive = (agent) => {
@@ -163,32 +156,27 @@ export default function AgentsPage() {
     })).unwrap().then(() => {
       dispatch(getAgents());
       dispatch(closeLoader());
-      toast("Agent has been updated", {type: "success"})
+      toast('Agent has been updated', { type: 'success' });
     }).catch((err) => {
-        toast(res.message ?? "failed to delete", {type: "error"})
-
+      toast(res.message ?? 'failed to delete', { type: 'error' });
 
       console.error('Failed to update agent:', err);
-    }).finally(()=>  dispatch(closeLoader())
-)
+    })
+      .finally(() => dispatch(closeLoader()));
   };
 
   const deleteAgent = (id) => {
-     dispatch(setLoader());
+    dispatch(setLoader());
 
     dispatch(delAgent(selectedItem?.id)).unwrap().then(() => {
-            toast("Agent has been deleted", {type: "success"})
+      toast('Agent has been deleted', { type: 'success' });
 
       dispatch(getAgents());
-     setSelectedItem(null);
-
+      setSelectedItem(null);
     }).catch((err) => {
-        toast(res.message ?? "failed to delete", {type: "error"})
-
-    }).finally(()=> dispatch(closeLoader()));
-
-
-       
+      toast(res.message ?? 'failed to delete', { type: 'error' });
+    })
+      .finally(() => dispatch(closeLoader()));
   };
 
   useEffect(() => {
@@ -197,91 +185,91 @@ export default function AgentsPage() {
 
   return (
     <>
-    <div className="max-w-6xl mx-auto mt-6 p-4 bg-white shadow rounded-2xl">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="font-normal mb-4">Agents</h2>
+      <div className="max-w-6xl mx-auto mt-6 p-4 bg-white shadow rounded-2xl">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="font-normal mb-4">Agents</h2>
 
-        <button
-          onClick={() => setShowForm((prev) => !prev)}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          {showForm ? 'Close Form' : 'Create Agent'}
-        </button>
-      </div>
+          <button
+            onClick={() => setShowForm((prev) => !prev)}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            {showForm ? 'Close Form' : 'Create Agent'}
+          </button>
+        </div>
 
-      {showForm && <CreateAgentForm onSubmit={addAgent} formData={formData} setFormData={setFormData} />}
+        {showForm && <CreateAgentForm onSubmit={addAgent} formData={formData} setFormData={setFormData} />}
 
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-200">
-          <thead>
-            <tr className="bg-gray-100 text-left text-gray-600">
-              <th className="p-2 border text-gray-600">Name</th>
-              <th className="p-2 border text-gray-600">Email</th>
-              <th className="p-2 border text-gray-600">Phone</th>
-              <th className="p-2 border text-gray-600">Discount</th>
-              <th className="p-2 border text-gray-600">Referral Code</th>
-              <th className="p-2 border text-gray-600">Commission</th>
-              <th className="p-2 border text-gray-600">Role</th>
-              <th className="p-2 border text-gray-600">Active</th>
-              <th className="p-2 border text-gray-600">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {agents.length === 0 ? (
-              <tr>
-                <td colSpan="9" className="text-center p-4">
-                  No agents added yet.
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-200">
+            <thead>
+              <tr className="bg-gray-100 text-left text-gray-600">
+                <th className="p-2 border text-gray-600">Name</th>
+                <th className="p-2 border text-gray-600">Email</th>
+                <th className="p-2 border text-gray-600">Phone</th>
+                <th className="p-2 border text-gray-600">Discount</th>
+                <th className="p-2 border text-gray-600">Referral Code</th>
+                <th className="p-2 border text-gray-600">Commission</th>
+                <th className="p-2 border text-gray-600">Role</th>
+                <th className="p-2 border text-gray-600">Active</th>
+                <th className="p-2 border text-gray-600">Actions</th>
               </tr>
-            ) : (
-              agents.map((agent) => (
-                <tr key={agent.id} className="hover:bg-gray-50">
-                  <td className="p-2 border">{agent.name}</td>
-                  <td className="p-2 border">{agent.email}</td>
-                  <td className="p-2 border">{agent.phone}</td>
-                  <td className="p-2 border">
-                    {agent.discount}
-                    %
-                  </td>
-                  <td className="p-2 border">{agent.referral_code}</td>
-                  <td className="p-2 border">
-                    {agent.commission}
-                    %
-                  </td>
-                  <td className="p-2 border">{agent.role}</td>
-                  <td className="p-2 border">
-                    <span
-                      className={`px-2 py-1 rounded text-xs font-semibold ${
-                        agent.active
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
-                      }`}
-                    >
-                      {agent.active ? 'Active' : 'Inactive'}
-                    </span>
-                  </td>
-                  <td className="p-2 border space-x-2">
-                    <button
-                      onClick={() => toggleActive(agent)}
-                      className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                      Toggle
-                    </button>
-                    <button
-                      onClick={() => setSelectedItem(agent)}
-                      className="px-2 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
+            </thead>
+            <tbody>
+              {agents.length === 0 ? (
+                <tr>
+                  <td colSpan="9" className="text-center p-4">
+                    No agents added yet.
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                agents.map((agent) => (
+                  <tr key={agent.id} className="hover:bg-gray-50">
+                    <td className="p-2 border">{agent.name}</td>
+                    <td className="p-2 border">{agent.email}</td>
+                    <td className="p-2 border">{agent.phone}</td>
+                    <td className="p-2 border">
+                      {agent.discount}
+                      %
+                    </td>
+                    <td className="p-2 border">{agent.referral_code}</td>
+                    <td className="p-2 border">
+                      {agent.commission}
+                      %
+                    </td>
+                    <td className="p-2 border">{agent.role}</td>
+                    <td className="p-2 border">
+                      <span
+                        className={`px-2 py-1 rounded text-xs font-semibold ${
+                          agent.active
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-red-100 text-red-700'
+                        }`}
+                      >
+                        {agent.active ? 'Active' : 'Inactive'}
+                      </span>
+                    </td>
+                    <td className="p-2 border space-x-2">
+                      <button
+                        onClick={() => toggleActive(agent)}
+                        className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600"
+                      >
+                        Toggle
+                      </button>
+                      <button
+                        onClick={() => setSelectedItem(agent)}
+                        className="px-2 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-        <DelModal onConfirm={deleteAgent} open={!!selectedItem} onCancel={()=> setSelectedItem(null)} id={selectedItem?.id} name={selectedItem?.name} />
+      <DelModal onConfirm={deleteAgent} open={!!selectedItem} onCancel={() => setSelectedItem(null)} id={selectedItem?.id} name={selectedItem?.name} />
 
     </>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import ClickButton from '../../components/buttons/ClickButton';
 import { createInvoice, getOrder, updateOrder } from '../../redux/actions/orders';
 import { nairaFormat } from '../../utils/nairaFormat';
@@ -13,7 +14,6 @@ import { getStatistics } from '../../redux/actions/statistics.js';
 import Invoice from '../../components/invoice/Invoice.jsx';
 import AppModal from '../../components/modal/AppModal.jsx';
 import { closeLoader, setLoader } from '../../redux/app/app.js';
-import { toast } from 'react-toastify';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -27,19 +27,19 @@ const OrderDetails = () => {
   const [openInvoice, setOpenInvoice] = useState(false);
 
   const handleUpdate = (status) => {
-    dispatch(updateOrder({ id, order_detail: {status: status }}))
-      .then((result) => {
-        if (updateOrder.fulfilled.match(result)) {
-          dispatch(getOrder(id));
-          toast(result.payload?.message , {type: "success"})
+    dispatch(setLoader(true));
 
-          setOpenDecline(false);
-          setOpenAccept(false);
-        }
-        else{
-          toast(result.payload?.message , {type: "error"})
-        }
-      });
+    dispatch(updateOrder({ id, order_detail: { status } })).unwrap()
+      .then((result) => {
+        dispatch(getOrder(id));
+        toast(result?.message ?? 'order confirmed', { type: 'success' });
+
+        setOpenDecline(false);
+        setOpenAccept(false);
+      }).catch((err) => {
+        toast(err?.message, { type: 'error' });
+      })
+      .finally(() => { dispatch(closeLoader(false)); });
   };
 
   const handleInvoiceGeneration = () => {

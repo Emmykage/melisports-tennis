@@ -13,13 +13,13 @@ const ImagePreview = ({ images }) => {
   };
   const showNextImage = () => {
     setImageIndex((index) => {
-      if (index == images.length - 1) return 0;
+      if (index === images.length - 1) return 0;
       return index + 1;
     });
   };
   const showPrevImage = () => {
     setImageIndex((index) => {
-      if (index == 0) return images.length - 1;
+      if (index === 0) return images.length - 1;
       return index - 1;
     });
   };

@@ -4,7 +4,7 @@ import { closeLoader, setLoader } from '../../redux/app/app';
 
 const DelModal = (props) => {
   const {
-    id, onCancel, onConfirm, open, setSelectedItem, name
+    id, onCancel, onConfirm, open, setSelectedItem, name,
   } = props;
   const dispatch = useDispatch();
   // const {isOpen, id} = useSelector((state) => state.delModal)

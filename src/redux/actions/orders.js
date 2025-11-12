@@ -53,7 +53,7 @@ const updateOrder = createAsyncThunk('order/updateOrder', async ({ id, order_det
         Authorization: `Bearer ${fetchToken()}`,
 
       },
-      body: JSON.stringify({order_detail}),
+      body: JSON.stringify({ order_detail }),
     });
     const result = await response.json();
     if (!response.ok) {

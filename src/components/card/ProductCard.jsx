@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => (
       )}
 
       {/* Discount Badge */}
-      {product?.discount == 'active_discount' && (
+      {product?.discount === 'active_discount' && (
       <span className="absolute top-4 right-4 bg-theme -600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
         {product?.discount
           ? `-${product?.discount_percentage}%`

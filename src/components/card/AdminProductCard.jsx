@@ -25,9 +25,11 @@ const AdminProductCard = ({ product, toEdit, setSelectedProduct }) => {
 
       <div className="prod-img bg-white group">
         <a>
-          <img src={product.photo_urls ? product.photo_urls[0] : product.image} alt={product.name}
-                    className="w-full md:h-full h-52 object-contain  transfor group-hover:scale-105 transition duration-300"
- />
+          <img
+            src={product.photo_urls ? product.photo_urls[0] : product.image}
+            alt={product.name}
+            className="w-full md:h-full h-52 object-contain  transfor group-hover:scale-105 transition duration-300"
+          />
         </a>
 
       </div>
