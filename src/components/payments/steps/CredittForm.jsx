@@ -78,7 +78,7 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
         </div>
 
         <div className="py-10 flex justify-end">
-          <Button className="flex gap-2" btnText="">
+          <Button className="flex gap-2" type="submit">
             Proceed
             <FaArrowRight />
           </Button>

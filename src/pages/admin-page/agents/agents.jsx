@@ -83,6 +83,9 @@ function CreateAgentForm({ onSubmit, formData, setFormData }) {
         >
           <option value="trainner">Trainner</option>
           <option value="coach">Coach</option>
+          <option value="promoter">Brand promoter</option>
+
+          
         </select>
         <label className="flex items-center space-x-2">
           <input

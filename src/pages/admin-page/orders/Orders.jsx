@@ -16,6 +16,7 @@ import { resetOrder } from '../../../redux/order/order';
 import Loader from '../../Loader';
 import { nairaFormat } from '../../../utils/nairaFormat';
 import StatusButton from '../../../components/buttons/StatusButton';
+import localDateString from '../../../utils/dateString';
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -71,7 +72,16 @@ const Orders = () => {
         </span>
       ),
     }),
-    columnHelper.accessor('billing_address.name', {
+    columnHelper.accessor('created_at', {
+      header: () => 'Date',
+      cell: (info) => (
+        <span className="flex gap-3">
+          { localDateString(info.getValue())}
+          {!info.row.original.viewed && <span className="text-white rounded px-2 bg-orange-700">new</span>}
+        </span>
+      ),
+      footer: (props) => props.column.id,
+    }),  columnHelper.accessor('billing_address.name', {
       header: () => 'Name',
       cell: (info) => (
         <span className="flex gap-3">
