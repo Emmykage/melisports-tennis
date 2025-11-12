@@ -13,6 +13,7 @@ import { getStatistics } from '../../redux/actions/statistics.js';
 import Invoice from '../../components/invoice/Invoice.jsx';
 import AppModal from '../../components/modal/AppModal.jsx';
 import { closeLoader, setLoader } from '../../redux/app/app.js';
+import { toast } from 'react-toastify';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -22,17 +23,21 @@ const OrderDetails = () => {
   const [openAccept, setOpenAccept] = useState(false);
   const [openDecline, setOpenDecline] = useState(false);
   const { order, loading } = useSelector((state) => state.orders);
-  const { invoice, invoices } = useSelector((state) => state.invoices);
+  // const { invoice, invoices } = useSelector((state) => state.invoices);
   const [openInvoice, setOpenInvoice] = useState(false);
 
-  console.log(invoice, order);
   const handleUpdate = (status) => {
-    dispatch(updateOrder({ id, status }))
+    dispatch(updateOrder({ id, order_detail: {status: status }}))
       .then((result) => {
         if (updateOrder.fulfilled.match(result)) {
           dispatch(getOrder(id));
+          toast(result.payload?.message , {type: "success"})
+
           setOpenDecline(false);
           setOpenAccept(false);
+        }
+        else{
+          toast(result.payload?.message , {type: "error"})
         }
       });
   };

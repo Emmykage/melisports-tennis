@@ -44,7 +44,7 @@ export const createInvoice = createAsyncThunk('INVOICE/CREATE_INVOICE', async (d
   }
 });
 
-const updateOrder = createAsyncThunk('order/updateOrder', async ({ id, data }, { rejectWithValue }) => {
+const updateOrder = createAsyncThunk('order/updateOrder', async ({ id, order_detail }, { rejectWithValue }) => {
   try {
     const response = await fetch(`${baseURL}order_details/${id}`, {
       method: 'PATCH',
@@ -53,7 +53,7 @@ const updateOrder = createAsyncThunk('order/updateOrder', async ({ id, data }, {
         Authorization: `Bearer ${fetchToken()}`,
 
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({order_detail}),
     });
     const result = await response.json();
     if (!response.ok) {

@@ -4,6 +4,8 @@ import {
   createAgents, delAgent, getAgent, getAgents, updateAgent,
 } from '../../../redux/actions/agents';
 import { closeLoader, setLoader } from '../../../redux/app/app';
+import DelModal from '../../../components/modal/deleteModal';
+import { toast } from 'react-toastify';
 
 function CreateAgentForm({ onSubmit, formData, setFormData }) {
   const dispatch = useDispatch();
@@ -110,6 +112,7 @@ export default function AgentsPage() {
   const dispatch = useDispatch();
   const { agents, agent, loading } = useSelector((state) => state.agent);
   const [showForm, setShowForm] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -122,8 +125,7 @@ export default function AgentsPage() {
   });
   const addAgent = (agent) => {
     dispatch(setLoader(true));
-    dispatch(createAgents(agent)).then((res) => {
-      if (createAgents.fulfilled.match(res)) {
+    dispatch(createAgents(agent)).unwrap().then((res) => {
         dispatch(getAgents());
         setShowForm(false);
         dispatch(closeLoader());
@@ -137,11 +139,17 @@ export default function AgentsPage() {
           role: 'trainner',
           active: true,
         });
+        toast("Agent has been create", {type: "success"})
+
+
         return;
-      }
-      dispatch(closeLoader());
-      console.error('Failed to create agent:', res.payload || res.error);
-    });
+  
+    }).catch((err)=> {
+   
+                toast(err?.message ?? "Agent failed to create been create", {type: "error"})
+
+    }).finally(()=>       dispatch(closeLoader())
+);
   };
 
   const toggleActive = (agent) => {
@@ -155,18 +163,32 @@ export default function AgentsPage() {
     })).unwrap().then(() => {
       dispatch(getAgents());
       dispatch(closeLoader());
+      toast("Agent has been updated", {type: "success"})
     }).catch((err) => {
-      dispatch(closeLoader());
+        toast(res.message ?? "failed to delete", {type: "error"})
+
+
       console.error('Failed to update agent:', err);
-    });
+    }).finally(()=>  dispatch(closeLoader())
+)
   };
 
   const deleteAgent = (id) => {
-    dispatch(delAgent(id)).unwrap().then(() => {
+     dispatch(setLoader());
+
+    dispatch(delAgent(selectedItem?.id)).unwrap().then(() => {
+            toast("Agent has been deleted", {type: "success"})
+
       dispatch(getAgents());
+     setSelectedItem(null);
+
     }).catch((err) => {
-      console.error('Failed to delete agent:', err);
-    });
+        toast(res.message ?? "failed to delete", {type: "error"})
+
+    }).finally(()=> dispatch(closeLoader()));
+
+
+       
   };
 
   useEffect(() => {
@@ -174,6 +196,7 @@ export default function AgentsPage() {
   }, [dispatch]);
 
   return (
+    <>
     <div className="max-w-6xl mx-auto mt-6 p-4 bg-white shadow rounded-2xl">
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-normal mb-4">Agents</h2>
@@ -245,7 +268,7 @@ export default function AgentsPage() {
                       Toggle
                     </button>
                     <button
-                      onClick={() => deleteAgent(agent.id)}
+                      onClick={() => setSelectedItem(agent)}
                       className="px-2 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600"
                     >
                       Delete
@@ -258,5 +281,8 @@ export default function AgentsPage() {
         </table>
       </div>
     </div>
+        <DelModal onConfirm={deleteAgent} open={!!selectedItem} onCancel={()=> setSelectedItem(null)} id={selectedItem?.id} name={selectedItem?.name} />
+
+    </>
   );
 }

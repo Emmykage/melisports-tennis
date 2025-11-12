@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DelModal from '../../../components/modal/deleteModal';
 
 export default function AgentsTable() {
   const [agents, setAgents] = useState([
@@ -35,6 +36,7 @@ export default function AgentsTable() {
   };
 
   return (
+    <>
     <div className="max-w-6xl mx-auto mt-6 p-4 bg-white shadow rounded-2xl">
       <h2 className="text-xl font-bold mb-4">Agents List</h2>
       <div className="overflow-x-auto">
@@ -99,5 +101,7 @@ export default function AgentsTable() {
         </table>
       </div>
     </div>
+
+    </>
   );
 }
