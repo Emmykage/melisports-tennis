@@ -27,7 +27,7 @@ const SearchComponent = () => {
     const cleanedValue = value.trim().replace(/\s+/g, ' ');
     setSearch(value);
 
-    if (value === '') return;
+    // if (value === '') return;
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);

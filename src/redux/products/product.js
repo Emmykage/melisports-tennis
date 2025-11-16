@@ -20,6 +20,7 @@ const initialState = {
   sortedProducts: [],
   relatedProducts: [],
   relatedError: false,
+  searchLoading: false,
 };
 
 const productsSlice = createSlice({
@@ -84,23 +85,20 @@ const productsSlice = createSlice({
 
     [searchedProducts.fulfilled]: (state, action) => ({
       ...state,
-      status: 'success',
-      loading: false,
+      searchLoading: false,
       searched_products: action.payload.data,
 
     }),
     [searchedProducts.rejected]: (state, action) => ({
       ...state,
-      status: 'failed',
-      loading: false,
-      searched_products: action.payload.message ?? 'Failed to search produtc',
+      searchLoading: false,
+      message: action.payload.message ?? 'Failed to search produtc',
 
     }),
 
-    [searchedProducts.pending]: (state, action) => ({
+    [searchedProducts.pending]: (state) => ({
       ...state,
-      status: 'success',
-      loading: true,
+      searchLoading: true,
 
     }),
 

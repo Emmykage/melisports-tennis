@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SideNav from '../../components/admin/SideNav';
-import '../../components/admin/adminstyle.css';
+import '../../components/admin/adminstyle.scss';
 import Main from '../../components/admin/dashBoard/Main';
 import RecentOrders from '../../components/admin/RecentOrders';
 import Right from '../../components/admin/Right';

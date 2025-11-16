@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../pages/admin-page/adminstyle.css';
+import '../../pages/admin-page/adminstyle.scss';
 import { AiOutlineClose, AiOutlineUser } from 'react-icons/ai';
 import { BsFillGrid1X2Fill } from 'react-icons/bs';
 

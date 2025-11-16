@@ -178,6 +178,10 @@ hr{
   height: 1px;
   border: 1px solid rgb(186, 88, 88);
 }
+.no-scroll{
+  scrollbar-width: 0px;
+
+}
 
 .image-slider-img{
 transition: translate 0.3s ease-in-out;

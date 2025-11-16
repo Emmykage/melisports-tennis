@@ -1,21 +1,32 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, {
+  useEffect, useMemo, useRef, useState,
+} from 'react';
+import {
+  NavLink, useLocation, useNavigate, useSearchParams,
+} from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import { FiUser, FiMenu, FiPauseCircle } from 'react-icons/fi';
 import './nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
-import { TbLogin2, TbLogout2 } from 'react-icons/tb';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import DirectionsIcon from '@mui/icons-material/Directions';
 import { MdHome } from 'react-icons/md';
-import { Login, LoginOutlined } from '@mui/icons-material';
+import { Input } from '@mui/material';
 import { calculateTotal } from '../../redux/cart/cart';
 import { getCarts } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import logo from '../../assets/images/logo/melisport_1.png';
 
 import { userProfile } from '../../redux/actions/auth';
-
-import ButtonSession from './components/ButtonSession';
+import { getProducts, searchedProducts } from '../../redux/actions/product';
+import { nairaFormat } from '../../utils/nairaFormat';
+import { clearSearch } from '../../redux/products/product';
 
 const Nav = ({ store = true }) => {
   const navigate = useNavigate();
@@ -24,8 +35,9 @@ const Nav = ({ store = true }) => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [toggleNav, setToggleNav] = useState(false);
+  const [query] = useSearchParams();
+  const { location } = window;
 
-  console.log(user);
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
       setStickyNav('sticky-nav');
@@ -100,12 +112,16 @@ const Nav = ({ store = true }) => {
     <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
       {storeItems.map(({ link, label, sub }) => (
         <li className="group relative">
-          <NavLink
-            to={`${link}`}
-            className="hover:text-primary transition-colors"
+          <a
+            onClick={() => {
+              dispatch(clearSearch());
+
+              navigate(`${link}`);
+            }}
+            className="hover:text-primary cursor-pointer transition-colors"
           >
             {label}
-          </NavLink>
+          </a>
           {/* Dropdown */}
           {sub
                       && (
@@ -145,8 +161,6 @@ const Nav = ({ store = true }) => {
     </ul>
   ), [store, user]);
 
-  console.log(user?.role);
-
   const landingMenu = useMemo(() => (
     <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
       {landingNavItem.map((item) => (
@@ -167,6 +181,25 @@ const Nav = ({ store = true }) => {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-white shadow-md">
+        <div className="py-2  px-4  bg-gray-100">
+          <div className="flex m-auto justify-between max-w-7xl">
+
+            <span className="text-xs font-medium">
+              Free shipping on orders over NGN500,000
+
+            </span>
+            <span className="text-xs">
+              Help & Service
+
+            </span>
+          </div>
+
+        </div>
+        <div>
+          <SearchBox />
+
+        </div>
+        {/* <SearchComponent/> */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
           {/* Left: Mobile Menu */}
           <div className="flex items-center gap-4">
@@ -189,10 +222,22 @@ const Nav = ({ store = true }) => {
           <div className="flex items-center gap-5">
             <a href="#survey" className="bg-gray-60 py-1 rounded px-3  lg:text-dark  hidden md:block"> Survey</a>
 
-            <NavLink to="/" className="text-2xl text-gray-700 hover:text-primary">
+            <NavLink
+              onClick={() => {
+                dispatch(clearSearch());
+              }}
+              to="/"
+              className="text-2xl text-gray-700 hover:text-primary"
+            >
               <MdHome />
             </NavLink>
-            <NavLink to="/carts" className="relative text-2xl text-gray-700 hover:text-primary">
+            <NavLink
+              onClick={() => {
+                dispatch(clearSearch());
+              }}
+              to="/carts"
+              className="relative text-2xl text-gray-700 hover:text-primary"
+            >
               <BsCartDash />
               {counter > 0 && (
               <span className="absolute -top-2 -right-3 bg-primary text-white text-xs font-semibold rounded-full px-2 py-0.5">
@@ -203,7 +248,10 @@ const Nav = ({ store = true }) => {
             <div>
               {user ? (
                 <button
-                  onClick={handleLogOut}
+                  onClick={() => {
+                    dispatch(clearSearch());
+                    handleLogOut();
+                  }}
                   className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
                 >
                   <FiUser />
@@ -211,6 +259,11 @@ const Nav = ({ store = true }) => {
                 </button>
               ) : (
                 <NavLink
+
+                  onClick={() => {
+                    dispatch(clearSearch());
+                  }}
+
                   to="/auth/login"
                   className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors"
                 >
@@ -244,7 +297,13 @@ const Nav = ({ store = true }) => {
           <ul className="flex flex-col gap-4 p-6 text-gray-700 font-medium">
 
             {store ? storeItems.map((item) => (
-              <NavLink to={item.link} onClick={() => setToggleNav(false)}>
+              <NavLink
+                onClick={() => {
+                  dispatch(clearSearch());
+                  setToggleNav(false);
+                }}
+                to={item.link}
+              >
                 {item.label}
               </NavLink>
 
@@ -287,5 +346,149 @@ const Nav = ({ store = true }) => {
     </>
   );
 };
+
+export function SearchBox() {
+  const timeoutRef = useRef(null);
+
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('search');
+
+  const isSearchPage = pathname === '/search_page';
+
+  const { searched_products } = useSelector((state) => state.products);
+
+  const [search, setSearch] = useState('');
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (isSearchPage) return;
+
+    navigate(`/search_page?search=${search}`);
+    dispatch(clearSearch());
+
+    // setShowSearchList(false);
+  };
+
+  const handlesearchInput = (e) => {
+    const { value } = e.target;
+    const cleanedValue = value.trim().replace(/\s+/g, ' ');
+    setSearch(cleanedValue);
+
+    isSearchPage && setSearchParams({ search: value });
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      dispatch(searchedProducts({ search: cleanedValue }));
+    }, 1000);
+  };
+
+  const [showSearchList, setShowSearchList] = useState(false); // State variable to control visibility
+
+  useEffect(() => {
+    setShowSearchList(searched_products.length > 0);
+  },
+  [searched_products]);
+
+  const handleClickOutside = (e) => {
+    if (searchRef.current && !searchRef.current.contains(e.target)) {
+      !isSearchPage && dispatch(clearSearch());
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="">
+      <Paper
+        ref={searchRef}
+        className="border-b"
+        component="form"
+        onSubmit={handleSearch}
+        sx={{
+          boxShadow: 'none',
+          position: 'relative',
+          p: '2px 40px',
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          m: 'auto',
+        }}
+      >
+        <div className="max-w-7xl flex items-center m-auto w-full">
+
+          <InputBase
+            sx={{
+              ml: 1,
+              flex: 1,
+              // width: "80",
+              pl: 2,
+              border: 'none',
+              boxShadow: 'none',
+              borderLeft: '1px solid rgba(184, 184, 184, 0.6)',
+              p: '4px 4px',
+              '& .MuiInputBase-input': { paddingLeft: '16px' },
+              '& .MuiInputBase-input:focus': {
+                outline: 'none',
+                border: 'none',
+              },
+              '& .MuiInputBase-input:hover': { outline: 'none', border: 'none' },
+              '& .MuiInputBase-input:focus': { outline: 'none' },
+            }}
+            onChange={handlesearchInput}
+            value={isSearchPage ? query : search}
+
+            placeholder="Search Google Maps"
+            inputProps={{ 'aria-label': 'search google maps' }}
+          />
+          <IconButton type="button" onClick={handleSearch} sx={{ p: '10px' }} aria-label="search">
+            <SearchIcon />
+          </IconButton>
+          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+          <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+            <DirectionsIcon />
+          </IconButton>
+
+        </div>
+
+        <Paper
+          className=""
+          sx={{
+            display: showSearchList && !isSearchPage ? 'block' : 'none', position: 'absolute', width: '100%', top: '100%', left: 0, zIndex: 50,
+          }}
+        >
+
+          <div className="grid grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-96 overflow-auto no-scroll">
+
+            {searched_products && searched_products?.map((item) => (
+              <div
+                className="border shadow rounded-lg pb-4 bg-gray-100"
+                onClick={() => {
+                  navigate(`/productdetails/${item?.id}`);
+                  dispatch(clearSearch());
+                }}
+              >
+                <img src={item.photo_urls?.[0]} alt="" className="h-52 w-full border rounded-lg object-contain" />
+                <p className="px-4 mt-4 capitalize font-semibold">{item?.name}</p>
+                <p className="px-4">{nairaFormat(item?.price)}</p>
+              </div>
+            ))}
+
+          </div>
+
+        </Paper>
+      </Paper>
+    </div>
+  );
+}
 
 export default Nav;
