@@ -374,7 +374,7 @@ export function SearchBox() {
 
   const handlesearchInput = (e) => {
     const { value } = e.target;
-    const cleanedValue = value.trim().replace(/\s+/g, ' ');
+    const cleanedValue = value.replace(/\s+/g, ' ');
     setSearch(cleanedValue);
 
     isSearchPage && setSearchParams({ search: value });
@@ -430,7 +430,6 @@ export function SearchBox() {
             sx={{
               ml: 1,
               flex: 1,
-              // width: "80",
               pl: 2,
               border: 'none',
               boxShadow: 'none',
@@ -447,7 +446,7 @@ export function SearchBox() {
             onChange={handlesearchInput}
             value={isSearchPage ? query : search}
 
-            placeholder="Search Google Maps"
+            placeholder="Search Products"
             inputProps={{ 'aria-label': 'search google maps' }}
           />
           <IconButton type="button" onClick={handleSearch} sx={{ p: '10px' }} aria-label="search">
@@ -467,17 +466,17 @@ export function SearchBox() {
           }}
         >
 
-          <div className="grid grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-96 overflow-auto no-scroll">
+          <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-[600px] overflow-auto no-scroll">
 
             {searched_products && searched_products?.map((item) => (
               <div
-                className="border shadow rounded-lg pb-4 bg-gray-100"
+                className="border shadow rounded-lg pb-4"
                 onClick={() => {
                   navigate(`/productdetails/${item?.id}`);
                   dispatch(clearSearch());
                 }}
               >
-                <img src={item.photo_urls?.[0]} alt="" className="h-52 w-full border rounded-lg object-contain" />
+                <img src={item.photo_urls?.[0]} alt="" className="h-52 w-full rounded-lg object-contain" />
                 <p className="px-4 mt-4 capitalize font-semibold">{item?.name}</p>
                 <p className="px-4">{nairaFormat(item?.price)}</p>
               </div>

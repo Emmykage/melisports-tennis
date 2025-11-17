@@ -68,10 +68,11 @@ import EnrollChildForm from './pages/landing-page/SupportDetails';
 import Invoice from './components/invoice/Invoice';
 import CreateAgentForm from './pages/admin-page/agents/agents';
 import TennisPage from './pages/shop-page/tennis/tennis';
+import useResetPageLoction from './hooks/resetPageLoction';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
-
+useResetPageLoction()
   useInitializeData();
   const dispatch = useDispatch();
   useEffect(() => {

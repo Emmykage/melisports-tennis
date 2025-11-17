@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const resetPageLoction = () => {
+const useResetPageLoction = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -9,4 +9,4 @@ const resetPageLoction = () => {
   }, [pathname]);
 };
 
-export default resetPageLoction;
+export default useResetPageLoction;
