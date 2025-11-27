@@ -42,7 +42,7 @@ const Checkout = () => {
   ));
   const data = {
     order_detail: {
-      total,
+      total: total + (selectedState?.delivery_fee || 0),
       order_items_attributes: orderItems,
       billing_address_attributes: billingDetails,
       status: 'pending',

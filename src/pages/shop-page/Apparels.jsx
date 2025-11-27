@@ -1,18 +1,15 @@
-import React, { startTransition, useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/actions/product';
 import imageBanner from '../../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif';
-import { closeList } from '../../redux/products/searched';
 import Hero from '../../components/banner/Hero';
 import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
-import { getProductCategories } from '../../redux/actions/product_category';
 import Nav from '../../components/nav/Nav';
 import useFilter from '../../hooks/useFilter';
-import { classLevels, classSports, genderItems } from '../../constants/categories';
+import { classSports, genderItems } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
-import { featureItems } from '../../constants/properties';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -61,8 +58,6 @@ const ApparelsPage = () => {
       setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
-
-  console.log(selectedGenders);
 
   return (
     <>
