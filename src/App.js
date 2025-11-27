@@ -72,7 +72,7 @@ import useResetPageLoction from './hooks/resetPageLoction';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
-useResetPageLoction()
+  useResetPageLoction();
   useInitializeData();
   const dispatch = useDispatch();
   useEffect(() => {

@@ -15,20 +15,20 @@ import ProductsPageContainer from '../../components/productItems/ProductItems';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
-  const { products, error, loading } = useSelector((state) => state.products);
-  const { product_categories } = useSelector((state) => state.product_categories);
 
-  const [selectedCapacity, setSelectedCapacity] = useState([]);
+  const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
-
-  const category = product_categories?.find((cat) => cat.name === 'bag');
-
-  useFilter({
+  const {
+    products, error, loading, product_categories,
+  } = useFilter({
     productCategory: 'bag',
     selectedSports,
+    selectedLevels,
     selectedFeatures,
+
   });
+  const category = product_categories?.find((cat) => cat.name === 'bag');
 
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
@@ -37,16 +37,11 @@ const BagsPage = () => {
 
   const handleFilteredActivities = (e) => {
     const { value, checked } = e.target;
-
     if (checked) {
-      setSelectedCapacity((prev) => [...prev, value]);
+      setSelectedFeatures((prev) => [...prev, value]);
     } else {
-      setSelectedCapacity((prev) => prev.filter((item) => item !== value));
+      setSelectedFeatures((prev) => prev.filter((item) => item !== value));
     }
-  };
-  const handleFilteredFeatures = (e) => {
-    const { checked, value } = e.target;
-    checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
 
   const handleSportFilter = (e) => {
@@ -61,7 +56,8 @@ const BagsPage = () => {
   return (
     <>
       <Nav />
-      <Hero image={bannerImage} />
+      <Hero image={bannerImage} title="Bags & Backpacks" />
+
       <ProductsPageContainer>
 
         <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
@@ -99,12 +95,12 @@ const BagsPage = () => {
           <div className="flex md:gap-10">
             <SideNav>
 
-              <div className="side-row">
+              <div className="">
                 <h6>Activities</h6>
 
               </div>
               <div />
-              <div className="side-row">
+              <div className="">
 
                 {classSports.map((item) => (
                   <div className="flex items-center mb-2">
@@ -125,89 +121,79 @@ const BagsPage = () => {
                 ))}
 
               </div>
-              <div className="side-row">
+              <div className="mt-4">
                 <h6>Capacity</h6>
 
-                <div className="flex items-center">
-                  <input type="checkbox" id="RH_X12" value="RH X12" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
+                {[{
+                  value: 'RH_X12',
+                  label: 'RH X12',
+                }, {
+                  value: 'RH_X9',
+                  label: 'RH X9',
+                }, {
+                  value: 'RH_X6',
+                  label: 'RH X6',
+                }, {
+                  value: 'RH_X6',
+                  label: 'RH X6',
+                }, {
+                  value: 'RH X3',
+                  label: 'RH X3',
+                }, {
+                  value: 'Duffle',
+                  label: 'Duffle',
+                }, {
+                  value: 'Backpack',
+                  label: 'Backpack',
+                }].map((item) => (
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={item.value}
+                      value={item.value}
+                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      onChange={handleFilteredActivities}
+                    />
 
-                  <label htmlFor="RH_X12" style={{ fontSize: '1rem' }}>
-                    RH X12
-                  </label>
+                    <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
+                      {item.label}
+                    </label>
 
-                </div>
-                <div className="flex items-center">
-
-                  <input onChange={handleFilteredFeatures} value="RH X9" type="checkbox" id="RH_X9" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="RH_X9" style={{ fontSize: '1rem' }}>
-                    RH X9
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input onChange={handleFilteredActivities} value="RH X6" type="checkbox" id="RH_X6" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="RH_X6" style={{ fontSize: '1rem' }}>
-                    RH X6
-                  </label>
-
-                </div>
-                <div className="flex items-center">
-                  <input onChange={handleFilteredActivities} value="RH X6" type="checkbox" id="RH_X6" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="RH_X6" style={{ fontSize: '1rem' }}>
-                    RH X3
-                  </label>
-
-                </div>
-                <div className="flex items-center">
-                  <input onChange={handleFilteredActivities} value="backpack" type="checkbox" id="backpack" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="backpack" style={{ fontSize: '1rem' }}>
-                    Backpack
-                  </label>
-
-                </div>
-                <div className="flex items-center">
-                  <input onChange={handleFilteredActivities} value="duffle" type="checkbox" id="duffle" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="backpack" style={{ fontSize: '1rem' }}>
-                    Duffle
-                  </label>
-
-                </div>
+                  </div>
+                ))}
 
               </div>
-              <div className="side-row">
+              <div className="mt-4">
                 <h6>Series</h6>
-                <div className="flex items-center">
-                  <input onChange={handleFilteredProducts} value="pure drive" type="checkbox" id="pure_drive" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
 
-                  <label htmlFor="pure_drive" style={{ fontSize: '1rem' }}>
-                    Pure Drive
-                  </label>
+                {[{
+                  value: 'Pure Drive',
+                  label: 'pure drive',
+                }, {
+                  value: 'Pure aero',
+                  label: 'pure aero',
+                }, {
+                  value: 'Pure Strike',
+                  label: 'pure Strike',
+                }].map((item) => (
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={item.value}
+                      value={item.value}
+                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      onChange={handleFilteredActivities}
+                    />
 
-                </div>
+                    <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
+                      {item.label}
+                    </label>
 
-                <div className="flex items-center">
-                  <input onChange={handleFilteredProducts} value="pure strike" type="checkbox" id="pure_strike" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="pure_strike" style={{ fontSize: '1rem' }}>
-                    Pure Strike
-                  </label>
-
-                </div>
-                <div className="flex items-center">
-                  <input onChange={handleFilteredProducts} value="pure aero" type="checkbox" id="pure_aero" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                  <label htmlFor="pure_aero" style={{ fontSize: '1rem' }}>
-                    Pure Aero
-                  </label>
-
-                </div>
+                  </div>
+                ))}
 
               </div>
-              <div className="side-row">
+              <div className="mt-4">
                 <h6>Brand</h6>
 
                 <label htmlFor="activity" style={{ fontSize: '1rem' }}>

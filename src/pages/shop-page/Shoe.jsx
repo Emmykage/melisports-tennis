@@ -4,57 +4,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../components/banner/Hero';
 import { getProducts } from '../../redux/actions/product';
 import bannerImage from '../../assets/images/banner/2023-01_BAB_Banner_70_pourcents_Propulse_Fury_1365x510px-2.avif';
-import { closeList } from '../../redux/products/searched';
-import { getProductCategories } from '../../redux/actions/product_category';
 import Loader from '../Loader';
 
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
 
 import useFilter from '../../hooks/useFilter';
-import { classSports } from '../../constants/categories';
+import { classSports, genderItems, itemsFeatures } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
-
-const itemsFeatures = [{
-  type: 'clay',
-  label: 'Clay',
-},
-{
-  type: 'grass',
-  label: 'Grass',
-}];
 
 const ShoesPage = () => {
   const dispatch = useDispatch();
 
   const [selectedCapacities, setSelectedCapacities] = useState([]);
-  const [selectedLevels, setSelectedLevels] = useState([]);
+
+  const [selectedGenders, setSelectedGenders] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
 
+  const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+
   const {
-    products, status, error, loading,
-  } = useSelector((state) => state.products);
-  const { product_categories } = useSelector((state) => state.product_categories);
-  const category = product_categories?.find((cat) => cat.name === 'shoe');
-  useFilter({
+    products, error, loading, product_categories,
+  } = useFilter({
     productCategory: 'shoe',
     selectedSports,
     selectedLevels,
-    selectedCapacities,
-  });
-  const handleFilteredProducts = (sieve) => {
-    const lowerCaseSieve = sieve.toLowerCase();
-    dispatch(getProducts({ gender: lowerCaseSieve }));
-  };
+    selectedFeatures,
+    selectedGenders,
 
-  const handleFilteredActivities = (e) => {
-    if (e.target.checked) {
-      dispatch(getProducts({
-        category: 'shoe',
-      }));
-    }
-  };
+  });
+
+  const category = product_categories?.find((cat) => cat.name === 'shoe');
 
   const handleFilteredCapacities = (e) => {
     const { checked, value } = e.target;
@@ -69,6 +51,29 @@ const ShoesPage = () => {
     } else {
       setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
+  };
+
+  const handleGenderFilter = (e) => {
+    const { checked, value } = e.target;
+    console.log(value);
+
+    if (checked) {
+      setSelectedGenders((prev) => [...prev, value]);
+    } else {
+      setSelectedGenders((prev) => prev.filter((item) => item !== value));
+    }
+  };
+  const handleSportsFilter = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setSelectedSports((prev) => [...prev, value]);
+    } else {
+      setSelectedSports((prev) => prev.filter((item) => item !== value));
+    }
+  };
+  const handleFilteredFeatures = (e) => {
+    const { checked, value } = e.target;
+    checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
 
   return (
@@ -111,37 +116,74 @@ const ShoesPage = () => {
         </div>
         <div className="flex md:gap-10">
           <SideNav>
-            <div className="side-row">
-              <h6>Activities</h6>
 
+            {/* Section: Racket Type */}
+            <div>
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+                Racket Type
+              </h6>
+
+              <div className="">
+
+                {classSports.map((item) => (
+                  <div className="mb-2 flex items-center">
+                    <input
+                      type="checkbox"
+                      onChange={handleSportsFilter}
+                      id={item.type}
+                      value={item.type}
+                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+
+                    <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
+                      <span>
+                        {item.label}
+                      </span>
+                    </label>
+
+                  </div>
+                ))}
+
+              </div>
             </div>
-            <div />
-            <div className="side-row">
-              {classSports.map((item) => (
-                <div className="flex items-center">
 
-                  <input
-                    onChange={handleSportFilter}
-                    type="checkbox"
-                    id={item.type}
-                    value={item.type}
-                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
-                    <span>
-                      {item.label}
-                    </span>
+            <div className="mt-4">
+              <h6>Category</h6>
+
+              {genderItems.map((item) => (
+                <div className="flex items-center">
+                  <label htmlFor={item.type} style={{ fontSize: '1rem' }}>
+
+                    <input
+                      type="checkbox"
+                      id={item.type}
+                      value={item.type}
+                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      onChange={handleGenderFilter}
+                    />
+
+                    {item.label}
                   </label>
+
                 </div>
               ))}
 
             </div>
-            <div className="side-row">
+
+            <div />
+
+            <div className="mt-4">
               <h6>Court Type</h6>
 
               {itemsFeatures.map((item) => (
                 <div className="flex items-center">
-                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredCapacities} />
+                  <input
+                    type="checkbox"
+                    id={item.type}
+                    value={item.type}
+                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    onChange={handleFilteredFeatures}
+                  />
 
                   <label htmlFor={item.type} style={{ fontSize: '1rem' }}>
                     {item.label}
@@ -152,10 +194,16 @@ const ShoesPage = () => {
 
             </div>
 
-            <div className="side-row">
+            <div className="mt-4">
               <h6>Brand</h6>
               <div className="flex items-center">
-                <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input
+                //  onChange={handleFilteredActivities}
+                  value="babolat"
+                  type="checkbox"
+                  id="babolat"
+                  className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
                 <label htmlFor="activity" style={{ fontSize: '1rem' }}>
 
                   babolat

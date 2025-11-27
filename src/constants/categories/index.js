@@ -83,3 +83,11 @@ export const playerTypes = [
     label: 'All Rounder',
   },
 ];
+export const itemsFeatures = [{
+  type: 'clay',
+  label: 'Clay',
+},
+{
+  type: 'grass',
+  label: 'Grass',
+}];

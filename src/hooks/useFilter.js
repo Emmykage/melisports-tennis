@@ -7,23 +7,27 @@ const useFilter = ({
   productCategory = null,
   selectedSports = null,
   selectedFeatures = null,
-  selectedlevels = null,
+  selectedLevels = null,
+  selectedCapacities = null,
+  selectedGenders = null,
 
 }) => {
   const dispatch = useDispatch();
   const { product_categories } = useSelector((state) => state.product_categories);
   const { products, error, loading } = useSelector((state) => state.products);
 
+  console.log(selectedCapacities);
   useEffect(() => {
     dispatch(getProducts({
       category: productCategory,
       sport: selectedSports,
       features: selectedFeatures,
-      level: selectedlevels,
-      selectedlevels,
+      level: selectedLevels,
+      gender: selectedGenders,
+      capacity: selectedCapacities,
 
     }));
-  }, [productCategory, selectedSports, selectedFeatures]);
+  }, [productCategory, selectedSports, selectedGenders, selectedLevels, selectedFeatures]);
 
   useEffect(() => {
     dispatch(getProductCategories());

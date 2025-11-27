@@ -34,6 +34,7 @@ const ProductsPage = () => {
     selectedLevels,
     selectedFeatures,
   });
+
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredProducts = (seive) => {
@@ -163,7 +164,7 @@ const ProductsPage = () => {
             </div>
 
             {/* Section: Skill Level */}
-            <div>
+            <div className="mt-4">
               <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
                 Skill Level
               </h6>
