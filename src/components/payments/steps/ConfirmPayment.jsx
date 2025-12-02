@@ -25,6 +25,7 @@ const ConfirmPayment = ({
     },
     // onClose: () => alert('Are you sure'),
   };
+  console.log(billingDetails)
 
   return (
     <div className="rounded-lg">
@@ -67,19 +68,19 @@ const ConfirmPayment = ({
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Name:</span>
-            <span className="text-gray-600">Morris Menanya</span>
+            <span className="text-gray-600">{billingDetails?.name}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Email:</span>
-            <span className="text-gray-600">emmiemenz@gmail.com</span>
+            <span className="text-gray-600">{billingDetails?.email}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Phone Number:</span>
-            <span className="text-gray-600">07064334160</span>
+            <span className="text-gray-600">{billingDetails?.phone_no}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Address:</span>
-            <span className="text-gray-600 text-right">EMOTAN KUBWA ab Lagos</span>
+            <span className="text-gray-600 text-right">{billingDetails?.street} {billingDetails?.city} {billingDetails?.state}</span>
           </div>
         </div>
       </div>
