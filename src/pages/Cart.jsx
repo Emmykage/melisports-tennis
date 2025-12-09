@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { MdClose } from 'react-icons/md';
 import {
   getLocalCart, removeItem, updateQty, updater,
 } from '../redux/cart/cart';
 
-import { openModal } from '../redux/modal/modal';
+import { closeModal, openModal } from '../redux/modal/modal';
 import { closeList } from '../redux/products/searched';
 import { nairaFormat } from '../utils/nairaFormat';
-import { fetchToken } from '../hooks/localStorage';
 import Nav from '../components/nav/Nav';
+import Modal from '../components/modal/Modal';
+import Button from '../components/buttons/Button';
 
 const Cart = () => {
   const { user, loading } = useSelector((state) => state.user);
@@ -17,6 +20,8 @@ const Cart = () => {
   const { status } = useSelector((state) => state.orders);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
 
   const location = useLocation();
 
@@ -65,28 +70,84 @@ const Cart = () => {
           <div className="cart-div  my-4 px-4 gap-4 bg-white flex justify-between m-auto max-w-[1500px] min-h-[70%]">
             <div className="overflow-x-scroll flex-1 cart-inner-div">
 
-              <table>
-                <caption className="py-6 text-lg bg-gray-200">Cart Items</caption>
+              <div className="md:hidden space-y-4 px-4">
+                {cartItems?.map((cart) => (
+                  <div
+                    key={cart?.product_id}
+                    className="bg-gray-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-4"
+                  >
+                    <img src={cart?.image} className="w-36 h-36 object-cover rounded-full" />
+
+                    <div className="flex-1">
+                      <p className="text-gray-700 font-semibold">{cart?.product_name}</p>
+                      <p className="text-gray-600 mt-1">
+                        Sizes:
+                        {' '}
+                        {cart?.sizes?.join(', ')}
+                      </p>
+                      <p className="text-lg text-gray-700 font-semibold mt-2">
+                        {nairaFormat(cart?.price)}
+                      </p>
+
+                      <div className="flex items-center gap-2 mt-2">
+                        <button
+                          className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
+                          onClick={() => {
+                            selectCart(cart.product_id, cart.quantity, '-');
+                            cart?.quantity === 1 && dispatch(removeItem(cart?.id));
+                          }}
+                        >
+                          -
+                        </button>
+                        <span className="font-semibold">{cart?.quantity}</span>
+                        <button
+                          className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
+                          onClick={() => selectCart(cart?.product_id, cart?.quantity, '+')}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    <button onClick={() => handleDelete(cart?.product_id)}>
+                      <MdClose className="text-2xl text-gray-600" />
+                    </button>
+                  </div>
+                ))}
+
+                <div className="text-right mt-4">
+                  <button
+                    className="w-full md:w-auto flex items-center justify-center gap-2 font-semibold text-theme rounded py-2.5 shadow-lg border border-theme-light hover:bg-theme-light hover:text-white transition-all duration-300"
+                    type="button"
+                    onClick={() => setOpen(true)}
+                  >
+                    Clear Cart
+                  </button>
+                </div>
+              </div>
+
+              <table className="hidden md:table md:border-separate md:border-spacing-y-4 w-full">
+                <caption className="py-6 text-lg text-left px-4 font-semibold text-gray-600">Your Shopping Cart Items</caption>
                 <thead>
                   <tr>
                     <th className="hidden lg:table-cell" />
-                    <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">name</th>
-                    <th className=" hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Price</th>
-                    <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Total</th>
-                    <th className="hidden lg:table-cell sticky top-0  z-10 border-b border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter">Quantity</th>
+                    <th className="hidden lg:table-cell sticky top-0  z-10 border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter" />
+                    <th className=" hidden lg:table-cell sticky top-0  z-10 border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-right font-semibold  backdrop-blur backdrop-filter">Quantity</th>
+                    <th className="hidden lg:table-cell sticky top-0  z-10 border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-right font-semibold  backdrop-blur backdrop-filter">Price</th>
+                    <th className="hidden lg:table-cell sticky top-0  z-10 border-gray-200/50  bg-opacity-75 px-3 py-3.5 pr-3 text-left font-semibold  backdrop-blur backdrop-filter" />
                     <th className="hidden lg:table-cell" />
 
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="">
                   {cartItems?.map((cart) => (
-                    <tr>
-                      <td data-cell="image" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
-                        <div className="cart-img m-auto shrink-0 w-36  ">
-                          <img src={cart?.image} className="w-full h-full" />
+                    <tr className="grid grid-cols-1 w-full lg:table-row lg:grid-cols-0">
+                      <td data-cell="image" className="block lg:table-cell whitespace-nowrap md:rounded-tl-2xl md:rounded-bl-2xl mb-4 bg-gray-200  overflow-hidden border-gray-200  px-3 py-3 text-sm text-gray-600/90 font-normal">
+                        <div className="cart-img m-auto shrink-0 w-36 h-36 ">
+                          <img src={cart?.image} className="w-36 h-36  object-fill rounded-full" />
                         </div>
                       </td>
-                      <td data-cell="name" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
+                      <td data-cell="name" className="block lg:table-cell whitespace-nowrap  bg-gray-200  px-3 py-3 text-sm text-gray-900 font-medium">
                         <p className="text-gray-700 font-semibold">
                           {cart?.product_name}
 
@@ -98,62 +159,77 @@ const Cart = () => {
                           )) }
                         </p>
                       </td>
-                      <td data-cell="price" className="whitespace-nowrap border-b font- border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
-                        <p>{nairaFormat(cart?.price)}</p>
-                      </td>
-                      <td data-cell="total" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-medium">
+
+                      {/* <td data-cell="total" className="whitespace-nowrap border-b bg-gray-300 block px-3 py-3 lg:table-cell text-sm text-gray-900 font-medium">
                         <p>{nairaFormat(cart?.subTotal)}</p>
-                      </td>
+                      </td> */}
 
-                      <td data-cell="quantity" className="whitespace-nowrap border-b border-gray-200 block px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
-                        <div className="cart-btn ">
-                          <div className="cart-btn-div flex space bg-green-400">
+                      <td data-cell="quantity" className=" block lg:table-cell whitespace-nowrap bg-gray-200  px-3 py-3 text-sm text-gray-600/90 font-normal">
+                        <div className=" ">
+                          <div className="flex  justify-center items-center ">
 
-                            <button
-                              className="btn change px-2"
-                              onClick={() => {
-                                selectCart(cart.product_id, cart.quantity, '-');
-                                cart?.quantity === 1 && dispatch(removeItem(cart?.id));
-                              }}
-                            >
-                              -
-                            </button>
-                            <span className="cart-count">
+                            <span className="cart- font-semibold ">
 
                               {cart?.quantity}
                             </span>
+                            <div className="ml-4">
 
-                            <button
-                              className="btn change"
-                              type="button"
+                              <button
+                                className="text-center flex items-center justify-center w-5 h-5 text-white border bg-gray-600 rounded-full"
+                                onClick={() => {
+                                  selectCart(cart.product_id, cart.quantity, '-');
+                                  cart?.quantity === 1 && dispatch(removeItem(cart?.id));
+                                }}
+                              >
+                                -
+                              </button>
+
+                              <button
+                                className="text-center flex items-center justify-center w-5 h-5 text-white border bg-gray-600 rounded-full"
+                                type="button"
                           // onClick={() => selectCart(cart.id, cart.quantity, '+')}
-                              onClick={() => selectCart(cart?.product_id, cart?.quantity, '+')}
-                            >
-                              +
-                            </button>
+                                onClick={() => selectCart(cart?.product_id, cart?.quantity, '+')}
+                              >
+                                +
+                              </button>
+
+                            </div>
                           </div>
                         </div>
                       </td>
-                      <td className="whitespace-nowrap block sm:table-cell border-b border-gray-200 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal">
-                        <button className="btn block" onClick={() => handleDelete(cart?.product_id)}> remove</button>
+                      <td data-cell="price" className="block lg:table-cell whitespace-nowrap text-right bg-gray-200 px-3 py-3  rounded-tr-2xl rounded-br-2xl">
+                        <p className="text-lg text-gray-700 font-semibold">{nairaFormat(cart?.price)}</p>
+                      </td>
+                      <td className=" block sm:table-cell w-10 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal text-left">
+                        <button className="" onClick={() => handleDelete(cart?.product_id)}>
+                          {' '}
+                          <MdClose className="text-2xl" />
+                          {' '}
+                        </button>
 
                       </td>
                     </tr>
 
                   ))}
+                  <tr className="py-4 my-4">
+                    <td />
+                    <td />
+                    <td />
+                    <td className="text-right ">
+                      <button
+                        className="w-full mt-4 flex items-center justify-center gap-2 font-semibold text-theme rounded py-2.5 shadow-lg border border-theme-light hover:bg-theme-light  hover:text-white transition-all duration-300"
+                        type="button"
+                        onClick={() => setOpen(true)}
+                      >
+                        clear cart
+                      </button>
+
+                    </td>
+                  </tr>
                 </tbody>
               </table>
 
-              <div className="clear">
-                <button
-                  className="btn "
-                  type="button"
-                  onClick={() => dispatch(openModal())}
-                >
-                  clear cart
-                </button>
-
-              </div>
+              <div className="clear" />
             </div>
             <div className="cart-side md:w-72 shrink-0  py-4 px-2 border rounded-lg">
               <div className="flex justify-between items-center"><h2 className="mb-4 font-light">Order Summary</h2></div>
@@ -170,13 +246,38 @@ const Cart = () => {
                 <span className=" text-gray font-bold">{nairaFormat(total)}</span>
               </div>
               <div>
-                <NavLink to="/checkout" className="btn"> CHECKOUT</NavLink>
+                <Button onClick={()=> navigate("/checkout") }className="btn"> CHECKOUT</Button>
 
               </div>
 
             </div>
           </div>
         )}
+
+      <Modal open={open} setOpen={setOpen}>
+        <h2 className="text-xl font-medium text-theme">Remove all items?</h2>
+        <p className="text-gray-600">Are you sure you want to clear your shopping cart?</p>
+
+        <div className="flex gap-3">
+          <button
+            onClick={() => setOpen(false)}
+            className="flex-1 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+          >
+            Cancel
+          </button>
+
+          <button
+            onClick={() => {
+              dispatch(clearCart());
+              setOpen(false);
+              dispatch(updater());
+            }}
+            className="flex-1 py-3 rounded-xl bg-theme text-white hover:bg-theme-light transition shadow-md"
+          >
+            Confirm
+          </button>
+        </div>
+      </Modal>
     </>
   );
 };

@@ -1,37 +1,23 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 import { clearCart, updater } from '../../redux/cart/cart';
 
 import { closeModal } from '../../redux/modal/modal';
 import Button from '../buttons/Button';
 
-const Modal = () => {
+const Modal = ({ open, setOpen, children }) => {
   const dispatch = useDispatch();
   return (
-    <div className="modal-container">
-      <div className="modal">
-        <h3 className="center font-normal text-xl my-4">remove all items from shopping cart?</h3>
-        <div className="btn-container">
-          <Button
-
-            btnFunc={() => {
-              dispatch(clearCart());
-              dispatch(closeModal());
-              dispatch(updater());
-            }}
-          >
-            confirm
-          </Button>
-
-          <Button
-            type="cancel"
-            className="btn confirm-btn"
-            btnFunc={() => dispatch(closeModal())}
-          >
-            cancel
-          </Button>
-        </div>
-      </div>
+    <div className={`${open ? 'fixed' : 'hidden'}  inset-0 bg-black/50 flex items-center justify-center z-50 p-4"`}>
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="bg-white rounded-xl w-full  shadow-2xl p-6  max-w-2xl text-center space-y-6"
+      >
+        {' '}
+        {children}
+      </motion.div>
 
     </div>
   );

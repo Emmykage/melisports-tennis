@@ -640,31 +640,6 @@ button:active {
   color: #333;
 }
 
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  user-select: none;
-}
-
-
-table tbody tr:last-child {
-  border-bottom: 1px solid #222629;
-}
-
-table th {
-
-  padding: 12px 16px;
-  text-align: left;
-  color: white;
-}
-table td {
-  padding: 12px 16px;
-    border: 1px solid rgb(208, 208, 208);
-}
-
-
-
 .div-center-flex {
   justify-content: center;
   align-items: center;
@@ -769,13 +744,13 @@ table td {
   background: var(--bg-gray-dark);
 }
 
-.cart-btn-div {
+/* .cart-btn-div {
   align-items: center;
   border: 1px solid #bdbdbd;
   border-radius: 6px;
 
 margin-top: 10px;}
-
+ */
 
 
 td .btn.change {
@@ -812,22 +787,6 @@ td .btn.change {
 .cart-div .cart-det {
   flex-basis: 40%;
   border: 1px solid black;
-}
-
-.border-white {
-  border: 1px solid var(--color-info-light);
-}
-
-.cart-div .cart-btn {
-  flex-basis: 20%;
-  display: flex;
-  align-items: center;
-  height: 30px;
-  border-radius: 6px;
-}
-
-.cart-div .cart-btn button {
-  flex-basis: 25%;
 }
 
 .cart-div .clear {

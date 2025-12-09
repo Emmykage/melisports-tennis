@@ -25,7 +25,7 @@ const ConfirmPayment = ({
     },
     // onClose: () => alert('Are you sure'),
   };
-  console.log(billingDetails)
+  console.log(billingDetails);
 
   return (
     <div className="rounded-lg">
@@ -80,7 +80,13 @@ const ConfirmPayment = ({
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Address:</span>
-            <span className="text-gray-600 text-right">{billingDetails?.street} {billingDetails?.city} {billingDetails?.state}</span>
+            <span className="text-gray-600 text-right">
+              {billingDetails?.street}
+              {' '}
+              {billingDetails?.city}
+              {' '}
+              {billingDetails?.state}
+            </span>
           </div>
         </div>
       </div>
