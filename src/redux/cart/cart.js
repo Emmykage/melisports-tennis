@@ -27,13 +27,10 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setCartItems: (state, action) => {   
-
-      return {
-        ...state,
-        cartItems: action.payload,
-      };
-    },
+    setCartItems: (state, action) => ({
+      ...state,
+      cartItems: action.payload,
+    }),
     getLocalCart: (state) => ({
       ...state,
       cartItems: refCart(),

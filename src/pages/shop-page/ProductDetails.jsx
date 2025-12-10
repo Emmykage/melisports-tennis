@@ -229,7 +229,6 @@ const ProductDetails = () => {
                         key={inventory.size}
                         onClick={() => {
                           setSelectedItem((prev) => (prev == inventory?.id ? null : inventory.id));
-                 
                         }}
                         className={`px-5 py-2 relative rounded-lg border text-sm font-medium transition-all ${
                           inventory.count > 0
@@ -249,54 +248,58 @@ const ProductDetails = () => {
 
                 {/* Quantity */}
 
-                {newInventory?.length == 1 ?  <div className="flex items-center gap-4 mt-6">
-                  <div className="flex items-center border rounded-lg">
-                    <button
-                      type="button"
-                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={() => handleItemCount(newInventory[0], '-')}
-                    >
-                      -
-                    </button>
-                    <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
-                    <button
-                      type="button"
-                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={() => handleItemCount(newInventory[0], '+')}
-                    >
-                      +
-                    </button>
+                {newInventory?.length == 1 ? (
+                  <div className="flex items-center gap-4 mt-6">
+                    <div className="flex items-center border rounded-lg">
+                      <button
+                        type="button"
+                        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                        onClick={() => handleItemCount(newInventory[0], '-')}
+                      >
+                        -
+                      </button>
+                      <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
+                      <button
+                        type="button"
+                        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                        onClick={() => handleItemCount(newInventory[0], '+')}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Av Qty:
+                      {' '}
+                      {newInventory[0]?.quantity}
+                    </p>
                   </div>
-                  <p className="text-sm text-gray-600">
-                    Av Qty:
-                    {' '}
-                    {newInventory[0]?.quantity}
-                  </p>
-                </div> :
-                <div className="flex items-center gap-4 mt-6">
-                  <div className="flex items-center border rounded-lg">
-                    <button
-                      type="button"
-                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={decrease}
-                    >
-                      -
-                    </button>
-                    <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
-                    <button
-                      type="button"
-                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={increase}
-                    >
-                      +
-                    </button>
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Av Qty:
-                    {' '}
-                    {product.product_quantity}
-                  </p>
-                </div>  }
+                )
+                  : (
+                    <div className="flex items-center gap-4 mt-6">
+                      <div className="flex items-center border rounded-lg">
+                        <button
+                          type="button"
+                          className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                          onClick={decrease}
+                        >
+                          -
+                        </button>
+                        <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
+                        <button
+                          type="button"
+                          className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                          onClick={increase}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        Av Qty:
+                        {' '}
+                        {product.product_quantity}
+                      </p>
+                    </div>
+                  ) }
 
                 {/* Add to Cart */}
                 <div className="mt-6">
