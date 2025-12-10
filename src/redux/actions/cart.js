@@ -1,20 +1,36 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
+import cartSlice, { setCartItems }  from "../cart/cart"
+// import {setCartItems}  from "../cart/cart"
+import { getCart, setCart } from '../../hooks/localStorage';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 
-// const addCart = createAsyncThunk('cart/addCart', async (data) => {
-//   const response = await fetch(`${baseURL}cart_items`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json',
-//       Authorization: `Bearer ${token()}`,
+export const addToCart = (newCartArray) =>(dispatch, getState)=> {
+      let existingCarts = getCart()  || [];
 
-//     },
-//     body: JSON.stringify(data),
-//   });
-//   return response;
-// });
+      if (!existingCarts || existingCarts.length < 1) {
+        setCart(newCartArray);
+        return newCartArray
+        
+      }
+
+       newCartArray.forEach((newCart) => {
+        const cartIndex = existingCarts.findIndex((cart) => cart?.product_id === newCart.product_id);
+        const cartExist = cartIndex !== -1;
+
+        if (cartExist) {
+          existingCarts[cartIndex] = newCart;
+        } else {
+          existingCarts.push(newCart);
+        }
+      });
+
+      setCart(existingCarts);
+
+      
+  dispatch(setCartItems(existingCarts));
+}
 // const removeItem = createAsyncThunk('cart/removeCart', async (id) => {
 //   const response = await fetch(`${baseURL}cart_items/${id}`, {
 //     method: 'DELETE',

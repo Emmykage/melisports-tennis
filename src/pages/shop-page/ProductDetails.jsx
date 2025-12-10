@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -13,28 +13,44 @@ import { nairaFormat } from '../../utils/nairaFormat';
 import { pickColor } from '../../utils/get_colors';
 import Nav from '../../components/nav/Nav';
 import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
+import { addToCart } from '../../redux/actions/cart';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
   const [sizes, setsizes] = useState([]);
-  const [selectedSize, setSelectedSIze] = useState(null);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [newInventory, setNewInventory] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
   const { relatedProducts, status, loading: isLoading } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
-  console.log(product, 'related products');
+  console.log(selectedItem, 'related products');
 
   useEffect(() => {
     dispatch(closeList());
     dispatch(getProduct(id));
   }, [id]);
   const handleCart = () => {
+    const cartArray = newInventory.filter((item) => item.count && item.count > 0).map((item) => ({
+      product_id: item?.id,
+      sku: item?.sku,
+      image: product.photo_urls ? product.photo_urls[0] : product.image,
+      price: product.discount === 'active_discount' ? product.discount_amount : product.price,
+      quantity: item.count,
+      product_name: product.name,
+      size: item?.size,
+      colours: product?.colours,
+    }));
+
+    console.log(cartArray);
     if (product.product_quantity > 0) {
-      dispatch(addCart({
-        product_id: id, image: product.photo_urls ? product.photo_urls[0] : product.image, price: product.discount === 'active_discount' ? product.discount_amount : product.price, quantity: count, product_name: product.name, sizes,
-      }));
+      dispatch(addToCart(cartArray));
+      setSelectedItem(null);
+      // setsizes([])
 
       dispatch(updater());
     } else {
@@ -43,14 +59,59 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
+    setCount(sizes.length);
+  }, [sizes]);
+  useEffect(() => {
+    const total = newInventory.reduce((acc, item) => {
+      acc += item.count || 0;
+      return acc;
+    }, 0);
+    setTotalCount(total);
+  }, [newInventory]);
+
+  useEffect(() => {
+    setSelectedColors(product?.colours);
+  }, [product]);
+
+  useEffect(() => {
     dispatch(getSimilarProducts({ product_id: id }));
   }, []);
   const increase = () => {
     setCount((setPrev) => Math.min(setPrev + 1, product.product_quantity));
   };
+
+  const handleItemCount = (item, sign) => {
+    setNewInventory((prev) => {
+      const updatedInventory = prev.map((s) => {
+        if (item.id == s.id) {
+          return {
+            ...s,
+            count: sign == '+' ? Math.min((s.count || 0) + 1, item.quantity) : Math.max((s.count - 1 || 0), 0),
+          };
+        }
+        return s;
+      });
+      console.log(updatedInventory);
+      return updatedInventory;
+    });
+  };
   const decrease = () => {
     setCount((setPrev) => Math.max(setPrev - 1, 0));
   };
+
+  useEffect(() => {
+    const newArray = [];
+
+    product.product_inventories?.forEach((inventory, index) => {
+      const exists = newArray.some((n) => n.size == inventory.size);
+      console.log(inventory, exists, newArray);
+      if (!exists) { newArray.push(inventory); }
+    });
+
+    setNewInventory(newArray);
+  }, [product]);
+
+  console.log(product, newInventory, newInventory.length);
 
   if (loading) {
     return (<Loader />);
@@ -135,6 +196,15 @@ const ProductDetails = () => {
                       />
                     ) : (
                       <span
+                        onClick={() => {
+                          setSelectedColors((prev) => {
+                            const exists = prev.some((s) => s === color);
+                            const newArray = exists
+                              ? prev.filter((s) => s !== color) : [...prev, color];
+                            return newArray;
+                          });
+                        }}
+
                         key={color}
                         className={`w-8 h-8 rounded-full border flex justify-center items-center ${pickColor(color)[0]}`}
                       >
@@ -154,20 +224,23 @@ const ProductDetails = () => {
                     {product?.product_category?.name === 'racquet' ? 'Grip Size' : 'Size'}
                   </span>
                   <div className="flex gap-3 flex-wrap">
-                    {product?.product_sizes.map((size) => (
+                    {newInventory.map((inventory) => (
                       <button
-                        key={size}
+                        key={inventory.size}
                         onClick={() => {
-                          setSelectedSIze(size);
-                          setsizes([size]);
+                          setSelectedItem((prev) => (prev == inventory?.id ? null : inventory.id));
+                 
                         }}
-                        className={`px-5 py-2 rounded-lg border text-sm font-medium transition-all ${
-                          selectedSize === size
+                        className={`px-5 py-2 relative rounded-lg border text-sm font-medium transition-all ${
+                          inventory.count > 0
                             ? 'bg-primary text-white border-primary'
                             : 'bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200'
                         }`}
                       >
-                        {size}
+                        {(selectedItem && inventory.id == selectedItem)
+                        && <QuantityAdjuster count={inventory?.count || 0} increase={() => handleItemCount(inventory, '+')} quantity={inventory.quantity} decrease={() => handleItemCount(inventory, '-')} />}
+
+                        {inventory.size}
                       </button>
                     ))}
                   </div>
@@ -175,6 +248,31 @@ const ProductDetails = () => {
                 )}
 
                 {/* Quantity */}
+
+                {newInventory?.length == 1 ?  <div className="flex items-center gap-4 mt-6">
+                  <div className="flex items-center border rounded-lg">
+                    <button
+                      type="button"
+                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                      onClick={() => handleItemCount(newInventory[0], '-')}
+                    >
+                      -
+                    </button>
+                    <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
+                    <button
+                      type="button"
+                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                      onClick={() => handleItemCount(newInventory[0], '+')}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Av Qty:
+                    {' '}
+                    {newInventory[0]?.quantity}
+                  </p>
+                </div> :
                 <div className="flex items-center gap-4 mt-6">
                   <div className="flex items-center border rounded-lg">
                     <button
@@ -184,7 +282,7 @@ const ProductDetails = () => {
                     >
                       -
                     </button>
-                    <span className="px-4 py-2 text-gray-900 font-medium">{count}</span>
+                    <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
                     <button
                       type="button"
                       className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
@@ -198,7 +296,7 @@ const ProductDetails = () => {
                     {' '}
                     {product.product_quantity}
                   </p>
-                </div>
+                </div>  }
 
                 {/* Add to Cart */}
                 <div className="mt-6">
@@ -312,5 +410,41 @@ const ProductDetails = () => {
 
   );
 };
+
+const QuantityAdjuster = ({
+  onClick, decrease, count, increase, quantity = 0,
+}) => (
+  // <div className='bg-gray-800/30 fixed top-0 left-0 h-full w-full z-40'>
+
+  <div
+    onClick={(e) => e.stopPropagation()}
+    className="flex absolute items-center gap-4 bg-white rounded-lg p-4 -mt-16 left-0  border shadow  -top-full"
+  >
+    <div className="flex items-center border rounded-lg">
+      <button
+        type="button"
+        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+        onClick={decrease}
+      >
+        -
+      </button>
+      <span className="px-4 py-2 text-gray-900 font-medium">{count}</span>
+      <button
+        type="button"
+        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+        onClick={increase}
+      >
+        +
+      </button>
+    </div>
+    <p className="text-sm text-gray-600 text-nowrap">
+      Max Qty:
+      {' '}
+      {quantity}
+    </p>
+  </div>
+
+  // </div>
+);
 
 export default ProductDetails;

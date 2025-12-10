@@ -7,7 +7,8 @@ const refCart = () => getCart().map((cart) => ({
   price: cart.price,
   product_name: cart.product_name,
   image: cart.image,
-  sizes: cart.sizes,
+  size: cart.size,
+  colours: cart.colours,
   quantity: cart.quantity,
   subTotal: cart.quantity * cart.price,
 }));
@@ -26,31 +27,11 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addCart: (state, action) => {
-      getCart();
-
-      if (!getCart() || getCart().length < 1) {
-        const newCartArray = [action.payload];
-        setCart(newCartArray);
-      }
-
-      const cartExist = getCart().find((cart) => cart?.product_id === action.payload.product_id);
-      if (!cartExist) {
-        const newCartArray = [...getCart(), action.payload];
-        setCart(newCartArray);
-      } else {
-        const updateCart = getCart().map((item) => {
-          if (item.product_id === action.payload.product_id) {
-            item.quantity = action.payload.quantity;
-          }
-          return item;
-        });
-        setCart(updateCart);
-      }
+    setCartItems: (state, action) => {   
 
       return {
         ...state,
-        cartItems: refCart(),
+        cartItems: action.payload,
       };
     },
     getLocalCart: (state) => ({
@@ -140,6 +121,6 @@ const cartSlice = createSlice({
   },
 });
 export const {
-  removeItem, updateQty, updater, calculateTotal, addItem, addCart, clearCart, getLocalCart,
+  removeItem, updateQty, updater, calculateTotal, addItem, addCart, clearCart, setCartItems, getLocalCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;
