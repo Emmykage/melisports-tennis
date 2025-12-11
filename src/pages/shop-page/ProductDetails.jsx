@@ -36,7 +36,8 @@ const ProductDetails = () => {
   }, [id]);
   const handleCart = () => {
     const cartArray = newInventory.filter((item) => item.count && item.count > 0).map((item) => ({
-      product_id: item?.id,
+      product_id: product?.id,
+      id: item?.id,
       sku: item?.sku,
       image: product.photo_urls ? product.photo_urls[0] : product.image,
       price: product.discount === 'active_discount' ? product.discount_amount : product.price,
@@ -45,6 +46,13 @@ const ProductDetails = () => {
       size: item?.size,
       colours: product?.colours,
     }));
+
+    // if(newInventory.every((item) => !item.count || item.count < 1)){
+    // alert('You need to select a product');
+    // return
+
+
+    // }
 
     console.log(cartArray);
     if (product.product_quantity > 0) {

@@ -4,6 +4,7 @@ import { getCart, setCart } from '../../hooks/localStorage';
 
 const refCart = () => getCart().map((cart) => ({
   product_id: cart.product_id,
+  id: cart.id,
   price: cart.price,
   product_name: cart.product_name,
   image: cart.image,
@@ -37,7 +38,7 @@ const cartSlice = createSlice({
     }),
     updateQty: (state, action) => {
       const updateCart = getCart().map((item) => {
-        if (item.product_id === action.payload.product_id) {
+        if (item.id === action.payload.id) {
           item.quantity = action.payload.quantity;
         }
         return item;
@@ -51,7 +52,7 @@ const cartSlice = createSlice({
     },
 
     removeItem: (state, action) => {
-      const filterdCart = getCart().filter((cart) => cart.product_id !== action.payload);
+      const filterdCart = getCart().filter((cart) => cart.id !== action.payload);
       setCart(filterdCart);
       return {
         ...state,

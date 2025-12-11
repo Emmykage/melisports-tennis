@@ -41,13 +41,13 @@ const Cart = () => {
   const selectCart = (id, quantity, sign) => {
     if (sign === '+') {
       const addQuantity = quantity + 1;
-      dispatch(updateQty({ product_id: id, quantity: addQuantity }));
+      dispatch(updateQty({ id: id, quantity: addQuantity }));
     } else if (quantity !== 1) {
       const minusQuantity = quantity - 1;
-      dispatch(updateQty({ product_id: id, quantity: minusQuantity }));
+      dispatch(updateQty({ id: id, quantity: minusQuantity }));
     } else {
       quantity;
-      dispatch(updateQty({ product_id: id, quantity }));
+      dispatch(updateQty({ id: id, quantity }));
     }
 
     dispatch(updater());
@@ -77,7 +77,7 @@ const Cart = () => {
               <div className="md:hidden space-y-4 px-4">
                 {cartItems?.map((cart) => (
                   <div
-                    key={cart?.product_id}
+                    key={cart?.id}
                     className="bg-gray-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-4"
                   >
                     <img src={cart?.image} className="w-36 h-36 object-contain rounded-full" />
@@ -97,7 +97,7 @@ const Cart = () => {
                         <button
                           className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
                           onClick={() => {
-                            selectCart(cart.product_id, cart.quantity, '-');
+                            selectCart(cart.id, cart.quantity, '-');
                             cart?.quantity === 1 && dispatch(removeItem(cart?.id));
                           }}
                         >
@@ -106,14 +106,14 @@ const Cart = () => {
                         <span className="font-semibold">{cart?.quantity}</span>
                         <button
                           className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
-                          onClick={() => selectCart(cart?.product_id, cart?.quantity, '+')}
+                          onClick={() => selectCart(cart?.id, cart?.quantity, '+')}
                         >
                           +
                         </button>
                       </div>
                     </div>
 
-                    <button onClick={() => handleDelete(cart?.product_id)}>
+                    <button onClick={() => handleDelete(cart?.id)}>
                       <MdClose className="text-2xl text-gray-600" />
                     </button>
                   </div>
@@ -187,7 +187,7 @@ const Cart = () => {
                               <span
                                 className="text-center flex items-center justify-center w-5 h-4 cursor-pointer text-gray-600"
                                 onClick={() => {
-                                  selectCart(cart.product_id, cart.quantity, '-');
+                                  selectCart(cart.id, cart.quantity, '-');
                                   cart?.quantity === 1 && dispatch(removeItem(cart?.id));
                                 }}
                               >
@@ -198,7 +198,7 @@ const Cart = () => {
                                 className="text-center flex items-center justify-center w-5 h-4 cursor-pointer text-gray-600"
                                 type="button"
                           // onClick={() => selectCart(cart.id, cart.quantity, '+')}
-                                onClick={() => selectCart(cart?.product_id, cart?.quantity, '+')}
+                                onClick={() => selectCart(cart?.id, cart?.quantity, '+')}
                               >
                                 <IoIosArrowDown />
                               </span>
@@ -209,7 +209,7 @@ const Cart = () => {
                       </td>
 
                       <td className=" block sm:table-cell w-10 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal text-left">
-                        <button className="" onClick={() => handleDelete(cart?.product_id)}>
+                        <button className="" onClick={() => handleDelete(cart?.id)}>
                           {' '}
                           <MdClose className="text-2xl" />
                           {' '}

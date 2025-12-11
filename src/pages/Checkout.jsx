@@ -36,10 +36,11 @@ const Checkout = () => {
       product_id: item.product_id,
       quantity: item.quantity,
       amount: item.price,
-      sizes: item.sizes,
+      size: item.size,
     }
 
   ));
+  
   const data = {
     order_detail: {
       total: total + (selectedState?.delivery_fee || 0),

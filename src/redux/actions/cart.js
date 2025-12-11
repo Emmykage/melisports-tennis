@@ -3,11 +3,23 @@ import baseURL from '../baseURL';
 import cartSlice, { setCartItems } from '../cart/cart';
 // import {setCartItems}  from "../cart/cart"
 import { getCart, setCart } from '../../hooks/localStorage';
+import { toast } from 'react-toastify';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
 
 export const addToCart = (newCartArray) => (dispatch, getState) => {
   const existingCarts = getCart() || [];
+
+
+
+  if(!newCartArray || newCartArray?.length < 1){
+      console.log(newCartArray)
+
+  toast('No item added to cart', { type: 'info' });
+  return
+
+  }
+
 
   if (!existingCarts || existingCarts.length < 1) {
     setCart(newCartArray);
@@ -15,7 +27,7 @@ export const addToCart = (newCartArray) => (dispatch, getState) => {
   }
 
   newCartArray.forEach((newCart) => {
-    const cartIndex = existingCarts.findIndex((cart) => cart?.product_id === newCart.product_id);
+    const cartIndex = existingCarts.findIndex((cart) => cart?.id === newCart.id);
     const cartExist = cartIndex !== -1;
 
     if (cartExist) {
