@@ -3,10 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProduct, getSimilarProducts } from '../../redux/actions/product';
-// import { addCart } from '../redux/actions/cart';
-import { updater } from '../../redux/cart/cart';
 import { closeList } from '../../redux/products/searched';
-import { addCart } from '../../redux/cart/cart';
 import Loader from '../Loader';
 import ImagePreview from '../../components/products/ImagePreview';
 import { nairaFormat } from '../../utils/nairaFormat';
@@ -58,9 +55,6 @@ const ProductDetails = () => {
     if (product.product_quantity > 0) {
       dispatch(addToCart(cartArray));
       setSelectedItem(null);
-      // setsizes([])
-
-      dispatch(updater());
     } else {
       alert('Out of Stock');
     }

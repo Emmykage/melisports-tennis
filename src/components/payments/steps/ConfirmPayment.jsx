@@ -21,7 +21,6 @@ const ConfirmPayment = ({
     text: 'Pay Now',
     onSuccess: () => {
       handleCheckout();
-      // dispatch(clearCart());
     },
     // onClose: () => alert('Are you sure'),
   };

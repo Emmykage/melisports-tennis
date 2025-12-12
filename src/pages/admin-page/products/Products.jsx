@@ -12,16 +12,14 @@ const Products = () => {
   const {
     products, searched_products, message, error, loading,
   } = useSelector((state) => state.products);
-  const { updater } = useSelector((state) => state.product);
   const [search, setSearch] = useState('');
-  const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState();
 
   const dispatch = useDispatch();
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     products.length === 0 && dispatch(getProducts());
-  }, [updater]);
+  }, []);
 
   const toEdit = (id) => {
     dispatch(getProduct(id));

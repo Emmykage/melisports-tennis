@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  addProduct, deleteProduct, getProduct, getSimilarProducts, updateProduct,
+  addProduct, deleteProduct, getProduct, updateProduct,
 } from '../actions/product';
-import searched from '../actions/search';
 
 const initialState = {
   product: {},
   status: null,
   loading: true,
   message: null,
-  updater: false,
   relatedProducts: [],
 };
 
@@ -75,8 +73,6 @@ const productSlice = createSlice({
       status: 'success',
       loading: false,
       message: 'deleted',
-      updater: !state.updater,
-
     }),
 
   },

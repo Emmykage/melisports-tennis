@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PaystackButton } from 'react-paystack';
 import { useDispatch } from 'react-redux';
-import { clearCart } from '../../redux/cart/cart';
+import { emptyCart } from '../../redux/actions/cart';
 
 const PaymentForm = ({ amount = 10000 }) => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const PaymentForm = ({ amount = 10000 }) => {
     text: 'Pay Now',
     onSuccess: () => {
       alert('Purchase successful');
-      dispatch(clearCart());
+      dispatch(emptyCart());
     },
     onClose: () => alert('Are you sure'),
   };

@@ -5,13 +5,10 @@ import { FiUser, FiMenu } from 'react-icons/fi';
 import './nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose, AiOutlineShopping } from 'react-icons/ai';
-import { calculateTotal } from '../../redux/cart/cart';
-import { getCarts } from '../../redux/actions/cart';
+import {  getCartSum, getUserCart } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import logo from '../../assets/images/logo/melisport_1.png';
-import { userLog } from '../../redux/user/user';
 import { userProfile } from '../../redux/actions/auth';
-import { removeToken } from '../../hooks/localStorage';
 import ButtonSession from './components/ButtonSession';
 
 const NavInfo = () => {
@@ -30,8 +27,8 @@ const NavInfo = () => {
     }
   };
   useEffect(() => {
-    dispatch(getCarts());
-    dispatch(calculateTotal());
+    dispatch(getUserCart());
+    dispatch(getCartSum());
     window.addEventListener('scroll', toggleScrollNav);
   }, [update]);
 

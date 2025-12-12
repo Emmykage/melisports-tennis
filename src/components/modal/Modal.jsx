@@ -1,10 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
-import { clearCart, updater } from '../../redux/cart/cart';
 
-import { closeModal } from '../../redux/modal/modal';
-import Button from '../buttons/Button';
 
 const Modal = ({ open, setOpen, children }) => {
   const dispatch = useDispatch();

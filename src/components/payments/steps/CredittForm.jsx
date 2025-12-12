@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { PaystackButton } from 'react-paystack';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
-import { clearCart } from '../../../redux/cart/cart';
 import Button from '../../buttons/Button';
 
 const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {

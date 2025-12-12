@@ -13,18 +13,14 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import { MdHome } from 'react-icons/md';
-import { Input } from '@mui/material';
-import { calculateTotal } from '../../redux/cart/cart';
-import { getCarts } from '../../redux/actions/cart';
-import SearchComponent from './SearchComponent';
+import {  getCartSum, getUserCart } from '../../redux/actions/cart';
 import logo from '../../assets/images/logo/melisport_1.png';
 
 import { userProfile } from '../../redux/actions/auth';
-import { getProducts, searchedProducts } from '../../redux/actions/product';
+import {  searchedProducts } from '../../redux/actions/product';
 import { nairaFormat } from '../../utils/nairaFormat';
 import { clearSearch } from '../../redux/products/product';
 
@@ -46,8 +42,8 @@ const Nav = ({ store = true }) => {
     }
   };
   useEffect(() => {
-    dispatch(getCarts());
-    dispatch(calculateTotal());
+    dispatch(getUserCart());
+    dispatch(getCartSum());
 
     window.addEventListener('scroll', toggleScrollNav);
   }, [update]);

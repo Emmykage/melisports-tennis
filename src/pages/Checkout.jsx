@@ -13,9 +13,9 @@ import CreditForm from '../components/payments/steps/CredittForm';
 import PaymentMethod from '../components/payments/steps/PaymentMethod';
 import ConfirmPayment from '../components/payments/steps/ConfirmPayment';
 import { createOrder } from '../redux/actions/orders';
-import { clearCart } from '../redux/cart/cart';
 import { getDeliveryFees } from '../redux/actions/delivery_fee';
 import Nav from '../components/nav/Nav';
+import { emptyCart } from '../redux/actions/cart';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const Checkout = () => {
     dispatch(createOrder(data))
       .then((result) => {
         if (createOrder.fulfilled.match(result)) {
-          dispatch(clearCart());
+          dispatch(emptyCart());
           navigate(`/confirm-order?orderId=${result.payload.data.id}`);
         } else if (createOrder.fulfilled.match(result)) {
           console.error(result.payload.message);

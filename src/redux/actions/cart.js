@@ -1,12 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
-import cartSlice, { setCartItems } from '../cart/cart';
-// import {setCartItems}  from "../cart/cart"
+import  { calculateTotal, clearCart, getLocalCart, removeItem, setCartItems, updateQty } from '../cart/cart';
 import { getCart, setCart } from '../../hooks/localStorage';
 import { toast } from 'react-toastify';
 
 const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
-
+const refCart = () => getCart().map((cart) => ({
+  product_id: cart.product_id,
+  id: cart.id,
+  price: cart.price,
+  product_name: cart.product_name,
+  image: cart.image,
+  size: cart.size,
+  colours: cart.colours,
+  quantity: cart.quantity,
+  subTotal: cart.quantity * cart.price,
+}));
 export const addToCart = (newCartArray) => (dispatch, getState) => {
   const existingCarts = getCart() || [];
 
@@ -41,31 +50,72 @@ export const addToCart = (newCartArray) => (dispatch, getState) => {
 
   dispatch(setCartItems(existingCarts));
 };
-// const removeItem = createAsyncThunk('cart/removeCart', async (id) => {
-//   const response = await fetch(`${baseURL}cart_items/${id}`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-type': 'application/json',
-//       Authorization: `Bearer ${token()}`,
 
-//     },
+export const updateQuantity = (data) => (dispatch, getState) => {
+   const updateCart = getCart().map((item) => {
+        if (item.id === data.id) {
+          item.quantity = data.quantity;
+        }
+        return item;
+      });
+      setCart(updateCart);
+        dispatch(updateQty(updateCart));
 
-//   });
-//   return response;
-// });
-// const clearCart = createAsyncThunk('cart/clearCart', async () => {
-//   const response = await fetch(`${baseURL}clear_cart`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-type': 'application/json',
-//       Authorization: `Bearer ${token()}`,
 
-//     },
+};
 
-//   });
-//   return response;
-// });
-const getCarts = createAsyncThunk('carts/getCart', async () => {
+
+export const deleteCartItem = (id) => (dispatch, getState) => {
+ const filterdCart = getCart().filter((cart) => cart.id !== id);
+      setCart(filterdCart);
+
+              dispatch(removeItem(filterdCart));
+
+
+
+};
+
+export const emptyCart = () => (dispatch, getState) => {
+  const updateCart = [];
+      setCart(updateCart);
+
+              dispatch(clearCart(updateCart));
+
+
+
+};
+
+
+export const getCartSum = () => (dispatch, getState) => {
+ let total = 0;
+      let count = 0;
+      let trans = getCart() || [];
+
+      if (trans.length > 0) {
+        trans.forEach((item) => {
+          count += item.quantity;
+          total += item.quantity * item.price;
+        });
+      }
+
+
+      dispatch(calculateTotal({count, total}));
+
+
+
+
+
+};
+
+
+export const getUserCart = () => (dispatch) => {
+  const carts = refCart()
+
+  dispatch(getLocalCart(carts));
+};
+
+
+export const getCarts = createAsyncThunk('carts/getCart', async () => {
   const response = await fetch(`${baseURL}cart_items`, {
     method: 'GET',
     headers: {
@@ -98,5 +148,5 @@ const decreaseCart = createAsyncThunk('cart/increase_cart', async ({ id, quantit
   });
 });
 export {
-  getCarts, increaseCart, decreaseCart,
+  increaseCart, decreaseCart,
 };

@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import {
-  clearCart,
-  getLocalCart, removeItem, updateQty, updater,
-} from '../redux/cart/cart';
+
 
 import { closeModal, openModal } from '../redux/modal/modal';
 import { closeList } from '../redux/products/searched';
@@ -15,6 +11,7 @@ import { nairaFormat } from '../utils/nairaFormat';
 import Nav from '../components/nav/Nav';
 import Modal from '../components/modal/Modal';
 import Button from '../components/buttons/Button';
+import { deleteCartItem, emptyCart, getUserCart, updateQuantity } from '../redux/actions/cart';
 
 const Cart = () => {
   const { user, loading } = useSelector((state) => state.user);
@@ -29,7 +26,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(closeList());
-    dispatch(getLocalCart());
+    dispatch(getUserCart());
   }, [update]);
 
   // if ((!user && !loading && !fetchToken())) {
@@ -41,20 +38,18 @@ const Cart = () => {
   const selectCart = (id, quantity, sign) => {
     if (sign === '+') {
       const addQuantity = quantity + 1;
-      dispatch(updateQty({ id: id, quantity: addQuantity }));
+      dispatch(updateQuantity({ id: id, quantity: addQuantity }));
     } else if (quantity !== 1) {
       const minusQuantity = quantity - 1;
-      dispatch(updateQty({ id: id, quantity: minusQuantity }));
+      dispatch(updateQuantity({ id: id, quantity: minusQuantity }));
     } else {
       quantity;
-      dispatch(updateQty({ id: id, quantity }));
+      dispatch(updateQuantity({ id: id, quantity }));
     }
 
-    dispatch(updater());
   };
   const handleDelete = (id) => {
-    dispatch(removeItem(id));
-    dispatch(updater());
+    dispatch(deleteCartItem(id));
   };
 
   return (
@@ -98,7 +93,7 @@ const Cart = () => {
                           className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
                           onClick={() => {
                             selectCart(cart.id, cart.quantity, '-');
-                            cart?.quantity === 1 && dispatch(removeItem(cart?.id));
+                            cart?.quantity === 1 && dispatch(deleteCartItem(cart?.id));
                           }}
                         >
                           -
@@ -188,7 +183,7 @@ const Cart = () => {
                                 className="text-center flex items-center justify-center w-5 h-4 cursor-pointer text-gray-600"
                                 onClick={() => {
                                   selectCart(cart.id, cart.quantity, '-');
-                                  cart?.quantity === 1 && dispatch(removeItem(cart?.id));
+                                  cart?.quantity === 1 && dispatch(deleteCartItem(cart?.id));
                                 }}
                               >
                                 <IoIosArrowUp />
@@ -276,9 +271,8 @@ const Cart = () => {
 
           <button
             onClick={() => {
-              dispatch(clearCart());
+              dispatch(emptyCart());
               setOpen(false);
-              dispatch(updater());
             }}
             className="flex-1 py-3 rounded-xl bg-theme text-white hover:bg-theme-light transition shadow-md"
           >

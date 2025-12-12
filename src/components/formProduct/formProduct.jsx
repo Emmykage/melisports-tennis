@@ -13,12 +13,13 @@ import {
 } from '../../constants/variance';
 import Button from '../buttons/Button';
 import FormInput from '../formInput/FormInput';
+import { resetProduct } from '../../redux/product/product';
 
 const ProductForm = ({ onSubmit, product }) => {
   const editorRef = useRef();
   const [imagePreviews, setImagePreviews] = useState([]);
   const [formdata, setFormdata] = useState({});
-  const { product_categories, sport_categories, updater } = useSelector((state) => state.product_categories);
+  const { product_categories, sport_categories } = useSelector((state) => state.product_categories);
 
   const levels = useSelector((state) => state.level.levels);
   const genders = useSelector((state) => state.gender.genders);
@@ -75,15 +76,32 @@ const ProductForm = ({ onSubmit, product }) => {
     dispatch(getSportCategories());
     dispatch(getLevels());
     dispatch(getGenders());
-  }, [updater]);
+  }, []);
+
+
 
   useEffect(() => {
-    setSelectedSport(sport_categories[1]);
-  }, [sport_categories]);
+    if(sport_categories){
+      console.log(sport_categories)
+      const  sportname  = product_categories.find(cat=> cat.id == formdata?.sport_category_id)?.name ?? product_categories[1]?.name
+      console.log(sportname)
+      setSelectedSport(sportname);
 
+
+    }
+
+  }, [sport_categories, formdata.product_category_id]);  
   useEffect(() => {
-    setSelectTool(product_categories[0]?.name);
-  }, [product_categories]);
+    if(product_categories){
+      console.log(product_categories)
+      const  categoryname  = product_categories.find(cat=> cat.id == formdata?.product_category_id)?.name ?? product_categories[0]?.name
+      console.log(categoryname)
+      setSelectTool(categoryname);
+
+
+    }
+
+  }, [product_categories, formdata.product_category_id]);
 
   const handleImageChange = ({ target: { files } }) => {
     const extractedfiles = Array.from(files);
@@ -146,7 +164,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
         const timeOutOp = setTimeout(() => {
           if (!product) {
-            setFormdata(null);
+            setFormdata({});
           }
           dispatch(resetProduct());
         }, 5000);
@@ -173,6 +191,8 @@ const ProductForm = ({ onSubmit, product }) => {
       setProductInventories(newSize);
     }
   };
+  console.log(product_categories, selectTool)
+
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -189,11 +209,10 @@ const ProductForm = ({ onSubmit, product }) => {
               onChange={({ value }) => {
                 console.log(value, sport_categories);
                 setFormdata({ ...formdata, sport_category_id: value });
-                const cat = sport_categories.find((item) => item.id === value);
-                setSelectedSport(cat);
+        
               }}
               placeholder="sport category"
-              value={{ value: formdata.sport_category_id, label: sport_categories.find((sport_categories) => sport_categories.id === formdata.sport_category_id)?.name ?? 'Select Sports' }}
+              value={{ value: formdata?.sport_category_id, label: sport_categories.find((sport_categories) => sport_categories.id === formdata?.sport_category_id)?.name ?? 'Select Sports' }}
               required
               name="sport_category_id"
               id="sport_category_id"
@@ -247,9 +266,9 @@ const ProductForm = ({ onSubmit, product }) => {
           <div className="flex items-center justify-between">
             <Button
               type="button"
-              onClick={() => setFormdata({ ...formdata, discount: formdata.discount === 'active_discount' ? 'inactive_discount' : 'active_discount' })}
+              onClick={() => setFormdata({ ...formdata, discount: formdata?.discount === 'active_discount' ? 'inactive_discount' : 'active_discount' })}
               className={`px-4 py-2 rounded font-medium transition-all ${
-                formdata.discount === 'active_discount'
+                formdata?.discount === 'active_discount'
                   ? 'bg-green-600 hover:bg-green-700'
                   : 'bg-gray-600 hover:bg-gray-700'
               }`}
@@ -259,7 +278,7 @@ const ProductForm = ({ onSubmit, product }) => {
           </div>
 
           {/* Discount amount (only shows if active) */}
-          {formdata.discount === 'active_discount' && (
+          {formdata?.discount === 'active_discount' && (
           <FormInput
             label="Discount (%)"
             value={formdata?.discount_percentage}
@@ -352,7 +371,7 @@ const ProductForm = ({ onSubmit, product }) => {
               onChange={({ value }) => {
                 const { name, id } = product_categories.find((item) => item.id === value);
                 console.log(name, id, value);
-                setSelectTool(name);
+                // setSelectTool(name);
                 setFormdata({ ...formdata, product_category_id: value });
               }}
               required
@@ -455,6 +474,8 @@ const ProductForm = ({ onSubmit, product }) => {
                     type="select"
                     name="length"
                     options={length}
+                    value={{ value: formdata?.length, label: length.find((len) => len.value === formdata.length)?.label ?? 'Select Length' }}
+
                     placeholder="length"
                     onChange={({ value }) => setFormdata({ ...formdata, length: value })}
                   />

@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import './styles/loader.css';
 import { ToastContainer } from 'react-toastify';
-import { calculateTotal } from './redux/cart/cart';
 import Main from './pages/admin-page/dashBoard/Main';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
@@ -69,6 +68,7 @@ import Invoice from './components/invoice/Invoice';
 import CreateAgentForm from './pages/admin-page/agents/agents';
 import TennisPage from './pages/shop-page/tennis/tennis';
 import useResetPageLoction from './hooks/resetPageLoction';
+import { getCartSum } from './redux/actions/cart';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -76,7 +76,7 @@ function App() {
   useInitializeData();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(calculateTotal());
+    dispatch(getCartSum());
   }, [cartItems]);
   return (
     <>

@@ -9,7 +9,6 @@ const initialState = {
   loading: true,
   status: null,
   report: null,
-  updater: false,
 };
 const productCategorySlice = createSlice({
   name: 'product_category',
@@ -62,7 +61,6 @@ const productCategorySlice = createSlice({
       loading: false,
       status: 'success',
       report: 'update successful',
-      updater: !state.updater,
 
     }),
     [updateCategory.pending]: (state) => ({
@@ -80,7 +78,6 @@ const productCategorySlice = createSlice({
     [deleteCategory.fulfilled]: (state) => ({
       ...state,
       loading: false,
-      updater: !state.updater,
     }),
 
   },
