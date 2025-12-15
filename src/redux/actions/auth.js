@@ -3,7 +3,7 @@ import baseURL from '../baseURL';
 import { fetchToken, removeToken, setToken } from '../../hooks/localStorage';
 import { refreshToken } from '../../utils/refreshToken';
 
-console.log(baseURL,  "hey")
+console.log(baseURL, 'hey');
 
 const addUser = createAsyncThunk('user/addUser', async (data) => {
   const response = await fetch(`${baseURL}users`, {
@@ -239,7 +239,7 @@ const updateUser = createAsyncThunk('users/update_user', async ({ id, user }, { 
 
     return result;
   } catch (err) {
-    return rejectWithValue ({ message: 'Something went wrong' });
+    return rejectWithValue({ message: 'Something went wrong' });
   }
 });
 export {

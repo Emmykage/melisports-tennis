@@ -16,11 +16,11 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import { MdHome } from 'react-icons/md';
-import {  getCartSum, getUserCart } from '../../redux/actions/cart';
+import { getCartSum, getUserCart } from '../../redux/actions/cart';
 import logo from '../../assets/images/logo/melisport_1.png';
 
 import { userProfile } from '../../redux/actions/auth';
-import {  searchedProducts } from '../../redux/actions/product';
+import { searchedProducts } from '../../redux/actions/product';
 import { nairaFormat } from '../../utils/nairaFormat';
 import { clearSearch } from '../../redux/products/product';
 
@@ -60,7 +60,7 @@ const Nav = ({ store = true }) => {
     {
       link: '/racquets',
       label: 'Rackets',
-      sub: [{ link: '/racquets', label: 'Raquets' }, { link: '/padels', label: 'Padel' }, { link: '/badminton', label: 'Badminton' }],
+      sub: [{ link: '/tennis', label: 'Tennis' }, { link: '/padels', label: 'Padel' }, { link: '/badminton', label: 'Badminton' }],
 
     },
     {

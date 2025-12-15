@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IoTennisballSharp } from 'react-icons/io5';
 import { FaHandshake, FaSeedling, FaTrophy } from 'react-icons/fa';
 import demo_service from '../../assets/images/demo.webp';
@@ -27,6 +27,7 @@ import bannerImg from '../../assets/images/banner/banner-1.jpg';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -72,7 +73,7 @@ const LandingHome = () => {
 
       <section>
         {/* <div className='max-w-7xl m-auto'> */}
-        <img src={bannerImg} alt="add banner" className="w-full object-contain h-full" />
+        <img src={bannerImg} alt="add banner" className="w-full object-contain h-full" onClick={() => navigate('/sales')} />
 
         {/* </div> */}
       </section>

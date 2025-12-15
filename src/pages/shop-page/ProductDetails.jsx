@@ -37,6 +37,8 @@ const ProductDetails = () => {
       id: item?.id,
       sku: item?.sku,
       image: product.photo_urls ? product.photo_urls[0] : product.image,
+      ...(product.discount === 'active_discount' && { discount_amount: product?.price }
+      ),
       price: product.discount === 'active_discount' ? product.discount_amount : product.price,
       quantity: item.count,
       product_name: product.name,
@@ -47,7 +49,6 @@ const ProductDetails = () => {
     // if(newInventory.every((item) => !item.count || item.count < 1)){
     // alert('You need to select a product');
     // return
-
 
     // }
 

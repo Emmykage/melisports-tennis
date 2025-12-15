@@ -69,6 +69,7 @@ import CreateAgentForm from './pages/admin-page/agents/agents';
 import TennisPage from './pages/shop-page/tennis/tennis';
 import useResetPageLoction from './hooks/resetPageLoction';
 import { getCartSum } from './redux/actions/cart';
+import SalesPage from './pages/shop-page/sales';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -102,6 +103,8 @@ function App() {
         <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
         <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
+        <Route path="/sales" element={<MainLayout><SalesPage /></MainLayout>} />
+
         <Route path="/padels" element={<MainLayout><Padels /></MainLayout>} />
         <Route path="/tennis" element={<MainLayout><TennisPage /></MainLayout>} />
         <Route path="/badminton" element={<MainLayout><BadmintonsPage /></MainLayout>} />

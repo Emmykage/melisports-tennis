@@ -4,14 +4,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
-
 import { closeModal, openModal } from '../redux/modal/modal';
 import { closeList } from '../redux/products/searched';
 import { nairaFormat } from '../utils/nairaFormat';
 import Nav from '../components/nav/Nav';
 import Modal from '../components/modal/Modal';
 import Button from '../components/buttons/Button';
-import { deleteCartItem, emptyCart, getUserCart, updateQuantity } from '../redux/actions/cart';
+import {
+  deleteCartItem, emptyCart, getUserCart, updateQuantity,
+} from '../redux/actions/cart';
 
 const Cart = () => {
   const { user, loading } = useSelector((state) => state.user);
@@ -38,15 +39,14 @@ const Cart = () => {
   const selectCart = (id, quantity, sign) => {
     if (sign === '+') {
       const addQuantity = quantity + 1;
-      dispatch(updateQuantity({ id: id, quantity: addQuantity }));
+      dispatch(updateQuantity({ id, quantity: addQuantity }));
     } else if (quantity !== 1) {
       const minusQuantity = quantity - 1;
-      dispatch(updateQuantity({ id: id, quantity: minusQuantity }));
+      dispatch(updateQuantity({ id, quantity: minusQuantity }));
     } else {
       quantity;
-      dispatch(updateQuantity({ id: id, quantity }));
+      dispatch(updateQuantity({ id, quantity }));
     }
-
   };
   const handleDelete = (id) => {
     dispatch(deleteCartItem(id));
@@ -85,6 +85,7 @@ const Cart = () => {
                         {cart?.size}
                       </p>
                       <p className="text-lg text-gray-700 font-semibold mt-2 text-center">
+
                         {nairaFormat(cart?.price)}
                       </p>
 
@@ -163,7 +164,9 @@ const Cart = () => {
                         </p>
                       </td>
                       <td data-cell="price" className="md:table-cell whitespace-nowrap text-right bg-gray-100 px-3 py-3 ">
-                        <p className="text-lg text-gray-700 font-semibold">{nairaFormat(cart?.price)}</p>
+                        {cart?.discount && <p className="text-sm text-gray-700 font-normal line-through">{nairaFormat(cart?.discount)}</p>}
+                        <p className="text-base text-gray-700 font-semibold">{nairaFormat(cart?.price)}</p>
+
                       </td>
                       {/* <td data-cell="total" className="whitespace-nowrap border-b bg-gray-300 block px-3 py-3 lg:table-cell text-sm text-gray-900 font-medium">
                         <p>{nairaFormat(cart?.subTotal)}</p>

@@ -5,7 +5,7 @@ import { FiUser, FiMenu } from 'react-icons/fi';
 import './nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose, AiOutlineShopping } from 'react-icons/ai';
-import {  getCartSum, getUserCart } from '../../redux/actions/cart';
+import { getCartSum, getUserCart } from '../../redux/actions/cart';
 import SearchComponent from './SearchComponent';
 import logo from '../../assets/images/logo/melisport_1.png';
 import { userProfile } from '../../redux/actions/auth';

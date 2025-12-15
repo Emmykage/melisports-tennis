@@ -16,20 +16,30 @@ import { createOrder } from '../redux/actions/orders';
 import { getDeliveryFees } from '../redux/actions/delivery_fee';
 import Nav from '../components/nav/Nav';
 import { emptyCart } from '../redux/actions/cart';
+import { getAgentByCode } from '../redux/actions/agents';
 
 const Checkout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { deliveryFees } = useSelector((state) => state.deliveryFees);
   const [billingDetails, setBillingDetails] = useState({
-    name: '', email: '', state: deliveryFees[1]?.state, city: '', street: '', phone_no: '', postal_code: '', payment_method: '',
+    name: '', email: '', state: '', city: '', street: '', phone_no: '', postal_code: '', payment_method: '',
   });
+
+  const { agent } = useSelector((state) => state.agent);
 
   const selectedState = deliveryFees.find((item) => item.state === billingDetails.state);
   const { loading, status } = useSelector((state) => state.orders);
   const { total, counter, cartItems } = useSelector((state) => state.cart);
   const [step, setStep] = useState(0);
   const [referal, setReferal] = useState('');
+  const shippingFee = Number(selectedState?.delivery_fee ?? 0);
+  const discountedAmount = agent?.discount ? (agent.discount / 100) * total : 0;
+  const subTotal = total - discountedAmount;
+  const netTotal = subTotal + shippingFee;
+  const handleAgentFetch = () => {
+    dispatch(getAgentByCode(referal));
+  };
 
   const orderItems = cartItems.map((item) => (
     {
@@ -40,15 +50,20 @@ const Checkout = () => {
     }
 
   ));
-  
+
   const data = {
     order_detail: {
-      total: total + (selectedState?.delivery_fee || 0),
+      total,
       order_items_attributes: orderItems,
       billing_address_attributes: billingDetails,
       status: 'pending',
       payment_method: billingDetails.payment_method,
-      ref_code: referal,
+      referral_code: referal,
+      sub_total: subTotal,
+      net_total: netTotal,
+      discount: agent?.discount,
+      agent_id: agent?.id ?? null,
+
     },
   };
 
@@ -92,7 +107,7 @@ const Checkout = () => {
   useEffect(() => {
     setBillingDetails({
       ...billingDetails,
-      state: deliveryFees[1]?.state,
+      state: deliveryFees[0]?.state,
     });
   }, [deliveryFees]);
   useEffect(() => {
@@ -126,7 +141,18 @@ const Checkout = () => {
             ))}
 
           </div>
-          <CheckoutSummary referal={referal} setReferal={setReferal} shippingFee={Number(selectedState?.delivery_fee)} amount={total} counter={counter} />
+          <CheckoutSummary
+            referal={referal}
+            handleAgentFetch={handleAgentFetch}
+            netTotal={netTotal}
+            subTotal={subTotal}
+            discount={agent?.discount}
+            discountedAmount={discountedAmount}
+            setReferal={setReferal}
+            shippingFee={shippingFee}
+            amount={total}
+            counter={counter}
+          />
 
         </div>
 

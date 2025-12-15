@@ -25,6 +25,21 @@ const ConfirmOrder = () => {
     return (<Loader />);
   }
 
+  const totalQnty = order?.order_items?.reduce((acc, item) => {
+    acc += item.quantity;
+    return acc;
+  }, 0);
+  const referal = order?.referral_code;
+  const netTotal = Number(order?.net_total);
+  const subTotal = Number(order?.sub_total);
+  const deliveryFee = Number(order?.delivery_fee);
+  const total = order?.total_amount ?? Number(order?.total);
+  const counter = totalQnty;
+  const discountedAmount = total - subTotal;
+  const discount = order?.discount || referal;
+
+  console.log(discountedAmount);
+
   return (
     <>
       <Nav />
@@ -128,7 +143,17 @@ const ConfirmOrder = () => {
 
           </div>
           {/* {order?.delivery_fee} */}
-          <CheckoutSummary amount={Number(order?.total_amount)} shippingFee={Number(order?.delivery_fee)} counter={order?.order_items?.length} />
+          <CheckoutSummary
+            referal={referal}
+            netTotal={netTotal}
+            subTotal={subTotal}
+            amount={total}
+            shippingFee={deliveryFee}
+            counter={counter}
+            discount={!!referal}
+            discountedAmount={discountedAmount}
+          />
+
         </div>
 
       </section>

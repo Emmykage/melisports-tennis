@@ -78,29 +78,22 @@ const ProductForm = ({ onSubmit, product }) => {
     dispatch(getGenders());
   }, []);
 
-
-
   useEffect(() => {
-    if(sport_categories){
-      console.log(sport_categories)
-      const  sportname  = product_categories.find(cat=> cat.id == formdata?.sport_category_id)?.name ?? product_categories[1]?.name
-      console.log(sportname)
+    if (sport_categories) {
+      console.log(sport_categories);
+      const sportname = sport_categories.find((cat) => cat.id == formdata?.sport_category_id)?.name ?? sport_categories[1]?.name;
+      console.log(sport_categories, sportname);
+
       setSelectedSport(sportname);
-
-
     }
-
-  }, [sport_categories, formdata.product_category_id]);  
+  }, [sport_categories, formdata.sport_category_id]);
   useEffect(() => {
-    if(product_categories){
-      console.log(product_categories)
-      const  categoryname  = product_categories.find(cat=> cat.id == formdata?.product_category_id)?.name ?? product_categories[0]?.name
-      console.log(categoryname)
+    if (product_categories) {
+      console.log(product_categories);
+      const categoryname = product_categories.find((cat) => cat.id == formdata?.product_category_id)?.name ?? product_categories[0]?.name;
+      console.log(categoryname);
       setSelectTool(categoryname);
-
-
     }
-
   }, [product_categories, formdata.product_category_id]);
 
   const handleImageChange = ({ target: { files } }) => {
@@ -115,7 +108,7 @@ const ProductForm = ({ onSubmit, product }) => {
     let total_quantity = 0;
 
     productInventories.forEach((item) => {
-      total_quantity = item.quantity + total_quantity;
+      total_quantity += Number(item.quantity);
     });
     setFormdata({ ...formdata, product_quantity: total_quantity });
   };
@@ -191,8 +184,7 @@ const ProductForm = ({ onSubmit, product }) => {
       setProductInventories(newSize);
     }
   };
-  console.log(product_categories, selectTool)
-
+  console.log(formdata, 'hey');
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -209,7 +201,6 @@ const ProductForm = ({ onSubmit, product }) => {
               onChange={({ value }) => {
                 console.log(value, sport_categories);
                 setFormdata({ ...formdata, sport_category_id: value });
-        
               }}
               placeholder="sport category"
               value={{ value: formdata?.sport_category_id, label: sport_categories.find((sport_categories) => sport_categories.id === formdata?.sport_category_id)?.name ?? 'Select Sports' }}
@@ -399,7 +390,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
           {selectTool === 'racquet'
 
-            ? selectSport?.name === 'Tennis' ? (
+            ? selectSport === 'Tennis' ? (
               <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
                 <legend className="font-bold">Racquets</legend>
 
@@ -626,7 +617,7 @@ const ProductForm = ({ onSubmit, product }) => {
                 </div>
               </fieldset>
             )
-              : selectSport?.name === 'Padel' ? (
+              : selectSport === 'Padel' ? (
                 <>
 
                   <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">

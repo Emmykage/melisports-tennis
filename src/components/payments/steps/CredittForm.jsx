@@ -1,4 +1,3 @@
-
 import { useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import Button from '../../buttons/Button';

@@ -112,33 +112,7 @@ const ProductsPage = () => {
         <div className="flex md:gap-10">
 
           <SideNav>
-            {/* Section: Activities */}
-            {/* <div className="">
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                Activities
-              </h6>
-              <div className="space-y-2">
-                {classSports.map((item) => (
-                  <label
-                    key={item.type}
-                    htmlFor={item.type}
-                    className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
-                  >
-                    <input
-                      type="checkbox"
-                      id={item.type}
-                      value={item.type}
-                      checked={selectedSports.includes(item.type)}
-                      onChange={handleSportFilter}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span className="text-base">{item.label}</span>
-                  </label>
-                ))}
-              </div>
-            </div> */}
 
-            {/* Section: Racket Type */}
             <div>
               <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
                 Racket Type

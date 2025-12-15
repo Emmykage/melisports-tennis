@@ -14,61 +14,61 @@ const FormInput = ({
 //   };
 
   // remove commas
-  
+
   const formatNumber = (val) => {
-  if (val === null || val === undefined || val === "") return "";
+    if (val === null || val === undefined || val === '') return '';
 
-  const num = Number(String(val).replace(/,/g, ""));
-  if (isNaN(num)) return val;
+    const num = Number(String(val).replace(/,/g, ''));
+    if (isNaN(num)) return val;
 
-  return num.toLocaleString("en-US");
-};
+    return num.toLocaleString('en-US');
+  };
 
-  const cleanNumber = (val) => val.replace(/,/g, "");
+  const cleanNumber = (val) => val.replace(/,/g, '');
 
   const handleChange = (e) => {
     const raw = cleanNumber(e.target.value);
 
     // update parent with raw number
-    onChange({target: { name, value: raw}});
+    onChange({ target: { name, value: raw } });
   };
 
+  return (
+    <div className={`flex flex-col gap-1 ${className}`}>
+      <label htmlFor={label}>
+        <span className="text-gray-500 font-semibold text-sm">
+          {label}
+          {/* {productStatus === 'active' && '*'} */}
+        </span>
+        {' '}
+        <span />
+      </label>
+      {type === 'select' ? (
+        <Select
+          name={name}
+          id={name}
+          isMulti={isMulti}
+          options={options}
+          onChange={onChange}
+          value={value ?? (isMulti ? [] : { value: options[0]?.value, label: options[0]?.label })}
+          size={size}
+        />
 
-  return(
-  <div className={`flex flex-col gap-1 ${className}`}>
-    <label htmlFor={label}>
-      <span className="text-gray-500 font-semibold text-sm">
-        {label}
-        {/* {productStatus === 'active' && '*'} */}
-      </span>
-      {' '}
-      <span />
-    </label>
-    {type === 'select' ? (
-      <Select
-        name={name}
-        id={name}
-        isMulti={isMulti}
-        options={options}
-        onChange={onChange}
-        value={value ?? (isMulti ? [] : { value: options[0]?.value, label: options[0]?.label })}
-        size={size}
-      />
+      ) : (
+        <input
+          name={name}
+          id={name}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          required={required}
+          {...props}
+        />
+      )}
 
-    ) : (
-      <input
-        name={name}
-        id={name}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-        required={required}
-        {...props}
-      />
-    )}
-
-  </div>
-);}
+    </div>
+  );
+};
 
 export default FormInput;

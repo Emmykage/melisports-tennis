@@ -3,28 +3,7 @@ import DelModal from '../../../components/modal/deleteModal';
 
 export default function AgentsTable() {
   const [agents, setAgents] = useState([
-    {
-      id: 1,
-      name: 'John Doe',
-      email: 'john@example.com',
-      phone: '+2348000000000',
-      discount: 10,
-      referralCode: 'REF123',
-      commissionRate: 5,
-      role: 'Agent',
-      active: true,
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-      phone: '+2348111111111',
-      discount: 15,
-      referralCode: 'REF456',
-      commissionRate: 7,
-      role: 'Manager',
-      active: false,
-    },
+
   ]);
 
   const toggleActive = (id) => {

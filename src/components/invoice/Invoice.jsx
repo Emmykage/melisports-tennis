@@ -72,18 +72,18 @@ const Invoice = ({
             </p>
           </div>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto bg-gray-300">
 
-          <table>
+          <table className="w-full">
             <thead>
-              <th className="bg-orange-800">
+              <th className="bg-orange-800 p-3 text-white">
                 SN
               </th>
               <th className="bg-orange-800">ITEM</th>
 
               <th className="bg-orange-800">ITEM CODE</th>
               {/* <th className='bg-orange-800'>COLOUR</th> */}
-              <th className="bg-orange-800">SIZE</th>
+              <th className="bg-orange-800">QTY</th>
               <th className="bg-orange-800">UNIT PRIZE</th>
               <th className="bg-orange-800">TOTAL PRICE</th>
 
@@ -94,12 +94,12 @@ const Invoice = ({
                 <tr>
                   <td>{index + 1}</td>
 
-                  <td>{item?.product?.name}</td>
-                  <td>{item?.product?.ms_item_code}</td>
+                  <td className="px-3">{item?.product?.name}</td>
+                  <td className="p-3">{item?.product?.ms_item_code}</td>
 
-                  <td>{item.quantity}</td>
-                  <td>{nairaFormat(item?.amount)}</td>
-                  <td>{nairaFormat(item?.amount * item?.quantity)}</td>
+                  <td className="p-3">{item.quantity}</td>
+                  <td className="p-3">{nairaFormat(item?.amount)}</td>
+                  <td className="p-3  text-right">{nairaFormat(item?.amount * item?.quantity)}</td>
                 </tr>
               ))}
 

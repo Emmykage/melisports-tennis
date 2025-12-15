@@ -10,6 +10,7 @@ const useFilter = ({
   selectedLevels = null,
   selectedCapacities = null,
   selectedGenders = null,
+  productDiscount = false,
 
 }) => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const useFilter = ({
       level: selectedLevels,
       gender: selectedGenders,
       capacity: selectedCapacities,
+      discount: productDiscount,
 
     }));
   }, [productCategory, selectedSports, selectedGenders, selectedLevels, selectedFeatures]);
@@ -34,7 +36,7 @@ const useFilter = ({
   }, []);
 
   return {
-    products, error, loading, product_categories,
+    products, error, loading, product_categories, productCategory,
   };
 };
 

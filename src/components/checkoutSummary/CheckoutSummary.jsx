@@ -3,13 +3,17 @@ import { MdAdd } from 'react-icons/md';
 
 import { FiMinus } from 'react-icons/fi';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { nairaFormat } from '../../utils/nairaFormat';
+import { getAgentByCode } from '../../redux/actions/agents';
 
 const CheckoutSummary = ({
-  amount, referal, setReferal, counter, shippingFee = 0,
+  amount, referal, setReferal, counter, shippingFee = 0, netTotal, subTotal, discount, discountedAmount, handleAgentFetch,
 }) => {
   const [toggleInput, setToggleInput] = useState(false);
-  console.log(toggleInput);
+
+  console.log(!!referal, toggleInput);
+
   return (
     <div className="col-right border sticky top-40  md:max-w-[270px] lg:max-w-[370px] w-full px-2.5 py-6 bg-light rounded shadow h-max flex-1">
       <div className="transition-all duration-300 ease-linear h-auto">
@@ -25,14 +29,23 @@ const CheckoutSummary = ({
 
         </button>
 
-        {toggleInput
+        {(toggleInput || !!referal)
 
       && (
       <div className="flex flex-col gap-4 mb-3">
         <div className="flex-1">
           <label htmlFor="referal" className="text-base text-gray-600">Referal Code</label>
 
-          <input type="text" className="p-3  border-none w-full rounded focus:border-none focus:outline-none" name="referal" maxLength={6} value={referal} onChange={(e) => setReferal(e.target.value.toUpperCase())} />
+          <input
+            type="text"
+            className="p-3  border-none w-full rounded focus:border-none focus:outline-none"
+            name="referal"
+            maxLength={6}
+            value={referal}
+            onBlur={() => handleAgentFetch()}
+            disabled={referal && !handleAgentFetch}
+            onChange={(e) => setReferal(e.target.value.toUpperCase())}
+          />
         </div>
 
         <hr />
@@ -56,10 +69,20 @@ const CheckoutSummary = ({
 
         </li>
 
+        {discount
+
+        && (
+        <li className="flex justify-between items-center my-2">
+          <span className="font-semibold text-gray-600"> Referal Discount</span>
+          {' '}
+          <span>{nairaFormat(discountedAmount)}</span>
+        </li>
+        ) }
+        {' '}
         <li className="flex justify-between items-center my-2">
           <span className="font-semibold text-gray-600"> SUBTOTAL</span>
           {' '}
-          <span>{nairaFormat(amount)}</span>
+          <span>{nairaFormat(subTotal)}</span>
         </li>
         <li className="flex justify-between items-center my-2">
           <span> Shipping Fee</span>
@@ -69,7 +92,7 @@ const CheckoutSummary = ({
 
         <li className="flex justify-between items-center my-2">
           <span className="font-semibold text-gray-600"> YOUR TOTAL</span>
-          <span>{nairaFormat(amount + shippingFee)}</span>
+          <span>{nairaFormat(netTotal)}</span>
         </li>
       </ul>
 

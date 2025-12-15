@@ -102,12 +102,12 @@ const ConfirmPayment = ({
               <p className="text-sm font-medium">{item.product_name}</p>
               <p>
                 <span className="mr-5 font-semibold text-gray-600">Sizes: </span>
-                  <span className="mr-5">{item?.size ?? "N/A"}</span>
+                <span className="mr-5">{item?.size ?? 'N/A'}</span>
               </p>
-              <p >
-                  <span className="mr-5 font-semibold text-gray-600">Quantity: </span>
-                  <span className="mr-5">{item?.quantity}</span>
-             
+              <p>
+                <span className="mr-5 font-semibold text-gray-600">Quantity: </span>
+                <span className="mr-5">{item?.quantity}</span>
+
               </p>
 
             </div>

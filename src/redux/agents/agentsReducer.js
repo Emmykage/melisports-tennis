@@ -1,5 +1,7 @@
 import { createReducer, createSelector } from '@reduxjs/toolkit';
-import { createAgents, getAgents, updateAgent } from '../actions/agents';
+import {
+  createAgents, getAgent, getAgentByCode, getAgents, updateAgent,
+} from '../actions/agents';
 
 const initialState = {
   agents: [],
@@ -7,37 +9,10 @@ const initialState = {
   loading: false,
 };
 
-// const agentsReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case 'FETCH_AGENTS_REQUEST':
-//       return { ...state, loading: true }
-//     case 'FETCH_AGENTS_SUCCESS':
-//       return { ...state, loading: false, agents: action.payload }
-//     case 'FETCH_AGENTS_FAILURE':
-//       return { ...state, loading: false }
-//     case 'ADD_AGENT':
-//       return { ...state, agents: [...state.agents, action.payload] }
-//     case 'UPDATE_AGENT':
-//       return {
-//         ...state,
-//         agents: state.agents.map((agent) =>
-//           agent.id === action.payload.id ? action.payload : agent
-//         ),
-//       }
-//     case 'DELETE_AGENT':
-//       return {
-//         ...state,
-//         agents: state.agents.filter((agent) => agent.id !== action.payload),
-//       }
-//     default:
-//       return state
-//   }
-// }
-
 const agentsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(createAgents.fulfilled, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.agent = action.payload.data ?? action.payload;
     })
     .addCase(createAgents.rejected, (state, action) => {
@@ -53,7 +28,31 @@ const agentsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(updateAgent.fulfilled, (state, action) => {
       state.loading = false;
-    });
+    })
+    .addCase(getAgent.fulfilled, (state, action) => ({
+      ...state,
+      agent: action.payload.data,
+    }))
+    .addCase(getAgent.rejected, (state, action) => ({
+      ...state,
+      agent: action.payload.message,
+    }))
+    .addCase(getAgent.pending, (state, action) => ({
+      ...state,
+      loading: true,
+    }))
+    .addCase(getAgentByCode.fulfilled, (state, action) => ({
+      ...state,
+      agent: action.payload.data,
+    }))
+    .addCase(getAgentByCode.rejected, (state, action) => ({
+      ...state,
+      agent: action.payload.message,
+    }))
+    .addCase(getAgentByCode.pending, (state, action) => ({
+      ...state,
+      loading: true,
+    }));
 });
 
 export default agentsReducer;

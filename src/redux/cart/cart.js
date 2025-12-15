@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const initialState = {
   cartItems: [],
   message: '',
@@ -19,42 +20,29 @@ const cartSlice = createSlice({
     }),
     getLocalCart: (state, action) => ({
       ...state,
-      cartItems: action.payload
+      cartItems: action.payload,
     }),
-    updateQty: (state, action) => {  
+    updateQty: (state, action) => ({
+      ...state,
+      cartItems: action.payload,
+    }),
 
-      return {
-        ...state,
-        cartItems: action.payload,
-      };
-    },
+    removeItem: (state, action) => ({
+      ...state,
+      cartItems: action.payload,
 
-    removeItem: (state, action) => {
-     
-      return {
-        ...state,
-        cartItems: action.payload
-        
-        
-      };
-    },
+    }),
 
-
-    clearCart: (state, action) => {
-    
-
-      return {
-        ...state,
-        cartItems: [],
-      };
-    },
+    clearCart: (state, action) => ({
+      ...state,
+      cartItems: [],
+    }),
     calculateTotal: (state, action) => {
-
-      const {count, total} = action.payload
-        return {
+      const { count, total } = action.payload;
+      return {
         ...state,
         counter: count,
-        total: total,
+        total,
       };
     },
   },

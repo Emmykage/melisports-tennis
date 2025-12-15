@@ -7,7 +7,7 @@ import ProductCard from '../card/ProductCard';
 const ProductsGrid = ({
   products, error, filter,
 }) => {
-  const sortProduct = filter ? products.filter((item) => item.product_category.name === filter) : products;
+  const sortProduct = filter ? products?.filter((item) => item.product_category.name === filter) : products;
 
   if (error) {
     return (
