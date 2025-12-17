@@ -59,7 +59,7 @@ const Nav = ({ store = true }) => {
     },
     {
       link: '/racquets',
-      label: 'Rackets',
+      label: 'Tennis',
       sub: [{ link: '/tennis', label: 'Tennis' }, { link: '/padels', label: 'Padel' }, { link: '/badminton', label: 'Badminton' }],
 
     },
