@@ -484,7 +484,7 @@ export function SearchBox({logo}) {
             value={isSearchPage ? query : search}
 
             placeholder="Search Products"
-            inputProps={{ 'aria-label': 'search google maps' }}
+            inputProps={{ 'aria-label': 'search product' }}
           />
           <IconButton type="button" onClick={handleSearch} sx={{ p: '10px' }} aria-label="search">
             <SearchIcon />
