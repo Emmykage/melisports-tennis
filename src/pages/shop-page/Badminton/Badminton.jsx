@@ -61,7 +61,7 @@ const BadmintonsPage = () => {
   };
 
   useFilter({
-    // productCategory: 'racquet',
+    productCategory: 'racquet',
     selectedSports: 'Badminton',
     selectedPlayType: selectedLevels,
   });
@@ -99,17 +99,13 @@ const BadmintonsPage = () => {
 
         <div className="flex md:gap-10">
           <SideNav>
-            <div className="side-row">
-              <h6>Activities</h6>
+         
 
-            </div>
-            <div />
-
-            <div className="side-row">
-              <h6>Racket Type</h6>
+            <div className="">
+              <h6 className='text-gray-800 font-semibold mb-3 tracking-wide'>Racket Type</h6>
 
               {featureItems.map((item) => (
-                <div className="flex items-center mb-2">
+                <div key={item.value} className="flex items-center mb-2">
                   <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
 
                   <label htmlFor="control" style={{ fontSize: '1rem' }}>
@@ -120,10 +116,10 @@ const BadmintonsPage = () => {
               ))}
 
             </div>
-            <div className="side-row">
-              <h6>Skill level</h6>
+            <div className="mt-4">
+              <h6 className='text-gray-800 font-semibold mb-3 tracking-wide'>Skill level</h6>
               {levels.map((level) => (
-                <span className="flex items-center mb-2">
+                <span key={level.value} className="flex items-center mb-2">
                   <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
 
                   <label htmlFor={level.level} style={{ fontSize: '1rem' }}>
@@ -133,8 +129,8 @@ const BadmintonsPage = () => {
               ))}
 
             </div>
-            <div className="side-row">
-              <h6>Brand</h6>
+            <div className="mt-4">
+              <h6 className='text-gray-800 font-semibold mb-3 tracking-wide'>Brand</h6>
 
               <label htmlFor="activity" style={{ fontSize: '1rem' }}>
 

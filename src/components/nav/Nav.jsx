@@ -18,6 +18,7 @@ import DirectionsIcon from '@mui/icons-material/Directions';
 import { MdHome } from 'react-icons/md';
 import { getCartSum, getUserCart } from '../../redux/actions/cart';
 import logo from '../../assets/images/logo/melisport_1.png';
+import { FaChevronRight } from "react-icons/fa6";
 
 import { userProfile } from '../../redux/actions/auth';
 import { searchedProducts } from '../../redux/actions/product';
@@ -32,6 +33,11 @@ const Nav = ({ store = true }) => {
   const dispatch = useDispatch();
   const [toggleNav, setToggleNav] = useState(false);
   const [query] = useSearchParams();
+  const [ searchTerm, setSearchTerm] = useState(query.get('search') || '');
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+
+
   const { location } = window;
 
   const toggleScrollNav = (e) => {
@@ -59,7 +65,7 @@ const Nav = ({ store = true }) => {
     },
     {
       link: '/racquets',
-      label: 'Tennis',
+      label: 'Racquets',
       sub: [{ link: '/tennis', label: 'Tennis' }, { link: '/padels', label: 'Padel' }, { link: '/badminton', label: 'Badminton' }],
 
     },
@@ -107,7 +113,7 @@ const Nav = ({ store = true }) => {
   const storeMenu = useMemo(() => (
     <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
       {storeItems.map(({ link, label, sub }) => (
-        <li className="group relative">
+        <li key={link} className="group relative">
           <a
             onClick={() => {
               dispatch(clearSearch());
@@ -192,7 +198,7 @@ const Nav = ({ store = true }) => {
 
         </div>
         <div>
-          <SearchBox />
+          <SearchBox logo={logo} />
 
         </div>
         {/* <SearchComponent/> */}
@@ -205,9 +211,9 @@ const Nav = ({ store = true }) => {
             >
               <FiMenu />
             </button>
-            <NavLink to="/store" className="flex items-center">
+            {/* <NavLink to="/store" className="flex items-center">
               <img src={logo} alt="Logo" className="h-10 w-auto" />
-            </NavLink>
+            </NavLink> */}
           </div>
 
           {/* Middle: Nav Links (Desktop) */}
@@ -286,22 +292,53 @@ const Nav = ({ store = true }) => {
           <div className="flex justify-between items-center p-4 border-b">
             <img src={logo} alt="Logo" className="h-8" />
             <AiOutlineClose
-              className="text-2xl cursor-pointer"
+              className="text-2xl cursor-pointer "
               onClick={() => setToggleNav(false)}
             />
           </div>
           <ul className="flex flex-col gap-4 p-6 text-gray-700 font-medium">
 
             {store ? storeItems.map((item) => (
-              <NavLink
+              <span
+              key={item.link}
+              className='w-full'
+              
                 onClick={() => {
                   dispatch(clearSearch());
                   setToggleNav(false);
+                  navigate(item.link)
                 }}
-                to={item.link}
               >
+                <div className={"flex justify-between items-center "}>
                 {item.label}
-              </NavLink>
+            
+                {item.sub &&  
+                <span className='p-1' 
+                onClick={(e) => e.stopPropagation()}
+                >
+                <FaChevronRight
+                className={` transform transition-all duration-75 ease-linear ${openDropdown ? "rotate-90" :  "rotate-0"}` }onClick={(e) => {
+                  // e.stopPropagation()                  
+                  setOpenDropdown(prev => !prev)}} />
+                  
+                  </span>}
+
+                </div>
+
+                {item.sub && (
+                <div className={`mt-2 pl-4 border-l overflow-hidden transform transition-all duration-75 ease-linear ${openDropdown ? 'h-auto' : 'h-0' } `}>
+                  {item.sub.map((subItem) => (
+                    <NavLink
+                      to={subItem.link}
+                      onClick={() => setToggleNav(false)}
+                      className="text-gray-600 hover:text-primary block mt-2"
+                    >
+                      {subItem.label}
+                    </NavLink>
+                  ))}
+                </div>
+                )}
+              </span>
 
             ))
               : landingNavItem.map((item) => (
@@ -343,7 +380,7 @@ const Nav = ({ store = true }) => {
   );
 };
 
-export function SearchBox() {
+export function SearchBox({logo}) {
   const timeoutRef = useRef(null);
 
   const searchRef = useRef(null);
@@ -421,6 +458,10 @@ export function SearchBox() {
         }}
       >
         <div className="max-w-7xl flex items-center m-auto w-full">
+           <NavLink to="/store" className="block md:block items-center">
+
+          <img src={logo} alt="Logo" className="h-7 md:h-12 my-4 mr-4 " />
+          </NavLink>
 
           <InputBase
             sx={{
@@ -449,7 +490,7 @@ export function SearchBox() {
             <SearchIcon />
           </IconButton>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+          <IconButton className='hidden md:block' color="primary" sx={{ p: '10px' }} aria-label="directions">
             <DirectionsIcon />
           </IconButton>
 

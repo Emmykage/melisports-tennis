@@ -21,7 +21,9 @@ const TennisPage = () => {
   const {
     products, error, loading, product_categories,
   } = useFilter({
-    productCategory: collection,
+    // productCategory: collection,
+        productCategory: 'racquet',
+
     selectedSports: 'Tennis',
     selectedLevels,
     selectedFeatures,

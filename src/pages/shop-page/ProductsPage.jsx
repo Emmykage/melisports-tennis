@@ -30,7 +30,7 @@ const ProductsPage = () => {
     products, error, loading, product_categories,
   } = useFilter({
     productCategory: 'racquet',
-    selectedSports: 'Tennis',
+    // selectedSports: 'Tennis',
     selectedLevels,
     selectedFeatures,
   });
