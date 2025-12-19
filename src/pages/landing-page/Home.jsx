@@ -14,8 +14,6 @@ import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
 import CommunityBanner from '../../components/banner/CommunityBanner';
 import DiscoverBtn from '../../components/buttons/DiscoverBtn';
-import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-720_20231201.webm';
-import VideoComp from '../../components/video-comp/VideoComp';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import SportDirectory from '../../components/sportDirectory/SportDirectory';
 import Reviews from '../../components/reviews/Reviews';
