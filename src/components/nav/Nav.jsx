@@ -328,13 +328,16 @@ const Nav = ({ store = true }) => {
                 {item.sub && (
                 <div className={`mt-2 pl-4 border-l overflow-hidden transform transition-all duration-75 ease-linear ${openDropdown ? 'h-auto' : 'h-0' } `}>
                   {item.sub.map((subItem) => (
-                    <NavLink
-                      to={subItem.link}
-                      onClick={() => setToggleNav(false)}
+                    <span
+                      
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(subItem.link);
+                        setToggleNav(false)}}
                       className="text-gray-600 hover:text-primary block mt-2"
                     >
                       {subItem.label}
-                    </NavLink>
+                    </span>
                   ))}
                 </div>
                 )}
