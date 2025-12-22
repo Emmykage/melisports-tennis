@@ -40,13 +40,14 @@ const Nav = ({ store = true }) => {
     dispatch(getCartSum());
   }, []);
 
-  const toggleScrollNav = () => {
-    console.log('first');
-    setStickyNav(window.scrollY >= 120);
+  const toggleScrollNav = (e) => {
+    const {scrollTop} = e.target;
+    setStickyNav(scrollTop >= 120);
   };
   useEffect(() => {
-    window.addEventListener('scroll', toggleScrollNav);
-    return () => window.removeEventListener('scroll', toggleScrollNav);
+    const layoutDiv = document.querySelector('.main');
+    layoutDiv.addEventListener('scroll', toggleScrollNav);
+    return () => layoutDiv.removeEventListener('scroll', toggleScrollNav);
   }, []);
 
   const handleLogOut = () => {

@@ -1,15 +1,8 @@
-import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../pages/Loader';
 import './products.css';
 import ProductCard from '../card/ProductCard';
 
-const ProductsGrid = ({
-  products, error, filter,
-}) => {
+const ProductsGrid = ({ products, error, filter}) => {
   const sortProduct = filter ? products?.filter((item) => item.product_category.name === filter) : products;
-
-  console.log(products);
   if (error) {
     return (
       <div className="text-center">

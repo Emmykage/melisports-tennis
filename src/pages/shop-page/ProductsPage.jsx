@@ -80,9 +80,10 @@ const ProductsPage = () => {
 
   return (
     <>
+
       <Nav />
       <Hero image={bannerImage} title="Racquet" />
-      <ProductsPageContainer>
+          <ProductsPageContainer>
 
         <div className="flex flex-wrap gap-3 md:gap-6 max-w-lg my-6">
           <button
