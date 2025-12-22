@@ -71,7 +71,7 @@ const LandingHome = () => {
 
       <section>
         {/* <div className='max-w-7xl m-auto'> */}
-        <img src={bannerImg} alt="add banner" className="w-full object-contain h-full" onClick={() => navigate('/sales')} />
+        <img src={bannerImg} alt="add banner" className="w-full object-contain h-full cursor-pointer" onClick={() => navigate('/sales')} />
 
         {/* </div> */}
       </section>
