@@ -9,6 +9,7 @@ const ProductsGrid = ({
 }) => {
   const sortProduct = filter ? products?.filter((item) => item.product_category.name === filter) : products;
 
+  console.log(products);
   if (error) {
     return (
       <div className="text-center">
@@ -20,6 +21,16 @@ const ProductsGrid = ({
     );
   }
 
+  if (!products) {
+    return (
+      <div>
+        <header>
+
+          <h1 className="font-sans text-center text-3xl font-normal"> Something went wrong</h1>
+        </header>
+      </div>
+    );
+  }
   if (products.length < 1) {
     return (
       <div>

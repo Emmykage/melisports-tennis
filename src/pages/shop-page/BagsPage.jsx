@@ -7,11 +7,10 @@ import bannerImage from '../../assets/images/banner/2021-Category-Banner-Tennis-
 import Loader from '../Loader';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
-import useFilter from '../../hooks/useFilter';
 import { classSports } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
-// import { classSports } from './categories';
+import useProducts from '../../hooks/useProducts';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
@@ -19,15 +18,16 @@ const BagsPage = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
-  const {
-    products, error, loading, product_categories,
-  } = useFilter({
-    productCategory: 'bag',
-    selectedSports,
-    selectedLevels,
-    selectedFeatures,
+  const { data: products, error, isLoading: loading } = useProducts({
+    category: 'bag',
+    sport: selectedSports,
+    levels: selectedLevels,
+    features: selectedFeatures,
 
   });
+
+  const { product_categories } = useSelector((state) => state.product_categories);
+
   const category = product_categories?.find((cat) => cat.name === 'bag');
 
   const handleFilteredProducts = (sieve) => {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import shoeImage from '../../assets/images/banner/Jet_Tere_692x364_1.avif';
 import badmington from '../../assets/images/banner/X-feel_692_x_364_px.avif';
@@ -25,6 +25,7 @@ import { clearSearch } from '../../redux/products/product';
 import bannerImg from '../../assets/images/banner/banner-1.jpg';
 
 const ShopHome = () => {
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
   const { products, latestArrival } = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -72,16 +73,19 @@ const ShopHome = () => {
         </div>
       </section>
 
+      <section className="mt-4">
 
+        <div className="max-w-7xl m-auto">
 
-            <section className='mt-4'>
+          <img
+            src={bannerImg}
+            alt="add banner"
+            className="w-full object-contain h-full"
+            onClick={() => navigate('/sales')}
+          />
+        </div>
 
-              <div className='max-w-7xl m-auto'>
-
-              <img src={bannerImg} alt="add banner" className="w-full object-contain h-full" onClick={() => navigate('/sales')} />
-                    </div>
-
-            </section>
+      </section>
 
       <section className="px-4 py-10 bg-white/90 my-10">
         <div className="max-w-7xl m-auto feature">
@@ -137,8 +141,9 @@ const ShopHome = () => {
         </div>
       </section>
 
-      {latestArrival.length > 0 &&
+      {latestArrival.length > 0
 
+      && (
       <section className="px-3  py-20">
         <h3 className="text-2xl text-center">
           {' '}
@@ -148,7 +153,8 @@ const ShopHome = () => {
           {latestArrival.length > 0 ? <ProductSlider products={latestArrival} views={4} /> : <span className="text-xl block font-medium text-center"> New Arrivals will be updated Soon</span> }
 
         </div>
-      </section>}
+      </section>
+      )}
 
       <div>
         <div className="flex m-auto section-container gap-2">

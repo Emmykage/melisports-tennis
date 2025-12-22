@@ -13,6 +13,8 @@ import Nav from '../../../components/nav/Nav';
 import SideNav from '../../../components/sideNav/SideNav';
 import useFilter from '../../../hooks/useFilter';
 import ProductsPageContainer from '../../../components/productItems/ProductItems';
+import { flexibility, playType } from '../../../constants/variance';
+import useProducts from '../../../hooks/useProducts';
 
 const levels = [{
   label: 'Beginner',
@@ -34,20 +36,12 @@ const levels = [{
   level: 'junior',
 }];
 
-const featureItems = [
-  { type: 'control', label: 'Control' },
-  { type: 'power', label: 'Power' },
-  { type: 'spin', label: 'Spin' },
-];
-
 const BadmintonsPage = () => {
   const dispatch = useDispatch();
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedFeature, setSelectedFeatures] = useState([]);
-  const [selectedSports, setSelectedSports] = useState([]);
 
-  const { products, status, error } = useSelector((state) => state.products);
-  const { product_categories, loading } = useSelector((state) => state.product_categories);
+  const { product_categories } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredLevels = (e) => {
@@ -60,35 +54,22 @@ const BadmintonsPage = () => {
     }
   };
 
-  useFilter({
-    productCategory: 'racquet',
-    selectedSports: 'Badminton',
-    selectedPlayType: selectedLevels,
+  const {
+    data: products, isLoading: loading, status, error,
+  } = useProducts({
+    category: 'racquet',
+    sport: 'Badminton',
+    features: selectedFeature,
+    levels: selectedLevels,
   });
 
-  useEffect(() => {
-    if (selectedFeature.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts());
-    }
-  }, [selectedFeature, dispatch]);
-
-  useEffect(() => {
-    if (selectedLevels.length > 0) { // Only filter if there's a selection
-      dispatch(getProducts()).then(() => {
-        dispatch(filterLevels(selectedLevels));
-      });
-    }
-  }, [selectedLevels, dispatch]);
+  console.log(products);
 
   const handleFilteredFeatures = (e) => {
     const { checked, value } = e.target;
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
 
-  useEffect(() => {
-    dispatch(closeList());
-    dispatch(getProductCategories());
-  }, []);
   return (
     <div className="product-container">
       <Nav />
@@ -99,25 +80,9 @@ const BadmintonsPage = () => {
 
         <div className="flex md:gap-10">
           <SideNav>
-         
 
-            <div className="">
-              <h6 className='text-gray-800 font-semibold mb-3 tracking-wide'>Racket Type</h6>
-
-              {featureItems.map((item) => (
-                <div key={item.value} className="flex items-center mb-2">
-                  <input type="checkbox" id={item.type} value={item.type} className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
-
-                  <label htmlFor="control" style={{ fontSize: '1rem' }}>
-                    {item.label}
-                  </label>
-
-                </div>
-              ))}
-
-            </div>
             <div className="mt-4">
-              <h6 className='text-gray-800 font-semibold mb-3 tracking-wide'>Skill level</h6>
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Play Type</h6>
               {levels.map((level) => (
                 <span key={level.value} className="flex items-center mb-2">
                   <input type="checkbox" checked={selectedLevels.includes(level.level)} id={level.level} value={level.level} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
@@ -129,14 +94,26 @@ const BadmintonsPage = () => {
               ))}
 
             </div>
-            <div className="mt-4">
-              <h6 className='text-gray-800 font-semibold mb-3 tracking-wide'>Brand</h6>
+            <div className="">
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Flexibility</h6>
 
-              <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+              {flexibility.map((item) => (
+                <div key={item.value} className="flex items-center mb-2">
+                  <input
+                    type="checkbox"
+                    id={item.type}
+                    value={item.type}
+                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    onChange={handleFilteredFeatures}
+                  />
 
-                <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                babolat
-              </label>
+                  <label htmlFor="control" style={{ fontSize: '1rem' }}>
+                    {item.label}
+                  </label>
+
+                </div>
+              ))}
+
             </div>
           </SideNav>
 

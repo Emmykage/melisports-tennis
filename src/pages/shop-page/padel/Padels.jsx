@@ -1,54 +1,49 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../../components/banner/Hero';
-import { getProducts } from '../../../redux/actions/product'; import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
+import bannerImage from '../../../assets/images/banner/Babolat_padel_rackets_banner_1 (1).jpg';
 import Loader from '../../Loader';
-import Products from '../../../components/products/ProductsGridDisplay';
 import Nav from '../../../components/nav/Nav';
-import { featureItems } from '../../../constants/properties';
-import useFilter from '../../../hooks/useFilter';
-import { playType } from '../../../constants/variance';
+import { headShapes, playType } from '../../../constants/variance';
 import SideNav from '../../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../../components/productItems/ProductItems';
-import { classLevels } from '../../../constants/categories';
+import useProducts from '../../../hooks/useProducts';
+import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 
-const sportItems = [
-  { type: 'tennis', label: 'Tennis' },
-  { type: 'badminton', label: 'Badminton' },
-];
 const Padels = () => {
   const dispatch = useDispatch();
 
-  const [selectedLevels, setSelectedLevels] = useState([]);
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const [selectedHeadShape, setSelectedHeadShape] = useState([]);
+  const [selectedPlayType, setSelectedPlayType] = useState([]);
 
-  const {
-    products, error, loading, product_categories,
-  } = useFilter({
-    productCategory: 'racquet',
-    selectedSports: 'Padel',
-    selectedLevels,
-    selectedFeatures,
+  const { data: products, error, isLoading: loading } = useProducts({
+    category: 'racquet',
+    sport: 'Padel',
+    head_shape: selectedHeadShape,
+    play_type: selectedPlayType,
   });
 
+  const { product_categories } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   console.log(products);
 
-  const handleFilteredLevels = (e) => {
+  const handleFilteredPlayType = (e) => {
     const { value, checked } = e.target;
 
     if (checked) {
-      setSelectedLevels((prev) => [...prev, value]);
+      setSelectedPlayType((prev) => [...prev, value]);
     } else {
-      setSelectedLevels((prev) => prev.filter((item) => item !== value));
+      setSelectedPlayType((prev) => prev.filter((item) => item !== value));
     }
   };
 
-  const handleFilteredFeatures = (e) => {
+  const handleFilteredHeadshape = (e) => {
     const { checked, value } = e.target;
-    checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
+    checked ? setSelectedHeadShape((prev) => [...prev, value]) : setSelectedHeadShape((prev) => prev.filter((item) => item !== value));
   };
+
+  console.log(loading);
 
   return (
     <div className="product-container">
@@ -71,23 +66,44 @@ const Padels = () => {
         <div className="flex md:gap-10">
 
           <SideNav>
+            <div className="mt-4">
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Play Type</h6>
+              {playType.map((play) => (
+                <span className="flex items-center mb-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedPlayType.includes(play.value)}
+                    id={play.value}
+                    value={play.value}
+                    onChange={handleFilteredPlayType}
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
+                  />
 
+                  <label htmlFor={play.value} style={{ fontSize: '1rem' }}>
+                    {play.label}
+                  </label>
+                </span>
+              ))}
+
+            </div>
             <div>
               <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                Racket Type
+                Head Shape
               </h6>
               <div className="space-y-2">
-                {featureItems.map((item) => (
+                {headShapes.map((item) => (
                   <label
                     key={item.type}
-                    htmlFor={item.type}
+                    htmlFor={item.value}
                     className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
                   >
                     <input
                       type="checkbox"
-                      id={item.type}
-                      value={item.type}
-                      onChange={handleFilteredFeatures}
+                      id={item.value}
+                      value={item.value}
+                      checked={selectedHeadShape.includes(item.value)}
+
+                      onChange={handleFilteredHeadshape}
                       className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
                     <span className="text-base">{item.label}</span>
@@ -96,46 +112,11 @@ const Padels = () => {
               </div>
             </div>
 
-            <div className="mt-4">
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Skill level</h6>
-              {playType.map((level) => (
-                <span className="flex items-center mb-2">
-                  <input type="checkbox" checked={selectedLevels.includes(level.value)} id={level.value} value={level.value} onChange={handleFilteredLevels} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
-
-                  <label htmlFor={level.value} style={{ fontSize: '1rem' }}>
-                    {level.label}
-                  </label>
-                </span>
-              ))}
-
-            </div>
-
-            {/* Section: Brand */}
-            <div>
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                Brand
-              </h6>
-              <div className="space-y-2">
-                <label
-                  htmlFor="babolat"
-                  className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
-                >
-                  <input
-                    type="checkbox"
-                    id="babolat"
-                    value="babolat"
-                    onChange={() => {}}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <span className="text-base">Babolat</span>
-                </label>
-              </div>
-            </div>
           </SideNav>
           {loading ? <Loader />
             : (
               <div className="product-align w-full">
-                <Products products={products} error={error} />
+                <ProductsGrid products={products} error={error} />
 
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>

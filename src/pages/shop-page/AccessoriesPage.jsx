@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 // import Banner from '../components/banner/Banner';
@@ -12,18 +12,28 @@ import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import Nav from '../../components/nav/Nav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
 import SideNav from '../../components/sideNav/SideNav';
+import useProducts from '../../hooks/useProducts';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
+  const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedSports, setSelectedSports] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+
   const {
-    products, status, error, loading,
-  } = useSelector((state) => state.products);
+    data: products, status, error, isLoading: loading,
+  } = useProducts({
+    category: 'accessory',
+    sport: selectedSports,
+    levels: selectedLevels,
+    features: selectedFeatures,
+  });
+
   const { product_categories } = useSelector((state) => state.product_categories);
 
   const category = product_categories?.find((cat) => cat.name === 'accessory');
 
   const handleFilteredProducts = (seive) => {
-    console.log(seive);
     const lowerCaseSieve = seive.toLowerCase();
     console.log(lowerCaseSieve);
 
@@ -45,13 +55,6 @@ const AccessoriesPage = () => {
       dispatch(getProducts());
     }
   };
-
-  useEffect(() => {
-    dispatch(getProducts({ category: 'accessory' }));
-
-    dispatch(closeList());
-    dispatch(getProductCategories());
-  }, []);
 
   return (
     <>
@@ -165,7 +168,7 @@ const AccessoriesPage = () => {
               : (
                 <div className="product-align w-full">
 
-                  <ProductsGrid filter="accessory" products={products} status={status} error={error} />
+                  <ProductsGrid products={products} status={status} error={error} />
                   <div className="product-details ">
                     <h3> BABOLAT TENNIS ACCESSORIES BRANDS</h3>
                     <p>

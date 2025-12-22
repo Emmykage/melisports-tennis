@@ -2,20 +2,13 @@ import React, { useRef } from 'react';
 import { nairaFormat } from '../../utils/nairaFormat';
 import Button from '../buttons/Button';
 
-// SimilarItemsSection.jsx
-// Props:
-// - items: Array of { id, title, price, imageUrl, subtitle }
-// - title: string
-// - onSelect: function(item) when an item is clicked
-// - loading: boolean
-
-export default function SimilarItemsSection({
+const  SimilarItemsSection = ({
   items = [],
   error = false,
   title = 'Similar items',
   onSelect = () => {},
   loading = false,
-}) {
+}) => {
   const scrollerRef = useRef(null);
 
   const scroll = (dir = 'right') => {
@@ -54,7 +47,7 @@ export default function SimilarItemsSection({
       {/* Horizontal scroller for small+ screens; grid for larger screens */}
       <div
         ref={scrollerRef}
-        className="relative overflow-x-auto scroll-smooth no-scroll-bar bg-gray no-scrollbar  rounded shadow rounded-sm py-2"
+        className="relative overflow-x-auto scroll-smooth no-scroll-bar bg-gray no-scrollbar   shadow rounded-sm py-2"
         role="list"
         aria-label="Similar product items"
       >
@@ -142,6 +135,9 @@ function SimilarItemCard({ item, onSelect }) {
 
   );
 }
+
+
+export default SimilarItemsSection
 
 /*
 Usage notes (example props shape):

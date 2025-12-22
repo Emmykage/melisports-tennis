@@ -15,10 +15,11 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import PersonIcon from '@mui/icons-material/Person';
 import { MdHome } from 'react-icons/md';
+import { FaChevronRight } from 'react-icons/fa6';
 import { getCartSum, getUserCart } from '../../redux/actions/cart';
 import logo from '../../assets/images/logo/melisport_1.png';
-import { FaChevronRight } from "react-icons/fa6";
 
 import { userProfile } from '../../redux/actions/auth';
 import { searchedProducts } from '../../redux/actions/product';
@@ -27,32 +28,27 @@ import { clearSearch } from '../../redux/products/product';
 
 const Nav = ({ store = true }) => {
   const navigate = useNavigate();
-  const { counter, update } = useSelector((state) => state.cart);
-  const [stickyNav, setStickyNav] = useState('');
+  const { counter } = useSelector((state) => state.cart);
+  const [stickyNav, setStickyNav] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [toggleNav, setToggleNav] = useState(false);
-  const [query] = useSearchParams();
-  const [ searchTerm, setSearchTerm] = useState(query.get('search') || '');
   const [openDropdown, setOpenDropdown] = useState(false);
 
-
-
-  const { location } = window;
-
-  const toggleScrollNav = (e) => {
-    if (window.scrollY >= 120) {
-      setStickyNav('sticky-nav');
-    } else {
-      setStickyNav('');
-    }
-  };
   useEffect(() => {
     dispatch(getUserCart());
     dispatch(getCartSum());
+  }, []);
 
+  const toggleScrollNav = () => {
+    console.log('first');
+    setStickyNav(window.scrollY >= 120);
+  };
+  useEffect(() => {
     window.addEventListener('scroll', toggleScrollNav);
-  }, [update]);
+    return () => window.removeEventListener('scroll', toggleScrollNav);
+  }, []);
+
   const handleLogOut = () => {
     localStorage.removeItem('meli_auth');
     dispatch(userProfile());
@@ -182,8 +178,10 @@ const Nav = ({ store = true }) => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white shadow-md">
+      <nav className="fixed  w-full bg-white top-0 z-50 shadow-md">
+        {!stickyNav && (
         <div className="py-2  px-4  bg-gray-100">
+
           <div className="flex m-auto justify-between max-w-7xl">
 
             <span className="text-xs font-medium">
@@ -197,8 +195,10 @@ const Nav = ({ store = true }) => {
           </div>
 
         </div>
+        )}
         <div>
-          <SearchBox logo={logo} />
+
+          <SearchBox logo={logo} stickyNav={stickyNav} />
 
         </div>
         {/* <SearchComponent/> */}
@@ -300,40 +300,47 @@ const Nav = ({ store = true }) => {
 
             {store ? storeItems.map((item) => (
               <span
-              key={item.link}
-              className='w-full'
-              
+                key={item.link}
+                className="w-full cursor-pointer hover:text-primary"
+
                 onClick={() => {
                   dispatch(clearSearch());
                   setToggleNav(false);
-                  navigate(item.link)
+                  navigate(item.link);
                 }}
               >
-                <div className={"flex justify-between items-center "}>
-                {item.label}
-            
-                {item.sub &&  
-                <span className='p-1' 
-                onClick={(e) => e.stopPropagation()}
+                <div className="flex justify-between items-center ">
+                  {item.label}
+
+                  {item.sub
+                && (
+                <span
+                  className="p-1 border text-theme"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                <FaChevronRight
-                className={` transform transition-all duration-75 ease-linear ${openDropdown ? "rotate-90" :  "rotate-0"}` }onClick={(e) => {
-                  // e.stopPropagation()                  
-                  setOpenDropdown(prev => !prev)}} />
-                  
-                  </span>}
+                  <FaChevronRight
+                    className={` transform transition-all duration-75 ease-linear ${openDropdown ? 'rotate-90' : 'rotate-0'}`}
+                    onClick={(e) => {
+                      // e.stopPropagation()
+                      setOpenDropdown((prev) => !prev);
+                    }}
+                  />
+
+                </span>
+                )}
 
                 </div>
 
                 {item.sub && (
-                <div className={`mt-2 pl-4 border-l overflow-hidden transform transition-all duration-75 ease-linear ${openDropdown ? 'h-auto' : 'h-0' } `}>
+                <div className={`mt-2 pl-4 border-l overflow-hidden transform transition-all duration-75 ease-linear ${openDropdown ? 'h-auto' : 'h-0'} `}>
                   {item.sub.map((subItem) => (
                     <span
-                      
+
                       onClick={(e) => {
                         e.stopPropagation();
                         navigate(subItem.link);
-                        setToggleNav(false)}}
+                        setToggleNav(false);
+                      }}
                       className="text-gray-600 hover:text-primary block mt-2"
                     >
                       {subItem.label}
@@ -383,7 +390,7 @@ const Nav = ({ store = true }) => {
   );
 };
 
-export function SearchBox({logo}) {
+export function SearchBox({ logo, stickyNav }) {
   const timeoutRef = useRef(null);
 
   const searchRef = useRef(null);
@@ -444,7 +451,7 @@ export function SearchBox({logo}) {
   }, []);
 
   return (
-    <div className="">
+    <div className="relative">
       <Paper
         ref={searchRef}
         className="border-b"
@@ -461,9 +468,9 @@ export function SearchBox({logo}) {
         }}
       >
         <div className="max-w-7xl flex items-center m-auto w-full">
-           <NavLink to="/store" className="block md:block items-center">
+          <NavLink to="/store" className="block md:block items-center">
 
-          <img src={logo} alt="Logo" className="h-7 md:h-12 my-4 mr-4 " />
+            <img src={logo} alt="Logo" className={`h-7 my-4 mr-4 ${stickyNav ? 'md:h-4' : 'md:h-12'}`} />
           </NavLink>
 
           <InputBase
@@ -493,8 +500,8 @@ export function SearchBox({logo}) {
             <SearchIcon />
           </IconButton>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton className='hidden md:block' color="primary" sx={{ p: '10px' }} aria-label="directions">
-            <DirectionsIcon />
+          <IconButton className="hidden md:block" color="primary" sx={{ p: '10px' }} aria-label="directions">
+            <PersonIcon />
           </IconButton>
 
         </div>

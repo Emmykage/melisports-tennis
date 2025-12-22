@@ -172,6 +172,8 @@ body {
   font-size: 14px;
   background: var(--color-background);
   color: rgb(20, 56, 80);
+    height: 300px;
+
 }
 
 hr{

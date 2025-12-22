@@ -13,6 +13,7 @@ import useFilter from '../../hooks/useFilter';
 import { classSports, genderItems, itemsFeatures } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
+import useProducts from '../../hooks/useProducts';
 
 const ShoesPage = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,7 @@ const ShoesPage = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
-  const {
-    products, error, loading, product_categories,
-  } = useFilter({
+  const { data: products, error, isLoading: loading } = useProducts({
     productCategory: 'shoe',
     selectedSports,
     selectedLevels,
@@ -35,6 +34,7 @@ const ShoesPage = () => {
     selectedGenders,
 
   });
+  const { product_categories } = useSelector((state) => state.product_categories);
 
   const category = product_categories?.find((cat) => cat.name === 'shoe');
 
@@ -216,7 +216,7 @@ const ShoesPage = () => {
           {loading ? <Loader />
             : (
               <div className="product-align w-full">
-                <ProductsGrid filter="shoe" products={products} status={status} error={error} />
+                <ProductsGrid products={products} status={status} error={error} />
 
                 <div className="product-details">
                   <h3> BABOLAT TENNIS SHOES</h3>

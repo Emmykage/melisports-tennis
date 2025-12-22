@@ -10,6 +10,9 @@ import useFilter from '../../../hooks/useFilter';
 import { collections, playType } from '../../../constants/variance';
 import SideNav from '../../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../../components/productItems/ProductItems';
+import useProducts from '../../../hooks/useProducts';
+import { classLevels } from '../../../constants/categories';
+import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 
 const TennisPage = () => {
   const dispatch = useDispatch();
@@ -19,16 +22,16 @@ const TennisPage = () => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const {
-    products, error, loading, product_categories,
-  } = useFilter({
-    // productCategory: collection,
-        productCategory: 'racquet',
-
-    selectedSports: 'Tennis',
-    selectedLevels,
-    selectedFeatures,
+    data:
+    products, error, isLoading: loading,
+  } = useProducts({
+    category: 'racquet',
+    sport: 'Tennis',
+    levels: selectedLevels,
+    features: selectedFeatures,
   });
 
+  const { product_categories } = useSelector((state) => state.product_categories);
   const category = product_categories?.find((cat) => cat.name === 'racquet');
 
   const handleFilteredCollections = (e) => {
@@ -41,6 +44,13 @@ const TennisPage = () => {
     const { checked, value } = e.target;
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
+
+  const handleFilteredLevel = (e) => {
+    const { checked, value } = e.target;
+    checked ? setSelectedLevels((prev) => [...prev, value]) : setSelectedLevels((prev) => prev.filter((item) => item !== value));
+  };
+
+  console.log(selectedFeatures, products, 'selectedLevels');
 
   return (
     <div className="product-container">
@@ -57,7 +67,28 @@ const TennisPage = () => {
 
           <SideNav>
             <div>
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Racket Type</h6>
+              <div className="space-y-2 my-4">
+                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Player Type</h6>
+                {classLevels.map((level) => (
+                  <span className="flex items-center mb-2">
+                    <input
+                      type="checkbox"
+                      checked={selectedLevels.some((lev) => lev == level.value)}
+                      id={level.value}
+                      value={level.value}
+                      onChange={handleFilteredLevel}
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
+                    />
+
+                    <label htmlFor={level.value} style={{ fontSize: '1rem' }}>
+                      {level.label}
+                    </label>
+                  </span>
+                ))}
+
+              </div>
+
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Player Type</h6>
 
               <div className="space-y-2">
 
@@ -68,7 +99,7 @@ const TennisPage = () => {
                       id={item.value}
                       value={item.value}
                       className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      onChange={handleFilteredCollections}
+                      onChange={handleFilteredFeatures}
                     />
 
                     <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
@@ -80,42 +111,12 @@ const TennisPage = () => {
 
               </div>
             </div>
-            <div className="space-y-2 mt-4">
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Skill level</h6>
-              {collection.map((level) => (
-                <span className="flex items-center mb-2">
-                  <input
-                    type="checkbox"
-                    checked={collection.includes(level.value)}
-                    id={level.value}
-                    value={level.value}
-                    onChange={handleFilteredFeatures}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
-                  />
 
-                  <label htmlFor={level.value} style={{ fontSize: '1rem' }}>
-                    {level.label}
-                  </label>
-                </span>
-              ))}
-
-            </div>
-            <div className="space-y-2 mt-4">
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide"> Brand</h6>
-
-              <div />
-
-              <label className="flex items-center" htmlFor="babolat" style={{ fontSize: '1rem' }}>
-
-                <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                babolat
-              </label>
-            </div>
           </SideNav>
           {loading ? <Loader />
             : (
               <div className="product-align w-full">
-                <Products products={products} error={error} />
+                <ProductsGrid products={products} error={error} />
 
                 <div className="product-details color-grey">
                   <h3> BABOLAT TENNIS RACKET BRANDS</h3>

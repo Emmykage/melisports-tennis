@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Hero from '../../../components/banner/Hero';
-import { getProducts } from '../../../redux/actions/product'; import bannerImage from '../../../assets/images/banner/babolat-wimby-desktop-banner1.jpg';
+import bannerImage from '../../../assets/images/banner/babolat-wimby-desktop-banner1.jpg';
 import Loader from '../../Loader';
-import Products from '../../../components/products/ProductsGridDisplay';
 import Nav from '../../../components/nav/Nav';
-import { featureItems } from '../../../constants/properties';
-import useFilter from '../../../hooks/useFilter';
-import { collections, playType } from '../../../constants/variance';
+
+import { collections } from '../../../constants/variance';
 import SideNav from '../../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../../components/productItems/ProductItems';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
+import useProducts from '../../../hooks/useProducts';
 
 const SalesPage = () => {
   const dispatch = useDispatch();
@@ -21,9 +20,13 @@ const SalesPage = () => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const {
-    products, error, loading, product_categories,
-  } = useFilter({
-    productDiscount: true,
+    data: products, error, isLoading: loading, product_categories,
+  } = useProducts({
+    discount: true,
+    category: 'racquet',
+    sport: 'Tennis',
+    levels: selectedLevels,
+    features: selectedFeatures,
 
   });
 
@@ -39,10 +42,9 @@ const SalesPage = () => {
     const { checked, value } = e.target;
     checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
   };
-  console.log(products);
 
   return (
-    <div className="product-container">
+    <div className="product-container relative">
       <Nav />
       <Hero image={bannerImage} title="Discounted Sales" />
 
@@ -55,32 +57,9 @@ const SalesPage = () => {
         <div className="flex md:gap-10">
 
           <SideNav>
-            <div>
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Racket Type</h6>
 
-              <div className="space-y-2">
-
-                {featureItems.map((item) => (
-                  <div className="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      id={item.value}
-                      value={item.value}
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      onChange={handleFilteredCollections}
-                    />
-
-                    <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
-                      {item.label}
-                    </label>
-
-                  </div>
-                ))}
-
-              </div>
-            </div>
             <div className="space-y-2 mt-4">
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Skill level</h6>
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Collection</h6>
               {collections.map((level) => (
                 <span className="flex items-center mb-2">
                   <input
@@ -99,17 +78,7 @@ const SalesPage = () => {
               ))}
 
             </div>
-            <div className="space-y-2 mt-4">
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide"> Brand</h6>
 
-              <div />
-
-              <label className="flex items-center" htmlFor="babolat" style={{ fontSize: '1rem' }}>
-
-                <input onChange={() => {}} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                babolat
-              </label>
-            </div>
           </SideNav>
           {loading ? <Loader />
             : (
@@ -122,7 +91,6 @@ const SalesPage = () => {
                     { category?.description}
 
                   </p>
-             
 
                 </div>
               </div>

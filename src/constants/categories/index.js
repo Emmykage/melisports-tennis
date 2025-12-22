@@ -1,21 +1,21 @@
 export const classLevels = [{
   label: 'Beginner',
-  level: 'beginner',
+  value: 'beginner',
 },
 {
   label: 'Professional',
 
-  level: 'professional',
+  value: 'professional',
 },
 {
   label: 'Intermediate',
 
-  level: 'intermediate',
+  value: 'intermediate',
 },
 {
   label: 'Junior',
 
-  level: 'junior',
+  value: 'junior',
 }];
 
 export const classSports = [

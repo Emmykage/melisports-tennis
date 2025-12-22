@@ -24,6 +24,8 @@ const getProducts = createAsyncThunk('products/getProducts', async (filterParams
     if (!response.ok) {
       return rejectWithValue({ message: result?.error ?? 'Something went wrong' });
     }
+
+    console.log('====================>', result);
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });

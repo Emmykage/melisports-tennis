@@ -10,6 +10,7 @@ import useFilter from '../../hooks/useFilter';
 import { classSports, genderItems } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
+import useProducts from '../../hooks/useProducts';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -20,16 +21,17 @@ const ApparelsPage = () => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const {
-    products, error, loading, product_categories,
-  } = useFilter({
-    productCategory: 'apparel',
-    selectedSports,
-    selectedLevels,
-    selectedFeatures,
-    selectedGenders,
+    data: products, error, isLoading: loading,
+  } = useProducts({
+    category: 'apparel',
+    sport: selectedSports,
+    levels: selectedLevels,
+    features: selectedFeatures,
+    gender: selectedGenders,
 
   });
-  console.log(products, loading, 'APparels fetched');
+  const { product_categories } = useSelector((state) => state.product_categories);
+
   const category = product_categories?.find((cat) => cat.name === 'apparel');
   const handleFilteredProducts = (seive) => {
     console.log(seive);
