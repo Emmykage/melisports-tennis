@@ -11,6 +11,7 @@ import { classSports, genderItems } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
 import useProducts from '../../hooks/useProducts';
+import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -30,10 +31,10 @@ const ApparelsPage = () => {
     gender: selectedGenders,
 
   });
-  const { product_categories } = useSelector((state) => state.product_categories);
 
-  const category = product_categories?.find((cat) => cat.name === 'apparel');
-  const handleFilteredProducts = (seive) => {
+  const { data: category } = useCategoryName({
+    name: 'apparel',
+  }); const handleFilteredProducts = (seive) => {
     console.log(seive);
     const lowerCaseSieve = seive.toLowerCase();
 

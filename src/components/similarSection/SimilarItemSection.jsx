@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { nairaFormat } from '../../utils/nairaFormat';
 import Button from '../buttons/Button';
 
-const  SimilarItemsSection = ({
+const SimilarItemsSection = ({
   items = [],
   error = false,
   title = 'Similar items',
@@ -77,7 +77,7 @@ const  SimilarItemsSection = ({
       </div>
     </section>
   );
-}
+};
 
 function SimilarItemCard({ item, onSelect }) {
   const {
@@ -136,8 +136,7 @@ function SimilarItemCard({ item, onSelect }) {
   );
 }
 
-
-export default SimilarItemsSection
+export default SimilarItemsSection;
 
 /*
 Usage notes (example props shape):

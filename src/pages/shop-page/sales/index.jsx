@@ -10,6 +10,7 @@ import SideNav from '../../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../../components/productItems/ProductItems';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import useProducts from '../../../hooks/useProducts';
+import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 
 const SalesPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const SalesPage = () => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const {
-    data: products, error, isLoading: loading, product_categories,
+    data: products, error, isLoading: loading,
   } = useProducts({
     discount: true,
     category: 'racquet',
@@ -30,13 +31,9 @@ const SalesPage = () => {
 
   });
 
-  const category = product_categories?.find((cat) => cat.name === 'racquet');
-
-  const handleFilteredCollections = (e) => {
-    const { value, checked } = e.target;
-
-    setCollections((prev) => (checked ? [...prev, value] : prev.filter((item) => item !== value)));
-  };
+  const { data: category } = useCategoryName({
+    name: 'racquet',
+  });
 
   const handleFilteredFeatures = (e) => {
     const { checked, value } = e.target;

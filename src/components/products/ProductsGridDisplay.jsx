@@ -21,7 +21,7 @@ const ProductsGrid = ({
     );
   }
 
-  if (!products) {
+  if (!products || !Array.isArray(products)) {
     return (
       <div>
         <header>

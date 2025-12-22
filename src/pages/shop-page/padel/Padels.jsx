@@ -9,6 +9,7 @@ import SideNav from '../../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../../components/productItems/ProductItems';
 import useProducts from '../../../hooks/useProducts';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
+import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 
 const Padels = () => {
   const dispatch = useDispatch();
@@ -23,10 +24,9 @@ const Padels = () => {
     play_type: selectedPlayType,
   });
 
-  const { product_categories } = useSelector((state) => state.product_categories);
-  const category = product_categories?.find((cat) => cat.name === 'racquet');
-
-  console.log(products);
+  const { data: category } = useCategoryName({
+    name: 'racquet',
+  });
 
   const handleFilteredPlayType = (e) => {
     const { value, checked } = e.target;

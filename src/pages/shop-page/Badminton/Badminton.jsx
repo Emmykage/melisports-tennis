@@ -15,6 +15,7 @@ import useFilter from '../../../hooks/useFilter';
 import ProductsPageContainer from '../../../components/productItems/ProductItems';
 import { flexibility, playType } from '../../../constants/variance';
 import useProducts from '../../../hooks/useProducts';
+import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 
 const levels = [{
   label: 'Beginner',
@@ -41,9 +42,6 @@ const BadmintonsPage = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedFeature, setSelectedFeatures] = useState([]);
 
-  const { product_categories } = useSelector((state) => state.product_categories);
-  const category = product_categories?.find((cat) => cat.name === 'racquet');
-
   const handleFilteredLevels = (e) => {
     const { value, checked } = e.target;
 
@@ -61,6 +59,10 @@ const BadmintonsPage = () => {
     sport: 'Badminton',
     features: selectedFeature,
     levels: selectedLevels,
+  });
+
+  const { data: category } = useCategoryName({
+    name: 'racquet',
   });
 
   console.log(products);

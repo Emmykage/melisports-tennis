@@ -13,6 +13,7 @@ import Nav from '../../components/nav/Nav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
 import SideNav from '../../components/sideNav/SideNav';
 import useProducts from '../../hooks/useProducts';
+import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
@@ -29,10 +30,9 @@ const AccessoriesPage = () => {
     features: selectedFeatures,
   });
 
-  const { product_categories } = useSelector((state) => state.product_categories);
-
-  const category = product_categories?.find((cat) => cat.name === 'accessory');
-
+  const { data: category } = useCategoryName({
+    name: 'accessory',
+  });
   const handleFilteredProducts = (seive) => {
     const lowerCaseSieve = seive.toLowerCase();
     console.log(lowerCaseSieve);

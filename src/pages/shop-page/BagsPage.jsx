@@ -11,6 +11,7 @@ import { classSports } from '../../constants/categories';
 import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
 import useProducts from '../../hooks/useProducts';
+import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
@@ -26,10 +27,9 @@ const BagsPage = () => {
 
   });
 
-  const { product_categories } = useSelector((state) => state.product_categories);
-
-  const category = product_categories?.find((cat) => cat.name === 'bag');
-
+  const { data: category } = useCategoryName({
+    name: 'bag',
+  });
   const handleFilteredProducts = (sieve) => {
     const lowerCaseSieve = sieve.toLowerCase();
     dispatch(getProducts({ name: lowerCaseSieve }));
@@ -63,12 +63,14 @@ const BagsPage = () => {
         <div className="prod-page prod-page py-10 px-4 md:px-10  max-w-[1600px] m-auto">
           <div className="cat-group justify-between max-w-md my-6">
             <button
+              type="button"
               className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               onClick={() => dispatch(getProducts())}
             >
               All bags
             </button>
             <button
+              type="button"
               className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               onClick={() => handleFilteredProducts('backpack')}
             >
@@ -76,6 +78,7 @@ const BagsPage = () => {
               Backpack
             </button>
             <button
+              type="button"
               className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               onClick={() => handleFilteredProducts('duffle')}
             >
@@ -83,6 +86,8 @@ const BagsPage = () => {
               Duffle
             </button>
             <button
+              type="button"
+
               className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
               onClick={() => handleFilteredProducts('racket holder')}
             >
@@ -103,7 +108,7 @@ const BagsPage = () => {
               <div className="">
 
                 {classSports.map((item) => (
-                  <div className="flex items-center mb-2">
+                  <div key={item.value} className="flex items-center mb-2">
                     <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
 
                       <input
@@ -146,7 +151,10 @@ const BagsPage = () => {
                   value: 'Backpack',
                   label: 'Backpack',
                 }].map((item) => (
-                  <div className="flex items-center">
+                  <div
+                    key={item.value}
+                    className="flex items-center"
+                  >
                     <input
                       type="checkbox"
                       id={item.value}

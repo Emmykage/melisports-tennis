@@ -13,6 +13,7 @@ import ProductsPageContainer from '../../../components/productItems/ProductItems
 import useProducts from '../../../hooks/useProducts';
 import { classLevels } from '../../../constants/categories';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
+import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 
 const TennisPage = () => {
   const dispatch = useDispatch();
@@ -31,14 +32,9 @@ const TennisPage = () => {
     features: selectedFeatures,
   });
 
-  const { product_categories } = useSelector((state) => state.product_categories);
-  const category = product_categories?.find((cat) => cat.name === 'racquet');
-
-  const handleFilteredCollections = (e) => {
-    const { value, checked } = e.target;
-
-    setCollections((prev) => (checked ? [...prev, value] : prev.filter((item) => item !== value)));
-  };
+  const { data: category } = useCategoryName({
+    name: 'racquet',
+  });
 
   const handleFilteredFeatures = (e) => {
     const { checked, value } = e.target;
