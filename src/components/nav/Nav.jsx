@@ -42,7 +42,7 @@ const Nav = ({ store = true }) => {
 
   const toggleScrollNav = (e) => {
     const {scrollTop} = e.target;
-    setStickyNav(scrollTop >= 120);
+    setStickyNav(scrollTop >= 140);
   };
   useEffect(() => {
     const layoutDiv = document.querySelector('.main');
@@ -179,7 +179,7 @@ const Nav = ({ store = true }) => {
 
   return (
     <>
-      <nav className="fixed  w-full bg-white top-0 z-50 shadow-md">
+      <nav className="sticky  w-full bg-white top-0 z-50 shadow-md">
         {!stickyNav && (
         <div className="py-2  px-4  bg-gray-100">
 

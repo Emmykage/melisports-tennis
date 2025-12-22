@@ -85,7 +85,7 @@ const Orders = () => {
       header: () => 'Name',
       cell: (info) => (
         <span className="flex gap-3">
-          {info.getValue() ?? (`${info.row.original.user.first_name} ${info.row.original.user.last_name}`)}
+          {info.getValue() ?? (`${info.row.original.user?.first_name} ${info.row.original.user.last_name}`)}
           {!info.row.original.viewed && <span className="text-white rounded px-2 bg-orange-700">new</span>}
         </span>
       ),
@@ -157,7 +157,7 @@ const Orders = () => {
         <table className="order">
           <thead>
             {getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <tr key={headerGroup?.id}>
                 {headerGroup.headers.map((header) => (
                   <th key={header.id} className="text-gray-700 bg-gray-200">
                     {header.isPlaceholder
