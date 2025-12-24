@@ -8,7 +8,6 @@ import Hero from '../../components/banner/Hero';
 import courtDirectories from '../../mock-server/court_directory.json';
 import CourtCard from '../../components/courtCard/CourtCard';
 import SelectInput from '../../components/selectInput/SelectInput';
-import NavInfo from '../../components/nav/NavInfo';
 import AppModal from '../../components/modal/AppModal';
 import ClickButton from '../../components/buttons/ClickButton';
 import { addCourts } from '../../redux/actions/review';

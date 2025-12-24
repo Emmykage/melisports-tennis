@@ -7,7 +7,6 @@ import {
 import nadal_art from '../../assets/images/nadal-art.png';
 import AboutBanner from '../../components/banner/AboutBanner';
 import CommunityBanner from '../../components/banner/CommunityBanner';
-import NavInfo from '../../components/nav/NavInfo';
 import Nav from '../../components/nav/Nav';
 
 const About = () => (

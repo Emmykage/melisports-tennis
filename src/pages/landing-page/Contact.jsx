@@ -6,7 +6,6 @@ import Hero from '../../components/banner/Hero';
 
 import bannerImage from '../../assets/images/banner/Babolat_NEWS-Banniere_1365x510_PureDrive21.webp';
 import CommunityBanner from '../../components/banner/CommunityBanner';
-import NavInfo from '../../components/nav/NavInfo';
 import Nav from '../../components/nav/Nav';
 
 const Contact = () => (

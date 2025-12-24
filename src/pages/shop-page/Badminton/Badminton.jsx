@@ -55,7 +55,6 @@ const BadmintonsPage = () => {
   const {
     data: products, isLoading: loading, status, error,
   } = useProducts({
-    category: 'racquet',
     sport: 'Badminton',
     features: selectedFeature,
     levels: selectedLevels,

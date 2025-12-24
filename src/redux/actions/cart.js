@@ -11,12 +11,13 @@ const refCart = () => getCart().map((cart) => ({
   product_id: cart.product_id,
   id: cart.id,
   price: cart.price,
-  ...(cart?.discount_amount && { discount: cart?.discount_amount }),
+  ...(cart?.discount_amount && { discount_amount: cart?.discount_amount }),
   product_name: cart.product_name,
   image: cart.image,
   size: cart.size,
   colours: cart.colours,
   quantity: cart.quantity,
+  category: cart.category,
   subTotal: cart.quantity * cart.price,
 }));
 export const addToCart = (newCartArray) => (dispatch, getState) => {

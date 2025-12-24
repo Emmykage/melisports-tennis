@@ -44,6 +44,7 @@ const ProductDetails = () => {
       product_name: product.name,
       size: item?.size,
       colours: product?.colours,
+      category: product?.product_category?.name,
     }));
 
     // if(newInventory.every((item) => !item.count || item.count < 1)){

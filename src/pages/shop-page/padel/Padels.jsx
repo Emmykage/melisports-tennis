@@ -18,7 +18,6 @@ const Padels = () => {
   const [selectedPlayType, setSelectedPlayType] = useState([]);
 
   const { data: products, error, isLoading: loading } = useProducts({
-    category: 'racquet',
     sport: 'Padel',
     head_shape: selectedHeadShape,
     play_type: selectedPlayType,

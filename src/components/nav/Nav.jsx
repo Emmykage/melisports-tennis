@@ -41,13 +41,13 @@ const Nav = ({ store = true }) => {
   }, []);
 
   const toggleScrollNav = (e) => {
-    const {scrollTop} = e.target;
+    const { scrollTop} = e.target;
     setStickyNav(scrollTop >= 140);
   };
   useEffect(() => {
     const layoutDiv = document.querySelector('.main');
-    layoutDiv.addEventListener('scroll', toggleScrollNav);
-    return () => layoutDiv.removeEventListener('scroll', toggleScrollNav);
+    layoutDiv?.addEventListener('scroll', toggleScrollNav);
+    return () => layoutDiv?.removeEventListener('scroll', toggleScrollNav);
   }, []);
 
   const handleLogOut = () => {

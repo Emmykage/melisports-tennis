@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowCircleDown } from 'react-icons/fa';
 import {
@@ -34,7 +34,7 @@ const Checkout = () => {
   const [step, setStep] = useState(0);
   const [referal, setReferal] = useState('');
   const shippingFee = Number(selectedState?.delivery_fee ?? 0);
-  const discountedAmount = agent?.discount ? (agent.discount / 100) * total : 0;
+  let [discountedAmount, setdisountedAmount] =  useState(0);
   const subTotal = total - discountedAmount;
   const netTotal = subTotal + shippingFee;
   const handleAgentFetch = () => {
@@ -45,7 +45,8 @@ const Checkout = () => {
     {
       product_id: item.product_id,
       quantity: item.quantity,
-      amount: item.price,
+      bonus: agent?.discount ? (agent.discount / 100) * item.price : 0,
+      amount : item.price,
       size: item.size,
     }
 
@@ -66,6 +67,28 @@ const Checkout = () => {
 
     },
   };
+
+
+  const refindCartItems = useMemo(() => {
+    let accBonus = 0;
+  const items = cartItems.map((item) => {
+    const bonus = (agent?.discount && !item?.discount_amount && (item.category !== 'accessory')) ? (agent.discount / 100) * item.price : 0;
+    accBonus += bonus;
+    return {
+      ...item,
+      ...(agent?.discount && !item?.discount_amount && { bonus: bonus }),
+    };
+  });
+
+
+      setdisountedAmount( accBonus)
+
+  return items;
+}, [cartItems, agent]);
+
+
+console.log(refindCartItems)
+
 
   const handleCheckout = () => {
     dispatch(createOrder(data))
@@ -90,7 +113,9 @@ const Checkout = () => {
     },
     {
       step: 2,
-      render: <ConfirmPayment loading={loading} setStep={setStep} handleCheckout={handleCheckout} billingDetails={billingDetails} setBillingDetails={setBillingDetails} cartItems={cartItems} total={total} />,
+      render: <ConfirmPayment
+      loading={loading} setStep={setStep} handleCheckout={handleCheckout} billingDetails={billingDetails} setBillingDetails={setBillingDetails} 
+      cartItems={refindCartItems} total={total} />,
     },
 
   ];

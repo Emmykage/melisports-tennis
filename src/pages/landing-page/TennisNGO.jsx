@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import Hero from '../../components/banner/Hero';
-import NavInfo from '../../components/nav/NavInfo';
 import img from '../../assets/images/ngo/IMG-20250513-WA0028.jpg';
 import EnrollChildForm from './components/EnrollChild';
 import Programme from './components/Programme';

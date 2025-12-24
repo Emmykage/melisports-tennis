@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Footer from '../footer/Footer';
 import Modal from '../modal/Modal';
 import ChatBox from '../sideNav/ChatBox';
-import NavInfo from '../nav/NavInfo';
 import MobileFooter from '../footer/mobile_footer';
 import FooterInfo from '../footer-info/FooterInfo';
 
@@ -12,7 +10,7 @@ const MainInfoLayout = ({ children }) => {
 
   return (
 
-    <div className="">
+    <div className="relative h-screen  overflow-y-auto main">
       {isOpen && <Modal />}
       {children}
       <FooterInfo />

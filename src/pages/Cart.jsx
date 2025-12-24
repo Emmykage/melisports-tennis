@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
-import { closeModal, openModal } from '../redux/modal/modal';
-import { closeList } from '../redux/products/searched';
+
 import { nairaFormat } from '../utils/nairaFormat';
 import Nav from '../components/nav/Nav';
 import Modal from '../components/modal/Modal';
@@ -15,26 +14,22 @@ import {
 } from '../redux/actions/cart';
 
 const Cart = () => {
-  const { user, loading } = useSelector((state) => state.user);
-  const { cartItems, total, update } = useSelector((state) => state.cart);
-  const { status } = useSelector((state) => state.orders);
+  // const { user, loading } = useSelector((state) => state.user);
+  const { cartItems, total } = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
 
-  const location = useLocation();
 
   useEffect(() => {
-    dispatch(closeList());
+    // dispatch(closeList());
     dispatch(getUserCart());
-  }, [update]);
+  }, []);
 
   // if ((!user && !loading && !fetchToken())) {
   //   navigate('/auth/login', { state: { from: location.pathname } });
   // }
-
-  console.log(cartItems);
 
   const selectCart = (id, quantity, sign) => {
     if (sign === '+') {
@@ -51,6 +46,8 @@ const Cart = () => {
   const handleDelete = (id) => {
     dispatch(deleteCartItem(id));
   };
+
+  console.log(cartItems)
 
   return (
     <>
@@ -164,13 +161,11 @@ const Cart = () => {
                         </p>
                       </td>
                       <td data-cell="price" className="md:table-cell whitespace-nowrap text-right bg-gray-100 px-3 py-3 ">
-                        {cart?.discount && <p className="text-sm text-gray-700 font-normal line-through">{nairaFormat(cart?.discount)}</p>}
+                        {(cart?.discount || cart?.discount_amount) && <p className="text-sm text-gray-700 font-normal line-through">{nairaFormat(cart?.discount ?? cart?.discount_amount)}</p>}
                         <p className="text-base text-gray-700 font-semibold">{nairaFormat(cart?.price)}</p>
 
                       </td>
-                      {/* <td data-cell="total" className="whitespace-nowrap border-b bg-gray-300 block px-3 py-3 lg:table-cell text-sm text-gray-900 font-medium">
-                        <p>{nairaFormat(cart?.subTotal)}</p>
-                      </td> */}
+                 
 
                       <td data-cell="quantity" className=" md:table-cell whitespace-nowrap bg-gray-100  px-3 py-3 text-sm text-gray-600/90 font-normal text-right">
                         <div className="border ml-auto border-gray-400 rounded-lg w-16">
