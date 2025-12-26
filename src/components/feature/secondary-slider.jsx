@@ -10,7 +10,7 @@ import Slide1 from '../../assets/images/banner/slide_one.jpg';
 import photoOne from '../../assets/images/ngo/IMG-20250513-WA0021.jpg';
 import photoTwo from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
 import photoThree from '../../assets/images/ngo/IMG-20250513-WA0028.jpg';
-import bannerImg from '../../assets/images/banner/banner-1.jpg';
+import xmasBanner from '../../assets/images/banner/1600w-erqHOEi9bhI.webp';
 import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-720_20231201.webm';
 
 import './styles.css';
@@ -26,6 +26,9 @@ const SecondarySlider = () => {
   const [mute, setMute] = useState(true);
 
   const images = [
+    {id: 8,
+      image: xmasBanner,
+    },
     {
       id: 0,
       image: Slide1,
@@ -65,7 +68,7 @@ const SecondarySlider = () => {
   ];
   return (
     <>
-      <div className="relative w-full h-full">
+      <div className="relative w-full md:h-full">
         <Swiper
           loop
           effect="fade"

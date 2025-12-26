@@ -23,6 +23,7 @@ import { getLetestProducts, getProducts } from '../../redux/actions/product';
 import BrandsSponsorComponents from '../../components/brandSponsors/BrandsSponsorComponents';
 import { clearSearch } from '../../redux/products/product';
 import bannerImg from '../../assets/images/banner/banner-1.jpg';
+import AdBanner from '../../components/adbanner/AdBanner';
 
 const ShopHome = () => {
   const navigate = useNavigate();
@@ -73,19 +74,7 @@ const ShopHome = () => {
         </div>
       </section>
 
-      <section className="mt-4">
-
-        <div className="max-w-7xl m-auto">
-
-          <img
-            src={bannerImg}
-            alt="add banner"
-            className="w-full object-contain h-full"
-            onClick={() => navigate('/sales')}
-          />
-        </div>
-
-      </section>
+      <AdBanner/>
 
       <section className="px-4 py-10 bg-white/90 my-10">
         <div className="max-w-7xl m-auto feature">

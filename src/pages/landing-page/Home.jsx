@@ -22,6 +22,8 @@ import imgKids from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
 import Nav from '../../components/nav/Nav';
 import BrandsSponsorComponents from '../../components/brandSponsors/BrandsSponsorComponents';
 import bannerImg from '../../assets/images/banner/banner-1.jpg';
+import bannerImgxmas from '../../assets/images/banner/melisport-christmas.jpeg';
+import AdBanner from '../../components/adbanner/AdBanner';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -69,12 +71,9 @@ const LandingHome = () => {
 
       <SecondarySlider />
 
-      <section>
-        {/* <div className='max-w-7xl m-auto'> */}
-        <img src={bannerImg} alt="add banner" className="w-full object-contain h-full cursor-pointer" onClick={() => navigate('/sales')} />
+    
 
-        {/* </div> */}
-      </section>
+      <AdBanner/>
       <section className="py-12 px-4">
         <div className="max-w-[1400px] w-full flex flex-col lg:flex-row gap-10 justify-between m-auto">
 
