@@ -163,7 +163,7 @@ const Nav = ({ store = true }) => {
 
       {
     }
-      ,
+      
 
     </ul>
   ), [store, user]);
@@ -187,7 +187,7 @@ const Nav = ({ store = true }) => {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 transition-all duration-300 w-full bg-white top-0 z-50 shadow-md">
+      <nav className="fixed left-0 right-0 transition-all duration-300 w-full h-auto bg-gray-200 top-0 z-50 shadow-md">
         {!stickyNav && (
         <div className="py-2  px-4  bg-gray-100">
 
