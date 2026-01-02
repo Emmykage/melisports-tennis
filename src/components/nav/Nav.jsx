@@ -41,7 +41,7 @@ const Nav = ({ store = true }) => {
   }, []);
 
   const toggleScrollNav = (e) => {
-    const { scrollTop} = e.target;
+    const { scrollTop } = e.target;
     setStickyNav(scrollTop >= 140);
   };
   useEffect(() => {
@@ -108,7 +108,7 @@ const Nav = ({ store = true }) => {
     ...(user?.role === 'admin' ? [{ link: '/admin', label: 'Admin' }] : []),
   ];
   const storeMenu = useMemo(() => (
-    <ul className="hidden lg:flex gap-6 text-sm font-medium  text-gray-700">
+    <ul className="hidden lg:flex gap-6 text-sm font-medium items-center  text-gray-700">
       {storeItems.map(({ link, label, sub }) => (
         <li key={link} className="group relative">
           <a
@@ -157,6 +157,14 @@ const Nav = ({ store = true }) => {
       </NavLink>
       )}
 
+      <NavLink to="/" className="bg-primary rounded-md text-white px-4 py-2" onClick={() => setToggleNav(false)}>
+        Ngo Programs
+      </NavLink>
+
+      {
+    }
+      ,
+
     </ul>
   ), [store, user]);
 
@@ -179,7 +187,7 @@ const Nav = ({ store = true }) => {
 
   return (
     <>
-      <nav className="sticky  w-full bg-white top-0 z-50 shadow-md">
+      <nav className="fixed left-0 right-0 transition-all duration-300 w-full bg-white top-0 z-50 shadow-md">
         {!stickyNav && (
         <div className="py-2  px-4  bg-gray-100">
 

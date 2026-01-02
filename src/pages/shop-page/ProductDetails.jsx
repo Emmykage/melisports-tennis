@@ -11,6 +11,7 @@ import { pickColor } from '../../utils/get_colors';
 import Nav from '../../components/nav/Nav';
 import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
 import { addToCart } from '../../redux/actions/cart';
+import Container from '../../components/container';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -124,8 +125,10 @@ const ProductDetails = () => {
   return (
     <>
 
-      <section className="bg-gray-50">
-        <Nav />
+      {/* <section className="bg-gray-50"> */}
+      <Nav />
+
+      <Container>
 
         {/* Product Container */}
         <div className="p-container shadow-lg p-6 rounded-xl bg-white max-w-[1600px] m-auto">
@@ -402,16 +405,16 @@ const ProductDetails = () => {
             )}
           </div>
         </div>
-      </section>
+        {/* </section> */}
 
-      {/* Related Items */}
-      <div className="max-w-[1400px] m-auto px-4 my-12">
-        <SimilarItemsSection
-          items={relatedProducts}
-          loading={isLoading}
-          onSelect={({ id }) => navigate(`/productdetails/${id}`)}
-        />
-      </div>
+        <div className="max-w-[1400px] m-auto px-4 my-12">
+          <SimilarItemsSection
+            items={relatedProducts}
+            loading={isLoading}
+            onSelect={({ id }) => navigate(`/productdetails/${id}`)}
+          />
+        </div>
+      </Container>
 
     </>
 

@@ -24,6 +24,7 @@ import BrandsSponsorComponents from '../../components/brandSponsors/BrandsSponso
 import { clearSearch } from '../../redux/products/product';
 import bannerImg from '../../assets/images/banner/banner-1.jpg';
 import AdBanner from '../../components/adbanner/AdBanner';
+import Container from '../../components/container';
 
 const ShopHome = () => {
   const navigate = useNavigate();
@@ -41,96 +42,97 @@ const ShopHome = () => {
   return (
     <>
       <Nav />
+      <Container>
 
-      <section className="px-6 py-24 bg-theme">
-        <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">
+        <section className="px-6 py-24 bg-theme">
+          <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">
 
-          {[
-            { title: 'Tennis', img: Tennis, link: '/tennis' },
-            { title: 'Padel', img: Padel, link: '/padels' },
-            { title: 'Badminton', img: Badminton, link: '/badminton' },
-          ].map((item, i) => (
-            <NavLink
-              key={i}
-              to={item.link}
-              className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              {/* Background image */}
-              <img
-                src={item.img}
-                alt={item.title}
-                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
+            {[
+              { title: 'Tennis', img: Tennis, link: '/tennis' },
+              { title: 'Padel', img: Padel, link: '/padels' },
+              { title: 'Badminton', img: Badminton, link: '/badminton' },
+            ].map((item, i) => (
+              <NavLink
+                key={i}
+                to={item.link}
+                className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                {/* Background image */}
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex items-end">
-                <h3 className="text-xl md:text-2xl text-white font-semibold tracking-wide p-6 bg-black/40 rounded-md backdrop-blur-sm mb-6 ml-6">
-                  {item.title}
-                </h3>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex items-end">
+                  <h3 className="text-xl md:text-2xl text-white font-semibold tracking-wide p-6 bg-black/40 rounded-md backdrop-blur-sm mb-6 ml-6">
+                    {item.title}
+                  </h3>
+                </div>
+              </NavLink>
+            ))}
+
+          </div>
+        </section>
+
+        <AdBanner />
+
+        <section className="px-4 py-10 bg-white/90 my-10">
+          <div className="max-w-7xl m-auto feature">
+            <h3 className="text-3xl text-center my-4">Products </h3>
+            <ProductSlider products={products} views={4} />
+
+          </div>
+        </section>
+
+        <section className="px-4 md:px-8 my-12">
+          <div className="grid gap-8 md:grid-cols-2 max-w-7xl m-auto">
+
+            {/* Collection Card */}
+            <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+              <div className="h-60 md:h-96 overflow-hidden">
+                <img
+                  src={CollectImage}
+                  alt="Juan Lebron Collection"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+                />
               </div>
-            </NavLink>
-          ))}
-
-        </div>
-      </section>
-
-      <AdBanner/>
-
-      <section className="px-4 py-10 bg-white/90 my-10">
-        <div className="max-w-7xl m-auto feature">
-          <h3 className="text-3xl text-center my-4">Products </h3>
-          <ProductSlider products={products} views={4} />
-
-        </div>
-      </section>
-
-      <section className="px-4 md:px-8 my-12">
-        <div className="grid gap-8 md:grid-cols-2 max-w-7xl m-auto">
-
-          {/* Collection Card */}
-          <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-            <div className="h-60 md:h-96 overflow-hidden">
-              <img
-                src={CollectImage}
-                alt="Juan Lebron Collection"
-                className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-              />
+              <div className="flex items-center justify-between px-4 py-5">
+                <h3 className="text-sm md:text-lg font-semibold text-gray-800 tracking-wide">
+                  NEW JUAN LEBRON COLLECTION
+                </h3>
+                <DiscoverBtn
+                  btnText="Discover"
+                  className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
+                />
+              </div>
             </div>
-            <div className="flex items-center justify-between px-4 py-5">
-              <h3 className="text-sm md:text-lg font-semibold text-gray-800 tracking-wide">
-                NEW JUAN LEBRON COLLECTION
-              </h3>
-              <DiscoverBtn
-                btnText="Discover"
-                className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
-              />
+
+            {/* Another Collection Card */}
+            <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+              <div className="h-60 md:h-96 overflow-hidden">
+                <img
+                  src={RangeImage}
+                  alt="New Range Collection"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
+                />
+              </div>
+              <div className="flex items-center justify-between px-4 py-5">
+                <h3 className="text-sm md:text-lg font-semibold text-gray-800 tracking-wide">
+                  NEW RANGE COLLECTION
+                </h3>
+                <DiscoverBtn
+                  btnText="Discover"
+                  className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
+                />
+              </div>
             </div>
+
           </div>
+        </section>
 
-          {/* Another Collection Card */}
-          <div className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-            <div className="h-60 md:h-96 overflow-hidden">
-              <img
-                src={RangeImage}
-                alt="New Range Collection"
-                className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
-              />
-            </div>
-            <div className="flex items-center justify-between px-4 py-5">
-              <h3 className="text-sm md:text-lg font-semibold text-gray-800 tracking-wide">
-                NEW RANGE COLLECTION
-              </h3>
-              <DiscoverBtn
-                btnText="Discover"
-                className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
-              />
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {latestArrival.length > 0
+        {latestArrival.length > 0
 
       && (
       <section className="px-3  py-20">
@@ -145,31 +147,32 @@ const ShopHome = () => {
       </section>
       )}
 
-      <div>
-        <div className="flex m-auto section-container gap-2">
-          <NavLink to="/store" className="flex-1 zoom-hover h-52 md:h-80">
-            <img src={shoeImage} alt="" className=" w-full h-full" />
-          </NavLink>
-          <NavLink to="/store" className="flex-1 zoom-hover h-52 md:h-80">
-            <img src={badmington} alt="" className="w-full h-full" />
-          </NavLink>
+        <div>
+          <div className="flex m-auto section-container gap-2">
+            <NavLink to="/store" className="flex-1 zoom-hover h-52 md:h-80">
+              <img src={shoeImage} alt="" className=" w-full h-full" />
+            </NavLink>
+            <NavLink to="/store" className="flex-1 zoom-hover h-52 md:h-80">
+              <img src={badmington} alt="" className="w-full h-full" />
+            </NavLink>
+          </div>
+
+        </div>
+        <div className="my-6 bg-white py-10">
+          <h3 className=" text-center font-medium  text-3xl my-3"> Shop Categories</h3>
+
+          <div className="px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7 bg-white border-black">
+            <ReactSlider categories={categories} />
+          </div>
+
         </div>
 
-      </div>
-      <div className="my-6 bg-white py-10">
-        <h3 className=" text-center font-medium  text-3xl my-3"> Shop Categories</h3>
+        <HomeEquipmentInfo />
+        <SurveyButton />
+        <Reviews />
+        <BrandsSponsorComponents />
 
-        <div className="px-3 boder max-w-[1500px] ma m-auto h-96 w-full my-7 bg-white border-black">
-          <ReactSlider categories={categories} />
-        </div>
-
-      </div>
-
-      <HomeEquipmentInfo />
-      <SurveyButton />
-      <Reviews />
-      <BrandsSponsorComponents />
-
+      </Container>
     </>
   );
 };

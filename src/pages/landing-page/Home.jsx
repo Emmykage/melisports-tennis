@@ -24,6 +24,7 @@ import BrandsSponsorComponents from '../../components/brandSponsors/BrandsSponso
 import bannerImg from '../../assets/images/banner/banner-1.jpg';
 import bannerImgxmas from '../../assets/images/banner/melisport-christmas.jpeg';
 import AdBanner from '../../components/adbanner/AdBanner';
+import Container from '../../components/container';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -68,205 +69,205 @@ const LandingHome = () => {
     <>
 
       <Nav store={false} />
+      <Container>
 
-      <SecondarySlider />
+        <SecondarySlider />
 
-    
+        <AdBanner />
+        <section className="py-12 px-4">
+          <div className="max-w-[1400px] w-full flex flex-col lg:flex-row gap-10 justify-between m-auto">
 
-      <AdBanner/>
-      <section className="py-12 px-4">
-        <div className="max-w-[1400px] w-full flex flex-col lg:flex-row gap-10 justify-between m-auto">
+            {/* Left: Services */}
+            <div className="max-w-7xl w-full mx-auto px-4 lg:px-0">
+              {/* Top 2 Services */}
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* Card 1 */}
+                <div className="relative h-52 md:h-60 rounded-2xl overflow-hidden shadow-md group">
+                  <img
+                    src={string}
+                    alt="Stringing racquets"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
+                    <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide">
+                      Stringing Racquets
+                    </h3>
+                  </div>
+                </div>
 
-          {/* Left: Services */}
-          <div className="max-w-7xl w-full mx-auto px-4 lg:px-0">
-            {/* Top 2 Services */}
-            <div className="grid md:grid-cols-2 gap-4">
-              {/* Card 1 */}
-              <div className="relative h-52 md:h-60 rounded-2xl overflow-hidden shadow-md group">
+                {/* Card 2 */}
+                <div className="relative h-52 md:h-60 rounded-2xl overflow-hidden shadow-md group">
+                  <img
+                    src={demo_service}
+                    alt="Demo Program"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
+                    <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide">
+                      Demo Program
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* Distributor Card */}
+              <div className="mt-4 h-52 md:h-60 relative rounded-2xl overflow-hidden shadow-md group">
                 <img
-                  src={string}
-                  alt="Stringing racquets"
+                  src={distributor}
+                  alt="Wholesale Distribution"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
-                  <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide">
-                    Stringing Racquets
-                  </h3>
-                </div>
-              </div>
-
-              {/* Card 2 */}
-              <div className="relative h-52 md:h-60 rounded-2xl overflow-hidden shadow-md group">
-                <img
-                  src={demo_service}
-                  alt="Demo Program"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
-                  <h3 className="text-white text-lg md:text-xl font-semibold tracking-wide">
-                    Demo Program
-                  </h3>
+                  <div className="text-center space-y-3">
+                    <h3 className="text-white text-lg md:text-xl font-semibold">
+                      Wholesale Distribution
+                    </h3>
+                    <DiscoverBtn btnText="Become a Distributor" link="/distributor" />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Distributor Card */}
-            <div className="mt-4 h-52 md:h-60 relative rounded-2xl overflow-hidden shadow-md group">
-              <img
-                src={distributor}
-                alt="Wholesale Distribution"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/60">
-                <div className="text-center space-y-3">
-                  <h3 className="text-white text-lg md:text-xl font-semibold">
-                    Wholesale Distribution
-                  </h3>
-                  <DiscoverBtn btnText="Become a Distributor" link="/distributor" />
-                </div>
-              </div>
+            {/* Right: Sidebar (hidden on mobile) */}
+            <div className="hidden lg:block max-w-xs w-full shadow-md rounded-xl bg-white/70 backdrop-blur p-4">
+              <ul>
+                <li className="my-4">
+                  <a href="#review" className="border rounded-lg block p-4 shadow-sm bg-gray-100/60 hover:bg-gray-200/60 transition">
+                    <h3 className="font-normal text-lg hover:text-primary">Write us a review</h3>
+                  </a>
+                </li>
+                <li className="my-4">
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScUbwSfyzAwo5o1QNjkmOJgc_ILcoIFzvglgLUmZg7n2r4xfA/viewform?pli=1"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="border rounded-lg block p-4 shadow-sm bg-gray-100/60 hover:bg-gray-200/60 transition"
+                  >
+                    <h3 className="font-normal text-lg hover:text-primary">Fill our survey</h3>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
+        </section>
 
-          {/* Right: Sidebar (hidden on mobile) */}
-          <div className="hidden lg:block max-w-xs w-full shadow-md rounded-xl bg-white/70 backdrop-blur p-4">
-            <ul>
-              <li className="my-4">
-                <a href="#review" className="border rounded-lg block p-4 shadow-sm bg-gray-100/60 hover:bg-gray-200/60 transition">
-                  <h3 className="font-normal text-lg hover:text-primary">Write us a review</h3>
-                </a>
-              </li>
-              <li className="my-4">
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScUbwSfyzAwo5o1QNjkmOJgc_ILcoIFzvglgLUmZg7n2r4xfA/viewform?pli=1"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="border rounded-lg block p-4 shadow-sm bg-gray-100/60 hover:bg-gray-200/60 transition"
-                >
-                  <h3 className="font-normal text-lg hover:text-primary">Fill our survey</h3>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <div className="my-10 px-4 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <NavLink
-            to="/"
-            className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-          >
-            <img
-              src={shoeImage}
-              alt="Shoes"
-              className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span className="text-white text-xl font-semibold tracking-wide">
-                Tennis Shoes
-              </span>
-            </div>
-          </NavLink>
-
-          <NavLink
-            to="/"
-            className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-          >
-            <img
-              src={badmington}
-              alt="Badminton"
-              className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span className="text-white text-xl font-semibold tracking-wide">
-                Badminton Gear
-              </span>
-            </div>
-          </NavLink>
-        </div>
-      </div>
-
-      <div className="my-12">
-        {/* Section Header */}
-        <h3 className="text-center text-2xl md:text-3xl font-normal text-gray-800 mb-6">
-          Shop Categories
-        </h3>
-
-        {/* Slider Container */}
-        <div className="max-w-[1500px] mx-auto px-4">
-          <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border border-gray-100">
-            <ReactSlider categories={categories} />
-          </div>
-        </div>
-      </div>
-
-      <section className="px-4 py-10 bg-white">
-        <div className="max-w-[1400px] m-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center px-4">
-          {/* Left Content */}
-          <div className="bg-white shadow-lg p-8 rounded-2xl">
-            <h2 className="text-4xl font-medium text-gray-900 leading-snug">
-              Support a Child in Sport
-              <h3 className="text-primary inline text-4xl font-medium"> Tennis </h3>
-              (SCSF)
-            </h2>
-            <p className="text-xl font-medium text-gray-900 leading-snug">
-              ...Serving Futures with Tennis
-            </p>
-            <p className="text-gray-600 text-base mt-4 leading-relaxed">
-              Every child deserves the chance to play, grow, and succeed.
-              Our tennis programme nurtures kids to learn the sport,
-              build confidence, and connect with a supportive community.
-            </p>
-
-            {/* Features Grid */}
-            <div className="grid md:grid-cols-2 gap-8 mt-8">
-              {ngoText.map((item, index) => (
-                <div key={index} className="text-center md:text-left">
-                  <span className="bg-primary flex mx-auto md:mx-0 justify-center items-center text-white w-16 h-16 rounded-full shadow-md transition transform hover:scale-105">
-                    {item.icon}
-                  </span>
-                  <h5 className="text-lg mt-4 font-semibold text-gray-900">
-                    {item.title}
-                  </h5>
-                  <p className="text-gray-500 text-sm mt-2 leading-relaxed">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <DiscoverBtn
-              className="mt-10 px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1"
-              link="/support-the-program"
-              btnText="Learn More"
+        <div className="my-10 px-4 max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <NavLink
+              to="/"
+              className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
             >
-              Discover Our Programmes
-            </DiscoverBtn>
-          </div>
+              <img
+                src={shoeImage}
+                alt="Shoes"
+                className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span className="text-white text-xl font-semibold tracking-wide">
+                  Tennis Shoes
+                </span>
+              </div>
+            </NavLink>
 
-          {/* Right Image */}
-          <div className="rounded-2xl overflow-hidden bg-red-300 h-full shadow-lg">
-            <img
-              src={imgKids}
-              alt="Kids learning tennis"
-              className="w-full h-full object-cover hover:scale-105 transition duration-500"
-            />
+            <NavLink
+              to="/"
+              className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            >
+              <img
+                src={badmington}
+                alt="Badminton"
+                className="w-full h-52 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span className="text-white text-xl font-semibold tracking-wide">
+                  Badminton Gear
+                </span>
+              </div>
+            </NavLink>
           </div>
         </div>
 
-      </section>
+        <div className="my-12">
+          {/* Section Header */}
+          <h3 className="text-center text-2xl md:text-3xl font-normal text-gray-800 mb-6">
+            Shop Categories
+          </h3>
 
-      <HomeEquipmentInfo />
-      <SportDirectory />
-      <SurveyButton />
+          {/* Slider Container */}
+          <div className="max-w-[1500px] mx-auto px-4">
+            <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border border-gray-100">
+              <ReactSlider categories={categories} />
+            </div>
+          </div>
+        </div>
 
-      <BrandsSponsorComponents />
+        <section className="px-4 py-10 bg-white">
+          <div className="max-w-[1400px] m-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center px-4">
+            {/* Left Content */}
+            <div className="bg-white shadow-lg p-8 rounded-2xl">
+              <h2 className="text-4xl font-medium text-gray-900 leading-snug">
+                Support a Child in Sport
+                <h3 className="text-primary inline text-4xl font-medium"> Tennis </h3>
+                (SCSF)
+              </h2>
+              <p className="text-xl font-medium text-gray-900 leading-snug">
+                ...Serving Futures with Tennis
+              </p>
+              <p className="text-gray-600 text-base mt-4 leading-relaxed">
+                Every child deserves the chance to play, grow, and succeed.
+                Our tennis programme nurtures kids to learn the sport,
+                build confidence, and connect with a supportive community.
+              </p>
 
-      <Reviews id="review" />
+              {/* Features Grid */}
+              <div className="grid md:grid-cols-2 gap-8 mt-8">
+                {ngoText.map((item, index) => (
+                  <div key={index} className="text-center md:text-left">
+                    <span className="bg-primary flex mx-auto md:mx-0 justify-center items-center text-white w-16 h-16 rounded-full shadow-md transition transform hover:scale-105">
+                      {item.icon}
+                    </span>
+                    <h5 className="text-lg mt-4 font-semibold text-gray-900">
+                      {item.title}
+                    </h5>
+                    <p className="text-gray-500 text-sm mt-2 leading-relaxed">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-      <CommunityBanner />
+              {/* CTA Button */}
+              <DiscoverBtn
+                className="mt-10 px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1"
+                link="/support-the-program"
+                btnText="Learn More"
+              >
+                Discover Our Programmes
+              </DiscoverBtn>
+            </div>
+
+            {/* Right Image */}
+            <div className="rounded-2xl overflow-hidden bg-red-300 h-full shadow-lg">
+              <img
+                src={imgKids}
+                alt="Kids learning tennis"
+                className="w-full h-full object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+          </div>
+
+        </section>
+
+        <HomeEquipmentInfo />
+        <SportDirectory />
+        <SurveyButton />
+
+        <BrandsSponsorComponents />
+
+        <Reviews id="review" />
+
+        <CommunityBanner />
+      </Container>
 
     </>
   );

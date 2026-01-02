@@ -11,6 +11,7 @@ import ProductsPageContainer from '../../../components/productItems/ProductItems
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import useProducts from '../../../hooks/useProducts';
 import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
+import Container from '../../../components/container';
 
 const SalesPage = () => {
   const dispatch = useDispatch();
@@ -42,60 +43,64 @@ const SalesPage = () => {
 
   return (
     <div className="product-container relative">
+
       <Nav />
-      <Hero image={bannerImage} title="Discounted Sales" />
+      <Container>
 
-      <ProductsPageContainer>
-        <h2 className="text-2xl font-normal text-gray-900 mb-4">Discounted Sales</h2>
-        <p className="text-gray-600 mb-6">
-          Explore our collection of discounted sales available for a limited time.
-        </p>
+        <Hero image={bannerImage} title="Discounted Sales" />
 
-        <div className="flex md:gap-10">
+        <ProductsPageContainer>
+          <h2 className="text-2xl font-normal text-gray-900 mb-4">Discounted Sales</h2>
+          <p className="text-gray-600 mb-6">
+            Explore our collection of discounted sales available for a limited time.
+          </p>
 
-          <SideNav>
+          <div className="flex md:gap-10">
 
-            <div className="space-y-2 mt-4">
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Collection</h6>
-              {collections.map((level) => (
-                <span className="flex items-center mb-2">
-                  <input
-                    type="checkbox"
-                    checked={collection.includes(level.value)}
-                    id={level.value}
-                    value={level.value}
-                    onChange={handleFilteredFeatures}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
-                  />
+            <SideNav>
 
-                  <label htmlFor={level.value} style={{ fontSize: '1rem' }}>
-                    {level.label}
-                  </label>
-                </span>
-              ))}
+              <div className="space-y-2 mt-4">
+                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Collection</h6>
+                {collections.map((level) => (
+                  <span className="flex items-center mb-2">
+                    <input
+                      type="checkbox"
+                      checked={collection.includes(level.value)}
+                      id={level.value}
+                      value={level.value}
+                      onChange={handleFilteredFeatures}
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
+                    />
 
-            </div>
+                    <label htmlFor={level.value} style={{ fontSize: '1rem' }}>
+                      {level.label}
+                    </label>
+                  </span>
+                ))}
 
-          </SideNav>
-          {loading ? <Loader />
-            : (
-              <div className="product-align w-full">
-                <ProductsGrid products={products} error={error} filter="racquet" />
-
-                <div className="product-details color-grey">
-                  <h3> BABOLAT TENNIS RACKET BRANDS</h3>
-                  <p>
-                    { category?.description}
-
-                  </p>
-
-                </div>
               </div>
-            ) }
-          <div />
 
-        </div>
-      </ProductsPageContainer>
+            </SideNav>
+            {loading ? <Loader />
+              : (
+                <div className="product-align w-full">
+                  <ProductsGrid products={products} error={error} filter="racquet" />
+
+                  <div className="product-details color-grey">
+                    <h3> BABOLAT TENNIS RACKET BRANDS</h3>
+                    <p>
+                      { category?.description}
+
+                    </p>
+
+                  </div>
+                </div>
+              ) }
+            <div />
+
+          </div>
+        </ProductsPageContainer>
+      </Container>
 
     </div>
   );

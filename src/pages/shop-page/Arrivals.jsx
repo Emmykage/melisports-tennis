@@ -13,6 +13,7 @@ import Nav from '../../components/nav/Nav';
 import ProductCard from '../../components/card/ProductCard';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import SideNav from '../../components/sideNav/SideNav';
+import Container from '../../components/container';
 
 const Arrivals = () => {
   const dispatch = useDispatch();
@@ -64,146 +65,149 @@ const Arrivals = () => {
   }, []);
 
   return (
-    <div className="product-container px-4">
+    <>
       <Nav />
+      <Container>
 
-      <Hero image={bannerImage} title="Racquet" />
+        <Hero image={bannerImage} title="Racquet" />
 
-      <div className="prod-page">
-        <div className="cat-group justify-between max-w-md my-6">
-          <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
-          <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
-          <a className="btn" onClick={() => dispatch(getProducts())}>All Rackets</a>
+        <div className="prod-page">
+          <div className="cat-group justify-between max-w-md my-6">
+            <a className="btn" onClick={() => handleFilteredProducts('pure aero')}> Pure Aero</a>
+            <a className="btn" onClick={() => handleFilteredProducts('pure strike')}> Pure Strike</a>
+            <a className="btn" onClick={() => handleFilteredProducts('pure drive')}> Pure Drive</a>
+            <a className="btn" onClick={() => dispatch(getProducts())}>All Rackets</a>
 
-        </div>
+          </div>
 
-        <div className="flex md:gap-10">
+          <div className="flex md:gap-10">
 
-          <SideNav className="side-nav bg-white shadow md:w-72 rounded-xl border border-theme-dark/50">
-            <div className="side-row py-2 px-10 border-b border-theme-dark/50">
-              <h6 className="text-base text-theme-dark font-medium">Activities</h6>
-
-            </div>
-            <div />
-            <div className="side-row">
-              <div className="flex  items-center mb-2">
-                <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
-
-                  <span>
-                    Tennis
-                  </span>
-                </label>
+            <SideNav className="side-nav bg-white shadow md:w-72 rounded-xl border border-theme-dark/50">
+              <div className="side-row py-2 px-10 border-b border-theme-dark/50">
+                <h6 className="text-base text-theme-dark font-medium">Activities</h6>
 
               </div>
-              <div className="flex items-center mb-2">
-                <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
+              <div />
+              <div className="side-row">
+                <div className="flex  items-center mb-2">
+                  <input type="checkbox" id="tennis" value="tennis" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <label htmlFor="tennis" style={{ fontSize: '1rem' }} className="flex items-center">
 
-                  Badminton
-                </label>
-              </div>
-
-            </div>
-            <div className="side-row">
-              <h6>Racket Type</h6>
-
-              <div className="flex items-center mb-2">
-                <input type="checkbox" id="control" value="control" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
-
-                <label htmlFor="control" style={{ fontSize: '1rem' }}>
-                  Control
-                </label>
-
-              </div>
-              <div className="flex items-center mb-2">
-
-                <input onChange={handleFilteredFeatures} value="power" type="checkbox" id="power" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="power" style={{ fontSize: '1rem' }}>
-                  Power
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input onChange={handleFilteredFeatures} value="spin" type="checkbox" id="spin" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="spin" style={{ fontSize: '1rem' }}>
-                  Spin
-                </label>
-
-              </div>
-
-            </div>
-            <div className="side-row">
-              <h6>Skill level</h6>
-              <span className="flex items-center mb-2">
-                <input type="checkbox" id="beginner" value="beginner" onChange={handleFilteredActivities} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
-
-                <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
-                  Beginner
-                </label>
-              </span>
-
-              <span className="flex items-center mb-2">
-                <input onChange={handleFilteredActivities} value="professional" type="checkbox" name="professional" id="professional" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="professional">
-                  Professional
-                </label>
-
-              </span>
-              <span className="flex items-center mb-2">
-                <input onChange={handleFilteredActivities} value="intermediate" type="checkbox" id="intermediate" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-
-                <label htmlFor="intermediate" style={{ fontSize: '1rem' }}>
-                  Intermediate
-                </label>
-
-              </span>
-
-              <span className="items-center flex mb-2">
-                <input type="checkbox" id="junior" value="junior" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-100 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
-
-                <label htmlFor="junior" style={{ fontSize: '1rem' }}>
-                  Junior
-                </label>
-
-              </span>
-
-            </div>
-            <div className="side-row">
-              <h6>Brand</h6>
-
-              <label htmlFor="activity" style={{ fontSize: '1rem' }}>
-
-                <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                babolat
-              </label>
-            </div>
-
-          </SideNav>
-
-          { loading ? <Loader />
-            : (
-              <div className="product-align w-full">
-                <ProductsGrid products={latestArrival} error={error} filter="bag" />
-
-                <div className="product-details">
-                  <h3> BABOLAT TENNIS BAGS BRANDS</h3>
-                  <p>
-                    {category?.description}
-                  </p>
+                    <span>
+                      Tennis
+                    </span>
+                  </label>
 
                 </div>
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="badminton" value="badminton" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <label htmlFor="badminton" style={{ fontSize: '1rem' }}>
+
+                    Badminton
+                  </label>
+                </div>
+
               </div>
-            )}
-          <div />
+              <div className="side-row">
+                <h6>Racket Type</h6>
+
+                <div className="flex items-center mb-2">
+                  <input type="checkbox" id="control" value="control" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredFeatures} />
+
+                  <label htmlFor="control" style={{ fontSize: '1rem' }}>
+                    Control
+                  </label>
+
+                </div>
+                <div className="flex items-center mb-2">
+
+                  <input onChange={handleFilteredFeatures} value="power" type="checkbox" id="power" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+
+                  <label htmlFor="power" style={{ fontSize: '1rem' }}>
+                    Power
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input onChange={handleFilteredFeatures} value="spin" type="checkbox" id="spin" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+
+                  <label htmlFor="spin" style={{ fontSize: '1rem' }}>
+                    Spin
+                  </label>
+
+                </div>
+
+              </div>
+              <div className="side-row">
+                <h6>Skill level</h6>
+                <span className="flex items-center mb-2">
+                  <input type="checkbox" id="beginner" value="beginner" onChange={handleFilteredActivities} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3" />
+
+                  <label htmlFor="beginner" style={{ fontSize: '1rem' }}>
+                    Beginner
+                  </label>
+                </span>
+
+                <span className="flex items-center mb-2">
+                  <input onChange={handleFilteredActivities} value="professional" type="checkbox" name="professional" id="professional" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+
+                  <label htmlFor="professional">
+                    Professional
+                  </label>
+
+                </span>
+                <span className="flex items-center mb-2">
+                  <input onChange={handleFilteredActivities} value="intermediate" type="checkbox" id="intermediate" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+
+                  <label htmlFor="intermediate" style={{ fontSize: '1rem' }}>
+                    Intermediate
+                  </label>
+
+                </span>
+
+                <span className="items-center flex mb-2">
+                  <input type="checkbox" id="junior" value="junior" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-100 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleFilteredActivities} />
+
+                  <label htmlFor="junior" style={{ fontSize: '1rem' }}>
+                    Junior
+                  </label>
+
+                </span>
+
+              </div>
+              <div className="side-row">
+                <h6>Brand</h6>
+
+                <label htmlFor="activity" style={{ fontSize: '1rem' }}>
+
+                  <input onChange={handleFilteredActivities} value="babolat" type="checkbox" id="babolat" className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                  babolat
+                </label>
+              </div>
+
+            </SideNav>
+
+            { loading ? <Loader />
+              : (
+                <div className="product-align w-full">
+                  <ProductsGrid products={latestArrival} error={error} filter="bag" />
+
+                  <div className="product-details">
+                    <h3> BABOLAT TENNIS BAGS BRANDS</h3>
+                    <p>
+                      {category?.description}
+                    </p>
+
+                  </div>
+                </div>
+              )}
+            <div />
+
+          </div>
 
         </div>
+      </Container>
 
-      </div>
-    </div>
+    </>
   );
 };
 

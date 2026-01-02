@@ -17,6 +17,7 @@ import { getDeliveryFees } from '../redux/actions/delivery_fee';
 import Nav from '../components/nav/Nav';
 import { emptyCart } from '../redux/actions/cart';
 import { getAgentByCode } from '../redux/actions/agents';
+import Container from '../components/container';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Checkout = () => {
   const [step, setStep] = useState(0);
   const [referal, setReferal] = useState('');
   const shippingFee = Number(selectedState?.delivery_fee ?? 0);
-  let [discountedAmount, setdisountedAmount] =  useState(0);
+  const [discountedAmount, setdisountedAmount] = useState(0);
   const subTotal = total - discountedAmount;
   const netTotal = subTotal + shippingFee;
   const handleAgentFetch = () => {
@@ -46,7 +47,7 @@ const Checkout = () => {
       product_id: item.product_id,
       quantity: item.quantity,
       bonus: agent?.discount ? (agent.discount / 100) * item.price : 0,
-      amount : item.price,
+      amount: item.price,
       size: item.size,
     }
 
@@ -68,27 +69,23 @@ const Checkout = () => {
     },
   };
 
-
   const refindCartItems = useMemo(() => {
     let accBonus = 0;
-  const items = cartItems.map((item) => {
-    const bonus = (agent?.discount && !item?.discount_amount && (item.category !== 'accessory')) ? (agent.discount / 100) * item.price : 0;
-    accBonus += bonus;
-    return {
-      ...item,
-      ...(agent?.discount && !item?.discount_amount && { bonus: bonus }),
-    };
-  });
+    const items = cartItems.map((item) => {
+      const bonus = (agent?.discount && !item?.discount_amount && (item.category !== 'accessory')) ? (agent.discount / 100) * item.price : 0;
+      accBonus += bonus;
+      return {
+        ...item,
+        ...(agent?.discount && !item?.discount_amount && { bonus }),
+      };
+    });
 
+    setdisountedAmount(accBonus);
 
-      setdisountedAmount( accBonus)
+    return items;
+  }, [cartItems, agent]);
 
-  return items;
-}, [cartItems, agent]);
-
-
-console.log(refindCartItems)
-
+  console.log(refindCartItems);
 
   const handleCheckout = () => {
     dispatch(createOrder(data))
@@ -114,8 +111,14 @@ console.log(refindCartItems)
     {
       step: 2,
       render: <ConfirmPayment
-      loading={loading} setStep={setStep} handleCheckout={handleCheckout} billingDetails={billingDetails} setBillingDetails={setBillingDetails} 
-      cartItems={refindCartItems} total={total} />,
+        loading={loading}
+        setStep={setStep}
+        handleCheckout={handleCheckout}
+        billingDetails={billingDetails}
+        setBillingDetails={setBillingDetails}
+        cartItems={refindCartItems}
+        total={total}
+      />,
     },
 
   ];
@@ -141,49 +144,52 @@ console.log(refindCartItems)
   return (
     <>
       <Nav />
-      <div className="max-w-5xl m-auto mt-10">
+      <Container>
 
-        <Box sx={{ width: '100%' }}>
-          <Stepper activeStep={step} alternativeLabel>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-        </Box>
-      </div>
+        <div className="max-w-5xl m-auto mt-10">
 
-      <section className="px-4 lg:px-20 py-10">
-        <div className="max-w-7xl rounded-3xl shadow bg-white py-5 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-5">
-          <div className="checkout flex-1 bg-ligh  flex-col justify-between md:flex-row gap-10 max-w-[1500px] ">
-
-            {paymentSteps.map(((item) => {
-              if (item.step === step) {
-                return item.render;
-              }
-            }
-            ))}
-
-          </div>
-          <CheckoutSummary
-            referal={referal}
-            handleAgentFetch={handleAgentFetch}
-            netTotal={netTotal}
-            subTotal={subTotal}
-            discount={agent?.discount}
-            discountedAmount={discountedAmount}
-            setReferal={setReferal}
-            shippingFee={shippingFee}
-            amount={total}
-            counter={counter}
-          />
-
+          <Box sx={{ width: '100%' }}>
+            <Stepper activeStep={step} alternativeLabel>
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Box>
         </div>
 
-        <div />
+        <section className="px-4 lg:px-20 py-10">
+          <div className="max-w-7xl rounded-3xl shadow bg-white py-5 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-5">
+            <div className="checkout flex-1 bg-ligh  flex-col justify-between md:flex-row gap-10 max-w-[1500px] ">
 
-      </section>
+              {paymentSteps.map(((item) => {
+                if (item.step === step) {
+                  return item.render;
+                }
+              }
+              ))}
+
+            </div>
+            <CheckoutSummary
+              referal={referal}
+              handleAgentFetch={handleAgentFetch}
+              netTotal={netTotal}
+              subTotal={subTotal}
+              discount={agent?.discount}
+              discountedAmount={discountedAmount}
+              setReferal={setReferal}
+              shippingFee={shippingFee}
+              amount={total}
+              counter={counter}
+            />
+
+          </div>
+
+          <div />
+
+        </section>
+      </Container>
 
     </>
 

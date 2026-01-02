@@ -113,10 +113,10 @@ const ConfirmPayment = ({
             </div>
             <div>
               <p className="text-base font-semibold">
-                {nairaFormat(item.price)} 
+                {nairaFormat(item.price)}
                 <span className={`text-sm block ${item.bonus ? 'text-red-500' : 'hidden'}`}>
-                            {nairaFormat(item.bonus)}
-                            </span>      
+                  {nairaFormat(item.bonus)}
+                </span>
               </p>
             </div>
 

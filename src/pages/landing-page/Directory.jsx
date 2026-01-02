@@ -12,6 +12,7 @@ import AppModal from '../../components/modal/AppModal';
 import ClickButton from '../../components/buttons/ClickButton';
 import { addCourts } from '../../redux/actions/review';
 import Nav from '../../components/nav/Nav';
+import Container from '../../components/container';
 
 const Directory = () => {
   const dispatch = useDispatch();
@@ -54,44 +55,48 @@ const Directory = () => {
     <>
       <div className="bg-white">
         <Nav store={false} />
-        <Hero image={court} title="Court Directory" />
+        <Container>
 
-        <div className="max-w-7xl py-6 px-4 m-auto shadow rounded ">
-          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm">
-            {/* Location Select */}
-            <div className="flex-1 max-w-md w-full">
-              <SelectInput
-                defaultValue={location}
-                className="w-full"
-                handleChange={handleLocation}
-                label="Location"
-                options={options}
-              />
+          <Hero image={court} title="Court Directory" />
+
+          <div className="max-w-7xl py-6 px-4 m-auto shadow rounded ">
+            <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm">
+              {/* Location Select */}
+              <div className="flex-1 max-w-md w-full">
+                <SelectInput
+                  defaultValue={location}
+                  className="w-full"
+                  handleChange={handleLocation}
+                  label="Location"
+                  options={options}
+                />
+              </div>
+
+              {/* Call-to-action */}
+              <div className="flex flex-col md:flex-row items-center gap-3">
+                <p className="text-primary font-medium text-base text-center md:text-left">
+                  Help Us Improve Our Court
+                </p>
+                <button
+                  onClick={() => setIsOpen(true)}
+                  className="bg-primary text-white font-medium py-2 px-5 rounded-lg shadow hover:bg-primary/90 transition-all"
+                >
+                  Add To This List
+                </button>
+              </div>
             </div>
 
-            {/* Call-to-action */}
-            <div className="flex flex-col md:flex-row items-center gap-3">
-              <p className="text-primary font-medium text-base text-center md:text-left">
-                Help Us Improve Our Court
-              </p>
-              <button
-                onClick={() => setIsOpen(true)}
-                className="bg-primary text-white font-medium py-2 px-5 rounded-lg shadow hover:bg-primary/90 transition-all"
-              >
-                Add To This List
-              </button>
+            <div className="grid md:grid-cols-3 gap-4 my-4 p-8">
+
+              {directories.length > 0 ? directories.map((directory) => (
+                <CourtCard directory={directory} />
+              )) : <h2 className="text-2xl font-medium">No Court Available</h2>}
+
             </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-4 my-4 p-8">
-
-            {directories.length > 0 ? directories.map((directory) => (
-              <CourtCard directory={directory} />
-            )) : <h2 className="text-2xl font-medium">No Court Available</h2>}
 
           </div>
+        </Container>
 
-        </div>
       </div>
       <AppModal open={isOpen} onClose={() => setIsOpen((prev) => !prev)} onCancel={() => setIsOpen((prev) => !prev)}>
         <form onSubmit={handleSubmit}>
