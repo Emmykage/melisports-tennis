@@ -14,6 +14,7 @@ import ProductsPageContainer from '../../components/productItems/ProductItems';
 import SideNav from '../../components/sideNav/SideNav';
 import useProducts from '../../hooks/useProducts';
 import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
+import Container from '../../components/container';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
