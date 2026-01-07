@@ -10,6 +10,7 @@ import ProductsPageContainer from '../../../components/productItems/ProductItems
 import useProducts from '../../../hooks/useProducts';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
+import Container from '../../../components/container';
 
 const Padels = () => {
   const dispatch = useDispatch();
@@ -41,8 +42,6 @@ const Padels = () => {
     const { checked, value } = e.target;
     checked ? setSelectedHeadShape((prev) => [...prev, value]) : setSelectedHeadShape((prev) => prev.filter((item) => item !== value));
   };
-
-  console.log(loading);
 
   return (
     <>
