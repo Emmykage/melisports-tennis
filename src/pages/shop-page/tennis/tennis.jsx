@@ -14,6 +14,7 @@ import useProducts from '../../../hooks/useProducts';
 import { classLevels } from '../../../constants/categories';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
+import Container from '../../../components/container';
 
 const TennisPage = () => {
   const dispatch = useDispatch();
