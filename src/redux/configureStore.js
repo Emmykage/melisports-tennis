@@ -6,6 +6,7 @@ import categoryReducer from './category/categories';
 import productReducer from './products/product';
 import cartReducer from './cart/cart';
 import productSlice from './product/product';
+
 import modalSlice from './modal/modal';
 import categogryModal from './modal/categoryModal';
 import delProductSlice from './modal/delModal';
@@ -26,12 +27,14 @@ import reviewReducer from './review';
 import invoiceReducer from './order/invoice';
 import courtReducer from './courts';
 import agentsReducer from './agents/agentsReducer';
+import messageReducer from "./message/message.slice";
+import { agentSlice, messageSlice, productsSlice } from '.';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
   modal: modalSlice,
   categories: categoryReducer,
-  products: productReducer,
+  products: productsSlice,
   product: productSlice,
   modal_categories: categogryModal,
   delModal: delProductSlice,
@@ -51,7 +54,8 @@ const rootReducer = combineReducers({
   reviews: reviewReducer,
   invoices: invoiceReducer,
   courts: courtReducer,
-  agent: agentsReducer,
+  agent: agentSlice,
+  messages: messageReducer
 
 });
 

@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { nairaFormat } from '../utils/nairaFormat';
 import CheckoutSummary from '../components/checkoutSummary/CheckoutSummary';
 import { getOrder } from '../redux/actions/orders';
-import DiscoverBtn from '../components/buttons/DiscoverBtn';
+import DiscoverBtn from '../components/buttons/AppButton';
 import resetPageLoction from '../hooks/resetPageLoction';
 import Loader from './Loader';
 import Nav from '../components/nav/Nav';

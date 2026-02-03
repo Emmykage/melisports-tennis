@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import ClickButton from '../../components/buttons/ClickButton';
 import { createInvoice, getOrder, updateOrder } from '../../redux/actions/orders';
 import { nairaFormat } from '../../utils/nairaFormat';
-import DiscoverBtn from '../../components/buttons/DiscoverBtn';
+import DiscoverBtn from '../../components/buttons/AppButton';
 import Loader from '../Loader';
 import Confirmation from '../../components/modal/Confirmation';
 import localDate from '../../utils/dateFormat.js';

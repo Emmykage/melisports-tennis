@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import DiscoverBtn from '../../buttons/DiscoverBtn';
+import DiscoverBtn from '../../buttons/AppButton';
 import Button from '../../buttons/Button';
 
 const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {

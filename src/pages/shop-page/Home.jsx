@@ -10,7 +10,7 @@ import { getSportCategories } from '../../redux/actions/product_category';
 import SurveyButton from '../../components/feature/survey-button';
 import CollectImage from '../../assets/images/banner/692x364_FW_Lebron_1.avif';
 import RangeImage from '../../assets/images/banner/Satelite_692x364__px.avif';
-import DiscoverBtn from '../../components/buttons/DiscoverBtn';
+import DiscoverBtn from '../../components/buttons/AppButton';
 import ProductSlider from '../../components/slider/ProductSlider';
 import Tennis from '../../assets/images/banner/Cat_product_tennis.avif';
 import Padel from '../../assets/images/banner/Cat_product_padel.avif';

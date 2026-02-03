@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import DiscoverBtn from '../../../components/buttons/DiscoverBtn';
+import DiscoverBtn from '../../../components/buttons/AppButton';
 import InfoModal from '../../../components/modal/InfoModal';
 
 function EventDetails() {

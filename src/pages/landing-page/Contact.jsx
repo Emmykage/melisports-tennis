@@ -8,8 +8,29 @@ import bannerImage from '../../assets/images/banner/Babolat_NEWS-Banniere_1365x5
 import CommunityBanner from '../../components/banner/CommunityBanner';
 import Nav from '../../components/nav/Nav';
 import Container from '../../components/container';
+import AppButton from '../../components/buttons/AppButton';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-const Contact = () => (
+const Contact = () => {
+  const dispatch = useDispatch();
+  const [formData, setFormdata] = useState()
+  const [delivered, setDelivered] = useState(false)
+
+
+  const handleChange = (e)  => {
+    setFormdata({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = () => {
+    dispatch(sendMessage(formData)).unwrap().then(
+      res => setDelivered(true)
+    ).catch(e => setDelivered(false))
+
+  }
+  return (
   <div className="">
     <Nav store={false} />
     <Container>
@@ -82,8 +103,12 @@ const Contact = () => (
 
           {/* Right Column - Contact Form */}
           <div>
+
+            {delivered ? <h3>Message Has been recieved</h3>
+            :
             <form
               action="https://formspree.io/f/mgvylgrp"
+              onSubmit={handleSubmit}
               method="post"
               className="space-y-4"
             >
@@ -91,6 +116,7 @@ const Contact = () => (
                 name="name"
                 type="text"
                 placeholder="Full name"
+                onChange={handleChange}
                 required
                 minLength="3"
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
@@ -99,6 +125,7 @@ const Contact = () => (
                 name="email"
                 type="email"
                 placeholder="Email address"
+                onChange={handleChange}
                 required
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
               />
@@ -107,15 +134,17 @@ const Contact = () => (
                 placeholder="Message"
                 maxLength="500"
                 required
+                onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg h-32 resize-none focus:ring-2 focus:ring-primary focus:outline-none"
               />
-              <button
+              <AppButton
                 type="submit"
-                className="w-full bg-primary text-white font-medium py-3 rounded-lg hover:bg-primary/90 transition-all shadow-md"
+                className="!w-full"
               >
                 Send Message
-              </button>
+              </AppButton>
             </form>
+}
           </div>
         </div>
       </div>
@@ -125,5 +154,6 @@ const Contact = () => (
 
   </div>
 );
+}
 
 export default Contact;

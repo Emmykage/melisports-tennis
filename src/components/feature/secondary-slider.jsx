@@ -20,7 +20,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
-import DiscoverBtn from '../buttons/DiscoverBtn';
+import DiscoverBtn from '../buttons/AppButton';
 
 const SecondarySlider = () => {
   const [mute, setMute] = useState(true);

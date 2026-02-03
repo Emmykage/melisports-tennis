@@ -13,7 +13,7 @@ import { getSportCategories } from '../../redux/actions/product_category';
 import { closeList } from '../../redux/products/searched';
 import SurveyButton from '../../components/feature/survey-button';
 import CommunityBanner from '../../components/banner/CommunityBanner';
-import DiscoverBtn from '../../components/buttons/DiscoverBtn';
+import DiscoverBtn from '../../components/buttons/AppButton';
 import HomeEquipmentInfo from '../../components/HomeEquipmentInfo/HomeEquipmentInfo';
 import SportDirectory from '../../components/sportDirectory/SportDirectory';
 import Reviews from '../../components/reviews/Reviews';
