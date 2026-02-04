@@ -42,9 +42,23 @@ const deleteCategory = createAsyncThunk('product_category/delete_product_categor
 
   });
 });
-const getProductCategories = createAsyncThunk('product_category/get_product_category', async () => {
-  const response = await fetch(`${baseURL}product_categories`).then((res) => res.json());
-  return response;
+const getProductCategories = createAsyncThunk('product_category/get_product_category', async (_, { rejectWithValue  }) => {
+ try {
+  const response = await fetch(`${baseURL}product_categories`)
+  
+
+  const result = await response.json();
+
+  if(!response.ok){
+    throw new Error(result.message || 'Failed to fetch product categories');
+  } 
+
+  console.log(response, "Product caty")
+  return result;
+  } catch (error) { 
+    return rejectWithValue({ message: error.message || 'something went wrong' });
+
+  }
 });
 const getSportCategories = createAsyncThunk('sport_category/get_sport_category', async () => {
   const response = await fetch(`${baseURL}sport_categories`).then((res) => res.json());

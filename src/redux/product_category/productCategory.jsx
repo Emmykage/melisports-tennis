@@ -18,7 +18,7 @@ const productCategorySlice = createSlice({
       ...state,
       loading: false,
       status: 'success',
-      product_categories: action.payload,
+      product_categories: action.payload.data,
     }),
     [getSportCategories.fulfilled]: (state, action) => ({
       ...state,
