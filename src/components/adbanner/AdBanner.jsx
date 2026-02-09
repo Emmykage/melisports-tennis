@@ -10,6 +10,7 @@ import {Swiper, SwiperSlide } from 'swiper/react';
 import {
   Navigation, EffectFade, Autoplay, Pagination,
 } from 'swiper';
+import { Banner } from 'flowbite-react';
 const AdBanner = () => {
   const navigate = useNavigate();
 
@@ -71,8 +72,7 @@ const AdBanner = () => {
               className="object-fill md:object-fill h-full w-full cursor-pointer hover:scale-105 transition duration-500"
               onClick={() => navigate('/sales')}
             />
-  
-           
+                
           </div>
           {' '}
           <div className="md:flex-1 group h-80 md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">

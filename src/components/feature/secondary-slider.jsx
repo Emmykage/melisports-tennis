@@ -10,7 +10,7 @@ import Slide1 from '../../assets/images/banner/slide_one.jpg';
 import photoOne from '../../assets/images/ngo/IMG-20250513-WA0021.jpg';
 import photoTwo from '../../assets/images/ngo/IMG-20250513-WA0027.jpg';
 import photoThree from '../../assets/images/ngo/IMG-20250513-WA0028.jpg';
-import xmasBanner from '../../assets/images/banner/1600w-erqHOEi9bhI.webp';
+import padelBanner from '../../assets/images/banner/padelBanner.png';
 import videoAdd from '../../assets/videos/EDIT_BABOLAT_REVEAL_RAQUETTE_3D_1920-720_20231201.webm';
 
 import './styles.css';
@@ -27,6 +27,10 @@ const SecondarySlider = () => {
 
   const images = [
 
+     {
+      id: 1,
+      image: padelBanner,
+       },
     {
       id: 0,
       image: Slide1,
@@ -36,15 +40,6 @@ const SecondarySlider = () => {
       id: 2,
       video: videoAdd,
     },
-    //  {
-    //   id: 1,
-    //   image: bannerImg,
-    //   cta: 'Support the Program',
-    //   position: 'left',
-    //   title: 'Changing Lives, One Swing at a Time!',
-    //   text: 'Our NGO is dedicated to giving underprivileged kids a chance to learn, grow, and thrive through the game of tennis. Join us as we serve hope and opportunity!',
-    //   link: '/support-the-program#support',
-    // },
     // {
     //   id: 2,
     //   image: photoTwo,
@@ -69,8 +64,8 @@ const SecondarySlider = () => {
       <div className="relative w-full md:h-full">
         <Swiper
           loop
-          effect="fade"
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          effect="cards"
+          autoplay={{ delay: 40000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           modules={[Pagination, Autoplay, EffectFade]}
           slidesPerView={1}
