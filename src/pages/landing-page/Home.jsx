@@ -71,7 +71,7 @@ const LandingHome = () => {
       <Nav store={false} />
       <Container>
 
-        <SecondarySlider />
+        <SecondarySlider />  
 
         <AdBanner />
         <section className="py-12 px-4">

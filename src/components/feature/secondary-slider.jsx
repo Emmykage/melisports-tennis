@@ -26,10 +26,7 @@ const SecondarySlider = () => {
   const [mute, setMute] = useState(true);
 
   const images = [
-    {
-      id: 8,
-      image: xmasBanner,
-    },
+
     {
       id: 0,
       image: Slide1,

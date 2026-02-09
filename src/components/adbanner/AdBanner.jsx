@@ -1,41 +1,41 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import bannerImg from '../../assets/images/banner/banner-1.jpg';
-import bannerImgxmas from '../../assets/images/banner/melisport-christmas.jpeg';
-import bannerImgxmas1 from '../../assets/images/banner/shopping-now.png';
+import padelX from '../../assets/images/banner/padel_xclusive.webp';
+import banner1 from '../../assets/images/banner/banner.png';
+import banner2 from '../../assets/images/banner/banner2.png';
 
 const AdBanner = () => {
   const navigate = useNavigate();
 
   return (
     <section>
-      <div className="max-w-[1400px] my-10 md:h-[800px] m-auto flex  flex-col border  lg:flex-row gap-4 px-4 lg:px-0 lg:py-0">
-        <div className="md:w-96 h-full  bg-blue-600 ">
+      <div className="max-w-[1400px] my-10 md:h-[800px] m-auto flex  flex-col  lg:flex-row gap-4 px-4 lg:px-0 lg:py-0">
+        <div className="md:w-96 h-full group bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
           <img
-            src={bannerImgxmas}
+            src={padelX}
             alt="x-mas sales banner"
-            className="w-full h-full object-fill md:object-fill cursor-pointer"
+            className="w-full h-full object-fill md:object-fill cursor-pointer group-hover:scale-105 transition duration-500"
             onClick={() => navigate('/sales')}
           />
 
         </div>
         <div className="flex flex-1 flex-col gap-4">
 
-          <div className="md:flex-1 h-80 md:h-96 bg-red-300">
+          <div className="md:flex-1 group h-80 md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
             <img
-              src={bannerImg}
+              src={banner1}
               alt="add banner"
-              className="object-fill md:object-fill h-full w-full cursor-pointer"
+              className="object-fill md:object-fill h-full w-full cursor-pointer hover:scale-105 transition duration-500"
               onClick={() => navigate('/sales')}
             />
           </div>
           {' '}
-          <div className="md:flex-1 h-80 md:h-96 d-300">
+          <div className="md:flex-1 group h-80 md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
             <img
-              src={bannerImgxmas1}
+              src={banner2}
               alt="add banner"
-              className="object-fill md:object-fill h-full w-full cursor-pointer"
+              className="object-fill md:object-fill h-full w-full cursor-pointer group-hover:scale-105 transition duration-500"
               onClick={() => navigate('/sales')}
             />
           </div>
