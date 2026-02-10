@@ -16,14 +16,8 @@ footer a {
   font-weight: 500;
 }
 
-footer a {
-  text-decoration: underline;
-}
 
 
-footer h3 {
-  font-size: 1.5rem;
-}
 
 
 @media screen and (max-width: 600px) {

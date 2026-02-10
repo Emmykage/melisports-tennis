@@ -139,7 +139,7 @@ const Contact = () => {
                       type="submit"
                       className="!w-full"
                     >
-                    Send Message
+                      Send Message
                     </AppButton>
                   </form>
                 )}

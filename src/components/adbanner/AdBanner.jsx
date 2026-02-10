@@ -61,18 +61,18 @@ const AdBanner = () => {
         </div>
         <div className="flex flex-1 flex-col gap-4">
 
-          <div className="md:flex-1 group h-80 md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+          <div className="md:flex-1 group h-40 md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
 
             <img
               src={banner1}
               alt="add banner"
-              className="object-fill md:object-fill h-full w-full cursor-pointer hover:scale-105 transition duration-500"
+              className="object-cover md:object-fill h-full w-full cursor-pointer hover:scale-105 transition duration-500"
               onClick={() => navigate('/sales')}
             />
 
           </div>
           {' '}
-          <div className="md:flex-1 group h-80 md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+          <div className="md:flex-1 group h-40 md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
             <img
               src={banner2}
               alt="add banner"

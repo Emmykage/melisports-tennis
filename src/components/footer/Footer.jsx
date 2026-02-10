@@ -1,8 +1,12 @@
 import React from 'react';
 import './footer.css';
 import { NavLink } from 'react-router-dom';
-import { FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
+import {
+  FaYoutube, FaInstagram, FaFacebook, FaPhoneAlt,
+} from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
+import { IoIosTime } from 'react-icons/io';
+import { MdEmail } from 'react-icons/md';
 import logo from '../../assets/images/logo/melisport_3.png';
 
 const Footer = () => (
@@ -25,27 +29,27 @@ const Footer = () => (
         <h4 className="text-lg font-normal mb-3">Resources</h4>
         <ul className="space-y-2 text-sm">
           <li>
-            <NavLink to="/auth/login" className="hover:text-primary-light transition">
+            <NavLink to="/auth/login" className="hover:text-light/50 transition">
               My Account
             </NavLink>
           </li>
           <li>
-            <NavLink to="/return_policy" className="hover:text-primary-light transition">
+            <NavLink to="/return_policy" className="hover:text-light/50 transition">
               Return Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/shipping_policy" className="hover:text-primary-light transition">
+            <NavLink to="/shipping_policy" className="hover:text-light/50 transition">
               Shipping Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/terms_of_service" className="hover:text-primary-light transition">
+            <NavLink to="/terms_of_service" className="hover:text-light/50 transition">
               Terms of Service
             </NavLink>
           </li>
           <li>
-            <NavLink to="/privacy_policy" className="hover:text-primary-light transition">
+            <NavLink to="/privacy_policy" className="hover:text-light/50 transition">
               Privacy Policy
             </NavLink>
           </li>
@@ -55,15 +59,30 @@ const Footer = () => (
       {/* Contact */}
       <div>
         <h4 className="text-lg font-normal mb-3">Contact Us</h4>
-        <p className="text-sm space-y-2">
-          <a href="tel:+2347038723093" className="block hover:text-primary-light transition">
-            Phone: +234-703 872 3093
-          </a>
-          <span className="block">Mon–Fri, 9am – 5pm WAT</span>
-          <a href="mailto:info@melisports.com" className="block hover:text-primary-light transition">
-            info@melisports.com
-          </a>
-        </p>
+        <ul className="text-sm space-y-2">
+          <li>
+            <a href="tel:+2347038723093" className="block hover:text-light/50 transition no-underline">
+              <FaPhoneAlt className="w-4 h-4 inline mr-2" />
+              {' '}
+              +234-703 872 3093
+            </a>
+          </li>
+          <li>
+
+            <IoIosTime className="w-4 h-4 inline mr-2" />
+            Mon–Fri, 9am – 5pm WAT
+
+          </li>
+          <li>
+            <a href="mailto:info@melisports.com" className="block hover:text-primary-light transition no-underline">
+              <MdEmail className="w-4 h-4 inline mr-2" />
+
+              info@melisports.com
+            </a>
+
+          </li>
+
+        </ul>
       </div>
 
       {/* Social */}
