@@ -116,7 +116,7 @@ const ConfirmOrder = () => {
                       <p className="text-sm font-medium">{item?.product?.name}</p>
                       <p>
                         Quantity:
-                      {item?.quantity}
+                        {item?.quantity}
                       </p>
 
                     </div>

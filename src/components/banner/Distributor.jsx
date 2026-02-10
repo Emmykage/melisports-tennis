@@ -9,7 +9,7 @@ export const DistributorBanner = () => (
   //   </div>
   // </div>
 
-    <div
+  <div
     className="relative bg-cover bg-center hero flex items-center justify-center min-h-[60vh] px-4"
     style={{ backgroundImage: "url('/assets/Banner_Recap2022.avif')" }}
   >

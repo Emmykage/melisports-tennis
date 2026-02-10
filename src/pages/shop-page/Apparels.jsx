@@ -126,8 +126,8 @@ const ApparelsPage = () => {
 
                       <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
                         <span>
-                                {item.label}
-                              </span>
+                          {item.label}
+                        </span>
                       </label>
 
                     </div>

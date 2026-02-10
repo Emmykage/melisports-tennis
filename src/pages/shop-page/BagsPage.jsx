@@ -115,15 +115,15 @@ const BagsPage = () => {
                       <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
 
                         <input
-                                type="checkbox"
-                                id={item.type}
-                                value={item.type}
-                                className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                onChange={handleSportFilter}
-                              />
+                          type="checkbox"
+                          id={item.type}
+                          value={item.type}
+                          className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          onChange={handleSportFilter}
+                        />
                         <span>
-                                {item.label}
-                              </span>
+                          {item.label}
+                        </span>
                       </label>
                     </div>
                   ))}
@@ -159,16 +159,16 @@ const BagsPage = () => {
                       className="flex items-center"
                     >
                       <input
-                              type="checkbox"
-                              id={item.value}
-                              value={item.value}
-                              className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                              onChange={handleFilteredActivities}
-                            />
+                        type="checkbox"
+                        id={item.value}
+                        value={item.value}
+                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        onChange={handleFilteredActivities}
+                      />
 
                       <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
-                              {item.label}
-                            </label>
+                        {item.label}
+                      </label>
 
                     </div>
                   ))}
@@ -189,16 +189,16 @@ const BagsPage = () => {
                   }].map((item) => (
                     <div className="flex items-center">
                       <input
-                              type="checkbox"
-                              id={item.value}
-                              value={item.value}
-                              className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                              onChange={handleFilteredActivities}
-                            />
+                        type="checkbox"
+                        id={item.value}
+                        value={item.value}
+                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        onChange={handleFilteredActivities}
+                      />
 
                       <label htmlFor={item.value} style={{ fontSize: '1rem' }}>
-                              {item.label}
-                            </label>
+                        {item.label}
+                      </label>
 
                     </div>
                   ))}

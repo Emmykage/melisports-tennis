@@ -27,7 +27,7 @@ import reviewReducer from './review';
 import invoiceReducer from './order/invoice';
 import courtReducer from './courts';
 import agentsReducer from './agents/agentsReducer';
-import messageReducer from "./message/message.slice";
+import messageReducer from './message/message.slice';
 import { agentSlice, messageSlice, productsSlice } from '.';
 
 const rootReducer = combineReducers({
@@ -55,7 +55,7 @@ const rootReducer = combineReducers({
   invoices: invoiceReducer,
   courts: courtReducer,
   agent: agentSlice,
-  messages: messageReducer
+  messages: messageReducer,
 
 });
 

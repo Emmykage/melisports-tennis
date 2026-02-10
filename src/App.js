@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Route, Routes, useLocation, useNavigate,
+} from 'react-router-dom';
 import './App.css';
 import './styles/loader.css';
 import { ToastContainer } from 'react-toastify';
@@ -73,18 +75,17 @@ import SalesPage from './pages/shop-page/sales';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
-const location = useLocation();
-const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
   useResetPageLoction();
 
   useInitializeData();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const { hostname } = window.location;
 
-    useEffect(() => {
-    const hostname = window.location.hostname;
-
-    console.log(hostname, window.location)
+    console.log(hostname, window.location);
 
     // STORE DOMAIN
     if (hostname.startsWith('store.') && !location.pathname.startsWith('/store')) {
@@ -96,7 +97,6 @@ const navigate = useNavigate();
       navigate(`/admin${location.pathname}`, { replace: true });
     }
   }, [location.pathname, navigate]);
-
 
   useEffect(() => {
     dispatch(getCartSum());
@@ -122,10 +122,8 @@ const navigate = useNavigate();
 
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
 
-
-
-          <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
-            <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
+        <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
+        <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/sales" element={<MainLayout><SalesPage /></MainLayout>} />
 
@@ -139,7 +137,7 @@ const navigate = useNavigate();
         <Route path="/accessories" element={<MainLayout><AccessoriesPage /></MainLayout>} />
         <Route path="/checkout" element={<MainLayout><Checkout /></MainLayout>} />
         <Route path="/confirm-order" element={<MainLayout><ConfirmOrder /></MainLayout>} />
-                <Route path="/apparels" element={<MainLayout><ApparelsPage /></MainLayout>} />      
+        <Route path="/apparels" element={<MainLayout><ApparelsPage /></MainLayout>} />
 
         <Route path="admin">
           <Route path="dashboard" element={<MainAdmin><Main /></MainAdmin>} />

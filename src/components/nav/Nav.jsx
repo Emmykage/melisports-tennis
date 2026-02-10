@@ -163,7 +163,6 @@ const Nav = ({ store = true }) => {
 
       {
     }
-      
 
     </ul>
   ), [store, user]);

@@ -1,6 +1,8 @@
 import React from 'react';
 import './footer.css';
 import { NavLink } from 'react-router-dom';
+import { FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import logo from '../../assets/images/logo/melisport_3.png';
 
 const Footer = () => (
@@ -20,7 +22,7 @@ const Footer = () => (
 
       {/* Resources */}
       <div>
-        <h4 className="text-lg font-semibold mb-3">Resources</h4>
+        <h4 className="text-lg font-normal mb-3">Resources</h4>
         <ul className="space-y-2 text-sm">
           <li>
             <NavLink to="/auth/login" className="hover:text-primary-light transition">
@@ -52,7 +54,7 @@ const Footer = () => (
 
       {/* Contact */}
       <div>
-        <h4 className="text-lg font-semibold mb-3">Contact Us</h4>
+        <h4 className="text-lg font-normal mb-3">Contact Us</h4>
         <p className="text-sm space-y-2">
           <a href="tel:+2347038723093" className="block hover:text-primary-light transition">
             Phone: +234-703 872 3093
@@ -66,26 +68,38 @@ const Footer = () => (
 
       {/* Social */}
       <div>
-        <h4 className="text-lg font-semibold mb-3">Connect With Us</h4>
-        <ul className="space-y-2 text-sm">
-          <li>
-            <a href="https://web.facebook.com/melisports" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
-              Facebook
+        <h4 className="text-lg font-normal mb-3">Connect With Us</h4>
+        <li className="flex items-center">
+          <span className="mr-2">Follow us:</span>
+        </li>
+
+        <ul className="space-y-2 text-sm flex gap-4 items-center ">
+
+          <li className="mt-2">
+            <a href="https://web.facebook.com/melisports" target="_blank" rel="noreferrer" className="hover:text-primary-light transition bg-red-50">
+              <FaFacebook className="w-6 h-6" />
+
             </a>
           </li>
-          <li>
+          {' '}
+          <li className="mt-2">
             <a href="https://www.instagram.com/melisports/" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
-              Instagram
+              <FaInstagram
+                width={200}
+                hwidth={200}
+                className="w-6 h-6"
+              />
+
             </a>
           </li>
           <li>
             <a href="https://twitter.com/MeliSports" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
-              Twitter
+              <FaXTwitter className="w-6 h-6" />
             </a>
           </li>
           <li>
             <a href="https://youtube.com/@MeliSportss" target="_blank" rel="noreferrer" className="hover:text-primary-light transition">
-              YouTube
+              <FaYoutube className="w-6 h-6" />
             </a>
           </li>
         </ul>

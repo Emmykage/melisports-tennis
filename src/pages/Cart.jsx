@@ -77,33 +77,33 @@ const Cart = () => {
                       <div className="flex-1">
                         <p className="text-gray-700 font-semibold text-center">{cart?.product_name}</p>
                         <p className="text-gray-600 mt-1 text-center">
-                                Size:
-                        {' '}
-                                {cart?.size}
-                              </p>
+                          Size:
+                          {' '}
+                          {cart?.size}
+                        </p>
                         <p className="text-lg text-gray-700 font-semibold mt-2 text-center">
 
-                                {nairaFormat(cart?.price)}
-                              </p>
+                          {nairaFormat(cart?.price)}
+                        </p>
 
                         <div className="flex items-center justify-center gap-2 mt-2">
-                                <button
-                          className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
-                          onClick={() => {
-                            selectCart(cart.id, cart.quantity, '-');
-                            cart?.quantity === 1 && dispatch(deleteCartItem(cart?.id));
-                          }}
-                        >
-                          -
-                        </button>
-                                <span className="font-semibold">{cart?.quantity}</span>
-                                <button
-                          className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
-                          onClick={() => selectCart(cart?.id, cart?.quantity, '+')}
-                        >
-                          +
-                        </button>
-                              </div>
+                          <button
+                            className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
+                            onClick={() => {
+                              selectCart(cart.id, cart.quantity, '-');
+                              cart?.quantity === 1 && dispatch(deleteCartItem(cart?.id));
+                            }}
+                          >
+                            -
+                          </button>
+                          <span className="font-semibold">{cart?.quantity}</span>
+                          <button
+                            className="w-8 h-8 flex items-center justify-center bg-gray-600 text-white rounded-full"
+                            onClick={() => selectCart(cart?.id, cart?.quantity, '+')}
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
 
                       <button onClick={() => handleDelete(cart?.id)}>
@@ -140,74 +140,74 @@ const Cart = () => {
                     {cartItems?.map((cart) => (
                       <tr key={cart.product_name} className="grid grid-cols-1 w-full items-center md:table-row lg:grid-cols-0">
                         <td data-cell="image" className="flex w-full md:w-36 md:table-cell whitespace-nowrap  mb-4 overflow-hidden bg-gray-100  py-3 text-sm text-gray-600/90 font-normal">
-                                <div className="cart-img m-auto shrink-1 p-4 flex  ">
-                          <img src={cart?.image} className="w-36 h-36 shrink-0 object-fill " />
-                        </div>
-                              </td>
+                          <div className="cart-img m-auto shrink-1 p-4 flex  ">
+                            <img src={cart?.image} className="w-36 h-36 shrink-0 object-fill " />
+                          </div>
+                        </td>
                         <td data-cell="name" className="md:table-cell whitespace-nowrap  bg-gray-100  pl-3 py-3 text-sm text-gray-900 font-medium">
-                                <p className="text-gray-700 font-semibold">
-                          {cart?.product_name}
+                          <p className="text-gray-700 font-semibold">
+                            {cart?.product_name}
 
-                        </p>
-                                <p className="text-gray-700 text-sm font-semibold">
-                          <span className="mr-3 font-semibold text-xs text-gray-500">Colour: </span>
+                          </p>
+                          <p className="text-gray-700 text-sm font-semibold">
+                            <span className="mr-3 font-semibold text-xs text-gray-500">Colour: </span>
 
-                          {cart?.colours}
+                            {cart?.colours}
 
-                        </p>
-                                <p>
-                          <span className="mr-3 font-semibold text-gray-500 text-xs">Size: </span>
-                          {cart?.size }
-                        </p>
-                              </td>
+                          </p>
+                          <p>
+                            <span className="mr-3 font-semibold text-gray-500 text-xs">Size: </span>
+                            {cart?.size }
+                          </p>
+                        </td>
                         <td data-cell="price" className="md:table-cell whitespace-nowrap text-right bg-gray-100 px-3 py-3 ">
-                                {(cart?.discount || cart?.discount_amount) && <p className="text-sm text-gray-700 font-normal line-through">{nairaFormat(cart?.discount ?? cart?.discount_amount)}</p>}
-                                <p className="text-base text-gray-700 font-semibold">{nairaFormat(cart?.price)}</p>
+                          {(cart?.discount || cart?.discount_amount) && <p className="text-sm text-gray-700 font-normal line-through">{nairaFormat(cart?.discount ?? cart?.discount_amount)}</p>}
+                          <p className="text-base text-gray-700 font-semibold">{nairaFormat(cart?.price)}</p>
 
-                              </td>
+                        </td>
 
                         <td data-cell="quantity" className=" md:table-cell whitespace-nowrap bg-gray-100  px-3 py-3 text-sm text-gray-600/90 font-normal text-right">
-                                <div className="border ml-auto border-gray-400 rounded-lg w-16">
-                          <div className="flex  justify-between px-2 items-center ">
+                          <div className="border ml-auto border-gray-400 rounded-lg w-16">
+                            <div className="flex  justify-between px-2 items-center ">
 
-                            <span className="cart- font-semibold ">
+                              <span className="cart- font-semibold ">
 
-                              {cart?.quantity}
-                            </span>
-                            <div className="ml-4">
-
-                              <span
-                                className="text-center flex items-center justify-center w-5 h-4 cursor-pointer text-gray-600"
-                                onClick={() => {
-                                  selectCart(cart.id, cart.quantity, '-');
-                                  cart?.quantity === 1 && dispatch(deleteCartItem(cart?.id));
-                                }}
-                              >
-                                <IoIosArrowUp />
+                                {cart?.quantity}
                               </span>
+                              <div className="ml-4">
 
-                              <span
-                                className="text-center flex items-center justify-center w-5 h-4 cursor-pointer text-gray-600"
-                                type="button"
+                                <span
+                                  className="text-center flex items-center justify-center w-5 h-4 cursor-pointer text-gray-600"
+                                  onClick={() => {
+                                    selectCart(cart.id, cart.quantity, '-');
+                                    cart?.quantity === 1 && dispatch(deleteCartItem(cart?.id));
+                                  }}
+                                >
+                                  <IoIosArrowUp />
+                                </span>
+
+                                <span
+                                  className="text-center flex items-center justify-center w-5 h-4 cursor-pointer text-gray-600"
+                                  type="button"
                           // onClick={() => selectCart(cart.id, cart.quantity, '+')}
-                                onClick={() => selectCart(cart?.id, cart?.quantity, '+')}
-                              >
-                                <IoIosArrowDown />
-                              </span>
+                                  onClick={() => selectCart(cart?.id, cart?.quantity, '+')}
+                                >
+                                  <IoIosArrowDown />
+                                </span>
 
+                              </div>
                             </div>
                           </div>
-                        </div>
-                              </td>
+                        </td>
 
                         <td className=" block sm:table-cell w-10 px-3 py-3 lg:table-cell text-sm text-gray-600/90 font-normal text-left">
-                                <button className="" onClick={() => handleDelete(cart?.id)}>
-                          {' '}
-                          <MdClose className="text-2xl" />
-                          {' '}
-                        </button>
+                          <button className="" onClick={() => handleDelete(cart?.id)}>
+                            {' '}
+                            <MdClose className="text-2xl" />
+                            {' '}
+                          </button>
 
-                              </td>
+                        </td>
                       </tr>
 
                     ))}
@@ -217,12 +217,12 @@ const Cart = () => {
                       <td />
                       <td className="text-right ">
                         <button
-                                className="w-full mt-4 flex items-center justify-center gap-2 font-semibold text-theme rounded py-2.5 shadow-lg border border-theme-light hover:bg-theme-light  hover:text-white transition-all duration-300"
-                                type="button"
-                                onClick={() => setOpen(true)}
-                              >
-                        clear cart
-                              </button>
+                          className="w-full mt-4 flex items-center justify-center gap-2 font-semibold text-theme rounded py-2.5 shadow-lg border border-theme-light hover:bg-theme-light  hover:text-white transition-all duration-300"
+                          type="button"
+                          onClick={() => setOpen(true)}
+                        >
+                          clear cart
+                        </button>
 
                       </td>
                     </tr>

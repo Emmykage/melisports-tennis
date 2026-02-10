@@ -112,7 +112,7 @@ const AccessoriesPage = () => {
 
                       <span>
                         Tennis
-                    </span>
+                      </span>
                     </label>
                   </div>
                   <div className="flex items-center">

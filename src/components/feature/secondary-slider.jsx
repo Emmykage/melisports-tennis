@@ -27,10 +27,10 @@ const SecondarySlider = () => {
 
   const images = [
 
-     {
+    {
       id: 1,
       image: padelBanner,
-       },
+    },
     {
       id: 0,
       image: Slide1,
@@ -64,7 +64,7 @@ const SecondarySlider = () => {
       <div className="relative w-full md:h-full">
         <Swiper
           loop
-          effect="cards"
+          effect="fade"
           autoplay={{ delay: 40000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           modules={[Pagination, Autoplay, EffectFade]}

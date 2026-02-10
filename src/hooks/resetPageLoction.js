@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 const useResetPageLoction = () => {
   const { pathname } = useLocation();
 
-  console.log(pathname)
+  console.log(pathname);
 
   useEffect(() => {
-    console.log("scroll reste triggered")
+    console.log('scroll reste triggered');
     window.scrollTo(0, 0);
   }, [pathname]);
 };
