@@ -174,7 +174,7 @@ const Nav = ({ store = true }) => {
           <NavLink
             to={item.link}
 
-            className={`hover:text-primary rounded-md transition-colors px-4 py-2${item.link === location.pathname ? 'text-primary' : ''} ${item.link === "/store" && 'font-bold bg-primary text-white hover:text-gray-300' }`}
+            className={`hover:text-primary rounded-md transition-colors px-4 py-2${item.link === location.pathname ? 'text-primary' : ''} ${item.link === "/store" && 'font-bold bg-primary text-white hover:!text-gray-300 ' }`}
           >
             {item.label}
           </NavLink>
