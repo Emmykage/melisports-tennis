@@ -13,6 +13,7 @@ import ClickButton from '../../components/buttons/ClickButton';
 import { addCourts } from '../../redux/actions/review';
 import Nav from '../../components/nav/Nav';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const Directory = () => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const Directory = () => {
   return (
     <>
       <div className="bg-white">
-        <Nav store={false} />
+        <Header store={false} />
         <Container>
 
           <Hero image={court} title="Court Directory" />

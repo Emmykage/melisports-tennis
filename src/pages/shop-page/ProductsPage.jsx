@@ -17,6 +17,7 @@ import useProducts from '../../hooks/useProducts';
 import { featureItems } from '../../constants/variance';
 import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
@@ -82,7 +83,7 @@ const ProductsPage = () => {
   return (
     <>
 
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Racquet" />

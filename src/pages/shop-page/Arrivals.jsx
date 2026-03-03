@@ -14,6 +14,7 @@ import ProductCard from '../../components/card/ProductCard';
 import ProductsGrid from '../../components/products/ProductsGridDisplay';
 import SideNav from '../../components/sideNav/SideNav';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const Arrivals = () => {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ const Arrivals = () => {
 
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Racquet" />

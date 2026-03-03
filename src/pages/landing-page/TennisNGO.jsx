@@ -7,14 +7,14 @@ import EventDetails from './components/EventDetails';
 import imgCamp from '../../assets/images/ngo/camp-img.jpg';
 import imgCamp1 from '../../assets/images/ngo/camp-img-1.jpg';
 import imgCamp2 from '../../assets/images/ngo/6381334.jpg';
-import Nav from '../../components/nav/Nav';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 function SupportProgram() {
-  const navigate = useNavigate();
+
   return (
     <>
-      <Nav store={false} />
+      <Header store={false} />
       <Container>
 
         <Hero image={img} title="Tennis Clinic for Secondary Schools" />

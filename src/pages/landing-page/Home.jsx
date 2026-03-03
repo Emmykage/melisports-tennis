@@ -25,6 +25,7 @@ import bannerImg from '../../assets/images/banner/banner-1.jpg';
 import bannerImgxmas from '../../assets/images/banner/melisport-christmas.jpeg';
 import AdBanner from '../../components/adbanner/AdBanner';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const LandingHome = () => {
   const categories = useSelector((state) => state.categories);
@@ -68,7 +69,7 @@ const LandingHome = () => {
   return (
     <>
 
-      <Nav store={false} />
+      <Header store={false} />
       <Container>
 
         <SecondarySlider />

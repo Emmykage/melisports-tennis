@@ -10,6 +10,7 @@ import Accessories from '../components/catalogue/Accessories';
 import bannerImage from '../assets/images/banner/racquet-banner.jpg';
 import Nav from '../components/nav/Nav';
 import Container from '../components/container';
+import Header from '../components/header/Header';
 
 const Services = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Services = () => {
 
   return (
     <>
-      <Nav store={false} />
+      <Header store={false} />
       <Container>
 
         <Hero image={bannerImage} title="Catalogue" />

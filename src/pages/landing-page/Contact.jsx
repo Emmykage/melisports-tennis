@@ -11,6 +11,7 @@ import CommunityBanner from '../../components/banner/CommunityBanner';
 import Nav from '../../components/nav/Nav';
 import Container from '../../components/container';
 import AppButton from '../../components/buttons/AppButton';
+import Header from '../../components/header/Header';
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Contact = () => {
   };
   return (
     <div className="">
-      <Nav store={false} />
+      <Header store={false} />
       <Container>
 
         <Hero image={bannerImage} title="Contact Us" />

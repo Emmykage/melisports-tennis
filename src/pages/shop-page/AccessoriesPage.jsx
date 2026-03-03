@@ -15,6 +15,7 @@ import SideNav from '../../components/sideNav/SideNav';
 import useProducts from '../../hooks/useProducts';
 import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const AccessoriesPage = () => {
 
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Accessories" />

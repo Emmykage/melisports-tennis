@@ -72,6 +72,7 @@ import TennisPage from './pages/shop-page/tennis/tennis';
 import useResetPageLoction from './hooks/resetPageLoction';
 import { getCartSum } from './redux/actions/cart';
 import SalesPage from './pages/shop-page/sales';
+import ProfilePage from './pages/admin-page/settings/ProfilePage';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -84,9 +85,6 @@ function App() {
 
   useEffect(() => {
     const { hostname } = window.location;
-
-    console.log(hostname, window.location);
-
     // STORE DOMAIN
     if (hostname.startsWith('store.') && !location.pathname.startsWith('/store')) {
       navigate(`/store${location.pathname}`, { replace: true });
@@ -108,12 +106,13 @@ function App() {
 
       <Routes>
 
-        <Route path="/" element={<MainInfoLayout><Home /></MainInfoLayout>} />
+        <Route path="/community" element={<MainInfoLayout><Home /></MainInfoLayout>} />
         <Route path="products" element={<MainInfoLayout><Services /></MainInfoLayout>} />
         <Route path="profile" element={<MainInfoLayout><ProfileAccountPage /></MainInfoLayout>} />
         <Route path="contact" element={<MainInfoLayout><Contact /></MainInfoLayout>} />
         <Route path="distributor" element={<MainInfoLayout><BecomeADistributor /></MainInfoLayout>} />
         <Route path="about" element={<MainInfoLayout><About /></MainInfoLayout>} />
+        <Route path="/profile-setting" element={<MainInfoLayout><ProfilePage /></MainInfoLayout>} />
         <Route path="/brands" element={<MainLayout><Brands /></MainLayout>} />
         <Route path="/court-directory" element={<MainLayout><Directory /></MainLayout>} />
         <Route path="/support-the-program" element={<MainLayout><SupportProgram /></MainLayout>} />
@@ -123,6 +122,7 @@ function App() {
         <Route path="/search_page" element={<MainLayout><SearchPage /></MainLayout>} />
 
         <Route path="/store" element={<MainLayout><ShopHome /></MainLayout>} />
+        <Route path="/" element={<MainLayout><ShopHome /></MainLayout>} />
         <Route path="/arrivals" element={<MainLayout><Arrivals /></MainLayout>} />
         <Route path="/racquets" element={<MainLayout><ProductsPage /></MainLayout>} />
         <Route path="/sales" element={<MainLayout><SalesPage /></MainLayout>} />

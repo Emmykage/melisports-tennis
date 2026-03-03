@@ -16,7 +16,7 @@ const MainLayout = ({ children }) => {
   }, []);
   return (
 
-    <div className="relative h-screen  overflow-y-auto main">
+    <div className="relative main">
       {/* {(user && user?.confirmed_at) && <div className="py-05 text-red px-4">Confirm your Account from the message sent to you Email</div>} */}
       {isOpen && <Modal />}
       {children}

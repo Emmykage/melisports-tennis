@@ -13,6 +13,7 @@ import ProductsPageContainer from '../../components/productItems/ProductItems';
 import useProducts from '../../hooks/useProducts';
 import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const BagsPage = () => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const BagsPage = () => {
 
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Bags & Backpacks" />

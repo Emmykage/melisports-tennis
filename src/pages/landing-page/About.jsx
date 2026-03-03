@@ -9,11 +9,12 @@ import AboutBanner from '../../components/banner/AboutBanner';
 import CommunityBanner from '../../components/banner/CommunityBanner';
 import Nav from '../../components/nav/Nav';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const About = () => (
   <div className="about customer-bg-theme text-white">
 
-    <Nav store={false} />
+    <Header store={false} />
     <Container>
 
       <AboutBanner />

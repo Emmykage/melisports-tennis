@@ -25,6 +25,8 @@ import { clearSearch } from '../../redux/products/product';
 import bannerImg from '../../assets/images/banner/banner-1.jpg';
 import AdBanner from '../../components/adbanner/AdBanner';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
+import SecondarySlider from '../../components/feature/secondary-slider';
 
 const ShopHome = () => {
   const navigate = useNavigate();
@@ -41,8 +43,10 @@ const ShopHome = () => {
 
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
+        <SecondarySlider />
+        
 
         <section className="px-6 py-24 bg-theme">
           <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">

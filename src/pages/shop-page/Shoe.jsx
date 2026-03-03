@@ -15,6 +15,7 @@ import SideNav from '../../components/sideNav/SideNav';
 import ProductsPageContainer from '../../components/productItems/ProductItems';
 import useProducts from '../../hooks/useProducts';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const ShoesPage = () => {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ const ShoesPage = () => {
 
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Shoes" />

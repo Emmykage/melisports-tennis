@@ -12,6 +12,7 @@ import Nav from '../../components/nav/Nav';
 import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
 import { addToCart } from '../../redux/actions/cart';
 import Container from '../../components/container';
+import Header from '../../components/header/Header';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -116,8 +117,6 @@ const ProductDetails = () => {
     setNewInventory(newArray);
   }, [product]);
 
-  console.log(product, newInventory, newInventory.length);
-
   if (loading) {
     return (<Loader />);
   }
@@ -126,7 +125,7 @@ const ProductDetails = () => {
     <>
 
       {/* <section className="bg-gray-50"> */}
-      <Nav />
+      <Header />
 
       <Container>
 
