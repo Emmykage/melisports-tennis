@@ -61,7 +61,7 @@ const SecondarySlider = () => {
   ];
   return (
     <>
-      <div  className="relative w-full -mt-44 md:h-full">
+      <div  className="relative w-full h-full py-0 mt-0 md:-mt-44">
         <Swiper
           loop
           effect="fade"

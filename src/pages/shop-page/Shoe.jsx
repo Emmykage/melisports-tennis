@@ -29,7 +29,7 @@ const ShoesPage = () => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const { data: products, error, isLoading: loading } = useProducts({
-    productCategory: 'shoe',
+    category: 'shoe',
     selectedSports,
     selectedLevels,
     selectedFeatures,
