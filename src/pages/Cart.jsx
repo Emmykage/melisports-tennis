@@ -12,6 +12,7 @@ import {
   deleteCartItem, emptyCart, getUserCart, updateQuantity,
 } from '../redux/actions/cart';
 import Container from '../components/container';
+import Header from '../components/header/Header';
 
 const Cart = () => {
   // const { user, loading } = useSelector((state) => state.user);
@@ -50,7 +51,7 @@ const Cart = () => {
 
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
 
         {cartItems.length < 1

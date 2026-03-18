@@ -11,6 +11,7 @@ import resetPageLoction from '../hooks/resetPageLoction';
 import Loader from './Loader';
 import Nav from '../components/nav/Nav';
 import Container from '../components/container';
+import Header from '../components/header/Header';
 
 const ConfirmOrder = () => {
   const [query] = useSearchParams();
@@ -43,7 +44,8 @@ const ConfirmOrder = () => {
 
   return (
     <>
-      <Nav />
+            <Header />
+
       <Container>
 
         <section className="py-10 px-4 sm:px-10 ">

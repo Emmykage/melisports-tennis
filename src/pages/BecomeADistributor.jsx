@@ -3,10 +3,12 @@ import DistributorBanner from '../components/banner/Distributor';
 import Nav from '../components/nav/Nav';
 import Container from '../components/container';
 import Button from '../components/buttons/AppButton';
+import Header from '../components/header/Header';
 
 const BecomeADistributor = () => (
   <div>
-    <Nav store={false} />
+          <Header />
+
     <Container>
 
       <div className="">

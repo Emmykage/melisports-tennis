@@ -18,6 +18,7 @@ import Nav from '../components/nav/Nav';
 import { emptyCart } from '../redux/actions/cart';
 import { getAgentByCode } from '../redux/actions/agents';
 import Container from '../components/container';
+import Header from '../components/header/Header';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -143,7 +144,7 @@ const Checkout = () => {
   }, []);
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
 
         <div className="max-w-5xl m-auto mt-10">

@@ -5,10 +5,11 @@ import NTF from '../assets/images/product-brands/ntf-logo.jpeg';
 import MeliJouer from '../assets/images/product-brands/melijouer.jpg';
 import Nav from '../components/nav/Nav';
 import Container from '../components/container';
+import Header from '../components/header/Header';
 
 const Brands = () => (
   <>
-    <Nav />
+      <Header />
     <Container>
 
       <div className="section-container h-fit">

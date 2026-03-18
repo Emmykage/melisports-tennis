@@ -15,6 +15,7 @@ import { classLevels } from '../../../constants/categories';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 import Container from '../../../components/container';
+import Header from '../../../components/header/Header';
 
 const TennisPage = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const TennisPage = () => {
   };
   return (
     <div className="">
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Tennis" />

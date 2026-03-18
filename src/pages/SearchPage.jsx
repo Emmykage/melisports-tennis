@@ -16,6 +16,7 @@ import SideNav from '../components/sideNav/SideNav';
 import { featureItems } from '../constants/properties';
 import { classLevels } from '../constants/categories';
 import Container from '../components/container';
+import Header from '../components/header/Header';
 
 const SearchPage = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
@@ -80,7 +81,8 @@ const SearchPage = () => {
 
   return (
     <div className="product-container">
-      <Nav />
+            <Header />
+
       <Container>
 
         <div className="prod-page px-4">

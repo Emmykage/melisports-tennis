@@ -17,6 +17,7 @@ import { flexibility, playType } from '../../../constants/variance';
 import useProducts from '../../../hooks/useProducts';
 import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 import Container from '../../../components/container';
+import Header from '../../../components/header/Header';
 
 const levels = [{
   label: 'Beginner',
@@ -74,7 +75,7 @@ const BadmintonsPage = () => {
 
   return (
     <div className="">
-      <Nav />
+      <Header />
 
       <Container>
 

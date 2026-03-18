@@ -12,6 +12,7 @@ import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import useProducts from '../../../hooks/useProducts';
 import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 import Container from '../../../components/container';
+import Header from '../../../components/header/Header';
 
 const SalesPage = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const SalesPage = () => {
   return (
     <div className="product-container relative">
 
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Discounted Sales" />

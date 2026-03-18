@@ -11,6 +11,7 @@ import useProducts from '../../../hooks/useProducts';
 import ProductsGrid from '../../../components/products/ProductsGridDisplay';
 import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
 import Container from '../../../components/container';
+import Header from '../../../components/header/Header';
 
 const Padels = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const Padels = () => {
 
   return (
     <>
-      <Nav />
+      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Padel" />
