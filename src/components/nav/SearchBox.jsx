@@ -138,6 +138,7 @@ export function SearchBox({ logo, stickyNav }) {
             <SearchIcon />
           </IconButton>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+
           <IconButton onClick={() => navigate('/profile-setting')} className="hidden md:block" color="primary" sx={{ p: '10px' }} aria-label="directions">
             <PersonIcon />
           </IconButton>
@@ -146,7 +147,7 @@ export function SearchBox({ logo, stickyNav }) {
 
         <Paper
           sx={{
-            background: "red",
+            background: "rgba(214, 214, 214, 1)",
                       
             overflow: "hidden",
             height:  { xs: "50vh", sm: "70vh" },
