@@ -86,7 +86,7 @@ export function SearchBox({ logo, stickyNav }) {
   return (
     <div className="relative">
       {showSearch && 
-      <div onClick={()=> setShowSearch(false)} className="bg-gray-900/60 z-0 fixed top-0 w-full h-full" />
+      <div onClick={()=> setShowSearch(false)} className="bg-gray-900/60 z-0 fixed top-0 w-full h-full border border-gray-400 shadow" />
 }
       <Paper
         ref={searchRef}
@@ -101,6 +101,7 @@ export function SearchBox({ logo, stickyNav }) {
           alignItems: 'center',
           width: '100%',
           m: 'auto',
+          // background: "red"
           // display: "none"
         }}
       >
@@ -144,8 +145,10 @@ export function SearchBox({ logo, stickyNav }) {
         </div>
 
         <Paper
-          className=""
           sx={{
+            background: "red",
+            
+            height: "70vh",
             display: showSearchList && !isSearchPage ? 'block' : 'none', position: 'absolute', width: '100%', top: '100%', left: 0, zIndex: 50,
           }}
         >
