@@ -14,7 +14,7 @@ const colors = {
   neutral: 'bg-gray-500',
   'autumn glory': 'bg-[#ff8813]',
   'navy-blue': 'bg-[#000080]',
-  "cyan-blue": 'bg-[#00cceb]',
+  'cyan-blue': 'bg-[#00cceb]',
 
 };
 const selectColor = (color) => colors[color] || 'bg-purple-500';

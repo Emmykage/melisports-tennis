@@ -13,8 +13,7 @@ import ButtonSession from '../nav/components/ButtonSession';
 import Nav from '../nav/Nav';
 import { SearchBox } from '../nav/SearchBox';
 
-const Header = ({store}) => {
-  
+const Header = ({ store }) => {
   const navigate = useNavigate();
   const { counter, update } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
@@ -22,19 +21,16 @@ const Header = ({store}) => {
   const [toggleNav, setToggleNav] = useState(false);
   const [stickyNav, setStickyNav] = useState('');
 
-  
   useEffect(() => {
     dispatch(getUserCart());
     dispatch(getCartSum());
   }, []);
-
 
   useEffect(() => {
     const layoutDiv = document.querySelector('.main');
     layoutDiv?.addEventListener('scroll', toggleScrollNav);
     return () => layoutDiv?.removeEventListener('scroll', toggleScrollNav);
   }, []);
-
 
   const toggleScrollNav = (e) => {
     if (window.scrollY >= 120) {
@@ -57,9 +53,9 @@ const Header = ({store}) => {
 
   return (
     <>
-    <Nav store={store} stickyNav={stickyNav} toggleNav={toggleNav} handleLogOut={handleLogOut}  setToggleNav={setToggleNav} >
-      <SearchBox logo={logo} stickyNav={stickyNav} />
-    </Nav>
+      <Nav store={store} stickyNav={stickyNav} toggleNav={toggleNav} handleLogOut={handleLogOut} setToggleNav={setToggleNav}>
+        <SearchBox logo={logo} stickyNav={stickyNav} />
+      </Nav>
     </>
   );
 };

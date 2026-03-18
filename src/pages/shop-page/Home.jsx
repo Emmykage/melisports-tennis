@@ -46,7 +46,6 @@ const ShopHome = () => {
       <Header />
       <Container>
         <SecondarySlider />
-        
 
         <section className="px-6 py-24 bg-theme">
           <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">

@@ -9,13 +9,7 @@ import { FiUser, FiMenu, FiPauseCircle } from 'react-icons/fi';
 import './nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import DirectionsIcon from '@mui/icons-material/Directions';
-import PersonIcon from '@mui/icons-material/Person';
+
 import { MdHome } from 'react-icons/md';
 import { FaChevronRight } from 'react-icons/fa6';
 
@@ -23,13 +17,14 @@ import logo from '../../assets/images/logo/melisport_1.png';
 
 import { clearSearch } from '../../redux/products/product';
 
-const Nav = ({ store = true , stickyNav, children, setToggleNav, toggleNav, handleLogOut}) => {
+const Nav = ({
+  store = true, stickyNav, children, setToggleNav, toggleNav, handleLogOut,
+}) => {
   const navigate = useNavigate();
   const { counter } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [openDropdown, setOpenDropdown] = useState(false);
-
 
   const storeItems = [
     {
@@ -46,7 +41,7 @@ const Nav = ({ store = true , stickyNav, children, setToggleNav, toggleNav, hand
       label: 'Apparels',
     },
     {
-      link: '/shoes', label: 'Shoe',
+      link: '/shoes', label: 'Shoes',
     },
     {
       link: '/bags', label: 'Bags',
@@ -149,7 +144,7 @@ const Nav = ({ store = true , stickyNav, children, setToggleNav, toggleNav, hand
           <NavLink
             to={item.link}
 
-            className={`hover:text-primary rounded-md transition-colors px-4 py-2${item.link === location.pathname ? 'text-primary' : ''} ${item.link === "/store" && 'font-bold bg-primary text-white hover:!text-gray-300 ' }`}
+            className={`hover:text-primary rounded-md transition-colors px-4 py-2${item.link === location.pathname ? 'text-primary' : ''} ${item.link === '/store' && 'font-bold bg-primary text-white hover:!text-gray-300 '}`}
           >
             {item.label}
           </NavLink>
@@ -373,7 +368,5 @@ const Nav = ({ store = true , stickyNav, children, setToggleNav, toggleNav, hand
     </>
   );
 };
-
-
 
 export default Nav;

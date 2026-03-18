@@ -393,24 +393,22 @@ const ProductDetails = () => {
 
           {/* Description */}
           <div className="description-details">
-            <div className='grid md:grid-cols-2'>
-              <div className='p-4'>
-                   <h2 className="text-2xl font-semibold text-gray-800 mb-4">Description</h2>
-            {product.description_body ? (
-              <div
-                className="prose prose-gray max-w-none"
-                dangerouslySetInnerHTML={{ __html: product.description_body }}
-              />
-            ) : (
-              <p className="text-gray-700 leading-relaxed">{product.description}</p>
-            )}
+            <div className="grid md:grid-cols-2">
+              <div className="p-4">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-4">Description</h2>
+                {product.description_body ? (
+                  <div
+                    className="prose prose-gray max-w-none"
+                    dangerouslySetInnerHTML={{ __html: product.description_body }}
+                  />
+                ) : (
+                  <p className="text-gray-700 leading-relaxed">{product.description}</p>
+                )}
 
               </div>
-              <div className='bg-gray-50'>
-
-              </div>
+              <div className="bg-gray-50" />
             </div>
-         
+
           </div>
         </div>
         {/* </section> */}

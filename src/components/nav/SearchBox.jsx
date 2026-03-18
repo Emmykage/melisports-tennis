@@ -1,12 +1,21 @@
-import { Divider, IconButton, InputBase, Paper } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Divider, IconButton, InputBase, Paper,
+} from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  NavLink, useLocation, useNavigate, useSearchParams,
+} from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 
 import SearchIcon from '@mui/icons-material/Search';
+import { searchedProducts } from '../../redux/actions/product';
+import { nairaFormat } from '../../utils/nairaFormat';
+
 export function SearchBox({ logo, stickyNav }) {
   const timeoutRef = useRef(null);
+  const [showSearch, setShowSearch] = useState(false)
+
 
   const searchRef = useRef(null);
   const navigate = useNavigate();
@@ -29,6 +38,11 @@ export function SearchBox({ logo, stickyNav }) {
 
     // setShowSearchList(false);
   };
+    useEffect(() => {
+        setShowSearch(searched_products.length > 0)
+      }
+    , [searched_products])
+
 
   const handlesearchInput = (e) => {
     const { value } = e.target;
@@ -65,8 +79,13 @@ export function SearchBox({ logo, stickyNav }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  console.log(searched_products);
+
   return (
     <div className="relative">
+      {showSearch && 
+      <div onClick={()=> setShowSearch(false)} className="bg-gray-900/60 z-0 fixed top-0 w-full h-full" />
+}
       <Paper
         ref={searchRef}
         className="border-b"
@@ -80,6 +99,7 @@ export function SearchBox({ logo, stickyNav }) {
           alignItems: 'center',
           width: '100%',
           m: 'auto',
+          // display: "none"
         }}
       >
         <div className="max-w-7xl flex items-center m-auto w-full">
@@ -115,7 +135,7 @@ export function SearchBox({ logo, stickyNav }) {
             <SearchIcon />
           </IconButton>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton onClick={()=> navigate("/profile-setting")} className="hidden md:block" color="primary" sx={{ p: '10px' }} aria-label="directions">
+          <IconButton onClick={() => navigate('/profile-setting')} className="hidden md:block" color="primary" sx={{ p: '10px' }} aria-label="directions">
             <PersonIcon />
           </IconButton>
 
@@ -127,10 +147,10 @@ export function SearchBox({ logo, stickyNav }) {
             display: showSearchList && !isSearchPage ? 'block' : 'none', position: 'absolute', width: '100%', top: '100%', left: 0, zIndex: 50,
           }}
         >
+ {showSearch &&
+          <div className="grid relative grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-[600px] overflow-auto no-scroll">
 
-          <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-[600px] overflow-auto no-scroll">
-
-            {searched_products && searched_products?.map((item) => (
+            { searched_products?.map((item) => (
               <div
                 className="border shadow rounded-lg pb-4"
                 onClick={() => {
@@ -145,6 +165,7 @@ export function SearchBox({ logo, stickyNav }) {
             ))}
 
           </div>
+}
 
         </Paper>
       </Paper>

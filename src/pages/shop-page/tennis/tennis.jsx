@@ -46,9 +46,6 @@ const TennisPage = () => {
     const { checked, value } = e.target;
     checked ? setSelectedLevels((prev) => [...prev, value]) : setSelectedLevels((prev) => prev.filter((item) => item !== value));
   };
-
-  console.log(selectedFeatures, products, 'selectedLevels');
-
   return (
     <div className="">
       <Nav />

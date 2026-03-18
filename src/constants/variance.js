@@ -10,7 +10,7 @@ const colors = [{ value: 'white/red', label: 'white/red' },
   { value: 'red/blue', label: 'red/blue' },
   { value: 'red/black', label: 'red/black' },
   { value: 'dark-blue', label: 'dark blue' },
-  { value: 'cyan-blue', label: 'cyan blue' }, //#00cceb
+  { value: 'cyan-blue', label: 'cyan blue' }, // #00cceb
   { value: 'angel blue', label: 'angel blue' },
   { value: 'autumn glory', label: 'autumn glory' },
   { value: 'white/red', label: 'white/red' },
