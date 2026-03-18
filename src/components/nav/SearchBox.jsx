@@ -137,11 +137,17 @@ export function SearchBox({ logo, stickyNav }) {
           <IconButton type="button" onClick={handleSearch} sx={{ p: '10px' }} aria-label="search">
             <SearchIcon />
           </IconButton>
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+
+          <div className='hidden'>
+                      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+
+            
 
           <IconButton onClick={() => navigate('/profile-setting')} className="hidden md:block" color="primary" sx={{ p: '10px' }} aria-label="directions">
             <PersonIcon />
           </IconButton>
+          
+          </div>
 
         </div>
 
