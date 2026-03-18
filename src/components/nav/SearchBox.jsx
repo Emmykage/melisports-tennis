@@ -147,8 +147,9 @@ export function SearchBox({ logo, stickyNav }) {
         <Paper
           sx={{
             background: "red",
-            
-            height: "70vh",
+                      
+            overflow: "hidden",
+            height:  { xs: "50vh", sm: "70vh" },
             display: showSearchList && !isSearchPage ? 'block' : 'none', position: 'absolute', width: '100%', top: '100%', left: 0, zIndex: 50,
           }}
         >
