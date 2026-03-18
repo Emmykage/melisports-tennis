@@ -11,6 +11,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import { searchedProducts } from '../../redux/actions/product';
 import { nairaFormat } from '../../utils/nairaFormat';
+import { clearSearch } from '../../redux/products/product';
 
 export function SearchBox({ logo, stickyNav }) {
   const timeoutRef = useRef(null);
@@ -57,7 +58,7 @@ export function SearchBox({ logo, stickyNav }) {
 
     timeoutRef.current = setTimeout(() => {
       dispatch(searchedProducts({ search: cleanedValue }));
-    }, 1000);
+    }, 700);
   };
 
   const [showSearchList, setShowSearchList] = useState(false); // State variable to control visibility
@@ -70,6 +71,7 @@ export function SearchBox({ logo, stickyNav }) {
   const handleClickOutside = (e) => {
     if (searchRef.current && !searchRef.current.contains(e.target)) {
       !isSearchPage && dispatch(clearSearch());
+      setShowSearch(false)
     }
   };
 
