@@ -44,8 +44,6 @@ const SalesPage = () => {
 
   return (
     <div className="product-container relative">
-
-      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Discounted Sales" />

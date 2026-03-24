@@ -80,7 +80,6 @@ const ShoesPage = () => {
 
   return (
     <>
-      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Shoes" />

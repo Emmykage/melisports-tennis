@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import Hero from '../../components/banner/Hero';
 import img from '../../assets/images/ngo/IMG-20250513-WA0028.jpg';
 import EnrollChildForm from './components/EnrollChild';
@@ -8,12 +7,9 @@ import imgCamp from '../../assets/images/ngo/camp-img.jpg';
 import imgCamp1 from '../../assets/images/ngo/camp-img-1.jpg';
 import imgCamp2 from '../../assets/images/ngo/6381334.jpg';
 import Container from '../../components/container';
-import Header from '../../components/header/Header';
 
 function SupportProgram() {
   return (
-    <>
-      <Header store={false} />
       <Container>
 
         <Hero image={img} title="Tennis Clinic for Secondary Schools" />
@@ -71,7 +67,6 @@ function SupportProgram() {
         </section>
       </Container>
 
-    </>
   );
 }
 

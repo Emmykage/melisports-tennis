@@ -9,7 +9,6 @@ import Header from '../components/header/Header';
 
 const Brands = () => (
   <>
-      <Header />
     <Container>
 
       <div className="section-container h-fit">

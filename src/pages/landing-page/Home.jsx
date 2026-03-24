@@ -68,8 +68,6 @@ const LandingHome = () => {
   ];
   return (
     <>
-
-      <Header store={false} />
       <Container>
 
         <SecondarySlider />

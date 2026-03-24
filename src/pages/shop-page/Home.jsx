@@ -43,7 +43,6 @@ const ShopHome = () => {
 
   return (
     <>
-      <Header />
       <Container>
         <SecondarySlider />
 

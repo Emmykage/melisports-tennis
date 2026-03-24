@@ -14,7 +14,6 @@ import Header from '../../components/header/Header';
 const About = () => (
   <div className="about customer-bg-theme text-white">
 
-    <Header store={false} />
     <Container>
 
       <AboutBanner />

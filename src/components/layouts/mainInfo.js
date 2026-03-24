@@ -4,6 +4,7 @@ import Modal from '../modal/Modal';
 import ChatBox from '../sideNav/ChatBox';
 import MobileFooter from '../footer/mobile_footer';
 import FooterInfo from '../footer-info/FooterInfo';
+import Header from '../header/Header';
 
 const MainInfoLayout = ({ children }) => {
   const { isOpen } = useSelector((state) => state.modal);
@@ -11,6 +12,8 @@ const MainInfoLayout = ({ children }) => {
   return (
 
     <div className="relative h-screen  overflow-y-auto main">
+          <Header store={false} />
+
       {isOpen && <Modal />}
       {children}
       <FooterInfo />

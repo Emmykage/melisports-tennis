@@ -49,7 +49,6 @@ const TennisPage = () => {
   };
   return (
     <div className="">
-      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Tennis" />

@@ -124,9 +124,6 @@ const ProductDetails = () => {
   return (
     <>
 
-      {/* <section className="bg-gray-50"> */}
-      <Header />
-
       <Container>
 
         {/* Product Container */}

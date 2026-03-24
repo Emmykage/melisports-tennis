@@ -57,7 +57,6 @@ const BagsPage = () => {
 
   return (
     <>
-      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Bags & Backpacks" />

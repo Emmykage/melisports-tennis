@@ -55,7 +55,6 @@ const Directory = () => {
   return (
     <>
       <div className="bg-white">
-        <Header store={false} />
         <Container>
 
           <Hero image={court} title="Court Directory" />

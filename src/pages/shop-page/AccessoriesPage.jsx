@@ -60,7 +60,6 @@ const AccessoriesPage = () => {
 
   return (
     <>
-      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Accessories" />

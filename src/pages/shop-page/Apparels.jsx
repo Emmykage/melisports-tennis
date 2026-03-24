@@ -66,7 +66,6 @@ const ApparelsPage = () => {
 
   return (
     <>
-      <Header />
       <Container>
 
         <Hero image={imageBanner} title="Apparels" />

@@ -144,7 +144,6 @@ const Checkout = () => {
   }, []);
   return (
     <>
-      <Header />
       <Container>
 
         <div className="max-w-5xl m-auto mt-10">

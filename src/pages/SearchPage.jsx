@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
-import { getProductCategories } from '../redux/actions/product_category';
 import { getProducts, searchedProducts } from '../redux/actions/product';
 
-import { closeList } from '../redux/products/searched';
 import Loader from './Loader';
-import {
-  searchedPage,
-} from '../redux/products/product';
+
 import ProductsGrid from '../components/products/ProductsGridDisplay';
-import Nav from '../components/nav/Nav';
 import SideNav from '../components/sideNav/SideNav';
 import { featureItems } from '../constants/properties';
 import { classLevels } from '../constants/categories';
 import Container from '../components/container';
-import Header from '../components/header/Header';
 
 const SearchPage = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
@@ -81,8 +75,6 @@ const SearchPage = () => {
 
   return (
     <div className="product-container">
-            <Header />
-
       <Container>
 
         <div className="prod-page px-4">

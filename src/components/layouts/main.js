@@ -6,18 +6,16 @@ import Modal from '../modal/Modal';
 import ChatBox from '../sideNav/ChatBox';
 import MobileFooter from '../footer/mobile_footer';
 import FooterInfo from '../footer-info/FooterInfo';
+import Header from '../header/Header';
 
 const MainLayout = ({ children }) => {
   const { isOpen } = useSelector((state) => state.modal);
-  const { user } = useSelector((state) => state.user);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-  }, []);
   return (
 
     <div className="relative main">
-      {/* {(user && user?.confirmed_at) && <div className="py-05 text-red px-4">Confirm your Account from the message sent to you Email</div>} */}
+      <Header />
+
       {isOpen && <Modal />}
       {children}
       <FooterInfo />
