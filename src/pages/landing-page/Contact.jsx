@@ -31,7 +31,6 @@ const Contact = () => {
   };
   return (
     <div className="">
-      <Header store={false} />
       <Container>
 
         <Hero image={bannerImage} title="Contact Us" />

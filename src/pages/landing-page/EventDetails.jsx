@@ -8,7 +8,6 @@ function EventDetails() {
   return (
 
     <>
-      <Header store={false} />
       <Container>
 
         <Hero image={img} title="Tennis Clinic for Secondary Schools" />

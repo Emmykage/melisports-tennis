@@ -30,15 +30,20 @@ export function SearchBox({ logo, stickyNav }) {
 
   const [search, setSearch] = useState('');
   const handleSearch = (e) => {
+         setShowSearch(false)
+
     e.preventDefault();
     if (isSearchPage) return;
 
+
     navigate(`/search_page?search=${search}`);
     dispatch(clearSearch());
-
-    // setShowSearchList(false);
   };
   useEffect(() => {
+    console.log("triggered without change product")
+    if (isSearchPage) {         
+       setShowSearch(false)
+       return}
     setShowSearch(searched_products.length > 0);
   },
   [searched_products]);
