@@ -44,7 +44,6 @@ const ConfirmOrder = () => {
 
   return (
     <>
-            <Header />
 
       <Container>
 

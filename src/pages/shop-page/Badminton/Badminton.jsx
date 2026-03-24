@@ -75,8 +75,6 @@ const BadmintonsPage = () => {
 
   return (
     <div className="">
-      <Header />
-
       <Container>
 
         <Hero image={bannerImage} title="Badminton" />

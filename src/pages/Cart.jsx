@@ -51,7 +51,6 @@ const Cart = () => {
 
   return (
     <>
-      <Header />
       <Container>
 
         {cartItems.length < 1

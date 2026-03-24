@@ -82,8 +82,6 @@ const ProductsPage = () => {
 
   return (
     <>
-
-      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Racquet" />

@@ -67,7 +67,6 @@ const Arrivals = () => {
 
   return (
     <>
-      <Header />
       <Container>
 
         <Hero image={bannerImage} title="Racquet" />

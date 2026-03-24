@@ -13,7 +13,7 @@ const FooterInfo = () => (
       <div className="flex flex-col items-center text-center bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition">
         <img src={delivery} alt="Free Delivery" className="w-12 h-12 mb-3" />
         <p className="text-base font-semibold text-gray-800">Free Delivery</p>
-        <span className="text-sm text-gray-500">On orders over ₦300,000</span>
+        <span className="text-sm text-gray-500">On orders over ₦500,000</span>
       </div>
 
       {/* Secured Payment */}
