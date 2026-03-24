@@ -153,7 +153,7 @@ export function SearchBox({ logo, stickyNav }) {
 
         <Paper
           sx={{
-            background: 'rgba(214, 214, 214, 1)',
+            // background: 'rgba(214, 214, 214, 1)',
 
             overflow: 'hidden',
             height: { xs: '50vh', sm: '70vh' },
