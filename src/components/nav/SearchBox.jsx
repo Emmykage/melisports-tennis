@@ -18,6 +18,7 @@ export function SearchBox({ logo, stickyNav }) {
   const [showSearch, setShowSearch] = useState(false);
 
   const searchRef = useRef(null);
+  const searchInputRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -33,7 +34,9 @@ export function SearchBox({ logo, stickyNav }) {
          setShowSearch(false)
 
     e.preventDefault();
-    if (isSearchPage) return;
+    if (isSearchPage || !search){
+      searchInputRef.current?.focus()
+      return};
 
 
     navigate(`/search_page?search=${search}`);
@@ -50,6 +53,7 @@ export function SearchBox({ logo, stickyNav }) {
 
   const handlesearchInput = (e) => {
     const { value } = e.target;
+
     const cleanedValue = value.replace(/\s+/g, ' ');
     setSearch(cleanedValue);
 
@@ -71,16 +75,18 @@ export function SearchBox({ logo, stickyNav }) {
   },
   [searched_products]);
 
-  const handleClickOutside = (e) => {
-    if(isSearchPage ) return
-    console.log("clivk outside")
-    if (searchRef.current && !searchRef.current.contains(e.target)) {
-          console.log("clivk out verified")
+const handleClickOutside = (e) => {
+  if (isSearchPage) return;
 
-      !isSearchPage && dispatch(clearSearch());
-      setShowSearch(false);
-    }
-  };
+  const isOutside =
+    searchRef.current &&
+    !searchRef.current.contains(e.target);
+
+  if (!isOutside) return;
+
+  dispatch(clearSearch());
+  setShowSearch(false);
+};
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -118,21 +124,21 @@ export function SearchBox({ logo, stickyNav }) {
           </NavLink>
 
           <InputBase
+          ref={searchInputRef}
             sx={{
               ml: 1,
               flex: 1,
-              pl: 2,
-              border: 'none',
+              // border: 'none',
               boxShadow: 'none',
-              borderLeft: '1px solid rgba(184, 184, 184, 0.6)',
+              border: '1px solid rgba(184, 184, 184, 0.4)',
+              borderRadius: "10px",
               p: '4px 4px',
               '& .MuiInputBase-input': { paddingLeft: '16px' },
               '& .MuiInputBase-input:focus': {
-                outline: 'none',
-                border: 'none',
+                outline: 'green',
+                border: '1px solid orange',
               },
               '& .MuiInputBase-input:hover': { outline: 'none', border: 'none' },
-              '& .MuiInputBase-input:focus': { outline: 'none' },
             }}
             onChange={handlesearchInput}
             value={isSearchPage ? query : search}
