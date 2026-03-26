@@ -26,7 +26,7 @@ export function SearchBox({ logo, stickyNav }) {
 
   const isSearchPage = pathname === '/search_page';
 
-  const { searched_products } = useSelector((state) => state.products);
+  const { searched_products,searchLoading:loading } = useSelector((state) => state.products);
 
   const [search, setSearch] = useState('');
   const handleSearch = (e) => {
@@ -72,7 +72,11 @@ export function SearchBox({ logo, stickyNav }) {
   [searched_products]);
 
   const handleClickOutside = (e) => {
+    if(isSearchPage ) return
+    console.log("clivk outside")
     if (searchRef.current && !searchRef.current.contains(e.target)) {
+          console.log("clivk out verified")
+
       !isSearchPage && dispatch(clearSearch());
       setShowSearch(false);
     }
@@ -84,7 +88,7 @@ export function SearchBox({ logo, stickyNav }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  console.log(searched_products);
+  console.log(searched_products, loading);
 
   return (
     <div className="relative">
@@ -150,6 +154,8 @@ export function SearchBox({ logo, stickyNav }) {
           </div>
 
         </div>
+         {showSearch
+          &&
 
         <Paper
           sx={{
@@ -163,8 +169,7 @@ export function SearchBox({ logo, stickyNav }) {
             zIndex: 50,
           }}
         >
-          {showSearch
-          && (
+          (
           <div className="grid relative grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-[600px] overflow-auto no-scroll">
 
             { searched_products?.map((item) => (
@@ -182,9 +187,9 @@ export function SearchBox({ logo, stickyNav }) {
             ))}
 
           </div>
-          )}
+          )
 
-        </Paper>
+        </Paper>}
       </Paper>
     </div>
   );

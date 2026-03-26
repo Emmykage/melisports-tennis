@@ -18,7 +18,7 @@ const SearchPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const {
-    searched_products, products, loading, searchLoading, error, message,
+    searched_products, products, searchLoading: loading, searchLoading, error, message,
   } = useSelector((state) => state.products);
   const { product_categories } = useSelector((state) => state.product_categories);
   const query = searchParams.get('search');
