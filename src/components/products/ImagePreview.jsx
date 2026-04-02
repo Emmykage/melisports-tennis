@@ -31,24 +31,25 @@ const ImagePreview = ({ images }) => {
 
   useEffect(() => {
     const closeModal = (e) => {
+      if(!imageBoxRef.current) return
       if (!imageBoxRef.current.contains(e.target)) {
         setShowImage(false);
       }
     };
 
-    document.addEventListener('click', closeModal);
+    document.addEventListener('mousedown', closeModal);
 
-    // return () => {
-    //   document.removeEventListener('mousedown', closeModal);
+    return () => {
+      document.removeEventListener('mousedown', closeModal);
 
-    // }
+    }
   }, []);
   return (
 
     <>
 
       <div className="">
-        <div className="border flex relative h-96 md:h-[600px] overflow-hidden ">
+        <div className=" rounded-lg overflow-hidden flex relative h-96 md:h-[600px] ">
           <button onClick={showPrevImage} className="z-10 absolute image-slider-btn" style={{ left: '0' }}><FaArrowLeft /></button>
           <button onClick={showNextImage} className="z-10 absolute image-slider-btn " style={{ right: '0px' }}><FaArrowRight /></button>
 
@@ -57,7 +58,7 @@ const ImagePreview = ({ images }) => {
 
               key={image}
               style={{ translate: `${-100 * imageIndex}%` }}
-              className="h-full w-full flex  image-slider-img border shrink-0  z-0"
+              className="h-full w-full flex    rounded overflow-hidden shrink-0  z-0"
             >
 
               <img
@@ -79,9 +80,9 @@ const ImagePreview = ({ images }) => {
           {images.map((image, index) => (
             <>
               {' '}
-              <div onClick={() => setView(index)} className="w-16 h-16 md:w-20 md:h-20 border my-1 border-gray-300 p-1">
+              <button onClick={() => setView(index)} className="w-16 h-16 md:w-20 md:h-20  my-1 border border-gray-200/80 p-1">
                 <img src={image} alt="" className="w-full h-full gap-3" />
-              </div>
+              </button>
               {/* <div onClick={()=>setView(index)} className='thumbnail border'><img src={image} alt="" className='w-full h-full' /></div> */}
 
             </>
@@ -92,7 +93,7 @@ const ImagePreview = ({ images }) => {
 
       <div className={`${showImage ? 'show' : ''} imagePrevModal w-full h-full fixed top-0 left-0 flex justify-center items-center z-50 bg-black/50`}>
 
-        <div ref={imageBoxRef} className=" rounded shadow max-w-[500px] max-h-[500px] w-full h-full bg-white overflow-hidden">
+        <div ref={imageBoxRef} className=" rounded shadow  max-h-[400px] mx-4 md:max-w-[700px] md:max-h-[700px] w-full h-full bg-white overflow-hidden">
           <img src={imagePrev} alt="" className="w-full h-full" />
 
         </div>

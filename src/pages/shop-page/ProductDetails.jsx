@@ -8,11 +8,9 @@ import Loader from '../Loader';
 import ImagePreview from '../../components/products/ImagePreview';
 import { nairaFormat } from '../../utils/nairaFormat';
 import { pickColor } from '../../utils/get_colors';
-import Nav from '../../components/nav/Nav';
 import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
 import { addToCart } from '../../redux/actions/cart';
 import Container from '../../components/container';
-import Header from '../../components/header/Header';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -122,7 +120,6 @@ const ProductDetails = () => {
   }
 
   return (
-    <>
 
       <Container>
 
@@ -419,7 +416,6 @@ const ProductDetails = () => {
         </div>
       </Container>
 
-    </>
 
   );
 };
