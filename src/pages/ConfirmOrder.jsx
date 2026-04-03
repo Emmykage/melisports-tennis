@@ -57,7 +57,7 @@ const ConfirmOrder = () => {
                   <span>Invoice </span>
                   {' '}
                   : #
-                  {order?.invoice_number}
+                  {order?.order_number}
                 </p>
               </div>
 
