@@ -38,128 +38,151 @@ const ConfirmOrder = () => {
   const total = order?.total_amount ?? Number(order?.total);
   const counter = totalQnty;
   const discountedAmount = total - subTotal;
-  const discount = order?.discount || referal;
-
-  console.log(discountedAmount);
 
   return (
     <>
 
       <Container>
 
-        <section className="py-10 px-4 sm:px-10 ">
+       <section className="py-10 px-4 sm:px-8 lg:px-12 bg-gray-50 min-h-screen">
+  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6">
 
-          <div className="flex m-auto max-w-7xl gap-5 flex-col md:flex-row">
+    {/* LEFT: Invoice */}
+    <div className="flex-1 bg-white rounded-xl border border-gray-200 shadow-sm p-6 space-y-6">
 
-            <div className="flex-1 p-5 rounded-lg py-10  bg-white">
-              <div>
-                <p className="uppercase text-xl md:text-3xl">
-                  <span>Invoice </span>
-                  {' '}
-                  : #
-                  {order?.order_number}
-                </p>
-              </div>
+      {/* Header */}
+      <div>
+        <p className="text-2xl md:text-3xl font-semibold text-gray-800">
+          Invoice <span className="text-gray-500"># {order?.order_number}</span>
+        </p>
+      </div>
 
-              {
-            status === 'success' && (
-            <div className="border border-green-600 flex px-4 py-6 items-center gap-4 rounded bg-green-100/60">
-              <span className="w-6 h-6 rounded-full flex justify-center items-center bg-green-300/70 border border-green-600"><FaCheck className="text-green-700" /></span>
-              {' '}
-              Order Placed Successfully
+      {/* Success Alert */}
+      {status === "success" && (
+        <div className="flex items-center gap-3 p-4 rounded-lg border border-green-200 bg-green-50">
+          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600">
+            <FaCheck />
+          </span>
+          <p className="text-sm font-medium text-green-700">
+            Order placed successfully
+          </p>
+        </div>
+      )}
 
-            </div>
-            )
-}
+      {/* Payment */}
+      <div className="bg-gray-50 rounded-lg p-4">
+        <p className="text-sm text-gray-500">Payment Method</p>
+        <p className="text-lg font-medium capitalize text-gray-800">
+          {order?.payment_method}
+        </p>
+      </div>
 
-              <div className="border p-4 my-4">
-                <p className="text-base font-medium text-gray-500">Mode</p>
-                <p className="text-lg capitalize">{order?.payment_method}</p>
-              </div>
-              <div className="border rounded-lg p-4">
-                <div>
-                  <p className="text-lg text-gray-500">Name</p>
-                  <p className="text-xl">{order?.billing_address?.name}</p>
+      {/* Customer Info */}
+      <div className="bg-white border border-gray-200 rounded-lg p-5 space-y-4">
+        <div>
+          <p className="text-sm text-gray-500">Name</p>
+          <p className="text-base font-medium text-gray-800">
+            {order?.billing_address?.name}
+          </p>
+        </div>
+
+        <div>
+          <p className="text-sm text-gray-500">Email</p>
+          <p>{order?.billing_address?.email}</p>
+        </div>
+
+        <div>
+          <p className="text-sm text-gray-500">Phone</p>
+          <p>{order?.billing_address?.phone_no}</p>
+        </div>
+
+        <div>
+          <p className="text-sm text-gray-500">Address</p>
+          <p className="leading-relaxed">
+            {order?.billing_address?.street},{" "}
+            {order?.billing_address?.city},{" "}
+            {order?.billing_address?.state}
+          </p>
+        </div>
+
+        <div>
+          <p className="text-sm text-gray-500">Delivery Fee</p>
+          <p className="font-medium">
+            {nairaFormat(order?.delivery_fee)}
+          </p>
+        </div>
+      </div>
+
+      {/* Items */}
+      <div>
+        <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">
+          Items
+        </h3>
+
+        <div className="space-y-4">
+          {order?.order_items?.length > 0 ? (
+            order.order_items.map((item) => (
+              <div
+                key={item.id}
+                className="flex flex-col sm:flex-row gap-4 p-4 border border-gray-200 rounded-xl hover:shadow-sm transition"
+              >
+                {/* Image */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 border rounded-md p-1 bg-gray-50">
+                  <img
+                    src={item?.photo_url || item?.product?.image}
+                    alt={item?.product?.name}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <div className="my-4">
-                  <p className="text-lg text-gray-500">Email</p>
-                  <p className="text-xl">{order?.billing_address?.email}</p>
-                </div>
-                <div className="my-4">
-                  <p className="text-lg text-gray-500">Phone Number</p>
-                  <p className="text-xl">{order?.billing_address?.phone_no}</p>
-                </div>
-                <div className="my-2">
-                  <p className="text-lg text-gray-500">Address</p>
-                  <p className="text-xl">
-                    {order?.billing_address?.street}
-                    {' '}
-                    {order?.billing_address?.city}
-                    {' '}
-                    {order?.billing_address?.state}
+
+                {/* Info */}
+                <div className="flex-1">
+                  <p className="font-medium text-gray-800">
+                    {item?.product?.name}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Qty: {item?.quantity}
                   </p>
                 </div>
-                <div className="my-4">
-                  <p className="text-lg text-gray-500">Delivery Fee</p>
-                  <p className="text-xl">{nairaFormat(order?.delivery_fee)}</p>
+
+                {/* Price */}
+                <div className="text-right font-semibold text-gray-900">
+                  {nairaFormat(item?.product?.price)}
                 </div>
               </div>
+            ))
+          ) : (
+            <p className="text-sm text-gray-500">No items</p>
+          )}
+        </div>
+      </div>
 
-              <div className="my-4">
-                <span className="text-lg uppercase">Items</span>
-                {Object.keys(order)?.length > 0 ? order?.order_items?.map((item) => (
-                  <div className="flex justify-between border my-2 rounded-xl py-4 px-4 gap-3">
-                    <div className="w-16 h-16 border rounded p-1">
-                      <img src={item?.photo_url ? item?.photo_url : item?.product?.image} alt="" className="w-full h-full object-contain" />
+      {/* Actions */}
+      <div className="pt-4">
+        <DiscoverBtn
+          className="w-full justify-center"
+          link="/"
+          btnText="Back to Home"
+        />
+      </div>
+    </div>
 
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{item?.product?.name}</p>
-                      <p>
-                        Quantity:
-                        {item?.quantity}
-                      </p>
+    {/* RIGHT: Summary */}
+    <div className="w-full lg:max-w-sm">
+      <CheckoutSummary
+        referal={referal}
+        netTotal={netTotal}
+        subTotal={subTotal}
+        amount={total}
+        shippingFee={deliveryFee}
+        counter={counter}
+        discount={!!referal}
+        discountedAmount={discountedAmount}
+      />
+    </div>
 
-                    </div>
-                    <div>
-                      <p className="text-base font-semibold">
-                        {nairaFormat(item?.product?.price)}
-                      </p>
-                    </div>
-
-                  </div>
-                )) : <h2>No Items</h2>}
-
-              </div>
-
-              <div className="flex justify-between">
-
-                <DiscoverBtn
-                  className="flex gap-2 w-full text-center justify-center"
-                  link="/"
-                  btnText="Back to Home"
-                >
-                  {' '}
-                </DiscoverBtn>
-
-              </div>
-
-            </div>
-            {/* {order?.delivery_fee} */}
-            <CheckoutSummary
-              referal={referal}
-              netTotal={netTotal}
-              subTotal={subTotal}
-              amount={total}
-              shippingFee={deliveryFee}
-              counter={counter}
-              discount={!!referal}
-              discountedAmount={discountedAmount}
-            />
-
-          </div>
-
-        </section>
+  </div>
+</section>
       </Container>
 
     </>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { PaystackButton } from 'react-paystack';
@@ -90,40 +89,64 @@ const ConfirmPayment = ({
         </div>
       </div>
 
-      <div className="my-4 max-w- mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md border border-gray-200">
-        <h4 className="text-base uppercase font-normal">Items</h4>
-        {cartItems.map((item) => (
-          <div className="flex justify-between border my-2 rounded-xl py-4 px-4 gap-3">
-            <div className="w-16 h-16 border rounded p-1">
-              <img src={item.image} alt="" className="w-full h-full object-contain" />
+     <div className="my-8 max-w-4xl mx-auto bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
 
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium">{item.product_name}</p>
-              <p>
-                <span className="mr-5 font-semibold text-gray-600">Sizes: </span>
-                <span className="mr-5">{item?.size ?? 'N/A'}</span>
-              </p>
-              <p>
-                <span className="mr-5 font-semibold text-gray-600">Quantity: </span>
-                <span className="mr-5">{item?.quantity}</span>
+  {/* Header */}
+  <h4 className="text-lg font-semibold text-gray-800 mb-4">
+    Items
+  </h4>
 
-              </p>
+  {/* Items */}
+  <div className="space-y-4">
+    {cartItems.map((item) => (
+      <div
+        key={item.id}
+        className="flex flex-col sm:flex-row gap-4 p-4 rounded-xl border border-gray-200 hover:shadow-sm transition"
+      >
+        {/* Image */}
+        <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 border rounded-md p-1 bg-gray-50">
+          <img
+            src={item.image}
+            alt={item.product_name}
+            className="w-full h-full object-contain"
+          />
+        </div>
 
-            </div>
-            <div>
-              <p className="text-base font-semibold">
-                {nairaFormat(item.price)}
-                <span className={`text-sm block ${item.bonus ? 'text-red-500' : 'hidden'}`}>
-                  {nairaFormat(item.bonus)}
-                </span>
-              </p>
-            </div>
+        {/* Info */}
+        <div className="flex-1 space-y-1">
+          <p className="text-sm font-medium text-gray-800">
+            {item.product_name}
+          </p>
 
+          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+            <p>
+              <span className="font-medium text-gray-500">Size:</span>{" "}
+              {item?.size ?? "N/A"}
+            </p>
+
+            <p>
+              <span className="font-medium text-gray-500">Qty:</span>{" "}
+              {item?.quantity}
+            </p>
           </div>
-        ))}
+        </div>
 
+        {/* Price */}
+        <div className="flex sm:flex-col justify-between sm:items-end text-right">
+          <p className="text-base font-semibold text-gray-900">
+            {nairaFormat(item.price)}
+          </p>
+
+          {item.bonus && (
+            <span className="text-sm text-red-500">
+              {nairaFormat(item.bonus)}
+            </span>
+          )}
+        </div>
       </div>
+    ))}
+  </div>
+</div>
 
       <div className="flex justify-between gap-6">
         <Button

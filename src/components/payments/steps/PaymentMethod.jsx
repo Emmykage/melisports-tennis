@@ -1,7 +1,5 @@
-import React from 'react';
 import '../style.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import DiscoverBtn from '../../buttons/AppButton';
 import Button from '../../buttons/Button';
 
 const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
@@ -17,30 +15,71 @@ const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
 
   return (
     <div className="">
-      <div className="border mb-6 relative rounded-2xl border-theme md:px-3 py-4 md:py-8 gap-4 flex items-center">
+      <div className="space-y-4">
 
-        <label htmlFor="delivery" className="absolute cursor-pointer top-0 left-0 w-full h-full" />
-        <input type="radio" onChange={handlePaymentMethod} value="pay later" name="payment_method" id="delivery" className="border w-6 h-6   shrink-0 custom-checkbox" checked={billingDetails.payment_method === 'pay later' && true} />
+  {/* Pay Later */}
+  <label
+    htmlFor="delivery"
+    className={`flex items-start gap-4 p-5 rounded-xl border cursor-pointer transition
+    ${
+      billingDetails.payment_method === "pay later"
+        ? "border-green-500 bg-green-50"
+        : "border-gray-200 hover:border-gray-300"
+    }`}
+  >
+    <input
+      type="radio"
+      onChange={handlePaymentMethod}
+      value="pay later"
+      name="payment_method"
+      id="delivery"
+      className="mt-1 h-5 w-5  shrink-0 custom-checkbox accent-green-600"
+      checked={billingDetails.payment_method === "pay later"}
+    />
 
-        <div>
-          <p className="py-0 font-semibold text-xl">Pay Later</p>
-          <p>Our representative will contact you to confirm your order</p>
+    <div>
+      <p className="font-semibold text-lg text-gray-800">
+        Pay on Delivery
+      </p>
+      <p className="text-sm text-gray-500">
+        Our representative will contact you to confirm your order
+      </p>
+    </div>
+  </label>
 
-        </div>
-      </div>
-      <div className="border  my-6 relative rounded-2xl border-theme md:px-3  py-4 md:py-8 gap-4 flex items-center">
+  {/* Paystack */}
+  <label
+    htmlFor="paystack"
+    className={`flex items-start gap-4 p-5 rounded-xl border cursor-pointer transition
+    ${
+      billingDetails.payment_method === "paystack"
+        ? "border-indigo-500 bg-indigo-50"
+        : "border-gray-200 hover:border-gray-300"
+    }`}
+  >
+    <input
+      type="radio"
+      onChange={handlePaymentMethod}
+      value="paystack"
+      name="payment_method"
+      id="paystack"
+      className="mt-1 h-5 w-5 accent-indigo-600  shrink-0 custom-checkbox"
+      checked={billingDetails.payment_method === "paystack"}
+    />
 
-        <label htmlFor="paystack" className="absolute cursor-pointer top-0 left-0 w-full h-full" />
-        <input type="radio" onChange={handlePaymentMethod} value="paystack" name="payment_method" id="paystack" className="border w-6 h-6  shrink-0 custom-checkbox" checked={billingDetails.payment_method === 'paystack' && true} />
+    <div className=''>
+      <p className="font-semibold text-lg text-gray-800">
+        Paystack
+      </p>
+      <p className="text-sm text-gray-500">
+        Card, Bank Account, Transfer, USSD, Visa QR, Mobile Money
+      </p>
+    </div>
+  </label>
 
-        <div>
-          <p className="py-0 font-semibold text-xl">Paystack</p>
-          <p>Card, Bank Account, Bank Transfer, uSSD, Visa QR, Mobile Money</p>
+</div>
 
-        </div>
-      </div>
-
-      <div className="flex justify-between gap-3">
+      <div className="flex justify-between my-4 gap-3">
         <Button
           className="flex gap-2 flex-1"
           btnFunc={() => setStep((prev) => prev - 1)}
