@@ -12,7 +12,7 @@ const MainInfoLayout = ({ children }) => {
   return (
 
     <div className="relative h-screen  overflow-y-auto main">
-          <Header store={false} />
+      <Header store={false} />
 
       {isOpen && <Modal />}
       {children}

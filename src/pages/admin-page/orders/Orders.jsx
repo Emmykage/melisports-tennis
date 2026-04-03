@@ -149,57 +149,74 @@ const Orders = () => {
   }, []);
 
   return (
-    <div className="order-container text-gray-800 bg-white p-4 rounded">
-
+    <div className="order-container text-gray-800 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
       <div>
-        <h2 className="font-normal mb-4">Orders</h2>
+        <h2 className="font-semibold text-lg text-gray-800 mb-4">Orders</h2>
 
-        <table className="order">
-          <thead>
-            {getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup?.id}>
-                {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="text-gray-700 bg-gray-200">
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
+        <div className="overflow-x-auto rounded-lg border border-gray-200">
+          <table className="min-w-full text-sm text-left text-gray-600">
 
-                  </th>
-                ))}
-
-              </tr>
-            ))}
-
-          </thead>
-          <tbody>
-
-            {loading
-              ? (
-                <tr className="w-full bg-gray-50">
-                  <td colSpan="5">
-                    <Loader />
-
-                  </td>
-                </tr>
-              )
-              : getRowModel().rows.map((row) => (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
+            {/* Header */}
+            <thead className="bg-gray-100 text-xs uppercase text-gray-500">
+              {getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup?.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th key={header.id} className="px-4 py-3">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                    </th>
                   ))}
                 </tr>
               ))}
-          </tbody>
+            </thead>
 
-        </table>
+            {/* Body */}
+            <tbody className="divide-y divide-gray-200">
+              {loading ? (
+                <tr className="bg-gray-50">
+                  <td colSpan="100%" className="px-4 py-6 text-center">
+                    <Loader />
+                  </td>
+                </tr>
+              ) : (
+                getRowModel().rows.map((row, index) => (
+                  <tr
+                    key={row.id}
+                    className={`${
+                      index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                    } hover:bg-gray-100 transition`}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id} className="px-4 py-3">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <Confirmation open={open} btnAction={() => { handleDelete(objectId); }} cnlAction={() => { setOpen(false); }} loading={loading}>
+      {/* Confirmation Modal */}
+      <Confirmation
+        open={open}
+        btnAction={() => {
+          handleDelete(objectId);
+        }}
+        cnlAction={() => {
+          setOpen(false);
+        }}
+        loading={loading}
+      >
         Confirm Delete
       </Confirmation>
     </div>

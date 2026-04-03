@@ -86,225 +86,284 @@ const OrderDetails = () => {
   return (
     <>
       <div className="bg-white p-6" ref={contRef}>
+        <div className="space-y-6">
 
-        <div className="flex">
-          <span onClick={() => navigate(-1)} className="mr-4 border cursor-pointer border-gray-400 h-10 shadow w-12 rounded flex justify-center items-center"><MdOutlineKeyboardBackspace className="text-2xl" /></span>
-          <div>
-            <p className="text-green-700 text-xs">Order/Order details</p>
-            <p className="text-xl font-semibold text-gray-800">
-              Order#
-              {order?.order_number}
-            </p>
+          {/* Header */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate(-1)}
+              className="h-10 w-10 flex items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+            >
+              <MdOutlineKeyboardBackspace className="text-xl text-gray-700" />
+            </button>
 
-          </div>
-        </div>
-        <div className="pb-7 pt-5  px-5 my-7 rounded-xl border border-gray-300">
-
-          <div className=" flex flex-col lg:flex-row ">
-            <div className="flex-1">
-
-              <p className="text-2xl my-3 text-gray-800 font-semibold">
+            <div>
+              <p className="text-xs text-gray-500">Order / Order details</p>
+              <p className="text-xl font-semibold text-gray-800">
                 Order #
                 {order?.order_number}
               </p>
-              {order?.status === 'pending' ? <span className="bg-orange-200 px-4 py-1 text-orange-800 font-medium rounded"> awaiting confirmation</span> : order?.status === 'declined' ? <span className="bg-red-200 px-4 py-1 text-red-800 font-medium rounded">Order Rejected </span> : <span className="bg-blue-200 px-4 py-1 text-blue-800 font-medium rounded"> Ready to ship</span>}
-              <div className="flex flex-col md:flex-row gap-7 my-5">
+            </div>
+          </div>
 
-                <span className="bg-gray-300 px-2 py-1 rounded-lg text-xs">
-                  ordered:
-                  {' '}
-                  {localDate(order?.created_at)}
+          {/* Order Summary */}
+          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <div className="flex flex-col lg:flex-row justify-between gap-4">
+
+              {/* Left */}
+              <div className="space-y-3">
+                <p className="text-2xl font-semibold text-gray-800">
+                  Order #
+                  {order?.order_number}
+                </p>
+
+                {/* Status */}
+                <span
+                  className={`inline-block px-3 py-1 text-sm rounded-full font-medium
+          ${
+            order?.status === 'pending'
+              ? 'bg-orange-100 text-orange-700'
+              : order?.status === 'declined'
+                ? 'bg-red-100 text-red-700'
+                : 'bg-blue-100 text-blue-700'
+          }`}
+                >
+                  {order?.status === 'pending'
+                    ? 'Awaiting confirmation'
+                    : order?.status === 'declined'
+                      ? 'Order Rejected'
+                      : 'Ready to ship'}
                 </span>
-                <span className="bg-gray-300 px-2 py-1 rounded-lg text-xs">
-                  paid on: 2024-02-13
-                </span>
-                <span className="bg-gray-300 px-2 py-1 rounded-lg text-xs">
-                  paid on: 2024-02-13
-                </span>
 
+                {/* Meta */}
+                <div className="flex flex-wrap gap-3 text-xs text-gray-600">
+                  <span className="bg-gray-100 px-3 py-1 rounded-md">
+                    Ordered:
+                    {' '}
+                    {localDate(order?.created_at)}
+                  </span>
+                  <span className="bg-gray-100 px-3 py-1 rounded-md">
+                    Paid on: 2024-02-13
+                  </span>
+                  <span className="bg-gray-100 px-3 py-1 rounded-md">
+                    Delivery: Standard
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="flex gap-3 max-w-[280px]  w-full">
-              <span className="p-2 border border-gray-300 h-max rounded-lg ">More</span>
-              <span className="p-2 bg-green-600 h-max text-white rounded-lg font-medium">Create shippin Label</span>
 
-            </div>
-          </div>
-
-          <div className="flex justify-end">
-
-            <span className={` ${order?.status === 'pending' ? 'bg-orange-200 text-orange-800' : order?.status === 'confirmed' ? 'bg-green-200 text-green-800' : 'bg-red-200  text-red-800'}  px-3 py-1 text-sm"`}>
-              {order?.status}
-
-            </span>
-          </div>
-
-        </div>
-        <div className="grid lg:grid-cols-3 gap-6">
-          <div className="border rounded-lg p-4 border-gray-300">
-            <div className="flex justify-between">
-              <p className="text-sm font-semibold text-gray-700">CUSTOMER & ORDER</p>
-              <ClickButton onCLick={() => {}}>Edit</ClickButton>
-
-            </div>
-            <div>
-              <div className="flex flex-col md:flex-row justify-between">
-                <span className="flex-1 font-medium">Name:</span>
-                <span className="flex-1">{order?.billing_address?.name}</span>
-              </div>
-              <div className="flex flex-col md:flex-row flex-wrap justify-between gap-1 my-2">
-                <span className="flex-1 font-semibold  text-gray-600">Email:</span>
-                <span className="flex-1  ">
-                  {' '}
-                  {order?.billing_address?.email}
-                </span>
-              </div>
-              <div className="flex justify-between my-2  text-gray-500 flex-col md:flex-row">
-                <span className="flex-1 font-semibold  text-gray-600">Phone:</span>
-                <span className="flex-1">{order?.billing_address?.phone_no}</span>
-              </div>
-              <div className="flex flex-col md:flex-row justify-between my-2">
-                <span className="flex-1 font-semibold  text-gray-600">Payment Method:</span>
-                <span className="flex-1 uppercase">
-                  {' '}
-                  {order?.payment_method}
-                </span>
-              </div>
-              <div className="flex justify-between flex-col md:flex-row my-2">
-                <span className="flex-1 flex-col md:flex-row font-semibold text-gray-600">Delivery Method:</span>
-                <span className="flex-1"> Shipping</span>
+              {/* Right Actions */}
+              <div className="flex gap-2">
+                <button className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-100 transition">
+                  More
+                </button>
+                <button className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 transition">
+                  Create Shipping Label
+                </button>
               </div>
             </div>
 
-          </div>
-          <div className="border rounded-lg p-4 border-gray-300">
-            <div className="flex justify-between">
-              <p className="text-sm font-semibold text-gray-700">SHIPPING ADDRESS</p>
-              <ClickButton onCLick={() => {}}>Edit</ClickButton>
-
-            </div>
-            <div>
-              {order?.billing_address?.street}
-              {' '}
-              {order?.billing_address?.city}
-              {' '}
-              {order?.billing_address?.atate}
-            </div>
-
-          </div>
-          <div className="border rounded-lg p-4 border-gray-300">
-            <div className="flex justify-between">
-              <p className="text-sm font-semibold text-gray-700">SHIPPING ADDRESS</p>
-              <ClickButton onCLick={() => {}}>Edit</ClickButton>
-
-            </div>
-            <div>
-              {order?.billing_address?.street}
-              {' '}
-              {order?.billing_address?.city}
-              {' '}
-              {order?.billing_address?.atate}
-
-            </div>
-
-          </div>
-        </div>
-
-        <div className="my-8">
-          <div className="flex justify-between">
-            <p className="font-semibold text-sm">Items Ordered</p>
-            {/* <ClickButton>Edit</ClickButton> */}
-          </div>
-          <div className=" overflow-x-auto no-scroll">
-
-            {loading ? <Loader />
-              : (
-                <table className="my-4">
-                  <thead>
-                    <tr>
-                      <th />
-                      <th>Item Name</th>
-                      <th>SKU</th>
-                      <th>Code</th>
-                      <th>Quantity</th>
-                      <th>price</th>
-                      <th>total</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {order?.order_items?.map((item) => (
-                      <tr key={item.id}>
-                        <td>
-                          {' '}
-                          <img src={item.photo_url} alt={item.product.name} className="w-20 h-20" />
-                        </td>
-                        <td>{item.product.name}</td>
-                        <td>{item.product.sku}</td>
-                        {/* <td>{item.billing_address.city}</td> */}
-                        <td>{item.product.ms_code}</td>
-                        <td>{item.quantity}</td>
-                        <td className="font-semibold text-gray-500">{nairaFormat(item.amount)}</td>
-                        <td className="text-gray-600 font-semibold">{nairaFormat(item.amount * item.quantity)}</td>
-
-                      </tr>
-
-                    ))}
-                    <tr>
-                      <td>
-                        {' '}
-                        <span>Shipping</span>
-                      </td>
-                      <td />
-
-                      <td />
-                      <td />
-                      {' '}
-                      <td />
-                      <td />
-                      <td>
-                        {' '}
-                        <span>{nairaFormat(order?.delivery_fee ?? 0)}</span>
-                      </td>
-
-                    </tr>
-                    <tr>
-                      <td>
-                        {' '}
-                        <span>Total</span>
-                      </td>
-                      <td />
-                      <td />
-
-                      <td />
-                      {' '}
-                      <td />
-                      <td />
-                      <td>
-                        {' '}
-                        <span className="text-xl font-bold text-gray-800">{ nairaFormat(parseInt(order?.net_total))}</span>
-                      </td>
-
-                    </tr>
-                  </tbody>
-                </table>
-              ) }
-
-          </div>
-
-          <div>
-            Currency NGN
-          </div>
-
-        </div>
-        <div className="my-8 overflow-x-auto no-scroll">
-          <div className="flex justify-between">
-            <p className="font-semibold text-sm">Invoices </p>
-            {order?.invoice ? (
-              <ClickButton
-
-                onClick={() => setOpenInvoice(true)}
+            {/* Bottom Status */}
+            <div className="flex justify-end mt-4">
+              <span
+                className={`px-3 py-1 text-xs rounded-full font-medium
+        ${
+          order?.status === 'pending'
+            ? 'bg-orange-100 text-orange-700'
+            : order?.status === 'confirmed'
+              ? 'bg-green-100 text-green-700'
+              : 'bg-red-100 text-red-700'
+        }`}
               >
+                {order?.status}
+              </span>
+            </div>
+          </div>
+
+          {/* Info Cards */}
+          <div className="grid lg:grid-cols-3 gap-6">
+
+            {/* Customer */}
+            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <p className="text-sm font-semibold text-gray-700">
+                  CUSTOMER & ORDER
+                </p>
+                <ClickButton>Edit</ClickButton>
+              </div>
+
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Name</span>
+                  <span className="font-medium text-gray-800">
+                    {order?.billing_address?.name}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Email</span>
+                  <span>{order?.billing_address?.email}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Phone</span>
+                  <span>{order?.billing_address?.phone_no}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Payment</span>
+                  <span className="uppercase font-medium">
+                    {order?.payment_method}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Delivery</span>
+                  <span>Shipping</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Shipping */}
+            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <p className="text-sm font-semibold text-gray-700">
+                  SHIPPING ADDRESS
+                </p>
+                <ClickButton>Edit</ClickButton>
+              </div>
+
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {order?.billing_address?.street}
+                {' '}
+                <br />
+                {order?.billing_address?.city}
+                ,
+                {' '}
+                {order?.billing_address?.state}
+              </p>
+            </div>
+
+            {/* Billing (renamed for clarity) */}
+            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <p className="text-sm font-semibold text-gray-700">
+                  BILLING ADDRESS
+                </p>
+                <ClickButton>Edit</ClickButton>
+              </div>
+
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {order?.billing_address?.street}
+                {' '}
+                <br />
+                {order?.billing_address?.city}
+                ,
+                {' '}
+                {order?.billing_address?.state}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="my-8">
+          <div className="flex justify-between items-center mb-4">
+            <p className="font-semibold text-lg text-gray-800">Items Ordered</p>
+          </div>
+
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
+            {loading ? (
+              <Loader />
+            ) : (
+              <table className="min-w-full text-sm text-left text-gray-600">
+                <thead className="bg-gray-100 text-xs uppercase text-gray-500">
+                  <tr>
+                    <th className="px-4 py-3" />
+                    <th className="px-4 py-3">Item Name</th>
+                    <th className="px-4 py-3">SKU</th>
+                    <th className="px-4 py-3">Code</th>
+                    <th className="px-4 py-3 text-center">Qty</th>
+                    <th className="px-4 py-3 text-right">Price</th>
+                    <th className="px-4 py-3 text-right">Total</th>
+                  </tr>
+                </thead>
+
+                <tbody className="divide-y divide-gray-200">
+                  {order?.order_items?.map((item, index) => (
+                    <tr
+                      key={item.id}
+                      className={`${
+                        index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                      } hover:bg-gray-100 transition`}
+                    >
+                      <td className="px-4 py-3">
+                        <img
+                          src={item.photo_url}
+                          alt={item.product.name}
+                          className="w-16 h-16 object-cover rounded-md border"
+                        />
+                      </td>
+
+                      <td className="px-4 py-3 font-medium text-gray-800">
+                        {item.product.name}
+                      </td>
+
+                      <td className="px-4 py-3">{item.product.sku}</td>
+
+                      <td className="px-4 py-3">{item.product.ms_code}</td>
+
+                      <td className="px-4 py-3 text-center">
+                        {item.quantity}
+                      </td>
+
+                      <td className="px-4 py-3 text-right font-medium">
+                        {nairaFormat(item.amount)}
+                      </td>
+
+                      <td className="px-4 py-3 text-right font-semibold text-gray-800">
+                        {nairaFormat(item.amount * item.quantity)}
+                      </td>
+                    </tr>
+                  ))}
+
+                  {/* Shipping Row */}
+                  <tr className="bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-700">
+                      Shipping
+                    </td>
+                    <td colSpan="5" />
+                    <td className="px-4 py-3 text-right font-medium">
+                      {nairaFormat(order?.delivery_fee ?? 0)}
+                    </td>
+                  </tr>
+
+                  {/* Total Row */}
+                  <tr className="bg-white border-t-2">
+                    <td className="px-4 py-4 font-bold text-gray-900 text-lg">
+                      Total
+                    </td>
+                    <td colSpan="5" />
+                    <td className="px-4 py-4 text-right text-xl font-bold text-gray-900">
+                      {nairaFormat(parseInt(order?.net_total))}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            )}
+          </div>
+
+          <div className="mt-3 text-sm text-gray-500">
+            Currency:
+            {' '}
+            <span className="font-medium text-gray-700">NGN</span>
+          </div>
+        </div>
+        <div className="my-8 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+
+          {/* Header */}
+          <div className="flex justify-between items-center mb-4">
+            <p className="font-semibold text-lg text-gray-800">Invoices</p>
+
+            {order?.invoice ? (
+              <ClickButton onClick={() => setOpenInvoice(true)}>
                 View Invoice
               </ClickButton>
             ) : (
@@ -317,44 +376,75 @@ const OrderDetails = () => {
             )}
           </div>
 
-          <div className=" overflow-x-auto no-scroll">
-            <table className="my-4">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Amount</th>
-                  <th>Customer</th>
-                  <th>Status</th>
-                  <th>Date</th>
+          {/* Table */}
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
+            <table className="min-w-full text-sm text-left text-gray-600">
 
+              {/* Head */}
+              <thead className="bg-gray-100 text-xs uppercase text-gray-500">
+                <tr>
+                  <th className="px-4 py-3">No</th>
+                  <th className="px-4 py-3 text-right">Amount</th>
+                  <th className="px-4 py-3">Customer</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Date</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr />
 
-                <tr>
-                  <td>Shipping</td>
-                  <td />
-                  <td />
-                  <td />
+              {/* Body */}
+              <tbody className="divide-y divide-gray-200">
 
-                  <td>--</td>
+                {/* Example Row (replace with real data later) */}
+                <tr className="bg-white hover:bg-gray-50 transition">
+                  <td className="px-4 py-3 text-gray-500">INV-001</td>
+                  <td className="px-4 py-3 text-right font-semibold text-gray-800">
+                    {nairaFormat(order?.net_total || 0)}
+                  </td>
+                  <td className="px-4 py-3">
+                    {order?.billing_address?.name}
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">
+                      Paid
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-gray-500">
+                    {localDate(order?.created_at)}
+                  </td>
                 </tr>
 
-                <tr>
-                  <td>Total</td>
-                  <td />
-                  <td />
-                  <td />
-                  <td>--</td>
+                {/* Shipping */}
+                <tr className="bg-gray-50">
+                  <td className="px-4 py-3 font-medium text-gray-700">
+                    Shipping
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    {nairaFormat(order?.delivery_fee ?? 0)}
+                  </td>
+                  <td colSpan="3" />
                 </tr>
-                <div>
-                  Currency NGN
-                </div>
+
+                {/* Total */}
+                <tr className="bg-white border-t-2">
+                  <td className="px-4 py-4 font-bold text-gray-900">
+                    Total
+                  </td>
+                  <td className="px-4 py-4 text-right text-lg font-bold text-gray-900">
+                    {nairaFormat(order?.net_total || 0)}
+                  </td>
+                  <td colSpan="3" />
+                </tr>
+
               </tbody>
             </table>
           </div>
 
+          {/* Footer */}
+          <div className="mt-3 text-sm text-gray-500">
+            Currency:
+            {' '}
+            <span className="font-medium text-gray-700">NGN</span>
+          </div>
         </div>
         <div className="flex justify-between">
           <DiscoverBtn type="cancel" btnText="Decline Order" onclick={() => setOpen(true)} />

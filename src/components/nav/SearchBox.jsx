@@ -27,26 +27,27 @@ export function SearchBox({ logo, stickyNav }) {
 
   const isSearchPage = pathname === '/search_page';
 
-  const { searched_products,searchLoading:loading } = useSelector((state) => state.products);
+  const { searched_products, searchLoading: loading } = useSelector((state) => state.products);
 
   const [search, setSearch] = useState('');
   const handleSearch = (e) => {
-         setShowSearch(false)
+    setShowSearch(false);
 
     e.preventDefault();
-    if (isSearchPage || !search){
-      searchInputRef.current?.focus()
-      return};
-
+    if (isSearchPage || !search) {
+      searchInputRef.current?.focus();
+      return;
+    }
 
     navigate(`/search_page?search=${search}`);
     dispatch(clearSearch());
   };
   useEffect(() => {
-    console.log("triggered without change product")
-    if (isSearchPage) {         
-       setShowSearch(false)
-       return}
+    console.log('triggered without change product');
+    if (isSearchPage) {
+      setShowSearch(false);
+      return;
+    }
     setShowSearch(searched_products.length > 0);
   },
   [searched_products]);
@@ -75,18 +76,17 @@ export function SearchBox({ logo, stickyNav }) {
   },
   [searched_products]);
 
-const handleClickOutside = (e) => {
-  if (isSearchPage) return;
+  const handleClickOutside = (e) => {
+    if (isSearchPage) return;
 
-  const isOutside =
-    searchRef.current &&
-    !searchRef.current.contains(e.target);
+    const isOutside = searchRef.current
+    && !searchRef.current.contains(e.target);
 
-  if (!isOutside) return;
+    if (!isOutside) return;
 
-  dispatch(clearSearch());
-  setShowSearch(false);
-};
+    dispatch(clearSearch());
+    setShowSearch(false);
+  };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -124,14 +124,14 @@ const handleClickOutside = (e) => {
           </NavLink>
 
           <InputBase
-          ref={searchInputRef}
+            ref={searchInputRef}
             sx={{
               ml: 1,
               flex: 1,
               // border: 'none',
               boxShadow: 'none',
               border: '1px solid rgba(184, 184, 184, 0.4)',
-              borderRadius: "10px",
+              borderRadius: '10px',
               p: '4px 4px',
               '& .MuiInputBase-input': { paddingLeft: '16px' },
               '& .MuiInputBase-input:focus': {
@@ -160,42 +160,42 @@ const handleClickOutside = (e) => {
           </div>
 
         </div>
-         {showSearch
-          &&
+        {showSearch
+          && (
+          <Paper
+            sx={{
+              overflow: 'hidden',
+              height: { xs: '50vh', sm: '70vh' },
+              display: showSearchList && !isSearchPage ? 'block' : 'none',
+              position: 'absolute',
+              width: '100%',
+              top: '100%',
+              left: 0,
+              zIndex: 50,
+            }}
+          >
+            (
+            <div className="grid relative grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-[600px] overflow-auto no-scroll">
 
-        <Paper
-          sx={{
-            overflow: 'hidden',
-            height: { xs: '50vh', sm: '70vh' },
-            display: showSearchList && !isSearchPage ? 'block' : 'none',
-            position: 'absolute',
-            width: '100%',
-            top: '100%',
-            left: 0,
-            zIndex: 50,
-          }}
-        >
-          (
-          <div className="grid relative grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-[600px] overflow-auto no-scroll">
+              { searched_products?.map((item) => (
+                <div
+                  className="border shadow rounded-lg pb-4"
+                  onClick={() => {
+                    navigate(`/productdetails/${item?.id}`);
+                    dispatch(clearSearch());
+                  }}
+                >
+                  <img src={item.photo_urls?.[0]} alt="" className="h-52 w-full rounded-lg object-contain" />
+                  <p className="px-4 mt-4 capitalize font-semibold">{item?.name}</p>
+                  <p className="px-4">{nairaFormat(item?.price)}</p>
+                </div>
+              ))}
 
-            { searched_products?.map((item) => (
-              <div
-                className="border shadow rounded-lg pb-4"
-                onClick={() => {
-                  navigate(`/productdetails/${item?.id}`);
-                  dispatch(clearSearch());
-                }}
-              >
-                <img src={item.photo_urls?.[0]} alt="" className="h-52 w-full rounded-lg object-contain" />
-                <p className="px-4 mt-4 capitalize font-semibold">{item?.name}</p>
-                <p className="px-4">{nairaFormat(item?.price)}</p>
-              </div>
-            ))}
+            </div>
+            )
 
-          </div>
-          )
-
-        </Paper>}
+          </Paper>
+          )}
       </Paper>
     </div>
   );

@@ -31,7 +31,7 @@ const ImagePreview = ({ images }) => {
 
   useEffect(() => {
     const closeModal = (e) => {
-      if(!imageBoxRef.current) return
+      if (!imageBoxRef.current) return;
       if (!imageBoxRef.current.contains(e.target)) {
         setShowImage(false);
       }
@@ -41,8 +41,7 @@ const ImagePreview = ({ images }) => {
 
     return () => {
       document.removeEventListener('mousedown', closeModal);
-
-    }
+    };
   }, []);
   return (
 

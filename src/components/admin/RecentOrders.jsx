@@ -14,79 +14,83 @@ const RecentOrders = () => {
   }, []);
 
   return (
-    <div className="recent-orders relative my-7 overscroll-x-auto overflow-x-auto bg-gray-100">
+    <div className="recent-orders my-8 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
 
-      <h2 className="my-4 font-medium">Recent orders</h2>
+      {/* Header */}
+      <h2 className="mb-4 text-lg font-semibold text-gray-800">
+        Recent Orders
+      </h2>
 
-      <div className="overflow-x-auto">
-        <table className="table-auto w-full" />
+      {/* Table Wrapper */}
+      <div className="overflow-x-auto rounded-lg border border-gray-200">
+        <table className="min-w-full text-sm text-left text-gray-600">
+
+          {/* Head */}
+          <thead className="bg-gray-100 text-xs uppercase text-gray-500">
+            <tr>
+              <th className="px-4 py-3">#</th>
+              <th className="px-4 py-3">Qty</th>
+              <th className="px-4 py-3 text-right">Price</th>
+              <th className="px-4 py-3">Payment</th>
+              <th className="px-4 py-3">Status</th>
+              <th className="px-4 py-3 text-right sr-only">Action</th>
+            </tr>
+          </thead>
+
+          {/* Body */}
+          <tbody className="divide-y divide-gray-200">
+            {orders.slice(0, 5).map((order, index) => (
+              <tr
+                key={order?.id}
+                className={`${
+                  index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                } hover:bg-gray-100 transition`}
+              >
+                <td className="px-4 py-3 text-gray-500">
+                  {order?.order_number ?? 'N/A'}
+                </td>
+
+                <td className="px-4 py-3 font-medium text-gray-800">
+                  {order?.orders_count ?? 0}
+                </td>
+
+                <td className="px-4 py-3 text-right font-semibold text-gray-800">
+                  {nairaFormat(order?.total)}
+                </td>
+
+                <td className="px-4 py-3 text-gray-700">
+                  {order?.payment_method}
+                </td>
+
+                <td className="px-4 py-3">
+                  <StatusButton status={order?.status} />
+                </td>
+
+                <td className="px-4 py-3 text-right">
+                  <button
+                    onClick={() => navigate(`/admin/orders/${order?.id}`)}
+                    className="inline-flex items-center gap-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-indigo-600 hover:bg-indigo-600 hover:text-white transition"
+                  >
+                    View
+                    <span className="opacity-50 group-hover:opacity-100">/</span>
+                    Details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <table className="w-full">
-        <thead className="text-[13px] text-slate-500/70">
-          <tr>
-            <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-              <div className="font-medium text-left">#</div>
-            </th>
-            <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-              <div className="font-medium text-left">Qty</div>
-            </th>
-
-            <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-              <div className="font-medium text-left">Price</div>
-            </th>
-            <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-              <div className="font-medium text-left">Payment</div>
-            </th>
-            <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-              <div className="font-medium text-left">Status</div>
-            </th>
-
-            <th className="px-5 py-2 first:pl-3 last:pr-3 bg-slate-100 first:rounded-l last:rounded-r last:pl-5 last:sticky last:right-0">
-              <div className="font-medium text-left sr-only">Action</div>
-            </th>
-          </tr>
-        </thead>
-
-        <tbody className="text-sm font-medium">
-          {orders.slice(0, 5).map((order) => (
-            <tr>
-
-              <td className="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div className="text-slate-500">{order?.order_number ?? 'N/A'}</div>
-              </td>
-
-              <td className="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div className="text-slate-900">{order?.orders_count ?? 0}</div>
-              </td>
-              <td className="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div className="text-slate-900">{nairaFormat(order?.total)}</div>
-              </td>
-              <td className="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div className="text-slate-900">{order?.payment_method}</div>
-              </td>
-              <td className="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-white last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <div className="text-emerald-500"><StatusButton status={order?.status} /></div>
-              </td>
-
-              <td className="px-5 py-3 border-b border-slate-200 last:border-none first:pl-3 last:pr-3 last:bg-gradient-to-r last:from-transparent last:to-[12px] last:pl-5 last:sticky last:right-0">
-                <button
-                  onClick={() => navigate(`/admin/orders/${order?.id}`)}
-                  className="h-8 whitespace-nowrap justify-center rounded-full px-3 py-1 text-sm font-medium text-indigo-500 hover:text-white border border-slate-200 shadow-sm hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors group"
-                >
-                  View
-                  {' '}
-                  <span className="text-slate-200 group-hover:text-indigo-400 transition-colors">/</span>
-                  {' '}
-                  Details
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <NavLink to="/admin/orders" className="block text-center my-4 border w-max m-auto rounded py-1 px-3">Show all</NavLink>
-
+      {/* Footer */}
+      <div className="mt-4 flex justify-center">
+        <NavLink
+          to="/admin/orders"
+          className="text-sm font-medium text-indigo-600 hover:text-white border border-gray-300 px-4 py-1.5 rounded-md hover:bg-indigo-600 transition"
+        >
+          Show all
+        </NavLink>
+      </div>
     </div>
   );
 };
