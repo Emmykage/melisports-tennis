@@ -126,6 +126,7 @@ const Orders = () => {
           link="orders"
 
           handleDel={(id) => {
+            console.log(id)
             setOpen(true);
             setObjectId(id);
           }}

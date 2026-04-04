@@ -1,14 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import  { useEffect, useMemo, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import {
   createColumnHelper, flexRender, getCoreRowModel, useReactTable,
 } from '@tanstack/react-table';
 import { delUsers, getUsers } from '../../../redux/actions/auth';
 import Loader from '../../Loader';
 import Confirmation from '../../../components/modal/Confirmation';
-import StatusButton from '../../../components/buttons/StatusButton';
 import OptionDropdown from '../../../components/optionsDropdown/OptionDropdown';
 import { toggleAlert } from '../../../redux/app/app';
 
@@ -113,15 +111,15 @@ const Customers = () => {
 
   return (
     <div className="order-container text-gray-800 bg-white p-4 rounded">
-
-      <div>
         <h2 className="font-normal mb-4">Customers</h2>
-        <table className="order">
-          <thead>
+
+      <div className='bg-red- overflow-x-auto rounded-lg border border-gray-200'>
+        <table className='min-w-full text-sm text-left text-gray-600'>
+          <thead className="bg-gray-100 text-xs uppercase text-gray-500">
             {getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th className="bg-gray-300 text-gray-900" key={header.id}>
+                  <th className="bg-gray-300 text-gray-900 px-4    py-3" key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -150,7 +148,7 @@ const Customers = () => {
               : getRowModel().rows.map((row) => (
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id}>
+                    <td className='px-4 py-3 text-gray-500' key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}

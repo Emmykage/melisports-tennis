@@ -53,7 +53,7 @@ const Nav = ({
     {
       link: '/brands', label: 'Brands',
     },
-    ...(user?.role === 'admin' ? [{ link: '/admin', label: 'Admin' }] : []),
+    // ...(user?.role === 'admin' ? [{ link: '/admin', label: 'Admin' }] : []),
   ];
 
   const landingNavItem = [

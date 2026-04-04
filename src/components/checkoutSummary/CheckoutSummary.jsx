@@ -3,9 +3,7 @@ import { MdAdd } from 'react-icons/md';
 
 import { FiMinus } from 'react-icons/fi';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { nairaFormat } from '../../utils/nairaFormat';
-import { getAgentByCode } from '../../redux/actions/agents';
 
 const CheckoutSummary = ({
   amount, referal, setReferal, counter, shippingFee = 0, netTotal, subTotal, discount, discountedAmount, handleAgentFetch,

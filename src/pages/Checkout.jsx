@@ -1,11 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import  { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaArrowCircleDown } from 'react-icons/fa';
 import {
   Box, Step, StepLabel, Stepper,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import StripeContainer from './StripeContainer';
 
 import { resetOrder } from '../redux/order/order';
 import CheckoutSummary from '../components/checkoutSummary/CheckoutSummary';
@@ -14,11 +12,9 @@ import PaymentMethod from '../components/payments/steps/PaymentMethod';
 import ConfirmPayment from '../components/payments/steps/ConfirmPayment';
 import { createOrder } from '../redux/actions/orders';
 import { getDeliveryFees } from '../redux/actions/delivery_fee';
-import Nav from '../components/nav/Nav';
 import { emptyCart } from '../redux/actions/cart';
 import { getAgentByCode } from '../redux/actions/agents';
 import Container from '../components/container';
-import Header from '../components/header/Header';
 
 const Checkout = () => {
   const navigate = useNavigate();

@@ -43,7 +43,7 @@ export default function OptionDropdown({
       >
         <MenuItem onClick={() => navigate(`/admin/${link}/${id}`)}>Edit</MenuItem>
         <MenuItem onClick={() => navigate(`/admin/${link}/${id}`)}>View</MenuItem>
-        <MenuItem onClick={() => handleDel(item)}>Archive</MenuItem>
+        <MenuItem onClick={() => handleDel(id)}>Archive</MenuItem>
       </Menu>
     </div>
   );
