@@ -68,7 +68,7 @@ export default function SignUp() {
     };
     dispatch(addUser(formInput)).then((result) => {
       if (addUser.fulfilled.match(result)) {
-        navigation('/auth/confirmation');
+        // navigation('/auth/confirmation');
       }
     });
   };
