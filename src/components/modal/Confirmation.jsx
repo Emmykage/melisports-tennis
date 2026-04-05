@@ -56,7 +56,7 @@ const Confirmation = ({
             btnFunc={onCancel}
             type="cancel"
             btnText={cancelText}
-          >cancelText</Button>
+          >cancel</Button>
 
           <Button
             className="flex-1"

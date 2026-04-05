@@ -108,6 +108,7 @@ const Customers = () => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+  console.log(objectId)
 
   return (
     <div className="order-container text-gray-800 bg-white p-4 rounded">
@@ -159,8 +160,8 @@ const Customers = () => {
         </table>
       </div>
 
-      <Confirmation open={open} btnAction={() => { handleDelete(objectId); }} cnlAction={() => { setOpen(false); }} loading={loading}>
-        Confirm Delete
+      <Confirmation open={open} onConfirm={() => { handleDelete(objectId); }} onCancel={() => { setOpen(false); }} loading={loading}>
+        Delete User 
       </Confirmation>
     </div>
   );
