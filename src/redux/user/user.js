@@ -27,9 +27,7 @@ const userSlice = createSlice({
 
     [addUser.fulfilled]: (state, action) => {
       const response = action.payload;
-      if (response.user) {
-        const collect = JSON.stringify(response);
-        localStorage.setItem('meli_auth', collect);
+
         return {
           ...state,
           logged: true,
@@ -38,24 +36,20 @@ const userSlice = createSlice({
           error: false,
           message: response.message,
         };
-      }
+      
 
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        logged: false,
-        message: action.payload.error,
-      };
     },
-    [addUser.rejected]: (state) => ({
+    [addUser.rejected]: (state, action) => ({
       ...state,
-      error: true,
-      message: 'No Internet connection',
+      loading: false,
+      message: action.payload.message,
     }),
     [addUser.pending]: (state) => ({
       ...state,
       loading: true,
+                message: null,
+
+
     }),
     [loginUser.fulfilled]: (state, action) => {
       const response = action.payload;

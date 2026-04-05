@@ -2,19 +2,37 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import baseURL from '../baseURL';
 import { fetchToken, removeToken, setToken } from '../../hooks/localStorage';
 import { refreshToken } from '../../utils/refreshToken';
+import { toast } from 'react-toastify';
 
 console.log(baseURL, 'hey');
 
-const addUser = createAsyncThunk('user/addUser', async (data) => {
-  const response = await fetch(`${baseURL}users`, {
+const addUser = createAsyncThunk('user/addUser', async (data,{rejectWithValue}) => {
+ try {
+  
+ 
+  const res = await fetch(`${baseURL}users`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
     body: JSON.stringify(data),
   })
-    .then((res) => res.json());
+
+  const response = await res.json()
+   if(!res.ok){
+    throw response?.error ?? "Failed to sign up"
+
+   }
   return response;
+
+  
+ } catch (error) {
+  toast(error, {type: "error"})
+
+     return rejectWithValue({ message: error });
+
+  
+ }
 });
 const loginUser = createAsyncThunk('user/logUser', async (data, { rejectWithValue }) => {
   try {
