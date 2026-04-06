@@ -33,19 +33,8 @@ const Orders = () => {
         dispatch(getOrders());
        toast(result.payload.message, {type: "success"})
       } else {
-        dispatch(toggleAlert({
-          isOpen: true,
-          message: result.payload.message,
-          error: true,
-        }));
-        setTimeout(() => {
-          resetOrder();
-          dispatch(toggleAlert({
-            isOpen: false,
-            message: null,
-            error: false,
-          }));
-        }, 5000);
+            toast(result.payload.message, {type: "error"})
+
       }
     });
   };
