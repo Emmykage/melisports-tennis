@@ -710,7 +710,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                       <FormInput
                         className="flex-1"
-                        label="Thickness (g)"
+                        label="Thickness (mm)"
                         name="thickness"
                         id="thickness"
                         type="text"

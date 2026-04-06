@@ -45,7 +45,6 @@ const Padels = () => {
   };
 
   return (
-    <>
       <Container>
 
         <Hero image={bannerImage} title="Padel" />
@@ -124,9 +123,7 @@ const Padels = () => {
                       { category?.description}
 
                     </p>
-                    <p className="font-semibold text-gray">
-                      From your first steps on the court to the pro circuit, Babolat has the racquet for you. Our tennis racquets are designed to let you have fun and play your best tennis game. Join the millions of players around the world who have discovered Babolat's most popular racquets, depending on what you're looking for: the Boost range if you're just starting out, the Evo range for regular play at an intermediate level, and finally, the Pure range for advanced players. Last but not least, the BallFighter range has been specially designed for young boys and the B Fly range for girls. Follow the best players on the threshold of their careers, such as Rafael Nadal, Carlos Alcaraz, Holger Rune, Félix Auger-Aliassime, Dominic Thiem, Leylah Fernandez and many others, by choosing a Babolat tennis racquet.
-                    </p>
+                  
 
                   </div>
                 </div>
@@ -137,7 +134,6 @@ const Padels = () => {
         </ProductsPageContainer>
       </Container>
 
-    </>
   );
 };
 

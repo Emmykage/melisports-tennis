@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => (
 
     {/* Product Info */}
     <div className="mt-4">
-      <h5 className="text-gray-900 text-base font-medium line-clamp-1 mb-2">
+      <h5 className="text-gray-900 capitalize text-base font-medium line-clamp-1 mb-2">
         {product?.name}
       </h5>
 

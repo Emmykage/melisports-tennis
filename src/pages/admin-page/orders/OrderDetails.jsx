@@ -3,17 +3,17 @@ import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import ClickButton from '../../components/buttons/ClickButton';
-import { createInvoice, getOrder, updateOrder } from '../../redux/actions/orders';
-import { nairaFormat } from '../../utils/nairaFormat';
-import DiscoverBtn from '../../components/buttons/AppButton';
-import Loader from '../Loader';
-import Confirmation from '../../components/modal/Confirmation';
-import localDate from '../../utils/dateFormat.js';
-import { getStatistics } from '../../redux/actions/statistics.js';
-import Invoice from '../../components/invoice/Invoice.jsx';
-import AppModal from '../../components/modal/AppModal.jsx';
-import { closeLoader, setLoader } from '../../redux/app/app.js';
+import ClickButton from '../../../components/buttons/ClickButton.jsx';
+import { createInvoice, getOrder, updateOrder } from '../../../redux/actions/orders.js';
+import { nairaFormat } from '../../../utils/nairaFormat.js';
+import DiscoverBtn from '../../../components/buttons/AppButton.jsx';
+import Loader from '../../Loader.jsx';
+import Confirmation from '../../../components/modal/Confirmation.jsx';
+import localDate from '../../../utils/dateFormat.js';
+import { getStatistics } from '../../../redux/actions/statistics.js';
+import Invoice from '../../../components/invoice/Invoice.jsx';
+import AppModal from '../../../components/modal/AppModal.jsx';
+import { closeLoader, setLoader } from '../../../redux/app/app.js';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -27,12 +27,13 @@ const OrderDetails = () => {
   const [openInvoice, setOpenInvoice] = useState(false);
 
   const handleUpdate = (status) => {
+    console.log(status)
     dispatch(setLoader(true));
 
     dispatch(updateOrder({ id, order_detail: { status } })).unwrap()
       .then((result) => {
         dispatch(getOrder(id));
-        toast(result?.message ?? 'order confirmed', { type: 'success' });
+        toast('order updated', { type: 'success' });
 
         setOpenDecline(false);
         setOpenAccept(false);
@@ -447,13 +448,13 @@ const OrderDetails = () => {
           </div>
         </div>
         <div className="flex justify-between">
-          <DiscoverBtn type="cancel" btnText="Decline Order" onclick={() => setOpen(true)} />
+          <DiscoverBtn type="cancel" btnText="Decline Order" onclick={() => setOpenDecline(true)} />
 
           <DiscoverBtn btnText="Confirm Order" onclick={() => setOpenAccept(true)} />
         </div>
 
-        <Confirmation open={openAccept} cnlAction={() => { setOpenAccept(false); }} btnAction={() => { handleUpdate('confirmed'); }} />
-        <Confirmation open={openDecline} cnlAction={() => { setOpenDecline(false); }} btnAction={() => { handleUpdate('confirmed'); }}>Confrim Reject Order</Confirmation>
+        <Confirmation open={openAccept} onCancel={() => { setOpenAccept(false); }} onConfirm={() => { handleUpdate('confirmed'); }} />
+        <Confirmation open={openDecline} onCancel={() => { setOpenDecline(false); }} onConfirm={() => { handleUpdate('declined'); }}>Confrim Reject Order</Confirmation>
 
       </div>
       <AppModal open={openInvoice} onClose={() => setOpenInvoice(false)}>
@@ -467,7 +468,7 @@ const OrderDetails = () => {
           Close
           {' '}
         </button>
-        <Confirmation open={openDecline} cnlAction={() => { setOpenDecline(false); }} btnAction={() => { handleUpdate('confirmed'); }}>Confrim Reject Order</Confirmation>
+        <Confirmation open={openDecline} onCancel={() => { setOpenDecline(false); }} onConfirm={() => { handleUpdate('confirmed'); }}>Confrim Reject Order</Confirmation>
 
       </AppModal>
     </>

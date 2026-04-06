@@ -23,9 +23,7 @@ import Arrivals from './pages/shop-page/Arrivals';
 import NotFound from './pages/NotFound';
 import useInitializeData from './hooks/useInitializeData';
 import ConfirmOrder from './pages/ConfirmOrder';
-import OrderDetails from './pages/admin-page/OrderDetails';
 import Directory from './pages/landing-page/Directory';
-import Delivery from './pages/admin-page/delivery';
 import DeliveryFee from './pages/admin-page/delivery';
 import ViewDeliveryFee from './pages/admin-page/delivery/ViewDelivery';
 import LoaderModal from './components/loader/Loader';
@@ -73,6 +71,8 @@ import useResetPageLoction from './hooks/resetPageLoction';
 import { getCartSum } from './redux/actions/cart';
 import SalesPage from './pages/shop-page/sales';
 import ProfilePage from './pages/admin-page/settings/ProfilePage';
+import OrderDetails from './pages/admin-page/orders/OrderDetails';
+import OrderDetail from './pages/admin-page/orders/OrderDetail';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
