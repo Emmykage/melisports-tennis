@@ -17,6 +17,7 @@ import Loader from '../../Loader';
 import { nairaFormat } from '../../../utils/nairaFormat';
 import StatusButton from '../../../components/buttons/StatusButton';
 import localDateString from '../../../utils/dateString';
+import { toast } from 'react-toastify';
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -30,20 +31,7 @@ const Orders = () => {
       if (deleteOrder.fulfilled.match(result)) {
         setOpen(false);
         dispatch(getOrders());
-        dispatch(toggleAlert({
-          isOpen: true,
-          message: result.payload.message,
-          error: true,
-        }));
-
-        setTimeout(() => {
-          resetOrder();
-          dispatch(toggleAlert({
-            isOpen: false,
-            message: null,
-            error: false,
-          }));
-        }, 5000);
+       toast(result.payload.message, {type: "success"})
       } else {
         dispatch(toggleAlert({
           isOpen: true,
@@ -149,6 +137,8 @@ const Orders = () => {
     dispatch(getOrders());
   }, []);
 
+  console.log(objectId)
+
   return (
     <div className="order-container text-gray-800 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
       <div>
@@ -210,10 +200,10 @@ const Orders = () => {
       {/* Confirmation Modal */}
       <Confirmation
         open={open}
-        btnAction={() => {
+        onConfirm={() => {
           handleDelete(objectId);
         }}
-        cnlAction={() => {
+        onCancel={() => {
           setOpen(false);
         }}
         loading={loading}
