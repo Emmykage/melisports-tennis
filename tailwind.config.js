@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       gridTemplateColumns: {
@@ -10,7 +8,6 @@ module.exports = {
         'sm-admin': '4rem 3fr 1fr',
         'md-admin': '2fr 1fr',
         'info-bottom': '2fr 1fr 1fr 2fr',
-
       },
       colors: {
         theme: '#16304b',

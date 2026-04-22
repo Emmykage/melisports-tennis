@@ -1,4 +1,4 @@
-import  { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Box, Step, StepLabel, Stepper,
@@ -19,6 +19,7 @@ import Container from '../components/container';
 const Checkout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [pickUp, setPickup] = useState(false);
   const { deliveryFees } = useSelector((state) => state.deliveryFees);
   const [billingDetails, setBillingDetails] = useState({
     name: '', email: '', state: '', city: '', street: '', phone_no: '', postal_code: '', payment_method: '',
@@ -31,13 +32,15 @@ const Checkout = () => {
   const { total, counter, cartItems } = useSelector((state) => state.cart);
   const [step, setStep] = useState(0);
   const [referal, setReferal] = useState('');
-  const shippingFee = Number(selectedState?.delivery_fee ?? 0);
+  const shippingFee = pickUp ? 0 : Number(selectedState?.delivery_fee ?? 0);
   const [discountedAmount, setdisountedAmount] = useState(0);
   const subTotal = total - discountedAmount;
   const netTotal = subTotal + shippingFee;
   const handleAgentFetch = () => {
     dispatch(getAgentByCode(referal));
   };
+
+  console.log('pickup', pickUp, shippingFee, 'shipping fee', deliveryFees, selectedState, 'selected state', billingDetails);
 
   const orderItems = cartItems.map((item) => (
     {
@@ -62,6 +65,7 @@ const Checkout = () => {
       net_total: netTotal,
       discount: agent?.discount,
       agent_id: agent?.id ?? null,
+      pick_up: pickUp,
 
     },
   };
@@ -99,11 +103,11 @@ const Checkout = () => {
   const paymentSteps = [
     {
       step: 0,
-      render: <CreditForm setStep={setStep} billingDetails={billingDetails} setBillingDetails={setBillingDetails} />,
+      render: <CreditForm setStep={setStep} billingDetails={billingDetails} setBillingDetails={setBillingDetails} pickUp={pickUp} setPickup={setPickup} />,
     },
     {
       step: 1,
-      render: <PaymentMethod setStep={setStep} billingDetails={billingDetails} setBillingDetails={setBillingDetails} />,
+      render: <PaymentMethod setStep={setStep} billingDetails={billingDetails} setBillingDetails={setBillingDetails} pickUp={pickUp} />,
     },
     {
       step: 2,
@@ -178,6 +182,7 @@ const Checkout = () => {
               shippingFee={shippingFee}
               amount={total}
               counter={counter}
+              pickUp={pickUp}
             />
 
           </div>

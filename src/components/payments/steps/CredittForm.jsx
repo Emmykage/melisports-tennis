@@ -2,7 +2,9 @@ import { useSelector } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import Button from '../../buttons/Button';
 
-const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
+const CreditForm = ({
+  setStep, pickup = false, billingDetails, setBillingDetails, pickUp, setPickup,
+}) => {
   const { deliveryFees } = useSelector((state) => state.deliveryFees);
 
   const handleChange = (e) => {
@@ -40,40 +42,71 @@ const CreditForm = ({ setStep, billingDetails, setBillingDetails }) => {
           <input required type="text" className="p-3 border w-full rounded" value={billingDetails.phone_no} name="phone_no" onChange={handleChange} />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="address" className="font-medium my-1 block">Address</label>
-          <input required type="text" className="p-3 border w-full rounded" name="street" value={billingDetails.street} onChange={handleChange} />
-        </div>
+        {pickUp ? (
+          <div className="flex gap-4 mb-3">
+            <div className="flex-1">
+              <label htmlFor="state">Pick Up State</label>
+              <select
+                onChange={handleChange}
+                name="state"
+                className="p-3 border w-full rounded"
+                id="state"
+                defaultValue="abuja"
+              >
+                {[{ state: 'Abuja' }, { state: 'Lagos' }].map((item) => (
+                  <option value={item.state}>{item.state}</option>
 
-        <div className="mb-3 gap-5">
-          <label htmlFor="city" className=" font-medium my-1 block">city</label>
-          <input required type="text" className="p-3 border w-full rounded" name="city" value={billingDetails.city} onChange={handleChange} />
+                ))}
+              </select>
+              {/* <input required type="text" className="p-3 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} /> */}
+            </div>
 
-        </div>
-
-        <div className="flex gap-4 mb-3">
-          <div className="flex-1">
-            <label htmlFor="state">State</label>
-            <select
-              onChange={handleChange}
-              name="state"
-              className="p-3 border w-full rounded"
-              id="state"
-              defaultValue="abuja"
-            >
-              {deliveryFees.map((item) => (
-                <option value={item.state}>{item.state}</option>
-
-              ))}
-            </select>
-            {/* <input required type="text" className="p-3 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} /> */}
           </div>
-          <div className="flex-1">
-            <label htmlFor="postal_code">Postal Code</label>
-            <input className="p-3 border w-full rounded" type="text" name="postal_code" value={billingDetails.postal_code} onChange={handleChange} />
-          </div>
-        </div>
+        ) : (
+          <>
 
+            <div className="mb-3">
+              <label htmlFor="address" className="font-medium my-1 block">Address</label>
+              <input required type="text" className="p-3 border w-full rounded" name="street" value={billingDetails.street} onChange={handleChange} />
+            </div>
+
+            <div className="mb-3 gap-5">
+              <label htmlFor="city" className=" font-medium my-1 block">city</label>
+              <input required type="text" className="p-3 border w-full rounded" name="city" value={billingDetails.city} onChange={handleChange} />
+
+            </div>
+
+            <div className="flex gap-4 mb-3">
+              <div className="flex-1">
+                <label htmlFor="state">State</label>
+                <select
+                  onChange={handleChange}
+                  name="state"
+                  className="p-3 border w-full rounded"
+                  id="state"
+                  defaultValue="abuja"
+                >
+                  {deliveryFees.map((item) => (
+                    <option value={item.state}>{item.state}</option>
+
+                  ))}
+                </select>
+                {/* <input required type="text" className="p-3 border w-full rounded" name="state" value={billingDetails.state} onChange={handleChange} /> */}
+              </div>
+              <div className="flex-1">
+                <label htmlFor="postal_code">Postal Code</label>
+                <input className="p-3 border w-full rounded" type="text" name="postal_code" value={billingDetails.postal_code} onChange={handleChange} />
+              </div>
+            </div>
+
+          </>
+        )}
+
+        <div className="flex-1 flex my-4 items-center gap-4">
+          <input type="checkbox" className="p-2 border rounded" name="pick_up" checked={pickUp} onChange={() => setPickup(!pickUp)} />
+          <label htmlFor="pick_up">Pick Up</label>
+
+        </div>
         <div className="py-10 flex justify-end">
           <Button className="flex gap-2" type="submit">
             Proceed

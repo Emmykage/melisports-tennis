@@ -176,7 +176,6 @@ const SearchPage = () => {
                       { category?.description}
 
                     </p>
-                 
 
                   </div>
                 </div>

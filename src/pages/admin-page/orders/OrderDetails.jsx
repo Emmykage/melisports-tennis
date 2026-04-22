@@ -27,7 +27,7 @@ const OrderDetails = () => {
   const [openInvoice, setOpenInvoice] = useState(false);
 
   const handleUpdate = (status) => {
-    console.log(status)
+    console.log(status);
     dispatch(setLoader(true));
 
     dispatch(updateOrder({ id, order_detail: { status } })).unwrap()
@@ -461,12 +461,10 @@ const OrderDetails = () => {
         <Invoice id={order?.invoice?.id} />
 
         <button
-          className="bg-gray-200 px-4 py-2 mt-10 rounded-lg"
+          className="bg-gray-200 px-4 py-2 mt-2 rounded-lg"
           onClick={() => setOpenInvoice(false)}
         >
-          {' '}
           Close
-          {' '}
         </button>
         <Confirmation open={openDecline} onCancel={() => { setOpenDecline(false); }} onConfirm={() => { handleUpdate('confirmed'); }}>Confrim Reject Order</Confirmation>
 

@@ -28,16 +28,14 @@ const userSlice = createSlice({
     [addUser.fulfilled]: (state, action) => {
       const response = action.payload;
 
-        return {
-          ...state,
-          logged: true,
-          loading: false,
-          user: response.user,
-          error: false,
-          message: response.message,
-        };
-      
-
+      return {
+        ...state,
+        logged: true,
+        loading: false,
+        user: response.user,
+        error: false,
+        message: response.message,
+      };
     },
     [addUser.rejected]: (state, action) => ({
       ...state,
@@ -47,8 +45,7 @@ const userSlice = createSlice({
     [addUser.pending]: (state) => ({
       ...state,
       loading: true,
-                message: null,
-
+      message: null,
 
     }),
     [loginUser.fulfilled]: (state, action) => {

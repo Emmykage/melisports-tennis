@@ -1,180 +1,161 @@
-import React, { useEffect } from 'react';
-import { MdEmail, MdLocationPin, MdOutlineMailOutline } from 'react-icons/md';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  FaFacebook, FaLocationDot, FaPhone, FaTwitter,
-} from 'react-icons/fa6';
-import { TiWorldOutline } from 'react-icons/ti';
-import { FaInstagramSquare } from 'react-icons/fa';
-import logo from '../../assets/images/logo/melisport_3.png';
-import babolatLogo from '../../assets/images/logo/babolat-logo.png';
-import { nairaFormat } from '../../utils/nairaFormat';
+import { useReactToPrint } from 'react-to-print';
 import { getInvoice } from '../../redux/actions/orders';
 import Loader from '../../pages/Loader';
+import { nairaFormat } from '../../utils/nairaFormat';
 import localDateString from '../../utils/dateString';
 
-const Invoice = ({
-  id,
-}) => {
+import logo from '../../assets/images/logo/melisport_3.png';
+import babolatLogo from '../../assets/images/logo/babolat-logo.png';
+
+const Invoice = ({ id }) => {
   const dispatch = useDispatch();
   const { invoice, loading } = useSelector((state) => state.invoices);
+  const invoiceRef = useRef(); // 👈 THIS is what we print
 
+  const handlePrint = useReactToPrint({
+    contentRef: invoiceRef,
+  });
   useEffect(() => {
     dispatch(getInvoice(id));
-  }, []);
-  console.log(invoice, id);
+  }, [dispatch, id]);
 
-  if (loading) {
-    return (
-      <Loader />
-    );
-  }
+  if (loading) return <Loader />;
 
   return (
+    <div className="relative ">
 
-    <div>
+      <div ref={invoiceRef} className="max-w-5xl mx-auto  overflow-auto bg-white rounded-2xl shadow-lg p-4">
 
-      <div className="max-w-5xl m-auto mt-10 px-4">
-        <div>
-          <img src={logo} alt="logo" className="h-20" />
-
-        </div>
-        <div className="flex items-center">
-
-          <div className="bg-theme-alt h-10 flex flex-1 justify-center">
-            <h3 className="text-xl font-normal text-primary px-4 h-full leading-8 bg-white">Invoice</h3>
-
+        {/* HEADER */}
+        <div className="flex justify-between items-center border-b pb-6">
+          <div>
+            <img src={logo} alt="logo" className="h-12" />
+            <p className="text-sm text-gray-500 mt-2">Premium Sports Store</p>
           </div>
-          <img src={babolatLogo} className="w-20" />
+          <img src={babolatLogo} alt="brand" className="h-10" />
         </div>
 
-        <div className="flex justify-between my-4">
-          <div className="border p-3 rounded">
-            <span>Invoice To:</span>
-            <p>{invoice?.order_detail?.billing_address?.name}</p>
+        {/* TITLE */}
+        <div className="flex justify-between items-center mt-3">
+          <h1 className="text-3xl font-bold text-primary">Invoice</h1>
+          <div className="text-right text-sm text-gray-600">
             <p>
-              {' '}
-              {invoice?.order_detail?.billing_address?.state}
-            </p>
-          </div>
-          <div className="">
-            <p>
-              {' '}
-              <span className="font-semibold"> Invoice No: </span>
+              <span className="font-semibold">Invoice No:</span>
               {' '}
               {invoice?.invoice_number}
             </p>
             <p>
-              {' '}
-              <span className="font-semibold"> Date Issued:  </span>
+              <span className="font-semibold">Date:</span>
               {' '}
               {localDateString(invoice?.created_at)}
             </p>
           </div>
         </div>
-        <div className="overflow-x-auto bg-gray-300">
 
+        {/* CUSTOMER */}
+        <div className="mt-6 grid grid-cols-2 gap-6">
+          <div className="bg-gray-50 p-4 rounded-xl">
+            <p className="text-sm text-gray-500">Billed To</p>
+            <h3 className="font-semibold text-lg mt-1">
+              {invoice?.order_detail?.billing_address?.name}
+            </h3>
+            <p className="text-gray-600">
+              {invoice?.order_detail?.billing_address?.state}
+            </p>
+          </div>
+
+          <div className="bg-primary/5 p-4 rounded-xl text-right">
+            <p className="text-sm text-gray-500">Total Amount</p>
+            <h2 className="text-2xl font-bold text-primary">
+              {nairaFormat(invoice?.order_detail?.total_amount)}
+            </h2>
+          </div>
+        </div>
+
+        {/* TABLE */}
+        <div className="mt-4 overflow-hidden rounded-xl border">
           <table className="w-full">
-            <thead>
-              <th className="bg-orange-800 p-3 text-white">
-                SN
-              </th>
-              <th className="bg-orange-800">ITEM</th>
-
-              <th className="bg-orange-800">ITEM CODE</th>
-              {/* <th className='bg-orange-800'>COLOUR</th> */}
-              <th className="bg-orange-800">QTY</th>
-              <th className="bg-orange-800">UNIT PRIZE</th>
-              <th className="bg-orange-800">TOTAL PRICE</th>
-
+            <thead className="bg-primary text-white">
+              <tr>
+                <th className="p-3 text-left">Item</th>
+                <th className="p-3 text-left">Code</th>
+                <th className="p-3 text-center">Qty</th>
+                <th className="p-3 text-right">Unit</th>
+                <th className="p-3 text-right">Total</th>
+              </tr>
             </thead>
 
             <tbody>
               {invoice?.order_items?.map((item, index) => (
-                <tr>
-                  <td>{index + 1}</td>
-
-                  <td className="px-3">{item?.product?.name}</td>
-                  <td className="p-3">{item?.product?.ms_item_code}</td>
-
-                  <td className="p-3">{item.quantity}</td>
-                  <td className="p-3">{nairaFormat(item?.amount)}</td>
-                  <td className="p-3  text-right">{nairaFormat(item?.amount * item?.quantity)}</td>
+                <tr key={index} className="border-b hover:bg-gray-50">
+                  <td className="p-4">
+                    <p className="font-medium capitalize">{item?.product?.name}</p>
+                  </td>
+                  <td className="p-4 text-gray-500">
+                    {item?.product?.ms_item_code}
+                  </td>
+                  <td className="p-4 text-center">{item.quantity}</td>
+                  <td className="p-4 text-right">
+                    {nairaFormat(item?.amount)}
+                  </td>
+                  <td className="p-4 text-right font-semibold">
+                    {nairaFormat(item?.amount * item?.quantity)}
+                  </td>
                 </tr>
               ))}
-
             </tbody>
-
           </table>
-
         </div>
 
-        <div>
-          <div className="flex justify-between gap-4 items-center my-4">
-            <p className="px-4 border py-2 rounded-lg ">Thank you for your Patonage</p>
-            <div className="">
-              <div className="flex justify-between gap-4">
-                <span className="font-semibold"> SUB TOTAL</span>
-                {' '}
-                <span>{nairaFormat(invoice?.sub_total_amount)}</span>
-                {' '}
-              </div>
-              <div className="flex justify-between gap-4">
-                <span className="font-semibold"> VAT</span>
-                {' '}
-                <span>{nairaFormat(invoice?.vat)}</span>
-                {' '}
-              </div>
-              <div className="flex justify-between">
-                <span className="font-semibold"> TOTAL</span>
-                {' '}
-                <span>{nairaFormat(invoice?.total_amount)}</span>
-                {' '}
-              </div>
-            </div>
-
+        {/* TOTALS */}
+        <div className="mt-8 flex justify-end">
+          <div className="flex justify-end mb-0 flex-1 print:hidden sticky top-0 right-0 z-50">
+            <button
+          // onClick={()=> window.print()}
+              className="bg-primary text-white px-5 py-2 rounded-xl shadow hover:opacity-90 transition"
+              onClick={handlePrint}
+            >
+              Print Invoice
+            </button>
           </div>
+          <div className="w-full max-w-sm bg-gray-50 rounded-xl p-6">
 
-          <div className="bg-primary w-full h-4 mt-5 rounded-br-2xl rounded-tl-2xl " />
-
-          <div className="flex justify-between mt-4">
-            <div>
-              <div className="flex gap-4 items-center">
-                <span><FaLocationDot className="text-primary" /></span>
-                {' '}
-                <span className="font-medium text-gray-600"> 1 Kandi Close, Wuse 2 Abuja, Nigeria</span>
-              </div>
-              <div className="flex gap-4 items-center">
-                <span><FaPhone className="text-primary" /></span>
-                {' '}
-                <span className="font-medium text-gray-600"> +2348123111983 </span>
-                <span><MdOutlineMailOutline className="text-primary" /></span>
-                {' '}
-                <span className="font-medium text-gray-600"> melisports1@gmail.com </span>
-                <span><TiWorldOutline className="text-primary" /></span>
-                {' '}
-                <span className="font-medium text-gray-600"> www.melisports.com </span>
-              </div>
-
-              <div className="flex gap-4 items-center">
-                <FaFacebook className="text-primary" />
-                <span>melisports</span>
-                <FaTwitter className="text-primary" />
-                {' '}
-                <span>melisports</span>
-                {' '}
-                <FaInstagramSquare className="text-primary" />
-                {' '}
-                <span> melisports1@gmail.com</span>
-
-              </div>
-
+            <div className="flex justify-between mb-2 text-gray-600">
+              <span>Subtotal</span>
+              <span>{nairaFormat(invoice?.order_detail?.sub_total)}</span>
             </div>
-            <h2 className="text-2xl font-medium">Melisports</h2>
+
+            <div className="flex justify-between mb-2 text-gray-600">
+              <span>Delivery</span>
+              <span>{nairaFormat(invoice?.order_detail?.delivery_fee)}</span>
+            </div>
+
+            <div className="border-t my-3" />
+
+            <div className="flex justify-between text-lg font-bold text-primary">
+              <span>Total</span>
+              <span>{nairaFormat(invoice?.order_detail?.total_amount)}</span>
+            </div>
           </div>
         </div>
+
+        {/* FOOTER */}
+        <div className="mt-10 border-t pt-6 text-sm text-gray-500 flex justify-between">
+          <div>
+            <p>1 Kandi Close, Wuse 2 Abuja, Nigeria</p>
+            <p>+2348123111983</p>
+            <p>melisports1@gmail.com</p>
+          </div>
+
+          <div className="text-right">
+            <p className="font-semibold text-primary">Thank you for your patronage</p>
+            <p>www.melisports.com</p>
+          </div>
+        </div>
+
       </div>
-
     </div>
   );
 };

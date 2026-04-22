@@ -8,6 +8,7 @@ import {
   createColumnHelper, flexRender, getCoreRowModel, useReactTable,
 } from '@tanstack/react-table';
 
+import { toast } from 'react-toastify';
 import { deleteOrder, getOrders } from '../../../redux/actions/orders';
 import OptionDropdown from '../../../components/optionsDropdown/OptionDropdown';
 import Confirmation from '../../../components/modal/Confirmation';
@@ -17,7 +18,6 @@ import Loader from '../../Loader';
 import { nairaFormat } from '../../../utils/nairaFormat';
 import StatusButton from '../../../components/buttons/StatusButton';
 import localDateString from '../../../utils/dateString';
-import { toast } from 'react-toastify';
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -31,10 +31,9 @@ const Orders = () => {
       if (deleteOrder.fulfilled.match(result)) {
         setOpen(false);
         dispatch(getOrders());
-       toast(result.payload.message, {type: "success"})
+        toast(result.payload.message, { type: 'success' });
       } else {
-            toast(result.payload.message, {type: "error"})
-
+        toast(result.payload.message, { type: 'error' });
       }
     });
   };
@@ -103,7 +102,7 @@ const Orders = () => {
           link="orders"
 
           handleDel={(id) => {
-            console.log(id)
+            console.log(id);
             setOpen(true);
             setObjectId(id);
           }}
@@ -126,7 +125,7 @@ const Orders = () => {
     dispatch(getOrders());
   }, []);
 
-  console.log(objectId)
+  console.log(objectId);
 
   return (
     <div className="order-container text-gray-800 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">

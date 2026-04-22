@@ -25,11 +25,13 @@ const ConfirmPayment = ({
   };
   console.log(billingDetails, cartItems);
 
+  const cpayment = billingDetails.payment_method === 'on_delivery' ? 'Pay on Delivery' : 'Paystack';
+
   return (
     <div className="rounded-lg">
       <div className="my-4 max-w- mx-auto p-6 bg-white rounded-2xl shadow-md border border-gray-200">
         <h4 className=" font-medium text-lg text-gray-700">Mode</h4>
-        <p className="text-lg capitalize">{billingDetails.payment_method}</p>
+        <p className="text-lg capitalize">{cpayment}</p>
       </div>
       {/* <div className="border rounded-lg p-4">
 
@@ -62,7 +64,7 @@ const ConfirmPayment = ({
         <div className="space-y-3 text-sm text-gray-700 ">
           <div className="flex justify-between">
             <span className="font-medium">Mode:</span>
-            <span className="text-gray-600">Paystack</span>
+            <span className="text-gray-600">{cpayment}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Name:</span>
@@ -89,64 +91,66 @@ const ConfirmPayment = ({
         </div>
       </div>
 
-     <div className="my-8 max-w-4xl mx-auto bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="my-8 max-w-4xl mx-auto bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
 
-  {/* Header */}
-  <h4 className="text-lg font-semibold text-gray-800 mb-4">
-    Items
-  </h4>
+        {/* Header */}
+        <h4 className="text-lg font-semibold text-gray-800 mb-4">
+          Items
+        </h4>
 
-  {/* Items */}
-  <div className="space-y-4">
-    {cartItems.map((item) => (
-      <div
-        key={item.id}
-        className="flex flex-col sm:flex-row gap-4 p-4 rounded-xl border border-gray-200 hover:shadow-sm transition"
-      >
-        {/* Image */}
-        <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 border rounded-md p-1 bg-gray-50">
-          <img
-            src={item.image}
-            alt={item.product_name}
-            className="w-full h-full object-contain"
-          />
-        </div>
+        {/* Items */}
+        <div className="space-y-4">
+          {cartItems.map((item) => (
+            <div
+              key={item.id}
+              className="flex flex-col sm:flex-row gap-4 p-4 rounded-xl border border-gray-200 hover:shadow-sm transition"
+            >
+              {/* Image */}
+              <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 border rounded-md p-1 bg-gray-50">
+                <img
+                  src={item.image}
+                  alt={item.product_name}
+                  className="w-full h-full object-contain"
+                />
+              </div>
 
-        {/* Info */}
-        <div className="flex-1 space-y-1">
-          <p className="text-sm font-medium text-gray-800">
-            {item.product_name}
-          </p>
+              {/* Info */}
+              <div className="flex-1 space-y-1">
+                <p className="text-sm font-medium text-gray-800">
+                  {item.product_name}
+                </p>
 
-          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-            <p>
-              <span className="font-medium text-gray-500">Size:</span>{" "}
-              {item?.size ?? "N/A"}
-            </p>
+                <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                  <p>
+                    <span className="font-medium text-gray-500">Size:</span>
+                    {' '}
+                    {item?.size ?? 'N/A'}
+                  </p>
 
-            <p>
-              <span className="font-medium text-gray-500">Qty:</span>{" "}
-              {item?.quantity}
-            </p>
-          </div>
-        </div>
+                  <p>
+                    <span className="font-medium text-gray-500">Qty:</span>
+                    {' '}
+                    {item?.quantity}
+                  </p>
+                </div>
+              </div>
 
-        {/* Price */}
-        <div className="flex sm:flex-col justify-between sm:items-end text-right">
-          <p className="text-base font-semibold text-gray-900">
-            {nairaFormat(item.price)}
-          </p>
+              {/* Price */}
+              <div className="flex sm:flex-col justify-between sm:items-end text-right">
+                <p className="text-base font-semibold text-gray-900">
+                  {nairaFormat(item.price)}
+                </p>
 
-          {item.bonus && (
-            <span className="text-sm text-red-500">
-              {nairaFormat(item.bonus)}
-            </span>
-          )}
+                {item.bonus && (
+                <span className="text-sm text-red-500">
+                  {nairaFormat(item.bonus)}
+                </span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
 
       <div className="flex justify-between gap-6">
         <Button
@@ -159,7 +163,7 @@ const ConfirmPayment = ({
           Previous
         </Button>
 
-        {billingDetails.payment_method === 'pay later' ? (
+        {billingDetails.payment_method === 'on_delivery' ? (
           <Button
             className="flex gap-2 w-full text-center flex-1 justify-center"
             btnFunc={handleCheckout}

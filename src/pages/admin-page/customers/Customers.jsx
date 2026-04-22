@@ -1,4 +1,4 @@
-import  { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -108,14 +108,14 @@ const Customers = () => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-  console.log(objectId)
+  console.log(objectId);
 
   return (
     <div className="order-container text-gray-800 bg-white p-4 rounded">
-        <h2 className="font-normal mb-4">Customers</h2>
+      <h2 className="font-normal mb-4">Customers</h2>
 
-      <div className='bg-red- overflow-x-auto rounded-lg border border-gray-200'>
-        <table className='min-w-full text-sm text-left text-gray-600'>
+      <div className="bg-red- overflow-x-auto rounded-lg border border-gray-200">
+        <table className="min-w-full text-sm text-left text-gray-600">
           <thead className="bg-gray-100 text-xs uppercase text-gray-500">
             {getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
@@ -149,7 +149,7 @@ const Customers = () => {
               : getRowModel().rows.map((row) => (
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => (
-                    <td className='px-4 py-3 text-gray-500' key={cell.id}>
+                    <td className="px-4 py-3 text-gray-500" key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
@@ -161,7 +161,7 @@ const Customers = () => {
       </div>
 
       <Confirmation open={open} onConfirm={() => { handleDelete(objectId); }} onCancel={() => { setOpen(false); }} loading={loading}>
-        Delete User 
+        Delete User
       </Confirmation>
     </div>
   );
