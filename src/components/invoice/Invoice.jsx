@@ -136,10 +136,11 @@ const Invoice = ({ id }) => {
 
             <div className="flex justify-between text-lg font-bold text-primary">
               <span>Total</span>
-              <span>{nairaFormat(invoice?.order_detail?.total_amount)}</span>
+              <span>{nairaFormat(invoice?.order_detail?.net_total)}</span>
             </div>
           </div>
         </div>
+        <p className="text-sm my-4 text-gray-600">MELI BUSINESS COMPANY LIMITED,  PROVIDUSBANK. Account Number is 5400590339</p>
 
         {/* FOOTER */}
         <div className="mt-10 border-t pt-6 text-sm text-gray-500 flex justify-between">

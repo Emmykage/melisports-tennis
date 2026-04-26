@@ -119,6 +119,8 @@ const ProductDetails = () => {
     return (<Loader />);
   }
 
+  console.log(product);
+
   return (
 
     <Container>
@@ -144,7 +146,7 @@ const ProductDetails = () => {
           {/* Product Info */}
           <div className="flex flex-col justify-between">
             <div>
-              <h2 className="text-3xl font-normal text-gray-800">{product?.name}</h2>
+              <h2 className="text-3xl capitalize font-normal text-gray-800">{product?.name}</h2>
               <p className="mt-2 text-gray-500 text-sm uppercase tracking-wide">
                 Tennis •
                 {' '}
