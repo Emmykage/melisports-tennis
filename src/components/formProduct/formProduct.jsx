@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MdReportGmailerrorred } from 'react-icons/md';
+import { MdDeleteSweep, MdReportGmailerrorred } from 'react-icons/md';
 import { FaCheckCircle, FaMinus, FaPlus } from 'react-icons/fa';
 
 import 'trix';
@@ -56,7 +56,8 @@ const ProductForm = ({ onSubmit, product }) => {
       setProductInventories(product?.product_inventories ?? productInventories);
       editorRef.current.editor.loadHTML(product.description_body);
     }
-  }, [product?.product_inventories, product]);
+    console.log("recall")
+  }, [product]);
 
   const [productName, setProductName] = useState('');
 
@@ -114,6 +115,7 @@ const ProductForm = ({ onSubmit, product }) => {
   };
 
   const handleSubmit = (e) => {
+    console.log("why is this submitting wheni i didnt click it")
     e.preventDefault();
     if ((product && formdata.photo_urls) || (imagePreviews.length > 0 || e.target.image.value)) {
       const formData = new FormData();
@@ -133,9 +135,10 @@ const ProductForm = ({ onSubmit, product }) => {
       });
 
       productInventories.forEach(({
-        quantity, size, price, sku, locations, id,
+        quantity, size, price, sku, locations, id, _destroy
       }, i) => {
         (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity.value);
+        _destroy && formData.append(`product[product_inventories_attributes][${i}][_destroy]`, _destroy);
         size && formData.append(`product[product_inventories_attributes][${i}][size]`, size);
         sku && formData.append(`product[product_inventories_attributes][${i}][sku]`, sku);
         id && formData.append(`product[product_inventories_attributes][${i}][id]`, id);
@@ -153,7 +156,6 @@ const ProductForm = ({ onSubmit, product }) => {
       console.log(data);
 
       onSubmit(formData).then((res) => {
-        console.log(res, '[Form Submitted]: Product form submitted');
 
         const timeOutOp = setTimeout(() => {
           if (!product) {
@@ -168,6 +170,8 @@ const ProductForm = ({ onSubmit, product }) => {
   };
 
   const handleInventoryRowDel = (index) => {
+    if(productInventories.length < 1) {return}
+    console.log(index)
     if (productInventories[index]?.id) {
       const newSizes = productInventories.map((item, i) => {
         if (item?.id && i === index) {
@@ -181,10 +185,12 @@ const ProductForm = ({ onSubmit, product }) => {
       setProductInventories(newSizes);
     } else {
       const newSize = productInventories.filter((_, i) => i !== index);
+            console.log("New note",newSizes)
+
       setProductInventories(newSize);
     }
   };
-  console.log(formdata, 'hey');
+  console.log(productInventories, product);
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -545,7 +551,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                   </div>
 
-                  {productInventories?.map(({
+                  {productInventories?.filter(p => !p._destroy).map(({
                     size, quantity, sku, locations,
                   }, index) => (
                     <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
@@ -607,7 +613,7 @@ const ProductForm = ({ onSubmit, product }) => {
                           handleInventoryRowDel(index);
                         }}
                       >
-                        <FaMinus />
+                        <MdDeleteSweep className='text-lg' />
 
                       </span>
 
@@ -1426,7 +1432,7 @@ const ProductForm = ({ onSubmit, product }) => {
           )) }
 
           <button className="btn w-full" type="submit">
-            add product
+            Add Product
           </button>
 
         </div>
