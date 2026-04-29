@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
   const renderBadge = () => {
     if (newInventory < 1) {
       return (
-        <span className="absolute top-4 right-4 bg-theme-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="absolute top-4 right-4 bg-theme text-primary text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Out of stock
         </span>
       );
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
 
     if (product?.discount === 'active_discount') {
       return (
-        <span className="absolute top-4 right-4 bg-theme-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="absolute top-4 right-4 bg-theme text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           {product?.discount_percentage
             ? `-${product.discount_percentage}%`
             : 'Discount'}
