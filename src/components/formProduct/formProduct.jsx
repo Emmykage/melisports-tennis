@@ -608,7 +608,7 @@ const ProductForm = ({ onSubmit, product }) => {
                       />
 
                       <span
-                        className=""
+                        className="cursor-pointer"
                         onClick={() => {
                           handleInventoryRowDel(index);
                         }}
