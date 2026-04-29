@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { nairaFormat } from '../../utils/nairaFormat';
 
 const ProductCard = ({ product }) => {
   const [newInventory, setNewInventory] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const newArray = [];
@@ -73,8 +74,7 @@ const ProductCard = ({ product }) => {
 
         {/* Pricing Section */}
 
-        {newInventory?.length > 0
-      && (
+    
       <div className="mb-4">
         {product.discount === 'active_discount' ? (
           <div className="flex flex-col items-center space-y-1">
@@ -95,23 +95,20 @@ const ProductCard = ({ product }) => {
             </p>
           </div>
         ) : (
-          <p className="text-lg font-semibold text-primary">
+          <p className={`text-lg font-semibold ${newInventory < 1 ? "text-gray-500 bg-gray-200 rounded" : "text-primary"}`}>
             {nairaFormat(product.price)}
           </p>
         )}
       </div>
-      )}
 
-        {/* CTA */}
-        {newInventory?.length > 0
-      && (
-      <NavLink
-        className="w-full inline-block bg-primary hover:bg-primary/90 text-white py-2.5 rounded-lg font-medium transition-colors duration-200"
-        to={`/productdetails/${product.id}`}
+ 
+      <button
+      disabled={newInventory < 1}
+        className={`${newInventory < 1  ? "bg-gray-400":"bg-primary hover:bg-primary/90"}  w-full inline-block mt-auto   text-white py-2.5 rounded-lg font-medium transition-colors duration-200`}
+        onClick={() => navigate(`/productdetails/${product.id}`)}
       >
         Buy Now
-      </NavLink>
-      )}
+      </button>
       </div>
     </div>
 
