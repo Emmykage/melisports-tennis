@@ -56,7 +56,6 @@ const ProductForm = ({ onSubmit, product }) => {
       setProductInventories(product?.product_inventories ?? productInventories);
       editorRef.current.editor.loadHTML(product.description_body);
     }
-    console.log("recall")
   }, [product]);
 
   const [productName, setProductName] = useState('');
@@ -81,18 +80,14 @@ const ProductForm = ({ onSubmit, product }) => {
 
   useEffect(() => {
     if (sport_categories) {
-      console.log(sport_categories);
       const sportname = sport_categories.find((cat) => cat.id == formdata?.sport_category_id)?.name ?? sport_categories[1]?.name;
-      console.log(sport_categories, sportname);
 
       setSelectedSport(sportname);
     }
   }, [sport_categories, formdata.sport_category_id]);
   useEffect(() => {
     if (product_categories) {
-      console.log(product_categories);
       const categoryname = product_categories.find((cat) => cat.id == formdata?.product_category_id)?.name ?? product_categories[0]?.name;
-      console.log(categoryname);
       setSelectTool(categoryname);
     }
   }, [product_categories, formdata.product_category_id]);
@@ -105,7 +100,6 @@ const ProductForm = ({ onSubmit, product }) => {
   };
 
   const handleCalcTotal = () => {
-    console.log('GEnerating');
     let total_quantity = 0;
 
     productInventories.forEach((item) => {
@@ -115,7 +109,6 @@ const ProductForm = ({ onSubmit, product }) => {
   };
 
   const handleSubmit = (e) => {
-    console.log("why is this submitting wheni i didnt click it")
     e.preventDefault();
     if ((product && formdata.photo_urls) || (imagePreviews.length > 0 || e.target.image.value)) {
       const formData = new FormData();
@@ -135,7 +128,7 @@ const ProductForm = ({ onSubmit, product }) => {
       });
 
       productInventories.forEach(({
-        quantity, size, price, sku, locations, id, _destroy
+        quantity, size, price, sku, locations, id, _destroy,
       }, i) => {
         (quantity || e.target.quantity) && formData.append(`product[product_inventories_attributes][${i}][quantity]`, quantity ?? e.target.quantity.value);
         _destroy && formData.append(`product[product_inventories_attributes][${i}][_destroy]`, _destroy);
@@ -153,10 +146,7 @@ const ProductForm = ({ onSubmit, product }) => {
       });
 
       const data = Object.fromEntries(formData);
-      console.log(data);
-
       onSubmit(formData).then((res) => {
-
         const timeOutOp = setTimeout(() => {
           if (!product) {
             setFormdata({});
@@ -170,8 +160,7 @@ const ProductForm = ({ onSubmit, product }) => {
   };
 
   const handleInventoryRowDel = (index) => {
-    if(productInventories.length < 1) {return}
-    console.log(index)
+    if (productInventories.length < 1) { return; }
     if (productInventories[index]?.id) {
       const newSizes = productInventories.map((item, i) => {
         if (item?.id && i === index) {
@@ -185,12 +174,9 @@ const ProductForm = ({ onSubmit, product }) => {
       setProductInventories(newSizes);
     } else {
       const newSize = productInventories.filter((_, i) => i !== index);
-            console.log("New note",newSizes)
-
       setProductInventories(newSize);
     }
   };
-  console.log(productInventories, product);
 
   return (
     <div className="product-form bg-white admin m-auto w-full">
@@ -205,7 +191,6 @@ const ProductForm = ({ onSubmit, product }) => {
               type="select"
 
               onChange={({ value }) => {
-                console.log(value, sport_categories);
                 setFormdata({ ...formdata, sport_category_id: value });
               }}
               placeholder="sport category"
@@ -367,8 +352,6 @@ const ProductForm = ({ onSubmit, product }) => {
               placeholder="product category"
               onChange={({ value }) => {
                 const { name, id } = product_categories.find((item) => item.id === value);
-                console.log(name, id, value);
-                // setSelectTool(name);
                 setFormdata({ ...formdata, product_category_id: value });
               }}
               required
@@ -410,7 +393,6 @@ const ProductForm = ({ onSubmit, product }) => {
                     name="level_id"
                     value={{ value: formdata?.level_id, label: levels.find((level) => level.id === formdata.level_id)?.stage || 'Select Level' }}
                     onChange={({ value }) => {
-                      console.log('first', value);
                       setFormdata({ ...formdata, level_id: value });
                     }}
                     options={levels.map((level) => ({
@@ -426,7 +408,6 @@ const ProductForm = ({ onSubmit, product }) => {
 
                     type="select"
                     onChange={({ value }) => {
-                      console.log(value);
                       setFormdata({ ...formdata, strung: value });
                     }}
                     name="strung"
@@ -551,7 +532,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                   </div>
 
-                  {productInventories?.filter(p => !p._destroy).map(({
+                  {productInventories?.filter((p) => !p._destroy).map(({
                     size, quantity, sku, locations,
                   }, index) => (
                     <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
@@ -597,7 +578,6 @@ const ProductForm = ({ onSubmit, product }) => {
                         onChange={(selectedOption) => {
                           const value = selectedOption.map((option) => option.value);
 
-                          console.log(selectedOption, index, locations, value);
 
                           addToProductInventory({ key: 'locations', value }, index);
                         }}
@@ -613,7 +593,7 @@ const ProductForm = ({ onSubmit, product }) => {
                           handleInventoryRowDel(index);
                         }}
                       >
-                        <MdDeleteSweep className='text-lg' />
+                        <MdDeleteSweep className="text-lg" />
 
                       </span>
 
@@ -814,8 +794,6 @@ const ProductForm = ({ onSubmit, product }) => {
                             onChange={(selectedOption) => {
                               const value = selectedOption.map((option) => option.value);
 
-                              console.log(selectedOption, index, locations, value);
-
                               addToProductInventory({ key: 'locations', value }, index);
                             }}
                             options={states}
@@ -1006,8 +984,6 @@ const ProductForm = ({ onSubmit, product }) => {
                               onChange={(selectedOption) => {
                                 const value = selectedOption.map((option) => option.value);
 
-                                console.log(selectedOption, index, locations, value);
-
                                 addToProductInventory({ key: 'locations', value }, index);
                               }}
                               options={states}
@@ -1114,8 +1090,6 @@ const ProductForm = ({ onSubmit, product }) => {
                         value={locations.map((l) => ({ value: l, label: states.find((state) => state.value === l).label }))}
                         onChange={(selectedOption) => {
                           const value = selectedOption.map((option) => option.value);
-
-                          console.log(selectedOption, index, locations, value);
 
                           addToProductInventory({ key: 'locations', value }, index);
                         }}
@@ -1329,8 +1303,6 @@ const ProductForm = ({ onSubmit, product }) => {
                             value={locations.map((l) => ({ value: l, label: states.find((state) => state.value === l).label }))}
                             onChange={(selectedOption) => {
                               const value = selectedOption.map((option) => option.value);
-
-                              console.log(selectedOption, index, locations, value);
 
                               addToProductInventory({ key: 'locations', value }, index);
                             }}

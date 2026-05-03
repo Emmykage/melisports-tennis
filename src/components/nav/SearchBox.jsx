@@ -43,7 +43,6 @@ export function SearchBox({ logo, stickyNav }) {
     dispatch(clearSearch());
   };
   useEffect(() => {
-    console.log('triggered without change product');
     if (isSearchPage) {
       setShowSearch(false);
       return;
@@ -66,7 +65,7 @@ export function SearchBox({ logo, stickyNav }) {
 
     timeoutRef.current = setTimeout(() => {
       dispatch(searchedProducts({ search: cleanedValue }));
-    }, 700);
+    }, 300);
   };
 
   const [showSearchList, setShowSearchList] = useState(false); // State variable to control visibility
@@ -84,7 +83,7 @@ export function SearchBox({ logo, stickyNav }) {
 
     if (!isOutside) return;
 
-    dispatch(clearSearch());
+    // dispatch(clearSearch());
     setShowSearch(false);
   };
 
@@ -93,6 +92,16 @@ export function SearchBox({ logo, stickyNav }) {
 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    // document.body.style.overflow = "hidden"
+
+    if (showSearch) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [showSearch]);
 
   console.log(searched_products, loading);
 

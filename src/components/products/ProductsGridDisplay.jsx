@@ -29,7 +29,7 @@ const ProductsGrid = ({ products, error, filter }) => {
       <div>
         <header>
 
-          <h1 className="font-sans text-center text-3xl font-normal"> No Item in this Collection</h1>
+          <h1 className="font-sans text-center text-3xl font-normal"> No Item in this Collection.</h1>
         </header>
       </div>
     );
