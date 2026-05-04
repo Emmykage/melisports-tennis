@@ -1156,7 +1156,7 @@ const ProductForm = ({ onSubmit, product }) => {
                     {productInventories.map(({
                       locations, size, quantity, sku, _destroy,
                     }, index) => (
-                      <div className="flex-1 flex gap-3 my-2 items-center" key={index}>
+                      <div className="flex-1 grid grid-cols-[1fr_1fr_1fr_1fr_auto] gap-3 my-2 items-center" key={index}>
 
                         <FormInput
                           value={{ value: size, label: size }}
