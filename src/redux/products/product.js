@@ -83,12 +83,14 @@ const productsSlice = createSlice({
 
     }),
 
-    [searchedProducts.fulfilled]: (state, action) => ({
+    [searchedProducts.fulfilled]: (state, action) => {
+      console.log(action.payload.data)
+      return{
       ...state,
       searchLoading: false,
       searched_products: action.payload.data,
 
-    }),
+    }},
     [searchedProducts.rejected]: (state, action) => ({
       ...state,
       searchLoading: false,

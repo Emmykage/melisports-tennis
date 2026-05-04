@@ -25,7 +25,6 @@ const getProducts = createAsyncThunk('products/getProducts', async (filterParams
       return rejectWithValue({ message: result?.error ?? 'Something went wrong' });
     }
 
-    console.log('====================>', result);
     return result;
   } catch (error) {
     return rejectWithValue({ message: 'Something went wrong' });
@@ -35,7 +34,10 @@ const getProducts = createAsyncThunk('products/getProducts', async (filterParams
 export const searchedProducts = createAsyncThunk('products/search_product', async (filterParams = {}, { rejectWithValue }) => {
   const params = new URLSearchParams(filterParams);
 
+
   const stringParams = params.toString();
+    console.log(params, stringParams, filterParams)
+
   try {
     const response = await fetch(`${baseURL}products/search?${stringParams}`);
 

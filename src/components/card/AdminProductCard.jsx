@@ -40,15 +40,15 @@ const AdminProductCard = ({ product, toEdit, setSelectedProduct }) => {
         </h5>
         <p>{nairaFormat(product.price)}</p>
 
-        <div className="flex justify-between px-4">
+        <div className="flex justify-between gap-4 px-4">
 
           <a
-            className="btn btn-outline max-width my-1 px-2 py-1 text-center"
+            className="btn flex-1 text-xs btn-outline max-width my-1 px-2 py-2 text-center"
             onClick={() => setSelectedProduct(product)}
           >
             Achive
           </a>
-          <a className="btn btn-outline max-width my-1 px-2 py-1 text-center" onClick={() => toEdit(product.id)}>
+          <a className="btn flex-1 text-xs btn-outline max-width my-1 px-2 py-1 py-2 text-center" onClick={() => toEdit(product.id)}>
             Edit
           </a>
         </div>

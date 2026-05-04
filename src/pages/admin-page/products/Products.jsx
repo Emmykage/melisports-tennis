@@ -11,7 +11,8 @@ const Products = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams()
   const {
-    products, searched_products, message, error, loading,
+    products, searched_products, message, error, loading,  searchLoading,
+
   } = useSelector((state) => state.products);
   const [search, setSearch] = useState('');
   const [selectedProduct, setSelectedProduct] = useState();
@@ -31,21 +32,20 @@ const Products = () => {
   const handleSearch = (e) => {
     const { value } = e.target;
     const cleanedValue = value.replace(/\s+/g, ' ');
-    console.log(cleanedValue)
         setSearch(cleanedValue);
 
         if(timeoutRef.current){
-          clearTimeout(timeoutRef)
+          clearTimeout(timeoutRef.current)
         }
 
         timeoutRef.current = setTimeout(() => {
+          console.log("triggered", cleanedValue)
       dispatch(searchedProducts({ search: cleanedValue }));
-    }, 300);
+    }, 500);
 
-    setSearch(e.target.value);
   };
 
-  console.log(loading)
+  console.log(searchLoading, "hey",loading)
 
   if (!error) {
     return (
@@ -78,10 +78,8 @@ const Products = () => {
                       ))}
 
                     </div>
-                  ) : search !== '' && searched_products.length === 0
-                    ? <h1 className="warning-center w-full"> No Item found</h1>
-                    : (
-                      <div className="w-full grid py-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
+                  ) : (
+                      <div className="w-full grid py-10  grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
                         {' '}
                         { products.map((product) => (
                           <AdminProductCard product={product} key={product.id} toEdit={toEdit} setSelectedProduct={setSelectedProduct} />
