@@ -749,7 +749,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                       </div>
 
-                      {productInventories.map(({
+                      {productInventories?.filter((p) => !p._destroy).map(({
                         size, quantity, sku, locations,
                       }, index) => (
 
@@ -1047,7 +1047,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                   </div>
 
-                  {productInventories.map(({
+                  {productInventories.filter((p) => !p._destroy).map(({
                     size, locations, quantity, sku,
                   }, index) => (
 
@@ -1154,7 +1154,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                     </div>
 
-                    {productInventories.map(({
+                    {productInventories?.filter((p) => !p._destroy).map(({
                       locations, size, quantity, sku, _destroy,
                     }, index) => (
                       <div className="flex-1 grid grid-cols-[1fr_1fr_1fr_1fr_auto] gap-3 my-2 items-center" key={index}>
@@ -1260,7 +1260,7 @@ const ProductForm = ({ onSubmit, product }) => {
 
                       </div>
 
-                      {productInventories.map(({
+                      {productInventories?.filter((p) => !p._destroy).map(({
                         size, locations, sku, quantity,
                       }, index) => (
 
