@@ -40,7 +40,7 @@ const headSizes = [{ value: '400', label: '400' }, { value: '523', label: '523' 
 const headShapes = [{ value: 'diamond', label: 'diamond' }, { value: 'round', label: 'round' }, { value: 'teardrop', label: 'teardrop' }, { value: 'hybrid', label: 'hybrid' }];
 const balanceTypes = [{ value: 'head_heavy', label: 'Head Heavy' }];
 const recommendedGrip = [{ value: 'syntec_pro', label: 'Syntec Pro' }];
-const length = [{ value: '432', label: '432' }, { value: '483', label: '483' }, { value: '534', label: '534' }, { value: '584', label: '584' }, { value: '635', label: '635' },{ value: '675', label: '675' }, { value: '685', label: '685' }, { value: '700', label: '700' }];
+const length = [{ value: '432', label: '432' }, { value: '483', label: '483' }, { value: '534', label: '534' }, { value: '584', label: '584' }, { value: '635', label: '635' }, { value: '675', label: '675' }, { value: '685', label: '685' }, { value: '700', label: '700' }];
 const strung = [{ value: 'strung', label: 'Strung' }, { value: 'unstrung', label: 'Unstrung' }];
 export const flexibility = [{ value: 'flexible', label: 'Flexible' }, { value: 'medium', label: 'Medium' }, { value: 'stiff', label: 'Stiff' }];
 

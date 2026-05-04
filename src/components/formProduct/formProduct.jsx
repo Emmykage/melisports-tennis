@@ -48,7 +48,7 @@ const ProductForm = ({ onSubmit, product }) => {
     };
   }, []);
 
-  console.log(product)
+  console.log(product, formdata);
   useEffect(() => {
     if (product) {
       setFormdata({
@@ -579,7 +579,6 @@ const ProductForm = ({ onSubmit, product }) => {
                         onChange={(selectedOption) => {
                           const value = selectedOption.map((option) => option.value);
 
-
                           addToProductInventory({ key: 'locations', value }, index);
                         }}
                         options={states}
@@ -663,12 +662,13 @@ const ProductForm = ({ onSubmit, product }) => {
                       <FormInput
                         className="flex-1"
                         label="Length (mm)"
+                        type="select"
                         name="length"
-                        id="length"
-                        value={formdata.length || ''}
-                        onChange={({ target: { value } }) => setFormdata({ ...formdata, length: value })}
-                        type="text"
-                        placeholder="Length in MM"
+                        options={length}
+                        value={{ value: formdata?.length, label: length.find((len) => len.value === formdata.length)?.label ?? 'Select Length' }}
+
+                        placeholder="length"
+                        onChange={({ value }) => setFormdata({ ...formdata, length: value })}
                       />
 
                       <FormInput
@@ -848,12 +848,13 @@ const ProductForm = ({ onSubmit, product }) => {
 
                       <div className="flex gap-4 flex-col md:flex-row my-1">
                         <FormInput
-                          className="bg-r w-full"
-                          label=" Length (mm) "
+                          className="flex-1"
+                          label="Length (mm)"
                           type="select"
                           name="length"
-                          id="length"
                           options={length}
+                          value={{ value: formdata?.length, label: length.find((len) => len.value === formdata.length)?.label ?? 'Select Length' }}
+
                           placeholder="length"
                           onChange={({ value }) => setFormdata({ ...formdata, length: value })}
                         />

@@ -80,7 +80,6 @@ const ProductCard = ({ product }) => {
               <p className="text-sm text-theme line-through">
                 {nairaFormat(product.price)}
               </p>
-            
 
               <p className="text-lg font-semibold text-primary">
                 {nairaFormat(

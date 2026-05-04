@@ -9,9 +9,9 @@ import ProdDelModal from '../../../components/modal/ProdDelModal';
 
 const Products = () => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams();
   const {
-    products, searched_products, message, error, loading,  searchLoading,
+    products, searched_products, message, error, loading, searchLoading,
 
   } = useSelector((state) => state.products);
   const [search, setSearch] = useState('');
@@ -32,20 +32,19 @@ const Products = () => {
   const handleSearch = (e) => {
     const { value } = e.target;
     const cleanedValue = value.replace(/\s+/g, ' ');
-        setSearch(cleanedValue);
+    setSearch(cleanedValue);
 
-        if(timeoutRef.current){
-          clearTimeout(timeoutRef.current)
-        }
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
 
-        timeoutRef.current = setTimeout(() => {
-          console.log("triggered", cleanedValue)
+    timeoutRef.current = setTimeout(() => {
+      console.log('triggered', cleanedValue);
       dispatch(searchedProducts({ search: cleanedValue }));
     }, 500);
-
   };
 
-  console.log(searchLoading, "hey",loading)
+  console.log(searchLoading, 'hey', loading);
 
   if (!error) {
     return (
@@ -79,14 +78,14 @@ const Products = () => {
 
                     </div>
                   ) : (
-                      <div className="w-full grid py-10  grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
-                        {' '}
-                        { products.map((product) => (
-                          <AdminProductCard product={product} key={product.id} toEdit={toEdit} setSelectedProduct={setSelectedProduct} />
+                    <div className="w-full grid py-10  grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
+                      {' '}
+                      { products.map((product) => (
+                        <AdminProductCard product={product} key={product.id} toEdit={toEdit} setSelectedProduct={setSelectedProduct} />
 
-                        ))}
-                      </div>
-                    )}
+                      ))}
+                    </div>
+                  )}
               </div>
             )}
         </div>
