@@ -48,6 +48,7 @@ const ProductForm = ({ onSubmit, product }) => {
     };
   }, []);
 
+  console.log(product)
   useEffect(() => {
     if (product) {
       setFormdata({
@@ -1054,7 +1055,7 @@ const ProductForm = ({ onSubmit, product }) => {
                       <FormInput
                         type="select"
                         className="flex-1"
-                        value={{ value: size, label: gripSizes.find((g) => g.value === size)?.value ?? 'Select Size' }}
+                        value={{ value: size, label: shoeSizes.find((g) => g.value === size)?.value ?? 'Select Size' }}
                         name="sizes"
                         placeholder="Shoe Sizes"
                         id="size"
