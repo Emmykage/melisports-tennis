@@ -30,7 +30,8 @@ const colors = [{ value: 'white/red', label: 'white/red' },
   { value: 'neutral', label: 'neutral' },
   { value: 'purple', label: 'purple' },
   { value: 'yellow', label: 'yellow' },
-  { value: ' black/fiesta red', label: 'black/fiesta red' },
+  { value: 'black/fiesta red', label: 'black/fiesta red' },
+  { value: 'mixed', label: 'Mixed Colors' },
 ];
 const shoeSizes = [{ value: '38', label: '38' }, { value: '40', label: '40' }, { value: '40.5', label: '40.5' }, { value: '41', label: '41' }, { value: '42', label: '42' }, { value: '42.5', label: '42.5' }, { value: '43', label: '43' }, { value: '44', label: '44' }, { value: '44.5', label: '44.5' }, { value: '45', label: '45' }, { value: '46', label: '46' }, { value: '46.5', label: '46.5' }, { value: '47', label: '47' }, { value: '48', label: '48' }];
 const composition = [{ value: 'graphite', label: 'Graphite' }, { value: 'aluminium', label: 'Aluminium' }, { label: 'Carbon', value: 'carbon' }];
