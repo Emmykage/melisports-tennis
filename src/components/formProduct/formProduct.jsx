@@ -853,7 +853,7 @@ const ProductForm = ({ onSubmit, product }) => {
                           name="length"
                           id="length"
                           options={length}
-                          placeholder="lenght"
+                          placeholder="length"
                           onChange={({ value }) => setFormdata({ ...formdata, length: value })}
                         />
 

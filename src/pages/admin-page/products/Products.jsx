@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getProduct, getProducts, searchedProducts } from '../../../redux/actions/product';
 import Search from '../../../components/search/Search';
 import AdminProductCard from '../../../components/card/AdminProductCard';
@@ -9,11 +9,13 @@ import ProdDelModal from '../../../components/modal/ProdDelModal';
 
 const Products = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams()
   const {
     products, searched_products, message, error, loading,
   } = useSelector((state) => state.products);
   const [search, setSearch] = useState('');
   const [selectedProduct, setSelectedProduct] = useState();
+  const timeoutRef = useRef(null);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,14 +30,22 @@ const Products = () => {
 
   const handleSearch = (e) => {
     const { value } = e.target;
-    setSearch(value);
-    const cleanedValue = value.trim().replace(/\s+/g, ' ');
-    setTimeout(() => {
+    const cleanedValue = value.replace(/\s+/g, ' ');
+    console.log(cleanedValue)
+        setSearch(cleanedValue);
+
+        if(timeoutRef.current){
+          clearTimeout(timeoutRef)
+        }
+
+        timeoutRef.current = setTimeout(() => {
       dispatch(searchedProducts({ search: cleanedValue }));
-    }, 100);
+    }, 300);
 
     setSearch(e.target.value);
   };
+
+  console.log(loading)
 
   if (!error) {
     return (
