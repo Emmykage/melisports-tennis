@@ -69,7 +69,7 @@ const Invoice = ({ id }) => {
           <div className="bg-primary/5 p-4 rounded-xl text-right">
             <p className="text-sm text-gray-500">Total Amount</p>
             <h2 className="text-2xl font-bold text-primary">
-              {nairaFormat(invoice?.order_detail?.total_amount)}
+              {nairaFormat(invoice?.order_detail?.net_total)}
             </h2>
           </div>
         </div>
