@@ -130,7 +130,7 @@ const Orders = () => {
   return (
     <div className="order-container text-gray-800 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
       <div>
-        <h2 className="font-semibold text-lg text-gray-800 mb-4">Orders</h2>
+        <h2 className="font-normal text-lg text-gray-800 mb-4">Orders</h2>
 
         <div className="overflow-x-auto rounded-lg border border-gray-200">
           <table className="min-w-full text-sm text-left text-gray-600">

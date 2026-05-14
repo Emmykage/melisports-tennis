@@ -9,7 +9,7 @@ const AdminProductCard = ({ product, toEdit, setSelectedProduct }) => {
 
       {product?.last_updated
        && (
-       <div className="py-2 my-1 top-4 z-40 absolute bg-theme/90 text-sm rounded-xl  ml-2 px-2">
+       <div className="py-2 my-1 top-4 z-20 absolute bg-theme/90 text-sm rounded-xl  ml-2 px-2">
          <span className="font-semibold text-gray-200">Last updated: </span>
          <span className="text-sm font-medium text-orange-600">
            {product?.last_updated}
@@ -18,7 +18,7 @@ const AdminProductCard = ({ product, toEdit, setSelectedProduct }) => {
        </div>
        )}
 
-      <span className="absolute z-40 top-20 sm:top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white">
+      <span className="absolute z-30  top-20 sm:top-5 right-5 flex justify-center items-center bg-primary/70 h-10 rounded-full w-10 text-white">
         {product?.product_quantity}
 
       </span>

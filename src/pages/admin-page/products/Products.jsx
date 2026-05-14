@@ -51,9 +51,17 @@ const Products = () => {
       <>
         <ProdDelModal open={!!selectedProduct} selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} onCancel={() => setSelectedProduct(null)} />
 
-        <div>
+        <div className='relative'>
+          <div className=' flex sticky top-0 z-40 bg-white'>
+            
+                  <h2 className="font-normal text-lg text-gray-800 mb-4">Products</h2>
+                  <div className='flex-1'>
+                    
+
 
           <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
+                  </div>
+          </div>
 
           {loading ? <AppLoader /> : products.length < 1
             ? (
