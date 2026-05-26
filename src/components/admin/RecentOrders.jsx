@@ -17,7 +17,7 @@ const RecentOrders = () => {
     <div className="recent-orders my-8 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
 
       {/* Header */}
-      <h2 className="mb-4 text-lg font-semibold text-gray-800">
+      <h2 className="mb-4 text-lg font-normal  text-gray-800">
         Recent Orders
       </h2>
 

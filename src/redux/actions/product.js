@@ -73,6 +73,7 @@ const getProduct = createAsyncThunk('product/getproduct', async (id) => {
 });
 
 const updateProduct = createAsyncThunk('updateProduct', async ({ editId, formData }, { rejectWithValue }) => {
+  console.log(formData)
   try {
     const response = await fetch(`${baseURL}products/${editId}`, {
       method: 'PUT',
