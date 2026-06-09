@@ -48,7 +48,6 @@ const ProductForm = ({ onSubmit, product }) => {
     };
   }, []);
 
-  console.log(product, formdata);
   useEffect(() => {
     if (product) {
       setFormdata({
@@ -675,8 +674,8 @@ const ProductForm = ({ onSubmit, product }) => {
                         className="flex-1"
                         label="Composition"
                         name="composition"
-                        onChange={({ value }) => setFormdata({ ...formdata, length: value })}
-                        value={{ value: formdata?.composition, label: composition.find((c) => c.value === formdata.composition)?.label ?? 'Select Coposition' }}
+                        onChange={({ value }) => setFormdata({ ...formdata, composition: value })}
+                        value={{ value: formdata?.composition, label: composition.find((c) => c.value === formdata.composition)?.label ?? 'Select Composition' }}
                         id="composition"
                         options={composition}
                         type="select"

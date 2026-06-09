@@ -10,7 +10,6 @@ const CheckoutSummary = ({
 }) => {
   const [toggleInput, setToggleInput] = useState(false);
 
-  console.log(!!referal, toggleInput);
 
   return (
     <div className="col-right border sticky top-40  md:max-w-[270px] lg:max-w-[370px] w-full px-2.5 py-6 bg-light rounded shadow h-max flex-1">

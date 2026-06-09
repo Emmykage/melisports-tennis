@@ -32,10 +32,8 @@ const SearchComponent = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    console.log('[JS Update]: ', e.target.value, '[Hook Update]: ', search);
 
     timeoutRef.current = setTimeout(() => {
-      console.log('[Timed JS Update]: ', e.target.value, '[Timed Hook Update]: ', search);
 
       dispatch(searchedProducts({ search: cleanedValue }));
     }, 2000);
@@ -52,11 +50,9 @@ const SearchComponent = () => {
     }
   }, [searched_products]);
 
-  console.log(searched_products);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      console.log('[CLICKED NAV]');
       if (searchlistRef.current && !searchlistRef.current.contains(e.target)) {
         triggerClose(false);
       }

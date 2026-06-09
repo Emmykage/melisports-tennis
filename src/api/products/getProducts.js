@@ -11,13 +11,11 @@ export const fetchProducts = async (filterParams = {}) => {
     const response = await fetch(`${baseURL}products?${params}`);
 
     const result = await response.json();
-    console.log(result, params, cleanedParams, 'data response', filterParams);
     if (!response.ok) {
       throw new Error(result?.error ?? 'Something went wrong');
     }
     return result.data;
   } catch (error) {
-    console.log('first', error);
     throw error ?? 'Something went wrong';
   }
 };

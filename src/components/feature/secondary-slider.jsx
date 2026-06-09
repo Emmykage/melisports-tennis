@@ -61,7 +61,7 @@ const SecondarySlider = () => {
   ];
   return (
     <>
-      <div className="relative w-full h-full py-0 mt-0 md:-mt-44">
+      <div className="relative w-full lg:h-full py-0 mt-0 md:-mt-44">
         <Swiper
           loop
           effect="fade"
@@ -79,7 +79,7 @@ const SecondarySlider = () => {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="absolute inset-0 w-full h-full object-fill"
+                    className="absolute inset-0 w-full h-full object-cover lg:object-fill"
                   />
                 )
                   : (

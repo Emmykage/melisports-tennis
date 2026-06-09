@@ -5,7 +5,6 @@ const useResetPageLoction = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    console.log('scroll reste triggered');
     window.scrollTo(0, 0);
   }, [pathname]);
 };

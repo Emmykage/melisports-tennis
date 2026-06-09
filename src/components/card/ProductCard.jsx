@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { nairaFormat } from '../../utils/nairaFormat';
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { nairaFormat } from "../../utils/nairaFormat";
 
 const ProductCard = ({ product }) => {
   const [newInventory, setNewInventory] = useState([]);
@@ -11,8 +11,9 @@ const ProductCard = ({ product }) => {
 
     product.product_inventories?.forEach((inventory, index) => {
       const exists = newArray.some((n) => n.size == inventory.size);
-      console.log(inventory, exists, newArray);
-      if (!exists) { newArray.push(inventory); }
+      if (!exists) {
+        newArray.push(inventory);
+      }
     });
 
     setNewInventory(newArray);
@@ -27,12 +28,12 @@ const ProductCard = ({ product }) => {
       );
     }
 
-    if (product?.discount === 'active_discount') {
+    if (product?.discount === "active_discount") {
       return (
         <span className="absolute top-4 right-4 bg-theme text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           {product?.discount_percentage
             ? `-${product.discount_percentage}%`
-            : 'Discount'}
+            : "Discount"}
         </span>
       );
     }
@@ -57,9 +58,9 @@ const ProductCard = ({ product }) => {
 
         {/* New Badge */}
         {product.new_product && (
-        <span className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
-          New
-        </span>
+          <span className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+            New
+          </span>
         )}
 
         {/* Discount Badge */}
@@ -75,20 +76,20 @@ const ProductCard = ({ product }) => {
         {/* Pricing Section */}
 
         <div className="mb-4">
-          {product.discount === 'active_discount' ? (
+          {product.discount === "active_discount" ? (
             <div className="flex flex-col items-center space-y-1">
               <p className="text-sm text-theme line-through">
                 {nairaFormat(product.price)}
               </p>
 
               <p className="text-lg font-semibold text-primary">
-                {nairaFormat(
-                  ((product.discount_amount || 0)),
-                )}
+                {nairaFormat(product.discount_amount || 0)}
               </p>
             </div>
           ) : (
-            <p className={`text-lg font-semibold ${newInventory < 1 ? 'text-gray-500 bg-gray-200 rounded' : 'text-primary'}`}>
+            <p
+              className={`text-lg font-semibold ${newInventory < 1 ? "text-gray-500 bg-gray-200 rounded" : "text-primary"}`}
+            >
               {nairaFormat(product.price)}
             </p>
           )}
@@ -96,14 +97,13 @@ const ProductCard = ({ product }) => {
 
         <button
           disabled={newInventory < 1}
-          className={`${newInventory < 1 ? 'bg-gray-400' : 'bg-primary hover:bg-primary/90'}  w-full inline-block mt-auto   text-white py-2.5 rounded-lg font-medium transition-colors duration-200`}
+          className={`${newInventory < 1 ? "bg-gray-400" : "bg-primary hover:bg-primary/90"}  w-full inline-block mt-auto   text-white py-2.5 rounded-lg font-medium transition-colors duration-200`}
           onClick={() => navigate(`/productdetails/${product.id}`)}
         >
           Buy Now
         </button>
       </div>
     </div>
-
   );
 };
 

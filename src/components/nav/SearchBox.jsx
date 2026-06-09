@@ -103,7 +103,6 @@ export function SearchBox({ logo, stickyNav }) {
     }
   }, [showSearch]);
 
-  console.log(searched_products, loading);
 
   return (
     <div className="relative">
