@@ -1,36 +1,19 @@
-const colors = {
-  blue: 'bg-blue-500',
-  'dark-blue': 'bg-[#364a91]',
-  red: 'bg-red-500',
-  green: 'bg-green-500',
-  yellow: 'bg-yellow-500',
-  pink: 'bg-pink-500',
-  orange: 'bg-orange-500',
-  gray: 'bg-gray-500',
-  white: 'bg-white',
-  black: 'bg-black',
-  'fiester red': 'bg-[#dd1923]',
-  purple: 'bg-purple-500',
-  neutral: 'bg-gray-500',
-  'autumn glory': 'bg-[#ff8813]',
-  'navy-blue': 'bg-[#000080]',
-  'cyan-blue': 'bg-[#00cceb]',
+import { colors } from "../constants/global";
 
+const selectColor = (color) => {
+  const findColor = colors.find((c) => c.value === color);
+
+  return findColor?.hex || "red";
 };
-const selectColor = (color) => colors[color] || 'bg-purple-500';
 
 export const pickColor = (color) => {
-  const splitColor = (color) => {
-    const colorArr = color.split('/');
-    if (colorArr.length === 1) {
-      return [selectColor(colorArr[0])];
-    }
+  const colorArr = color.trim().split("/");
 
-    const color1 = selectColor(colorArr[0]);
-    const color2 = selectColor(colorArr[1]);
+  if (Array.isArray(colorArr)) {
+    const selectedColor = selectColor(colorArr[0]);
 
-    return [color1, color2];
-  };
+    return selectedColor;
+  }
 
-  return splitColor(color);
+  return selectColor(color);
 };

@@ -27,6 +27,7 @@ import AdBanner from "../../components/adbanner/AdBanner";
 import Container from "../../components/container";
 import Header from "../../components/header/Header";
 import SecondarySlider from "../../components/feature/secondary-slider";
+import AnimatedLoaded from "../../components/animateLoad/AnimatedLoaded";
 
 const ShopHome = () => {
   const navigate = useNavigate();
@@ -44,7 +45,6 @@ const ShopHome = () => {
   return (
     <Container>
       <SecondarySlider />
-
       <section className="px-6 py-24 bg-theme">
         <div className="grid gap-8 md:grid-cols-3 max-w-[1400px] mx-auto">
           {[
@@ -76,14 +76,12 @@ const ShopHome = () => {
       </section>
 
       <AdBanner />
-
       <section className="px-4 py-10 bg-white/90 my-10">
         <div className="max-w-7xl m-auto feature">
           <h3 className="text-3xl text-center my-4">Products </h3>
           <ProductSlider products={products} views={4} />
         </div>
       </section>
-
       <section className="px-4 md:px-8 my-12">
         <div className="grid gap-8 md:grid-cols-2 max-w-7xl m-auto">
           {/* Collection Card */}
@@ -127,7 +125,6 @@ const ShopHome = () => {
           </div>
         </div>
       </section>
-
       {latestArrival.length > 0 && (
         <section className="px-3  py-20">
           <h3 className="text-2xl text-center">
@@ -149,7 +146,6 @@ const ShopHome = () => {
           </div>
         </section>
       )}
-
       <div>
         <div className="flex m-auto section-container gap-2">
           <NavLink to="/store" className="flex-1 zoom-hover h-52 md:h-80">
@@ -170,7 +166,6 @@ const ShopHome = () => {
           <ReactSlider categories={categories} />
         </div>
       </div>
-
       <HomeEquipmentInfo />
       <SurveyButton />
       <Reviews />
