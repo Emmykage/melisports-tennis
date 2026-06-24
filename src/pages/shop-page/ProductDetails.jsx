@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { getProduct, getSimilarProducts } from '../../redux/actions/product';
-import { closeList } from '../../redux/products/searched';
-import Loader from '../Loader';
-import ImagePreview from '../../components/products/ImagePreview';
-import { nairaFormat } from '../../utils/nairaFormat';
-import { pickColor } from '../../utils/get_colors';
-import SimilarItemsSection from '../../components/similarSection/SimilarItemSection';
-import { addToCart } from '../../redux/actions/cart';
-import Container from '../../components/container';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProduct, getSimilarProducts } from "../../redux/actions/product";
+import { closeList } from "../../redux/products/searched";
+import Loader from "../Loader";
+import ImagePreview from "../../components/products/ImagePreview";
+import { nairaFormat } from "../../utils/nairaFormat";
+import { pickColor } from "../../utils/get_colors";
+import SimilarItemsSection from "../../components/similarSection/SimilarItemSection";
+import { addToCart } from "../../redux/actions/cart";
+import Container from "../../components/container";
+import { Helmet } from "react-helmet-async";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -22,30 +23,40 @@ const ProductDetails = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const { product, loading } = useSelector((state) => state.product);
   const { id } = useParams();
-  const { relatedProducts, status, loading: isLoading } = useSelector((state) => state.products);
+  const {
+    relatedProducts,
+    status,
+    loading: isLoading,
+  } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
-  console.log(selectedItem, 'related products');
+  console.log(selectedItem, "related products");
 
   useEffect(() => {
     dispatch(closeList());
     dispatch(getProduct(id));
   }, [id]);
   const handleCart = () => {
-    const cartArray = newInventory.filter((item) => item.count && item.count > 0).map((item) => ({
-      product_id: product?.id,
-      id: item?.id,
-      sku: item?.sku,
-      image: product.photo_urls ? product.photo_urls[0] : product.image,
-      ...(product.discount === 'active_discount' && { discount_amount: product?.price }
-      ),
-      price: product.discount === 'active_discount' ? product.discount_amount : product.price,
-      quantity: item.count,
-      product_name: product.name,
-      size: item?.size,
-      colours: product?.colours,
-      category: product?.product_category?.name,
-    }));
+    const cartArray = newInventory
+      .filter((item) => item.count && item.count > 0)
+      .map((item) => ({
+        product_id: product?.id,
+        id: item?.id,
+        sku: item?.sku,
+        image: product.photo_urls ? product.photo_urls[0] : product.image,
+        ...(product.discount === "active_discount" && {
+          discount_amount: product?.price,
+        }),
+        price:
+          product.discount === "active_discount"
+            ? product.discount_amount
+            : product.price,
+        quantity: item.count,
+        product_name: product.name,
+        size: item?.size,
+        colours: product?.colours,
+        category: product?.product_category?.name,
+      }));
 
     // if(newInventory.every((item) => !item.count || item.count < 1)){
     // alert('You need to select a product');
@@ -58,7 +69,7 @@ const ProductDetails = () => {
       dispatch(addToCart(cartArray));
       setSelectedItem(null);
     } else {
-      alert('Out of Stock');
+      alert("Out of Stock");
     }
   };
 
@@ -90,7 +101,10 @@ const ProductDetails = () => {
         if (item.id == s.id) {
           return {
             ...s,
-            count: sign == '+' ? Math.min((s.count || 0) + 1, item.quantity) : Math.max((s.count - 1 || 0), 0),
+            count:
+              sign == "+"
+                ? Math.min((s.count || 0) + 1, item.quantity)
+                : Math.max(s.count - 1 || 0, 0),
           };
         }
         return s;
@@ -108,27 +122,35 @@ const ProductDetails = () => {
 
     product.product_inventories?.forEach((inventory, index) => {
       const exists = newArray.some((n) => n.size == inventory.size);
-      if (!exists) { newArray.push(inventory); }
+      if (!exists) {
+        newArray.push(inventory);
+      }
     });
 
     setNewInventory(newArray);
   }, [product]);
 
   if (loading) {
-    return (<Loader />);
+    return <Loader />;
   }
 
   console.log(product);
 
   return (
-
     <Container>
+      <Helmet>
+        <title>{product.name} | My Ecommerce Store</title>
+        <meta name="description" content={product.description} />
+        <link
+          rel="canonical"
+          href={`https://example.com/products/${product.name}`}
+        />
+      </Helmet>
 
       {/* Product Container */}
       <div className="p-container shadow-lg p-6 rounded-xl bg-white max-w-[1600px] m-auto">
         {/* Top Section */}
         <div className="grid gap-10 md:grid-cols-2 border-b pb-10 mb-10">
-
           {/* Product Images */}
           <div className="flex justify-center items-center">
             {product.photo_urls ? (
@@ -145,11 +167,11 @@ const ProductDetails = () => {
           {/* Product Info */}
           <div className="flex flex-col justify-between">
             <div>
-              <h2 className="text-3xl capitalize font-normal text-gray-800">{product?.name}</h2>
+              <h2 className="text-3xl capitalize font-normal text-gray-800">
+                {product?.name}
+              </h2>
               <p className="mt-2 text-gray-500 text-sm uppercase tracking-wide">
-                Tennis •
-                {' '}
-                {product?.product_category?.name}
+                Tennis • {product?.product_category?.name}
               </p>
 
               {/* <div className="mt-4 text-2xl font-bold text-primary">
@@ -157,7 +179,7 @@ const ProductDetails = () => {
                 </div> */}
 
               <div className="mt-4 flex items-center gap-3">
-                {product.discount === 'active_discount' ? (
+                {product.discount === "active_discount" ? (
                   <>
                     {/* Original Price (crossed out) */}
                     <span className="text-xl text-gray-400 line-through">
@@ -170,11 +192,9 @@ const ProductDetails = () => {
                     </span>
 
                     {/* Optional discount badge */}
-                    {product.discount === 'active_discount' && (
+                    {product.discount === "active_discount" && (
                       <span className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
-                        -
-                        {product.discount_percentage}
-                        %
+                        -{product.discount_percentage}%
                       </span>
                     )}
                   </>
@@ -188,32 +208,37 @@ const ProductDetails = () => {
               {/* Colors */}
               {product?.colours?.length > 0 && (
                 <div className="mt-6">
-                  <span className="block text-lg font-semibold text-gray-700 mb-2">Colours</span>
-                  <div className="flex gap-3">
-                    {product.colours.map((color) => (pickColor(color).length === 1 ? (
-                      <span
-                        key={color}
-                        className={`w-8 h-8 rounded-full border border-gray-300 ${pickColor(color)[0]}`}
-                      />
-                    ) : (
-                      <span
-                        onClick={() => {
-                          setSelectedColors((prev) => {
-                            const exists = prev.some((s) => s === color);
-                            const newArray = exists
-                              ? prev.filter((s) => s !== color) : [...prev, color];
-                            return newArray;
-                          });
-                        }}
-
-                        key={color}
-                        className={`w-8 h-8 rounded-full border flex justify-center items-center ${pickColor(color)[0]}`}
-                      >
+                  <span className="block text-lg font-semibold text-gray-700 mb-2">
+                    Colours
+                  </span>
+                  <div className="flex w-8 h-8 gap-3  ">
+                    {product.colours.map((color) =>
+                      pickColor(color).length === 1 ? (
                         <span
-                          className={`w-4 h-4 rounded-full border ${pickColor(color)[1]}`}
+                          key={color}
+                          className={`w-8 h-8 rounded-full border border-gray-300 ${pickColor(color)[0]}`}
                         />
-                      </span>
-                    )))}
+                      ) : (
+                        <div className="w-8 h-8 relative border border-gray-700 overflow-hidden rounded-full">
+                          <span
+                            onClick={() => {
+                              setSelectedColors((prev) => {
+                                const exists = prev.some((s) => s === color);
+                                const newArray = exists
+                                  ? prev.filter((s) => s !== color)
+                                  : [...prev, color];
+                                return newArray;
+                              });
+                            }}
+                            key={color}
+                            className={`w-8 h-7  absolute  diagonal-top top-0 left-0  flex justify-center items-center ${pickColor(color)[0]}`}
+                          ></span>
+                          <span
+                            className={`w-8 h-7  absolute bottom-0 right-0 diagonal-bottom bottom-0 diagonal-bottom  ${pickColor(color)[1]}`}
+                          />
+                        </div>
+                      ),
+                    )}
                   </div>
                 </div>
               )}
@@ -222,23 +247,33 @@ const ProductDetails = () => {
               {product?.product_inventories?.length > 0 && (
                 <div className="mt-6">
                   <span className="block text-lg font-semibold text-gray-700 mb-2">
-                    {product?.product_category?.name === 'racquet' ? 'Grip Size' : 'Size'}
+                    {product?.product_category?.name === "racquet"
+                      ? "Grip Size"
+                      : "Size"}
                   </span>
                   <div className="flex gap-3 flex-wrap">
                     {newInventory.map((inventory) => (
                       <button
                         key={inventory.size}
                         onClick={() => {
-                          setSelectedItem((prev) => (prev == inventory?.id ? null : inventory.id));
+                          setSelectedItem((prev) =>
+                            prev == inventory?.id ? null : inventory.id,
+                          );
                         }}
                         className={`px-5 py-2 relative rounded-lg border text-sm font-medium transition-all ${
                           inventory.count > 0
-                            ? 'bg-primary text-white border-primary'
-                            : 'bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200'
+                            ? "bg-primary text-white border-primary"
+                            : "bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200"
                         }`}
                       >
-                        {(selectedItem && inventory.id == selectedItem)
-                        && <QuantityAdjuster count={inventory?.count || 0} increase={() => handleItemCount(inventory, '+')} quantity={inventory.quantity} decrease={() => handleItemCount(inventory, '-')} />}
+                        {selectedItem && inventory.id == selectedItem && (
+                          <QuantityAdjuster
+                            count={inventory?.count || 0}
+                            increase={() => handleItemCount(inventory, "+")}
+                            quantity={inventory.quantity}
+                            decrease={() => handleItemCount(inventory, "-")}
+                          />
+                        )}
 
                         {inventory.size}
                       </button>
@@ -255,60 +290,59 @@ const ProductDetails = () => {
                     <button
                       type="button"
                       className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={() => handleItemCount(newInventory[0], '-')}
+                      onClick={() => handleItemCount(newInventory[0], "-")}
                     >
                       -
                     </button>
-                    <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
+                    <span className="px-4 py-2 text-gray-900 font-medium">
+                      {totalCount}
+                    </span>
                     <button
                       type="button"
                       className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={() => handleItemCount(newInventory[0], '+')}
+                      onClick={() => handleItemCount(newInventory[0], "+")}
                     >
                       +
                     </button>
                   </div>
                   <p className="text-sm text-gray-600">
-                    Av Qty:
-                    {' '}
-                    {newInventory[0]?.quantity}
+                    Av Qty: {newInventory[0]?.quantity}
                   </p>
                 </div>
-              )
-                : (
-                  <div className="flex items-center gap-4 mt-6">
-                    <div className="flex items-center border rounded-lg">
-                      <button
-                        type="button"
-                        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                        onClick={decrease}
-                      >
-                        -
-                      </button>
-                      <span className="px-4 py-2 text-gray-900 font-medium">{totalCount}</span>
-                      <button
-                        type="button"
-                        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                        onClick={increase}
-                      >
-                        +
-                      </button>
-                    </div>
-                    <p className="text-sm text-gray-600">
-                      Av Qty:
-                      {' '}
-                      {product.product_quantity}
-                    </p>
+              ) : (
+                <div className="flex items-center gap-4 mt-6">
+                  <div className="flex items-center border rounded-lg">
+                    <button
+                      type="button"
+                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                      onClick={decrease}
+                    >
+                      -
+                    </button>
+                    <span className="px-4 py-2 text-gray-900 font-medium">
+                      {totalCount}
+                    </span>
+                    <button
+                      type="button"
+                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+                      onClick={increase}
+                    >
+                      +
+                    </button>
                   </div>
-                ) }
+                  <p className="text-sm text-gray-600">
+                    Av Qty: {product.product_quantity}
+                  </p>
+                </div>
+              )}
 
               {/* Add to Cart */}
               <div className="mt-6">
                 <button
                   className={`w-full py-3 rounded-lg font-medium transition-all ${
                     product.quantity === 0
-                      ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                      : 'bg-primary text-white hover:bg-primary/90'
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : "bg-primary text-white hover:bg-primary/90"
                   }`}
                   onClick={handleCart}
                 >
@@ -328,30 +362,19 @@ const ProductDetails = () => {
             {product?.head_size && product.head_size !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="font-medium text-gray-700">Head Size</span>
-                <span className="text-gray-600">
-                  {product.head_size}
-                  {' '}
-                  ㎠
-                </span>
+                <span className="text-gray-600">{product.head_size} ㎠</span>
               </div>
-            )}  
-             {product?.head_shape && product.head_shape !== "null" && (
+            )}
+            {product?.head_shape && product.head_shape !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="font-medium text-gray-700">Head Shape</span>
-                <span className="text-gray-600">
-                  {product.head_shape}
-                  {' '}
-                </span>
+                <span className="text-gray-600">{product.head_shape} </span>
               </div>
             )}
             {product?.weight && product.weight !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="font-medium text-gray-700">Weight</span>
-                <span className="text-gray-600">
-                  {product.weight}
-                  {' '}
-                  g ± 7 g
-                </span>
+                <span className="text-gray-600">{product.weight} g ± 7 g</span>
               </div>
             )}
             {product?.size && product.size !== "null" && (
@@ -363,11 +386,7 @@ const ProductDetails = () => {
             {product?.length && product.length !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="font-medium text-gray-700">Length</span>
-                <span className="text-gray-600">
-                  {product.length}
-                  {' '}
-                  mm
-                </span>
+                <span className="text-gray-600">{product.length} mm</span>
               </div>
             )}
             {product?.composition && product.composition !== "null" && (
@@ -378,18 +397,18 @@ const ProductDetails = () => {
             )}
             {product?.strung && product.strung !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Strung/Unstrung</span>
+                <span className="font-medium text-gray-700">
+                  Strung/Unstrung
+                </span>
                 <span className="text-gray-600">{product.strung}</span>
               </div>
             )}
             {product?.tension && product.tension !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Recommended Tension</span>
-                <span className="text-gray-600">
-                  {product.tension}
-                  {' '}
-                  kg
+                <span className="font-medium text-gray-700">
+                  Recommended Tension
                 </span>
+                <span className="text-gray-600">{product.tension} kg</span>
               </div>
             )}
           </div>
@@ -399,20 +418,22 @@ const ProductDetails = () => {
         <div className="description-details">
           <div className="grid md:grid-cols-2">
             <div className="p-4">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Description</h2>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                Description
+              </h2>
               {product.description_body ? (
                 <div
                   className="prose prose-gray max-w-none"
                   dangerouslySetInnerHTML={{ __html: product.description_body }}
                 />
               ) : (
-                <p className="text-gray-700 leading-relaxed">{product.description}</p>
+                <p className="text-gray-700 leading-relaxed">
+                  {product.description}
+                </p>
               )}
-
             </div>
             <div className="bg-0" />
           </div>
-
         </div>
       </div>
       {/* </section> */}
@@ -425,12 +446,15 @@ const ProductDetails = () => {
         />
       </div>
     </Container>
-
   );
 };
 
 const QuantityAdjuster = ({
-  onClick, decrease, count, increase, quantity = 0,
+  onClick,
+  decrease,
+  count,
+  increase,
+  quantity = 0,
 }) => (
   // <div className='bg-gray-800/30 fixed top-0 left-0 h-full w-full z-40'>
 
@@ -455,11 +479,7 @@ const QuantityAdjuster = ({
         +
       </button>
     </div>
-    <p className="text-sm text-gray-600 text-nowrap">
-      Max Qty:
-      {' '}
-      {quantity}
-    </p>
+    <p className="text-sm text-gray-600 text-nowrap">Max Qty: {quantity}</p>
   </div>
 
   // </div>
