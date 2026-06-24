@@ -209,10 +209,10 @@ const ProductDetails = () => {
               {product?.colours?.length > 0 && (
                 <div className="mt-6">
                   <span className="block text-lg font-semibold text-gray-700 mb-2">
-                    Colours
+                    Colour
                   </span>
                   <div className="flex w-8 h-8 gap-3  ">
-                    {product.colours.map((color) =>
+                    {/* {product.colours.map((color) =>
                       pickColor(color).length === 1 ? (
                         <span
                           key={color}
@@ -238,6 +238,24 @@ const ProductDetails = () => {
                           />
                         </div>
                       ),
+                    )} */}
+
+                    {product.colours.length === 2 ? (
+                      <span
+                        style={{
+                          background: `linear-gradient(135deg, ${pickColor(product.colours[0])}  50%, ${pickColor(product.colours[1])} 50%)`,
+                        }}
+                        // key={color}
+                        className={`w-8 h-8 rounded-full border border-gray-300 `}
+                      />
+                    ) : (
+                      <span
+                        style={{
+                          background: pickColor(product.colours[0]),
+                        }}
+                        // key={color}
+                        className={`w-8 h-8 rounded-full border border-gray-300 `}
+                      />
                     )}
                   </div>
                 </div>
