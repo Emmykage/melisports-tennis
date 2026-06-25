@@ -30,8 +30,6 @@ const ProductDetails = () => {
   } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
-  console.log(selectedItem, "related products");
-
   useEffect(() => {
     dispatch(closeList());
     dispatch(getProduct(id));
@@ -64,7 +62,6 @@ const ProductDetails = () => {
 
     // }
 
-    console.log(cartArray);
     if (product.product_quantity > 0) {
       dispatch(addToCart(cartArray));
       setSelectedItem(null);
@@ -109,7 +106,6 @@ const ProductDetails = () => {
         }
         return s;
       });
-      console.log(updatedInventory);
       return updatedInventory;
     });
   };
@@ -133,21 +129,77 @@ const ProductDetails = () => {
   if (loading) {
     return <Loader />;
   }
+  const categoryKeyword = {
+    racquet: "Tennis Rackets",
+    shoe: "Sports Shoes",
+    apparel: "Sports Wear",
+    bag: "Sports Bags",
+  };
 
-  console.log(product);
+  const seoCategory =
+    categoryKeyword[product.product_category?.name] ||
+    product.product_category?.name;
 
   return (
     <Container>
       <Helmet>
-        <title>{product.name} | My Ecommerce Store</title>
-        <meta name="description" content={product.description} />
+        Buy {seoCategory} Online in Nigeria | {product.name} | Melisports
+        <meta
+          name="description"
+          content={`
+Buy ${product.name} online in Nigeria from Melisports.
+Shop quality ${seoCategory.toLowerCase()} and sports equipment
+at competitive prices.
+`}
+        />
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.description} />
+        <meta
+          property="og:image"
+          content={product.photo_urls?.[0] || product.image}
+        />
+        <meta property="og:type" content="product" />
         <link
           rel="canonical"
-          href={`https://example.com/products/${product.name}`}
+          href={`https://melisports.com/productdetails/${product.id}`}
         />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+
+            name: product.name,
+
+            image: product.photo_urls || [product.image],
+
+            description: product.description,
+
+            brand: {
+              "@type": "Brand",
+              name: "Melisports",
+            },
+
+            offers: {
+              "@type": "Offer",
+
+              url: `https://melisports.com/productdetails/${product.id}`,
+
+              priceCurrency: "NGN",
+
+              price:
+                product.discount === "active_discount"
+                  ? product.discount_amount
+                  : product.price,
+
+              availability:
+                product.product_quantity > 0
+                  ? "https://schema.org/InStock"
+                  : "https://schema.org/OutOfStock",
+            },
+          })}
+        </script>
       </Helmet>
 
-      {/* Product Container */}
       <div className="p-container shadow-lg p-6 rounded-xl bg-white max-w-[1600px] m-auto">
         {/* Top Section */}
         <div className="grid gap-10 md:grid-cols-2 border-b pb-10 mb-10">
@@ -157,6 +209,7 @@ const ProductDetails = () => {
               <ImagePreview images={product.photo_urls} />
             ) : (
               <img
+                loading="lazy"
                 src={product.image}
                 alt={product.name}
                 className="w-full max-h-[500px] object-contain rounded-lg"
@@ -167,11 +220,15 @@ const ProductDetails = () => {
           {/* Product Info */}
           <div className="flex flex-col justify-between">
             <div>
-              <h2 className="text-3xl capitalize font-normal text-gray-800">
+              <h1 className="text-3xl capitalize font-normal text-gray-800">
                 {product?.name}
-              </h2>
+              </h1>
               <p className="mt-2 text-gray-500 text-sm uppercase tracking-wide">
                 Tennis • {product?.product_category?.name}
+              </p>
+              <p className="mt-2 text-gray-500 text-sm uppercase tracking-wide">
+                Buy premium {product.product_category?.name} from Melisports.
+                Authentic sports equipment available in Nigeria.{" "}
               </p>
 
               {/* <div className="mt-4 text-2xl font-bold text-primary">
@@ -371,11 +428,33 @@ const ProductDetails = () => {
           </div>
         </div>
 
+        {/* Description */}
+        <div className="description-details">
+          <div className="grid md:grid-cols-2">
+            <div className="p-4">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                Description
+              </h2>
+              {product.description_body ? (
+                <div
+                  className="prose prose-gray max-w-none"
+                  dangerouslySetInnerHTML={{ __html: product.description_body }}
+                />
+              ) : (
+                <p className="text-gray-700 leading-relaxed">
+                  {product.description}
+                </p>
+              )}
+            </div>
+            <div className="bg-0" />
+          </div>
+        </div>
+
         {/* Technical Details */}
         <div className="technical-details mb-10">
-          <h3 className="text-2xl font-normal text-gray-800 mb-6">
+          <h2 className="text-2xl font-normal text-gray-800 mb-6">
             Technical Characteristics
-          </h3>
+          </h2>
           <div className="grid gap-4 md:grid-cols-2">
             {product?.head_size && product.head_size !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
@@ -431,28 +510,6 @@ const ProductDetails = () => {
             )}
           </div>
         </div>
-
-        {/* Description */}
-        <div className="description-details">
-          <div className="grid md:grid-cols-2">
-            <div className="p-4">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                Description
-              </h2>
-              {product.description_body ? (
-                <div
-                  className="prose prose-gray max-w-none"
-                  dangerouslySetInnerHTML={{ __html: product.description_body }}
-                />
-              ) : (
-                <p className="text-gray-700 leading-relaxed">
-                  {product.description}
-                </p>
-              )}
-            </div>
-            <div className="bg-0" />
-          </div>
-        </div>
       </div>
       {/* </section> */}
 
@@ -474,8 +531,6 @@ const QuantityAdjuster = ({
   increase,
   quantity = 0,
 }) => (
-  // <div className='bg-gray-800/30 fixed top-0 left-0 h-full w-full z-40'>
-
   <div
     onClick={(e) => e.stopPropagation()}
     className="flex absolute items-center gap-4 bg-white rounded-lg p-4 -mt-16 left-0  border shadow  -top-full"

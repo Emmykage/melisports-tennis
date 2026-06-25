@@ -235,3 +235,10 @@ export const colors = [
     hex: "#D1D5DB",
   },
 ];
+
+export const categoryKeyword = {
+  racquet: "Tennis Rackets",
+  shoe: "Sports Shoes",
+  apparel: "Sports Wear",
+  bag: "Sports Bags",
+};

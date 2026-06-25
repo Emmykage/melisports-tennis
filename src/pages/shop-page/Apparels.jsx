@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/actions/product';
-import imageBanner from '../../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif';
-import Hero from '../../components/banner/Hero';
-import Loader from '../Loader';
-import ProductsGrid from '../../components/products/ProductsGridDisplay';
-import Nav from '../../components/nav/Nav';
-import useFilter from '../../hooks/useFilter';
-import { classSports, genderItems } from '../../constants/categories';
-import SideNav from '../../components/sideNav/SideNav';
-import ProductsPageContainer from '../../components/productItems/ProductItems';
-import useProducts from '../../hooks/useProducts';
-import { useCategoryName } from '../../hooks/fetchHooks/useCategories';
-import Container from '../../components/container';
-import Header from '../../components/header/Header';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/actions/product";
+import bannerImage from "../../assets/images/banner/BABcup_1365x510-Version-1_no_logo.avif";
+import Hero from "../../components/banner/Hero";
+import Loader from "../Loader";
+import ProductsGrid from "../../components/products/ProductsGridDisplay";
+import Nav from "../../components/nav/Nav";
+import useFilter from "../../hooks/useFilter";
+import { classSports, genderItems } from "../../constants/categories";
+import SideNav from "../../components/sideNav/SideNav";
+import ProductsPageContainer from "../../components/productItems/ProductItems";
+import useProducts from "../../hooks/useProducts";
+import { useCategoryName } from "../../hooks/fetchHooks/useCategories";
+import Container from "../../components/container";
+import Header from "../../components/header/Header";
+import { Helmet } from "react-helmet-async";
 
 const ApparelsPage = () => {
   const dispatch = useDispatch();
@@ -24,25 +25,29 @@ const ApparelsPage = () => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
   const {
-    data: products, error, isLoading: loading,
+    data: products,
+    error,
+    isLoading: loading,
   } = useProducts({
-    category: 'apparel',
+    category: "apparel",
     sport: selectedSports,
     levels: selectedLevels,
     features: selectedFeatures,
     gender: selectedGenders,
-
   });
 
   const { data: category } = useCategoryName({
-    name: 'apparel',
-  }); const handleFilteredProducts = (seive) => {
+    name: "apparel",
+  });
+  const handleFilteredProducts = (seive) => {
     console.log(seive);
     const lowerCaseSieve = seive.toLowerCase();
 
-    dispatch(getProducts({
-      gender: lowerCaseSieve,
-    }));
+    dispatch(
+      getProducts({
+        gender: lowerCaseSieve,
+      }),
+    );
   };
 
   const handleGenderFilter = (e) => {
@@ -67,8 +72,69 @@ const ApparelsPage = () => {
   return (
     <>
       <Container>
+        <Helmet>
+          <title>
+            Tennis Shoes Online Nigeria | Buy Quality Tennis Shoes | Melisports
+          </title>
 
-        <Hero image={imageBanner} title="Apparels" />
+          <meta
+            name="description"
+            content="
+Shop tennis apparels amd clothings online in Nigeria at Melisports.
+Explore quality tennis shoes from trusted brands including
+Babolat, Wilson and more. Find beginner and performance enhanced apparels for every playing style.
+"
+          />
+
+          <link rel="canonical" href="https://melisports.com/apparels" />
+
+          <meta
+            property="og:title"
+            content="Tennis Apparels and clothes Online Nigeria | Melisports"
+          />
+
+          <meta
+            property="og:description"
+            content="
+Shop quality tennis apparels and clothings online in Nigeria.
+"
+          />
+
+          <meta property="og:image" content={bannerImage} />
+
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+
+              "@type": "CollectionPage",
+
+              name: "Tennis Apparels Online Nigeria",
+
+              description:
+                "Shop tennis and sport and apparels and cloths online in Nigeria from trusted brands like babolat.",
+
+              url: "https://melisports.com/apparels",
+
+              mainEntity: {
+                "@type": "ItemList",
+
+                itemListElement: products
+                  ?.slice(0, 10)
+                  .map((product, index) => ({
+                    "@type": "ListItem",
+
+                    position: index + 1,
+
+                    name: product.name,
+
+                    url: `https://melisports.com/productdetails/${product.id}`,
+                  })),
+              },
+            })}
+          </script>
+        </Helmet>
+
+        <Hero image={bannerImage} title="Apparels" />
         <ProductsPageContainer>
           <div className="cat-group gap-2 md:gap-6 max-w-md my-6">
             <button
@@ -80,32 +146,29 @@ const ApparelsPage = () => {
 
             <button
               className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-              onClick={() => handleFilteredProducts('men')}
+              onClick={() => handleFilteredProducts("men")}
             >
-              {' '}
+              {" "}
               Men
             </button>
             <button
               className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-              onClick={() => handleFilteredProducts('women')}
+              onClick={() => handleFilteredProducts("women")}
             >
-              {' '}
+              {" "}
               Women
             </button>
             <button
               className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-              onClick={() => handleFilteredProducts('kids')}
+              onClick={() => handleFilteredProducts("kids")}
             >
-              {' '}
+              {" "}
               Kids
             </button>
-
           </div>
 
           <div className="flex md:gap-10">
-
             <SideNav>
-
               {/* Section: Racket Type */}
               <div>
                 <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
@@ -113,7 +176,6 @@ const ApparelsPage = () => {
                 </h6>
 
                 <div className="">
-
                   {classSports.map((item) => (
                     <div className="mb-2 flex items-center">
                       <input
@@ -124,15 +186,15 @@ const ApparelsPage = () => {
                         className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                       />
 
-                      <label htmlFor={item.type} style={{ fontSize: '1rem' }} className="flex items-center">
-                        <span>
-                          {item.label}
-                        </span>
+                      <label
+                        htmlFor={item.type}
+                        style={{ fontSize: "1rem" }}
+                        className="flex items-center"
+                      >
+                        <span>{item.label}</span>
                       </label>
-
                     </div>
                   ))}
-
                 </div>
               </div>
 
@@ -141,8 +203,7 @@ const ApparelsPage = () => {
 
                 {genderItems.map((item) => (
                   <div className="flex items-center">
-                    <label htmlFor={item.type} style={{ fontSize: '1rem' }}>
-
+                    <label htmlFor={item.type} style={{ fontSize: "1rem" }}>
                       <input
                         type="checkbox"
                         id={item.type}
@@ -153,10 +214,8 @@ const ApparelsPage = () => {
 
                       {item.label}
                     </label>
-
                   </div>
                 ))}
-
               </div>
 
               {/* Section: Brand */}
@@ -182,29 +241,26 @@ const ApparelsPage = () => {
               </div>
             </SideNav>
 
-            {loading ? <Loader />
-              : (
-                <div className="product-align w-full">
-                  <ProductsGrid products={products} status={status} error={error} />
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className="product-align w-full">
+                <ProductsGrid
+                  products={products}
+                  status={status}
+                  error={error}
+                />
 
-                  <div className="product-details">
-                    <h3> BABOLAT TENNIS APPARELS BRANDS</h3>
-                    <p>
-
-                      {category?.description}
-                    </p>
-
-                  </div>
+                <div className="product-details">
+                  <h3> BABOLAT TENNIS APPARELS BRANDS</h3>
+                  <p>{category?.description}</p>
                 </div>
-              )}
-
+              </div>
+            )}
           </div>
-
         </ProductsPageContainer>
       </Container>
-
     </>
-
   );
 };
 
