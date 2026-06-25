@@ -256,25 +256,93 @@ const AccessoriesPage = () => {
                     babolat
                   </label>
                 </div>
-              </SideNav>
-
-              {loading ? (
-                <Loader />
-              ) : (
-                <div className="product-align w-full">
+              </SideNav>{" "}
+              <div className="product-align w-full">
+                {loading ? (
+                  <Loader />
+                ) : (
                   <ProductsGrid
                     products={products}
                     status={status}
                     error={error}
                   />
-                  <div className="product-details ">
-                    <h3> BABOLAT TENNIS ACCESSORIES BRANDS</h3>
-                    <p>{category?.description}</p>
-                  </div>
-                </div>
-              )}
+                )}
+                <section className="product-details color-grey mt-16 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 p-8 md:p-12 shadow-sm">
+                  <div className="max-w-5xl mx-auto">
+                    {/* Intro */}
+                    <div className="mb-10">
+                      <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                        Buy Sports Accessories and Balls Online in Nigeria
+                      </h2>
 
-              <div />
+                      <p className="text-gray-600 leading-8 text-base md:text-lg">
+                        Explore our collection of quality sports accessories and
+                        balls designed for training, competition and
+                        recreational activities. From tennis balls and footballs
+                        to essential sports equipment, Melisports provides
+                        reliable gear from trusted brands for athletes, teams
+                        and sports enthusiasts.
+                      </p>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="h-px bg-gray-200 my-10" />
+
+                    {/* Choosing Guide */}
+                    <div>
+                      <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                        Find the Right Sports Equipment Accessories
+                      </h2>
+
+                      <p className="text-gray-600 leading-8 text-base md:text-lg mb-6">
+                        Having the right accessories improves your training
+                        experience and helps you get the best performance from
+                        your equipment. Choose from essential sports gear based
+                        on your game, training needs and playing style.
+                      </p>
+
+                      {/* Feature Cards */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+                        <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
+                            Sports Balls
+                          </h3>
+
+                          <p className="text-sm text-gray-600 leading-6">
+                            Shop quality balls for different sports including
+                            football, tennis and training activities designed
+                            for consistent performance.
+                          </p>
+                        </div>
+
+                        <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
+                            Training Accessories
+                          </h3>
+
+                          <p className="text-sm text-gray-600 leading-6">
+                            Find essential training equipment and accessories
+                            that support practice sessions, skill development
+                            and sports preparation.
+                          </p>
+                        </div>
+
+                        <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
+                            Quality Sports Gear
+                          </h3>
+
+                          <p className="text-sm text-gray-600 leading-6">
+                            Shop durable sports accessories from trusted brands
+                            built for athletes, teams and everyday sports
+                            activities.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </ProductsPageContainer>

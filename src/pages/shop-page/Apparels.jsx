@@ -240,23 +240,90 @@ Shop quality tennis apparels and clothings online in Nigeria.
                 </div>
               </div>
             </SideNav>
-
-            {loading ? (
-              <Loader />
-            ) : (
-              <div className="product-align w-full">
+            <div className="product-align w-full">
+              {loading ? (
+                <Loader />
+              ) : (
                 <ProductsGrid
                   products={products}
                   status={status}
                   error={error}
                 />
+              )}
+              <section className="product-details color-grey mt-16 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 p-8 md:p-12 shadow-sm">
+                <div className="max-w-5xl mx-auto">
+                  {/* Intro */}
+                  <div className="mb-10">
+                    <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                      Buy Sports Apparel Online in Nigeria
+                    </h2>
 
-                <div className="product-details">
-                  <h3> BABOLAT TENNIS APPARELS BRANDS</h3>
-                  <p>{category?.description}</p>
+                    <p className="text-gray-600 leading-8 text-base md:text-lg">
+                      Explore our collection of quality sports apparel designed
+                      for athletes, teams and active lifestyles. From training
+                      wear and performance clothing to jerseys and comfortable
+                      everyday sportswear, Melisports offers durable and stylish
+                      apparel from trusted brands for different sports and
+                      activities.
+                    </p>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-gray-200 my-10" />
+
+                  {/* Choosing Guide */}
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                      Choose the Right Sportswear
+                    </h2>
+
+                    <p className="text-gray-600 leading-8 text-base md:text-lg mb-6">
+                      The right sports clothing provides comfort, flexibility
+                      and performance during training, competition and everyday
+                      activities. Choose apparel based on your sport, fit
+                      preference and performance needs.
+                    </p>
+
+                    {/* Feature Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+                      <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                        <h3 className="font-normal text-gray-900 mb-2 text-base">
+                          Training & Performance Wear
+                        </h3>
+
+                        <p className="text-sm text-gray-600 leading-6">
+                          Comfortable sports clothing designed for workouts,
+                          training sessions and active movement with breathable
+                          materials and flexible fits.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                        <h3 className="font-normal text-gray-900 mb-2 text-base">
+                          Team Jerseys & Sports Kits
+                        </h3>
+
+                        <p className="text-sm text-gray-600 leading-6">
+                          Shop football jerseys, team apparel and sports outfits
+                          suitable for players, supporters and sporting events.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                        <h3 className="font-normal text-gray-900 mb-2 text-base">
+                          Comfortable Everyday Sportswear
+                        </h3>
+
+                        <p className="text-sm text-gray-600 leading-6">
+                          Versatile athletic clothing suitable for casual wear,
+                          fitness activities and an active lifestyle.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
+              </section>
+            </div>
           </div>
         </ProductsPageContainer>
       </Container>

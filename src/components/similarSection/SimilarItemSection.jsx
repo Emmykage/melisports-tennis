@@ -1,21 +1,24 @@
-import React, { useRef } from 'react';
-import { nairaFormat } from '../../utils/nairaFormat';
-import Button from '../buttons/Button';
+import React, { useRef } from "react";
+import { nairaFormat } from "../../utils/nairaFormat";
+import Button from "../buttons/Button";
 
 const SimilarItemsSection = ({
   items = [],
   error = false,
-  title = 'Similar items',
+  title = "Similar items",
   onSelect = () => {},
   loading = false,
 }) => {
   const scrollerRef = useRef(null);
 
-  const scroll = (dir = 'right') => {
+  const scroll = (dir = "right") => {
     const el = scrollerRef.current;
     if (!el) return;
     const amount = el.clientWidth * 0.8;
-    el.scrollTo({ left: dir === 'right' ? el.scrollLeft + amount : el.scrollLeft - amount, behavior: 'smooth' });
+    el.scrollTo({
+      left: dir === "right" ? el.scrollLeft + amount : el.scrollLeft - amount,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -27,7 +30,7 @@ const SimilarItemsSection = ({
         <div className="hidden sm:flex gap-2">
           <Button
             type="button"
-            onClick={() => scroll('left')}
+            onClick={() => scroll("left")}
             aria-label="Scroll left"
             className="p-2 rounded-md hover:bg-gray-100 disabled:opacity-50"
           >
@@ -35,7 +38,7 @@ const SimilarItemsSection = ({
           </Button>
           <Button
             type="button"
-            onClick={() => scroll('right')}
+            onClick={() => scroll("right")}
             ariaLabel="Scroll right"
             className="p-2 rounded-md hover:bg-gray-100"
           >
@@ -52,8 +55,8 @@ const SimilarItemsSection = ({
         aria-label="Similar product items"
       >
         <div className="flex gap-4 px-1 min-w-max  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-4">
-          { loading
-            ? // simple skeleton placeholders
+          {loading ? (
+            // simple skeleton placeholders
             Array.from({ length: 5 }).map((_, i) => (
               <article
                 key={i}
@@ -65,14 +68,17 @@ const SimilarItemsSection = ({
                 <div className="h-4 bg-gray-200 rounded w-1/2" />
               </article>
             ))
-            : error ? <h3> Something  went wrong</h3>
-              : items?.length === 0
-                ? (
-                  <div className="px-3 py-6 text-sm text-gray-500">No similar items found.</div>
-                )
-                : items?.map((item) => (
-                  <SimilarItemCard key={item.id} item={item} onSelect={onSelect} />
-                ))}
+          ) : error ? (
+            <h3> Something went wrong</h3>
+          ) : items?.length === 0 ? (
+            <div className="px-3 py-6 text-sm text-gray-500">
+              No similar items found.
+            </div>
+          ) : (
+            items?.map((item) => (
+              <SimilarItemCard key={item.id} item={item} onSelect={onSelect} />
+            ))
+          )}
         </div>
       </div>
     </section>
@@ -80,15 +86,13 @@ const SimilarItemsSection = ({
 };
 
 function SimilarItemCard({ item, onSelect }) {
-  const {
-    name: title, subtitle, price, photo_urls,
-  } = item;
+  const { name: title, subtitle, price, photo_urls } = item;
   return (
     <article
       role="listitem"
       tabIndex={0}
       onClick={() => onSelect(item)}
-      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(item)}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onSelect(item)}
       className="w-64 flex-shrink-0 bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300 cursor-pointer
              focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 group"
     >
@@ -100,15 +104,16 @@ function SimilarItemCard({ item, onSelect }) {
           loading="lazy"
           className="object-contain w-full h-full transform transition-transform duration-300 group-hover:scale-105"
           onError={(e) => {
-            e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="100%" height="100%" fill="%23f3f4f6"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Arial,Helvetica,sans-serif" font-size="14"%3EImage%20unavailable%3C/text%3E%3C/svg%3E';
+            e.currentTarget.src =
+              'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="100%" height="100%" fill="%23f3f4f6"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Arial,Helvetica,sans-serif" font-size="14"%3EImage%20unavailable%3C/text%3E%3C/svg%3E';
           }}
         />
 
         {/* Badge (optional for "New" or "Sale") */}
         {item?.new_product && (
-        <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded">
-          New
-        </span>
+          <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded">
+            New
+          </span>
         )}
       </div>
 
@@ -122,31 +127,17 @@ function SimilarItemCard({ item, onSelect }) {
         </h4>
 
         {subtitle && (
-        <p className="text-xs text-gray-500 truncate mt-0.5">{subtitle}</p>
+          <p className="text-xs text-gray-500 truncate mt-0.5">{subtitle}</p>
         )}
 
         {price !== undefined && (
-        <div className="mt-3 text-sm font-bold text-gray-800">
-          {nairaFormat(price)}
-        </div>
+          <div className="mt-3 text-sm font-bold text-gray-800">
+            {nairaFormat(price)}
+          </div>
         )}
       </div>
     </article>
-
   );
 }
 
 export default SimilarItemsSection;
-
-/*
-Usage notes (example props shape):
-items = [
-  { id: '1', title: 'Product A', subtitle: 'Size L • Blue', price: '$29', imageUrl: 'https://...' },
-  ...
-]
-
-Import and use:
-<SimilarItemsSection items={items} onSelect={(item) => console.log('clicked', item)} loading={false} />
-
-Tailwind classes assume Tailwind is configured in your app. The component is intentionally framework-agnostic (works in CRA, Next.js, etc.).
-*/

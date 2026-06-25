@@ -32,7 +32,6 @@ const ProductsPage = () => {
     selectedLevels,
     selectedFeatures,
   });
-  console.log(q, "[Products Query]");
 
   const {
     data: products,
@@ -84,6 +83,8 @@ const ProductsPage = () => {
       setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
+
+  console.log(products, "Error register =>", isError, error);
 
   return (
     <>
@@ -264,7 +265,7 @@ Shop quality tennis rackets and racquets online in Nigeria.
               <div className="product-align w-full">
                 <ProductsGrid
                   products={products}
-                  error={error}
+                  error={isError}
                   filter="racquet"
                 />
 
@@ -304,7 +305,7 @@ Shop quality tennis rackets and racquets online in Nigeria.
                       {/* Feature Cards */}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
                         <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
-                          <h3 className="font-normal text-gray-900 mb-2">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
                             Beginner Tennis Rackets
                           </h3>
 
@@ -315,7 +316,7 @@ Shop quality tennis rackets and racquets online in Nigeria.
                         </div>
 
                         <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
-                          <h3 className="font-normal text-gray-900 mb-2">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
                             Performance Rackets
                           </h3>
 
@@ -326,7 +327,7 @@ Shop quality tennis rackets and racquets online in Nigeria.
                         </div>
 
                         <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
-                          <h3 className="font-normal text-gray-900 mb-2">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
                             Trusted Brands
                           </h3>
 

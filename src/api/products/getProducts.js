@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import baseURL from '../../redux/baseURL';
+import { useQuery } from "@tanstack/react-query";
+import baseURL from "../../redux/baseURL";
 
 export const fetchProducts = async (filterParams = {}) => {
   const cleanedParams = Object.fromEntries(
@@ -12,10 +12,10 @@ export const fetchProducts = async (filterParams = {}) => {
 
     const result = await response.json();
     if (!response.ok) {
-      throw new Error(result?.error ?? 'Something went wrong');
+      throw new Error(result?.error ?? "Something went wrong");
     }
     return result.data;
   } catch (error) {
-    throw error ?? 'Something went wrong';
+    throw error ?? "Something went wrong";
   }
 };

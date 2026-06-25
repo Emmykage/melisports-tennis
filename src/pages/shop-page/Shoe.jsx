@@ -20,6 +20,7 @@ import ProductsPageContainer from "../../components/productItems/ProductItems";
 import useProducts from "../../hooks/useProducts";
 import Container from "../../components/container";
 import Header from "../../components/header/Header";
+import { Helmet } from "react-helmet-async";
 
 const ShoesPage = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const ShoesPage = () => {
   const {
     data: products,
     error,
+    isError,
     isLoading: loading,
   } = useProducts({
     category: "shoe",
@@ -277,24 +279,89 @@ Shop quality tennis shoes and racquets online in Nigeria.
                 </div>
               </div>
             </SideNav>
-            {loading ? (
-              <Loader />
-            ) : (
-              <div className="product-align w-full">
+            <div className="product-align w-full">
+              {loading ? (
+                <Loader />
+              ) : (
                 <ProductsGrid
                   products={products}
                   status={status}
                   error={error}
                 />
+              )}
+              <section className="product-details color-grey mt-16 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 p-8 md:p-12 shadow-sm">
+                <div className="max-w-5xl mx-auto">
+                  {/* Intro */}
+                  <div className="mb-10">
+                    <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                      Buy Sports Shoes Online in Nigeria
+                    </h2>
 
-                <div className="product-details">
-                  <h3> BABOLAT TENNIS SHOES</h3>
-                  <p>{category?.description}</p>
+                    <p className="text-gray-600 leading-8 text-base md:text-lg">
+                      Explore our collection of quality sports shoes from
+                      trusted brands designed for athletes, fitness enthusiasts
+                      and everyday active lifestyles. Whether you need running
+                      shoes, tennis shoes, training footwear or performance
+                      sneakers, Melisports offers comfortable and durable
+                      options for different sports and activities.
+                    </p>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-gray-200 my-10" />
+
+                  {/* Choosing Guide */}
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                      Choose the Right Sports Shoes
+                    </h2>
+
+                    <p className="text-gray-600 leading-8 text-base md:text-lg mb-6">
+                      Finding the right footwear improves comfort, support and
+                      performance. Choose shoes based on your sport, playing
+                      style and activity level.
+                    </p>
+
+                    {/* Feature Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+                      <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                        <h3 className="font-normal text-gray-900 mb-2 text-base">
+                          Running & Training Shoes
+                        </h3>
+
+                        <p className="text-sm text-gray-600 leading-6">
+                          Lightweight footwear designed for movement, comfort
+                          and everyday training sessions.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                        <h3 className="font-normal text-gray-900 mb-2 text-base">
+                          Court & Sports Shoes
+                        </h3>
+
+                        <p className="text-sm text-gray-600 leading-6">
+                          Performance shoes built for sports like tennis,
+                          basketball and other court activities requiring
+                          stability and grip.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                        <h3 className="font-normal text-gray-900 mb-2 text-base">
+                          Quality Sports Brands
+                        </h3>
+
+                        <p className="text-sm text-gray-600 leading-6">
+                          Shop reliable footwear from recognised brands trusted
+                          by athletes around the world.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
-
-            <div />
+              </section>{" "}
+            </div>
           </div>
         </ProductsPageContainer>
       </Container>

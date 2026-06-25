@@ -283,25 +283,93 @@ Shop quality tennis bags and backpack online in Nigeria.
                     babolat
                   </label>
                 </div>
-              </SideNav>
-              {loading ? (
-                <Loader />
-              ) : (
-                <div className="product-align w-full">
+              </SideNav>{" "}
+              <div className="product-align w-full">
+                {loading ? (
+                  <Loader />
+                ) : (
                   <ProductsGrid
                     products={products}
                     error={error}
                     filter="bag"
                   />
+                )}
+                <section className="product-details color-grey mt-16 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 p-8 md:p-12 shadow-sm">
+                  <div className="max-w-5xl mx-auto">
+                    {/* Intro */}
+                    <div className="mb-10">
+                      <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                        Buy Sports Bags and Backpacks Online in Nigeria
+                      </h2>
 
-                  <div className="product-details">
-                    <h3> BABOLAT TENNIS BAGS BRANDS</h3>
-                    <p>{category?.description}</p>
+                      <p className="text-gray-600 leading-8 text-base md:text-lg">
+                        Explore our collection of durable sports bags and
+                        backpacks designed for athletes, students, travellers
+                        and everyday use. From tennis bags and gym bags to
+                        versatile backpacks, Melisports offers quality storage
+                        solutions from trusted brands to carry your sports gear
+                        and essentials comfortably.
+                      </p>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="h-px bg-gray-200 my-10" />
+
+                    {/* Choosing Guide */}
+                    <div>
+                      <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
+                        Choose the Right Sports Bag or Backpack
+                      </h2>
+
+                      <p className="text-gray-600 leading-8 text-base md:text-lg mb-6">
+                        The right bag helps keep your equipment organised and
+                        protected. Choose a bag based on your sport, storage
+                        needs and lifestyle. Whether you need space for rackets,
+                        shoes, clothing or daily essentials, find a suitable
+                        option from our collection.
+                      </p>
+
+                      {/* Feature Cards */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+                        <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
+                            Sports & Training Bags
+                          </h3>
+
+                          <p className="text-sm text-gray-600 leading-6">
+                            Spacious bags designed for athletes to carry sports
+                            equipment, clothing and training essentials with
+                            ease.
+                          </p>
+                        </div>
+
+                        <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
+                            Tennis & Equipment Bags
+                          </h3>
+
+                          <p className="text-sm text-gray-600 leading-6">
+                            Protective bags designed to store rackets, balls and
+                            other tennis accessories while travelling to games
+                            and training sessions.
+                          </p>
+                        </div>
+
+                        <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
+                          <h3 className="font-normal text-gray-900 mb-2 text-base">
+                            Backpacks for Everyday Use
+                          </h3>
+
+                          <p className="text-sm text-gray-600 leading-6">
+                            Comfortable and practical backpacks suitable for
+                            school, work, travel and carrying daily essentials.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              )}
-
-              <div />
+                </section>{" "}
+              </div>
             </div>
           </div>
         </ProductsPageContainer>

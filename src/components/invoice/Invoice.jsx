@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useReactToPrint } from 'react-to-print';
-import { getInvoice } from '../../redux/actions/orders';
-import Loader from '../../pages/Loader';
-import { nairaFormat } from '../../utils/nairaFormat';
-import localDateString from '../../utils/dateString';
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useReactToPrint } from "react-to-print";
+import { getInvoice } from "../../redux/actions/orders";
+import Loader from "../../pages/Loader";
+import { nairaFormat } from "../../utils/nairaFormat";
+import localDateString from "../../utils/dateString";
 
-import logo from '../../assets/images/logo/melisport_3.png';
-import babolatLogo from '../../assets/images/logo/babolat-logo.png';
+import logo from "../../assets/images/logo/melisport_3.png";
+import babolatLogo from "../../assets/images/logo/babolat-logo.png";
 
 const Invoice = ({ id }) => {
   const dispatch = useDispatch();
@@ -25,9 +25,10 @@ const Invoice = ({ id }) => {
 
   return (
     <div className="relative ">
-
-      <div ref={invoiceRef} className="max-w-5xl mx-auto  overflow-auto bg-white rounded-2xl shadow-lg p-4">
-
+      <div
+        ref={invoiceRef}
+        className="max-w-5xl mx-auto  overflow-auto bg-white rounded-2xl shadow-lg p-4"
+      >
         {/* HEADER */}
         <div className="flex justify-between items-center border-b pb-6">
           <div>
@@ -42,13 +43,11 @@ const Invoice = ({ id }) => {
           <h1 className="text-3xl font-bold text-primary">Invoice</h1>
           <div className="text-right text-sm text-gray-600">
             <p>
-              <span className="font-semibold">Invoice No:</span>
-              {' '}
+              <span className="font-semibold">Invoice No:</span>{" "}
               {invoice?.invoice_number}
             </p>
             <p>
-              <span className="font-semibold">Date:</span>
-              {' '}
+              <span className="font-semibold">Date:</span>{" "}
               {localDateString(invoice?.created_at)}
             </p>
           </div>
@@ -91,7 +90,9 @@ const Invoice = ({ id }) => {
               {invoice?.order_items?.map((item, index) => (
                 <tr key={index} className="border-b hover:bg-gray-50">
                   <td className="p-4">
-                    <p className="font-medium capitalize">{item?.product?.name}</p>
+                    <p className="font-medium capitalize">
+                      {item?.product?.name}
+                    </p>
                   </td>
                   <td className="p-4 text-gray-500">
                     {item?.product?.ms_item_code}
@@ -113,7 +114,7 @@ const Invoice = ({ id }) => {
         <div className="mt-8 flex justify-end">
           <div className="flex justify-end mb-0 flex-1 print:hidden sticky top-0 right-0 z-50">
             <button
-          // onClick={()=> window.print()}
+              // onClick={()=> window.print()}
               className="bg-primary text-white px-5 py-2 rounded-xl shadow hover:opacity-90 transition"
               onClick={handlePrint}
             >
@@ -121,7 +122,6 @@ const Invoice = ({ id }) => {
             </button>
           </div>
           <div className="w-full max-w-sm bg-gray-50 rounded-xl p-6">
-
             <div className="flex justify-between mb-2 text-gray-600">
               <span>Subtotal</span>
               <span>{nairaFormat(invoice?.order_detail?.sub_total)}</span>
@@ -140,7 +140,10 @@ const Invoice = ({ id }) => {
             </div>
           </div>
         </div>
-        <p className="text-sm my-4 text-gray-600">MELI BUSINESS COMPANY LIMITED,  PROVIDUSBANK. Account Number is 5400590339</p>
+        <p className="text-sm my-4 text-gray-600">
+          MELI BUSINESS COMPANY LIMITED, PROVIDUSBANK. Account Number is{" "}
+          <span className="font-semibold">5400590339</span>{" "}
+        </p>
 
         {/* FOOTER */}
         <div className="mt-10 border-t pt-6 text-sm text-gray-500 flex justify-between">
@@ -151,11 +154,12 @@ const Invoice = ({ id }) => {
           </div>
 
           <div className="text-right">
-            <p className="font-semibold text-primary">Thank you for your patronage</p>
+            <p className="font-semibold text-primary">
+              Thank you for your patronage
+            </p>
             <p>www.melisports.com</p>
           </div>
         </div>
-
       </div>
     </div>
   );
