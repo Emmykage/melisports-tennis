@@ -17,6 +17,7 @@ import ImagePreview from "./components/products/ImagePreview";
 import Invoice from "./components/invoice/Invoice";
 import { getCartSum } from "./redux/actions/cart";
 import AnimatedLoaded from "./components/animateLoad/AnimatedLoaded";
+import CourtConstructionPage from "./pages/Construction";
 const Main = lazy(() => import("./pages/admin-page/dashBoard/Main"));
 const Signup = lazy(() => import("./pages/auth/Signup"));
 const Login = lazy(() => import("./pages/auth/Login"));
@@ -152,6 +153,14 @@ function App() {
                 <CommunityPage />
               </MainLayout>
             }
+          />{" "}
+          <Route
+            path="/construction"
+            element={
+              <MainLayout>
+                <CourtConstructionPage />
+              </MainLayout>
+            }
           />
           <Route
             path="products"
@@ -241,7 +250,6 @@ function App() {
               </MainLayout>
             }
           />
-
           <Route
             path="/search_page"
             element={
@@ -250,7 +258,6 @@ function App() {
               </MainLayout>
             }
           />
-
           <Route
             path="/store"
             element={
@@ -291,7 +298,6 @@ function App() {
               </MainLayout>
             }
           />
-
           <Route
             path="/padels"
             element={
@@ -380,7 +386,6 @@ function App() {
               </MainLayout>
             }
           />
-
           <Route path="admin">
             <Route
               path="dashboard"
@@ -521,7 +526,6 @@ function App() {
               }
             />
           </Route>
-
           <Route path="/auth">
             <Route path="sign_up" element={<Signup />} />
             <Route path="login" element={<Login />} />
@@ -537,7 +541,6 @@ function App() {
               </MainLayout>
             }
           />
-
           <Route
             path="*"
             element={

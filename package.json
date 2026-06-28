@@ -22,6 +22,7 @@
     "eslint-config-prettier": "^10.1.8",
     "flowbite-react": "^0.10.2",
     "framer-motion": "^12.23.22",
+    "lucide-react": "^1.21.0",
     "prettier": "^3.6.2",
     "react": "^18.2.0",
     "react-card-slider-component": "^1.0.9",
