@@ -98,6 +98,7 @@ const ShopHome = () => {
                 NEW JUAN LEBRON COLLECTION
               </h3>
               <DiscoverBtn
+                onclick={() => navigate("/search_page?search=lebron")}
                 btnText="Discover"
                 className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
               />
@@ -118,6 +119,7 @@ const ShopHome = () => {
                 NEW RANGE COLLECTION
               </h3>
               <DiscoverBtn
+                onclick={() => navigate("/arrivals")}
                 btnText="Discover"
                 className="text-sm px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition"
               />
