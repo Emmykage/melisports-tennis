@@ -17,6 +17,8 @@ import { useCategoryName } from "../../hooks/fetchHooks/useCategories";
 import Container from "../../components/container";
 import Header from "../../components/header/Header";
 import { Helmet } from "react-helmet-async";
+import { classSports } from "../../constants/categories";
+import CheckBox from "../../components/checkbox/checkbox";
 
 const AccessoriesPage = () => {
   const dispatch = useDispatch();
@@ -59,6 +61,25 @@ const AccessoriesPage = () => {
       dispatch(getProducts());
     } else {
       dispatch(getProducts());
+    }
+  };
+
+  const handleGenderFilter = (e) => {
+    const { checked, value } = e.target;
+    console.log(value);
+
+    if (checked) {
+      setSelectedGenders((prev) => [...prev, value]);
+    } else {
+      setSelectedGenders((prev) => prev.filter((item) => item !== value));
+    }
+  };
+  const handleSportsFilter = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setSelectedSports((prev) => [...prev, value]);
+    } else {
+      setSelectedSports((prev) => prev.filter((item) => item !== value));
     }
   };
 
@@ -163,98 +184,21 @@ const AccessoriesPage = () => {
             <div className="flex md:gap-10">
               <SideNav>
                 <div className="side-row">
-                  <h6>Activities</h6>
+                  <h6 className="my-4">Activities</h6>
                 </div>
                 <div />
                 <div className="side-row">
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="tennis"
-                      value="tennis"
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-
-                    <label
-                      htmlFor="tennis"
-                      style={{ fontSize: "1rem" }}
-                      className="flex items-center"
-                    >
-                      <span>Tennis</span>
-                    </label>
+                  <div className="space-y-2">
+                    {classSports.map((item) => (
+                      <CheckBox
+                        type="checkbox"
+                        onChange={handleSportsFilter}
+                        id={item.type}
+                        value={item.type}
+                        label={item.label}
+                      />
+                    ))}
                   </div>
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="badminton"
-                      value="badminton"
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label htmlFor="badminton" style={{ fontSize: "1rem" }}>
-                      Badminton
-                    </label>
-                  </div>
-                </div>
-                <div className="side-row">
-                  <h6>Category</h6>
-
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="racket"
-                      value="racket"
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      onChange={handleFilteredFeatures}
-                    />
-
-                    <label htmlFor="racket" style={{ fontSize: "1rem" }}>
-                      Racket
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      onChange={handleFilteredFeatures}
-                      value="power"
-                      type="checkbox"
-                      id="power-beginner"
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-
-                    <label
-                      htmlFor="power-beginner"
-                      style={{ fontSize: "1rem" }}
-                    >
-                      Apparels
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      onChange={handleFilteredFeatures}
-                      value="grip"
-                      type="checkbox"
-                      id="grip"
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-
-                    <label htmlFor="grip" style={{ fontSize: "1rem" }}>
-                      Grip
-                    </label>
-                  </div>
-                </div>
-
-                <div className="side-row">
-                  <h6>Brand</h6>
-
-                  <label htmlFor="activity" style={{ fontSize: "1rem" }}>
-                    <input
-                      onChange={handleFilteredActivities}
-                      value="babolat"
-                      type="checkbox"
-                      id="babolat"
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    babolat
-                  </label>
                 </div>
               </SideNav>{" "}
               <div className="product-align w-full">

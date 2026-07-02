@@ -18,28 +18,8 @@ import useProducts from "../../../hooks/useProducts";
 import { useCategoryName } from "../../../hooks/fetchHooks/useCategories";
 import Container from "../../../components/container";
 import Header from "../../../components/header/Header";
-
-const levels = [
-  {
-    label: "Beginner",
-    level: "beginner",
-  },
-  {
-    label: "Professional",
-
-    level: "professional",
-  },
-  {
-    label: "Intermediate",
-
-    level: "intermediate",
-  },
-  {
-    label: "Junior",
-
-    level: "junior",
-  },
-];
+import { classLevels } from "../../../constants/categories";
+import CheckBox from "../../../components/checkbox/checkbox";
 
 const BadmintonsPage = () => {
   const dispatch = useDispatch();
@@ -92,42 +72,33 @@ const BadmintonsPage = () => {
                 <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
                   Play Type
                 </h6>
-                {levels.map((level) => (
-                  <span key={level.value} className="flex items-center mb-2">
-                    <input
+                <div className="space-y-2">
+                  {classLevels.map((level) => (
+                    <CheckBox
                       type="checkbox"
                       checked={selectedLevels.includes(level.level)}
-                      id={level.level}
-                      value={level.level}
+                      id={level.value}
+                      label={level.label}
+                      value={level.value}
                       onChange={handleFilteredLevels}
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
                     />
-
-                    <label htmlFor={level.level} style={{ fontSize: "1rem" }}>
-                      {level.label}
-                    </label>
-                  </span>
-                ))}
+                  ))}
+                </div>
               </div>
               <div className="">
-                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+                <h6 className="my-4 text-gray-800 font-semibold mb-3 tracking-wide">
                   Flexibility
                 </h6>
 
                 {flexibility.map((item) => (
-                  <div key={item.value} className="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      id={item.type}
-                      value={item.type}
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      onChange={handleFilteredFeatures}
-                    />
-
-                    <label htmlFor="control" style={{ fontSize: "1rem" }}>
-                      {item.label}
-                    </label>
-                  </div>
+                  <CheckBox
+                    type="checkbox"
+                    id={item.type}
+                    value={item.type}
+                    label={item.label}
+                    className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    onChange={handleFilteredFeatures}
+                  />
                 ))}
               </div>
             </SideNav>
@@ -147,15 +118,15 @@ const BadmintonsPage = () => {
                     {/* Intro */}
                     <div className="mb-10">
                       <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
-                        Buy Tennis Rackets Online in Nigeria
+                        Buy Badminton rackets Online in Nigeria
                       </h2>
 
                       <p className="text-gray-600 leading-8 text-base md:text-lg">
-                        Explore our collection of tennis rackets from leading
-                        brands including Babolat and other trusted
-                        manufacturers. Whether you are a beginner learning the
-                        game or an advanced player looking for performance
-                        equipment, Melisports offers quality tennis racquets at
+                        Explore our collection of badminton rackets from leading
+                        brands including Yonex and other trusted manufacturers.
+                        Whether you are a beginner learning the game or an
+                        advanced player looking for performance equipment,
+                        Melisports offers quality badminton rackets at
                         competitive prices.
                       </p>
                     </div>
@@ -166,11 +137,11 @@ const BadmintonsPage = () => {
                     {/* Choosing Guide */}
                     <div>
                       <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-4">
-                        Choose the Right Tennis Racket
+                        Choose the Right Badminton Racket
                       </h2>
 
                       <p className="text-gray-600 leading-8 text-base md:text-lg mb-6">
-                        Find beginner tennis rackets, lightweight racquets,
+                        Find beginner badminton rackets, lightweight rackets,
                         power rackets and control-focused models designed for
                         different playing styles.
                       </p>
@@ -179,18 +150,18 @@ const BadmintonsPage = () => {
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
                         <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
                           <h3 className="font-normal text-gray-900 mb-2 text-base">
-                            Beginner Tennis Rackets
+                            Beginner Badminton rackets
                           </h3>
 
                           <p className="text-sm text-gray-600 leading-6">
                             Lightweight rackets designed for comfort, easy
-                            swings and players starting their tennis journey.
+                            swings and players starting their badminton journey.
                           </p>
                         </div>
 
                         <div className="rounded-xl bg-white border border-gray-100 p-5 hover:shadow-md transition">
                           <h3 className="font-normal text-gray-900 mb-2 text-base">
-                            Performance Rackets
+                            Performance rackets
                           </h3>
 
                           <p className="text-sm text-gray-600 leading-6">
@@ -205,8 +176,8 @@ const BadmintonsPage = () => {
                           </h3>
 
                           <p className="text-sm text-gray-600 leading-6">
-                            Shop quality tennis rackets from recognised brands
-                            trusted by players worldwide.
+                            Shop quality badminton rackets from recognised
+                            brands trusted by players worldwide.
                           </p>
                         </div>
                       </div>

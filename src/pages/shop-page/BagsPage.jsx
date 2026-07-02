@@ -15,6 +15,7 @@ import { useCategoryName } from "../../hooks/fetchHooks/useCategories";
 import Container from "../../components/container";
 import Header from "../../components/header/Header";
 import { Helmet } from "react-helmet-async";
+import CheckBox from "../../components/checkbox/checkbox";
 
 const BagsPage = () => {
   const dispatch = useDispatch();
@@ -166,122 +167,93 @@ Shop quality tennis bags and backpack online in Nigeria.
             <div className="flex md:gap-10">
               <SideNav>
                 <div className="">
-                  <h6>Activities</h6>
+                  <h6 className="my-4">Activities</h6>
                 </div>
                 <div />
                 <div className="">
                   {classSports.map((item) => (
-                    <div key={item.value} className="flex items-center mb-2">
-                      <label
-                        htmlFor={item.type}
-                        style={{ fontSize: "1rem" }}
-                        className="flex items-center"
-                      >
-                        <input
-                          type="checkbox"
-                          id={item.type}
-                          value={item.type}
-                          className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                          onChange={handleSportFilter}
-                        />
-                        <span>{item.label}</span>
-                      </label>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4">
-                  <h6>Capacity</h6>
-
-                  {[
-                    {
-                      value: "RH_X12",
-                      label: "RH X12",
-                    },
-                    {
-                      value: "RH_X9",
-                      label: "RH X9",
-                    },
-                    {
-                      value: "RH_X6",
-                      label: "RH X6",
-                    },
-                    {
-                      value: "RH_X6",
-                      label: "RH X6",
-                    },
-                    {
-                      value: "RH X3",
-                      label: "RH X3",
-                    },
-                    {
-                      value: "Duffle",
-                      label: "Duffle",
-                    },
-                    {
-                      value: "Backpack",
-                      label: "Backpack",
-                    },
-                  ].map((item) => (
-                    <div key={item.value} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id={item.value}
-                        value={item.value}
-                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        onChange={handleFilteredActivities}
-                      />
-
-                      <label htmlFor={item.value} style={{ fontSize: "1rem" }}>
-                        {item.label}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4">
-                  <h6>Series</h6>
-
-                  {[
-                    {
-                      value: "Pure Drive",
-                      label: "pure drive",
-                    },
-                    {
-                      value: "Pure aero",
-                      label: "pure aero",
-                    },
-                    {
-                      value: "Pure Strike",
-                      label: "pure Strike",
-                    },
-                  ].map((item) => (
-                    <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id={item.value}
-                        value={item.value}
-                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        onChange={handleFilteredActivities}
-                      />
-
-                      <label htmlFor={item.value} style={{ fontSize: "1rem" }}>
-                        {item.label}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4">
-                  <h6>Brand</h6>
-
-                  <label htmlFor="activity" style={{ fontSize: "1rem" }}>
-                    <input
-                      onChange={() => {}}
-                      value="babolat"
+                    <CheckBox
+                      key={item.type}
+                      label={item.label}
                       type="checkbox"
-                      id="babolat"
-                      className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      id={item.type}
+                      value={item.type}
+                      onChange={handleSportFilter}
                     />
-                    babolat
-                  </label>
+                  ))}
+                </div>
+                <div className="mt-4">
+                  <h6 className="my-4">Capacity</h6>
+                  <div className="space-y-2">
+                    {[
+                      {
+                        value: "RH_X12",
+                        label: "RH X12",
+                      },
+                      {
+                        value: "RH_X9",
+                        label: "RH X9",
+                      },
+                      {
+                        value: "RH_X6",
+                        label: "RH X6",
+                      },
+                      {
+                        value: "RH_X6",
+                        label: "RH X6",
+                      },
+                      {
+                        value: "RH X3",
+                        label: "RH X3",
+                      },
+                      {
+                        value: "Duffle",
+                        label: "Duffle",
+                      },
+                      {
+                        value: "Backpack",
+                        label: "Backpack",
+                      },
+                    ].map((item) => (
+                      <CheckBox
+                        key={item.value}
+                        label={item.label}
+                        type="checkbox"
+                        id={item.value}
+                        value={item.value}
+                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        onChange={handleFilteredActivities}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <h6 className="my-4">Series</h6>
+                  <div className="space-y-2">
+                    {[
+                      {
+                        value: "Pure Drive",
+                        label: "pure drive",
+                      },
+                      {
+                        value: "Pure aero",
+                        label: "pure aero",
+                      },
+                      {
+                        value: "Pure Strike",
+                        label: "pure Strike",
+                      },
+                    ].map((item) => (
+                      <CheckBox
+                        key={item.value}
+                        label={item.label}
+                        type="checkbox"
+                        id={item.value}
+                        value={item.value}
+                        onChange={handleFilteredActivities}
+                      />
+                    ))}
+                  </div>
                 </div>
               </SideNav>{" "}
               <div className="product-align w-full">

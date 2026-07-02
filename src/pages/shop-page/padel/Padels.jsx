@@ -12,6 +12,7 @@ import ProductsGrid from "../../../components/products/ProductsGridDisplay";
 import { useCategoryName } from "../../../hooks/fetchHooks/useCategories";
 import Container from "../../../components/container";
 import Header from "../../../components/header/Header";
+import CheckBox from "../../../components/checkbox/checkbox";
 
 const Padels = () => {
   const dispatch = useDispatch();
@@ -78,44 +79,34 @@ const Padels = () => {
               <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
                 Play Type
               </h6>
-              {playType.map((play) => (
-                <span className="flex items-center mb-2">
-                  <input
+              <div className="space-y-2">
+                {playType.map((play) => (
+                  <CheckBox
                     type="checkbox"
                     checked={selectedPlayType.includes(play.value)}
                     id={play.value}
                     value={play.value}
+                    label={play.label}
                     onChange={handleFilteredPlayType}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
                   />
-
-                  <label htmlFor={play.value} style={{ fontSize: "1rem" }}>
-                    {play.label}
-                  </label>
-                </span>
-              ))}
+                ))}
+              </div>
             </div>
             <div>
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+              <h6 className="text-gray-800 my-4 font-semibold mb-3 tracking-wide">
                 Head Shape
               </h6>
               <div className="space-y-2">
                 {headShapes.map((item) => (
-                  <label
-                    key={item.type}
-                    htmlFor={item.value}
-                    className="flex items-center gap-3 text-gray-700 cursor-pointer hover:text-blue-600 transition-colors"
-                  >
-                    <input
-                      type="checkbox"
-                      id={item.value}
-                      value={item.value}
-                      checked={selectedHeadShape.includes(item.value)}
-                      onChange={handleFilteredHeadshape}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <span className="text-base">{item.label}</span>
-                  </label>
+                  <CheckBox
+                    type="checkbox"
+                    id={item.value}
+                    value={item.value}
+                    checked={selectedHeadShape.includes(item.value)}
+                    onChange={handleFilteredHeadshape}
+                    label={item.label}
+                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  />
                 ))}
               </div>
             </div>
