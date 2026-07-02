@@ -1,23 +1,24 @@
-import React, {
-  useState, useEffect, useMemo,
-} from 'react';
-import './order.css';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect, useMemo } from "react";
+import "./order.css";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
-  createColumnHelper, flexRender, getCoreRowModel, useReactTable,
-} from '@tanstack/react-table';
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 
-import { toast } from 'react-toastify';
-import { deleteOrder, getOrders } from '../../../redux/actions/orders';
-import OptionDropdown from '../../../components/optionsDropdown/OptionDropdown';
-import Confirmation from '../../../components/modal/Confirmation';
-import { toggleAlert } from '../../../redux/app/app';
-import { resetOrder } from '../../../redux/order/order';
-import Loader from '../../Loader';
-import { nairaFormat } from '../../../utils/nairaFormat';
-import StatusButton from '../../../components/buttons/StatusButton';
-import localDateString from '../../../utils/dateString';
+import { toast } from "react-toastify";
+import { deleteOrder, getOrders } from "../../../redux/actions/orders";
+import OptionDropdown from "../../../components/optionsDropdown/OptionDropdown";
+import Confirmation from "../../../components/modal/Confirmation";
+import { toggleAlert } from "../../../redux/app/app";
+import { resetOrder } from "../../../redux/order/order";
+import Loader from "../../Loader";
+import { nairaFormat } from "../../../utils/nairaFormat";
+import StatusButton from "../../../components/buttons/StatusButton";
+import localDateString from "../../../utils/dateString";
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -25,84 +26,79 @@ const Orders = () => {
   const [open, setOpen] = useState(false);
   const [objectId, setObjectId] = useState(null);
   const columnHelper = createColumnHelper();
-  console.log(orders);
   const handleDelete = (id) => {
     dispatch(deleteOrder(id)).then((result) => {
       if (deleteOrder.fulfilled.match(result)) {
         setOpen(false);
         dispatch(getOrders());
-        toast(result.payload.message, { type: 'success' });
+        toast(result.payload.message, { type: "success" });
       } else {
-        toast(result.payload.message, { type: 'error' });
+        toast(result.payload.message, { type: "error" });
       }
     });
   };
 
   const columns = useMemo(() => [
     columnHelper.display({
-      id: 'serial',
-      header: () => 'S/N',
-      cell: (info) => (
-        <span className="flex gap-3">
-          {info.row.index + 1}
-        </span>
-      ),
+      id: "serial",
+      header: () => "S/N",
+      cell: (info) => <span className="flex gap-3">{info.row.index + 1}</span>,
     }),
-    columnHelper.accessor('created_at', {
-      header: () => 'Date',
+    columnHelper.accessor("created_at", {
+      header: () => "Date",
       cell: (info) => (
         <span className="flex gap-3">
-          { localDateString(info.getValue())}
-          {!info.row.original.viewed && <span className="text-white rounded px-2 bg-orange-700">new</span>}
-        </span>
-      ),
-      footer: (props) => props.column.id,
-    }), columnHelper.accessor('billing_address.name', {
-      header: () => 'Name',
-      cell: (info) => (
-        <span className="flex gap-3">
-          {info.getValue() ?? (`${info.row.original.user?.first_name} ${info.row.original.user.last_name}`)}
-          {!info.row.original.viewed && <span className="text-white rounded px-2 bg-orange-700">new</span>}
+          {localDateString(info.getValue())}
+          {!info.row.original.viewed && (
+            <span className="text-white rounded px-2 bg-orange-700">new</span>
+          )}
         </span>
       ),
       footer: (props) => props.column.id,
     }),
-
-    columnHelper.accessor('order_number', {
-      header: () => 'Order ID',
+    columnHelper.accessor("billing_address.name", {
+      header: () => "Name",
       cell: (info) => (
         <span className="flex gap-3">
-          {info.getValue() ?? (`${info.getValue()}`)}
+          {info.getValue() ??
+            `${info.row.original.user?.first_name} ${info.row.original.user.last_name}`}
+          {!info.row.original.viewed && (
+            <span className="text-white rounded px-2 bg-orange-700">new</span>
+          )}
         </span>
       ),
       footer: (props) => props.column.id,
     }),
 
-    columnHelper.accessor('status', {
-      header: () => 'Status',
+    columnHelper.accessor("order_number", {
+      header: () => "Order ID",
+      cell: (info) => (
+        <span className="flex gap-3">
+          {info.getValue() ?? `${info.getValue()}`}
+        </span>
+      ),
+      footer: (props) => props.column.id,
+    }),
+
+    columnHelper.accessor("status", {
+      header: () => "Status",
       cell: (info) => <StatusButton status={info.getValue()} />,
       footer: (props) => props.column.id,
     }),
 
-    columnHelper.accessor('total', {
-      header: () => 'Total',
+    columnHelper.accessor("total", {
+      header: () => "Total",
       cell: (info) => (
-        <span className="font-semibold ">
-          {' '}
-          {nairaFormat(info.getValue())}
-          {' '}
-        </span>
+        <span className="font-semibold "> {nairaFormat(info.getValue())} </span>
       ),
       footer: (props) => props.column.id,
     }),
-    columnHelper.accessor('id', {
-      header: () => 'Action',
+    columnHelper.accessor("id", {
+      header: () => "Action",
       cell: (info) => (
         <OptionDropdown
           link="orders"
-
           handleDel={(id) => {
-            console.log(id);
             setOpen(true);
             setObjectId(id);
           }}
@@ -112,7 +108,6 @@ const Orders = () => {
       ),
       footer: (props) => props.column.id,
     }),
-
   ]);
 
   const { getHeaderGroups, getRowModel } = useReactTable({
@@ -134,7 +129,6 @@ const Orders = () => {
 
         <div className="overflow-x-auto rounded-lg border border-gray-200">
           <table className="min-w-full text-sm text-left text-gray-600">
-
             {/* Header */}
             <thead className="bg-gray-100 text-xs uppercase text-gray-500">
               {getHeaderGroups().map((headerGroup) => (
@@ -144,9 +138,9 @@ const Orders = () => {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </th>
                   ))}
                 </tr>
@@ -166,7 +160,7 @@ const Orders = () => {
                   <tr
                     key={row.id}
                     className={`${
-                      index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
                     } hover:bg-gray-100 transition`}
                   >
                     {row.getVisibleCells().map((cell) => (

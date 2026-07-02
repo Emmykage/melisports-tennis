@@ -18,6 +18,7 @@ import { useCategoryName } from "../../../hooks/fetchHooks/useCategories";
 import Container from "../../../components/container";
 import Header from "../../../components/header/Header";
 import { Helmet } from "react-helmet-async";
+import CheckBox from "../../../components/checkbox/checkbox";
 
 const TennisPage = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const TennisPage = () => {
   const [collection, setCollections] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const [selectedFilterName, setSelectedFilterName] = useState(null);
 
   const {
     data: products,
@@ -35,12 +37,22 @@ const TennisPage = () => {
     sport: "Tennis",
     levels: selectedLevels,
     features: selectedFeatures,
+    name: selectedFilterName,
   });
 
   const { data: category } = useCategoryName({
     name: "racquet",
   });
 
+  const handleFilteredLevels = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSelectedLevels((prev) => [...prev, value]);
+    } else {
+      setSelectedLevels((prev) => prev.filter((item) => item !== value));
+    }
+  };
   const handleFilteredFeatures = (e) => {
     const { checked, value } = e.target;
     checked
@@ -105,22 +117,15 @@ const TennisPage = () => {
                     Player Type
                   </h6>
                   {classLevels.map((level) => (
-                    <span className="flex items-center mb-2">
-                      <input
-                        type="checkbox"
-                        checked={selectedLevels.some(
-                          (lev) => lev == level.value,
-                        )}
-                        id={level.value}
-                        value={level.value}
-                        onChange={handleFilteredLevel}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
-                      />
-
-                      <label htmlFor={level.value} style={{ fontSize: "1rem" }}>
-                        {level.label}
-                      </label>
-                    </span>
+                    <CheckBox
+                      key={level.value}
+                      label={level.label}
+                      id={level.value}
+                      value={level.value}
+                      name={level.value}
+                      checked={selectedLevels.includes(level.value)}
+                      onChange={handleFilteredLevels}
+                    />
                   ))}
                 </div>
 
@@ -130,19 +135,14 @@ const TennisPage = () => {
 
                 <div className="space-y-2">
                   {featureItems.map((item) => (
-                    <div className="flex items-center mb-2">
-                      <input
-                        type="checkbox"
-                        id={item.value}
-                        value={item.value}
-                        className="mr-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        onChange={handleFilteredFeatures}
-                      />
-
-                      <label htmlFor={item.value} style={{ fontSize: "1rem" }}>
-                        {item.label}
-                      </label>
-                    </div>
+                    <CheckBox
+                      key={item.type}
+                      htmlFor={item.type}
+                      label={item.label}
+                      id={item.type}
+                      value={item.type}
+                      onChange={handleFilteredFeatures}
+                    />
                   ))}
                 </div>
               </div>

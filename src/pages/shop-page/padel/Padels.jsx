@@ -27,6 +27,7 @@ const Padels = () => {
     sport: "Padel",
     head_shape: selectedHeadShape,
     play_type: selectedPlayType,
+    category: "racquet",
   });
 
   const { data: category } = useCategoryName({

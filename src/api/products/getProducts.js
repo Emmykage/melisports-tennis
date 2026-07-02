@@ -7,6 +7,7 @@ export const fetchProducts = async (filterParams = {}) => {
   );
 
   const params = new URLSearchParams(cleanedParams).toString();
+
   try {
     const response = await fetch(`${baseURL}products?${params}`);
 

@@ -140,8 +140,6 @@ const ProductForm = ({ onSubmit, product }) => {
     setFormdata({ ...formdata, product_quantity: total_quantity });
   };
 
-  console.log(formdata.colours);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (

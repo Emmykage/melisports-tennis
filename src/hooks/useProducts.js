@@ -7,7 +7,7 @@ const useProducts = (params) =>
     queryFn: ({ queryKey }) => {
       const [, filterParams] = queryKey;
       const data = fetchProducts(filterParams);
-      console.log("[Gotten data]", data);
+      console.log("[Gotten data]", params, data);
       return data;
     },
 
