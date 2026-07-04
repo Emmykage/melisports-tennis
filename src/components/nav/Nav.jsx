@@ -41,8 +41,8 @@ const Nav = ({
       link: "/racquets",
       label: "Racquets",
       sub: [
-        { link: "/tennis", label: "Tennis" },
-        { link: "/padels", label: "Padel" },
+        { link: "/tennis-rackets", label: "Tennis" },
+        { link: "/padel-rackets", label: "Padel" },
         { link: "/badminton", label: "Badminton" },
       ],
     },

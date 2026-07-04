@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { forwardRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const SearchList = forwardRef(({ items, triggerClose }, ref) => {
   const navigate = useNavigate();
@@ -10,19 +10,16 @@ const SearchList = forwardRef(({ items, triggerClose }, ref) => {
           <li key={item.id} tr>
             <a
               className="px-2 w-full"
-
               onClick={() => {
-                navigate(`/productdetails/${item.id}`);
+                navigate(`/product-details/${item.id}`);
                 triggerClose();
               }}
             >
               {item.name}
             </a>
           </li>
-
         ))}
       </ul>
-
     </>
   );
 });

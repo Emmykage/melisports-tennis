@@ -119,7 +119,7 @@ Shop quality tennis bags and backpack online in Nigeria.
 
                     name: product.name,
 
-                    url: `https://melisports.com/productdetails/${product.id}`,
+                    url: `https://melisports.com/product-details/${product.id}`,
                   })),
               },
             })}

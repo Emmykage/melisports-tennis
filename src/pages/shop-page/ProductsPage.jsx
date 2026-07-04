@@ -52,8 +52,10 @@ const ProductsPage = () => {
     name: "racquet",
   });
 
-  const handleFilteredProducts = (seive) => {
-    const lowerCaseSieve = seive.toLowerCase();
+  const handleFilteredProducts = (sieve) => {
+    const lowerCaseSieve = sieve?.toLowerCase() ?? "";
+
+    console.log(sieve);
 
     setSelectedFilterName(lowerCaseSieve);
     refetch();
@@ -143,7 +145,7 @@ Shop quality tennis rackets and racquets online in Nigeria.
 
                 name: product.name,
 
-                url: `https://melisports.com/productdetails/${product.id}`,
+                url: `https://melisports.com/product-details/${product.id}`,
               })),
             },
           })}
@@ -154,7 +156,7 @@ Shop quality tennis rackets and racquets online in Nigeria.
       <ProductsPageContainer>
         <div className="flex flex-wrap gap-3 md:gap-6 max-w-lg my-6">
           <button
-            onClick={() => dispatch(getProducts({ category: "racquet" }))}
+            onClick={() => handleFilteredProducts(null)}
             className="px-4 py-2 rounded-full bg-theme text-gray-200 text-sm font-medium shadow-sm hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
           >
             All Rackets

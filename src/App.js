@@ -307,7 +307,23 @@ function App() {
             }
           />
           <Route
+            path="/padel-rackets"
+            element={
+              <MainLayout>
+                <Padels />
+              </MainLayout>
+            }
+          />
+          <Route
             path="/tennis"
+            element={
+              <MainLayout>
+                <TennisPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tennis-rackets"
             element={
               <MainLayout>
                 <TennisPage />
@@ -324,6 +340,14 @@ function App() {
           />
           <Route
             path="/productdetails/:id"
+            element={
+              <MainLayout>
+                <ProductDetails />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/product-details/:id"
             element={
               <MainLayout>
                 <ProductDetails />

@@ -11,9 +11,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 
 <url>
-<loc>https://melisports.com/racquets</loc>
+<loc>https://melisports.com/rackets</loc>
 <priority>0.8</priority>
 </url>
+
+<url>
+<loc>https://melisports.com/tennis-rackets</loc>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://melisports.com/padel-rackets</loc>
+<priority>0.8</priority>
+</url>
+
 
 
 <url>

@@ -13,6 +13,7 @@ import { useCategoryName } from "../../../hooks/fetchHooks/useCategories";
 import Container from "../../../components/container";
 import Header from "../../../components/header/Header";
 import CheckBox from "../../../components/checkbox/checkbox";
+import { Helmet } from "react-helmet-async";
 
 const Padels = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,32 @@ const Padels = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>
+          Padel Rackets Online Nigeria | Buy Padel Racquets | Melisports
+        </title>
+
+        <meta
+          name="description"
+          content="Shop premium padel rackets online in Nigeria at Melisports. Explore Babolat, Wilson, Head, Nox and other top padel racquets for beginners, intermediate and professional players with nationwide delivery."
+        />
+
+        <link rel="canonical" href="https://melisports.com/padel-racquets" />
+
+        <meta
+          property="og:title"
+          content="Padel Rackets Online Nigeria | Buy Padel Racquets | Melisports"
+        />
+
+        <meta
+          property="og:description"
+          content="Buy quality padel rackets online in Nigeria. Shop top brands for every skill level with fast nationwide delivery."
+        />
+
+        <meta property="og:image" content={bannerImage} />
+
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Hero image={bannerImage} title="Padel" />
 
       <ProductsPageContainer>

@@ -161,7 +161,7 @@ at competitive prices.
         <meta property="og:type" content="product" />
         <link
           rel="canonical"
-          href={`https://melisports.com/productdetails/${product.id}`}
+          href={`https://melisports.com/product-details/${product.id}`}
         />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -182,7 +182,7 @@ at competitive prices.
             offers: {
               "@type": "Offer",
 
-              url: `https://melisports.com/productdetails/${product.id}`,
+              url: `https://melisports.com/product-details/${product.id}`,
 
               priceCurrency: "NGN",
 
@@ -517,7 +517,7 @@ at competitive prices.
         <SimilarItemsSection
           items={relatedProducts}
           loading={isLoading}
-          onSelect={({ id }) => navigate(`/productdetails/${id}`)}
+          onSelect={({ id }) => navigate(`/product-details/${id}`)}
         />
       </div>
     </Container>

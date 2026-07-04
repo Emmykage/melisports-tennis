@@ -1,17 +1,18 @@
+import { Divider, IconButton, InputBase, Paper } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  Divider, IconButton, InputBase, Paper,
-} from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  NavLink, useLocation, useNavigate, useSearchParams,
-} from 'react-router-dom';
-import PersonIcon from '@mui/icons-material/Person';
+  NavLink,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
 
-import SearchIcon from '@mui/icons-material/Search';
-import { searchedProducts } from '../../redux/actions/product';
-import { nairaFormat } from '../../utils/nairaFormat';
-import { clearSearch } from '../../redux/products/product';
+import SearchIcon from "@mui/icons-material/Search";
+import { searchedProducts } from "../../redux/actions/product";
+import { nairaFormat } from "../../utils/nairaFormat";
+import { clearSearch } from "../../redux/products/product";
 
 export function SearchBox({ logo, stickyNav }) {
   const timeoutRef = useRef(null);
@@ -23,13 +24,15 @@ export function SearchBox({ logo, stickyNav }) {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('search');
+  const query = searchParams.get("search");
 
-  const isSearchPage = pathname === '/search_page';
+  const isSearchPage = pathname === "/search_page";
 
-  const { searched_products, searchLoading: loading } = useSelector((state) => state.products);
+  const { searched_products, searchLoading: loading } = useSelector(
+    (state) => state.products,
+  );
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     setShowSearch(false);
 
@@ -48,13 +51,12 @@ export function SearchBox({ logo, stickyNav }) {
       return;
     }
     setShowSearch(searched_products.length > 0);
-  },
-  [searched_products]);
+  }, [searched_products]);
 
   const handlesearchInput = (e) => {
     const { value } = e.target;
 
-    const cleanedValue = value.replace(/\s+/g, ' ');
+    const cleanedValue = value.replace(/\s+/g, " ");
     setSearch(cleanedValue);
 
     isSearchPage && setSearchParams({ search: value });
@@ -72,14 +74,13 @@ export function SearchBox({ logo, stickyNav }) {
 
   useEffect(() => {
     setShowSearchList(searched_products.length > 0);
-  },
-  [searched_products]);
+  }, [searched_products]);
 
   const handleClickOutside = (e) => {
     if (isSearchPage) return;
 
-    const isOutside = searchRef.current
-    && !searchRef.current.contains(e.target);
+    const isOutside =
+      searchRef.current && !searchRef.current.contains(e.target);
 
     if (!isOutside) return;
 
@@ -88,47 +89,53 @@ export function SearchBox({ logo, stickyNav }) {
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
     // document.body.style.overflow = "hidden"
 
     if (showSearch) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
   }, [showSearch]);
 
-
   return (
     <div className="relative">
-      {showSearch
-      && <div onClick={() => setShowSearch(false)} className="bg-gray-900/60 z-0 fixed top-0 w-full h-full border border-gray-400 shadow" />}
+      {showSearch && (
+        <div
+          onClick={() => setShowSearch(false)}
+          className="bg-gray-900/60 z-0 fixed top-0 w-full h-full border border-gray-400 shadow"
+        />
+      )}
       <Paper
         ref={searchRef}
         className="border-b"
         component="form"
         onSubmit={handleSearch}
         sx={{
-          boxShadow: 'none',
-          position: 'relative',
-          p: '2px 40px',
-          display: 'flex',
-          alignItems: 'center',
-          width: '100%',
-          m: 'auto',
+          boxShadow: "none",
+          position: "relative",
+          p: "2px 40px",
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          m: "auto",
           // background: "red"
           // display: "none"
         }}
       >
         <div className="max-w-7xl flex items-center m-auto w-full">
           <NavLink to="/store" className="block md:block items-center">
-
-            <img src={logo} alt="Logo" className={`h-7 my-4 mr-4 ${stickyNav ? 'md:h-4' : 'md:h-12'}`} />
+            <img
+              src={logo}
+              alt="Logo"
+              className={`h-7 my-4 mr-4 ${stickyNav ? "md:h-4" : "md:h-12"}`}
+            />
           </NavLink>
 
           <InputBase
@@ -137,73 +144,86 @@ export function SearchBox({ logo, stickyNav }) {
               ml: 1,
               flex: 1,
               // border: 'none',
-              boxShadow: 'none',
-              border: '1px solid rgba(184, 184, 184, 0.4)',
-              borderRadius: '10px',
-              p: '4px 4px',
-              '& .MuiInputBase-input': { paddingLeft: '16px' },
-              '& .MuiInputBase-input:focus': {
-                outline: 'green',
-                border: '1px solid orange',
+              boxShadow: "none",
+              border: "1px solid rgba(184, 184, 184, 0.4)",
+              borderRadius: "10px",
+              p: "4px 4px",
+              "& .MuiInputBase-input": { paddingLeft: "16px" },
+              "& .MuiInputBase-input:focus": {
+                outline: "green",
+                border: "1px solid orange",
               },
-              '& .MuiInputBase-input:hover': { outline: 'none', border: 'none' },
+              "& .MuiInputBase-input:hover": {
+                outline: "none",
+                border: "none",
+              },
             }}
             onChange={handlesearchInput}
             value={isSearchPage ? query : search}
-
             placeholder="Search Products"
-            inputProps={{ 'aria-label': 'search product' }}
+            inputProps={{ "aria-label": "search product" }}
           />
-          <IconButton type="button" onClick={handleSearch} sx={{ p: '10px' }} aria-label="search">
+          <IconButton
+            type="button"
+            onClick={handleSearch}
+            sx={{ p: "10px" }}
+            aria-label="search"
+          >
             <SearchIcon />
           </IconButton>
 
           <div className="hidden">
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-            <IconButton onClick={() => navigate('/profile-setting')} className="hidden md:block" color="primary" sx={{ p: '10px' }} aria-label="directions">
+            <IconButton
+              onClick={() => navigate("/profile-setting")}
+              className="hidden md:block"
+              color="primary"
+              sx={{ p: "10px" }}
+              aria-label="directions"
+            >
               <PersonIcon />
             </IconButton>
-
           </div>
-
         </div>
-        {showSearch
-          && (
+        {showSearch && (
           <Paper
             sx={{
-              overflow: 'hidden',
-              height: { xs: '50vh', sm: '70vh' },
-              display: showSearchList && !isSearchPage ? 'block' : 'none',
-              position: 'absolute',
-              width: '100%',
-              top: '100%',
+              overflow: "hidden",
+              height: { xs: "50vh", sm: "70vh" },
+              display: showSearchList && !isSearchPage ? "block" : "none",
+              position: "absolute",
+              width: "100%",
+              top: "100%",
               left: 0,
               zIndex: 50,
             }}
           >
             (
             <div className="grid relative grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4  gap-y-6 p-4 max-w-7xl m-auto mt-4 max-h-[600px] overflow-auto no-scroll">
-
-              { searched_products?.map((item) => (
+              {searched_products?.map((item) => (
                 <div
                   className="border shadow rounded-lg pb-4"
                   onClick={() => {
-                    navigate(`/productdetails/${item?.id}`);
+                    navigate(`/product-details/${item?.id}`);
                     dispatch(clearSearch());
                   }}
                 >
-                  <img src={item.photo_urls?.[0]} alt="" className="h-52 w-full rounded-lg object-contain" />
-                  <p className="px-4 mt-4 capitalize font-semibold">{item?.name}</p>
+                  <img
+                    src={item.photo_urls?.[0]}
+                    alt=""
+                    className="h-52 w-full rounded-lg object-contain"
+                  />
+                  <p className="px-4 mt-4 capitalize font-semibold">
+                    {item?.name}
+                  </p>
                   <p className="px-4">{nairaFormat(item?.price)}</p>
                 </div>
               ))}
-
             </div>
             )
-
           </Paper>
-          )}
+        )}
       </Paper>
     </div>
   );

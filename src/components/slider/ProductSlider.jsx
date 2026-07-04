@@ -41,7 +41,7 @@ const ProductSlider = ({ products, views = 4 }) => {
 
               {/* Product Image */}
               <NavLink
-                to={`/productdetails/${item?.id}`}
+                to={`/product-details/${item?.id}`}
                 className="block h-full"
               >
                 <img

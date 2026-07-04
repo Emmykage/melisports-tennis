@@ -152,7 +152,7 @@ Shop quality tennis shoes and racquets online in Nigeria.
 
                     name: product.name,
 
-                    url: `https://melisports.com/productdetails/${product.id}`,
+                    url: `https://melisports.com/product-details/${product.id}`,
                   })),
               },
             })}

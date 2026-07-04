@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
     >
       {/* Product Image */}
       <div className="relative group">
-        <NavLink to={`/productdetails/${product.id}`}>
+        <NavLink to={`/product-details/${product.id}`}>
           <img
             src={product.photo_urls ? product.photo_urls[0] : product.image}
             alt={product.name}
@@ -98,7 +98,7 @@ const ProductCard = ({ product }) => {
         <button
           disabled={newInventory < 1}
           className={`${newInventory < 1 ? "bg-gray-400" : "bg-primary hover:bg-primary/90"}  w-full inline-block mt-auto   text-white py-2.5 rounded-lg font-medium transition-colors duration-200`}
-          onClick={() => navigate(`/productdetails/${product.id}`)}
+          onClick={() => navigate(`/product-details/${product.id}`)}
         >
           Buy Now
         </button>
