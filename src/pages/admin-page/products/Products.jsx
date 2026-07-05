@@ -424,7 +424,7 @@ const QuickProductViewModal = ({ open, onClose, product }) => {
           {/* Details */}
           <div className="space-y-5">
             <div>
-              <h1 className="text-2xl font-bold capitalize text-gray-900">
+              <h1 className="text-2xl font-normal capitalize text-gray-900">
                 {product?.name}
               </h1>
 

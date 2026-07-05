@@ -29,6 +29,16 @@ export const colors = [
     label: "Poppy Red",
     hex: "#E63946",
   },
+  {
+    value: "Metallic blue",
+    label: "metalic-blue",
+    hex: "#8b9fb5",
+  },
+  {
+    hex: "#272e45",
+    label: "Midnight blue",
+    value: "midnight-blue",
+  },
 
   {
     value: "blue",
