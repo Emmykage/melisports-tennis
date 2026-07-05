@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { CiBoxList } from "react-icons/ci";
 import { IoClose, IoGridOutline } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -170,7 +170,12 @@ const Products = () => {
                       <td className="px-4 py-3 text-gray-500">{index + 1}</td>
 
                       <td className="px-4 py-3 capitalize font-medium text-gray-800">
-                        {product?.name}
+                        <NavLink
+                          className={"text-theme underline hover:text-primary"}
+                          to={`/admin/edit/${product?.id}`}
+                        >
+                          {product?.name}
+                        </NavLink>
                       </td>
 
                       <td className="px-4 py-3 text-left font-semibold text-gray-800">
