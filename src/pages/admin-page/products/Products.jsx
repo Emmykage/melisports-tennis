@@ -16,6 +16,7 @@ import AppLoader from "../../../components/loader/AppLoader";
 import ProdDelModal from "../../../components/modal/ProdDelModal";
 import { nairaFormat } from "../../../utils/nairaFormat";
 import StatusButton from "../../../components/buttons/StatusButton";
+import { pickColor } from "../../../utils/get_colors";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -436,9 +437,47 @@ const QuickProductViewModal = ({ open, onClose, product }) => {
             </div>
 
             <div>
-              <h3 className="mb-2 text-sm font-normal text-gray-700">
-                Description
-              </h3>
+              <div className="flex my-4 items-center justify-between">
+                <h3 className="mb-2 text-sm font-normal text-gray-700">
+                  Description
+                </h3>
+                {product?.colours?.length > 0 && (
+                  <div className="flex w-6 h-6 ">
+                    {product.colours.length === 2 ? (
+                      <span
+                        style={{
+                          background: `linear-gradient(135deg, ${pickColor(product.colours[0])}  50%, ${pickColor(product.colours[1])} 50%)`,
+                        }}
+                        // key={color}
+                        className={`w-6 h-6 rounded-full border border-gray-300 `}
+                      />
+                    ) : (
+                      <span
+                        style={{
+                          background: pickColor(product.colours[0]),
+                        }}
+                        // key={color}
+                        className={`w-6 h-6 rounded-full border border-gray-300 `}
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+              <div>
+                {product?.colours?.length > 0 && (
+                  <div className="flex text-gray-600 font-semibold gap-2">
+                    {product.colours.map((color, i) => (
+                      <>
+                        <span key={color}>{color}</span>
+                        <span>
+                          {" "}
+                          {i < product.colours.length - 1 ? " /" : ""}
+                        </span>
+                      </>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <div
                 className="prose prose-gray px-2 rounded-lg p-1 h-20 border overflow-auto max-w-none"

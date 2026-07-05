@@ -30,14 +30,14 @@ export const colors = [
     hex: "#E63946",
   },
   {
-    value: "Metallic blue",
-    label: "metalic-blue",
+    value: "metallic-blue",
+    label: "Metallic Blue",
     hex: "#8b9fb5",
   },
   {
-    hex: "#272e45",
-    label: "Midnight blue",
     value: "midnight-blue",
+    label: "Midnight Blue",
+    hex: "#1B2745",
   },
 
   {
