@@ -137,7 +137,7 @@ const Checkout = () => {
           billingDetails={billingDetails}
           setBillingDetails={setBillingDetails}
           cartItems={refindCartItems}
-          total={total}
+          total={netTotal}
         />
       ),
     },
@@ -148,58 +148,59 @@ const Checkout = () => {
   useEffect(() => {
     dispatch(getDeliveryFees());
   }, []);
+
   useEffect(() => {
     setBillingDetails({
       ...billingDetails,
       state: deliveryFees[0]?.state,
     });
   }, [deliveryFees]);
+
   useEffect(() => {
     dispatch(resetOrder());
   }, []);
+
   return (
-    <>
-      <Container>
-        <div className="max-w-5xl m-auto mt-10">
-          <Box sx={{ width: "100%" }}>
-            <Stepper activeStep={step} alternativeLabel>
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </Box>
+    <Container>
+      <div className="max-w-5xl m-auto mt-10">
+        <Box sx={{ width: "100%" }}>
+          <Stepper activeStep={step} alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </Box>
+      </div>
+
+      <section className="px-4 lg:px-20 py-10">
+        <div className="max-w-7xl rounded-3xl shadow bg-white py-5 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-5">
+          <div className="checkout flex-1 bg-ligh  flex-col justify-between md:flex-row gap-10 max-w-[1500px] ">
+            {paymentSteps.map((item) => {
+              if (item.step === step) {
+                return item.render;
+              }
+            })}
+          </div>
+          <CheckoutSummary
+            referal={referal}
+            handleAgentFetch={handleAgentFetch}
+            netTotal={netTotal}
+            subTotal={subTotal}
+            discount={agent?.discount}
+            discountedAmount={discountedAmount}
+            setReferal={setReferal}
+            shippingFee={shippingFee}
+            amount={total}
+            counter={counter}
+            pickUp={pickUp}
+          />
         </div>
 
-        <section className="px-4 lg:px-20 py-10">
-          <div className="max-w-7xl rounded-3xl shadow bg-white py-5 px-4  w-full m-auto flex flex-col md:flex-row justify-center items-cente gap-5  my-2 md:my-5">
-            <div className="checkout flex-1 bg-ligh  flex-col justify-between md:flex-row gap-10 max-w-[1500px] ">
-              {paymentSteps.map((item) => {
-                if (item.step === step) {
-                  return item.render;
-                }
-              })}
-            </div>
-            <CheckoutSummary
-              referal={referal}
-              handleAgentFetch={handleAgentFetch}
-              netTotal={netTotal}
-              subTotal={subTotal}
-              discount={agent?.discount}
-              discountedAmount={discountedAmount}
-              setReferal={setReferal}
-              shippingFee={shippingFee}
-              amount={total}
-              counter={counter}
-              pickUp={pickUp}
-            />
-          </div>
-
-          <div />
-        </section>
-      </Container>
-    </>
+        <div />
+      </section>
+    </Container>
   );
 };
 
