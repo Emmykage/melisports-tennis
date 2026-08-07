@@ -9,7 +9,7 @@ import ImagePreview from "../../components/products/ImagePreview";
 import { nairaFormat } from "../../utils/nairaFormat";
 import { pickColor } from "../../utils/get_colors";
 import SimilarItemsSection from "../../components/similarSection/SimilarItemSection";
-import { addToCart } from "../../redux/actions/cart";
+import { addToCart, deleteCartItem } from "../../redux/actions/cart";
 import Container from "../../components/container";
 import { Helmet } from "react-helmet-async";
 
@@ -22,6 +22,8 @@ const ProductDetails = () => {
   const [newInventory, setNewInventory] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const { product, loading } = useSelector((state) => state.product);
+  const { cartItems } = useSelector((state) => state.cart);
+
   const { id } = useParams();
   const {
     relatedProducts,
@@ -34,6 +36,7 @@ const ProductDetails = () => {
     dispatch(closeList());
     dispatch(getProduct(id));
   }, [id]);
+
   const handleCart = () => {
     const cartArray = newInventory
       .filter((item) => item.count && item.count > 0)
@@ -69,12 +72,11 @@ const ProductDetails = () => {
       alert("Out of Stock");
     }
   };
-
   useEffect(() => {
     setCount(sizes.length);
   }, [sizes]);
   useEffect(() => {
-    const total = newInventory.reduce((acc, item) => {
+    const total = newInventory?.reduce((acc, item) => {
       acc += item.count || 0;
       return acc;
     }, 0);
@@ -91,6 +93,7 @@ const ProductDetails = () => {
   const increase = () => {
     setCount((setPrev) => Math.min(setPrev + 1, product.product_quantity));
   };
+  console.log(product);
 
   const handleItemCount = (item, sign) => {
     setNewInventory((prev) => {
@@ -108,23 +111,38 @@ const ProductDetails = () => {
       });
       return updatedInventory;
     });
+    if (sign === "-" && item.count <= 1) {
+      dispatch(deleteCartItem(item?.id));
+    }
   };
   const decrease = () => {
     setCount((setPrev) => Math.max(setPrev - 1, 0));
   };
 
   useEffect(() => {
-    const newArray = [];
+    const updateInventoryFromCart = product?.product_inventories?.map(
+      (item) => {
+        const cartItem = cartItems.find((cart) => cart.id === item.id);
+        if (cartItem) {
+          return {
+            ...item,
+            count: cartItem ? cartItem.quantity : item.count,
+          };
+        } else {
+          return {
+            ...item,
+            count: 0,
+          };
+        }
+      },
+    );
 
-    product.product_inventories?.forEach((inventory, index) => {
-      const exists = newArray.some((n) => n.size == inventory.size);
-      if (!exists) {
-        newArray.push(inventory);
-      }
-    });
-
-    setNewInventory(newArray);
+    setNewInventory(updateInventoryFromCart || []);
   }, [product]);
+
+  // useEffect(() => {
+  //   console.log(cartItems, newInventory);
+  // }, [cartItems]);
 
   if (loading) {
     return <Loader />;
@@ -346,7 +364,9 @@ at competitive prices.
                             count={inventory?.count || 0}
                             increase={() => handleItemCount(inventory, "+")}
                             quantity={inventory.quantity}
-                            decrease={() => handleItemCount(inventory, "-")}
+                            decrease={() => {
+                              handleItemCount(inventory, "-");
+                            }}
                           />
                         )}
 

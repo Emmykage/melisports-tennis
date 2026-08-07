@@ -92,8 +92,8 @@ const Checkout = () => {
     return items;
   }, [cartItems, agent]);
 
-  const handleCheckout = () => {
-    dispatch(createOrder(data)).then((result) => {
+  const handleCheckout = (paid) => {
+    dispatch(createOrder({ ...data, paid })).then((result) => {
       if (createOrder.fulfilled.match(result)) {
         dispatch(emptyCart());
         navigate(`/confirm-order?orderId=${result.payload.data.id}`);

@@ -1,25 +1,31 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import baseURL from '../baseURL';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import baseURL from "../baseURL";
 import {
-  calculateTotal, clearCart, getLocalCart, removeItem, setCartItems, updateQty,
-} from '../cart/cart';
-import { getCart, setCart } from '../../hooks/localStorage';
+  calculateTotal,
+  clearCart,
+  getLocalCart,
+  removeItem,
+  setCartItems,
+  updateQty,
+} from "../cart/cart";
+import { getCart, setCart } from "../../hooks/localStorage";
 
-const token = () => JSON.parse(localStorage.getItem('meli_auth')).token;
-const refCart = () => getCart().map((cart) => ({
-  product_id: cart.product_id,
-  id: cart.id,
-  price: cart.price,
-  ...(cart?.discount_amount && { discount_amount: cart?.discount_amount }),
-  product_name: cart.product_name,
-  image: cart.image,
-  size: cart.size,
-  colours: cart.colours,
-  quantity: cart.quantity,
-  category: cart.category,
-  subTotal: cart.quantity * cart.price,
-}));
+const token = () => JSON.parse(localStorage.getItem("meli_auth")).token;
+const refCart = () =>
+  getCart().map((cart) => ({
+    product_id: cart.product_id,
+    id: cart.id,
+    price: cart.price,
+    ...(cart?.discount_amount && { discount_amount: cart?.discount_amount }),
+    product_name: cart.product_name,
+    image: cart.image,
+    size: cart.size,
+    colours: cart.colours,
+    quantity: cart.quantity,
+    category: cart.category,
+    subTotal: cart.quantity * cart.price,
+  }));
 export const addToCart = (newCartArray) => (dispatch, getState) => {
   const existingCarts = getCart() || [];
 
@@ -27,7 +33,7 @@ export const addToCart = (newCartArray) => (dispatch, getState) => {
   if (!newCartArray || newCartArray?.length < 1) {
     console.log(newCartArray);
 
-    toast('No item added to cart', { type: 'info' });
+    toast("No item added to cart", { type: "info" });
     return;
   }
 
@@ -35,20 +41,24 @@ export const addToCart = (newCartArray) => (dispatch, getState) => {
     updateExistingCart = newCartArray;
   }
 
-  console.log('first');
+  console.log("first");
 
   newCartArray.forEach((newCart) => {
-    const cartIndex = updateExistingCart.findIndex((cart) => cart?.id === newCart.id);
+    const cartIndex = updateExistingCart.findIndex(
+      (cart) => cart?.id === newCart.id,
+    );
     const cartExist = cartIndex !== -1;
 
     if (cartExist) {
-      updateExistingCart = updateExistingCart.map((cart, index) => (cartIndex == index ? newCart : cart));
+      updateExistingCart = updateExistingCart.map((cart, index) =>
+        cartIndex == index ? newCart : cart,
+      );
     } else {
       updateExistingCart = [...updateExistingCart, newCart];
     }
   });
 
-  console.log('added cart ==================>');
+  console.log("added cart ==================>");
 
   setCart(updateExistingCart);
   dispatch(getCartSum());
@@ -70,7 +80,7 @@ export const deleteCartItem = (id) => (dispatch, getState) => {
   const filterdCart = getCart().filter((cart) => cart.id !== id);
   setCart(filterdCart);
 
-  dispatch(removeItem(filterdCart));
+  dispatch(removeItem(filterdCart, true));
 };
 
 export const emptyCart = () => (dispatch, getState) => {
@@ -101,38 +111,40 @@ export const getUserCart = () => (dispatch) => {
   dispatch(getLocalCart(carts));
 };
 
-export const getCarts = createAsyncThunk('carts/getCart', async () => {
+export const getCarts = createAsyncThunk("carts/getCart", async () => {
   const response = await fetch(`${baseURL}cart_items`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token()}`,
     },
   }).then((res) => res.json());
   return response;
 });
-const increaseCart = createAsyncThunk('cart/increase_cart', async ({ id, quantity }) => {
-  await fetch(`${baseURL}cart_items/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`,
-
-    },
-    body: JSON.stringify({ quantity }),
-  });
-});
-const decreaseCart = createAsyncThunk('cart/increase_cart', async ({ id, quantity }) => {
-  await fetch(`${baseURL}cart_items/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token()}`,
-
-    },
-    body: JSON.stringify({ quantity }),
-  });
-});
-export {
-  increaseCart, decreaseCart,
-};
+const increaseCart = createAsyncThunk(
+  "cart/increase_cart",
+  async ({ id, quantity }) => {
+    await fetch(`${baseURL}cart_items/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token()}`,
+      },
+      body: JSON.stringify({ quantity }),
+    });
+  },
+);
+const decreaseCart = createAsyncThunk(
+  "cart/increase_cart",
+  async ({ id, quantity }) => {
+    await fetch(`${baseURL}cart_items/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token()}`,
+      },
+      body: JSON.stringify({ quantity }),
+    });
+  },
+);
+export { increaseCart, decreaseCart };

@@ -22,7 +22,7 @@ const ConfirmPayment = ({
     publicKey,
     text: "Pay Now",
     onSuccess: () => {
-      handleCheckout();
+      handleCheckout(true);
     },
     // onClose: () => alert('Are you sure'),
   };
@@ -136,7 +136,7 @@ const ConfirmPayment = ({
         {billingDetails.payment_method === "on_delivery" ? (
           <Button
             className="flex gap-2 text-center flex-1 justify-center"
-            btnFunc={handleCheckout}
+            btnFunc={() => handleCheckout(false)}
             disabled={loading}
           >
             {loading ? (

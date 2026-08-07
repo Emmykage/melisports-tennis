@@ -98,7 +98,6 @@ const OrderDetails = () => {
       }
     };
   }, [order?.viewed]);
-
   return (
     <>
       <div className="bg-white p-6" ref={contRef}>
@@ -279,6 +278,7 @@ const OrderDetails = () => {
                     <th className="px-4 py-3">Item Name</th>
                     <th className="px-4 py-3">SKU</th>
                     <th className="px-4 py-3">Code</th>
+                    <th className="px-4 py-3">Size</th>
                     <th className="px-4 py-3 text-center">Qty</th>
                     <th className="px-4 py-3 text-right">Price</th>
                     <th className="px-4 py-3 text-right">Total</th>
@@ -305,9 +305,10 @@ const OrderDetails = () => {
                         {item.product.name}
                       </td>
 
-                      <td className="px-4 py-3">{item.product.sku}</td>
+                      <td className="px-4 py-3">{item.sku}</td>
 
                       <td className="px-4 py-3">{item.product.ms_code}</td>
+                      <td className="px-4 py-3">{item.size}</td>
 
                       <td className="px-4 py-3 text-center">{item.quantity}</td>
 
@@ -394,9 +395,15 @@ const OrderDetails = () => {
                   </td>
                   <td className="px-4 py-3">{order?.billing_address?.name}</td>
                   <td className="px-4 py-3">
-                    <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">
-                      Paid
-                    </span>
+                    {order?.paid_at ? (
+                      <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">
+                        Paid
+                      </span>
+                    ) : (
+                      <span className="px-2 py-1 text-xs rounded-full bg-red-100 text-red-700">
+                        Unpaid
+                      </span>
+                    )}
                   </td>
                   <td className="px-4 py-3 text-gray-500">
                     {localDate(order?.created_at)}
