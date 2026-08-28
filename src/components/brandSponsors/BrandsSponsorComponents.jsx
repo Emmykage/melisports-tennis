@@ -3,6 +3,7 @@ import Babolat from "../../assets/images/logo/ba4886b10b-babolat-logo-babolat-lo
 import melisport from "../../assets/images/logo/melisport_one.png";
 import allOnDeck from "../../assets/images/logo/all-on-deck.png";
 import padelX from "../../assets/images/logo/padelX-logo.png";
+import meliJ from "../../assets/images/logo/Melijouer-logo.webp";
 
 const items = [
   {
@@ -21,6 +22,10 @@ const items = [
     id: 4,
     logo: allOnDeck,
   },
+  {
+    id: 5,
+    logo: meliJ,
+  },
 ];
 
 const BrandsSponsorComponents = () => (
@@ -31,8 +36,7 @@ const BrandsSponsorComponents = () => (
       </h2>
 
       <div className="overflow-hidden bg-gray-200 rounded-lg whitespace-nowrap py-1.5 text-white text-xs font-semibold tracking-wide">
-        <div className="grid grid-cols-4 gap-20 animate-[marquee_40s_linear_infinite] py-10">
-          {/* Sponsor 1 */}
+        <div className="flex  gap-20 animate-[marquee_40s_linear_infinite] py-10">
           {items.map((item) => (
             <div className="flex  px-10 justify-center items-center">
               <img
