@@ -47,7 +47,6 @@ const BrandsSponsorComponents = () => (
             </div>
           ))}
         </div>
-        {/* Add more sponsors here if needed */}
       </div>
       <style>{`@keyframes marquee{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}`}</style>
     </div>
