@@ -5,7 +5,7 @@ import allOnDeck from "../../assets/images/logo/all-on-deck.png";
 import padelX from "../../assets/images/logo/padelX-logo.png";
 import meliJ from "../../assets/images/logo/Melijouer-logo.webp";
 
-const items = [
+export const brandItems = [
   {
     id: 1,
     logo: Babolat,
@@ -37,7 +37,7 @@ const BrandsSponsorComponents = () => (
 
       <div className="overflow-hidden bg-gray-200 rounded-lg whitespace-nowrap py-1.5 text-white text-xs font-semibold tracking-wide">
         <div className="flex  gap-20 animate-[marquee_40s_linear_infinite] py-10">
-          {items.map((item) => (
+          {brandItems.map((item) => (
             <div className="flex  px-10 justify-center items-center">
               <img
                 src={item.logo}
