@@ -451,6 +451,72 @@ at competitive prices.
           </div>
         </div>
 
+        {/* Technical Details */}
+        <div className="technical-details mb-10">
+          <h2 className="text-2xl font-normal text-gray-800 mb-6">
+            Technical Characteristics
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3 bg-gray-50 p-10">
+            {product?.head_size && product.head_size !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">Head Size</span>
+                <p>
+                  <span className="text-gray-600">{product.head_size} ㎠</span>{" "}
+                  /
+                  <span className="text-gray-600">
+                    {cm2ToIn2(product.head_size)} sq in
+                  </span>
+                </p>
+              </div>
+            )}
+            {product?.head_shape && product.head_shape !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">Head Shape</span>
+                <span className="text-gray-600">{product.head_shape} </span>
+              </div>
+            )}
+            {product?.weight && product.weight !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">Weight</span>
+                <span className="text-gray-600">{product.weight} g ± 7 g</span>
+              </div>
+            )}
+            {product?.size && product.size !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">Size</span>
+                <span className="text-gray-600">{product.size}</span>
+              </div>
+            )}
+            {product?.length && product.length !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">Length</span>
+                <span className="text-gray-600">{product.length} mm</span>
+              </div>
+            )}
+            {product?.composition && product.composition !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">Composition</span>
+                <span className="text-gray-600">{product.composition}</span>
+              </div>
+            )}
+            {product?.strung && product.strung !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">
+                  Strung/Unstrung
+                </span>
+                <span className="text-gray-600">{product.strung}</span>
+              </div>
+            )}
+            {product?.tension && product.tension !== "null" && (
+              <div className="flex justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="font-medium text-gray-700">
+                  Recommended Tension
+                </span>
+                <span className="text-gray-600">{product.tension} kg</span>
+              </div>
+            )}
+          </div>
+        </div>
         {/* Description */}
         <div className="description-details">
           <div className="grid md:grid-cols-2">
@@ -470,73 +536,6 @@ at competitive prices.
               )}
             </div>
             <div className="bg-0" />
-          </div>
-        </div>
-
-        {/* Technical Details */}
-        <div className="technical-details mb-10">
-          <h2 className="text-2xl font-normal text-gray-800 mb-6">
-            Technical Characteristics
-          </h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {product?.head_size && product.head_size !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Head Size</span>
-                <p>
-                  <span className="text-gray-600">{product.head_size} ㎠</span>{" "}
-                  /
-                  <span className="text-gray-600">
-                    {cm2ToIn2(product.head_size)} sq in
-                  </span>
-                </p>
-              </div>
-            )}
-            {product?.head_shape && product.head_shape !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Head Shape</span>
-                <span className="text-gray-600">{product.head_shape} </span>
-              </div>
-            )}
-            {product?.weight && product.weight !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Weight</span>
-                <span className="text-gray-600">{product.weight} g ± 7 g</span>
-              </div>
-            )}
-            {product?.size && product.size !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Size</span>
-                <span className="text-gray-600">{product.size}</span>
-              </div>
-            )}
-            {product?.length && product.length !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Length</span>
-                <span className="text-gray-600">{product.length} mm</span>
-              </div>
-            )}
-            {product?.composition && product.composition !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">Composition</span>
-                <span className="text-gray-600">{product.composition}</span>
-              </div>
-            )}
-            {product?.strung && product.strung !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">
-                  Strung/Unstrung
-                </span>
-                <span className="text-gray-600">{product.strung}</span>
-              </div>
-            )}
-            {product?.tension && product.tension !== "null" && (
-              <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="font-medium text-gray-700">
-                  Recommended Tension
-                </span>
-                <span className="text-gray-600">{product.tension} kg</span>
-              </div>
-            )}
           </div>
         </div>
       </div>
