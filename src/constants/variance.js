@@ -56,7 +56,9 @@ const headSizes = [
   { value: "660", label: "660" },
   { value: "670", label: "670" },
   { value: "680", label: "680" },
+  { value: "698", label: "698" },
   { label: "700", value: "700" },
+  { label: "710", value: "710" },
   { label: "742", value: "742" },
 ];
 const headShapes = [
