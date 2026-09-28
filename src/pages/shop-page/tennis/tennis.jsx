@@ -105,8 +105,8 @@ const TennisPage = () => {
         <ProductsPageContainer>
           <h2 className="text-2xl font-normal text-gray-900 mb-4">Tennis</h2>
           <p className="text-gray-600 mb-6">
-            Explore our collection of Babolat Tennis Categories Rackets, find
-            the perfect Tennis gears to enhance your game.
+            Discover Babolat tennis rackets, bags, strings and accessories
+            designed to help you play your best.
           </p>
 
           <div className="flex md:gap-10">

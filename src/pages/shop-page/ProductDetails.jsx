@@ -12,7 +12,10 @@ import SimilarItemsSection from "../../components/similarSection/SimilarItemSect
 import { addToCart, deleteCartItem } from "../../redux/actions/cart";
 import Container from "../../components/container";
 import { Helmet } from "react-helmet-async";
-
+const cm2ToIn2 = (cm2) => {
+  const raw = Number((cm2 / 6.4516).toFixed(2));
+  return Math.round(raw);
+};
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -457,7 +460,7 @@ at competitive prices.
               </h2>
               {product.description_body ? (
                 <div
-                  className="prose prose-gray max-w-none"
+                  className="prose prose-gray max-w-none text-justify"
                   dangerouslySetInnerHTML={{ __html: product.description_body }}
                 />
               ) : (
@@ -479,7 +482,13 @@ at competitive prices.
             {product?.head_size && product.head_size !== "null" && (
               <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="font-medium text-gray-700">Head Size</span>
-                <span className="text-gray-600">{product.head_size} ㎠</span>
+                <p>
+                  <span className="text-gray-600">{product.head_size} ㎠</span>{" "}
+                  /
+                  <span className="text-gray-600">
+                    {cm2ToIn2(product.head_size)} sq in
+                  </span>
+                </p>
               </div>
             )}
             {product?.head_shape && product.head_shape !== "null" && (

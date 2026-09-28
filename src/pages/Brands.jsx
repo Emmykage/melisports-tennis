@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import babolat from "../assets/images/product-brands/Babolat-Logo.jpg";
 import NTF from "../assets/images/product-brands/ntf-logo.jpeg";
 import MeliJouer from "../assets/images/product-brands/melijouer.jpg";
-import Nav from "../components/nav/Nav";
 import Container from "../components/container";
-import Header from "../components/header/Header";
 import { brandItems } from "../components/brandSponsors/BrandsSponsorComponents";
 
 const Brands = () => (
