@@ -18,7 +18,7 @@ import { resetOrder } from "../../../redux/order/order";
 import Loader from "../../Loader";
 import { nairaFormat } from "../../../utils/nairaFormat";
 import StatusButton from "../../../components/buttons/StatusButton";
-import localDateString from "../../../utils/dateString";
+import localDateString, { localDate } from "../../../utils/dateString";
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Orders = () => {
       header: () => "Date",
       cell: (info) => (
         <span className="flex gap-3">
-          {localDateString(info.getValue())}
+          {localDate(info.getValue())}
           {!info.row.original.viewed && (
             <span className="text-white rounded px-2 bg-orange-700">new</span>
           )}
