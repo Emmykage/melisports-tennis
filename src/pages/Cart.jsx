@@ -283,7 +283,10 @@ const Cart = () => {
                 </span>
               </div>
               <div>
-                <Button onClick={() => navigate("/checkout")} className="btn">
+                <Button
+                  onClick={() => navigate("/checkout")}
+                  className="btn w-full"
+                >
                   {" "}
                   CHECKOUT
                 </Button>

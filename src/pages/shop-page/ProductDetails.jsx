@@ -26,6 +26,7 @@ const ProductDetails = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const { product, loading } = useSelector((state) => state.product);
   const { cartItems } = useSelector((state) => state.cart);
+  const isOutOfStock = product?.product_quantity < 1;
 
   const { id } = useParams();
   const {
@@ -78,6 +79,14 @@ const ProductDetails = () => {
   useEffect(() => {
     setCount(sizes.length);
   }, [sizes]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", (e) => {
+      if (!e.target.closest(".quantity-adjuster")) {
+        setSelectedItem(null);
+      }
+    });
+  }, []);
   useEffect(() => {
     const total = newInventory?.reduce((acc, item) => {
       acc += item.count || 0;
@@ -342,15 +351,26 @@ at competitive prices.
               {/* Sizes */}
               {product?.product_inventories?.length > 0 && (
                 <div className="mt-6">
-                  <span className="block text-lg font-semibold text-gray-700 mb-2">
+                  <span className="block text-lg font-semibold text-gray-700">
                     {product?.product_category?.name === "racquet"
                       ? "Grip Size"
                       : "Size"}
                   </span>
+
+                  <p className="text-sm text-gray-500 mt-1 mb-3">
+                    Select a{" "}
+                    {product?.product_category?.name === "racquet"
+                      ? "grip size "
+                      : "size "}
+                    and use the quantity controls to choose how many items you
+                    want.
+                  </p>
+
                   <div className="flex gap-3 flex-wrap">
                     {newInventory.map((inventory) => (
                       <button
                         key={inventory.size}
+                        disabled={!inventory.size}
                         onClick={() => {
                           setSelectedItem((prev) =>
                             prev == inventory?.id ? null : inventory.id,
@@ -367,13 +387,11 @@ at competitive prices.
                             count={inventory?.count || 0}
                             increase={() => handleItemCount(inventory, "+")}
                             quantity={inventory.quantity}
-                            decrease={() => {
-                              handleItemCount(inventory, "-");
-                            }}
+                            decrease={() => handleItemCount(inventory, "-")}
                           />
                         )}
 
-                        {inventory.size}
+                        {inventory?.size ? inventory.size : "Not Available"}
                       </button>
                     ))}
                   </div>
@@ -404,32 +422,20 @@ at competitive prices.
                     </button>
                   </div>
                   <p className="text-sm text-gray-600">
-                    Av Qty: {newInventory[0]?.quantity}
+                    {product.product_quantity} remaining
                   </p>
                 </div>
               ) : (
                 <div className="flex items-center gap-4 mt-6">
-                  <div className="flex items-center border rounded-lg">
-                    <button
-                      type="button"
-                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={decrease}
-                    >
-                      -
-                    </button>
-                    <span className="px-4 py-2 text-gray-900 font-medium">
+                  <div className="border rounded-lg px-4 py-2">
+                    <span className="text-gray-900 font-medium">
                       {totalCount}
                     </span>
-                    <button
-                      type="button"
-                      className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-                      onClick={increase}
-                    >
-                      +
-                    </button>
+                    <span className="ml-1 text-sm text-gray-500">selected</span>
                   </div>
+
                   <p className="text-sm text-gray-600">
-                    Av Qty: {product.product_quantity}
+                    {product.product_quantity} remaining
                   </p>
                 </div>
               )}
@@ -437,8 +443,9 @@ at competitive prices.
               {/* Add to Cart */}
               <div className="mt-6">
                 <button
+                  disabled={isOutOfStock}
                   className={`w-full py-3 rounded-lg font-medium transition-all ${
-                    product.quantity === 0
+                    isOutOfStock
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                       : "bg-primary text-white hover:bg-primary/90"
                   }`}
@@ -558,32 +565,32 @@ const QuantityAdjuster = ({
   count,
   increase,
   quantity = 0,
-}) => (
-  <div
-    onClick={(e) => e.stopPropagation()}
-    className="flex absolute items-center gap-4 bg-white rounded-lg p-4 -mt-16 left-0  border shadow  -top-full"
-  >
-    <div className="flex items-center border rounded-lg">
-      <button
-        type="button"
-        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-        onClick={decrease}
-      >
-        -
-      </button>
-      <span className="px-4 py-2 text-gray-900 font-medium">{count}</span>
-      <button
-        type="button"
-        className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
-        onClick={increase}
-      >
-        +
-      </button>
+}) => {
+  return (
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="flex absolute items-center gap-4 bg-white rounded-lg p-4 -mt-16 left-0  border shadow quantity-adjuster -top-full"
+    >
+      <div className="flex items-center border rounded-lg">
+        <button
+          type="button"
+          className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+          onClick={decrease}
+        >
+          -
+        </button>
+        <span className="px-4 py-2 text-gray-900 font-medium">{count}</span>
+        <button
+          type="button"
+          className="px-3 py-2 text-lg font-semibold text-gray-700 hover:bg-gray-200"
+          onClick={increase}
+        >
+          +
+        </button>
+      </div>
+      <p className="text-sm text-gray-600 text-nowrap">Max Qty: {quantity}</p>
     </div>
-    <p className="text-sm text-gray-600 text-nowrap">Max Qty: {quantity}</p>
-  </div>
-
-  // </div>
-);
+  );
+};
 
 export default ProductDetails;

@@ -78,7 +78,7 @@ export const updateQuantity = (data) => (dispatch, getState) => {
 
 export const deleteCartItem = (id) => (dispatch, getState) => {
   const filterdCart = getCart().filter((cart) => cart.id !== id);
-  setCart(filterdCart);
+  setCart(filterdCart, true);
 
   dispatch(removeItem(filterdCart, true));
 };

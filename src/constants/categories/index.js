@@ -1,93 +1,101 @@
-export const classLevels = [{
-  label: 'Beginner',
-  value: 'beginner',
-},
-{
-  label: 'Professional',
+export const classLevels = [
+  {
+    label: "Junior",
 
-  value: 'professional',
-},
-{
-  label: 'Intermediate',
+    value: "junior",
+  },
+  {
+    label: "Beginner",
+    value: "beginner",
+  },
+  {
+    label: "Intermediate",
 
-  value: 'intermediate',
-},
-{
-  label: 'Junior',
+    value: "intermediate",
+  },
+  {
+    label: "Professional",
 
-  value: 'junior',
-}];
-
-export const classSports = [
-  { type: 'tennis', label: 'Tennis' },
-  { type: 'badminton', label: 'Badminton' },
-  { type: 'padel', label: 'Padel' },
+    value: "professional",
+  },
 ];
 
-export const genderItems = [{
-  type: 'men',
-  label: 'Men',
-},
-{
-  type: 'women',
-  label: 'Women',
-}];
+export const classSports = [
+  { type: "tennis", label: "Tennis" },
+  { type: "badminton", label: "Badminton" },
+  { type: "padel", label: "Padel" },
+];
 
-export const skillLevels = [{
-  label: 'Beginner',
-  level: 'beginner',
-},
-{
-  label: 'Professional',
+export const genderItems = [
+  {
+    type: "men",
+    label: "Men",
+  },
+  {
+    type: "women",
+    label: "Women",
+  },
+];
 
-  level: 'professional',
-},
-{
-  label: 'Intermediate',
+export const skillLevels = [
+  {
+    label: "Beginner",
+    level: "beginner",
+  },
+  {
+    label: "Professional",
 
-  level: 'intermediate',
-},
-{
-  label: 'Junior',
+    level: "professional",
+  },
+  {
+    label: "Intermediate",
 
-  level: 'junior',
-}];
+    level: "intermediate",
+  },
+  {
+    label: "Junior",
+
+    level: "junior",
+  },
+];
 
 export const playerTypes = [
   {
-    label: 'Recreational',
-    type: 'recreational',
+    label: "Recreational",
+    type: "recreational",
   },
   {
-    label: 'Versatile',
-    value: 'versatile',
+    label: "Versatile",
+    value: "versatile",
   },
   {
-    label: 'Air Striker',
-    value: 'air-striker',
+    label: "Air Striker",
+    value: "air-striker",
   },
   {
-    label: 'Offensive',
-    value: 'offensive',
+    label: "Offensive",
+    value: "offensive",
   },
   {
-    value: 'counter-striker',
-    label: 'Counter Striker',
+    value: "counter-striker",
+    label: "Counter Striker",
   },
   {
-    value: 'technical-striker',
-    label: 'Technical Striker',
+    value: "technical-striker",
+    label: "Technical Striker",
   },
   {
-    value: 'all-rounder',
-    label: 'All Rounder',
+    value: "all-rounder",
+    label: "All Rounder",
   },
 ];
-export const itemsFeatures = [{
-  type: 'clay',
-  label: 'Clay',
-},
-{
-  type: 'grass',
-  label: 'Grass',
-}];
+export const itemsFeatures = [
+  {
+    type: "clay",
+    label: "Clay",
+  },
+  {
+    type: "grass",
+    label: "Grass",
+  },
+];

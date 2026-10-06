@@ -6,6 +6,8 @@ const ProductCard = ({ product }) => {
   const [newInventory, setNewInventory] = useState([]);
   const navigate = useNavigate();
 
+  const isOutOfStock = newInventory < 1 || product?.product_quantity < 1;
+
   useEffect(() => {
     const newArray = [];
 
@@ -44,7 +46,7 @@ const ProductCard = ({ product }) => {
   return (
     <div
       key={product.id}
-      className="relative text-center md:basis-[24%] basis-[48%] border border-gray-200 p-4 mb-6 rounded-xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+      className="relative flex flex-col text-center md:basis-[24%] basis-[48%] border border-gray-200 p-4 mb-6 rounded-xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
     >
       {/* Product Image */}
       <div className="relative group">
@@ -68,13 +70,12 @@ const ProductCard = ({ product }) => {
       </div>
 
       {/* Product Info */}
-      <div className="mt-4">
+      <div className="mt-4 flex flex-col flex-1">
+        {" "}
         <h5 className="text-gray-900 capitalize text-base font-medium line-clamp-1 mb-2">
           {product?.name}
         </h5>
-
         {/* Pricing Section */}
-
         <div className="mb-4">
           {product.discount === "active_discount" ? (
             <div className="flex flex-col items-center space-y-1">
@@ -88,16 +89,15 @@ const ProductCard = ({ product }) => {
             </div>
           ) : (
             <p
-              className={`text-lg font-semibold ${newInventory < 1 ? "text-gray-500 bg-gray-200 rounded" : "text-primary"}`}
+              className={`text-lg font-semibold ${isOutOfStock ? "text-gray-500 bg-gray-200 rounded" : "text-primary"}`}
             >
               {nairaFormat(product.price)}
             </p>
           )}
         </div>
-
         <button
-          disabled={newInventory < 1}
-          className={`${newInventory < 1 ? "bg-gray-400" : "bg-primary hover:bg-primary/90"}  w-full inline-block mt-auto   text-white py-2.5 rounded-lg font-medium transition-colors duration-200`}
+          disabled={isOutOfStock}
+          className={`${isOutOfStock ? "bg-gray-400" : "bg-primary hover:bg-primary/90"}  w-full inline-block mt-auto   text-white py-2.5 rounded-lg font-medium transition-colors duration-200`}
           onClick={() => navigate(`/product-details/${product.id}`)}
         >
           Buy Now

@@ -226,7 +226,7 @@ Shop quality tennis rackets and racquets online in Nigeria.
 
             {/* Section: Brand */}
             <div>
-              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+              <h6 className="text-gray-800 font-semibold my-3 tracking-wide">
                 Brand
               </h6>
               <div className="space-y-2">
