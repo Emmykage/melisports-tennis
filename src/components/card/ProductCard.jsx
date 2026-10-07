@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
   }, [product]);
 
   const renderBadge = () => {
-    if (newInventory < 1) {
+    if (isOutOfStock) {
       return (
         <span className="absolute top-4 right-4 bg-theme text-primary text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Out of stock
