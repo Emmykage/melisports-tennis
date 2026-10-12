@@ -114,7 +114,7 @@ const TennisPage = () => {
               <div>
                 <div className="space-y-2 my-4">
                   <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                    Player Type
+                    Racket Type
                   </h6>
                   {classLevels.map((level) => (
                     <CheckBox
@@ -130,7 +130,7 @@ const TennisPage = () => {
                 </div>
 
                 <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
-                  Player Type
+                  Skill Level
                 </h6>
 
                 <div className="space-y-2">
