@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdDeleteSweep, MdReportGmailerrorred } from "react-icons/md";
-import { FaCheckCircle, FaMinus, FaPlus } from "react-icons/fa";
+import { FaCheckCircle, FaPlus } from "react-icons/fa";
 
 import "trix";
 import "trix/dist/trix.css";
@@ -23,6 +23,7 @@ import {
   recommendedGrip,
   shoeSizes,
   strung,
+  stringSizes,
 } from "../../constants/variance";
 import Button from "../buttons/Button";
 import FormInput from "../formInput/FormInput";
@@ -30,1826 +31,896 @@ import { resetProduct } from "../../redux/product/product";
 import { colors } from "../../constants/global";
 import { pickColor } from "../../utils/get_colors";
 
-const ProductForm = ({ onSubmit, product }) => {
-  const editorRef = useRef();
-  const [imagePreviews, setImagePreviews] = useState([]);
-  const [formdata, setFormdata] = useState({});
-  const { product_categories, sport_categories } = useSelector(
-    (state) => state.product_categories,
+/* -------------------------------------------------------------------------- */
+/*  Constants & config                                                        */
+/* -------------------------------------------------------------------------- */
+
+const MAX_DESCRIPTION = 250;
+const MAX_COLOURS = 2;
+const RESET_DELAY_MS = 5000;
+const INITIAL_VALUES = { status: "active" };
+const STATUS_OPTIONS = [
+  { value: "active", label: "active" },
+  { value: "inactive", label: "inactive" },
+];
+
+// Keys that live in form state for display only and are never sent to the API.
+const NON_SUBMITTED_KEYS = new Set(["photo_urls"]);
+
+const createInventory = () => ({
+  size: "",
+  quantity: "",
+  sku: "",
+  locations: [],
+});
+
+// A spec is a text input unless it has `options` ("levels" is resolved at render).
+const spec = (key, label, options) => ({ key, label, options });
+
+const SPECS = {
+  tennis: [
+    spec("level_id", "Professionalism", "levels"),
+    spec("strung", "Strung / unstrung", strung),
+    spec("head_size", "Head size: cm", headSizes),
+    spec("composition", "Composition", composition),
+    spec("length", "Length (mm)", length),
+    spec("weight", "Weight (g)"),
+    spec("tension", "Tension (kg)"),
+    spec("stiffness", "Stiffness (kg)"),
+  ],
+  padel: [
+    spec("player_type", "Type of player", playType),
+    spec("head_shape", "Head shape", headShapes),
+    spec("recommended_grip", "Recommended grip", recommendedGrip),
+    spec("composition", "Composition", composition),
+    spec("length", "Length (mm)", length),
+    spec("weight", "Weight (g)"),
+    spec("thickness", "Thickness (mm)"),
+    spec("stiffness", "Stiffness (kg)"),
+  ],
+  badminton: [
+    spec("player_type", "Type of player", playType),
+    spec("composition", "Composition", composition),
+    spec("length", "Length (mm)", length),
+    spec("weight", "Weight (g)"),
+    spec("thickness", "Thickness (mm)"),
+    spec("stiffness", "Stiffness (kg)"),
+  ],
+};
+
+const KIND_CONFIG = {
+  tennis: {
+    legend: "Racquet",
+    sizeLabel: "Racquet grip size",
+    sizeOptions: gripSizes,
+  },
+  padel: {
+    legend: "Padel racquet",
+    sizeLabel: "Padel grip size",
+    sizeOptions: gripSizes,
+  },
+  badminton: {
+    legend: "Badminton racquet",
+    sizeLabel: "Size",
+    sizeOptions: gripSizes,
+  },
+  shoe: { legend: "Shoe", sizeLabel: "Shoe size", sizeOptions: shoeSizes },
+  apparel: {
+    legend: "Apparel",
+    sizeLabel: "Apparel size",
+    sizeOptions: clothSizes,
+  },
+  string: {
+    legend: "String",
+    sizeLabel: "String size (gauge)",
+    sizeOptions: stringSizes,
+  },
+  other: { legend: "Other", sizeLabel: "Size", sizeOptions: clothSizes },
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Helpers                                                                   */
+/* -------------------------------------------------------------------------- */
+
+const sameId = (a, b) => a != null && b != null && String(a) === String(b);
+
+// Builds the `{ value, label }` object react-select style inputs expect.
+const toOption = (options, current, fallback) => {
+  const match =
+    current != null && current !== ""
+      ? options?.find((option) => sameId(option.value, current))
+      : undefined;
+
+  return {
+    value: current,
+    label: match ? (match.label ?? match.value) : current || fallback,
+  };
+};
+
+const resolveKind = (category, sport) => {
+  if (category === "racquet") {
+    return sport === "tennis" || sport === "padel" ? sport : "badminton";
+  }
+  if (category === "shoe" || category === "apparel") return category;
+  if (category.startsWith("string")) return "string";
+  return "other";
+};
+
+const buildFormData = ({ values, inventories, files }) => {
+  const formData = new FormData();
+
+  Object.entries(values).forEach(([key, value]) => {
+    if (NON_SUBMITTED_KEYS.has(key) || value == null) return;
+
+    if (Array.isArray(value)) {
+      value.forEach((item, index) => {
+        const field =
+          key === "colours" ? `product[${key}][]` : `product[${key}][${index}]`;
+        formData.append(field, item);
+      });
+    } else {
+      formData.append(`product[${key}]`, value);
+    }
+  });
+
+  inventories.forEach(
+    ({ id, quantity, size, sku, price, locations, _destroy }, index) => {
+      const prefix = `product[product_inventories_attributes][${index}]`;
+
+      if (id) formData.append(`${prefix}[id]`, id);
+      if (quantity !== "" && quantity != null) {
+        formData.append(`${prefix}[quantity]`, quantity);
+      }
+      if (_destroy) formData.append(`${prefix}[_destroy]`, _destroy);
+      if (size) formData.append(`${prefix}[size]`, size);
+      if (sku) formData.append(`${prefix}[sku]`, sku);
+      locations?.forEach((location) =>
+        formData.append(`${prefix}[locations][]`, location),
+      );
+      formData.append(`${prefix}[price]`, price || values.price || "");
+    },
   );
 
-  const levels = useSelector((state) => state.level.levels);
-  const genders = useSelector((state) => state.gender.genders);
-  const { loading, status, message } = useSelector((state) => state.product);
-  const formRef = useRef(null);
-  const [selectSport, setSelectedSport] = useState(null);
-  const [productStatus, setProductStatus] = useState("active");
-  const [selectTool, setSelectTool] = useState(product_categories[0]?.name);
+  files.forEach((file, index) => {
+    formData.append(`product[photos][${index}]`, file);
+  });
 
-  const [productInventories, setProductInventories] = useState([
-    {
-      size: "",
-      quantity: "",
-      sku: "",
-      locations: [],
-    },
-  ]);
+  return formData;
+};
 
-  useEffect(() => {
-    const trixEditor = editorRef.current;
+/* -------------------------------------------------------------------------- */
+/*  Small presentational pieces                                               */
+/* -------------------------------------------------------------------------- */
 
-    const handleTrixText = ({ target: { innerHTML } }) => {
-      setFormdata((prev) => ({ ...prev, description_body: innerHTML }));
-    };
-    trixEditor.addEventListener("trix-change", handleTrixText);
+const labelClass = "mb-1 block text-sm font-semibold text-gray-600";
+const fieldClass =
+  "w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30";
 
-    return () => {
-      trixEditor.removeEventListener("trix-change", handleTrixText);
-    };
-  }, []);
+const Section = ({ title, children }) => (
+  <fieldset className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+    <legend className="px-2 text-base font-bold text-gray-800">{title}</legend>
+    {children}
+  </fieldset>
+);
 
-  useEffect(() => {
-    if (product) {
-      setFormdata({
-        ...product,
-        product_category_id: product?.product_category?.id,
-        level_id: product.level?.id,
-        gender_id: product?.gender?.id,
-        sport_category_id: product?.sport_category?.id,
-      });
-      setProductInventories(product?.product_inventories ?? productInventories);
-      editorRef.current.editor.loadHTML(product.description_body);
-    }
-  }, [product]);
+const PreviewGrid = ({ urls }) => (
+  <div className="my-4 flex flex-wrap gap-4">
+    {urls.map((url, index) => (
+      <img
+        key={`${url}-${index}`}
+        src={url}
+        alt={`Product preview ${index + 1}`}
+        className="w-40 overflow-hidden rounded border border-gray-300 bg-gray-100 p-3"
+      />
+    ))}
+  </div>
+);
 
-  const [productName, setProductName] = useState("");
+const StatusMessage = ({ loading, status, message }) => {
+  if (loading) return <p className="my-3 text-gray-600">{message}</p>;
 
-  const addToProductInventory = ({ key, value }, index) => {
-    const updateProductInventories = productInventories?.map((item, i) =>
-      i === index
-        ? {
-            ...item,
-            [key]: value,
-          }
-        : item,
+  if (status === "success") {
+    return (
+      <p
+        role="status"
+        className="my-3 flex items-center gap-3 rounded bg-green-100 p-5 text-green-900"
+      >
+        <FaCheckCircle className="text-3xl text-green-700" aria-hidden />
+        {message}
+      </p>
     );
+  }
 
-    setProductInventories(updateProductInventories);
-  };
+  if (status === "rejected") {
+    return (
+      <p
+        role="alert"
+        className="my-3 flex items-center gap-3 rounded bg-red-100 p-5 text-red-900"
+      >
+        <MdReportGmailerrorred className="text-3xl text-red-700" aria-hidden />
+        {message}
+      </p>
+    );
+  }
 
+  return null;
+};
+
+const INVENTORY_GRID =
+  "grid grid-cols-[1.2fr_1fr_1fr_1.6fr_2rem] items-center gap-3";
+
+const InventoryTable = ({
+  sizeLabel,
+  sizeOptions,
+  rows,
+  onAdd,
+  onChange,
+  onRemove,
+}) => {
+  // Keep the original index so edits and deletes hit the right row
+  // even after earlier rows were soft-deleted.
+  const visibleRows = rows
+    .map((row, index) => ({ row, index }))
+    .filter(({ row }) => !row._destroy);
+  console.log(sizeOptions);
+
+  return (
+    <div className="mt-6">
+      <div className="mb-2 flex items-center justify-between">
+        <h3 className="text-sm font-bold text-gray-700">Inventory</h3>
+        <button
+          type="button"
+          onClick={onAdd}
+          className="inline-flex items-center gap-2 rounded bg-gray-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-700"
+        >
+          <FaPlus aria-hidden /> Add row
+        </button>
+      </div>
+
+      <div className="overflow-x-auto overflow-y-visible">
+        <div className="min-w-[640px] w-full">
+          <div
+            className={`${INVENTORY_GRID} text-sm font-semibold text-gray-500`}
+          >
+            <span>{sizeLabel}</span>
+            <span>Quantity</span>
+            <span>SKU</span>
+            <span>Location</span>
+            <span />
+          </div>
+
+          {visibleRows.length === 0 && (
+            <p className="py-4 text-sm text-gray-500">
+              No inventory rows yet. Add a row to set size, quantity and
+              location.
+            </p>
+          )}
+
+          {visibleRows.map(({ row, index }) => (
+            <div
+              key={row.id ?? `new-${index}`}
+              className={`${INVENTORY_GRID} my-2`}
+            >
+              <FormInput
+                type="select"
+                name="sizes"
+                id={`size-${index}`}
+                placeholder={sizeLabel}
+                options={sizeOptions}
+                value={toOption(sizeOptions, row.size, "Select size")}
+                onChange={({ value }) => onChange(index, "size", value)}
+                size={1}
+                menuPortalTarget={
+                  typeof document !== "undefined" ? document.body : null
+                }
+                menuPosition="fixed"
+                styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+              />
+
+              <FormInput
+                type="number"
+                name="quantity"
+                id={`qty-${index}`}
+                placeholder="Quantity"
+                value={row.quantity}
+                onChange={(e) => onChange(index, "quantity", e.target.value)}
+              />
+
+              <FormInput
+                name="sku"
+                id={`sku-${index}`}
+                placeholder="SKU"
+                value={row.sku}
+                onChange={(e) => onChange(index, "sku", e.target.value)}
+              />
+
+              <FormInput
+                type="select"
+                name="locations"
+                id={`location-${index}`}
+                placeholder="Add product location"
+                options={states}
+                value={(row.locations ?? []).map((location) => ({
+                  value: location,
+                  label:
+                    states.find((state) => state.value === location)?.label ??
+                    location,
+                }))}
+                onChange={(selected) =>
+                  onChange(
+                    index,
+                    "locations",
+                    (selected ?? []).map((option) => option.value),
+                  )
+                }
+                isMulti
+                size={1}
+                menuPortalTarget={
+                  typeof document !== "undefined" ? document.body : null
+                }
+                menuPosition="fixed"
+                styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+              />
+
+              <button
+                type="button"
+                onClick={() => onRemove(index)}
+                aria-label={`Remove inventory row ${index + 1}`}
+                className="text-gray-500 transition-colors hover:text-red-600"
+              >
+                <MdDeleteSweep className="text-xl" />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Main component                                                            */
+/* -------------------------------------------------------------------------- */
+
+const ProductForm = ({ onSubmit, product }) => {
   const dispatch = useDispatch();
+  const formRef = useRef(null);
+  const editorRef = useRef(null);
+  const trixInputRef = useRef(null);
+  const resetTimer = useRef(null);
+
+  const { product_categories = [], sport_categories = [] } = useSelector(
+    (state) => state.product_categories,
+  );
+  const levels = useSelector((state) => state.level.levels) ?? [];
+  const genders = useSelector((state) => state.gender.genders) ?? [];
+  const { loading, status, message } = useSelector((state) => state.product);
+  const [isSubmitting, setIssSubmitting] = useState(false);
+  console.log(loading);
+
+  const [formValues, setFormValues] = useState(INITIAL_VALUES);
+  const [productInventories, setProductInventories] = useState([
+    createInventory(),
+  ]);
+  const [photoFiles, setPhotoFiles] = useState([]);
+  const [imageUrl, setImageUrl] = useState("");
+  const [formError, setFormError] = useState("");
+
+  /* ----------------------------- derived state ---------------------------- */
+
+  const isActive = formValues.status === "active";
+  const activeFieldProps = { productStatus: "active", required: isActive };
+
+  const descriptionCount = formValues.description?.length ?? 0;
+  const isDescMax = descriptionCount >= MAX_DESCRIPTION;
+
+  const sportOptions = useMemo(
+    () => sport_categories.map((cat) => ({ value: cat.id, label: cat.name })),
+    [sport_categories],
+  );
+  const categoryOptions = useMemo(
+    () => product_categories.map((cat) => ({ value: cat.id, label: cat.name })),
+    [product_categories],
+  );
+  const levelOptions = useMemo(
+    () => levels.map((level) => ({ value: level.id, label: level.stage })),
+    [levels],
+  );
+  const genderOptions = useMemo(
+    () => genders.map((gender) => ({ value: gender.id, label: gender.name })),
+    [genders],
+  );
+
+  // Falls back to the second sport / first category until one is chosen
+  // (same defaults as before).
+  const selectedSport = (
+    sport_categories.find((cat) => sameId(cat.id, formValues.sport_category_id))
+      ?.name ??
+    sport_categories[1]?.name ??
+    ""
+  ).toLowerCase();
+
+  const selectedCategory = (
+    product_categories.find((cat) =>
+      sameId(cat.id, formValues.product_category_id),
+    )?.name ??
+    product_categories[0]?.name ??
+    ""
+  ).toLowerCase();
+
+  const kind = resolveKind(selectedCategory, selectedSport);
+  const { legend, sizeLabel, sizeOptions } = KIND_CONFIG[kind];
+  console.log(sizeOptions);
+
+  const specFields = SPECS[kind] ?? [];
+
+  const totalQuantity = useMemo(
+    () =>
+      productInventories
+        .filter((item) => !item._destroy)
+        .reduce((sum, item) => sum + (Number(item.quantity) || 0), 0),
+    [productInventories],
+  );
+
+  const selectedColours = formValues.colours ?? [];
+  const colourSwatch =
+    selectedColours.length >= 2
+      ? `linear-gradient(135deg, ${pickColor(selectedColours[0])} 50%, ${pickColor(selectedColours[1])} 50%)`
+      : selectedColours.length === 1
+        ? pickColor(selectedColours[0])
+        : "#fff";
+
+  const photoPreviews = useMemo(
+    () => photoFiles.map((file) => URL.createObjectURL(file)),
+    [photoFiles],
+  );
+
+  /* ------------------------------- effects -------------------------------- */
+
   useEffect(() => {
     dispatch(getProductCategories());
     dispatch(getSportCategories());
     dispatch(getLevels());
     dispatch(getGenders());
+  }, [dispatch]);
+
+  // Keep the rich text editor in sync with form state.
+  useEffect(() => {
+    const editorEl = editorRef.current;
+    if (!editorEl) return undefined;
+
+    const handleChange = () =>
+      setFormValues((prev) => ({
+        ...prev,
+        description_body: trixInputRef.current?.value ?? "",
+      }));
+
+    editorEl.addEventListener("trix-change", handleChange);
+    return () => editorEl.removeEventListener("trix-change", handleChange);
   }, []);
 
+  // Populate the form when editing an existing product.
   useEffect(() => {
-    if (sport_categories) {
-      const sportname =
-        sport_categories.find((cat) => cat.id == formdata?.sport_category_id)
-          ?.name ?? sport_categories[1]?.name;
+    if (!product) return;
 
-      setSelectedSport(sportname);
-    }
-  }, [sport_categories, formdata.sport_category_id]);
-  useEffect(() => {
-    if (product_categories) {
-      const categoryname =
-        product_categories.find(
-          (cat) => cat.id == formdata?.product_category_id,
-        )?.name ?? product_categories[0]?.name;
-      setSelectTool(categoryname);
-    }
-  }, [product_categories, formdata.product_category_id]);
+    const {
+      product_category,
+      level,
+      gender,
+      sport_category,
+      product_inventories,
+      ...rest
+    } = product;
 
-  const handleImageChange = ({ target: { files } }) => {
-    const extractedfiles = Array.from(files);
-
-    const urls = extractedfiles.map((file) => URL.createObjectURL(file));
-    setImagePreviews(urls);
-  };
-
-  const handleCalcTotal = () => {
-    let total_quantity = 0;
-
-    productInventories.forEach((item) => {
-      total_quantity += Number(item.quantity);
+    setFormValues({
+      ...rest,
+      product_category_id: product_category?.id,
+      level_id: level?.id,
+      gender_id: gender?.id,
+      sport_category_id: sport_category?.id,
     });
-    setFormdata({ ...formdata, product_quantity: total_quantity });
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (
-      (product && formdata.photo_urls) ||
-      imagePreviews.length > 0 ||
-      e.target.image.value
-    ) {
-      const formData = new FormData();
+    setProductInventories(
+      product_inventories?.length
+        ? product_inventories.map((item) => ({
+            ...item,
+            locations: item.locations ?? [],
+          }))
+        : [createInventory()],
+    );
 
-      Object.entries(formdata).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          value.forEach((item, index) => {
-            if (key === "colours") {
-              formData.append(`product[${key}][]`, item);
-            } else {
-              formData.append(`product[${key}][${index}]`, item);
-            }
-          });
-        } else {
-          formData.append(`product[${key}]`, value);
-        }
-      });
-
-      productInventories.forEach(
-        ({ quantity, size, price, sku, locations, id, _destroy }, i) => {
-          (quantity || e.target.quantity) &&
-            formData.append(
-              `product[product_inventories_attributes][${i}][quantity]`,
-              quantity ?? e.target.quantity.value,
-            );
-          _destroy &&
-            formData.append(
-              `product[product_inventories_attributes][${i}][_destroy]`,
-              _destroy,
-            );
-          size &&
-            formData.append(
-              `product[product_inventories_attributes][${i}][size]`,
-              size,
-            );
-          sku &&
-            formData.append(
-              `product[product_inventories_attributes][${i}][sku]`,
-              sku,
-            );
-          id &&
-            formData.append(
-              `product[product_inventories_attributes][${i}][id]`,
-              id,
-            );
-          locations &&
-            locations.map((item) =>
-              formData.append(
-                `product[product_inventories_attributes][${i}][locations][]`,
-                item,
-              ),
-            );
-          formData.append(
-            `product[product_inventories_attributes][${i}][price]`,
-            price || (e.target.price.value ?? ""),
-          );
-        },
-      );
-
-      Array.from(e.target.photo.files).forEach((file, index) => {
-        formData.append(`product[photos][${index}]`, file);
-      });
-
-      const data = Object.fromEntries(formData);
-      onSubmit(formData)
-        .then((res) => {
-          const timeOutOp = setTimeout(() => {
-            if (!product) {
-              setFormdata({});
-            }
-            dispatch(resetProduct());
-          }, 5000);
-        })
-        .catch((err) => console.log(err));
+    const html = product.description_body ?? "";
+    const editorEl = editorRef.current;
+    if (editorEl?.editor) {
+      editorEl.editor.loadHTML(html);
     } else {
-      alert("No image: Add a product image");
+      editorEl?.addEventListener(
+        "trix-initialize",
+        () => editorRef.current?.editor?.loadHTML(html),
+        { once: true },
+      );
     }
-  };
+  }, [product]);
 
-  const handleInventoryRowDel = (index) => {
-    if (productInventories.length < 1) {
+  // Free object URLs when previews change or the form unmounts.
+  useEffect(
+    () => () => photoPreviews.forEach((url) => URL.revokeObjectURL(url)),
+    [photoPreviews],
+  );
+
+  useEffect(() => () => clearTimeout(resetTimer.current), []);
+
+  /* ------------------------------- handlers ------------------------------- */
+
+  const setValue = (key) => (value) =>
+    setFormValues((prev) => ({ ...prev, [key]: value }));
+
+  // Props for plain inputs. `transform` runs on the typed value.
+  const inputProps = (key, { type = "text", transform } = {}) => ({
+    name: key,
+    id: key,
+    type,
+    value: formValues[key] ?? "",
+    onChange: ({ target: { value } }) =>
+      setValue(key)(transform ? transform(value) : value),
+  });
+
+  // Props for select inputs.
+  const selectProps = (key, options, placeholder) => ({
+    name: key,
+    id: key,
+    type: "select",
+    options,
+    placeholder,
+    value: toOption(options, formValues[key], `Select ${placeholder}`),
+    onChange: ({ value }) => setValue(key)(value),
+  });
+
+  const addInventory = () =>
+    setProductInventories((prev) => [...prev, createInventory()]);
+
+  const updateInventory = (index, key, value) =>
+    setProductInventories((prev) =>
+      prev.map((item, i) => (i === index ? { ...item, [key]: value } : item)),
+    );
+
+  // Saved rows are soft-deleted so the API can destroy them; new rows are dropped.
+  const removeInventory = (index) =>
+    setProductInventories((prev) =>
+      prev[index]?.id
+        ? prev.map((item, i) =>
+            i === index ? { ...item, _destroy: true } : item,
+          )
+        : prev.filter((_, i) => i !== index),
+    );
+
+  const toggleDiscount = () =>
+    setFormValues((prev) => ({
+      ...prev,
+      discount:
+        prev.discount === "active_discount"
+          ? "inactive_discount"
+          : "active_discount",
+    }));
+
+  const handleSubmit = (event) => {
+    console.log("object");
+
+    event.preventDefault();
+    setFormError("");
+    console.log("object");
+
+    const hasImage =
+      Boolean(product && formValues.photo_urls) ||
+      photoFiles.length > 0 ||
+      imageUrl.trim() !== "";
+    console.log("object");
+
+    if (!hasImage) {
+      setFormError("Add at least one product image or image URL.");
       return;
     }
-    if (productInventories[index]?.id) {
-      const newSizes = productInventories.map((item, i) => {
-        if (item?.id && i === index) {
-          return {
-            ...item,
-            _destroy: true,
-          };
-        }
-        return item;
-      });
-      setProductInventories(newSizes);
-    } else {
-      const newSize = productInventories.filter((_, i) => i !== index);
-      setProductInventories(newSize);
-    }
+    setIssSubmitting(true);
+
+    const formData = buildFormData({
+      values: { ...formValues, product_quantity: totalQuantity },
+      inventories: productInventories,
+      files: photoFiles,
+    });
+
+    Promise.resolve(onSubmit(formData))
+      .then(() => {
+        resetTimer.current = setTimeout(() => {
+          if (!product) {
+            setFormValues(INITIAL_VALUES);
+            setProductInventories([createInventory()]);
+            setPhotoFiles([]);
+            setImageUrl("");
+            formRef.current?.reset();
+            editorRef.current?.editor?.loadHTML("");
+          }
+          dispatch(resetProduct());
+        }, RESET_DELAY_MS);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setIssSubmitting(false));
   };
-  const selectedColors = formdata?.colours ?? [];
-  const colorBackground =
-    selectedColors.length === 1
-      ? pickColor(selectedColors[0])
-      : selectedColors.length >= 2
-        ? `linear-gradient(135deg, ${pickColor(selectedColors[0])} 50%, ${pickColor(selectedColors[1])} 50%)`
-        : "#fff";
+
+  /* -------------------------------- render -------------------------------- */
 
   return (
-    <div className="product-form bg-white admin m-auto w-full">
-      <form onSubmit={handleSubmit} ref={formRef}>
-        <div className="p-3 flex">
-          {selectSport && (
+    <div className="product-form admin m-auto w-full max-w-5xl bg-white">
+      <form onSubmit={handleSubmit} ref={formRef} className="space-y-6 p-4">
+        <Section title="Basics">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FormInput
-              className="mr-auto max-w-80 w-full"
-              label="Sport Category"
-              type="select"
-              onChange={({ value }) => {
-                setFormdata({ ...formdata, sport_category_id: value });
-              }}
-              placeholder="sport category"
-              value={{
-                value: formdata?.sport_category_id,
-                label:
-                  sport_categories.find(
-                    (sport_categories) =>
-                      sport_categories.id === formdata?.sport_category_id,
-                  )?.name ?? "Select Sports",
-              }}
+              className="w-full"
+              label="Sport category"
               required
-              name="sport_category_id"
-              id="sport_category_id"
-              options={sport_categories.map((cat) => ({
-                value: cat.id,
-                label: cat.name,
-              }))}
+              {...selectProps("sport_category_id", sportOptions, "sport")}
             />
-          )}
 
-          <FormInput
-            className="ml-auto w-48 bg-green-500"
-            label="ms product code"
-            productStatus="active"
-            type="text"
-            name="ms_code"
-            id="ms_code"
-            value={formdata?.ms_code}
-            onChange={({ target: { value } }) =>
-              setFormdata({ ...formdata, ms_code: value })
-            }
-            required={productStatus === "active"}
-          />
-        </div>
-
-        <div className="p-3 flex justify-between">
-          <FormInput
-            className="max-w-80 w-full"
-            label="Status"
-            type="select"
-            value={{
-              value: formdata?.status,
-              label: formdata?.status ?? "Select status",
-            }}
-            onChange={(selectedOption) =>
-              setFormdata({ ...formdata, status: selectedOption.value })
-            }
-            defaultValue={{ value: "active", label: "active" }}
-            required
-            name="status"
-            id="status"
-            options={[
-              { value: "inactive", label: "inactive" },
-              { value: "active", label: "active" },
-            ]}
-          />
-
-          <FormInput
-            className=" w-48"
-            disabled
-            label="Total Quantity"
-            name="product_quantity"
-            value={formdata?.product_quantity}
-            onChange={(e) =>
-              setFormdata({ ...formdata, product_quantity: e.target.value })
-            }
-            productStatus="active"
-            type="number"
-          />
-        </div>
-        <div className="bg-white p-4 rounded shadow">
-          <div className="flex items-center justify-between">
-            <Button
-              type="button"
-              onClick={() =>
-                setFormdata({
-                  ...formdata,
-                  discount:
-                    formdata?.discount === "active_discount"
-                      ? "inactive_discount"
-                      : "active_discount",
-                })
-              }
-              className={`px-4 py-2 rounded font-medium transition-all ${
-                formdata?.discount === "active_discount"
-                  ? "bg-green-600 hover:bg-green-700"
-                  : "bg-gray-600 hover:bg-gray-700"
-              }`}
-            >
-              {formdata.discount === "active_discount"
-                ? "Cancel Discount"
-                : "Apply Discount"}
-            </Button>
-          </div>
-
-          {/* Discount amount (only shows if active) */}
-          {formdata?.discount === "active_discount" && (
             <FormInput
-              label="Discount (%)"
-              value={formdata?.discount_percentage}
+              className="w-full"
+              label="Status"
+              required
+              {...selectProps("status", STATUS_OPTIONS, "status")}
+            />
+
+            <FormInput
+              className="w-full"
+              label="MS product code"
+              {...inputProps("ms_code")}
+              {...activeFieldProps}
+            />
+
+            <FormInput
+              className="w-full"
+              label="Total quantity"
+              name="product_quantity"
               type="number"
-              name="discount_percentage"
-              onChange={({ target: { value } }) =>
-                setFormdata({ ...formdata, discount_percentage: value })
-              }
-              placeholder="e.g. 20"
-              className="w-full px-3 mt-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              value={totalQuantity}
+              productStatus="active"
+              disabled
             />
-          )}
-        </div>
+          </div>
+        </Section>
 
-        <div className=" bg-white p-4 rounded shadow">
-          <div className="flex justify-between gap-3 text-sm my-1">
+        <Section title="Product details">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FormInput
-              className="flex-1"
-              name="name"
               label="Name"
-              type="text"
-              id="name"
-              value={formdata.name || ""}
-              onChange={(e) =>
-                setFormdata({ ...formdata, name: e.target.value.toLowerCase() })
-              }
-              placeholder="product name"
+              placeholder="Product name"
               required
+              {...inputProps("name", {
+                transform: (value) => value.toLowerCase(),
+              })}
             />
 
             <FormInput
-              className="flex-1"
               label="Price: NGN"
-              productStatus="active"
-              name="price"
-              id="price"
-              type="number"
-              placeholder="price"
-              value={formdata.price || ""}
-              onChange={({ target: { value } }) =>
-                setFormdata({ ...formdata, price: value })
-              }
-              required={productStatus === "active"}
+              placeholder="Price"
+              {...inputProps("price", { type: "number" })}
+              {...activeFieldProps}
             />
-          </div>
 
-          <div className="flex justify-between gap-3 text-sm my-1">
             <FormInput
-              className="flex-1"
-              label="MS Item Code"
-              productStatus="active"
-              value={formdata?.ms_item_code}
-              name="ms_item_code"
+              label="MS item code"
               placeholder="Item code"
-              onChange={({ target: { value } }) =>
-                setFormdata({ ...formdata, ms_item_code: value.toLowerCase() })
-              }
-              required={productStatus === "active"}
+              {...inputProps("ms_item_code", {
+                transform: (value) => value.toLowerCase(),
+              })}
+              {...activeFieldProps}
             />
 
             <FormInput
-              className="flex-1"
               label={
-                <div className="flex items-center w-full justify-between">
-                  <span>Color</span>
+                <div className="flex w-full items-center justify-between">
+                  <span>Colour</span>
                   <span
-                    className="h-8 border transition-all duration-200 ease-linear border-gray-500 rounded-full w-8 block"
-                    style={{
-                      background: colorBackground,
-                    }}
-                  ></span>
+                    className="block h-8 w-8 rounded-full border border-gray-500 transition-all duration-200 ease-linear"
+                    style={{ background: colourSwatch }}
+                    aria-hidden
+                  />
                 </div>
               }
-              value={formdata?.colours?.map((color) => {
-                const found = colors.find((c) => c.value === color);
-                return found;
-              })}
               type="select"
               name="product_colour"
-              placeholder="Choose colours"
               id="colour"
+              placeholder="Choose colours"
               options={colors}
+              value={selectedColours
+                .map((colour) => colors.find((c) => c.value === colour))
+                .filter(Boolean)}
               formatOptionLabel={(option) => (
                 <div className="flex items-center gap-2">
                   <span
-                    style={{
-                      width: "22px",
-                      height: "22px",
-                      borderRadius: "50%",
-                      background: option.hex,
-                      border: "1px solid #ddd",
-                    }}
+                    className="h-[22px] w-[22px] rounded-full border border-gray-300"
+                    style={{ background: option.hex }}
                   />
-
                   <span>{option.label}</span>
                 </div>
               )}
-              onChange={(selectedOption) =>
-                setFormdata({
-                  ...formdata,
-                  colours: selectedOption?.map((option) => option.value) ?? [],
-                })
+              onChange={(selected) =>
+                setValue("colours")(
+                  (selected ?? []).map((option) => option.value),
+                )
               }
-              isOptionDisabled={() => formdata?.colours?.length >= 2}
+              isOptionDisabled={() => selectedColours.length >= MAX_COLOURS}
               isMulti
             />
-          </div>
 
-          <div className="flex justify-between gap-3 text-sm my-1 ">
             <FormInput
-              className="flex-1"
-              label="Select product category"
-              value={{
-                value: formdata.product_category_id,
-                label:
-                  product_categories.find(
-                    (item) => item.id === formdata.product_category_id,
-                  )?.name || "Select category",
-              }}
-              type="select"
-              placeholder="product category"
-              onChange={({ value }) => {
-                const { name, id } = product_categories.find(
-                  (item) => item.id === value,
-                );
-                setFormdata({ ...formdata, product_category_id: value });
-              }}
+              label="Product category"
               required
-              name="product_category_id"
-              id="product_category_id"
-              options={product_categories.map((cat) => ({
-                value: cat.id,
-                label: cat.name,
-              }))}
+              {...selectProps(
+                "product_category_id",
+                categoryOptions,
+                "category",
+              )}
             />
 
             <FormInput
-              className="flex-1"
               label="Gender"
-              type="select"
-              placeholder="gender"
-              name="gender_id"
-              value={{
-                value: formdata?.gender_id,
-                label:
-                  genders?.find((gender) => gender.id === formdata?.gender_id)
-                    ?.name || "Select Gender",
-              }}
-              onChange={({ value }) =>
-                setFormdata({ ...formdata, gender_id: value })
-              }
-              options={genders.map((gender) => ({
-                value: gender.id,
-                label: gender.name,
-              }))}
+              {...selectProps("gender_id", genderOptions, "gender")}
             />
           </div>
+        </Section>
 
-          {selectTool === "racquet" ? (
-            selectSport === "Tennis" ? (
-              <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
-                <legend className="font-bold">Racquets</legend>
+        <Section title="Discount">
+          <Button
+            type="button"
+            onClick={toggleDiscount}
+            className={`rounded px-4 py-2 font-medium transition-all ${
+              formValues.discount === "active_discount"
+                ? "bg-green-600 hover:bg-green-700"
+                : "bg-gray-600 hover:bg-gray-700"
+            }`}
+          >
+            {formValues.discount === "active_discount"
+              ? "Cancel discount"
+              : "Apply discount"}
+          </Button>
 
-                <div className="flex gap-4 ">
+          {/* The percentage only matters while a discount is active. */}
+          {formValues.discount === "active_discount" && (
+            <FormInput
+              className="mt-4 w-full"
+              label="Discount (%)"
+              placeholder="e.g. 20"
+              {...inputProps("discount_percentage", { type: "number" })}
+            />
+          )}
+        </Section>
+
+        <Section title={`${legend} details`}>
+          {specFields.length > 0 && (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {specFields.map(({ key, label, options }) => {
+                const resolved = options === "levels" ? levelOptions : options;
+
+                return (
                   <FormInput
+                    key={key}
                     className="flex-1"
-                    label="Professionalism"
-                    type="select"
-                    placeholder="professionalism"
-                    id="level_id"
-                    name="level_id"
-                    value={{
-                      value: formdata?.level_id,
-                      label:
-                        levels.find((level) => level.id === formdata.level_id)
-                          ?.stage || "Select Level",
-                    }}
-                    onChange={({ value }) => {
-                      setFormdata({ ...formdata, level_id: value });
-                    }}
-                    options={levels.map((level) => ({
-                      value: level.id,
-                      label: level.stage,
-                    }))}
+                    label={label}
+                    {...(resolved
+                      ? selectProps(key, resolved, label.toLowerCase())
+                      : inputProps(key))}
+                    {...(!resolved && { placeholder: label })}
                   />
-                  <FormInput
-                    className="flex-1"
-                    label="strung/unstrung"
-                    value={{
-                      value: formdata?.strung,
-                      label:
-                        strung.find((s) => s.value === formdata.strung)
-                          ?.value ?? "Select String Type",
-                    }}
-                    type="select"
-                    onChange={({ value }) => {
-                      setFormdata({ ...formdata, strung: value });
-                    }}
-                    name="strung"
-                    id="strung"
-                    options={strung}
-                  />
-                </div>
-
-                <div className="flex gap-4 flex-col md:flex-row my-1">
-                  <FormInput
-                    label="Head size: cm"
-                    name="head_size"
-                    id="head_size"
-                    type="select"
-                    value={{
-                      value: formdata?.head_size,
-                      label:
-                        headSizes.find(
-                          (size) => size.value === formdata.head_size,
-                        )?.value ?? "Select Head Size",
-                    }}
-                    onChange={({ value, name }) =>
-                      setFormdata({ ...formdata, head_size: value })
-                    }
-                    options={headSizes}
-                    placeholder="headsize"
-                  />
-
-                  <FormInput
-                    className="flex-1"
-                    label="Composition"
-                    name="composition"
-                    type="select"
-                    id="composition"
-                    value={{
-                      value: formdata?.composition,
-                      label:
-                        composition.find(
-                          (com) => com.value === formdata.composition,
-                        )?.label ?? "Select Composition",
-                    }}
-                    options={composition}
-                    onChange={({ value }) =>
-                      setFormdata({ ...formdata, composition: value })
-                    }
-                  />
-                </div>
-                <div className="flex gap-4 flex-col md:flex-row my-1">
-                  <FormInput
-                    className="flex-1"
-                    label="Length (mm)"
-                    type="select"
-                    name="length"
-                    options={length}
-                    value={{
-                      value: formdata?.length,
-                      label:
-                        length.find((len) => len.value === formdata.length)
-                          ?.label ?? "Select Length",
-                    }}
-                    placeholder="length"
-                    onChange={({ value }) =>
-                      setFormdata({ ...formdata, length: value })
-                    }
-                  />
-
-                  <FormInput
-                    className="flex-1"
-                    label="Weight (g)"
-                    name="weight"
-                    id="weight"
-                    type="text"
-                    value={formdata?.weight}
-                    onChange={(e) =>
-                      setFormdata({ ...formdata, weight: e.target.value })
-                    }
-                    placeholder="weight"
-                  />
-                </div>
-
-                <div className="form-row my-1">
-                  <FormInput
-                    className="flex-1"
-                    label="tension (kg)"
-                    name="tension"
-                    id="tension"
-                    type="text"
-                    value={formdata?.tension}
-                    placeholder="tension"
-                    onChange={(e) =>
-                      setFormdata({ ...formdata, tension: e.target.value })
-                    }
-                  />
-
-                  <FormInput
-                    className="flex-1"
-                    label="Stiffness (kg)"
-                    name="stiffness"
-                    id="stiffness"
-                    type="text"
-                    value={formdata?.stiffness}
-                    placeholder="stiffness"
-                    onChange={(e) =>
-                      setFormdata({ ...formdata, stiffness: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="justify-end flex my-1 bg-gray-200">
-                  <button
-                    type="button"
-                    className="flex w-max p-1"
-                    onClick={() => {
-                      setProductInventories([
-                        ...productInventories,
-                        {
-                          quantity: "",
-                          size: "",
-                          sku: "",
-                          locations: [],
-                        },
-                      ]);
-                    }}
-                  >
-                    <FaPlus />
-                  </button>
-                </div>
-
-                <div className="">
-                  <div className="flex justify-between px-0">
-                    <label
-                      htmlFor="grip_size"
-                      className="text-gray-500 flex-1 font-semibold text-sm"
-                    >
-                      Racquet Grip Sizes
-                    </label>
-                    <label
-                      htmlFor="qty"
-                      className="text-gray-500 flex-1 font-semibold text-sm"
-                    >
-                      Quantity
-                    </label>
-                    <label
-                      htmlFor="sku"
-                      className="text-gray-500 flex-1 font-semibold text-sm"
-                    >
-                      SKU
-                    </label>
-                    <label
-                      htmlFor="location"
-                      className="text-gray-500 flex-1 font-semibold text-sm"
-                    >
-                      Location
-                    </label>
-                  </div>
-
-                  {productInventories
-                    ?.filter((p) => !p._destroy)
-                    .map(({ size, quantity, sku, locations }, index) => (
-                      <div
-                        className="flex-1 flex gap-3 my-2 items-center"
-                        key={index}
-                      >
-                        <FormInput
-                          type="select"
-                          className="flex-1"
-                          value={{
-                            value: size,
-                            label:
-                              gripSizes.find((g) => g.value === size)?.value ??
-                              "Select Size",
-                          }}
-                          name="sizes"
-                          placeholder="Grip Sizes"
-                          id="grip_size"
-                          onChange={({ value }) =>
-                            addToProductInventory({ key: "size", value }, index)
-                          }
-                          options={gripSizes}
-                          size={1}
-                        />
-
-                        <FormInput
-                          className="flex-1"
-                          value={quantity}
-                          name="quantity"
-                          placeholder="Quantity"
-                          id="qty"
-                          onBlur={handleCalcTotal}
-                          onChange={(e) => {
-                            addToProductInventory(
-                              { key: "quantity", value: e.target.value },
-                              index,
-                            );
-                          }}
-                        />
-
-                        <FormInput
-                          className="flex-1"
-                          value={sku}
-                          name="sku"
-                          id="sku"
-                          onChange={(e) => {
-                            addToProductInventory(
-                              { key: "sku", value: e.target.value },
-                              index,
-                            );
-                          }}
-                          placeholder="SKU"
-                        />
-
-                        <FormInput
-                          className="flex-1"
-                          type="select"
-                          name="locations"
-                          id="location"
-                          value={locations.map((l) => ({
-                            value: l,
-                            label: states.find((state) => state.value === l)
-                              .label,
-                          }))}
-                          onChange={(selectedOption) => {
-                            const value = selectedOption.map(
-                              (option) => option.value,
-                            );
-
-                            addToProductInventory(
-                              { key: "locations", value },
-                              index,
-                            );
-                          }}
-                          options={states}
-                          placeholder="Add Product Location"
-                          isMulti
-                          size={1}
-                        />
-
-                        <span
-                          className="cursor-pointer"
-                          onClick={() => {
-                            handleInventoryRowDel(index);
-                          }}
-                        >
-                          <MdDeleteSweep className="text-lg" />
-                        </span>
-                      </div>
-                    ))}
-                </div>
-              </fieldset>
-            ) : selectSport === "Padel" ? (
-              <>
-                <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
-                  <legend className="font-bold">Padel</legend>
-
-                  <div className="flex gap-4 ">
-                    <FormInput
-                      className="bg-r w-full"
-                      label="Type of Player"
-                      type="select"
-                      placeholder="Player Typology"
-                      id="player_type"
-                      name="player_type"
-                      onChange={({ value }) =>
-                        setFormdata({ ...formdata, player_type: value })
-                      }
-                      value={{
-                        value: formdata.player_type,
-                        label:
-                          playType.find((p) => p.value === formdata.player_type)
-                            ?.label ?? "Select PlayType",
-                      }}
-                      options={playType.map((type) => ({
-                        value: type.value,
-                        label: type.label,
-                      }))}
-                    />
-                  </div>
-
-                  <div className="flex gap-4 flex-col md:flex-row my-1">
-                    <FormInput
-                      className="flex-1"
-                      label="Head shape"
-                      name="head_shape"
-                      type="select"
-                      id="head_shape"
-                      value={{
-                        value: formdata.head_shape,
-                        label:
-                          headShapes.find(
-                            (h) => h.value === formdata.head_shape,
-                          )?.label ?? "Select Head shape",
-                      }}
-                      onChange={({ value }) =>
-                        setFormdata({ ...formdata, head_shape: value })
-                      }
-                      options={headShapes}
-                      placeholder="head Shape"
-                    />
-
-                    <FormInput
-                      className="flex-1"
-                      label="Recommended Grip"
-                      type="select"
-                      value={{
-                        value: formdata?.recommended_grip,
-                        label:
-                          recommendedGrip.find(
-                            (r) => r.value === formdata?.recommended_grip,
-                          )?.label ?? "Select Grip",
-                      }}
-                      onChange={({ value }) => {
-                        setFormdata({ ...formdata, recommended_grip: value });
-                      }}
-                      name="recommended_grip"
-                      id="recommended_grip"
-                      options={recommendedGrip}
-                    />
-                  </div>
-                  <div className="flex gap-4 flex-col md:flex-row my-1">
-                    <FormInput
-                      className="flex-1"
-                      label="Length (mm)"
-                      type="select"
-                      name="length"
-                      options={length}
-                      value={{
-                        value: formdata?.length,
-                        label:
-                          length.find((len) => len.value === formdata.length)
-                            ?.label ?? "Select Length",
-                      }}
-                      placeholder="length"
-                      onChange={({ value }) =>
-                        setFormdata({ ...formdata, length: value })
-                      }
-                    />
-
-                    <FormInput
-                      className="flex-1"
-                      label="Composition"
-                      name="composition"
-                      onChange={({ value }) =>
-                        setFormdata({ ...formdata, composition: value })
-                      }
-                      value={{
-                        value: formdata?.composition,
-                        label:
-                          composition.find(
-                            (c) => c.value === formdata.composition,
-                          )?.label ?? "Select Composition",
-                      }}
-                      id="composition"
-                      options={composition}
-                      type="select"
-                    />
-                  </div>
-
-                  <div className="form-row my-1">
-                    <FormInput
-                      className="flex-1"
-                      label="Weight (g)"
-                      name="weight"
-                      id="weight"
-                      type="text"
-                      placeholder="weight"
-                      onChange={({ target: { value } }) =>
-                        setFormdata({ ...formdata, weight: value })
-                      }
-                    />
-
-                    <FormInput
-                      className="flex-1"
-                      label="Thickness (mm)"
-                      name="thickness"
-                      id="thickness"
-                      type="text"
-                      placeholder="thickness"
-                      onChange={({ target: { value } }) =>
-                        setFormdata({ ...formdata, thickness: value })
-                      }
-                    />
-
-                    <FormInput
-                      className="flex-1"
-                      label="Stiffness (kg) "
-                      name="stiffness"
-                      id="stiffness"
-                      onChange={({ target: { value } }) =>
-                        setFormdata({ ...formdata, stiffness: value })
-                      }
-                      type="text"
-                      placeholder="stiffness"
-                    />
-                  </div>
-                  <div className="justify-end flex my-0 ">
-                    <button
-                      type="button"
-                      className="flex w-max p-1"
-                      onClick={() => {
-                        setProductInventories([
-                          ...productInventories,
-                          {
-                            quantity: "",
-                            size: "",
-                            sku: "",
-                            locations: [],
-                          },
-                        ]);
-                      }}
-                    >
-                      <FaPlus />
-                    </button>
-                  </div>
-                  <div className="">
-                    <div className="flex justify-between px-0">
-                      <label
-                        htmlFor="apparel_size"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        Padel Grip Sizes
-                      </label>
-                      <label
-                        htmlFor="qty"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        Quantity
-                      </label>
-                      <label
-                        htmlFor="sku"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        SKU
-                      </label>
-                      <label
-                        htmlFor="location"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        Location
-                      </label>
-                    </div>
-
-                    {productInventories
-                      ?.filter((p) => !p._destroy)
-                      .map(({ size, quantity, sku, locations }, index) => (
-                        <div
-                          className="flex-1 flex gap-3 my-2 items-center"
-                          key={index}
-                        >
-                          <FormInput
-                            type="select"
-                            className="flex-1"
-                            value={{
-                              value: size,
-                              label:
-                                gripSizes.find((g) => g.value === size)
-                                  ?.value ?? "Select Size",
-                            }}
-                            name="sizes"
-                            placeholder="Padel Sizes"
-                            id="padel_size"
-                            onChange={({ value }) =>
-                              addToProductInventory(
-                                { key: "size", value },
-                                index,
-                              )
-                            }
-                            options={gripSizes}
-                            size={1}
-                          />
-
-                          <FormInput
-                            className="flex-1"
-                            value={quantity}
-                            name="quantity"
-                            placeholder="Quantity"
-                            id="qty"
-                            onChange={(e) => {
-                              addToProductInventory(
-                                { key: "quantity", value: e.target.value },
-                                index,
-                              );
-                            }}
-                          />
-
-                          <FormInput
-                            className="flex-1"
-                            value={sku}
-                            name="sku"
-                            id="sku"
-                            onChange={(e) => {
-                              addToProductInventory(
-                                { key: "sku", value: e.target.value },
-                                index,
-                              );
-                            }}
-                            placeholder="SKU"
-                          />
-
-                          <FormInput
-                            className="flex-1"
-                            type="select"
-                            name="locations"
-                            id="location"
-                            value={locations.map((l) => ({
-                              value: l,
-                              label: states.find((state) => state.value === l)
-                                .label,
-                            }))}
-                            onChange={(selectedOption) => {
-                              const value = selectedOption.map(
-                                (option) => option.value,
-                              );
-
-                              addToProductInventory(
-                                { key: "locations", value },
-                                index,
-                              );
-                            }}
-                            options={states}
-                            placeholder="Add Product Location"
-                            isMulti
-                            size={1}
-                          />
-
-                          <span
-                            className=""
-                            onClick={() => {
-                              handleInventoryRowDel(index);
-                            }}
-                          >
-                            <FaMinus />
-                          </span>
-                        </div>
-                      ))}
-                  </div>
-                </fieldset>
-              </>
-            ) : (
-              <>
-                <fieldset className="bg-gray-100 my-7  border-gray-light border-black p-3 rounded">
-                  <legend className="font-bold">Badminton</legend>
-
-                  <div className="flex gap-4 ">
-                    <FormInput
-                      className="bg-r w-full"
-                      label="Type of Player"
-                      type="select"
-                      placeholder="Player Typology"
-                      id="player_type"
-                      name="player_type"
-                      onChange={({ value }) =>
-                        setFormdata({ ...formdata, player_type: value })
-                      }
-                      value={{
-                        value: formdata.player_type,
-                        label:
-                          playType.find((p) => p.value === formdata.player_type)
-                            ?.label ?? "Select PlayType",
-                      }}
-                      options={playType.map((type) => ({
-                        value: type.value,
-                        label: type.label,
-                      }))}
-                    />
-                  </div>
-
-                  <div className="flex gap-4 flex-col md:flex-row my-1">
-                    <FormInput
-                      className="flex-1"
-                      label="Length (mm)"
-                      type="select"
-                      name="length"
-                      options={length}
-                      value={{
-                        value: formdata?.length,
-                        label:
-                          length.find((len) => len.value === formdata.length)
-                            ?.label ?? "Select Length",
-                      }}
-                      placeholder="length"
-                      onChange={({ value }) =>
-                        setFormdata({ ...formdata, length: value })
-                      }
-                    />
-
-                    <div className="flex-1">
-                      <FormInput
-                        className="text-gray-500 font-semibold text-sm"
-                        label="Composition"
-                        type="select"
-                        name="composition"
-                        id="composition"
-                        options={composition}
-                        value={{
-                          value: formdata.composition,
-                          label:
-                            composition.find(
-                              (c) => c.value === formdata.composition,
-                            )?.label ?? "Select composition",
-                        }}
-                        onChange={({ value }) =>
-                          setFormdata({ ...formdata, composition: value })
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-row my-1">
-                    <FormInput
-                      className="flex-1"
-                      label="Weight (g)"
-                      name="weight"
-                      id="weight"
-                      type="text"
-                      placeholder="Weight"
-                      onChange={(e) =>
-                        setFormdata({ ...formdata, weight: e.target.value })
-                      }
-                    />
-
-                    <FormInput
-                      className="flex-1"
-                      label="thickness (mm)"
-                      name="thickness"
-                      id="thickness"
-                      type="text"
-                      placeholder="thickness"
-                      onChange={(e) =>
-                        setFormdata({ ...formdata, thickness: e.target.value })
-                      }
-                    />
-
-                    <FormInput
-                      className="flex-1"
-                      label="Stiffness (kg)"
-                      value={product?.stiffness}
-                      onChange={(e) =>
-                        formdata({ ...formdata, stiffness: e.target.value })
-                      }
-                      name="stiffness"
-                      id="stiffness"
-                      type="text"
-                      placeholder="tension"
-                    />
-                  </div>
-                  <div className="">
-                    <div className="flex justify-between px-0">
-                      <label
-                        htmlFor="badminton_size"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        Sizes
-                      </label>
-                      <label
-                        htmlFor="qty"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        Quantity
-                      </label>
-                      <label
-                        htmlFor="sku"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        SKU
-                      </label>
-                      <label
-                        htmlFor="location"
-                        className="text-gray-500 flex-1 font-semibold text-sm"
-                      >
-                        Location
-                      </label>
-                    </div>
-                    <div className="justify-end flex my-0 ">
-                      <button
-                        type="button"
-                        className="flex w-max p-1"
-                        onClick={() => {
-                          setProductInventories([
-                            ...productInventories,
-                            {
-                              quantity: "",
-                              size: "",
-                              sku: "",
-                              locations: [],
-                            },
-                          ]);
-                        }}
-                      >
-                        <FaPlus />
-                      </button>
-                    </div>
-
-                    {productInventories.map(
-                      ({ size, quantity, sku, locations }, index) => (
-                        <div
-                          className="flex-1 flex gap-3 my-2 items-center"
-                          key={index}
-                        >
-                          <FormInput
-                            type="select"
-                            className="flex-1"
-                            value={{
-                              value: size,
-                              label:
-                                gripSizes.find((g) => g.value === size)
-                                  ?.value ?? "Select Size",
-                            }}
-                            name="sizes"
-                            placeholder="Padel Sizes"
-                            id="padel_size"
-                            onChange={({ value }) =>
-                              addToProductInventory(
-                                { key: "size", value },
-                                index,
-                              )
-                            }
-                            options={gripSizes}
-                            size={1}
-                          />
-
-                          <FormInput
-                            className="flex-1"
-                            value={quantity}
-                            name="quantity"
-                            placeholder="Quantity"
-                            id="qty"
-                            onChange={(e) => {
-                              addToProductInventory(
-                                { key: "quantity", value: e.target.value },
-                                index,
-                              );
-                            }}
-                          />
-
-                          <FormInput
-                            className="flex-1"
-                            value={sku}
-                            name="sku"
-                            id="sku"
-                            onChange={(e) => {
-                              addToProductInventory(
-                                { key: "sku", value: e.target.value },
-                                index,
-                              );
-                            }}
-                            placeholder="SKU"
-                          />
-
-                          <FormInput
-                            className="flex-1"
-                            type="select"
-                            name="locations"
-                            id="location"
-                            value={locations.map((l) => ({
-                              value: l,
-                              label: states.find((state) => state.value === l)
-                                .label,
-                            }))}
-                            onChange={(selectedOption) => {
-                              const value = selectedOption.map(
-                                (option) => option.value,
-                              );
-
-                              addToProductInventory(
-                                { key: "locations", value },
-                                index,
-                              );
-                            }}
-                            options={states}
-                            placeholder="Add Product Location"
-                            isMulti
-                            size={1}
-                          />
-
-                          <span
-                            className=""
-                            onClick={() => {
-                              handleInventoryRowDel(index);
-                            }}
-                          >
-                            <FaMinus />
-                          </span>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </fieldset>
-              </>
-            )
-          ) : selectTool === "shoe" ? (
-            <fieldset className="p-3 bg-gray-100 border-gray-light rounded my-5">
-              <legend className="font-bold">Shoes</legend>
-              <div className="justify-end flex my-0 ">
-                <button
-                  type="button"
-                  className="flex w-max p-1"
-                  onClick={() => {
-                    setProductInventories([
-                      ...productInventories,
-                      {
-                        quantity: "",
-                        size: "",
-                        sku: "",
-                        locations: [],
-                      },
-                    ]);
-                  }}
-                >
-                  <FaPlus />
-                </button>
-              </div>
-              <div className="gap-3">
-                <div className="flex justify-between px-0">
-                  <label
-                    htmlFor="shoe_size"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Shoe Size
-                  </label>
-                  <label
-                    htmlFor="qty"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Quantity
-                  </label>
-                  <label
-                    htmlFor="sku"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    SKU
-                  </label>
-                  <label
-                    htmlFor="location"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Location
-                  </label>
-                </div>
-
-                {productInventories
-                  .filter((p) => !p._destroy)
-                  .map(({ size, locations, quantity, sku }, index) => (
-                    <div
-                      className="flex-1 flex gap-3 my-2 items-center"
-                      key={index}
-                    >
-                      <FormInput
-                        type="select"
-                        className="flex-1"
-                        value={{
-                          value: size,
-                          label:
-                            shoeSizes.find((g) => g.value === size)?.value ??
-                            "Select Size",
-                        }}
-                        name="sizes"
-                        placeholder="Shoe Sizes"
-                        id="size"
-                        onChange={({ value }) =>
-                          addToProductInventory({ key: "size", value }, index)
-                        }
-                        options={shoeSizes}
-                        size={1}
-                      />
-
-                      <FormInput
-                        className="flex-1"
-                        value={quantity}
-                        name="quantity"
-                        placeholder="Quantity"
-                        id="qty"
-                        onChange={(e) => {
-                          addToProductInventory(
-                            { key: "quantity", value: e.target.value },
-                            index,
-                          );
-                        }}
-                      />
-
-                      <FormInput
-                        className="flex-1"
-                        value={sku}
-                        name="sku"
-                        id="sku"
-                        onChange={(e) => {
-                          addToProductInventory(
-                            { key: "sku", value: e.target.value },
-                            index,
-                          );
-                        }}
-                        placeholder="SKU"
-                      />
-
-                      <FormInput
-                        className="flex-1"
-                        type="select"
-                        name="locations"
-                        id="location"
-                        value={locations.map((l) => ({
-                          value: l,
-                          label: states.find((state) => state.value === l)
-                            .label,
-                        }))}
-                        onChange={(selectedOption) => {
-                          const value = selectedOption.map(
-                            (option) => option.value,
-                          );
-
-                          addToProductInventory(
-                            { key: "locations", value },
-                            index,
-                          );
-                        }}
-                        options={states}
-                        placeholder="Add Product Location"
-                        isMulti
-                        size={1}
-                      />
-
-                      <span
-                        className=""
-                        onClick={() => {
-                          handleInventoryRowDel(index);
-                        }}
-                      >
-                        <FaMinus />
-                      </span>
-                    </div>
-                  ))}
-              </div>
-            </fieldset>
-          ) : selectTool === "apparel" ? (
-            <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
-              <legend className="font-bold">Apparels</legend>
-              <div className="justify-end flex my-0 ">
-                <button
-                  type="button"
-                  className="flex w-max p-1"
-                  onClick={() => {
-                    setProductInventories([
-                      ...productInventories,
-                      {
-                        quantity: "",
-                        size: "",
-                        sku: "",
-                        locations: [],
-                      },
-                    ]);
-                  }}
-                >
-                  <FaPlus />
-                </button>
-              </div>
-              <div className="">
-                <div className="flex justify-between px-0">
-                  <label
-                    htmlFor="apparel_size"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Apparel Size
-                  </label>
-                  <label
-                    htmlFor="qty"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Quantity
-                  </label>
-                  <label
-                    htmlFor="sku"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    SKU
-                  </label>
-                  <label
-                    htmlFor="location"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Location
-                  </label>
-                </div>
-
-                {productInventories
-                  ?.filter((p) => !p._destroy)
-                  .map(
-                    ({ locations, size, quantity, sku, _destroy }, index) => (
-                      <div
-                        className="flex-1 grid grid-cols-[1fr_1fr_1fr_1fr_auto] gap-3 my-2 items-center"
-                        key={index}
-                      >
-                        <FormInput
-                          value={{ value: size, label: size }}
-                          type="select"
-                          defaultValue=""
-                          name="sizes"
-                          placeholder="cloth size"
-                          id="apparel_size"
-                          onChange={({ value }) =>
-                            addToProductInventory({ key: "size", value }, index)
-                          }
-                          options={clothSizes}
-                          size={1}
-                        />
-
-                        <FormInput
-                          value={productInventories[index].quantity}
-                          name="quantity"
-                          placeholder="Quantity"
-                          id="qty"
-                          onChange={(e) => {
-                            addToProductInventory(
-                              { key: "quantity", value: e.target.value },
-                              index,
-                            );
-                          }}
-                        />
-
-                        <FormInput
-                          value={productInventories[index].sku}
-                          name="sku"
-                          id="sku"
-                          onChange={(e) => {
-                            addToProductInventory(
-                              { key: "sku", value: e.target.value },
-                              index,
-                            );
-                          }}
-                          placeholder="SKU"
-                        />
-
-                        <FormInput
-                          className="flex-1"
-                          type="select"
-                          value={locations?.map((location) => ({
-                            value: location,
-                            label: location,
-                          }))}
-                          name="locations"
-                          id="location"
-                          onChange={(selectedOption) => {
-                            const value = selectedOption.map(
-                              (option) => option.value,
-                            );
-                            addToProductInventory(
-                              { key: "locations", value },
-                              index,
-                            );
-                          }}
-                          options={states}
-                          placeholder="Add Product Location"
-                          isMulti
-                          size={1}
-                        />
-
-                        <span
-                          className=""
-                          onClick={() => {
-                            handleInventoryRowDel(index);
-                          }}
-                        >
-                          <FaMinus />
-                        </span>
-                      </div>
-                    ),
-                  )}
-              </div>
-            </fieldset>
-          ) : (
-            <fieldset className="p-3 bg-gray-100 my-5 border-gray-light rounded">
-              <legend className="font-bold">Other</legend>
-              <div className="justify-end flex my-0 ">
-                <button
-                  type="button"
-                  className="flex w-max p-1"
-                  onClick={() => {
-                    setProductInventories([
-                      ...productInventories,
-                      {
-                        quantity: "",
-                        size: "",
-                        sku: "",
-                        locations: [],
-                      },
-                    ]);
-                  }}
-                >
-                  <FaPlus />
-                </button>
-              </div>
-              <div className="">
-                <div className="flex justify-between px-0">
-                  {productName.includes("socks") && (
-                    <label
-                      htmlFor="apparel_size"
-                      className="text-gray-500 flex-1 font-semibold text-sm"
-                    >
-                      Sock Size
-                    </label>
-                  )}
-                  <label
-                    htmlFor="qty"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Quantity
-                  </label>
-                  <label
-                    htmlFor="sku"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    SKU
-                  </label>
-                  <label
-                    htmlFor="location"
-                    className="text-gray-500 flex-1 font-semibold text-sm"
-                  >
-                    Location
-                  </label>
-                </div>
-
-                {productInventories
-                  ?.filter((p) => !p._destroy)
-                  .map(({ size, locations, sku, quantity }, index) => (
-                    <div
-                      className="flex-1 flex gap-3 my-2 items-center"
-                      key={index}
-                    >
-                      <FormInput
-                        type="select"
-                        className="flex-1"
-                        value={{
-                          value: size,
-                          label:
-                            gripSizes.find((g) => g.value === size)?.value ??
-                            "Select Size",
-                        }}
-                        name="sizes"
-                        placeholder="Shoe Sizes"
-                        id="size"
-                        onChange={({ value }) =>
-                          addToProductInventory({ key: "size", value }, index)
-                        }
-                        options={clothSizes}
-                        size={1}
-                      />
-
-                      <FormInput
-                        className="flex-1"
-                        value={quantity}
-                        name="quantity"
-                        placeholder="Quantity"
-                        id="qty"
-                        onChange={(e) => {
-                          addToProductInventory(
-                            { key: "quantity", value: e.target.value },
-                            index,
-                          );
-                        }}
-                      />
-
-                      <FormInput
-                        className="flex-1"
-                        value={sku}
-                        name="sku"
-                        id="sku"
-                        onChange={(e) => {
-                          addToProductInventory(
-                            { key: "sku", value: e.target.value },
-                            index,
-                          );
-                        }}
-                        placeholder="SKU"
-                      />
-
-                      <FormInput
-                        className="flex-1"
-                        type="select"
-                        name="locations"
-                        id="location"
-                        value={locations.map((l) => ({
-                          value: l,
-                          label: states.find((state) => state.value === l)
-                            .label,
-                        }))}
-                        onChange={(selectedOption) => {
-                          const value = selectedOption.map(
-                            (option) => option.value,
-                          );
-
-                          addToProductInventory(
-                            { key: "locations", value },
-                            index,
-                          );
-                        }}
-                        options={states}
-                        placeholder="Add Product Location"
-                        isMulti
-                        size={1}
-                      />
-
-                      <span
-                        className=""
-                        onClick={() => {
-                          handleInventoryRowDel(index);
-                        }}
-                      >
-                        <FaMinus />
-                      </span>
-                    </div>
-                  ))}
-              </div>
-            </fieldset>
+                );
+              })}
+            </div>
           )}
 
-          <div>
-            <label htmlFor="" className="text-gray-500 font-semibold text-sm">
-              {" "}
-              <span>image url</span>
-              <span />
-            </label>
-            <input type="url" name="image" id="image" placeholder="image url" />
+          <InventoryTable
+            sizeLabel={sizeLabel}
+            sizeOptions={sizeOptions}
+            rows={productInventories}
+            onAdd={addInventory}
+            onChange={updateInventory}
+            onRemove={removeInventory}
+          />
+        </Section>
+
+        <Section title="Images">
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="image" className={labelClass}>
+                Image URL
+              </label>
+              <input
+                type="url"
+                name="image"
+                id="image"
+                placeholder="https://"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                className={fieldClass}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="photo" className={labelClass}>
+                Upload images
+              </label>
+              <input
+                type="file"
+                name="photo"
+                id="photo"
+                accept="image/*"
+                multiple
+                onChange={({ target: { files } }) =>
+                  setPhotoFiles(Array.from(files))
+                }
+                className="block w-full text-sm file:mr-4 file:rounded file:border-0 file:bg-gray-900 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-gray-700"
+              />
+            </div>
           </div>
 
-          <div className="my-1">
-            <label htmlFor="" className="text-dark font-semibold text-sm">
-              {" "}
-              <span>image *</span>
-              <span />
-            </label>
-            <input
-              onChange={handleImageChange}
-              type="file"
-              name="photo"
-              id="photo"
-              multiple
-            />
-          </div>
+          <PreviewGrid urls={photoPreviews} />
+          <PreviewGrid urls={formValues.photo_urls ?? []} />
+        </Section>
 
-          <div>
+        <Section title="Description">
+          <div className="mb-1 flex items-center justify-between">
+            <label
+              htmlFor="description"
+              className="text-sm font-semibold text-gray-600"
+            >
+              Short description
+            </label>
+            <span
+              className={`text-sm ${isDescMax ? "text-red-600" : "text-green-700"}`}
+            >
+              {descriptionCount} / {MAX_DESCRIPTION}
+            </span>
+          </div>
+          <textarea
+            name="description"
+            id="description"
+            rows={4}
+            maxLength={MAX_DESCRIPTION}
+            placeholder="Description"
+            value={formValues.description ?? ""}
+            onChange={({ target: { value } }) => setValue("description")(value)}
+            className={fieldClass}
+          />
+
+          <p className={`${labelClass} mt-4`}>Full details</p>
+          <div className="rounded border border-gray-300">
             <input
-              id="trix"
+              id="trix-description-body"
               type="hidden"
               name="description_body"
-              onChange={(html) =>
-                setFormdata({ ...formdata, description_body: html })
-              }
+              ref={trixInputRef}
             />
-            <trix-editor input="trix" ref={editorRef} />
+            <trix-editor input="trix-description-body" ref={editorRef} />
           </div>
+        </Section>
 
-          <div className="flex gap-4 my-6">
-            {imagePreviews.map((image, index) => (
-              <img
-                src={image}
-                alt=""
-                key={index}
-                className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3"
-              />
-            ))}
-          </div>
+        {formError && (
+          <p
+            role="alert"
+            className="rounded bg-red-100 p-4 text-sm text-red-900"
+          >
+            {formError}
+          </p>
+        )}
 
-          <div className="flex gap-4 my-6">
-            {formdata?.photo_urls?.map((image, index) => (
-              <img
-                src={image}
-                alt=""
-                key={index}
-                className="w-40 border border-gray-400 rounded overflow-hidden bg-gray-100 p-3"
-              />
-            ))}
-          </div>
+        <StatusMessage loading={loading} status={status} message={message} />
 
-          {loading ? (
-            <p className="normal"> {message}</p>
-          ) : status === "success" ? (
-            <p className="text-green bg-green-200 rounded my-3 p-5 flex gap-3 items-center">
-              {" "}
-              <FaCheckCircle className="text-green-700 text-3xl" />
-              {message}
-            </p>
-          ) : (
-            status === "rejected" && (
-              <p className="text-red-800 bg-red-200 rounded my-3 p-5 flex gap-3 items-center">
-                {" "}
-                <MdReportGmailerrorred className="text-red-700 text-3xl" />
-                {message}
-              </p>
-            )
-          )}
-
-          <button className="btn w-full" type="submit">
-            Add Product
-          </button>
-        </div>
+        <Button
+          className="w-full"
+          type="submit"
+          disabled={isSubmitting}
+          loading={isSubmitting}
+          variant="secondary"
+        >
+          {product ? "Save changes" : "Add product"}
+        </Button>
       </form>
-
-      {/* <Categories /> */}
     </div>
   );
 };

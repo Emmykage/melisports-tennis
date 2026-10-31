@@ -45,6 +45,10 @@ const gripSizes = [
   { value: "X6", label: "X6" },
   { value: "X12", label: "X12" },
 ];
+const stringSizes = [
+  { value: "130", label: "130" },
+  { value: "125", label: "125" },
+];
 const headSizes = [
   { value: "400", label: "400" },
   { value: "523", label: "523" },
@@ -118,6 +122,7 @@ export {
   gripSizes,
   headSizes,
   length,
+  stringSizes,
 };
 
 export const featureItems = [

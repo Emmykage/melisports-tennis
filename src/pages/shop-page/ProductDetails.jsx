@@ -12,6 +12,9 @@ import SimilarItemsSection from "../../components/similarSection/SimilarItemSect
 import { addToCart, deleteCartItem } from "../../redux/actions/cart";
 import Container from "../../components/container";
 import { Helmet } from "react-helmet-async";
+import ProductImageSlider from "../../components/complementaryComponent/ProductImageSlider";
+import RelatedProductSlider from "../../components/complementaryComponent/BestBuyCard";
+import BestSellerSection from "../../components/bestSellerSection/BestSellerSection";
 const cm2ToIn2 = (cm2) => {
   const raw = Number((cm2 / 6.4516).toFixed(2));
   return Math.round(raw);
@@ -63,12 +66,6 @@ const ProductDetails = () => {
         category: product?.product_category?.name,
       }));
 
-    // if(newInventory.every((item) => !item.count || item.count < 1)){
-    // alert('You need to select a product');
-    // return
-
-    // }
-
     if (product.product_quantity > 0) {
       dispatch(addToCart(cartArray));
       setSelectedItem(null);
@@ -105,7 +102,6 @@ const ProductDetails = () => {
   const increase = () => {
     setCount((setPrev) => Math.min(setPrev + 1, product.product_quantity));
   };
-  console.log(product);
 
   const handleItemCount = (item, sign) => {
     setNewInventory((prev) => {
@@ -151,10 +147,6 @@ const ProductDetails = () => {
 
     setNewInventory(updateInventoryFromCart || []);
   }, [product]);
-
-  // useEffect(() => {
-  //   console.log(cartItems, newInventory);
-  // }, [cartItems]);
 
   if (loading) {
     return <Loader />;
@@ -524,9 +516,12 @@ at competitive prices.
             )}
           </div>
         </div>
+        <BestSellerSection product={relatedProducts[0]} />
+        <ProductImageSlider products={relatedProducts} />
+
         {/* Description */}
-        <div className="description-details">
-          <div className="grid md:grid-cols-2">
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="description-detail">
             <div className="p-4">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                 Description
@@ -534,16 +529,19 @@ at competitive prices.
               {product.description_body ? (
                 <div
                   className="prose prose-gray max-w-none text-justify"
-                  dangerouslySetInnerHTML={{ __html: product.description_body }}
+                  dangerouslySetInnerHTML={{
+                    __html: product.description_body,
+                  }}
                 />
               ) : (
                 <p className="text-gray-700 leading-relaxed">
                   {product.description}
                 </p>
               )}
+              <div className="bg-0" />
             </div>
-            <div className="bg-0" />
           </div>
+          <RelatedProductSlider product={relatedProducts[0]} interval={3000} />
         </div>
       </div>
       {/* </section> */}

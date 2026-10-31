@@ -1,106 +1,133 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { IoAddSharp } from 'react-icons/io5';
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const ImagePreview = ({ images }) => {
-  const [imageIndex, setImageIndex] = useState(0);
-  const [imagePrev, setImagePrev] = useState('');
-  const [showImage, setShowImage] = useState(false);
-  const imageBoxRef = useRef();
-
-  const setView = (index) => {
-    setImageIndex(index);
-  };
-  const showNextImage = () => {
-    setImageIndex((index) => {
-      if (index === images.length - 1) return 0;
-      return index + 1;
-    });
-  };
-  const showPrevImage = () => {
-    setImageIndex((index) => {
-      if (index === 0) return images.length - 1;
-      return index - 1;
-    });
-  };
-
-  const handlePrev = (image, index) => {
-    setImagePrev(image);
-    setShowImage((prev) => !prev);
-  };
+const ImagePreview = ({
+  images = [],
+  interval = 3000,
+  productName = "Product",
+}) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [images]);
 
   useEffect(() => {
-    const closeModal = (e) => {
-      if (!imageBoxRef.current) return;
-      if (!imageBoxRef.current.contains(e.target)) {
-        setShowImage(false);
-      }
-    };
+    if (images.length <= 1 || isPaused) return;
 
-    document.addEventListener('mousedown', closeModal);
+    const timer = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % images.length);
+    }, interval);
 
-    return () => {
-      document.removeEventListener('mousedown', closeModal);
-    };
-  }, []);
+    return () => clearInterval(timer);
+  }, [images.length, interval, isPaused]);
+
+  if (!images.length) return null;
+
+  const nextImage = () => {
+    setActiveIndex((current) => (current + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setActiveIndex((current) => (current - 1 + images.length) % images.length);
+  };
+
   return (
+    <div
+      className="group w-full"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Main image */}
+      <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-100">
+        {images.map((image, index) => (
+          <img
+            key={image.id ?? image.src ?? index}
+            src={image.src ?? image}
+            alt={`${productName} view ${index + 1}`}
+            className={`absolute inset-0 h-full w-full object-contain p-4
+              transition-opacity duration-700 ease-in-out
+              ${activeIndex === index ? "opacity-100" : "opacity-0"}`}
+            loading={index === 0 ? "eager" : "lazy"}
+          />
+        ))}
 
-    <>
-
-      <div className="">
-        <div className=" rounded-lg overflow-hidden flex relative h-96 md:h-[600px] ">
-          <button onClick={showPrevImage} className="z-10 absolute image-slider-btn" style={{ left: '0' }}><FaArrowLeft /></button>
-          <button onClick={showNextImage} className="z-10 absolute image-slider-btn " style={{ right: '0px' }}><FaArrowRight /></button>
-
-          {images.map((image) => (
-            <div
-
-              key={image}
-              style={{ translate: `${-100 * imageIndex}%` }}
-              className="h-full w-full flex    rounded overflow-hidden shrink-0  z-0"
+        {/* Previous button */}
+        {images.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={prevImage}
+              aria-label="Previous product image"
+              className="absolute left-3 top-1/2 -translate-y-1/2
+                rounded-full bg-white/90 p-2 shadow
+                opacity-0 transition group-hover:opacity-100
+                focus:opacity-100"
             >
+              <ChevronLeft size={20} />
+            </button>
 
-              <img
-                src={image}
+            {/* Next button */}
+            <button
+              type="button"
+              onClick={nextImage}
+              aria-label="Next product image"
+              className="absolute right-3 top-1/2 -translate-y-1/2
+                rounded-full bg-white/90 p-2 shadow
+                opacity-0 transition group-hover:opacity-100
+                focus:opacity-100"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </>
+        )}
 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrev(image);
-                }}
-                alt="image"
-                className="h-full w-full object-contain "
+        {/* Image indicators */}
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Show image ${index + 1}`}
+                className={`h-1.5 rounded-full transition-all ${
+                  activeIndex === index
+                    ? "w-5 bg-gray-900"
+                    : "w-1.5 bg-gray-400"
+                }`}
               />
-            </div>
-
-          ))}
-
-        </div>
-        <div className="my-2 flex flex-wrap gap-3 ">
+            ))}
+          </div>
+        )}
+      </div>
+      {/* Thumbnail images */}
+      {images.length > 1 && (
+        <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
           {images.map((image, index) => (
-            <>
-              {' '}
-              <button onClick={() => setView(index)} className="w-16 h-16 md:w-20 md:h-20  my-1 border border-gray-200/80 p-1">
-                <img src={image} alt="" className="w-full h-full gap-3" />
-              </button>
-              {/* <div onClick={()=>setView(index)} className='thumbnail border'><img src={image} alt="" className='w-full h-full' /></div> */}
-
-            </>
-
+            <button
+              key={image.id ?? image.src ?? index}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Select image ${index + 1}`}
+              className={`h-16 w-16 shrink-0 overflow-hidden rounded-lg
+                border-2 bg-gray-50 transition
+                ${
+                  activeIndex === index
+                    ? "border-gray-900"
+                    : "border-transparent hover:border-gray-300"
+                }`}
+            >
+              <img
+                src={image.src ?? image}
+                alt=""
+                className="h-full w-full object-contain p-1"
+              />
+            </button>
           ))}
         </div>
-      </div>
-
-      <div className={`${showImage ? 'show' : ''} imagePrevModal w-full h-full fixed top-0 left-0 flex justify-center items-center z-50 bg-black/50`}>
-
-        <div ref={imageBoxRef} className=" rounded shadow  max-h-[400px] mx-4 md:max-w-[700px] md:max-h-[700px] w-full h-full bg-white overflow-hidden">
-          <img src={imagePrev} alt="" className="w-full h-full" />
-
-        </div>
-
-      </div>
-
-    </>
+      )}
+    </div>
   );
 };
-
 export default ImagePreview;

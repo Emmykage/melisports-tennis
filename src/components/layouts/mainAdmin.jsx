@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
-import SideNav from '../admin/SideNav';
-import ProdDelModal from '../modal/ProdDelModal';
-import CatDelModal from '../modal/CatDelModal';
-import { userLog } from '../../redux/user/user';
-import Loader from '../../pages/Loader';
-import { fetchToken } from '../../hooks/localStorage';
-import ToastAlert from '../toast/ToastAlert';
-import { getStatistics } from '../../redux/actions/statistics';
-import Right from '../admin/Right';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import SideNav from "../admin/SideNav";
+import ProdDelModal from "../modal/ProdDelModal";
+import CatDelModal from "../modal/CatDelModal";
+import { userLog } from "../../redux/user/user";
+import Loader from "../../pages/Loader";
+import { fetchToken } from "../../hooks/localStorage";
+import ToastAlert from "../toast/ToastAlert";
+import { getStatistics } from "../../redux/actions/statistics";
+import Right from "../admin/Right";
 
 const MainAdmin = ({ children }) => {
   const dispatch = useDispatch();
@@ -30,18 +30,18 @@ const MainAdmin = ({ children }) => {
     setShowMenu(!showMenu);
   };
   if (loading) {
-    return (<Loader />);
+    return <Loader />;
   }
 
   if (user) {
-    if (user?.role === 'admin' || user?.role === 'super-admin') {
+    if (user?.role === "admin" || user?.role === "super-admin") {
       return (
-        <div className="grid sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 h-screen bg-white overflow-y-hidden admin">
+        <div className="flex  sm:grid-cols-md-admin md:grid-cols-sm-admin xl:grid-cols-grid-admin gap-4 h-screen overflow-y-hidden admin">
           <ToastAlert />
           {isOpen && <ProdDelModal id={id} />}
           {catOpen && <CatDelModal id={catId} />}
           <SideNav showMenu={showMenu} handleMenu={handleMenu} stats={stats} />
-          <div className="px-2 lg:px-4  py-10 bg-white shadow md:pt-0 overflow-y-auto h-screen no-scroll mt-12">
+          <div className="px-2 lg:px-4  py-10 bg-white shadow flex-1 md:pt-0 overflow-y-auto h-screen no-scroll mt-12">
             {children}
           </div>
           <Right handleMenu={handleMenu} user={user} stats={stats} />
@@ -55,16 +55,18 @@ const MainAdmin = ({ children }) => {
         <NavLink to="/store">Go to Store</NavLink>
       </div>
     );
-  } if (token) {
+  }
+  if (token) {
     return (
       <div className="text-center">
         <h1 className="text-3xl my-10 ">{message}</h1>
-        <NavLink to="/store" className="text-xl">Go to Store</NavLink>
+        <NavLink to="/store" className="text-xl">
+          Go to Store
+        </NavLink>
       </div>
-
     );
   }
-  navigate('/auth/admin_login');
+  navigate("/auth/admin_login");
   return null; // Ensure no further rendering happens after navigation
 };
 

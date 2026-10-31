@@ -19,6 +19,8 @@ module.exports = {
         primary: "#ff4500",
         "primary-alt": "#929098",
         "theme-darker": "rgb(20, 56, 80)",
+        secondary: "#16304b",
+        "secondary-100": "#16304b",
       },
       // backgroundColor: {
       //   theme: '#16304b',

@@ -131,92 +131,181 @@ const Products = () => {
               </header>
             </div>
           ) : view === "grid" ? (
-            <div className="w-full ">
-              <div className="w-full grid py-10  grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-6">
-                {filteredProduct.map((product) => (
-                  <AdminProductCard
-                    product={product}
-                    key={product.id}
-                    toEdit={toEdit}
-                    setSelectedProduct={setSelectedProduct}
-                  />
-                ))}
-              </div>
+            <div className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+              {filteredProduct.map((product) => (
+                <AdminProductCard
+                  product={product}
+                  key={product.id}
+                  toEdit={toEdit}
+                  setSelectedProduct={setSelectedProduct}
+                />
+              ))}
             </div>
           ) : (
-            <div className=" rounded-lg my-10 border border-gray-200">
-              <table className="min-w-full text-sm text-left text-gray-600">
-                {/* Head */}
-                <thead className="bg-gray-100 text-xs uppercase text-gray-500">
-                  <tr>
-                    <th className="px-4 py-3">#</th>
-                    <th className="px-4 py-3">Name</th>
-                    <th className="px-4 py-3 text-left">Price</th>
-                    <th className="px-4 py-3">Last Updated</th>
-                    <th className="px-4 text-center  py-3">Status</th>
-                    <th className="px-4 py-3 text-right sr-only">Action</th>
-                  </tr>
-                </thead>
+            <>
+              {/* Mobile product cards */}
+              <div className="space-y-3 py-5 md:hidden">
+                {filteredProduct.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="relative rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0 flex-1">
+                        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-gray-400">
+                          Product {index + 1}
+                        </p>
 
-                {/* Body */}
-                <tbody className="divide-y divide-gray-200">
-                  {filteredProduct.map((product, index) => (
-                    <tr
-                      key={product?.id}
-                      className={`${
-                        index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                      } hover:bg-gray-100 transition`}
-                    >
-                      <td className="px-4 py-3 text-gray-500">{index + 1}</td>
-
-                      <td className="px-4 py-3 capitalize font-medium text-gray-800">
                         <NavLink
-                          className={"text-theme underline hover:text-primary"}
-                          to={`/admin/edit/${product?.id}`}
+                          to={`/admin/edit/${product.id}`}
+                          className="block break-words font-semibold text-gray-900 hover:text-primary"
                         >
-                          {product?.name}
+                          {product.name}
                         </NavLink>
-                      </td>
 
-                      <td className="px-4 py-3 text-left font-semibold text-gray-800">
-                        {nairaFormat(product?.price)}
-                      </td>
+                        <p className="mt-2 text-lg font-bold text-gray-900">
+                          {nairaFormat(product.price)}
+                        </p>
+                      </div>
 
-                      <td className="px-4 py-3 text-gray-700">
-                        {product?.last_updated}
-                      </td>
+                      <button
+                        type="button"
+                        aria-label={`Actions for ${product.name}`}
+                        aria-expanded={selectedRow === product.id}
+                        onClick={() =>
+                          setSelectedRow((current) =>
+                            current === product.id ? null : product.id,
+                          )
+                        }
+                        className="shrink-0 rounded-lg border border-gray-200 p-2 text-gray-600 transition hover:bg-gray-100"
+                      >
+                        <BsThreeDotsVertical size={18} />
+                      </button>
 
-                      <td className="px-4 py-3">
-                        <StatusButton status={product?.status} />
-                      </td>
+                      {selectedRow === product.id && (
+                        <DropdownOptions
+                          product={product}
+                          setSelectedRow={setSelectedRow}
+                          setSelectedProduct={setSelectedProduct}
+                          setOpenUpdateModal={setOpenUpdateModal}
+                          setOpenViewModal={setOpenViewModal}
+                        />
+                      )}
+                    </div>
 
-                      <td className="px-4 py-3 text-right relative">
-                        <button
-                          onClick={() => setSelectedRow(product.id)}
-                          className="inline-flex items-center gap-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-indigo-600 hover:bg-indigo-600 hover:text-white transition"
+                    <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
+                      <div className="min-w-0">
+                        <p className="text-xs text-gray-400">Last updated</p>
+                        <p className="mt-1 break-words text-sm text-gray-600">
+                          {product.last_updated || "—"}
+                        </p>
+                      </div>
+
+                      <div>
+                        <p className="mb-1 text-xs text-gray-400">Status</p>
+                        <StatusButton status={product.status} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop and tablet table */}
+              <div className="my-6 hidden overflow-visible rounded-xl border border-gray-200 bg-white md:block">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[720px] text-left text-sm text-gray-600">
+                    <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="w-16 px-4 py-4 font-semibold"
                         >
-                          <BsThreeDotsVertical />{" "}
-                        </button>
-                        {product.id === selectedRow && (
-                          <DropdownOptions
-                            toEdit={toEdit}
-                            selectedRow={selectedRow}
-                            setSelectedRow={setSelectedRow}
-                            product={product}
-                            setSelectedProduct={setSelectedProduct}
-                            openDelModal={openDelModal}
-                            openUpdateModal={openUpdateModal}
-                            setOpenViewModal={setOpenViewModal}
-                            setOpenUpdateModal={setOpenUpdateModal}
-                            setSelectedRow={setSelectedRow}
-                          />
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                          #
+                        </th>
+                        <th scope="col" className="px-4 py-4 font-semibold">
+                          Product
+                        </th>
+                        <th scope="col" className="px-4 py-4 font-semibold">
+                          Price
+                        </th>
+                        <th scope="col" className="px-4 py-4 font-semibold">
+                          Last Updated
+                        </th>
+                        <th scope="col" className="px-4 py-4 font-semibold">
+                          Status
+                        </th>
+                        <th
+                          scope="col"
+                          className="w-16 px-4 py-4 text-right font-semibold"
+                        >
+                          <span className="sr-only">Actions</span>
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody className="divide-y divide-gray-100">
+                      {filteredProduct.map((product, index) => (
+                        <tr
+                          key={product.id}
+                          className="transition-colors hover:bg-gray-50"
+                        >
+                          <td className="px-4 py-4 text-gray-400">
+                            {index + 1}
+                          </td>
+
+                          <td className="max-w-xs px-4 py-4">
+                            <NavLink
+                              to={`/admin/edit/${product.id}`}
+                              className="block break-words font-medium capitalize text-gray-800 hover:text-primary hover:underline"
+                            >
+                              {product.name}
+                            </NavLink>
+                          </td>
+
+                          <td className="whitespace-nowrap px-4 py-4 font-semibold text-gray-900">
+                            {nairaFormat(product.price)}
+                          </td>
+
+                          <td className="whitespace-nowrap px-4 py-4 text-gray-500">
+                            {product.last_updated || "—"}
+                          </td>
+
+                          <td className="px-4 py-4">
+                            <StatusButton status={product.status} />
+                          </td>
+
+                          <td className="relative px-4 py-4 text-right">
+                            <button
+                              type="button"
+                              aria-label={`Actions for ${product.name}`}
+                              aria-expanded={selectedRow === product.id}
+                              onClick={() =>
+                                setSelectedRow((current) =>
+                                  current === product.id ? null : product.id,
+                                )
+                              }
+                              className="rounded-lg border border-gray-200 p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
+                            >
+                              <BsThreeDotsVertical size={18} />
+                            </button>
+
+                            {selectedRow === product.id && (
+                              <DropdownOptions
+                                product={product}
+                                setSelectedRow={setSelectedRow}
+                                setSelectedProduct={setSelectedProduct}
+                                setOpenUpdateModal={setOpenUpdateModal}
+                                setOpenViewModal={setOpenViewModal}
+                              />
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
           )}
         </div>
         <UpdatePriceModal
