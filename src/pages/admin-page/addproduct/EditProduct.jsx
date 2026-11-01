@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 
 import getGenders from "../../../redux/actions/gender";
 import getLevels from "../../../redux/actions/misc";
-import { getProduct, updateProduct } from "../../../redux/actions/product";
+import {
+  addProduct,
+  getProduct,
+  updateProduct,
+} from "../../../redux/actions/product";
 import {
   getProductCategories,
   getSportCategories,
@@ -15,6 +19,7 @@ import ProductForm from "../../../components/formProduct/formProduct";
 const EditProduct = () => {
   const { editId } = useParams();
   const dispatch = useDispatch();
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const [productInventories, setProductInventories] = useState([
     {
       size: "",
@@ -49,14 +54,25 @@ const EditProduct = () => {
 
   const handleSubmit = async (formData) => {
     try {
-      const res = await dispatch(updateProduct({ editId, formData })).unwrap();
+      let res;
+      isDuplicate
+        ? (res = await dispatch(addProduct(formData)).unwrap())
+        : (res = await dispatch(updateProduct({ editId, formData })).unwrap());
+
       return res;
     } catch (error) {
       throw error;
     }
   };
 
-  return <ProductForm onSubmit={handleSubmit} product={product} />;
+  return (
+    <ProductForm
+      onSubmit={handleSubmit}
+      product={product}
+      isDuplicate={isDuplicate}
+      setIsDuplicate={setIsDuplicate}
+    />
+  );
 };
 
 export default EditProduct;

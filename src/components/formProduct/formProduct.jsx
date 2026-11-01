@@ -382,7 +382,7 @@ const InventoryTable = ({
 /*  Main component                                                            */
 /* -------------------------------------------------------------------------- */
 
-const ProductForm = ({ onSubmit, product }) => {
+const ProductForm = ({ onSubmit, product, isDuplicate, setIsDuplicate }) => {
   const dispatch = useDispatch();
   const formRef = useRef(null);
   const editorRef = useRef(null);
@@ -647,10 +647,24 @@ const ProductForm = ({ onSubmit, product }) => {
   };
 
   /* -------------------------------- render -------------------------------- */
-
   return (
-    <div className="product-form admin m-auto w-full max-w-5xl bg-white">
+    <div
+      className={`"product-form admin m-auto w-full max-w-5xl ${isDuplicate ? "bg-primary/30" : "bg-white"}`}
+    >
       <form onSubmit={handleSubmit} ref={formRef} className="space-y-6 p-4">
+        {product && (
+          <Button
+            type="button"
+            onClick={() => setIsDuplicate((prev) => !prev)}
+            className={`rounded px-4 py-2 font-medium transition-all ${
+              isDuplicate
+                ? "bg-green-600 hover:bg-green-700"
+                : "bg-gray-600 hover:bg-gray-700"
+            }`}
+          >
+            {isDuplicate ? "Edit Product" : "Duplicate Product"}
+          </Button>
+        )}
         <Section title="Basics">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FormInput
