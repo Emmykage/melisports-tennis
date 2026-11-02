@@ -649,7 +649,7 @@ const ProductForm = ({ onSubmit, product, isDuplicate, setIsDuplicate }) => {
   /* -------------------------------- render -------------------------------- */
   return (
     <div
-      className={`"product-form admin m-auto w-full max-w-5xl ${isDuplicate ? "bg-primary/30" : "bg-white"}`}
+      className={`product-form pb-20 admin m-auto w-full max-w-5xl ${isDuplicate ? "bg-primary/30" : "bg-white"}`}
     >
       <form onSubmit={handleSubmit} ref={formRef} className="space-y-6 p-4">
         {product && (
@@ -924,9 +924,8 @@ const ProductForm = ({ onSubmit, product, isDuplicate, setIsDuplicate }) => {
         )}
 
         <StatusMessage loading={loading} status={status} message={message} />
-
         <Button
-          className="w-full"
+          className="w-full my-20"
           type="submit"
           disabled={isSubmitting}
           loading={isSubmitting}

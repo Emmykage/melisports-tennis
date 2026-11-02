@@ -30,19 +30,20 @@ const ProductDetails = () => {
   const { product, loading } = useSelector((state) => state.product);
   const { cartItems } = useSelector((state) => state.cart);
   const isOutOfStock = product?.product_quantity < 1;
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
 
   const { id } = useParams();
-  const {
-    relatedProducts,
-    status,
-    loading: isLoading,
-  } = useSelector((state) => state.products);
+  const { relatedProducts, loading: isLoading } = useSelector(
+    (state) => state.products,
+  );
   const navigate = useNavigate();
-
+  const currentProduct = relatedProducts[currentProductIndex];
+  const lastProduct = relatedProducts[relatedProducts.length - 1];
   useEffect(() => {
     dispatch(closeList());
     dispatch(getProduct(id));
-  }, [id]);
+    dispatch(getSimilarProducts({ product_id: id }));
+  }, [dispatch, id]);
 
   const handleCart = () => {
     const cartArray = newInventory
@@ -96,12 +97,7 @@ const ProductDetails = () => {
     setSelectedColors(product?.colours);
   }, [product]);
 
-  useEffect(() => {
-    dispatch(getSimilarProducts({ product_id: id }));
-  }, []);
-  const increase = () => {
-    setCount((setPrev) => Math.min(setPrev + 1, product.product_quantity));
-  };
+  useEffect(() => {}, [id]);
 
   const handleItemCount = (item, sign) => {
     setNewInventory((prev) => {
@@ -122,9 +118,6 @@ const ProductDetails = () => {
     if (sign === "-" && item.count <= 1) {
       dispatch(deleteCartItem(item?.id));
     }
-  };
-  const decrease = () => {
-    setCount((setPrev) => Math.max(setPrev - 1, 0));
   };
 
   useEffect(() => {
@@ -157,7 +150,6 @@ const ProductDetails = () => {
     apparel: "Sports Wear",
     bag: "Sports Bags",
   };
-
   const seoCategory =
     categoryKeyword[product.product_category?.name] ||
     product.product_category?.name;
@@ -170,7 +162,7 @@ const ProductDetails = () => {
           name="description"
           content={`
 Buy ${product.name} online in Nigeria from Melisports.
-Shop quality ${seoCategory.toLowerCase()} and sports equipment
+Shop quality ${seoCategory?.toLowerCase()} and sports equipment
 at competitive prices.
 `}
         />
@@ -516,7 +508,7 @@ at competitive prices.
             )}
           </div>
         </div>
-        <BestSellerSection product={relatedProducts[0]} />
+        <BestSellerSection product={currentProduct} />
         <ProductImageSlider products={relatedProducts} />
 
         {/* Description */}
@@ -541,7 +533,7 @@ at competitive prices.
               <div className="bg-0" />
             </div>
           </div>
-          <RelatedProductSlider product={relatedProducts[0]} interval={3000} />
+          <RelatedProductSlider product={lastProduct} interval={3000} />
         </div>
       </div>
       {/* </section> */}

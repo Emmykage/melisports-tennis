@@ -176,12 +176,9 @@ const AlternateProduct = ({ product, onViewProduct, interval = 3000 }) => {
         </div>
 
         <Button
-          type="button"
-          onClick={() => navigate(`/products-details/${product.id}`)}
-          className="mt-4 flex w-full items-center justify-center text-white
-            gap-2 rounded-full px-4 py-3
-            text-sm font-semibold bg-secondary
-            hover:text-white"
+          variant="secondary"
+          onClick={() => navigate(`/product-details/${product.id}`)}
+          className="mt-4 flex w-full"
         >
           View product
           <ArrowRight size={16} />

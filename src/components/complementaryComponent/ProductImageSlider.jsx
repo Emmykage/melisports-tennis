@@ -14,9 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { nairaFormat } from "../../utils/nairaFormat";
 
 const ProductCard = ({ product, onProductClick }) => {
-  // const { cartItems } = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  // const [newInventory, setNewInventory] = useState([]);
   const dispatch = useDispatch();
   const handleCart = () => {
     if (product.product_quantity <= 0) {
@@ -207,12 +205,9 @@ const ProductCard = ({ product, onProductClick }) => {
         )}
 
         <Button
-          type="button"
+          variant="secondary"
           onClick={() => handleCart()}
-          className="mt-4 flex w-full items-center justify-center gap-2
-            rounded-full border border-neutral-900 px-3 py-3
-            text-xs font-bold transition hover:bg-secondary
-            hover:text-white"
+          className="mt-4 w-full"
         >
           <ShoppingBag size={15} />
           Add to cart

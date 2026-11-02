@@ -49,11 +49,7 @@ const Button = ({
           aria-hidden="true"
         />
       )}
-      <span className={cn(isLoading && "sr-only")}>{children}</span>
-
-      <span role="status" className="sr-only">
-        {isLoading ? `${loadMessage}...` : ""}
-      </span>
+      {children}
     </button>
   );
 };

@@ -5,17 +5,12 @@ import {
   ChevronRight,
   Flame,
   Recycle,
-  RotateCw,
-  Scale,
   Star,
-  StarHalfIcon,
-  StarIcon,
-  StarOff,
-  Stars,
   Truck,
 } from "lucide-react";
-import { Security, StarsOutlined } from "@mui/icons-material";
+import { Security } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { nairaFormat } from "../../utils/nairaFormat";
 
 const descriptionClass = "flex items-center gap-2 flex-1";
 
@@ -36,11 +31,7 @@ const deliveries = [
     desc: "100% secure checkout",
   },
 ];
-export default function BestSellerSection({
-  product,
-  onViewProduct,
-  interval = 3000,
-}) {
+export default function BestSellerSection({ product, interval = 3000 }) {
   const images = product?.photo_urls?.length
     ? product.photo_urls
     : [product?.image].filter(Boolean);
@@ -69,13 +60,6 @@ export default function BestSellerSection({
       (current) => (current + direction + images.length) % images.length,
     );
   };
-
-  const formatPrice = (price) =>
-    new Intl.NumberFormat("en-NG", {
-      style: "currency",
-      currency: "NGN",
-      maximumFractionDigits: 0,
-    }).format(price);
 
   const isDiscountActive = product.discount === "active_discount";
 
@@ -186,7 +170,7 @@ export default function BestSellerSection({
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <span className="text-lg font-bold text-neutral-950">
-              {formatPrice(
+              {nairaFormat(
                 isDiscountActive ? product.discount_amount : product.price,
               )}
             </span>
@@ -194,7 +178,7 @@ export default function BestSellerSection({
             {isDiscountActive && (
               <>
                 <span className="text-xs text-neutral-400 line-through">
-                  {formatPrice(product.price)}
+                  {nairaFormat(product.price)}
                 </span>
                 <span
                   className="rounded bg-red-50 px-2 py-1
@@ -244,14 +228,13 @@ export default function BestSellerSection({
         {/* delivery information   */}
         <div className="max-w-lg flex-1 px-2">
           <Link
-            type="button"
-            to={`/product-details/${product.id})`}
+            to={`/product-details/${product.id}`}
             className="mt-4 flex w-full items-center justify-center
             gap-2 rounded-md bg-secondary px-4 py-3
             text-sm font-semibold text-white transition
             hover:bg-neutral-700"
           >
-            View product
+            View productsd
             <ArrowRight size={16} />
           </Link>
 
