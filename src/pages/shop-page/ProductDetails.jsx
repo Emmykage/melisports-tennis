@@ -515,7 +515,7 @@ at competitive prices.
         <div className="grid md:grid-cols-2 gap-4">
           <div className="description-detail">
             <div className="p-4">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              <h2 className="text-2xl font-normal text-gray-800 mb-4">
                 Description
               </h2>
               {product.description_body ? (
