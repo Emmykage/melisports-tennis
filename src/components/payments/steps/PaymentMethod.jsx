@@ -74,14 +74,17 @@ const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
       <div className="flex justify-between my-4 gap-3">
         <Button
           className="flex gap-2 flex-1"
-          btnFunc={() => setStep((prev) => prev - 1)}
+          onClick={() => {
+            console.log("object");
+            setStep((prev) => prev - 1);
+          }}
         >
           <FaArrowLeft /> Previous
         </Button>
 
         <Button
           className="flex gap-2 flex-1"
-          btnFunc={() => {
+          onClick={() => {
             billingDetails.payment_method && setStep((prev) => prev + 1);
           }}
         >

@@ -26,7 +26,6 @@ const ConfirmPayment = ({
     },
     // onClose: () => alert('Are you sure'),
   };
-  console.log(billingDetails, cartItems);
 
   const cpayment =
     billingDetails.payment_method === "on_delivery" ? "Pay Later" : "Paystack";
