@@ -75,7 +75,6 @@ const PaymentMethod = ({ setStep, setBillingDetails, billingDetails }) => {
         <Button
           className="flex gap-2 flex-1"
           onClick={() => {
-            console.log("object");
             setStep((prev) => prev - 1);
           }}
         >
