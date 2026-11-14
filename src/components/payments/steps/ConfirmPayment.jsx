@@ -127,7 +127,7 @@ const ConfirmPayment = ({
       <div className="flex justify-between gap-6">
         <Button
           className="flex flex-1 gap-2"
-          btnFunc={() => setStep((prev) => prev - 1)}
+          onClick={() => setStep((prev) => prev - 1)}
         >
           <FaArrowLeft /> Previous
         </Button>
@@ -135,7 +135,7 @@ const ConfirmPayment = ({
         {billingDetails.payment_method === "on_delivery" ? (
           <Button
             className="flex gap-2 text-center flex-1 justify-center"
-            btnFunc={() => handleCheckout(false)}
+            onClick={() => handleCheckout(false)}
             disabled={loading}
           >
             {loading ? (

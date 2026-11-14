@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../buttons/Button';
-import { sendReview } from '../../redux/actions/review';
-import LoaderModal from '../loader/Loader';
-import { closeLoader, setLoader } from '../../redux/app/app';
-import ErrorMessage from '../error-message/ErrorMessage';
+import React, { useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../buttons/Button";
+import { sendReview } from "../../redux/actions/review";
+import LoaderModal from "../loader/Loader";
+import { closeLoader, setLoader } from "../../redux/app/app";
+import ErrorMessage from "../error-message/ErrorMessage";
 
 const Reviews = () => {
   const [review, setReview] = useState({
-    content: '',
+    content: "",
   });
 
   const dispatch = useDispatch();
@@ -23,8 +23,8 @@ const Reviews = () => {
           Share Your Thoughts 💬
         </h3>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Help us improve the site by leaving your honest feedback.
-          Your input means a lot to us!
+          Help us improve the site by leaving your honest feedback. Your input
+          means a lot to us!
         </p>
 
         {/* Rating + CTA */}
@@ -32,7 +32,10 @@ const Reviews = () => {
           {/* Stars */}
           <div className="flex flex-wrap gap-2 items-center justify-center">
             {[...Array(5)].map((_, i) => (
-              <FaStar key={i} className="text-yellow-400 text-2xl cursor-pointer hover:scale-110 transition-transform" />
+              <FaStar
+                key={i}
+                className="text-yellow-400 text-2xl cursor-pointer hover:scale-110 transition-transform"
+              />
             ))}
             <p className="text-lg font-medium text-gray-700 ml-2">Rate us</p>
           </div>
@@ -50,9 +53,11 @@ const Reviews = () => {
           <textarea
             name="review"
             id="review"
-            onChange={(e) => setReview({
-              content: e.target.value,
-            })}
+            onChange={(e) =>
+              setReview({
+                content: e.target.value,
+              })
+            }
             value={review.content}
             placeholder="Write your review here..."
             className="w-full h-52 p-5 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary/60 focus:outline-none resize-none transition"
@@ -66,14 +71,14 @@ const Reviews = () => {
         <Button
           loading={false}
           disabled={!review.content.trim()}
-          btnFunc={() => {
+          onClick={() => {
             if (review.content.trim()) {
               dispatch(setLoader());
               dispatch(sendReview(review)).then((result) => {
                 if (sendReview.fulfilled.match(result)) {
                   dispatch(closeLoader());
                   setReview({
-                    content: '',
+                    content: "",
                   });
                 } else {
                   dispatch(closeLoader());
@@ -89,7 +94,6 @@ const Reviews = () => {
 
       <LoaderModal />
     </section>
-
   );
 };
 

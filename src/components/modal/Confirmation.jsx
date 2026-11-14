@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react';
-import Button from '../buttons/Button';
+import React, { useEffect } from "react";
+import Button from "../buttons/Button";
 
 const Confirmation = ({
   open,
   onConfirm,
   onCancel,
   loading = false,
-  title = 'Confirm Action',
+  title = "Confirm Action",
   description,
-  confirmText = 'Confirm',
-  cancelText = 'Cancel',
+  confirmText = "Confirm",
+  cancelText = "Cancel",
   children,
 }) => {
   // Close on ESC key
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === 'Escape') onCancel?.();
+      if (e.key === "Escape") onCancel?.();
     };
 
     if (open) {
-      window.addEventListener('keydown', handleEsc);
+      window.addEventListener("keydown", handleEsc);
     }
 
-    return () => window.removeEventListener('keydown', handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
   }, [open, onCancel]);
 
   if (!open) return null;
@@ -43,17 +43,19 @@ const Confirmation = ({
         </h3>
 
         {description && (
-          <p className="text-gray-600 text-center mb-4">
-            {description}
-          </p>
+          <p className="text-gray-600 text-center mb-4">{description}</p>
         )}
 
-        {children && <div className="my-4 text-center  font-semibold text-lg">{children}</div>}
+        {children && (
+          <div className="my-4 text-center  font-semibold text-lg">
+            {children}
+          </div>
+        )}
 
         <div className="flex gap-3">
           <Button
             className="flex-1"
-            btnFunc={onCancel}
+            onClick={onCancel}
             type="cancel"
             btnText={cancelText}
           >
@@ -62,7 +64,7 @@ const Confirmation = ({
 
           <Button
             className="flex-1"
-            btnFunc={onConfirm}
+            onClick={onConfirm}
             loading={loading}
             btnText={confirmText}
           >
