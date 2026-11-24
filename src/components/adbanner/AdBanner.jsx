@@ -37,7 +37,11 @@ const AdBanner = () => {
                 src={ballDiscountImg}
                 alt="x-mas sales banner"
                 className="w-full h-full object-cover sm:object-fill md:object-fill cursor-pointer group-hover:scale-105 transition duration-500"
-                onClick={() => navigate("/sales")}
+                onClick={() =>
+                  navigate(
+                    "/product-details/8089d72b-0563-4042-a78b-5d6d082d54f6",
+                  )
+                }
               />
             </SwiperSlide>
             <SwiperSlide>
@@ -45,7 +49,11 @@ const AdBanner = () => {
                 src={badmintonDiscountImg}
                 alt="x-mas sales banner"
                 className="w-full h-full object-cover cursor-pointer group-hover:scale-105 transition duration-500"
-                onClick={() => navigate("/sales")}
+                onClick={() =>
+                  navigate(
+                    "/product-details/a0968467-70b5-40da-bad9-f446688c69fc",
+                  )
+                }
               />
             </SwiperSlide>
           </Swiper>
@@ -56,7 +64,11 @@ const AdBanner = () => {
               src={racketImg}
               alt="add banner"
               className="object-cover md:object-fill h-full w-full cursor-pointer group-hover:scale-105 transition duration-500"
-              onClick={() => navigate("/sales")}
+              onClick={() =>
+                navigate(
+                  "/product-details/fc49eff4-5f5d-434c-99ac-ea7b2a2fe1c2",
+                )
+              }
             />
           </div>{" "}
           <div className="md:flex-1 group h-full md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
@@ -64,7 +76,11 @@ const AdBanner = () => {
               src={aeroImg}
               alt="add banner"
               className="object-cover md:object-fill h-full w-full cursor-pointer group-hover:scale-105 transition duration-500"
-              onClick={() => navigate("/sales")}
+              onClick={() =>
+                navigate(
+                  "/product-details/e3284a9a-6d6c-43b8-b3ee-4bb29797c904",
+                )
+              }
             />
           </div>{" "}
           <div className="md:flex-1 group h-full md:h-96 bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
