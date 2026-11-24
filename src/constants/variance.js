@@ -4,6 +4,7 @@ const clothSizes = [
   { value: "L", label: "L" },
   { value: "XL", label: "XL" },
   { value: "XXL", label: "XXL" },
+  { value: "unique", label: "unique" },
 ];
 
 const shoeSizes = [

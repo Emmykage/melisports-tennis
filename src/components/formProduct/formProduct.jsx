@@ -396,7 +396,6 @@ const ProductForm = ({ onSubmit, product, isDuplicate, setIsDuplicate }) => {
   const genders = useSelector((state) => state.gender.genders) ?? [];
   const { loading, status, message } = useSelector((state) => state.product);
   const [isSubmitting, setIssSubmitting] = useState(false);
-  console.log(loading);
 
   const [formValues, setFormValues] = useState(INITIAL_VALUES);
   const [productInventories, setProductInventories] = useState([

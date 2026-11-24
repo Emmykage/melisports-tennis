@@ -22,8 +22,6 @@ const SalesPage = () => {
     levels: selectedLevels,
   });
 
-  console.log(collection);
-
   return (
     <div className="product-container relative">
       <Container>
