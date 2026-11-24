@@ -18,6 +18,7 @@ import Invoice from "./components/invoice/Invoice";
 import { getCartSum } from "./redux/actions/cart";
 import AnimatedLoaded from "./components/animateLoad/AnimatedLoaded";
 import CourtConstructionPage from "./pages/Construction";
+
 const Main = lazy(() => import("./pages/admin-page/dashBoard/Main"));
 const Signup = lazy(() => import("./pages/auth/Signup"));
 const Login = lazy(() => import("./pages/auth/Login"));
@@ -45,6 +46,7 @@ const ApparelsPage = lazy(() => import("./pages/shop-page/Apparels"));
 const BagsPage = lazy(() => import("./pages/shop-page/BagsPage"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Home = lazy(() => import("./pages/landing-page/Home"));
+const KidsPage = lazy(() => import("./pages/shop-page/KidsPage"));
 
 const ProductDetails = lazy(() => import("./pages/shop-page/ProductDetails"));
 const ProductsPage = lazy(() => import("./pages/shop-page/ProductsPage"));
@@ -335,6 +337,14 @@ function App() {
             element={
               <MainLayout>
                 <BadmintonsPage />
+              </MainLayout>
+            }
+          />{" "}
+          <Route
+            path="/kids"
+            element={
+              <MainLayout>
+                <KidsPage />
               </MainLayout>
             }
           />

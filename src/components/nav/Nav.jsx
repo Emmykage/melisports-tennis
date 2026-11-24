@@ -59,6 +59,10 @@ const Nav = ({
       label: "Bags",
     },
     {
+      link: "/kids",
+      label: "Kids",
+    },
+    {
       link: "/accessories",
       label: "Accessories",
     },
