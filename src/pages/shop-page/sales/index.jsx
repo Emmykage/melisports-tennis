@@ -1,106 +1,83 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import Hero from '../../../components/banner/Hero';
-import bannerImage from '../../../assets/images/banner/babolat-wimby-desktop-banner1.jpg';
-import Loader from '../../Loader';
-import Nav from '../../../components/nav/Nav';
+import React, { useState } from "react";
+import Hero from "../../../components/banner/Hero";
+import bannerImage from "../../../assets/images/banner/babolat-wimby-desktop-banner1.jpg";
+import Loader from "../../Loader";
 
-import { collections } from '../../../constants/variance';
-import SideNav from '../../../components/sideNav/SideNav';
-import ProductsPageContainer from '../../../components/productItems/ProductItems';
-import ProductsGrid from '../../../components/products/ProductsGridDisplay';
-import useProducts from '../../../hooks/useProducts';
-import { useCategoryName } from '../../../hooks/fetchHooks/useCategories';
-import Container from '../../../components/container';
-import Header from '../../../components/header/Header';
+import { collections } from "../../../constants/variance";
+import ProductsPageContainer from "../../../components/productItems/ProductItems";
+import ProductsGrid from "../../../components/products/ProductsGridDisplay";
+import useProducts from "../../../hooks/useProducts";
+import Container from "../../../components/container";
 
 const SalesPage = () => {
-  const dispatch = useDispatch();
-
-  const [collection, setCollections] = useState([]);
-  const [discount, setDiscount] = useState(true);
+  const [collection, setCollections] = useState("");
   const [selectedLevels, setSelectedLevels] = useState([]);
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
-
   const {
-    data: products, error, isLoading: loading,
+    data: products,
+    error,
+    isLoading: loading,
   } = useProducts({
     discount: true,
-    category: 'racquet',
-    sport: 'Tennis',
+    category: collection,
     levels: selectedLevels,
-    features: selectedFeatures,
-
   });
 
-  const { data: category } = useCategoryName({
-    name: 'racquet',
-  });
-
-  const handleFilteredFeatures = (e) => {
-    const { checked, value } = e.target;
-    checked ? setSelectedFeatures((prev) => [...prev, value]) : setSelectedFeatures((prev) => prev.filter((item) => item !== value));
-  };
+  console.log(collection);
 
   return (
     <div className="product-container relative">
       <Container>
-
         <Hero image={bannerImage} title="Discounted Sales" />
 
         <ProductsPageContainer>
-          <h2 className="text-2xl font-normal text-gray-900 mb-4">Discounted Sales</h2>
-          <p className="text-gray-600 mb-6">
-            Explore our collection of discounted sales available for a limited time.
-          </p>
+          <div className="bg-gray-900 space-y-3 p-4 rounded-2xl my-6">
+            <p className="inline-block bg-red-900/20 px-4 py-2 rounded-sm text-red-500">
+              SPECIAL OFFERS
+            </p>
+            <h2 className="text-2xl font-normal text-white">
+              Discounts & Deals{" "}
+            </h2>
+            <p className="text-white text-base">Get more game for less.</p>
+            <p className="text-gray-100 ">
+              Explore our collection of discounted sales available for a limited
+              time.
+            </p>{" "}
+          </div>
 
-          <div className="flex md:gap-10">
-
-            <SideNav>
-
-              <div className="space-y-2 mt-4">
-                <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">Collection</h6>
-                {collections.map((level) => (
-                  <span className="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      checked={collection.includes(level.value)}
-                      id={level.value}
-                      value={level.value}
-                      onChange={handleFilteredFeatures}
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-3"
-                    />
-
-                    <label htmlFor={level.value} style={{ fontSize: '1rem' }}>
-                      {level.label}
-                    </label>
-                  </span>
+          <div className="flex flex-col md:gap-10">
+            <div className="">
+              <h6 className="text-gray-800 font-semibold mb-3 tracking-wide">
+                Collection
+              </h6>
+              <div className="space-x-5 my-4 py-4 flex flex-wr w-full overflow-x-auto gap-4 items-center">
+                <button
+                  className="px-4 py-2 text-nowrap bg-theme text-white rounded-2xl"
+                  onClick={() => setCollections(null)}
+                >
+                  All Discount
+                </button>
+                {collections.map((item) => (
+                  <button
+                    key={item.value}
+                    className="px-4 py-2 bg-theme text-white rounded-2xl"
+                    onClick={() => setCollections(item.value)}
+                  >
+                    {item.value}
+                  </button>
                 ))}
-
               </div>
-
-            </SideNav>
-            {loading ? <Loader />
-              : (
-                <div className="product-align w-full">
-                  <ProductsGrid products={products} error={error} filter="racquet" />
-
-                  <div className="product-details color-grey">
-                    <h3> BABOLAT TENNIS RACKET BRANDS</h3>
-                    <p>
-                      { category?.description}
-
-                    </p>
-
-                  </div>
-                </div>
-              ) }
+            </div>
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className="product-align w-full">
+                <ProductsGrid products={products} error={error} />
+              </div>
+            )}
             <div />
-
           </div>
         </ProductsPageContainer>
       </Container>
-
     </div>
   );
 };
