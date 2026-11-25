@@ -30,6 +30,7 @@ const Nav = ({
   const { counter } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const [openDropdown, setOpenDropdown] = useState(false);
 
   const storeItems = [
@@ -70,6 +71,11 @@ const Nav = ({
     {
       link: "/brands",
       label: "Brands",
+    },
+    {
+      link: "/sales",
+      label: "Special Offers",
+      special: true,
     },
     {
       link: "#",
@@ -122,8 +128,8 @@ const Nav = ({
   ];
   const storeMenu = useMemo(
     () => (
-      <ul className="hidden lg:flex gap-6 text-sm font-medium items-center  text-gray-700">
-        {storeItems.map(({ link, label, sub }) => (
+      <ul className="hidden lg:flex gap-6 text-sm font-medium items-center text-gray-700">
+        {storeItems.map(({ link, label, sub, special }) => (
           <li key={link} className="group relative">
             <a
               onClick={() => {
@@ -131,7 +137,7 @@ const Nav = ({
 
                 navigate(`${link}`);
               }}
-              className="hover:text-primary cursor-pointer transition-colors"
+              className={`${pathname.includes(link) ? "text-primary" : ""} cursor-pointer transition-colors px-4 py-2 ${special ? "bg-primary rounded-lg text-nowrap text-white  hover:text-theme" : "hover:text-primary"}`}
             >
               {label}
             </a>
@@ -237,13 +243,13 @@ const Nav = ({
 
           {/* Right: User + Cart */}
           <div className="flex items-center gap-5">
-            <a
+            {/* <a
               href="#survey"
               className="bg-gray-60 py-1 rounded px-3  lg:text-dark  hidden md:block"
             >
               {" "}
               Survey
-            </a>
+            </a> */}
 
             <NavLink
               onClick={() => {
@@ -320,7 +326,7 @@ const Nav = ({
               ? storeItems.map((item) => (
                   <span
                     key={item.link}
-                    className="w-full cursor-pointer hover:text-primary"
+                    className={`${pathname.includes(item.link) ? "text-primary" : ""} cursor-pointer transition-colors px-4 py-2 ${item.special ? "bg-primary rounded-lg text-nowrap text-white  hover:text-theme" : "hover:text-primary"}`}
                     onClick={() => {
                       dispatch(clearSearch());
                       setToggleNav(false);
