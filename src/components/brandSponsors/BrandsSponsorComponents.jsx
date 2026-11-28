@@ -2,7 +2,7 @@ import React from "react";
 import Babolat from "../../assets/images/logo/ba4886b10b-babolat-logo-babolat-logo-png-transparent-images-free-png-images-vector-psd.png";
 import melisport from "../../assets/images/logo/melisport_one.png";
 import allOnDeck from "../../assets/images/logo/all-on-deck.png";
-import padelX from "../../assets/images/logo/padelX-logo.png";
+import padelX from "../../assets/images/logo/padelX.png";
 import meliJ from "../../assets/images/logo/Melijouer-logo.webp";
 
 export const brandItems = [

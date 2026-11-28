@@ -35,10 +35,6 @@ const Nav = ({
 
   const storeItems = [
     {
-      link: "/store",
-      label: "Store",
-    },
-    {
       link: "/racquets",
       label: "Racquets",
       sub: [
@@ -342,7 +338,7 @@ const Nav = ({
                           onClick={(e) => e.stopPropagation()}
                         >
                           <FaChevronRight
-                            className={` transform transition-all duration-75 ease-linear ${openDropdown ? "rotate-90" : "rotate-0"}`}
+                            className={`transform transition-all duration-75 ease-linear ${openDropdown ? "rotate-90" : "rotate-0"}`}
                             onClick={(e) => {
                               // e.stopPropagation()
                               setOpenDropdown((prev) => !prev);
